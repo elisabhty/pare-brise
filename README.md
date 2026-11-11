@@ -86,6 +86,13 @@ panneau ou l'usager à observer, puis vient le QCM et sa correction. Les répons
 les révisions. Les défis 3D (freinage, feux, priorités…) sont rattachés à leur leçon : aucun exercice n'est seul. Les pratiques
 sont générées par `gen/pratique.py` (décor par leçon, mises en scène sur mesure par question).
 
+Chaque pratique commence par les **deux exercices immersifs** du cours (70 en tout, `exercices_immersifs_3d` dans
+`gen/cours-immersifs-35.json`, mis en scène par `gen/immersifs.py`) : la scène se joue, se fige au moment de décider
+(vue extérieure puis place du conducteur avec `puis`), réponse unique, puis la scène reprend et la voiture fait ce qu'il
+fallait faire pendant que la correction s'affiche (`apres` : `ralentir`, `distance`, `arret`, `freinage`, `voie`, `inserer`,
+`garer`, `depasser`, `feux`, `attendre`, `aucune`, avec `kmh`, `S` du point d'arrêt, `voie`, `feux`, `acteurs` à relancer…).
+Les réponses sont mélangées : dans le fichier source, la bonne était presque toujours la première.
+
 Les mises en situation des leçons peuvent jouer un petit scénario (`script`, minuté sur le temps du simulateur) : dépasser,
 s'arrêter avant un point, changer de voie avec le clignotant, faire repartir un bus, ouvrir une portière, changer un feu
 (`'clignotant'` le fait clignoter), faire freiner un usager (`freiner`), changer de caméra (`camera`), retirer les étiquettes
@@ -201,7 +208,7 @@ Toutes les questions alimentent automatiquement l'examen blanc et les révisions
   "etiquettes": [[0, "1,50 m", "minimum hors agglomération"]], "dire": "…" }
 ```
 
-Caméras : `cockpit`, `poursuite`, `drone`, `haut`, `cote`. Acteurs : `voiture`, `velo`, `pieton`, `enfant`, `bus`, `camion`, `tracteur`, `tram`, `biche`, `ambulance`, `triangle`, `portiere`, `feu`, `ballon`. `S` = mètres devant, `x` = position latérale (notre voie est à 1,75), `kmh` négatif = en sens inverse.
+Caméras : `cockpit`, `poursuite`, `drone`, `haut`, `cote`. Acteurs : `voiture`, `velo`, `moto`, `pieton`, `enfant`, `bus`, `camion`, `tracteur`, `tram`, `biche`, `ambulance`, `triangle`, `portiere`, `feu`, `ballon`. `S` = mètres devant, `x` = position latérale (notre voie est à 1,75), `kmh` négatif = en sens inverse.
 
 Décor en plus : `carrefour` (nombre ou `{ "S", "forme": "T-droite" | "T-gauche", "ligne": "feu" | "stop" | "cedez" }`), `giratoire`,
 `passage`, `rails` (voie de tramway en travers), `tunnel`, `maisons`, `chevrons`, `signaux` (`[panneau, S, x]`) et `marquages`

@@ -216,9 +216,9 @@ async function showBands(X, bands, dR, dB) {
 const MECA = {};
 
 /* ---------- Situations d'examen : une courte vidéo, un arrêt sur image, une question, des réponses A à D ---------- */
-const TYPES3D = ['tram', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+const TYPES3D = ['moto', 'tram', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
 const OBS = 3.6;                                                   // durée de la « vidéo » avant l'arrêt sur image (s)
-const BIG = ['tram', 'voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
+const BIG = ['moto', 'tram', 'voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
 const rollOf = sc => { const v = (sc.kmh ?? 30) / 3.6; return { v, d: Math.min(8, v * 0.6) }; };
 /* T : durée de la vidéo. La voiture et les usagers mobiles partent en arrière d'autant,
    pour se trouver exactement à la place prévue au moment de l'arrêt sur image. */
@@ -269,6 +269,7 @@ function stageScene(W, sc, T = 0) {
    head : [libellé, numéro] affichés pendant le fondu ; null pour « Revoir la scène ». */
 async function playScene(X, sc, head) {
   const W = X.W, f = $('#xFade');
+  X.demo = (X.demo || 0) + 1;   // une démonstration en cours s'arrête là
   if (head) { $('#xFiK').textContent = head[0]; $('#xFiN').textContent = head[1]; }
   f.classList.toggle('txt', !!head);
   X.loupe(null);
@@ -289,7 +290,9 @@ async function playScene(X, sc, head) {
   if (Engine && Engine.hiRes) Engine.hiRes(true);   // image figée : rendu à la pleine résolution de l'écran
   // arrêt sur image : la caméra se rapproche du panneau, puis recule pour montrer toute la scène
   // sans panneau : on se rapproche de l'usager à observer (piéton, ballon, cycliste…)
-  const cam = sc.camera || 'vue', proche = a => { const e = a.S - W.player.s; return a.kind !== 'feu' && e > 6 && e < 90; };
+  // vue extérieure pendant la vidéo, puis place du conducteur au moment de décider
+  if (sc.puis) { const d = $('#v-exo .dash'); await W.pose(sc.puis, 900); if (d) d.hidden = !['vue', 'cockpit'].includes(sc.puis); }
+  const cam = sc.puis || sc.camera || 'vue', proche = a => { const e = a.S - W.player.s; return a.kind !== 'feu' && e > 6 && e < 90; };
   const sign = st.signs[sc.cle ?? 0], key = sign || (sc.focus !== undefined ? st.actors[sc.focus] : st.actors.find(proche));
   if (key && (cam === 'vue' || cam === 'cockpit')) {
     if (sign) { W.eclaire(sign, 0xffc629, 1300); await W.regarde(sign, 17, 1000, 1); }
@@ -301,13 +304,47 @@ async function playScene(X, sc, head) {
   if (sc.etiquettes) Labels.set(sc.etiquettes.map(([k]) => 'q' + k), sc.etiquettes.map(e => [e[1], e[2]]), 'exo');
   return st;
 }
+/* Après la réponse : la scène reprend et la voiture fait ce qu'il fallait faire, pendant que la correction s'affiche.
+   apres : { action, kmh, S (point d'arrêt), voie, cote, feux, acteurs: [[i, km/h, vx]], feu: [[i, état, s]], ouvrir: [i, s], camera, duree } */
+function demonstre(X, sc, st) {
+  const W = X.W, a = sc.apres, tok = X.demo, k = a.action;
+  const live = () => X.demo === tok && Engine.current === 'sim';
+  const at = (s, fn) => setTimeout(() => { if (live()) fn(); }, s * 1000);
+  const cam = a.camera || sc.puis || sc.camera || 'vue';
+  X.loupe(null);
+  W.pose(cam, 900); { const d = $('#v-exo .dash'); if (d) d.hidden = !['vue', 'cockpit'].includes(cam); }
+  if (k === 'aucune') return;
+  W.slow(1, 500);
+  const stopAt = S => { const v = W.player.v; if (v < 0.2) return; const dd = Math.max(1.5, S - FRONT - W.player.s); W.auto(0, Math.max(0.5, v * v / (2 * dd))); };
+  (a.acteurs || []).forEach(([i, kmh, vx]) => { const o = st.actors[i]; if (o) o.go((kmh || 0) / 3.6, vx || 0); });
+  (a.feu || []).forEach(([i, etat, t]) => at(t || 0, () => { const o = st.actors[i]; if (o && o.set) o.set(etat); }));
+  if (a.ouvrir) at(a.ouvrir[1] || 0.8, () => { const o = st.actors[a.ouvrir[0]]; if (o && o.open) o.open(700); });
+  if (a.feux && k !== 'garer') W.lights(a.feux);
+  const kmh0 = W.player.v * 3.6;
+  if (k === 'ralentir' || k === 'distance') W.auto(a.kmh ?? Math.max(10, kmh0 * 0.6), a.acc || 2);
+  else if (k === 'arret') { if (a.S !== undefined) stopAt(a.S); else W.auto(0, a.acc || 2.5); }
+  else if (k === 'freinage') { const v = W.player.v; W.bandes(W.player.s + FRONT, v, v * v / 12); at(1, () => W.auto(0, 6)); }
+  else if (k === 'voie') { W.lights({ clignotant: a.cote || (a.voie < W.player.x ? 'g' : 'd') }); if (a.kmh) W.auto(a.kmh, 2); at(a.attente ?? 0.9, () => W.lane(a.voie, 2400)); at(3.8, () => W.lights({ clignotant: null })); }
+  else if (k === 'inserer') { W.lights({ clignotant: 'g' }); W.auto(a.kmh || 100, 2.2); at(a.attente || 1.6, () => W.lane(a.voie ?? LANE, 2600)); at((a.attente || 1.6) + 3, () => W.lights({ clignotant: null })); }
+  else if (k === 'garer') { W.lights({ clignotant: 'd' }); at(0.6, () => W.lane(a.voie, 2600)); if (a.S !== undefined) stopAt(a.S); else W.auto(0, a.acc || 1.6); at(3.4, () => W.lights(Object.assign({ clignotant: null }, a.feux || {}))); }
+  else if (k === 'depasser') {
+    const o = st.actors[a.i || 0]; W.lights({ clignotant: 'g' });
+    at(0.6, () => { W.lane(a.voie ?? -LANE, 1600); W.auto(a.kmh || 60, 3); });
+    at(1.8, () => W.lights({ clignotant: null }));
+    let back = false; const off = W.onTick(() => {
+      if (!live()) { off(); return; }
+      if (!back && o && W.player.s - FRONT > o.S + (o.len || 2) / 2 + 7) { back = true; W.lights({ clignotant: 'd' }); at(0.7, () => W.lane(LANE, 1600)); at(2.6, () => { W.lights({ clignotant: null }); off(); }); }
+    });
+  }
+  at(a.duree || 6, () => W.slow(0, 700));
+}
 MECA.examen = async (ex, X) => {
   const W = X.W, res = [], L = 'ABCD', blanc = ex.mode === 'blanc', n = ex.situations.length, v3 = $('#v-exo');
   const offL = W.onTick(() => Labels.frame());
   try {
     for (let i = 0; i < n; i++) {
       const sc = ex.situations[i]; X.step(i + 1, n);
-      await playScene(X, sc, [blanc ? 'Question' : 'Situation', `${i + 1} sur ${n}`]);
+      let st = await playScene(X, sc, [blanc ? 'Question' : 'Situation', `${i + 1} sur ${n}`]);
       // question façon examen : une ou plusieurs bonnes réponses
       const chosen = new Set();
       const c = X.card(`<div class="xq"><b>${esc(sc.q)}</b>${sc.contexte ? `<p>${esc(sc.contexte)}</p>` : ''}</div>
@@ -323,7 +360,7 @@ MECA.examen = async (ex, X) => {
         if (busy) return; busy = true; haptic(); Sound.ui('tap');
         c.classList.remove('on'); X.loupe(null); Labels.clear(); v3.style.bottom = ''; syncRegion();
         await wait(260); c.hidden = true;
-        try { await playScene(X, sc, null); } catch (e) { busy = false; return; }
+        try { st = await playScene(X, sc, null); } catch (e) { busy = false; return; }
         c.hidden = false; requestAnimationFrame(() => { c.classList.add('on'); requestAnimationFrame(frame); });
         busy = false;
       };
@@ -342,7 +379,9 @@ MECA.examen = async (ex, X) => {
       $$('.xan', c).forEach(b => { const k = +b.dataset.k; b.classList.add(good.has(k) ? 'good' : chosen.has(k) ? 'bad' : 'dim'); b.disabled = true; });
       $('#xOk', c).remove();
       if (ok) { Sound.ui('ok'); haptic('ok'); } else { Sound.ui('ko'); haptic('ko'); }
-      $('.xbtns', c).insertAdjacentHTML('beforebegin', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? 'Bonne réponse' : `Réponse : ${attendu}`}</b><p>${esc(sc.explication)}</p></div>`);
+      const montre = sc.apres && sc.apres.action && sc.apres.action !== 'aucune';
+      $('.xbtns', c).insertAdjacentHTML('beforebegin', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? esc(sc.bien || 'Bonne réponse') : `Réponse : ${attendu}${montre ? ' · regarde la scène' : ''}`}</b><p>${esc(sc.explication)}</p></div>`);
+      if (sc.apres) demonstre(X, sc, st);
       $('.xbtns', c).insertAdjacentHTML('beforeend', `<button class="btn" id="xNext">${i + 1 < n ? 'Situation suivante' : 'Voir le résultat'}</button>`);
       requestAnimationFrame(frame);
       res.push({ nom: sc.titre || sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `Réponse attendue : ${[...good].sort().map(k => L[k]).join(', ')}` });

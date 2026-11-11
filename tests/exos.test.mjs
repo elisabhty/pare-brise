@@ -29,10 +29,10 @@ test('les cours utilisent les scènes « liste » et « situation » du simulate
 test('chaque cours a une série d’exercices', () => {
   data.cours.forEach(c => assert.ok((c.series || []).length, c.id));
 });
-test('chaque défi 3D propose 10 situations, chaque pratique entre 5 et 12', () => {
+test('chaque défi 3D propose 10 situations, chaque pratique entre 5 et 14', () => {
   exos.filter(e => e.meca !== 'reflexe' && e.meca !== 'decodeur').forEach(e => {
     const n = (e.evenements || e.distances || e.zones || e.profil || e.scenarios || e.scenes || e.situations || []).length;
-    if (e.meca === 'examen') assert.ok(n >= 5 && n <= 12, `${e.id} : ${n}`); else assert.equal(n, 10, e.id);
+    if (e.meca === 'examen') assert.ok(n >= 5 && n <= 14, `${e.id} : ${n}`); else assert.equal(n, 10, e.id);
   });
 });
 test('aucun exercice seul : chacun est rattaché à une leçon', () => {
@@ -42,4 +42,18 @@ test('les situations d’examen ont des réponses A à D cohérentes et assez de
   const sit = exos.filter(e => e.meca === 'examen').flatMap(e => e.situations);
   assert.ok(sit.length >= 40, `seulement ${sit.length} situations`);
   sit.forEach(s => { assert.ok(s.choix.length >= 2 && s.choix.length <= 4, s.q); assert.ok(s.bonnes.length >= 1 && s.bonnes.every(k => k < s.choix.length), s.q); assert.ok(s.explication.length > 20, s.q); });
+});
+
+test('chaque pratique commence par les deux exercices immersifs du cours, avec leur démonstration 3D', () => {
+  const pr = exos.filter(e => e.famille === 'Pratique');
+  assert.equal(pr.length, 35);
+  for (const p of pr) {
+    const imm = p.situations.filter(s => s.immersif);
+    assert.equal(imm.length, 2, p.id);
+    assert.ok(p.situations[0].immersif && p.situations[1].immersif, `${p.id} : les exercices immersifs d'abord`);
+    for (const s of imm) { assert.equal(s.choix.length, 3); assert.equal(s.bonnes.length, 1); assert.ok(s.apres && s.apres.action, s.immersif); }
+  }
+  // la bonne réponse n'est pas toujours la première
+  const pos = pr.flatMap(p => p.situations.filter(s => s.immersif).map(s => s.bonnes[0]));
+  for (const k of [0, 1, 2]) assert.ok(pos.filter(x => x === k).length >= 12, `position ${'ABC'[k]} trop rare`);
 });

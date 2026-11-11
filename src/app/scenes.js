@@ -18,7 +18,7 @@ const stats = list => `<div class="stats rise" style="--d:.35s">${list.map(([v, 
 
 /* Le cours se joue sur la route (monde « route ») ; les mises en situation utilisent le simulateur (« sim »). */
 const useWorld = n => { if (has3D && Engine.current !== n) { Engine.world(n); if (n === 'route') R.pose('drive', 1); } };
-const ACT = { tram: 'tram', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
+const ACT = { moto: 'moto', tram: 'tram', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
 
 export const TYPES = {
   /* Titre plein écran sur la route */

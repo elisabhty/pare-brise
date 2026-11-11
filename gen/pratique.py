@@ -3,8 +3,10 @@ QCM, correction), qui reprennent tout ce que dit la leçon. Sources :
   - les situations d'examen existantes, redistribuées par leçon ;
   - les questions « surprise » des leçons (quiz, touche), retirées des leçons ;
   - les questions de la banque (séries), mises en scène selon le cours et la question.
-Lance : python3 /home/claude/gen/pratique.py  (réécrit content/exercices.json et les cours)"""
+  - les deux exercices immersifs de chaque cours (immersifs.py), en tête.
+Lance : cd gen && python3 pratique.py  (réécrit content/exercices.json)"""
 import json, glob, os, re, copy
+import immersifs
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'content')
 J = lambda p: json.load(open(p, encoding='utf-8'))
@@ -281,12 +283,17 @@ for cid in ORDER:
     base = DECOR.get(cid, dict(env='route', kmh=50))
     variants = VAR.get(cid, [base])
     items = []
+    # d'abord les deux exercices immersifs du cours (décision, puis démonstration en 3D)
+    for s in immersifs.situations(cid): items.append(('imm', s))
     for s in BY.get(cid, []): items.append(('exam', s))
     for s in QUIZ.get(cid, []): items.append(('quiz', s))
     for q in [q for q in QS if q['cours'] == cid and q['type'] == 'qcm']: items.append(('bank', q))
     seen, sits = set(), []
     for kind, it in items:
-        if kind == 'exam': sit = copy.deepcopy(it)
+        if kind == 'imm':
+            sit = copy.deepcopy(it); sit['graine'] = 5 + len(sits) * 7
+            seen.add(frozenset(w for w in re.findall(r'\w+', it['q'].lower()) if len(w) > 2))
+        elif kind == 'exam': sit = copy.deepcopy(it)
         else:
             q = from_quiz(it) if kind == 'quiz' else from_bank(it)
             words = set(w for w in re.findall(r'\w+', q['q'].lower()) if len(w) > 2)
@@ -296,8 +303,8 @@ for cid in ORDER:
             st = staged(cid, variants[len(sits) % len(variants)], src, len(sits))
             sit = dict(q); sit.pop('panneaux', None); sit.update(st)
         sits.append(sit)
-    # 12 situations au plus, les mises en scène d'examen d'abord, puis le reste dans l'ordre de la leçon
-    sits = sits[:12]
+    # 14 situations au plus : les deux exercices immersifs, les mises en scène d'examen, puis le reste dans l'ordre de la leçon
+    sits = sits[:14]
     # on alterne un peu : pas trois situations d'examen d'affilée en tête
     PRATIQUES.append({
         'id': 'p-' + cid, 'meca': 'examen', 'famille': 'Pratique', 'niveau': 1, 'cours': cid,

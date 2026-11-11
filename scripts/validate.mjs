@@ -14,8 +14,10 @@ export function validate(root = '.') {
   const series = read(P('content/series.json'));
   const exercices = fs.existsSync(P('content/exercices.json')) ? read(P('content/exercices.json')) : [];
   const TYPES = [...fs.readFileSync(P('src/app/scenes.js'), 'utf8').matchAll(/^  (\w+): \{$/gm)].map(m => m[1]);
-  const ACTEURS = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+  const ACTEURS = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'moto', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
   const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus'];
+  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere'];
+  const APRES = ['aucune', 'attendre', 'ralentir', 'distance', 'arret', 'freinage', 'voie', 'inserer', 'garer', 'depasser', 'feux'];
   const checkMarks = (s, w) => (s.marquages || []).forEach(m => { if (!MARQUES.includes(m[2])) warn(`${w} : marquage inconnu « ${m[2]} » (${MARQUES.join(', ')})`); });
   const SHAPES = ['tri', 'triBas', 'cercle', 'carre', 'octo', 'losange'];
   const uniq = (list, what) => { const seen = new Set(); list.forEach(x => { if (seen.has(x.id)) warn(`${what} en double : ${x.id}`); seen.add(x.id); }); return seen; };
@@ -87,6 +89,8 @@ export function validate(root = '.') {
       if (!Array.isArray(s.choix) || s.choix.length < 2 || s.choix.length > 4) warn(`${v} : 2 à 4 réponses attendues`);
       if (!Array.isArray(s.bonnes) || !s.bonnes.length || s.bonnes.some(k => !(k >= 0 && k < (s.choix || []).length))) warn(`${v} : « bonnes » invalide`);
       checkMarks(s, v);
+      [s.camera, s.puis].forEach(cm => { if (cm && !CAMS.includes(cm)) warn(`${v} : caméra inconnue « ${cm} » (${CAMS.join(', ')})`); });
+      if (s.apres && !APRES.includes(s.apres.action)) warn(`${v} : démonstration inconnue « ${s.apres.action} » (${APRES.join(', ')})`);
       (s.signaux || []).forEach(p => checkSigns([p[0]], v));
       (s.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${v} : acteur inconnu « ${a.type} »`); });
     });

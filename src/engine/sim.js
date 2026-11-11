@@ -114,6 +114,23 @@ function bikeMesh(o = {}) {
   g.userData.anim = { bikeLegs: a.legs, wheels, phase: 0, k: 1 };
   return shadowAll(g);
 }
+/* Moto : deux grosses roues, un réservoir, un pilote casqué penché sur le guidon */
+function motoMesh(o = {}) {
+  const g = new THREE.Group(), body = mat('motoB' + (o.couleur ?? 0x2E3440), () => std(o.couleur ?? 0x2E3440, { roughness: 0.35, metalness: 0.5 })), dark = mat('dark', () => std(0x222730, { roughness: 0.5, metalness: 0.4 }));
+  const wheel = geo('mw', () => new THREE.TorusGeometry(0.3, 0.1, 10, 28).rotateY(Math.PI / 2));
+  const wheels = [-0.7, 0.7].map(z => { const w = new THREE.Mesh(wheel, dark); w.position.set(0, 0.4, z); g.add(w); return w; });
+  const tank = new THREE.Mesh(geo('mTank', () => new RoundedBoxGeometry(0.42, 0.34, 0.8, 2, 0.12)), body); tank.position.set(0, 0.86, -0.2); g.add(tank);
+  const frame = new THREE.Mesh(geo('mFrame', () => new RoundedBoxGeometry(0.3, 0.28, 1.3, 2, 0.08)), dark); frame.position.set(0, 0.6, 0.05); g.add(frame);
+  const seat = new THREE.Mesh(geo('mSeat', () => new RoundedBoxGeometry(0.34, 0.12, 0.6, 2, 0.05)), dark); seat.position.set(0, 0.98, 0.35); g.add(seat);
+  const bar = new THREE.Mesh(geo('mBar', () => new THREE.CylinderGeometry(0.025, 0.025, 0.7, 6).rotateZ(Math.PI / 2)), dark); bar.position.set(0, 1.12, -0.62); g.add(bar);
+  const rider = personMesh({ haut: o.haut ?? 0x1E222A, bas: 0x2B3445 }); rider.position.set(0, -0.02, 0.32); g.add(rider);
+  rider.userData.anim.arms.forEach(p => { p.rotation.x = -1.2; });
+  rider.userData.anim.legs.forEach(p => { p.rotation.x = -1.1; });
+  rider.children[0].children[0].rotation.x = -0.38;
+  const helmet = new THREE.Mesh(geo('helmet', () => new THREE.SphereGeometry(0.17, 16, 12)), body); helmet.position.set(0, 1.68, 0); rider.children[0].add(helmet);
+  g.userData.wheels = wheels;
+  return shadowAll(g);
+}
 function animBike(g, dist) {
   const a = g.userData.anim; a.phase += dist * 2.4;
   a.bikeLegs[0].rotation.x = -1.2 + Math.sin(a.phase) * 0.45; a.bikeLegs[1].rotation.x = -1.2 - Math.sin(a.phase) * 0.45;
@@ -484,7 +501,7 @@ export function buildSim(K) {
   }
   const API = {
     voiture(o = {}) { const g = carMesh(o.couleur ?? [0x3A6DF0, 0xE84A4A, 0x2E3440, 0x9AA3AF, 0x2FA37A][(Math.random() * 5) | 0], { gyro: o.gyro, long: o.long }); return actor(g, { kind: 'voiture', ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
-    ambulance(o = {}) { return API.voiture({ couleur: 0xF4F6FA, gyro: true, ...o }); },
+    ambulance(o = {}) { return API.voiture({ gyro: true, ...o, couleur: o.couleur ?? 0xF4F6FA }); },
     pieton(o = {}) { const g = personMesh(o); return actor(g, { kind: 'pieton', len: 0.5, wid: 0.5, ...o }); },
     enfant(o = {}) { return API.pieton({ enfant: true, haut: 0xFF5A5F, cartable: true, ...o }); },
     velo(o = {}) { const g = bikeMesh(o); return actor(g, { kind: 'velo', len: 1.8, wid: 0.7, ...o }); },
@@ -493,6 +510,7 @@ export function buildSim(K) {
     tracteur(o = {}) { const g = tractorMesh(); return actor(g, { kind: 'tracteur', len: 4, wid: 2.2, ...o }); },
     bus(o = {}) { const g = busMesh(o.couleur ?? 0x1E5BFF); return actor(g, { kind: 'bus', len: 11, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     camion(o = {}) { const g = busMesh(o.couleur ?? 0xE84A4A, true); return actor(g, { kind: 'camion', len: 11, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
+    moto(o = {}) { const g = motoMesh(o); return actor(g, { kind: 'moto', len: 2.1, wid: 0.8, ...o }); },
     tram(o = {}) { const g = tramMesh(o.couleur ?? 0x2FA37A); return actor(g, { kind: 'tram', len: 23, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     triangle(o = {}) { const g = triangleMesh(); return actor(g, { kind: 'triangle', len: 0.4, wid: 0.6, ...o }); },
     feu(o = {}) { const g = lightMesh(); const a = actor(g, { kind: 'feu', len: 0.3, wid: 0.3, x: 4.3, ...o }); a.set = st => setLight(g, st); a.set(o.etat || 'vert'); return a; },

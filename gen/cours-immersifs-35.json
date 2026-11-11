@@ -491,7 +491,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-01-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route_campagne",
+            "camera": "cockpit",
+            "point_de_depart": "Un triangle rouge annonce un virage",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que t’indique d’abord sa forme ?",
+          "reponses": [
+            {
+              "texte": "Un danger",
+              "correcte": true
+            },
+            {
+              "texte": "Une obligation",
+              "correcte": false
+            },
+            {
+              "texte": "Un parking",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le triangle bordé de rouge annonce généralement un danger.",
+          "feedback_bonne_reponse": "Bien vu ! Le triangle bordé de rouge annonce généralement un danger.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le triangle bordé de rouge annonce généralement un danger.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-01-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "intersection_ville",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu arrives devant un panneau STOP",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle action est obligatoire ?",
+          "reponses": [
+            {
+              "texte": "Ralentir seulement",
+              "correcte": false
+            },
+            {
+              "texte": "Marquer un arrêt complet",
+              "correcte": true
+            },
+            {
+              "texte": "Passer si personne ne vient",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Au STOP, tu dois t’arrêter complètement puis céder le passage.",
+          "feedback_bonne_reponse": "Bien vu ! Au STOP, tu dois t’arrêter complètement puis céder le passage.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Au STOP, tu dois t’arrêter complètement puis céder le passage.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "vitesses",
@@ -794,7 +872,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-02-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "cockpit",
+            "point_de_depart": "Tu roules en agglomération sans limitation particulière",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "maintenir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle vitesse maximale générale s’applique ?",
+          "reponses": [
+            {
+              "texte": "30 km/h",
+              "correcte": false
+            },
+            {
+              "texte": "50 km/h",
+              "correcte": true
+            },
+            {
+              "texte": "80 km/h",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "La règle générale en agglomération est 50 km/h, sauf signalisation différente.",
+          "feedback_bonne_reponse": "Bien vu ! La règle générale en agglomération est 50 km/h, sauf signalisation différente.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. La règle générale en agglomération est 50 km/h, sauf signalisation différente.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-02-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "autoroute_pluie",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "La pluie commence sur autoroute normalement limitée à 130",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle limite générale s’applique ?",
+          "reponses": [
+            {
+              "texte": "130 km/h",
+              "correcte": false
+            },
+            {
+              "texte": "110 km/h",
+              "correcte": true
+            },
+            {
+              "texte": "90 km/h",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Sous la pluie, la vitesse maximale sur autoroute passe généralement à 110 km/h.",
+          "feedback_bonne_reponse": "Bien vu ! Sous la pluie, la vitesse maximale sur autoroute passe généralement à 110 km/h.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Sous la pluie, la vitesse maximale sur autoroute passe généralement à 110 km/h.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "priorites",
@@ -1027,7 +1183,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-03-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "intersection_residentielle",
+            "camera": "cockpit",
+            "point_de_depart": "À une intersection sans signalisation, une voiture arrive à droite",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ceder",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Qui passe d’abord ?",
+          "reponses": [
+            {
+              "texte": "Toi",
+              "correcte": false
+            },
+            {
+              "texte": "La voiture à droite",
+              "correcte": true
+            },
+            {
+              "texte": "Le véhicule le plus rapide",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "En l’absence de signalisation contraire, tu cèdes la priorité à droite.",
+          "feedback_bonne_reponse": "Bien vu ! En l’absence de signalisation contraire, tu cèdes la priorité à droite.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. En l’absence de signalisation contraire, tu cèdes la priorité à droite.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-03-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "intersection_route",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un véhicule arrive sur la voie principale et tu as un cédez-le-passage",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ceder",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu t’engages immédiatement",
+              "correcte": false
+            },
+            {
+              "texte": "Tu cèdes et t’arrêtes si nécessaire",
+              "correcte": true
+            },
+            {
+              "texte": "Tu t’arrêtes toujours 5 secondes",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le cédez-le-passage impose de laisser passer les usagers prioritaires, avec arrêt si nécessaire.",
+          "feedback_bonne_reponse": "Bien vu ! Le cédez-le-passage impose de laisser passer les usagers prioritaires, avec arrêt si nécessaire.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le cédez-le-passage impose de laisser passer les usagers prioritaires, avec arrêt si nécessaire.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "distances",
@@ -1259,7 +1493,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-04-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route_urbaine",
+            "camera": "cockpit",
+            "point_de_depart": "À 50 km/h, un obstacle apparaît soudain",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "freinage",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Pendant ton temps de réaction, la voiture…",
+          "reponses": [
+            {
+              "texte": "S’arrête immédiatement",
+              "correcte": false
+            },
+            {
+              "texte": "Continue à avancer",
+              "correcte": true
+            },
+            {
+              "texte": "Recule",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le véhicule continue à avancer pendant le temps de réaction.",
+          "feedback_bonne_reponse": "Bien vu ! Le véhicule continue à avancer pendant le temps de réaction.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le véhicule continue à avancer pendant le temps de réaction.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-04-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu suis une voiture sur route sèche",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "distance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel repère minimal utiliser ?",
+          "reponses": [
+            {
+              "texte": "Une seconde",
+              "correcte": false
+            },
+            {
+              "texte": "Deux secondes",
+              "correcte": true
+            },
+            {
+              "texte": "Une demi-seconde",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Garde au moins deux secondes d’écart et davantage si les conditions se dégradent.",
+          "feedback_bonne_reponse": "Bien vu ! Garde au moins deux secondes d’écart et davantage si les conditions se dégradent.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Garde au moins deux secondes d’écart et davantage si les conditions se dégradent.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "alcool",
@@ -1434,7 +1746,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-05-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "parking_soiree",
+            "camera": "cockpit",
+            "point_de_depart": "Tu viens d’obtenir ton permis probatoire",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ne_pas_demarrer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle attitude adopter face à l’alcool ?",
+          "reponses": [
+            {
+              "texte": "Un verre est toujours permis",
+              "correcte": false
+            },
+            {
+              "texte": "Ne pas boire avant de conduire",
+              "correcte": true
+            },
+            {
+              "texte": "Boire un café suffit",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le seuil probatoire est très bas : la conduite sans alcool est le choix sûr.",
+          "feedback_bonne_reponse": "Bien vu ! Le seuil probatoire est très bas : la conduite sans alcool est le choix sûr.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le seuil probatoire est très bas : la conduite sans alcool est le choix sûr.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-05-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking_soiree",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un ami propose un café après plusieurs verres",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "attendre",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Le café réduit-il l’alcoolémie ?",
+          "reponses": [
+            {
+              "texte": "Oui",
+              "correcte": false
+            },
+            {
+              "texte": "Non",
+              "correcte": true
+            },
+            {
+              "texte": "Seulement après une heure",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le café ne fait pas baisser l’alcoolémie : seul le temps permet son élimination.",
+          "feedback_bonne_reponse": "Bien vu ! Le café ne fait pas baisser l’alcoolémie : seul le temps permet son élimination.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le café ne fait pas baisser l’alcoolémie : seul le temps permet son élimination.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "carrefours-feux",
@@ -1745,7 +2135,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-06-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "intersection_feu",
+            "camera": "cockpit",
+            "point_de_depart": "Le feu passe à l’orange fixe et tu peux t’arrêter sans danger",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Accélérer",
+              "correcte": false
+            },
+            {
+              "texte": "T’arrêter",
+              "correcte": true
+            },
+            {
+              "texte": "Klaxonner",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le feu orange fixe impose l’arrêt, sauf impossibilité de s’arrêter en sécurité.",
+          "feedback_bonne_reponse": "Bien vu ! Le feu orange fixe impose l’arrêt, sauf impossibilité de s’arrêter en sécurité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le feu orange fixe impose l’arrêt, sauf impossibilité de s’arrêter en sécurité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-06-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "giratoire",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu arrives à un giratoire avec cédez-le-passage",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ceder",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "À qui cèdes-tu ?",
+          "reponses": [
+            {
+              "texte": "Aux véhicules déjà sur l’anneau",
+              "correcte": true
+            },
+            {
+              "texte": "Aux véhicules derrière toi",
+              "correcte": false
+            },
+            {
+              "texte": "À personne",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Les véhicules déjà engagés sur l’anneau sont prioritaires à cette entrée.",
+          "feedback_bonne_reponse": "Bien vu ! Les véhicules déjà engagés sur l’anneau sont prioritaires à cette entrée.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les véhicules déjà engagés sur l’anneau sont prioritaires à cette entrée.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "marquages",
@@ -1938,7 +2406,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-07-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route",
+            "camera": "cockpit",
+            "point_de_depart": "Une ligne continue sépare les sens de circulation",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "rester_voie",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Peux-tu la franchir pour dépasser une voiture ?",
+          "reponses": [
+            {
+              "texte": "Oui",
+              "correcte": false
+            },
+            {
+              "texte": "Non",
+              "correcte": true
+            },
+            {
+              "texte": "Oui si tu klaxonnes",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le franchissement d’une ligne continue est interdit dans cette situation.",
+          "feedback_bonne_reponse": "Bien vu ! Le franchissement d’une ligne continue est interdit dans cette situation.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le franchissement d’une ligne continue est interdit dans cette situation.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-07-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Des traits de marquage deviennent plus longs et rapprochés",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "renoncer_depassement",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Qu’annoncent-ils ?",
+          "reponses": [
+            {
+              "texte": "Une ligne continue proche",
+              "correcte": true
+            },
+            {
+              "texte": "Une aire de repos",
+              "correcte": false
+            },
+            {
+              "texte": "Une voie réservée",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "La ligne d’annonce prévient de l’arrivée d’une ligne continue.",
+          "feedback_bonne_reponse": "Bien vu ! La ligne d’annonce prévient de l’arrivée d’une ligne continue.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. La ligne d’annonce prévient de l’arrivée d’une ligne continue.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "depassement",
@@ -2218,7 +2764,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-08-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route_campagne",
+            "camera": "cockpit",
+            "point_de_depart": "Tu veux dépasser un tracteur sur une route sans visibilité suffisante",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "attendre",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle décision ?",
+          "reponses": [
+            {
+              "texte": "Dépasser vite",
+              "correcte": false
+            },
+            {
+              "texte": "Attendre une zone sûre",
+              "correcte": true
+            },
+            {
+              "texte": "Te coller au tracteur",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Il faut une visibilité et une distance suffisantes avant de dépasser.",
+          "feedback_bonne_reponse": "Bien vu ! Il faut une visibilité et une distance suffisantes avant de dépasser.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Il faut une visibilité et une distance suffisantes avant de dépasser.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-08-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route_cycliste",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu dépasses un cycliste hors agglomération",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "depasser_si_sur",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel écart latéral minimal respecter ?",
+          "reponses": [
+            {
+              "texte": "50 cm",
+              "correcte": false
+            },
+            {
+              "texte": "1 m",
+              "correcte": false
+            },
+            {
+              "texte": "1,50 m",
+              "correcte": true
+            }
+          ],
+          "bonne_reponse_index": 2,
+          "explication": "Hors agglomération, garde au moins 1,50 m d’écart latéral.",
+          "feedback_bonne_reponse": "Bien vu ! Hors agglomération, garde au moins 1,50 m d’écart latéral.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Hors agglomération, garde au moins 1,50 m d’écart latéral.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "arret-stationnement",
@@ -2485,7 +3109,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-09-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "cockpit",
+            "point_de_depart": "Tu t’arrêtes pour déposer un passager, conducteur prêt à repartir",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "De quoi s’agit-il ?",
+          "reponses": [
+            {
+              "texte": "D’un arrêt",
+              "correcte": true
+            },
+            {
+              "texte": "Toujours d’un stationnement",
+              "correcte": false
+            },
+            {
+              "texte": "D’un dépassement",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Une immobilisation momentanée pour déposer quelqu’un peut constituer un arrêt.",
+          "feedback_bonne_reponse": "Bien vu ! Une immobilisation momentanée pour déposer quelqu’un peut constituer un arrêt.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Une immobilisation momentanée pour déposer quelqu’un peut constituer un arrêt.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-09-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Une place est réservée aux personnes handicapées et tu n’as pas le droit de l’utiliser",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "chercher_place",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Peux-tu y stationner deux minutes ?",
+          "reponses": [
+            {
+              "texte": "Oui",
+              "correcte": false
+            },
+            {
+              "texte": "Non",
+              "correcte": true
+            },
+            {
+              "texte": "Oui avec les feux de détresse",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Une place réservée ne peut pas être utilisée sans autorisation.",
+          "feedback_bonne_reponse": "Bien vu ! Une place réservée ne peut pas être utilisée sans autorisation.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Une place réservée ne peut pas être utilisée sans autorisation.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "autoroute",
@@ -2821,7 +3523,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-10-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "insertion_autoroute",
+            "camera": "cockpit",
+            "point_de_depart": "Tu arrives sur une voie d’insertion d’autoroute",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "inserer_si_creneau",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle priorité ?",
+          "reponses": [
+            {
+              "texte": "Tu es prioritaire",
+              "correcte": false
+            },
+            {
+              "texte": "Tu cèdes aux véhicules déjà sur l’autoroute",
+              "correcte": true
+            },
+            {
+              "texte": "Tous doivent s’arrêter",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Les véhicules déjà sur l’autoroute sont prioritaires.",
+          "feedback_bonne_reponse": "Bien vu ! Les véhicules déjà sur l’autoroute sont prioritaires.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les véhicules déjà sur l’autoroute sont prioritaires.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-10-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "autoroute_panne",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Ta voiture tombe en panne sur autoroute",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "mise_securite",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Où te mets-tu après sécurisation si possible ?",
+          "reponses": [
+            {
+              "texte": "Derrière le véhicule",
+              "correcte": false
+            },
+            {
+              "texte": "À l’abri derrière la glissière",
+              "correcte": true
+            },
+            {
+              "texte": "Sur la voie de circulation",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Éloigne-toi de la circulation et mets-toi en sécurité derrière la glissière si possible.",
+          "feedback_bonne_reponse": "Bien vu ! Éloigne-toi de la circulation et mets-toi en sécurité derrière la glissière si possible.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Éloigne-toi de la circulation et mets-toi en sécurité derrière la glissière si possible.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "usagers-vulnerables",
@@ -3098,7 +3878,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-11-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "passage_pieton",
+            "camera": "cockpit",
+            "point_de_depart": "Un piéton manifeste clairement l’intention de traverser",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu accélères",
+              "correcte": false
+            },
+            {
+              "texte": "Tu lui cèdes le passage",
+              "correcte": true
+            },
+            {
+              "texte": "Tu klaxonnes",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le conducteur doit céder le passage au piéton qui manifeste clairement son intention de traverser.",
+          "feedback_bonne_reponse": "Bien vu ! Le conducteur doit céder le passage au piéton qui manifeste clairement son intention de traverser.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le conducteur doit céder le passage au piéton qui manifeste clairement son intention de traverser.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-11-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "rue_residentielle",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un ballon roule entre deux voitures stationnées",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel danger anticiper ?",
+          "reponses": [
+            {
+              "texte": "Un enfant peut surgir",
+              "correcte": true
+            },
+            {
+              "texte": "Aucun danger",
+              "correcte": false
+            },
+            {
+              "texte": "Une panne moteur",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Un ballon peut annoncer l’arrivée soudaine d’un enfant.",
+          "feedback_bonne_reponse": "Bien vu ! Un ballon peut annoncer l’arrivée soudaine d’un enfant.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Un ballon peut annoncer l’arrivée soudaine d’un enfant.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "cyclistes-edpm",
@@ -3342,7 +4200,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-12-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville_cyclable",
+            "camera": "cockpit",
+            "point_de_depart": "Tu approches d’un cycliste et d’une portière de voiture garée",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "distance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel risque ?",
+          "reponses": [
+            {
+              "texte": "Ouverture de portière",
+              "correcte": true
+            },
+            {
+              "texte": "Panne du vélo",
+              "correcte": false
+            },
+            {
+              "texte": "Feu rouge invisible",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Une portière peut s’ouvrir dans la trajectoire du cycliste.",
+          "feedback_bonne_reponse": "Bien vu ! Une portière peut s’ouvrir dans la trajectoire du cycliste.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Une portière peut s’ouvrir dans la trajectoire du cycliste.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-12-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Une trottinette électrique circule près d’un passage piéton",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "anticiper",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel réflexe ?",
+          "reponses": [
+            {
+              "texte": "Prévoir un mouvement imprévu",
+              "correcte": true
+            },
+            {
+              "texte": "L’ignorer",
+              "correcte": false
+            },
+            {
+              "texte": "Accélérer pour passer",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Les usagers vulnérables peuvent changer de trajectoire rapidement.",
+          "feedback_bonne_reponse": "Bien vu ! Les usagers vulnérables peuvent changer de trajectoire rapidement.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les usagers vulnérables peuvent changer de trajectoire rapidement.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "poids-lourds-2rm",
@@ -3586,7 +4522,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-13-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "carrefour_poids_lourd",
+            "camera": "cockpit",
+            "point_de_depart": "Tu roules près d’un poids lourd qui tourne à droite",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "rester_distance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel danger principal ?",
+          "reponses": [
+            {
+              "texte": "Ses angles morts et son déport",
+              "correcte": true
+            },
+            {
+              "texte": "Ses phares",
+              "correcte": false
+            },
+            {
+              "texte": "Sa couleur",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Un poids lourd a des angles morts importants et peut se déporter.",
+          "feedback_bonne_reponse": "Bien vu ! Un poids lourd a des angles morts importants et peut se déporter.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Un poids lourd a des angles morts importants et peut se déporter.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-13-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "trafic_dense",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Une moto circule entre des véhicules",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "observer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel comportement sûr ?",
+          "reponses": [
+            {
+              "texte": "Vérifier les angles morts avant toute manœuvre",
+              "correcte": true
+            },
+            {
+              "texte": "Changer de voie brusquement",
+              "correcte": false
+            },
+            {
+              "texte": "Ouvrir la portière",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Contrôle les rétroviseurs et angles morts avant de te déplacer.",
+          "feedback_bonne_reponse": "Bien vu ! Contrôle les rétroviseurs et angles morts avant de te déplacer.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Contrôle les rétroviseurs et angles morts avant de te déplacer.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "vehicules-prioritaires",
@@ -3787,7 +4801,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-14-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "cockpit",
+            "point_de_depart": "Un véhicule d’intervention prioritaire arrive avec ses avertisseurs spéciaux",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "faciliter",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Faciliter son passage sans te mettre en danger",
+              "correcte": true
+            },
+            {
+              "texte": "Freiner brutalement au milieu",
+              "correcte": false
+            },
+            {
+              "texte": "L’ignorer",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Facilite le passage du véhicule prioritaire tout en gardant une conduite sûre.",
+          "feedback_bonne_reponse": "Bien vu ! Facilite le passage du véhicule prioritaire tout en gardant une conduite sûre.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Facilite le passage du véhicule prioritaire tout en gardant une conduite sûre.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-14-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu entends une sirène derrière toi mais ne vois pas le véhicule",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "observer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel premier réflexe ?",
+          "reponses": [
+            {
+              "texte": "Observer et identifier sa position",
+              "correcte": true
+            },
+            {
+              "texte": "Tourner au hasard",
+              "correcte": false
+            },
+            {
+              "texte": "Accélérer",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Localise le véhicule avant de manœuvrer en sécurité.",
+          "feedback_bonne_reponse": "Bien vu ! Localise le véhicule avant de manœuvrer en sécurité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Localise le véhicule avant de manœuvrer en sécurité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "nuit-eclairage",
@@ -4088,7 +5180,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-15-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route_nuit",
+            "camera": "cockpit",
+            "point_de_depart": "La nuit, tu croises un autre véhicule",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "feux_croisement",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quels feux privilégier ?",
+          "reponses": [
+            {
+              "texte": "Feux de route",
+              "correcte": false
+            },
+            {
+              "texte": "Feux de croisement",
+              "correcte": true
+            },
+            {
+              "texte": "Aucun feu",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Passe en feux de croisement pour ne pas éblouir les autres usagers.",
+          "feedback_bonne_reponse": "Bien vu ! Passe en feux de croisement pour ne pas éblouir les autres usagers.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Passe en feux de croisement pour ne pas éblouir les autres usagers.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-15-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route_nuit",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Une zone sombre apparaît au bord de la route",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Adapter ta vitesse à la portée de tes feux",
+              "correcte": true
+            },
+            {
+              "texte": "Accélérer",
+              "correcte": false
+            },
+            {
+              "texte": "Regarder ton téléphone",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Tu dois pouvoir t’arrêter dans la distance éclairée et visible.",
+          "feedback_bonne_reponse": "Bien vu ! Tu dois pouvoir t’arrêter dans la distance éclairée et visible.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Tu dois pouvoir t’arrêter dans la distance éclairée et visible.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "intemperies",
@@ -4353,7 +5523,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-16-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route_pluie",
+            "camera": "cockpit",
+            "point_de_depart": "Une forte pluie réduit l’adhérence",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "distance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle adaptation ?",
+          "reponses": [
+            {
+              "texte": "Augmenter la distance de sécurité",
+              "correcte": true
+            },
+            {
+              "texte": "Freiner plus tard",
+              "correcte": false
+            },
+            {
+              "texte": "Rouler plus vite",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Sur chaussée mouillée, le freinage peut être plus long.",
+          "feedback_bonne_reponse": "Bien vu ! Sur chaussée mouillée, le freinage peut être plus long.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Sur chaussée mouillée, le freinage peut être plus long.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-16-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route_brouillard",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Le brouillard limite fortement la visibilité",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel réflexe ?",
+          "reponses": [
+            {
+              "texte": "Adapter vitesse et éclairage",
+              "correcte": true
+            },
+            {
+              "texte": "Allumer systématiquement les feux de route",
+              "correcte": false
+            },
+            {
+              "texte": "Suivre de très près",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Réduis ton allure et utilise l’éclairage adapté sans éblouir.",
+          "feedback_bonne_reponse": "Bien vu ! Réduis ton allure et utilise l’éclairage adapté sans éblouir.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Réduis ton allure et utilise l’éclairage adapté sans éblouir.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "montagne-tunnels-pn",
@@ -4620,7 +5868,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-17-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "passage_niveau",
+            "camera": "cockpit",
+            "point_de_depart": "Les barrières d’un passage à niveau commencent à se fermer",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu t’arrêtes avant les barrières",
+              "correcte": true
+            },
+            {
+              "texte": "Tu accélères pour passer",
+              "correcte": false
+            },
+            {
+              "texte": "Tu contournes",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "N’engage jamais le passage lorsque les signaux annoncent un train.",
+          "feedback_bonne_reponse": "Bien vu ! N’engage jamais le passage lorsque les signaux annoncent un train.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. N’engage jamais le passage lorsque les signaux annoncent un train.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-17-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "tunnel",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu entres dans un tunnel",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "maintenir_distance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel réflexe de sécurité ?",
+          "reponses": [
+            {
+              "texte": "Allumer les feux appropriés et garder les distances",
+              "correcte": true
+            },
+            {
+              "texte": "Faire demi-tour",
+              "correcte": false
+            },
+            {
+              "texte": "S’arrêter sans raison",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Adapte l’éclairage et respecte les distances et consignes du tunnel.",
+          "feedback_bonne_reponse": "Bien vu ! Adapte l’éclairage et respecte les distances et consignes du tunnel.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Adapte l’éclairage et respecte les distances et consignes du tunnel.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "fatigue-distractions",
@@ -4838,7 +6164,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-18-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "autoroute",
+            "camera": "cockpit",
+            "point_de_depart": "Tu bâilles et tes paupières deviennent lourdes",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "pause",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "T’arrêter dans un endroit sûr pour te reposer",
+              "correcte": true
+            },
+            {
+              "texte": "Monter la musique",
+              "correcte": false
+            },
+            {
+              "texte": "Ouvrir seulement la fenêtre",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "La somnolence exige une pause réelle, pas une astuce pour rester éveillé.",
+          "feedback_bonne_reponse": "Bien vu ! La somnolence exige une pause réelle, pas une astuce pour rester éveillé.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. La somnolence exige une pause réelle, pas une astuce pour rester éveillé.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-18-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Ton téléphone sonne en conduisant",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ignorer_telephone",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu le consultes",
+              "correcte": false
+            },
+            {
+              "texte": "Tu restes concentré et t’arrêtes en sécurité si nécessaire",
+              "correcte": true
+            },
+            {
+              "texte": "Tu réponds en regardant vite",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "La distraction augmente le risque : ne manipule pas ton téléphone au volant.",
+          "feedback_bonne_reponse": "Bien vu ! La distraction augmente le risque : ne manipule pas ton téléphone au volant.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. La distraction augmente le risque : ne manipule pas ton téléphone au volant.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "drogues-medicaments",
@@ -5027,7 +6431,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-19-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "cockpit",
+            "point_de_depart": "Tu as consommé du cannabis",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ne_pas_demarrer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Peux-tu conduire ?",
+          "reponses": [
+            {
+              "texte": "Oui après un café",
+              "correcte": false
+            },
+            {
+              "texte": "Non",
+              "correcte": true
+            },
+            {
+              "texte": "Oui si tu te sens bien",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "La conduite après usage de stupéfiants est interdite et dangereuse.",
+          "feedback_bonne_reponse": "Bien vu ! La conduite après usage de stupéfiants est interdite et dangereuse.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. La conduite après usage de stupéfiants est interdite et dangereuse.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-19-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "domicile",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un médicament porte un pictogramme de risque pour la conduite",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_notice",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu lis les précautions et demandes conseil",
+              "correcte": true
+            },
+            {
+              "texte": "Tu l’ignores",
+              "correcte": false
+            },
+            {
+              "texte": "Tu doubles la dose",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Les médicaments peuvent diminuer la vigilance : respecte les avertissements.",
+          "feedback_bonne_reponse": "Bien vu ! Les médicaments peuvent diminuer la vigilance : respecte les avertissements.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les médicaments peuvent diminuer la vigilance : respecte les avertissements.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "permis-points",
@@ -5241,7 +6723,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-20-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "auto_ecole",
+            "camera": "cockpit",
+            "point_de_depart": "Un jeune conducteur vient d’obtenir son permis",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "observer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "De combien de points dispose-t-il initialement ?",
+          "reponses": [
+            {
+              "texte": "6",
+              "correcte": true
+            },
+            {
+              "texte": "10",
+              "correcte": false
+            },
+            {
+              "texte": "12",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le permis probatoire commence normalement avec 6 points.",
+          "feedback_bonne_reponse": "Bien vu ! Le permis probatoire commence normalement avec 6 points.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le permis probatoire commence normalement avec 6 points.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-20-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "domicile",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu veux connaître ton solde de points",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "consulter",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle démarche ?",
+          "reponses": [
+            {
+              "texte": "Consulter le service officiel dédié",
+              "correcte": true
+            },
+            {
+              "texte": "Demander à un ami",
+              "correcte": false
+            },
+            {
+              "texte": "Attendre une infraction",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Utilise le service officiel de consultation de tes points.",
+          "feedback_bonne_reponse": "Bien vu ! Utilise le service officiel de consultation de tes points.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Utilise le service officiel de consultation de tes points.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "poste-conduite",
@@ -5462,7 +7022,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-21-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "habitacle",
+            "camera": "cockpit",
+            "point_de_depart": "Tu t’installes au volant",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "regler",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel réglage faire avant de partir ?",
+          "reponses": [
+            {
+              "texte": "Siège, rétroviseurs et ceinture",
+              "correcte": true
+            },
+            {
+              "texte": "Musique uniquement",
+              "correcte": false
+            },
+            {
+              "texte": "Téléphone",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Installe-toi correctement avant de démarrer.",
+          "feedback_bonne_reponse": "Bien vu ! Installe-toi correctement avant de démarrer.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Installe-toi correctement avant de démarrer.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-21-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "stationnement",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu veux ouvrir ta portière côté circulation",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "observer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel contrôle ?",
+          "reponses": [
+            {
+              "texte": "Rétroviseur et angle mort",
+              "correcte": true
+            },
+            {
+              "texte": "Seulement la poignée",
+              "correcte": false
+            },
+            {
+              "texte": "Aucun",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Vérifie qu’aucun usager ne s’approche avant d’ouvrir.",
+          "feedback_bonne_reponse": "Bien vu ! Vérifie qu’aucun usager ne s’approche avant d’ouvrir.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Vérifie qu’aucun usager ne s’approche avant d’ouvrir.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "securite-passagers",
@@ -5646,7 +7284,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-22-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "habitacle_famille",
+            "camera": "cockpit",
+            "point_de_depart": "Un enfant doit voyager en voiture",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "installer_enfant",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel équipement ?",
+          "reponses": [
+            {
+              "texte": "Un dispositif de retenue adapté",
+              "correcte": true
+            },
+            {
+              "texte": "La ceinture adulte dans tous les cas",
+              "correcte": false
+            },
+            {
+              "texte": "Aucun équipement à l’arrière",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le dispositif de retenue doit être adapté à l’enfant et conforme aux règles applicables.",
+          "feedback_bonne_reponse": "Bien vu ! Le dispositif de retenue doit être adapté à l’enfant et conforme aux règles applicables.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le dispositif de retenue doit être adapté à l’enfant et conforme aux règles applicables.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-22-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Des valises sont empilées dans le coffre",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arrimer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que vérifier ?",
+          "reponses": [
+            {
+              "texte": "Qu’elles sont bien arrimées et ne gênent pas la visibilité",
+              "correcte": true
+            },
+            {
+              "texte": "Qu’elles bougent librement",
+              "correcte": false
+            },
+            {
+              "texte": "Qu’elles cachent la plaque",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le chargement doit être stable et ne pas compromettre la sécurité.",
+          "feedback_bonne_reponse": "Bien vu ! Le chargement doit être stable et ne pas compromettre la sécurité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le chargement doit être stable et ne pas compromettre la sécurité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "entretien",
@@ -5857,7 +7573,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-23-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "route",
+            "camera": "cockpit",
+            "point_de_depart": "Un voyant rouge d’alerte moteur ou pression d’huile s’allume",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret_securise",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel réflexe ?",
+          "reponses": [
+            {
+              "texte": "S’arrêter en sécurité et vérifier la consigne",
+              "correcte": true
+            },
+            {
+              "texte": "Continuer longtemps",
+              "correcte": false
+            },
+            {
+              "texte": "Accélérer",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt sécurisé.",
+          "feedback_bonne_reponse": "Bien vu ! Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt sécurisé.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt sécurisé.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-23-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un pneu semble fortement sous-gonflé",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_pneu",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Contrôler la pression avant de poursuivre",
+              "correcte": true
+            },
+            {
+              "texte": "L’ignorer",
+              "correcte": false
+            },
+            {
+              "texte": "Accélérer pour le regonfler",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Une pression incorrecte dégrade l’adhérence et la sécurité.",
+          "feedback_bonne_reponse": "Bien vu ! Une pression incorrecte dégrade l’adhérence et la sécurité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Une pression incorrecte dégrade l’adhérence et la sécurité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "aides-conduite",
@@ -6046,7 +7840,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-24-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "autoroute",
+            "camera": "cockpit",
+            "point_de_depart": "Le régulateur adaptatif est activé",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "surveiller",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Dois-tu encore surveiller la route ?",
+          "reponses": [
+            {
+              "texte": "Oui, en permanence",
+              "correcte": true
+            },
+            {
+              "texte": "Non",
+              "correcte": false
+            },
+            {
+              "texte": "Seulement en ville",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Une aide à la conduite ne remplace pas la vigilance du conducteur.",
+          "feedback_bonne_reponse": "Bien vu ! Une aide à la conduite ne remplace pas la vigilance du conducteur.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Une aide à la conduite ne remplace pas la vigilance du conducteur.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-24-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "autoroute",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un avertisseur d’angle mort ne s’allume pas",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "observer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Peux-tu changer de voie sans regarder ?",
+          "reponses": [
+            {
+              "texte": "Oui",
+              "correcte": false
+            },
+            {
+              "texte": "Non",
+              "correcte": true
+            },
+            {
+              "texte": "Oui si tu accélères",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Les capteurs ont des limites : les contrôles visuels restent nécessaires.",
+          "feedback_bonne_reponse": "Bien vu ! Les capteurs ont des limites : les contrôles visuels restent nécessaires.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les capteurs ont des limites : les contrôles visuels restent nécessaires.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "premiers-secours",
@@ -6310,7 +8182,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-25-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "accident_route",
+            "camera": "cockpit",
+            "point_de_depart": "Tu arrives sur les lieux d’un accident",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "proteger",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle est la première priorité ?",
+          "reponses": [
+            {
+              "texte": "Protéger sans te mettre en danger",
+              "correcte": true
+            },
+            {
+              "texte": "Déplacer toutes les victimes",
+              "correcte": false
+            },
+            {
+              "texte": "Filmer",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Sécurise la zone et protège-toi avant d’alerter les secours.",
+          "feedback_bonne_reponse": "Bien vu ! Sécurise la zone et protège-toi avant d’alerter les secours.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Sécurise la zone et protège-toi avant d’alerter les secours.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-25-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "accident_route",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Une personne est blessée après un accident",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "alerter",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel numéro d’urgence européen peux-tu appeler ?",
+          "reponses": [
+            {
+              "texte": "112",
+              "correcte": true
+            },
+            {
+              "texte": "118",
+              "correcte": false
+            },
+            {
+              "texte": "123",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le 112 permet de joindre les secours dans l’Union européenne.",
+          "feedback_bonne_reponse": "Bien vu ! Le 112 permet de joindre les secours dans l’Union européenne.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le 112 permet de joindre les secours dans l’Union européenne.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "papiers-assurance",
@@ -6523,7 +8473,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-26-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "cockpit",
+            "point_de_depart": "Tu conduis un véhicule assuré",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_assurance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que faut-il pouvoir justifier ?",
+          "reponses": [
+            {
+              "texte": "Une assurance valide",
+              "correcte": true
+            },
+            {
+              "texte": "Une vignette papier obligatoire sur le pare-brise",
+              "correcte": false
+            },
+            {
+              "texte": "Un abonnement parking",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le véhicule doit être assuré ; les modalités de preuve ont évolué.",
+          "feedback_bonne_reponse": "Bien vu ! Le véhicule doit être assuré ; les modalités de preuve ont évolué.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le véhicule doit être assuré ; les modalités de preuve ont évolué.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-26-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking_accrochage",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un accrochage matériel vient de se produire",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "constat",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel outil peut aider à décrire les faits ?",
+          "reponses": [
+            {
+              "texte": "Le constat amiable",
+              "correcte": true
+            },
+            {
+              "texte": "Un ticket de caisse",
+              "correcte": false
+            },
+            {
+              "texte": "Un certificat médical systématique",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Le constat amiable facilite la déclaration d’un accident matériel.",
+          "feedback_bonne_reponse": "Bien vu ! Le constat amiable facilite la déclaration d’un accident matériel.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le constat amiable facilite la déclaration d’un accident matériel.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "infractions",
@@ -6721,7 +8749,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-27-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "intersection_feu",
+            "camera": "cockpit",
+            "point_de_depart": "Un feu est rouge",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "arret",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Peux-tu le franchir si personne ne vient ?",
+          "reponses": [
+            {
+              "texte": "Oui",
+              "correcte": false
+            },
+            {
+              "texte": "Non",
+              "correcte": true
+            },
+            {
+              "texte": "Oui après avoir klaxonné",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 1,
+          "explication": "Le feu rouge impose l’arrêt sauf signalisation ou instruction particulière autorisée.",
+          "feedback_bonne_reponse": "Bien vu ! Le feu rouge impose l’arrêt sauf signalisation ou instruction particulière autorisée.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Le feu rouge impose l’arrêt sauf signalisation ou instruction particulière autorisée.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-27-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu vois une limitation de vitesse",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "adapter",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que représente-t-elle ?",
+          "reponses": [
+            {
+              "texte": "Une vitesse maximale, pas une vitesse cible",
+              "correcte": true
+            },
+            {
+              "texte": "Une vitesse minimale",
+              "correcte": false
+            },
+            {
+              "texte": "Une simple suggestion",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "La limitation est un maximum ; tu dois parfois rouler moins vite.",
+          "feedback_bonne_reponse": "Bien vu ! La limitation est un maximum ; tu dois parfois rouler moins vite.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. La limitation est un maximum ; tu dois parfois rouler moins vite.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "ecoconduite",
@@ -6878,7 +8984,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-28-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "cockpit",
+            "point_de_depart": "Tu anticipes un feu rouge au loin",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "deceleration",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel geste réduit consommation et risque ?",
+          "reponses": [
+            {
+              "texte": "Lever le pied progressivement",
+              "correcte": true
+            },
+            {
+              "texte": "Accélérer puis freiner fort",
+              "correcte": false
+            },
+            {
+              "texte": "Rester en forte accélération",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "L’anticipation évite les accélérations et freinages inutiles.",
+          "feedback_bonne_reponse": "Bien vu ! L’anticipation évite les accélérations et freinages inutiles.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. L’anticipation évite les accélérations et freinages inutiles.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-28-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu vérifies tes pneus",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_pneu",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel bénéfice d’une bonne pression ?",
+          "reponses": [
+            {
+              "texte": "Sécurité et consommation mieux maîtrisée",
+              "correcte": true
+            },
+            {
+              "texte": "Toujours plus de vitesse",
+              "correcte": false
+            },
+            {
+              "texte": "Plus de bruit",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Une pression adaptée contribue à la sécurité et à une consommation maîtrisée.",
+          "feedback_bonne_reponse": "Bien vu ! Une pression adaptée contribue à la sécurité et à une consommation maîtrisée.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Une pression adaptée contribue à la sécurité et à une consommation maîtrisée.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "vehicules-propres",
@@ -7103,7 +9287,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément."
+      "objectif_pedagogique": "Comprendre les règles et les appliquer à des situations de conduite observées en 3D, avant de s’entraîner séparément.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-29-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville_zfe",
+            "camera": "cockpit",
+            "point_de_depart": "Un panneau annonce une zone à faibles émissions",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_regles",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que dois-tu vérifier ?",
+          "reponses": [
+            {
+              "texte": "Les règles locales en vigueur pour ton véhicule",
+              "correcte": true
+            },
+            {
+              "texte": "Seulement la couleur de la voiture",
+              "correcte": false
+            },
+            {
+              "texte": "La météo",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Les conditions d’accès aux ZFE dépendent des règles locales applicables.",
+          "feedback_bonne_reponse": "Bien vu ! Les conditions d’accès aux ZFE dépendent des règles locales applicables.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les conditions d’accès aux ZFE dépendent des règles locales applicables.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-29-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "borne_recharge",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu prépares un trajet en voiture électrique",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "planifier",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que dois-tu anticiper ?",
+          "reponses": [
+            {
+              "texte": "Autonomie et possibilités de recharge",
+              "correcte": true
+            },
+            {
+              "texte": "Uniquement la couleur du câble",
+              "correcte": false
+            },
+            {
+              "texte": "Aucune préparation",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Planifie l’autonomie et les possibilités de recharge selon le trajet.",
+          "feedback_bonne_reponse": "Bien vu ! Planifie l’autonomie et les possibilités de recharge selon le trajet.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Planifie l’autonomie et les possibilités de recharge selon le trajet.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "changer-direction-voie",
@@ -7267,7 +9529,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Contrôles, clignotants, angles morts, changements de file et virages."
+      "objectif_pedagogique": "Contrôles, clignotants, angles morts, changements de file et virages.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-30-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "avenue_2_voies",
+            "camera": "cockpit",
+            "point_de_depart": "Tu veux changer de file sur une avenue",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "changer_voie",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle séquence ?",
+          "reponses": [
+            {
+              "texte": "Rétroviseurs, angle mort, clignotant et manœuvre sûre",
+              "correcte": true
+            },
+            {
+              "texte": "Clignotant puis déplacement immédiat",
+              "correcte": false
+            },
+            {
+              "texte": "Tourner sans regarder",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Signale ton intention, vérifie les autres usagers et ne change de voie que si c’est sûr.",
+          "feedback_bonne_reponse": "Bien vu ! Signale ton intention, vérifie les autres usagers et ne change de voie que si c’est sûr.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Signale ton intention, vérifie les autres usagers et ne change de voie que si c’est sûr.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-30-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "carrefour_velo",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu vas tourner à droite à un carrefour",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "tourner",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel usager faut-il particulièrement vérifier ?",
+          "reponses": [
+            {
+              "texte": "Le cycliste sur ta droite",
+              "correcte": true
+            },
+            {
+              "texte": "Seulement les voitures derrière",
+              "correcte": false
+            },
+            {
+              "texte": "Personne",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Contrôle la présence de cyclistes et piétons avant de tourner.",
+          "feedback_bonne_reponse": "Bien vu ! Contrôle la présence de cyclistes et piétons avant de tourner.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Contrôle la présence de cyclistes et piétons avant de tourner.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "placement-chaussee",
@@ -7431,7 +9771,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Placement, voies multiples, voies réservées, insertion et rabattement."
+      "objectif_pedagogique": "Placement, voies multiples, voies réservées, insertion et rabattement.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-31-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "voie_rapide",
+            "camera": "cockpit",
+            "point_de_depart": "Tu circules sur une route à plusieurs voies",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "rester_droite",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle position habituelle ?",
+          "reponses": [
+            {
+              "texte": "À droite, hors dépassement ou nécessité",
+              "correcte": true
+            },
+            {
+              "texte": "Toujours à gauche",
+              "correcte": false
+            },
+            {
+              "texte": "Au milieu des voies",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "En règle générale, on circule sur la voie la plus à droite.",
+          "feedback_bonne_reponse": "Bien vu ! En règle générale, on circule sur la voie la plus à droite.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. En règle générale, on circule sur la voie la plus à droite.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-31-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "insertion_autoroute",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu arrives au bout d’une voie d’accélération",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "inserer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu ajustes ta vitesse et cherches un créneau sûr",
+              "correcte": true
+            },
+            {
+              "texte": "Tu forces le passage",
+              "correcte": false
+            },
+            {
+              "texte": "Tu coupes toutes les voies",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "L’insertion exige observation, adaptation et respect de la priorité.",
+          "feedback_bonne_reponse": "Bien vu ! L’insertion exige observation, adaptation et respect de la priorité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. L’insertion exige observation, adaptation et respect de la priorité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "intersections-complexes",
@@ -7595,7 +10013,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Virages à gauche, croisements, tramways et règles particulières de priorité."
+      "objectif_pedagogique": "Virages à gauche, croisements, tramways et règles particulières de priorité.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-32-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "intersection_complexe",
+            "camera": "cockpit",
+            "point_de_depart": "Tu tournes à gauche et un véhicule arrive en face tout droit",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ceder",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que fais-tu ?",
+          "reponses": [
+            {
+              "texte": "Tu le laisses passer",
+              "correcte": true
+            },
+            {
+              "texte": "Tu coupes devant lui",
+              "correcte": false
+            },
+            {
+              "texte": "Tu fermes les yeux",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Lors d’un changement de direction, cède le passage aux usagers que ta trajectoire coupe.",
+          "feedback_bonne_reponse": "Bien vu ! Lors d’un changement de direction, cède le passage aux usagers que ta trajectoire coupe.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Lors d’un changement de direction, cède le passage aux usagers que ta trajectoire coupe.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-32-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "carrefour_tram",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Un tramway approche d’un carrefour",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "observer",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel réflexe ?",
+          "reponses": [
+            {
+              "texte": "Observer sa trajectoire et appliquer les priorités spécifiques",
+              "correcte": true
+            },
+            {
+              "texte": "Le dépasser systématiquement",
+              "correcte": false
+            },
+            {
+              "texte": "S’arrêter sur ses rails",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Les tramways exigent une attention particulière à leur trajectoire et aux règles de priorité.",
+          "feedback_bonne_reponse": "Bien vu ! Les tramways exigent une attention particulière à leur trajectoire et aux règles de priorité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Les tramways exigent une attention particulière à leur trajectoire et aux règles de priorité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "anticiper-dangers",
@@ -7759,7 +10255,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Observation, indices de danger, adaptation de la vitesse et marges de sécurité."
+      "objectif_pedagogique": "Observation, indices de danger, adaptation de la vitesse et marges de sécurité.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-33-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "ville",
+            "camera": "cockpit",
+            "point_de_depart": "Une camionnette cache un passage piéton",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quel danger ?",
+          "reponses": [
+            {
+              "texte": "Un piéton peut être masqué",
+              "correcte": true
+            },
+            {
+              "texte": "La route est forcément libre",
+              "correcte": false
+            },
+            {
+              "texte": "Le feu passe au vert",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Un obstacle visuel peut cacher un usager vulnérable.",
+          "feedback_bonne_reponse": "Bien vu ! Un obstacle visuel peut cacher un usager vulnérable.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Un obstacle visuel peut cacher un usager vulnérable.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-33-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "route_virage",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu approches d’un virage dont tu ne vois pas la sortie",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "ralentir",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle conduite ?",
+          "reponses": [
+            {
+              "texte": "Adapter ta vitesse avant le virage",
+              "correcte": true
+            },
+            {
+              "texte": "Accélérer dans le virage",
+              "correcte": false
+            },
+            {
+              "texte": "Te déporter sans voir",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Anticipe les zones sans visibilité et garde une marge de sécurité.",
+          "feedback_bonne_reponse": "Bien vu ! Anticipe les zones sans visibilité et garde une marge de sécurité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Anticipe les zones sans visibilité et garde une marge de sécurité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "controles-vehicule",
@@ -7923,7 +10497,85 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Pneumatiques, éclairage, visibilité, niveaux et alertes avant le départ."
+      "objectif_pedagogique": "Pneumatiques, éclairage, visibilité, niveaux et alertes avant le départ.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-34-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "cockpit",
+            "point_de_depart": "Avant un long trajet, tu regardes les pneus",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_pneu",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que contrôles-tu ?",
+          "reponses": [
+            {
+              "texte": "État et pression",
+              "correcte": true
+            },
+            {
+              "texte": "Seulement la couleur",
+              "correcte": false
+            },
+            {
+              "texte": "Uniquement la marque",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "L’état et la pression des pneus sont essentiels à la sécurité.",
+          "feedback_bonne_reponse": "Bien vu ! L’état et la pression des pneus sont essentiels à la sécurité.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. L’état et la pression des pneus sont essentiels à la sécurité.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-34-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "capot",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Le niveau de liquide de refroidissement semble bas",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_froid",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quand effectuer une vérification ?",
+          "reponses": [
+            {
+              "texte": "Moteur froid, selon les consignes constructeur",
+              "correcte": true
+            },
+            {
+              "texte": "Moteur brûlant en ouvrant immédiatement",
+              "correcte": false
+            },
+            {
+              "texte": "En roulant",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Ne manipule pas un circuit de refroidissement chaud sous pression.",
+          "feedback_bonne_reponse": "Bien vu ! Ne manipule pas un circuit de refroidissement chaud sous pression.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Ne manipule pas un circuit de refroidissement chaud sous pression.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     },
     {
       "id": "demarches-conducteur",
@@ -8087,9 +10739,97 @@
       ],
       "format": "lecon_3d_immersive_sans_interaction",
       "exercices": "uniquement_apres_la_fin_du_cours",
-      "objectif_pedagogique": "Immatriculation, assurance, contrôle technique, achat et vente du véhicule."
+      "objectif_pedagogique": "Immatriculation, assurance, contrôle technique, achat et vente du véhicule.",
+      "exercices_immersifs_3d": [
+        {
+          "id": "ex-35-01",
+          "ordre": 1,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 1",
+          "scene_3d": {
+            "environnement": "achat_vehicule",
+            "camera": "cockpit",
+            "point_de_depart": "Tu achètes une voiture d’occasion",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_documents",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Quelle démarche importante ?",
+          "reponses": [
+            {
+              "texte": "Vérifier les documents et l’immatriculation à mettre à jour",
+              "correcte": true
+            },
+            {
+              "texte": "Ne rien déclarer",
+              "correcte": false
+            },
+            {
+              "texte": "Utiliser les papiers du vendeur indéfiniment",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Un changement de propriétaire implique des démarches administratives.",
+          "feedback_bonne_reponse": "Bien vu ! Un changement de propriétaire implique des démarches administratives.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Un changement de propriétaire implique des démarches administratives.",
+          "rejouable": true,
+          "correction_visuelle": true
+        },
+        {
+          "id": "ex-35-02",
+          "ordre": 2,
+          "type": "decision_immersive_3d",
+          "titre": "Situation 2",
+          "scene_3d": {
+            "environnement": "parking",
+            "camera": "exterieure_puis_cockpit",
+            "point_de_depart": "Tu prépares un trajet avec un véhicule soumis au contrôle technique",
+            "animation_avant_choix": "Mettre en scène la situation de façon réaliste puis figer la scène au point de décision.",
+            "pause_au_moment_du_choix": true,
+            "interaction": "choix_unique",
+            "action_3d_si_bonne_reponse": "verifier_echeance",
+            "animation_apres_reponse": "Montrer une conséquence sûre et conforme à la réponse, puis afficher l’explication.",
+            "duree_cible_secondes": 25
+          },
+          "question": "Que vérifies-tu ?",
+          "reponses": [
+            {
+              "texte": "La validité du contrôle technique si applicable",
+              "correcte": true
+            },
+            {
+              "texte": "La couleur des sièges",
+              "correcte": false
+            },
+            {
+              "texte": "Le nombre de stations radio",
+              "correcte": false
+            }
+          ],
+          "bonne_reponse_index": 0,
+          "explication": "Vérifie les obligations et échéances applicables à ton véhicule.",
+          "feedback_bonne_reponse": "Bien vu ! Vérifie les obligations et échéances applicables à ton véhicule.",
+          "feedback_mauvaise_reponse": "Regarde ce qui se passe dans la scène. Vérifie les obligations et échéances applicables à ton véhicule.",
+          "rejouable": true,
+          "correction_visuelle": true
+        }
+      ]
     }
   ],
   "mode": "29 leçons immersives 3D, sans questions ni interactions évaluatives pendant les cours ; exercices après chaque leçon",
-  "avertissement": "Réécriture éditoriale basée sur le fichier fourni. Les règles, sanctions, dates et seuils réglementaires doivent être vérifiés avant publication 2027. Les textes source sont conservés dans dire_original. Les cours 30 à 35 sont de nouveaux contenus proposés, non audités juridiquement ; les réglementations et obligations applicables en 2027 restent à vérifier."
+  "avertissement": "Réécriture éditoriale basée sur le fichier fourni. Les règles, sanctions, dates et seuils réglementaires doivent être vérifiés avant publication 2027. Les textes source sont conservés dans dire_original. Les cours 30 à 35 sont de nouveaux contenus proposés, non audités juridiquement ; les réglementations et obligations applicables en 2027 restent à vérifier.",
+  "nombre_exercices_immersifs_3d": 70,
+  "mode_exercices": {
+    "deblocage": "apres_fin_cours",
+    "interaction_pendant_le_cours": false,
+    "nombre_par_cours": 2,
+    "reponse": "choix_unique",
+    "feedback": "explication_et_demonstration_3d",
+    "rejouable": true,
+    "avertissement": "Scénarios pédagogiques à valider juridiquement et visuellement avant diffusion en 2027."
+  }
 }
