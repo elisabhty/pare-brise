@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#05070D">
+<title>Pare-Brise</title>
+<style>
+/*@FONTS@*/
+/*@CSS@*/
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <!-- ================= SALLE (accueil) ================= -->
+  <section class="screen" id="s-salle" aria-label="Salle de code">
+    <div class="topline">
+      <div class="logo"><i></i>Pare-Brise</div>
+      <div class="tl-r"><button class="ibtn glass" id="soundBtn" aria-label="Couper le son"></button><span class="pill glass">Code 2027</span></div>
+    </div>
+    <div class="view3d" id="v-salle">
+      <div class="fb" id="fb-salle"></div>
+      <div class="drag-hint small"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12 h16 M7 9 l-3 3 3 3 M17 9 l3 3 -3 3"/></svg>Glisse pour regarder la salle</div>
+    </div>
+    <div class="hero">
+      <div class="eyebrow"><span class="dot"></span><span id="heroEyebrow">Séance ouverte</span></div>
+      <h1 class="d">Ta place<br>est réservée</h1>
+      <div class="seatno"><span>Place</span><b class="num" id="seat27">27</b></div>
+      <p class="lead" id="heroLead"></p>
+      <button class="btn" id="takeSeat">Prendre place</button>
+    </div>
+    <div class="below">
+      <div class="welcome" id="welcome" hidden>
+        <div class="scene" role="img" aria-label="Plot, le moniteur, au bord de la route"></div>
+        <div><b>Moi c'est Plot, ton moniteur.</b><p>Je t'accompagne de ta première séance jusqu'au jour J : cours en 3D, exercices corrigés et examens blancs.</p><button class="more" data-go="parcours">Voir le parcours →</button></div>
+      </div>
+      <button class="review" id="reviewCard" hidden><b class="num" id="reviewN">0</b><div><strong>Questions à revoir</strong><span>Tes erreurs reviennent jusqu’à ce que tu les maîtrises.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
+      <div class="glass ready">
+        <div class="ready-top"><span class="eyebrow">Objectif jour J · 35/40</span><b class="num" id="readyPct">0 %</b></div>
+        <div class="bar"><i id="readyBar"></i></div>
+        <span class="small" id="readyTxt"></span>
+      </div>
+      <h2 class="h-sec">Ton parcours</h2>
+      <div id="homeRoad" class="mini"></div>
+      <button class="more" data-go="parcours">Voir tout le parcours →</button>
+      <h2 class="h-sec">Entraînements</h2>
+      <div class="train">
+        <button class="tile glass" data-go="parebrise">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#FFC629" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 40 L20 10 H28 L44 40"/><path d="M24 16 v4 M24 25 v5 M24 35 v5"/></svg>
+          <b class="d">Pare-brise</b><span>Conduis. Reconnais chaque panneau avant de le croiser.</span>
+        </button>
+        <button class="tile glass" data-go="decodeur">
+          <svg viewBox="0 0 48 48" fill="none" stroke-width="2.2" stroke-linejoin="round"><path d="M14 6 L26 26 H2 Z" stroke="#FF5A6E"/><circle cx="34" cy="16" r="10" stroke="#7DB2F7"/><rect x="22" y="28" width="16" height="16" rx="3" stroke="#FFC629"/></svg>
+          <b class="d">Décodeur</b><span>Forme + couleur = sens. Même pour un panneau inconnu.</span>
+        </button>
+      </div>
+      <p class="small">Prototype. Voix : synthèse vocale de l'appareil. Les autres élèves de la salle sont simulés.</p>
+    </div>
+  </section>
+
+  <!-- ================= PARCOURS (catalogue) ================= -->
+  <section class="screen dimbg" id="s-parcours" aria-label="Parcours">
+    <div class="page-head"><div class="eyebrow">Programme officiel · 10 thèmes</div><h1 class="d">Parcours</h1></div>
+    <div class="pstats" id="pStats"></div>
+    <div class="chips scroll" id="pChips" role="group" aria-label="Thèmes"></div>
+    <div id="pList" style="display:grid;gap:22px"></div>
+    <h2 class="h-sec">Outils</h2>
+    <div class="tools">
+      <button class="tile glass" data-go="parebrise"><b class="d">Pare-brise</b><span>Réflexe en conduite 3D</span></button>
+      <button class="tile glass" data-go="decodeur"><b class="d">Décodeur</b><span>Forme + couleur = sens</span></button>
+    </div>
+  </section>
+
+  <!-- ================= FICHE COURS ================= -->
+  <section class="screen" id="s-fiche" aria-label="Fiche du cours">
+    <div class="view3d" id="v-fiche">
+      <button class="ibtn glass fback" data-go="parcours" aria-label="Retour au parcours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg></button>
+    </div>
+    <div class="fhead">
+      <div class="eyebrow" id="fEyebrow"></div>
+      <h1 class="d" id="fTitle"></h1>
+      <p class="lead" id="fResume"></p>
+    </div>
+    <div class="pstats" id="fFacts"></div>
+    <button class="btn" id="fPlay">Lancer le cours</button>
+    <h2 class="h-sec">Chapitres</h2>
+    <ol class="chapters glass" id="fChapters" style="padding:6px"></ol>
+    <h2 class="h-sec">Exercices</h2>
+    <ul class="srows" id="fSeries"></ul>
+    <h2 class="h-sec" id="fMemoT">Fiche mémo</h2>
+    <ul class="memo glass" id="fMemo"></ul>
+  </section>
+
+  <!-- ================= COURS (lecteur) ================= -->
+  <section class="screen" id="s-cours" aria-label="Cours vidéo">
+    <div class="view3d" id="v-cours">
+      <div class="fb" id="fb-cours"></div>
+      <header class="topbar">
+        <button class="ibtn glass" data-go="fiche" aria-label="Quitter la séance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg></button>
+        <div class="mid"><div class="eyebrow" id="cChap">Chapitre 1</div><div id="cTitle"></div></div>
+        <span></span>
+      </header>
+      <div class="ovt" id="ovt"></div>
+      <div class="lower3" id="lower3"></div>
+      <div class="taphint" id="tapHint" hidden><i></i>Touche le bon panneau</div>
+      <div id="verdictBox"></div>
+      <button class="playover" id="playOver"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4 L20 12 L6 20 Z"/></svg></i><span id="playOverTxt">Lancer la séance</span></button>
+    </div>
+    <div class="sheet">
+      <div class="grab"></div>
+      <div class="scrub"><div class="track" id="track"><div class="fill" id="trackFill"></div></div><div class="times num"><span id="tCur">0:00</span><span id="tTot">0:00</span></div></div>
+      <div class="controls">
+        <button class="ibtn g rate num" id="cRate" aria-label="Vitesse de lecture">1×</button>
+        <button class="ibtn g" id="cPrev" aria-label="Passage précédent"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5 h2.4 v14 H6 Z M20 5 L9.5 12 L20 19 Z"/></svg></button>
+        <button class="play-main" id="cPlay" aria-label="Lecture"></button>
+        <button class="ibtn g" id="cNext" aria-label="Passage suivant"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.6 5 H18 v14 h-2.4 Z M4 5 L14.5 12 L4 19 Z"/></svg></button>
+        <button class="ibtn g" id="cVoice" aria-label="Couper la voix"></button>
+      </div>
+      <div class="caption" id="caption" aria-live="polite"></div>
+      <div class="quiz" id="quiz" hidden></div>
+      <div class="endcard" id="endcard" hidden></div>
+      <h2 class="h-sec">Chapitres</h2>
+      <ol class="chapters" id="chapters"></ol>
+    </div>
+  </section>
+
+  <!-- ================= SÉRIE (exercices / examen) ================= -->
+  <section class="screen" id="s-serie" aria-label="Exercices">
+    <div class="shead">
+      <button class="ibtn glass" id="sQuit" aria-label="Quitter la série"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></button>
+      <div style="min-width:0"><div class="eyebrow" id="sEyebrow"></div><h1 class="d" id="sTitle" style="font-size:40px"></h1></div>
+      <div class="timer" id="sTimer" hidden><svg viewBox="0 0 58 58"><circle class="bg" cx="29" cy="29" r="24"/><circle class="fg" id="sRing" cx="29" cy="29" r="24"/></svg><span class="num" id="sSec">20</span></div>
+    </div>
+    <div class="view3d hole" id="v-serie"><div class="fb" id="fb-serie"></div></div>
+    <div id="sRun" style="display:grid;gap:14px">
+      <div class="dots" id="sDots"></div>
+      <p class="ex-text" id="sText"></p>
+      <div class="eyebrow" id="sHint"></div>
+      <div class="ex-opts" id="sOpts"></div>
+      <div class="sfb" id="sFb" hidden></div>
+      <button class="btn" id="sOk" disabled>Valider</button>
+    </div>
+    <div id="sRes" hidden style="display:grid;gap:16px"></div>
+  </section>
+
+  <!-- ================= EXAMEN (hub) ================= -->
+  <section class="screen dimbg" id="s-examen" aria-label="Examen et exercices">
+    <div class="page-head"><div class="eyebrow">Salle d'examen</div><h1 class="d">Examen</h1></div>
+    <div class="glass hubcard">
+      <div class="eyebrow">Examen blanc</div>
+      <h2 class="d">Conditions réelles</h2>
+      <p class="lead">Questions tirées de toute la banque, en alternant les thèmes. Lues au casque, 20 secondes chacune, correction à la fin.</p>
+      <div class="facts"><div><b class="num" id="hubExamN">20</b><span>questions</span></div><div><b class="num">20 s</b><span>par question</span></div><div><b class="num">87,5 %</b><span>pour réussir</span></div></div>
+      <p class="small" id="hubLast"></p>
+      <button class="btn" id="hubExam">Entrer en salle</button>
+    </div>
+    <button class="review" id="hubReview" hidden><b class="num" id="hubReviewN">0</b><div><strong>Questions à revoir</strong><span>Révision espacée : elles reviennent jusqu’à être maîtrisées.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
+    <h2 class="h-sec">Séries d'entraînement</h2>
+    <ul class="srows" id="hubSeries"></ul>
+    <p class="small">Le jour J : 40 questions, 35 bonnes réponses minimum.</p>
+  </section>
+
+  <!-- ================= PARE-BRISE ================= -->
+  <section class="screen" id="s-parebrise" aria-label="Pare-brise" style="padding:0;gap:0;overflow:hidden">
+    <div class="view3d" id="v-pb" style="flex:1;min-height:0">
+      <div class="fb-pb" id="fb-pb"></div>
+      <div class="pillars" aria-hidden="true"></div>
+      <div class="pb-hud"><span class="glass num" id="pbScore">0 PT</span><span class="glass num" id="pbCount">0/12</span></div>
+      <div class="speedo"><b class="num" id="pbKmh">0</b><span>KM/H</span></div>
+      <div class="toast glass" id="pbToast"></div>
+      <div class="over" id="pbOver"></div>
+    </div>
+    <div class="pb-panel">
+      <div class="fam-grid" id="pbBtns"></div>
+      <div class="best" id="pbBest"></div>
+    </div>
+  </section>
+
+  <!-- ================= DÉCODEUR ================= -->
+  <section class="screen" id="s-decodeur" aria-label="Décodeur">
+    <div class="page-head"><div class="eyebrow">Labo des formes</div><h1 class="d" style="font-size:52px">Décodeur</h1></div>
+    <div class="view3d hole" id="v-dec" style="aspect-ratio:1/.74"><div class="fb" id="fb-dec"></div></div>
+    <div class="glass dec-res" id="decRes" aria-live="polite"></div>
+    <h2 class="h-sec">Forme</h2>
+    <div class="chips" id="decShapes" role="group" aria-label="Forme"></div>
+    <h2 class="h-sec">Couleur</h2>
+    <div class="chips" id="decStyles" role="group" aria-label="Couleur"></div>
+    <h2 class="h-sec" id="decExT">Exemples réels</h2>
+    <div class="ex-row" id="decEx"></div>
+  </section>
+
+  <div class="labels" id="labels"></div>
+
+  <nav class="tabbar glass" id="tabbar" aria-label="Navigation">
+    <button data-go="salle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="4" y="3" width="16" height="8" rx="1.5"/><path d="M4 15 h4 v5 H4 Z M10 15 h4 v5 h-4 Z M16 15 h4 v5 h-4 Z"/></svg>Salle</button>
+    <button data-go="parcours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 6 h7 a3 3 0 0 1 0 6 H9 a3 3 0 0 0 0 6 h7"/></svg>Parcours</button>
+    <button data-go="parebrise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M2 20 L10 5 H14 L22 20"/><path d="M12 8 v2 M12 13 v2 M12 18 v2"/></svg>Réflexe</button>
+    <button data-go="examen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9 v4 l3 2 M9.5 2.5 h5"/></svg>Examen</button>
+  </nav>
+
+  <div class="curtain" id="curtain"><span id="curtainTxt"></span></div>
+</div>
+<script type="application/json" id="content">/*@CONTENT@*/</script>
+<script>/*@APP@*/</script>
+</body>
+</html>

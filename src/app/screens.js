@@ -1,0 +1,170 @@
+/* Écrans : salle (accueil), parcours (catalogue), fiche cours, examen (hub), et branchement des autres. */
+import { $, $$, esc, wait, haptic, store } from './util.js';
+import { has3D, R, SALLE, STUDIO } from './world.js';
+import { sign } from './signs.js';
+import { THEMES, COURSES, SERIES, course, theme, coursesOf, courseNumber, seriesOfCourse, signsOfCourse, allQuestionIds } from './content.js';
+import { courseState, seriesBest, seriesTotal, toReview, mastered, nextCourse, doneCount, readiness, exams } from './progress.js';
+import { Voice, splitSentences, estimate } from './voice.js';
+import { Sound } from './sound.js';
+import { register, show, curtain } from './nav.js';
+import { Player, setPlayerLinks } from './player.js';
+import { Serie, setSerieDone, drawExam } from './serie.js';
+import { Reflex } from './reflex.js';
+import { Decoder } from './decoder.js';
+import { Labels } from './labels.js';
+import { roadmap } from './roadmap.js';
+
+/* ---------- utilitaires d'affichage ---------- */
+export const courseMinutes = c => Math.max(1, Math.round(c.scenes.reduce((a, s) => a + splitSentences(s.dire || '').reduce((b, t) => b + estimate(t) + 180, 0) + 450, 0) / 60000));
+const qCount = c => seriesOfCourse(c).reduce((a, s) => a + s.questions.length, 0);
+const status = c => { const st = courseState(c.id); return st.done ? ['done', 'Vu'] : c === nextCourse() ? ['now', 'À suivre'] : st.scene > 0 ? ['started', 'Commencé'] : ['todo', 'Dispo']; };
+const pct = (s, t) => (t ? Math.round(s / t * 100) : 0);
+const courseRow = (c, compact) => {
+  const [st, tag] = status(c);
+  return `<li class="${st}"><button data-go="fiche" data-arg="${c.id}"><span class="node num">${st === 'done' ? '✓' : courseNumber(c)}</span><div><b>${esc(c.titre)}</b><small>${compact ? esc(theme(c.theme).nom) : `${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`}</small></div><span class="tag">${tag}</span></button></li>`;
+};
+
+function drawPoster(c) {
+  if (!has3D || !c) return;
+  SALLE.setPoster((ctx, w, h) => {
+    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#13244A'); g.addColorStop(1, '#050913');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(255,255,255,.05)'; ctx.lineWidth = 1;
+    for (let x = 0; x < w; x += 48) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = 0; y < h; y += 48) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+    ctx.fillStyle = '#FFC629'; ctx.font = '700 expanded 22px Archivo, Arial';
+    ctx.fillText(`COURS ${courseNumber(c)} · ${theme(c.theme).nom.toUpperCase()}`, 70, 110);
+    ctx.fillStyle = '#F4F2EC';
+    const words = c.titre.toUpperCase().split(' '); const lines = []; let line = '';
+    ctx.font = '900 extra-condensed 118px Archivo, "Arial Narrow", Arial';
+    words.forEach(wd => { const t = line ? line + ' ' + wd : wd; if (ctx.measureText(t).width > w - 140 && line) { lines.push(line); line = wd; } else line = t; });
+    lines.push(line);
+    lines.slice(0, 3).forEach((l, k) => ctx.fillText(l, 66, 222 + k * 108));
+    ctx.fillStyle = 'rgba(244,242,236,.7)'; ctx.font = '500 26px Archivo, Arial';
+    ctx.fillText(`${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`, 70, 222 + Math.min(3, lines.length) * 108 - 30);
+  });
+  const ids = signsOfCourse(c).slice(0, 6); let n = 0; const imgs = [];
+  ids.forEach((id, k) => { const im = new Image(); im.onload = () => { imgs[k] = im; if (++n === ids.length) SALLE.setPoster((ctx, w, h) => imgs.forEach((m, j) => m && ctx.drawImage(m, 70 + j * 96, h - 120, 80, 80))); }; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(sign(id, 'width="160" height="160"')); });
+}
+
+/* ---------- SALLE (accueil) ---------- */
+function renderHome() {
+  const c = nextCourse(), st = courseState(c.id);
+  $('#heroEyebrow').textContent = `Séance ouverte · Cours ${courseNumber(c)} · ${courseMinutes(c)} min`;
+  $('#heroLead').textContent = `À l'écran : « ${c.titre} ». ${c.resume}`;
+  $('#takeSeat').textContent = st.scene > 0 && !st.done ? 'Reprendre ma place' : 'Prendre place';
+  const r = readiness();
+  $('#readyPct').textContent = r + ' %'; $('#readyBar').style.width = r + '%';
+  const rev = toReview().length;
+  $('#readyTxt').textContent = `${doneCount()}/${COURSES.length} cours vus · ${mastered()} questions maîtrisées${exams().length ? ` · dernier examen ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}` : ''}`;
+  $('#reviewCard').hidden = !rev;
+  $('#reviewN').textContent = rev;
+  const started = COURSES.some(x => courseState(x.id).done || courseState(x.id).scene > 0);
+  $('#welcome').hidden = started;
+  const i0 = Math.max(0, Math.min(COURSES.indexOf(c) - 1, COURSES.length - 4));
+  roadmap($('#homeRoad'), COURSES.slice(i0, i0 + 4).map(courseRowData), { here: 'À suivre' });
+}
+function courseRowData(c) {
+  const [st, tag] = status(c);
+  return { type: 'course', id: c.id, num: courseNumber(c), title: c.titre, sub: `${courseMinutes(c)} min · ${qCount(c)} questions`, status: st, tag };
+}
+async function seatAndPlay(id) {
+  const b = $('#takeSeat'); if (b.disabled) return;
+  Voice.unlock(); Sound.init(); haptic('heavy');
+  b.disabled = true;
+  $('#s-salle').scrollTo({ top: 0, behavior: 'smooth' });
+  $('.hero').style.transition = 'opacity .5s'; $('.hero').style.opacity = '0';
+  $('#tabbar').style.transition = 'opacity .4s'; $('#tabbar').style.opacity = '0';
+  Sound.ui('whoosh');
+  await SALLE.takeSeat();
+  await curtain('Les lumières s’éteignent', async () => {
+    $('.hero').style.opacity = ''; $('#tabbar').style.opacity = ''; b.disabled = false;
+    await show('cours', { noCurtain: true, course: id, play: true });
+  });
+}
+
+/* ---------- PARCOURS (catalogue) ---------- */
+let filter = 'tous';
+function renderParcours() {
+  const total = COURSES.length, done = doneCount();
+  $('#pStats').innerHTML = `<div><b class="num">${done}/${total}</b><span>cours vus</span></div><div><b class="num">${mastered()}</b><span>questions maîtrisées</span></div><div><b class="num">${toReview().length}</b><span>à revoir</span></div>`;
+  $('#pChips').innerHTML = [['tous', 'Tous']].concat(THEMES.map(t => [t.id, t.nom])).map(([id, n]) => { const k = id === 'tous' ? total : coursesOf(id).length; return `<button class="chipb sm" data-f="${id}" aria-pressed="${filter === id}">${esc(n)}<i class="num">${k}</i></button>`; }).join('');
+  $$('#pChips .chipb').forEach(b => b.addEventListener('click', () => { Sound.ui('tap'); filter = b.dataset.f; renderParcours(); }));
+  const themes = filter === 'tous' ? THEMES : THEMES.filter(t => t.id === filter);
+  const rows = [];
+  themes.forEach(t => {
+    const list = coursesOf(t.id);
+    rows.push({ type: 'theme', num: String(THEMES.indexOf(t) + 1).padStart(2, '0'), title: t.nom, sub: list.length ? `${list.length} cours` : 'Travaux en cours · bientôt', empty: !list.length });
+    list.forEach(c => rows.push(courseRowData(c)));
+  });
+  roadmap($('#pList'), rows);
+}
+
+/* ---------- FICHE COURS ---------- */
+let ficheId = null;
+function renderFiche(id) {
+  const c = course(id) || nextCourse(); ficheId = c.id;
+  const st = courseState(c.id);
+  drawPoster(c);
+  $('#fEyebrow').textContent = `Cours ${courseNumber(c)} · ${theme(c.theme).nom}`;
+  $('#fTitle').textContent = c.titre;
+  $('#fResume').textContent = c.resume || '';
+  $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minutes</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>questions</span></div>`;
+  $('#fPlay').textContent = st.done ? 'Revoir le cours' : st.scene > 0 ? 'Reprendre le cours' : 'Lancer le cours';
+  $('#fChapters').innerHTML = (c.chapitres || []).map((n, k) => `<li><button data-ch="${k}"><span class="cn">${k + 1}</span><b>${esc(n)}</b><small>${c.scenes.filter(s => (s.ch || 0) === k).length} scènes</small></button></li>`).join('');
+  $$('#fChapters button').forEach(b => b.addEventListener('click', () => show('cours', { course: c.id, at: c.scenes.findIndex(s => (s.ch || 0) === +b.dataset.ch), play: true })));
+  const series = seriesOfCourse(c);
+  $('#fSeries').innerHTML = series.length ? series.map(s => { const best = seriesBest(s.id), tot = seriesTotal(s.id); return `<li><button class="srow glass" data-s="${s.id}"><div><b>${esc(s.titre)}</b><small>${s.questions.length} questions · entraînement corrigé</small></div><span class="tag num">${best !== undefined ? `${best}/${tot}` : 'Nouveau'}</span></button></li>`; }).join('') : '<li class="small">Pas encore d’exercices pour ce cours.</li>';
+  $$('#fSeries [data-s]').forEach(b => b.addEventListener('click', () => startSerie(b.dataset.s, { retour: 'fiche', retourArg: c.id })));
+  $('#fMemo').innerHTML = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span>${esc(m.tag || '')}</span></li>`).join('');
+  $('#fMemoT').hidden = !(c.memo || []).length;
+}
+function startSerie(id, extra = {}) {
+  const s = SERIES.get(id); if (!s) return;
+  Serie.start(Object.assign({ titre: s.titre, ids: s.questions, mode: 'entrainement', serieId: s.id }, extra));
+}
+
+/* ---------- EXAMEN (hub) ---------- */
+function renderHub() {
+  const n = Math.min(20, allQuestionIds().length), rev = toReview();
+  $('#hubExamN').textContent = n;
+  $('#hubReview').hidden = !rev.length; $('#hubReviewN').textContent = rev.length;
+  const last = exams().slice(-1)[0];
+  $('#hubLast').textContent = last ? `Dernier examen blanc : ${last.score}/${last.total}` : 'Pas encore d’examen blanc.';
+  $('#hubSeries').innerHTML = [...SERIES.values()].map(s => { const c = course(s.cours); const best = seriesBest(s.id), tot = seriesTotal(s.id); return `<li><button class="srow glass" data-s="${s.id}"><div><b>${esc(s.titre)}</b><small>${c ? `Cours ${courseNumber(c)} · ` : ''}${s.questions.length} questions</small></div><span class="tag num">${best !== undefined ? `${best}/${tot}` : 'Nouveau'}</span></button></li>`; }).join('');
+  $$('#hubSeries [data-s]').forEach(b => b.addEventListener('click', () => startSerie(b.dataset.s, { retour: 'examen' })));
+}
+
+/* ---------- Enregistrement des écrans ---------- */
+export function setupScreens() {
+  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); drawPoster(nextCourse()); if (prev) SALLE.reset(1200); $('#seat27').classList.remove('open'); setTimeout(() => $('#seat27').classList.add('open'), 300); } });
+  register('parcours', { world: 'salle', amb: 'salle', region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
+  register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
+  register('cours', { world: 'route', amb: 'route', noTab: true,
+    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) Player.play(); $('#s-cours .sheet').scrollTop = 0; } },
+    leave() { Player.pause(); Labels.clear(); } });
+  register('serie', { world: 'route', amb: null, noTab: true, tab: 'examen', enter() { R.reset(); }, leave() { Serie.stop(); } });
+  register('examen', { world: 'salle', amb: 'salle', region: () => $('#s-examen'), enter() { renderHub(); SALLE.reset(900); } });
+  register('parebrise', { world: 'route', amb: 'route', enter() { R.reset(); R.setSpeed(40, 20); R.pose('reflex', 1); }, leave() { Reflex.stop(); } });
+  register('decodeur', { world: 'studio', amb: null, enter() { Decoder.paint(true); } });
+
+  setPlayerLinks(id => startSerie(id, { retour: 'fiche', retourArg: Player.c && Player.c.id }), () => show('parcours'));
+  setSerieDone(cfg => show(cfg.retour || 'examen', cfg.retourArg ? { arg: cfg.retourArg } : {}));
+  Player.bindUI();
+  Reflex.init(() => {});
+  Decoder.init(() => store.set('decoderUsed', true));
+
+  $('#takeSeat').addEventListener('click', () => seatAndPlay(nextCourse().id));
+  $('#fPlay').addEventListener('click', () => { Voice.unlock(); Sound.init(); const st = courseState(ficheId); show('cours', { course: ficheId, at: st.done ? 0 : undefined, play: true }); });
+  $('#reviewCard').addEventListener('click', () => Serie.start({ titre: 'À revoir', ids: toReview().slice(0, 15), mode: 'entrainement', retour: 'salle' }));
+  $('#hubExam').addEventListener('click', () => Serie.start({ titre: 'Examen blanc', ids: drawExam(20), mode: 'examen', examen: true, retour: 'examen' }));
+  $('#hubReview').addEventListener('click', () => Serie.start({ titre: 'À revoir', ids: toReview().slice(0, 15), mode: 'entrainement', retour: 'examen' }));
+  $('#sQuit').addEventListener('click', () => { Serie.stop(); show(Serie.cfg && Serie.cfg.retour ? Serie.cfg.retour : 'examen', Serie.cfg && Serie.cfg.retourArg ? { arg: Serie.cfg.retourArg } : {}); });
+
+  // regarder autour de soi dans la salle
+  const v = $('#v-salle'); let px = 0, py = 0, down = false;
+  v.addEventListener('pointerdown', e => { down = true; px = e.clientX; py = e.clientY; SALLE.setDrag(true); });
+  v.addEventListener('pointermove', e => { if (!down) return; SALLE.look(e.clientX - px, e.clientY - py); px = e.clientX; py = e.clientY; });
+  const up = () => { down = false; SALLE.setDrag(false); };
+  v.addEventListener('pointerup', up); v.addEventListener('pointercancel', up); v.addEventListener('pointerleave', up);
+}

@@ -1,0 +1,42 @@
+{
+  "id": "priorites",
+  "ordre": 3,
+  "theme": "circulation",
+  "titre": "Les priorités aux intersections",
+  "accroche": "qui passe en premier ?",
+  "resume": "Priorité à droite, priorité ponctuelle, route prioritaire, stop, cédez le passage et giratoire.",
+  "affiche": ["AB1", "AB2", "AB6", "AB3a", "AB4", "AB25"],
+  "chapitres": ["La règle de base", "Les panneaux de priorité", "Le giratoire"],
+  "series": ["serie-priorites"],
+  "memo": [
+    { "panneau": "AB1", "texte": "Priorité à droite à la prochaine intersection", "famille": "danger" },
+    { "panneau": "AB2", "texte": "Prioritaire à la prochaine intersection seulement", "famille": "priorite" },
+    { "panneau": "AB6", "texte": "Prioritaire jusqu'au panneau de fin", "famille": "priorite" },
+    { "panneau": "AB3a", "texte": "Céder le passage, arrêt si besoin", "famille": "priorite" },
+    { "panneau": "AB4", "texte": "Arrêt obligatoire puis céder", "famille": "priorite" }
+  ],
+  "scenes": [
+    { "type": "titre", "ch": 0, "eyebrow": "Cours 3 · Circulation", "titre": "Les priorités", "sous": "qui passe en premier ?", "vitesse": 50,
+      "dire": "Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ?" },
+    { "type": "panneaux", "ch": 0, "eyebrow": "Sans panneau", "titre": "Priorité à droite", "panneaux": ["AB1"], "puce": "La règle par défaut",
+      "dire": "Sans panneau ni feu, la règle est simple : tu cèdes le passage aux véhicules qui arrivent de ta droite. Ce panneau, avec sa croix, te rappelle la règle avant l'intersection." },
+    { "type": "panneaux", "ch": 1, "eyebrow": "Priorité ponctuelle", "titre": "Une seule intersection", "panneaux": ["AB2"], "puce": "Uniquement la prochaine",
+      "dire": "Ce panneau-là te donne la priorité, mais seulement à la prochaine intersection. Juste après, la priorité à droite reprend." },
+    { "type": "famille", "ch": 1, "regle": 1, "famille": "priorite", "forme": "losange", "panneaux": ["AB6", "AB7"], "puce": "Jusqu'au panneau de fin",
+      "dire": "Le losange jaune, lui, te rend prioritaire à toutes les intersections, jusqu'au panneau de fin barré de noir." },
+    { "type": "touche", "ch": 1, "question": "Lequel te rend prioritaire à la prochaine intersection seulement ?", "panneaux": ["AB1", "AB2", "AB6"], "bonne": 1, "revoir": 2,
+      "bien": "Exact. Le triangle avec le trait épais : priorité ponctuelle, pour une seule intersection.",
+      "mal": "La priorité ponctuelle, c'est le triangle avec le trait vertical épais. Le losange dure jusqu'à sa fin, et la croix, c'est la priorité à droite.",
+      "dire": "Question. Lequel de ces panneaux te rend prioritaire à la prochaine intersection seulement ? Touche-le." },
+    { "type": "panneaux", "ch": 1, "eyebrow": "Tu dois céder", "titre": "Cédez ou stop", "panneaux": ["AB3a", "AB4"], "etiquettes": [["AB3a", "Arrêt si nécessaire"], ["AB4", "Arrêt obligatoire"]],
+      "dire": "Au cédez le passage, tu laisses passer et tu ne t'arrêtes que si quelqu'un arrive. Au stop, l'arrêt est obligatoire dans tous les cas, même si la route est vide." },
+    { "type": "panneaux", "ch": 2, "eyebrow": "Carrefour giratoire", "titre": "Ceux qui tournent passent", "panneaux": ["AB25", "AB3a"], "etiquettes": [["AB25", "Giratoire"], ["AB3a", "À l'entrée"]],
+      "dire": "Ce panneau annonce un carrefour à sens giratoire. À l'entrée, il y a presque toujours un cédez le passage : tu laisses passer ceux qui sont déjà engagés sur l'anneau." },
+    { "type": "quiz", "ch": 2, "question": "Intersection sans panneau ni feu : tu cèdes le passage…", "choix": ["à droite", "à gauche", "à personne"], "bonne": 0, "revoir": 1,
+      "bien": "Exact : sans signalisation, c'est la priorité à droite.",
+      "mal": "Sans panneau ni feu, c'est toujours la priorité à droite.",
+      "dire": "Dernière question. Intersection sans panneau ni feu : à qui cèdes-tu le passage ?" },
+    { "type": "fin", "ch": 2, "eyebrow": "Fin du cours 3", "titre": "Priorités : OK", "stats": [["1", "règle par défaut"], ["6", "panneaux clés"], ["2", "questions"]],
+      "dire": "Cours terminé. La série d'exercices t'attend." }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "alcool",
+  "ordre": 5,
+  "theme": "conducteur",
+  "titre": "Alcool et conduite",
+  "accroche": "les taux, et ce qu'ils changent",
+  "resume": "Les taux légaux (permis définitif et probatoire), ce que l'alcool fait à la conduite, et ce qui ne fait pas baisser l'alcoolémie.",
+  "affiche": ["A14", "B14:50", "B1"],
+  "chapitres": ["Les taux", "Les effets"],
+  "series": ["serie-alcool"],
+  "memo": [
+    { "texte": "Permis définitif", "tag": "0,5 g/L" },
+    { "texte": "Permis probatoire", "tag": "0,2 g/L" },
+    { "texte": "Seul le temps fait baisser l'alcoolémie", "tag": "Ni café, ni eau" }
+  ],
+  "scenes": [
+    { "type": "titre", "ch": 0, "eyebrow": "Cours 5 · Le conducteur", "titre": "Alcool et conduite", "sous": "les taux, et ce qu'ils changent", "vitesse": 50,
+      "dire": "Cours numéro 5 : l'alcool au volant. Les taux à connaître, et pourquoi ils existent." },
+    { "type": "chiffres", "ch": 0, "eyebrow": "Permis définitif", "titre": "Taux maximal", "vitesse": 50,
+      "items": [["0,5", "g/L", "dans le sang"], ["0,25", "mg/L", "dans l'air expiré"]],
+      "dire": "Avec un permis définitif, le taux maximal est de 0,5 gramme par litre de sang. Mesuré à l'éthylotest, ça correspond à 0,25 milligramme par litre d'air expiré." },
+    { "type": "chiffres", "ch": 0, "eyebrow": "Permis probatoire", "titre": "Presque zéro", "vitesse": 50,
+      "items": [["0,2", "g/L", "dans le sang"], ["0,1", "mg/L", "dans l'air expiré"]],
+      "dire": "En permis probatoire, c'est 0,2 gramme par litre. Dans les faits, un seul verre peut suffire à le dépasser." },
+    { "type": "chiffres", "ch": 1, "eyebrow": "Ce que l'alcool change", "titre": "Plus lent, moins large", "vitesse": 60,
+      "items": [["+", "temps", "de réaction plus long"], ["−", "champ", "visuel réduit"]],
+      "dire": "L'alcool allonge le temps de réaction et réduit le champ visuel. Tu vois moins, et tu réagis plus tard." },
+    { "type": "quiz", "ch": 1, "question": "Un café fait baisser l'alcoolémie.", "choix": ["Vrai", "Faux"], "bonne": 1, "revoir": 1,
+      "bien": "Exact. Seul le temps fait baisser l'alcoolémie. Ni le café, ni l'eau, ni un repas n'y changent rien.",
+      "mal": "Faux. Seul le temps fait baisser l'alcoolémie. Le café ne change rien.",
+      "dire": "Question. Vrai ou faux : un café fait baisser l'alcoolémie." },
+    { "type": "fin", "ch": 1, "eyebrow": "Fin du cours 5", "titre": "Alcool : OK", "stats": [["0,5", "g/L définitif"], ["0,2", "g/L probatoire"]],
+      "dire": "Cours terminé. Passe à la série pour vérifier les chiffres." }
+  ]
+}
