@@ -109,7 +109,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 7",
-   "titre": "Marquages : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "3",
@@ -124,7 +124,7 @@
      "règle : on lit son côté"
     ]
    ],
-   "dire": "Cours terminé. Les lignes, c’est la base des dépassements : enchaîne avec le cours suivant."
+   "dire": "Cours terminé. Les lignes, c’est la base des dépassements : passe à la pratique, puis enchaîne avec le cours suivant."
   }
  ]
 }

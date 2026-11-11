@@ -20,10 +20,12 @@ export const Labels = {
     if (!this.items.length || !has3D) return;
     const a = Engine.anchors(), app = $('#app').getBoundingClientRect();
     const lim = limitEl ? limitEl.getBoundingClientRect().top - 24 : Infinity;
+    // jamais par-dessus le titre de la scène ni la barre du haut : l'étiquette disparaît plutôt
+    const top = [...document.querySelectorAll('#lower3 > *, #s-exo .xtitle, #s-cours .topbar')].reduce((m, e) => { const r = e.getBoundingClientRect(); return r.height && r.top < app.height / 2 ? Math.max(m, r.bottom) : m; }, 0);
     this.items.forEach((l, k) => {
       const p = a[k]; if (!p) { l.style.display = 'none'; return; } l.style.display = '';
       const half = (l.offsetWidth || 120) / 2 + 8, x = Math.max(half, Math.min(app.width - half, p.x - app.left));   // jamais coupée par le bord de l'écran
-      l.style.left = x + 'px'; l.style.top = (p.y - app.top) + 'px'; l.style.visibility = p.y < lim && p.vis !== false ? 'visible' : 'hidden';
+      l.style.left = x + 'px'; l.style.top = (p.y - app.top) + 'px'; const h = l.offsetHeight || 34, y0 = this.up ? p.y - h - 10 : p.y; l.style.visibility = p.y < lim && y0 > top + 4 && p.vis !== false ? 'visible' : 'hidden';
     });
   }
 };

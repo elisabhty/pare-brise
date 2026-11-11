@@ -41,7 +41,7 @@
    "eyebrow": "Cours 22 · Sécurité",
    "titre": "Ceinture, enfants, chargement",
    "sous": "protéger chaque passager",
-   "dire": "Cours numéro 22 : la sécurité de tes passagers. Tu en es responsable.",
+   "dire": "Des passagers montent à bord, dont un enfant. Cours numéro 22 : la sécurité de tes passagers. Tu en es responsable.",
    "vitesse": 40
   },
   {
@@ -114,7 +114,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 22",
-   "titre": "Passagers : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "10",
@@ -125,7 +125,7 @@
      "points pour la ceinture"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour protéger chaque passager."
   }
  ]
 }

@@ -216,9 +216,9 @@ async function showBands(X, bands, dR, dB) {
 const MECA = {};
 
 /* ---------- Situations d'examen : une courte vidéo, un arrêt sur image, une question, des réponses A à D ---------- */
-const TYPES3D = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+const TYPES3D = ['tram', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
 const OBS = 3.6;                                                   // durée de la « vidéo » avant l'arrêt sur image (s)
-const BIG = ['voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
+const BIG = ['tram', 'voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
 const rollOf = sc => { const v = (sc.kmh ?? 30) / 3.6; return { v, d: Math.min(8, v * 0.6) }; };
 /* T : durée de la vidéo. La voiture et les usagers mobiles partent en arrière d'autant,
    pour se trouver exactement à la place prévue au moment de l'arrêt sur image. */
@@ -227,9 +227,9 @@ function stageScene(W, sc, T = 0) {
   const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
   W.load({ env, meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, depart: v > 0 ? d - v * T : 0, graine: sc.graine || 9, camera: sc.camera || 'vue', voie: sc.voie,
     ligne, carrefours: cars,
-    zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : []),
+    zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : [], sc.rails ? [{ de: sc.rails - 8, a: sc.rails + 8 }] : []),
     // pas de voiture garée entre nous et un piéton ou un usager au bord de la route : il doit rester bien visible
-    reserve: (sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10, (a.S || 0) - 20] : [a.S || 0])).concat(sc.passage ? [sc.passage, sc.passage - 10, sc.passage - 20] : []) });
+    reserve: [d].concat((sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10, (a.S || 0) - 20] : [a.S || 0])), sc.passage ? [sc.passage, sc.passage - 10, sc.passage - 20] : []) });
   W.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false, clignotant: null }, sc.feux || {}));
   if (sc.carrefour) W.carrefour(sc.carrefour.S, { ligne: sc.carrefour.ligne, forme: sc.carrefour.forme });
   if (sc.giratoire) W.giratoire(sc.giratoire);
@@ -237,6 +237,8 @@ function stageScene(W, sc, T = 0) {
   if (sc.chevrons) W.chevrons(-190, 800, 38);
   if (sc.tunnel) W.tunnel(sc.tunnel, 900);
   if (sc.maisons) W.maisons(-160, 300);
+  if (sc.rails) W.rails(sc.rails);
+  (sc.marquages || []).forEach(([S, x, k]) => W.marquage(S, x, k));
   const sx = env === 'ville' ? 5.9 : env === 'autoroute' ? 7.2 : 4.4;
   const signs = (sc.signaux || []).map(([id, S, x, t]) => W.panneau(id, S, x ?? sx, { taille: t || 1.2 }));
   // vue du conducteur : le tableau de bord en bas de l'image, comme dans les vidéos de l'examen

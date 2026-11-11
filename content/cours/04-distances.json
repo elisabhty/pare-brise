@@ -44,7 +44,7 @@
    "titre": "Distances d'arrêt",
    "sous": "voir les mètres sur la route",
    "vitesse": 90,
-   "dire": "Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi."
+   "dire": "Tu roules à vitesse constante. Un obstacle apparaît au loin : il faut comprendre l’espace nécessaire pour s’arrêter. Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi."
   },
   {
    "type": "reperes",
@@ -138,7 +138,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 4",
-   "titre": "Distances : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "× 3",

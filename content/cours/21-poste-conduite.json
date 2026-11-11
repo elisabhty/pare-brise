@@ -40,7 +40,7 @@
    "eyebrow": "Cours 21 · Véhicule",
    "titre": "S’installer et quitter",
    "sous": "avant même de démarrer",
-   "dire": "Cours numéro 21 : s’installer. Une bonne position, c’est plus de contrôle et moins de blessures en cas de choc."
+   "dire": "Tu t’installes dans une voiture pour la première fois. Cours numéro 21 : s’installer. Une bonne position, c’est plus de contrôle et moins de blessures en cas de choc."
   },
   {
    "type": "liste",
@@ -151,7 +151,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 21",
-   "titre": "Installation : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "5",
@@ -162,7 +162,7 @@
      "gestes en quittant"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour vérifier tes réglages."
   }
  ]
 }

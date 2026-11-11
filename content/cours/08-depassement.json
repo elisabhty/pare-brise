@@ -45,7 +45,7 @@
    "eyebrow": "Cours 8 · Circulation",
    "titre": "Dépasser et croiser",
    "sous": "seulement si tout est vert",
-   "dire": "Cours numéro 8 : le dépassement. C’est la manœuvre la plus risquée sur route. On ne la commence que si tout est réuni.",
+   "dire": "Un véhicule lent circule devant toi sur une route à double sens. Cours numéro 8 : le dépassement. C’est la manœuvre la plus risquée sur route. On ne la commence que si tout est réuni.",
    "vitesse": 60
   },
   {
@@ -186,7 +186,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 8",
-   "titre": "Dépassement : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "4",
@@ -201,7 +201,7 @@
      "exception : le cycliste"
     ]
    ],
-   "dire": "Cours terminé. Fais l’exercice « Doubler ou pas ? » : six situations, à toi de décider."
+   "dire": "Cours terminé. Passe à la pratique : à toi de décider si tu peux doubler."
   }
  ]
 }

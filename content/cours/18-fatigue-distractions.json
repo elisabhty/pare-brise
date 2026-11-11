@@ -40,7 +40,7 @@
    "eyebrow": "Cours 18 · Conducteur",
    "titre": "Fatigue et distractions",
    "sous": "garder la tête à la route",
-   "dire": "Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 25 mètres parcourus les yeux fermés.",
+   "dire": "Tu conduis depuis longtemps. L’attention commence à diminuer. Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 25 mètres parcourus les yeux fermés.",
    "vitesse": 90
   },
   {
@@ -134,7 +134,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 18",
-   "titre": "Attention : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "2",
@@ -149,7 +149,7 @@
      "points pour le téléphone"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour repérer les pièges de l’inattention."
   }
  ]
 }

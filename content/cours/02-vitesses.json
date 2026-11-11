@@ -55,7 +55,7 @@
    "titre": "Les limitations de vitesse",
    "sous": "le bon chiffre au bon endroit",
    "vitesse": 80,
-   "dire": "Cours numéro 2 : les limitations de vitesse. Quatre chiffres de base, puis ce qui change avec la météo et quand tu es jeune conducteur."
+   "dire": "Tu quittes un parking et rejoins la circulation. La vitesse autorisée va changer selon la route. Cours numéro 2 : les limitations de vitesse. Quatre chiffres de base, puis ce qui change avec la météo et quand tu es jeune conducteur."
   },
   {
    "type": "panneaux",
@@ -199,7 +199,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 2",
-   "titre": "Vitesses : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "4",
@@ -214,7 +214,7 @@
      "règles jeune conducteur"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : les vitesses tombent souvent à l'examen."
+   "dire": "Cours terminé. Passe à la pratique : les vitesses tombent souvent à l’examen."
   }
  ]
 }

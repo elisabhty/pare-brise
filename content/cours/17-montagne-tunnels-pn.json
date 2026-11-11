@@ -43,7 +43,7 @@
    "eyebrow": "Cours 17 · Route",
    "titre": "Tunnels, passages à niveau, montagne",
    "sous": "les lieux à part",
-   "dire": "Cours numéro 17 : trois endroits où les règles changent un peu.",
+   "dire": "Tu arrives devant un passage à niveau, puis un tunnel et une route de montagne. Cours numéro 17 : trois endroits où les règles changent un peu.",
    "vitesse": 50
   },
   {
@@ -173,7 +173,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 17",
-   "titre": "Lieux à part : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "1",
@@ -188,7 +188,7 @@
      "priorité à celui qui monte"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour revoir ces lieux à part."
   }
  ]
 }

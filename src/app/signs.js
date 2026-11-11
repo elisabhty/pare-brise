@@ -60,6 +60,7 @@ const DRAW = {
 
   A1a: () => triUp() + `<path d="M41 78 L41 62 Q41 48 57 46" fill="none" stroke="${K.k}" stroke-width="7" stroke-linecap="round"/>`,
   A3: () => triUp() + `<g fill="none" stroke="${K.k}" stroke-width="4.5" stroke-linecap="round"><path d="M37 77 L37 67 Q37 61 44 57 L44 40"/><path d="M63 77 L63 67 Q63 61 56 57 L56 40"/></g>`,
+  A3b: () => triUp() + `<g fill="none" stroke="${K.k}" stroke-width="4.5" stroke-linecap="round"><path d="M38 77 L38 67 Q38 61 47 56 L47 40"/><path d="M62 77 L62 40"/></g>`,
   A2b: () => triUp() + `<path d="M23 74 L35 74 Q50 50 65 74 L77 74 L77 78 L23 78 Z" fill="${K.k}"/>`,
   AK14: () => triUp(K.y) + bang(),
   AK5: () => triUp(K.y) + worker(),
@@ -94,7 +95,7 @@ const DRAW = {
 const META = {
   A13a: ['Endroit fréquenté par les enfants', 'danger'], A13b: ['Passage pour piétons', 'danger'], A15b: ['Passage d’animaux sauvages', 'danger'], A17: ['Feux tricolores', 'danger'], A21: ['Débouché de cyclistes', 'danger'], A4: ['Chaussée glissante', 'danger'], A7: ['Passage à niveau avec barrières', 'danger'],
   B3: ['Interdiction de dépasser', 'interdiction'], B30: ['Zone 30', 'interdiction'], B51: ['Fin de zone 30', 'fin'], C107: ['Autoroute', 'indication'], C108: ['Fin d’autoroute', 'indication'],
-  A14: ['Autres dangers', 'danger'], A1a: ['Virage à droite', 'danger'], A3: ['Chaussée rétrécie', 'danger'], A2b: ['Dos-d’âne', 'danger'],
+  A14: ['Autres dangers', 'danger'], A1a: ['Virage à droite', 'danger'], A3: ['Chaussée rétrécie', 'danger'], A3b: ['Chaussée rétrécie par la gauche', 'danger'], A2b: ['Dos-d’âne', 'danger'],
   AK14: ['Danger temporaire', 'temporaire', 'danger'], AK5: ['Travaux', 'temporaire', 'danger'],
   AB1: ['Priorité à droite', 'danger'], AB2: ['Priorité ponctuelle', 'priorite'], AB25: ['Carrefour giratoire', 'danger'],
   B0: ['Circulation interdite', 'interdiction'], B1: ['Sens interdit', 'interdiction'], B14: [v => `Limitation à ${v || 50}`, 'interdiction'],

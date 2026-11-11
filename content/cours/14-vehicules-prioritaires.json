@@ -37,7 +37,7 @@
    "eyebrow": "Cours 14 · Usagers",
    "titre": "Véhicules prioritaires",
    "sous": "laisser passer l’urgence",
-   "dire": "Cours numéro 14 : les véhicules d’urgence. Quand ils sont en intervention, chaque seconde compte.",
+   "dire": "Une sirène se fait entendre au loin. Un véhicule d’intervention approche. Cours numéro 14 : les véhicules d’urgence. Quand ils sont en intervention, chaque seconde compte.",
    "vitesse": 40
   },
   {
@@ -131,7 +131,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 14",
-   "titre": "Urgences : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "2",
@@ -142,7 +142,7 @@
      "réflexe : serrer à droite"
     ]
    ],
-   "dire": "Cours terminé. Rejoue l’exercice « Giratoires, feux et urgences » : une ambulance t’attend."
+   "dire": "Cours terminé. Passe à la pratique : une ambulance t’attend."
   }
  ]
 }

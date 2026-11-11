@@ -1,0 +1,331 @@
+{
+ "id": "anticiper-dangers",
+ "ordre": 33,
+ "theme": "conducteur",
+ "titre": "Anticiper les dangers",
+ "accroche": "voir le risque avant qu’il apparaisse",
+ "resume": "Observation, indices de danger, adaptation de la vitesse et marges de sécurité.",
+ "chapitres": [
+  "Chercher les indices",
+  "Adapter sa conduite",
+  "Garder une marge"
+ ],
+ "affiche": [
+  "A13a",
+  "A4",
+  "A14"
+ ],
+ "series": [
+  "serie-anticiper-dangers"
+ ],
+ "memo": [
+  {
+   "texte": "Ballon, portière, bus à l’arrêt",
+   "tag": "des indices"
+  },
+  {
+   "panneau": "A13a",
+   "texte": "Abords d’école",
+   "tag": "ralentir"
+  },
+  {
+   "panneau": "A4",
+   "texte": "Chaussée mouillée",
+   "tag": "plus de distance"
+  },
+  {
+   "texte": "L’angle mort des autres",
+   "tag": "ne pas y rester"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 33 · Conducteur",
+   "titre": "Anticiper les dangers",
+   "sous": "voir le risque avant qu’il apparaisse",
+   "vitesse": 30,
+   "dire": "Tu roules dans une rue calme. Une balle apparaît près du trottoir. Aucun enfant n’est encore visible, mais cette balle est déjà un indice : quelqu’un peut surgir. Anticiper, c’est comprendre ce qui pourrait se produire."
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Le regard",
+   "titre": "Regarder loin, puis près",
+   "env": "route",
+   "kmh": 70,
+   "camera": "cockpit",
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 42,
+     "x": 1.75,
+     "kmh": 70,
+     "couleur": 10134447
+    },
+    {
+     "type": "biche",
+     "S": 200,
+     "x": -6.5,
+     "cap": 90
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Au loin",
+     "un animal au bord de la route"
+    ]
+   ],
+   "script": [
+    [
+     5.5,
+     "vitesse",
+     50,
+     1.5
+    ]
+   ],
+   "dire": "Balaye régulièrement la route au loin, les abords et les rétroviseurs. Une observation trop fixée sur le véhicule devant toi peut te faire manquer un danger plus loin.",
+   "ch": 0
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Un masque",
+   "titre": "Une voiture garée peut cacher un piéton",
+   "env": "ville",
+   "kmh": 30,
+   "camera": "cockpit",
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 40,
+     "x": 4.5
+    },
+    {
+     "type": "pieton",
+     "S": 46.2,
+     "x": 4.6,
+     "cap": 90
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Caché",
+     "il peut traverser"
+    ]
+   ],
+   "script": [
+    [
+     1.2,
+     "vitesse",
+     15,
+     2
+    ]
+   ],
+   "dire": "Une camionnette stationnée masque une partie du trottoir. Un piéton pourrait traverser devant elle. Ralentis si nécessaire, augmente ton attention et conserve une marge pour réagir.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "L’école",
+   "titre": "À proximité d’une école",
+   "env": "ville",
+   "kmh": 30,
+   "camera": "poursuite",
+   "signaux": [
+    [
+     "A13a",
+     14
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "enfant",
+     "S": 40,
+     "x": 6.6,
+     "kmh": 3.5
+    },
+    {
+     "type": "enfant",
+     "S": 47,
+     "x": 6.9,
+     "cap": 90
+    },
+    {
+     "type": "enfant",
+     "S": 55,
+     "x": 6.4,
+     "kmh": 3
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Des enfants",
+     "imprévisibles"
+    ]
+   ],
+   "script": [
+    [
+     0.8,
+     "vitesse",
+     18,
+     1.6
+    ]
+   ],
+   "dire": "Des enfants se déplacent près de la chaussée. Leur comportement peut être imprévisible. Adapte ton allure, surveille les abords et prépare-toi à t’arrêter si la situation l’exige.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "L’adhérence",
+   "titre": "Quand l’adhérence diminue",
+   "puce": "Pluie : distance d’arrêt plus longue",
+   "env": "route",
+   "meteo": "pluie",
+   "kmh": 80,
+   "camera": "cockpit",
+   "signaux": [
+    [
+     "A4",
+     26
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 36,
+     "x": 1.75,
+     "kmh": 70,
+     "couleur": 15223370
+    }
+   ],
+   "script": [
+    [
+     1.6,
+     "vitesse",
+     62,
+     1.4
+    ]
+   ],
+   "dire": "La pluie réduit l’adhérence et peut allonger le freinage. Diminue ton allure, augmente les distances et évite les gestes brusques. Les limites affichées ne remplacent jamais l’adaptation aux conditions.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Ta marge",
+   "titre": "Laisser une porte de sortie",
+   "env": "autoroute",
+   "kmh": 110,
+   "camera": "drone",
+   "chevrons": true,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 70,
+     "x": 1.75,
+     "kmh": 110,
+     "couleur": 10134447
+    },
+    {
+     "type": "voiture",
+     "S": 6,
+     "x": -1.75,
+     "kmh": 110,
+     "couleur": 3122042
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Son angle mort",
+     "n’y reste pas"
+    ]
+   ],
+   "script": [
+    [
+     3.6,
+     "vitesse",
+     100,
+     1
+    ]
+   ],
+   "dire": "Dans une circulation dense, conserve une distance suffisante et évite de rester inutilement dans l’angle mort d’un autre véhicule. Plus tu gardes de marge, plus tu peux réagir sans précipitation.",
+   "ch": 2
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Tout bouge",
+   "titre": "Le danger change en quelques secondes",
+   "env": "ville",
+   "kmh": 30,
+   "camera": "cockpit",
+   "passage": 62,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 24,
+     "x": 1.75,
+     "kmh": 30,
+     "couleur": 3829232
+    },
+    {
+     "type": "pieton",
+     "S": 62,
+     "x": 6.2,
+     "cap": 90
+    },
+    {
+     "type": "velo",
+     "S": 110,
+     "x": -2.7,
+     "kmh": -18
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Il attend",
+     "il va traverser"
+    ]
+   ],
+   "script": [
+    [
+     2.6,
+     "freiner",
+     0,
+     0,
+     3.6
+    ],
+    [
+     2.9,
+     "arret",
+     49
+    ],
+    [
+     6.6,
+     "acteur",
+     1,
+     0,
+     -1.25
+    ]
+   ],
+   "dire": "Une voiture devant freine, un vélo approche et un piéton attend au passage. Observe l’évolution de la scène plutôt que de te fier à une seule image. Adapte ta conduite au risque le plus immédiat.",
+   "ch": 2
+  },
+  {
+   "type": "fin",
+   "eyebrow": "Fin du cours 33",
+   "titre": "Ce qu’il faut retenir",
+   "stats": [
+    [
+     "3",
+     "étapes : observer, prévoir, adapter"
+    ]
+   ],
+   "dire": "Le réflexe essentiel : je repère les indices, j’imagine ce qui peut arriver, puis j’adapte ma vitesse et mes distances. Passe à la pratique pour t’entraîner à repérer les risques.",
+   "ch": 2
+  }
+ ]
+}

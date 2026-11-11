@@ -45,7 +45,7 @@
    "eyebrow": "Cours 9 · Circulation",
    "titre": "Arrêt et stationnement",
    "sous": "s’immobiliser au bon endroit",
-   "dire": "Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
+   "dire": "Tu cherches un endroit où t’immobiliser dans une rue animée. Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
    "vitesse": 30
   },
   {
@@ -173,7 +173,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 9",
-   "titre": "Stationnement : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "2",
@@ -188,7 +188,7 @@
      "réflexe avant d’ouvrir"
     ]
    ],
-   "dire": "Cours terminé. Retiens surtout le réflexe rétroviseur avant d’ouvrir ta portière."
+   "dire": "Cours terminé. Retiens surtout le réflexe rétroviseur avant d’ouvrir ta portière. Place à la pratique."
   }
  ]
 }

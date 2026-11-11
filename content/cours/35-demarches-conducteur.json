@@ -1,0 +1,203 @@
+{
+ "id": "demarches-conducteur",
+ "ordre": 35,
+ "theme": "notions",
+ "titre": "Documents et démarches du conducteur",
+ "accroche": "les obligations à connaître au quotidien",
+ "resume": "Immatriculation, assurance, contrôle technique, achat et vente du véhicule.",
+ "chapitres": [
+  "Identifier les documents",
+  "Suivre les échéances",
+  "Acheter ou vendre"
+ ],
+ "affiche": [
+  "A14"
+ ],
+ "series": [
+  "serie-demarches-conducteur"
+ ],
+ "memo": [
+  {
+   "texte": "Permis de la bonne catégorie",
+   "tag": "le conducteur"
+  },
+  {
+   "texte": "Certificat d’immatriculation",
+   "tag": "le véhicule"
+  },
+  {
+   "texte": "Assurance responsabilité civile",
+   "tag": "obligatoire"
+  },
+  {
+   "texte": "Vente : déclaration de cession",
+   "tag": "15 jours"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 35 · Notions",
+   "titre": "Documents et démarches du conducteur",
+   "sous": "les obligations à connaître au quotidien",
+   "vitesse": 30,
+   "dire": "Tu viens de récupérer une voiture. Avant de prendre la route, tu dois savoir quels documents et quelles démarches concernent le véhicule et son conducteur. Faisons le point avec des exemples simples."
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Le conducteur et le véhicule",
+   "titre": "Permis et immatriculation",
+   "items": [
+    [
+     "Le permis",
+     "De la catégorie du véhicule : B pour une voiture"
+    ],
+    [
+     "Le certificat d’immatriculation",
+     "La « carte grise » du véhicule"
+    ],
+    [
+     "Les justificatifs",
+     "Leur présentation peut évoluer : vérifie les règles en vigueur"
+    ]
+   ],
+   "dire": "Le conducteur doit disposer du droit de conduire la catégorie de véhicule concernée. Le véhicule doit être correctement immatriculé. Les modalités de présentation et de contrôle des justificatifs peuvent évoluer : vérifie les règles en vigueur.",
+   "ch": 0
+  },
+  {
+   "type": "liste",
+   "eyebrow": "L’assurance",
+   "titre": "L’assurance est obligatoire",
+   "items": [
+    [
+     "Responsabilité civile",
+     "Le minimum obligatoire"
+    ],
+    [
+     "À quoi elle sert",
+     "Indemniser les dommages causés aux autres"
+    ],
+    [
+     "Sans assurance",
+     "Le véhicule ne doit pas circuler"
+    ]
+   ],
+   "dire": "Un véhicule terrestre à moteur soumis à l’obligation d’assurance doit au minimum être couvert en responsabilité civile. Cette garantie sert à indemniser les dommages causés aux tiers dans les conditions prévues.",
+   "ch": 1
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Le contrôle technique",
+   "titre": "Le contrôle technique",
+   "items": [
+    [
+     "Premier contrôle",
+     "Avant les 4 ans de la voiture"
+    ],
+    [
+     "Ensuite",
+     "Tous les 2 ans"
+    ],
+    [
+     "Ce qu’il vérifie",
+     "Des points de sécurité et d’environnement"
+    ],
+    [
+     "Ce qu’il ne fait pas",
+     "Remplacer l’entretien courant"
+    ]
+   ],
+   "dire": "Pour les véhicules concernés, le contrôle technique doit être réalisé aux échéances réglementaires. Il vérifie différents points de sécurité et d’environnement, mais ne remplace pas l’entretien courant.",
+   "ch": 1
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Acheter",
+   "titre": "Acheter un véhicule d’occasion",
+   "items": [
+    [
+     "Avant",
+     "Vérifie le véhicule et ses documents"
+    ],
+    [
+     "Plus de 4 ans",
+     "Contrôle technique de moins de 6 mois"
+    ],
+    [
+     "Après l’achat",
+     "Un mois pour l’immatriculer à ton nom"
+    ]
+   ],
+   "dire": "Avant un achat, vérifie les informations du véhicule, les documents nécessaires et les éventuelles obligations liées au contrôle technique. Après l’achat, effectue les démarches d’immatriculation dans le délai applicable.",
+   "ch": 1
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Vendre",
+   "titre": "Vendre ou céder sa voiture",
+   "items": [
+    [
+     "Déclaration de cession",
+     "En ligne, dans les 15 jours"
+    ],
+    [
+     "Certificat d’immatriculation",
+     "Barré, daté, signé et remis à l’acheteur"
+    ],
+    [
+     "Certificat de situation administrative",
+     "De moins de 15 jours, pour l’acheteur"
+    ],
+    [
+     "La liste à jour",
+     "Sur les services officiels"
+    ]
+   ],
+   "dire": "Lors d’une vente, les parties doivent accomplir les formalités de cession et remettre les documents requis. Utilise les services officiels pour connaître la liste à jour et éviter les erreurs.",
+   "ch": 2
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Les démarches",
+   "titre": "Les situations qui demandent une démarche",
+   "items": [
+    [
+     "Un déménagement",
+     "Change l’adresse de la carte grise"
+    ],
+    [
+     "Un achat",
+     "Nouvelle immatriculation à ton nom"
+    ],
+    [
+     "Une vente ou un don",
+     "Déclaration de cession"
+    ],
+    [
+     "Délais et pièces",
+     "Sur les sources officielles : ils peuvent changer"
+    ]
+   ],
+   "dire": "Un changement de titulaire, d’adresse ou de situation administrative peut entraîner une formalité. Pour les délais, pièces justificatives et exceptions, consulte les sources officielles : ils peuvent changer.",
+   "ch": 2
+  },
+  {
+   "type": "fin",
+   "eyebrow": "Fin du cours 35",
+   "titre": "Ce qu’il faut retenir",
+   "stats": [
+    [
+     "4",
+     "documents en règle"
+    ],
+    [
+     "15",
+     "jours pour déclarer une vente"
+    ]
+   ],
+   "dire": "Avant de rouler, vérifie ton droit de conduire, l’immatriculation, l’assurance et les obligations de contrôle technique. Après une vente ou un achat, réalise les démarches officielles sans attendre. Tu as vu tout le programme : passe à la pratique, puis place aux examens blancs.",
+   "ch": 2
+  }
+ ]
+}

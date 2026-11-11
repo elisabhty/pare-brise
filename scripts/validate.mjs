@@ -14,6 +14,9 @@ export function validate(root = '.') {
   const series = read(P('content/series.json'));
   const exercices = fs.existsSync(P('content/exercices.json')) ? read(P('content/exercices.json')) : [];
   const TYPES = [...fs.readFileSync(P('src/app/scenes.js'), 'utf8').matchAll(/^  (\w+): \{$/gm)].map(m => m[1]);
+  const ACTEURS = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+  const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus'];
+  const checkMarks = (s, w) => (s.marquages || []).forEach(m => { if (!MARQUES.includes(m[2])) warn(`${w} : marquage inconnu « ${m[2]} » (${MARQUES.join(', ')})`); });
   const SHAPES = ['tri', 'triBas', 'cercle', 'carre', 'octo', 'losange'];
   const uniq = (list, what) => { const seen = new Set(); list.forEach(x => { if (seen.has(x.id)) warn(`${what} en double : ${x.id}`); seen.add(x.id); }); return seen; };
   const themeIds = uniq(themes, 'Thème'), coursIds = uniq(cours, 'Cours'), qIds = uniq(questions, 'Question'), sIds = uniq(series, 'Série');
@@ -41,7 +44,7 @@ export function validate(root = '.') {
       if (s.type === 'reperes' && !(Array.isArray(s.reperes) && s.reperes.every(r => typeof r[0] === 'number' && typeof r[1] === 'string'))) warn(`${w} : « reperes » attend [[mètres, "étiquette"], …]`);
       if (s.etiquettes && s.panneaux && s.etiquettes.length !== s.panneaux.length) warn(`${w} : autant d'étiquettes que de panneaux attendues`);
       if (s.type === 'liste' && !(Array.isArray(s.items) && s.items.length)) warn(`${w} : « items » attendus`);
-      if (s.type === 'situation') { (s.signaux || []).forEach(x => checkSigns([x[0]], w)); (s.acteurs || []).forEach(a => { if (!['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'].includes(a.type)) warn(`${w} : acteur inconnu « ${a.type} »`); }); (s.etiquettes || []).forEach(e => { if (!(e[0] >= 0 && e[0] < (s.acteurs || []).length)) warn(`${w} : étiquette sur un acteur inexistant`); }); }
+      if (s.type === 'situation') { checkMarks(s, w); (s.signaux || []).forEach(x => checkSigns([x[0]], w)); (s.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${w} : acteur inconnu « ${a.type} »`); }); (s.etiquettes || []).forEach(e => { if (!(e[0] >= 0 && e[0] < (s.acteurs || []).length)) warn(`${w} : étiquette sur un acteur inexistant`); }); }
     });
   }
   for (const q of questions) {
@@ -83,8 +86,9 @@ export function validate(root = '.') {
       if (!s.q || !s.explication) warn(`${v} : question ou explication manquante`);
       if (!Array.isArray(s.choix) || s.choix.length < 2 || s.choix.length > 4) warn(`${v} : 2 à 4 réponses attendues`);
       if (!Array.isArray(s.bonnes) || !s.bonnes.length || s.bonnes.some(k => !(k >= 0 && k < (s.choix || []).length))) warn(`${v} : « bonnes » invalide`);
+      checkMarks(s, v);
       (s.signaux || []).forEach(p => checkSigns([p[0]], v));
-      (s.acteurs || []).forEach(a => { if (!['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'].includes(a.type)) warn(`${v} : acteur inconnu « ${a.type} »`); });
+      (s.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${v} : acteur inconnu « ${a.type} »`); });
     });
   }
   const strip = o => JSON.parse(JSON.stringify(o, (k, v) => (k === '_file' ? undefined : v)));

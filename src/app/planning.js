@@ -55,7 +55,9 @@ export function launch(id) {
 export function getPlan() {
   const p = store.get('plan', null); if (!p) return null;
   const ids = new Set(order().map(o => o.id));
-  if ((p.sessions || []).some(s => s.items.some(id => !ids.has(id)))) { const n = replan(Object.assign({}, p, { sessions: [] }), order(), isDone, today()); store.set('plan', n); return n; }
+  // un plan fait avant l'ajout de cours (ou d'une pratique) est refait : rien de nouveau ne doit rester hors planning
+  const planned = new Set((p.sessions || []).flatMap(s => s.items));
+  if ((p.sessions || []).some(s => s.items.some(id => !ids.has(id))) || order().some(o => !planned.has(o.id) && !isDone(o.id))) { const n = replan(Object.assign({}, p, { sessions: [] }), order(), isDone, today()); store.set('plan', n); return n; }
   return p;
 }
 function savePlan(p) { store.set('plan', p); refreshBadge(); }

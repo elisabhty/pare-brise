@@ -43,3 +43,26 @@ test('les ordres de cours sont uniques', () => {
 test('les types de scènes sont déclarés dans scenes.js', () => {
   for (const t of ['titre', 'defile', 'famille', 'panneaux', 'chiffres', 'reperes', 'touche', 'quiz', 'fin']) assert.ok(types.includes(t), t);
 });
+
+test('les 35 cours sont là, numérotés de 1 à 35, chacun avec sa pratique', () => {
+  const ordres = data.cours.map(c => c.ordre).sort((a, b) => a - b);
+  assert.deepEqual(ordres, Array.from({ length: 35 }, (_, i) => i + 1));
+  for (const c of data.cours) assert.ok(data.exercices.some(e => e.id === 'p-' + c.id), `${c.id} sans pratique`);
+});
+
+test('pas de phrase gabarit répétée dans les cours', () => {
+  const GABARITS = ['Observe les situations qui vont suivre', 'Tu viens de voir les situations essentielles', 'Prends un instant pour revoir les repères', 'les exercices sont accessibles séparément', 'Dans cette leçon, tu vas découvrir', 'La caméra'];
+  for (const c of data.cours) for (const s of c.scenes) for (const g of GABARITS) assert.ok(!s.dire.includes(g), `${c.id} : « ${g} »`);
+  const fins = data.cours.map(c => c.scenes[c.scenes.length - 1].dire);
+  assert.equal(new Set(fins).size, fins.length, 'chaque fin de cours a son propre texte');
+});
+
+test('un marquage au sol inconnu est signalé', async () => {
+  const { validate } = await import('../scripts/validate.mjs');
+  const fs = await import('node:fs'), os = await import('node:os'), path = await import('node:path');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pb-'));
+  fs.cpSync('content', path.join(dir, 'content'), { recursive: true }); fs.cpSync('src', path.join(dir, 'src'), { recursive: true });
+  const f = path.join(dir, 'content/cours/31-placement-chaussee.json'), c = JSON.parse(fs.readFileSync(f, 'utf8'));
+  c.scenes.find(s => s.marquages).marquages[0][2] = 'zigzag'; fs.writeFileSync(f, JSON.stringify(c));
+  assert.ok(validate(dir).errors.some(e => e.includes('marquage inconnu « zigzag »')));
+});

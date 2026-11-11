@@ -41,7 +41,7 @@
    "eyebrow": "Cours 25 · Secours",
    "titre": "Protéger, alerter, secourir",
    "sous": "les gestes qui sauvent",
-   "dire": "Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir.",
+   "dire": "Un accident vient de se produire sur une route. La priorité est d’éviter un second accident. Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir.",
    "vitesse": 30
   },
   {
@@ -180,7 +180,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 25",
-   "titre": "Secours : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "3",
@@ -195,7 +195,7 @@
      "partout en Europe"
     ]
    ],
-   "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo."
+   "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo, puis passe à la pratique."
   }
  ]
 }

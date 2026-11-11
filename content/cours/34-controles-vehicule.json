@@ -1,0 +1,242 @@
+{
+ "id": "controles-vehicule",
+ "ordre": 34,
+ "theme": "mecanique",
+ "titre": "Les contrôles du véhicule",
+ "accroche": "les vérifications qui évitent les mauvaises surprises",
+ "resume": "Pneumatiques, éclairage, visibilité, niveaux et alertes avant le départ.",
+ "chapitres": [
+  "Avant de partir",
+  "Sous le capot",
+  "Alertes et entretien"
+ ],
+ "affiche": [
+  "A14"
+ ],
+ "series": [
+  "serie-controles-vehicule"
+ ],
+ "memo": [
+  {
+   "texte": "Pneus : usure, coupures, pression à froid",
+   "tag": "avant de partir"
+  },
+  {
+   "texte": "Feux, clignotants, feux stop",
+   "tag": "voir et être vu"
+  },
+  {
+   "texte": "Voyant rouge",
+   "tag": "arrêt en sécurité"
+  },
+  {
+   "texte": "Voyant orange",
+   "tag": "vérifier vite"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 34 · Mécanique",
+   "titre": "Les contrôles du véhicule",
+   "sous": "les vérifications qui évitent les mauvaises surprises",
+   "vitesse": 30,
+   "dire": "Tu t’apprêtes à partir. Avant de démarrer, quelques vérifications simples peuvent éviter une panne ou une situation dangereuse. Commençons par ce que tu peux observer autour de la voiture."
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Les pneus",
+   "titre": "Le seul contact avec la route",
+   "items": [
+    [
+     "L’usure",
+     "Regarde les témoins au fond des rainures"
+    ],
+    [
+     "Coupures et déformations",
+     "Un pneu abîmé se remplace"
+    ],
+    [
+     "Le sous-gonflage",
+     "Un pneu écrasé se voit au premier coup d’œil"
+    ],
+    [
+     "La pression",
+     "À froid, selon le constructeur"
+    ]
+   ],
+   "dire": "Observe l’état général des pneus : usure, coupures, déformations ou sous-gonflage apparent. Contrôle régulièrement la pression selon les indications du constructeur, de préférence à froid.",
+   "ch": 0
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Les feux",
+   "titre": "Voir et être vu",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 0,
+   "voie": 3.9,
+   "camera": "arriere",
+   "feux": {
+    "croisement": false
+   },
+   "script": [
+    [
+     1.2,
+     "feux",
+     {
+      "position": true
+     }
+    ],
+    [
+     3.0,
+     "feux",
+     {
+      "croisement": true
+     }
+    ],
+    [
+     5.0,
+     "feux",
+     {
+      "clignotant": "g"
+     }
+    ],
+    [
+     6.8,
+     "feux",
+     {
+      "clignotant": "d"
+     }
+    ],
+    [
+     8.6,
+     "feux",
+     {
+      "clignotant": null,
+      "detresse": true
+     }
+    ],
+    [
+     11.0,
+     "feux",
+     {
+      "detresse": false
+     }
+    ]
+   ],
+   "dire": "Vérifie que les feux nécessaires fonctionnent et que les optiques sont propres. Des feux défectueux réduisent ta visibilité et empêchent les autres de comprendre tes intentions.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "La visibilité",
+   "titre": "Pare-brise, essuie-glaces et lave-glace",
+   "puce": "Des balais usés laissent des traces",
+   "env": "route",
+   "meteo": "pluie",
+   "kmh": 60,
+   "camera": "cockpit",
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 120,
+     "x": -1.75,
+     "kmh": -60
+    }
+   ],
+   "dire": "Un pare-brise sale ou des essuie-glaces usés peuvent masquer un danger. Nettoie les vitres, vérifie les balais et assure-toi d’avoir du liquide lave-glace adapté.",
+   "ch": 1
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Sous le capot",
+   "titre": "Reconnaître les réservoirs",
+   "items": [
+    [
+     "Liquide de refroidissement",
+     "À contrôler moteur froid"
+    ],
+    [
+     "Lave-glace",
+     "Avec un produit adapté à la saison"
+    ],
+    [
+     "Liquide de frein",
+     "Entre les repères mini et maxi"
+    ],
+    [
+     "Huile moteur",
+     "À la jauge, si ton modèle en a une"
+    ]
+   ],
+   "dire": "Selon le véhicule, repère le liquide de refroidissement, le lave-glace, le liquide de frein et la jauge d’huile lorsqu’elle existe. Consulte le manuel : les méthodes de contrôle varient selon les modèles.",
+   "ch": 1
+  },
+  {
+   "type": "liste",
+   "eyebrow": "Les voyants",
+   "titre": "Un voyant rouge : réagir",
+   "puces": [
+    "●",
+    "●",
+    "●"
+   ],
+   "items": [
+    [
+     "Rouge",
+     "Anomalie grave : arrête-toi dès que possible, en sécurité"
+    ],
+    [
+     "Orange",
+     "Fais vérifier rapidement"
+    ],
+    [
+     "Le manuel du véhicule",
+     "Il donne le sens exact de chaque voyant"
+    ]
+   ],
+   "dire": "Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt dès que possible en sécurité. Un voyant orange demande généralement une vérification rapide. Leur signification exacte dépend du véhicule : consulte le manuel.",
+   "ch": 2
+  },
+  {
+   "type": "liste",
+   "eyebrow": "L’entretien",
+   "titre": "Les contrôles ne remplacent pas l’entretien",
+   "items": [
+    [
+     "Les échéances",
+     "Celles du carnet d’entretien"
+    ],
+    [
+     "Une anomalie",
+     "Fais-la examiner sans attendre"
+    ],
+    [
+     "Moteur chaud",
+     "N’ouvre jamais le circuit de refroidissement"
+    ]
+   ],
+   "dire": "Même si tout paraît normal, respecte les échéances d’entretien et fais examiner les anomalies. N’ouvre jamais le circuit de refroidissement lorsqu’il est chaud.",
+   "ch": 2
+  },
+  {
+   "type": "fin",
+   "eyebrow": "Fin du cours 34",
+   "titre": "Ce qu’il faut retenir",
+   "stats": [
+    [
+     "4",
+     "zones à vérifier"
+    ],
+    [
+     "2",
+     "couleurs de voyant à surveiller"
+    ]
+   ],
+   "dire": "Avant de partir, pense aux pneus, aux feux, aux vitres et aux alertes du tableau de bord. Pour les contrôles précis, suis toujours les indications de ton véhicule. Place à la pratique.",
+   "ch": 2
+  }
+ ]
+}

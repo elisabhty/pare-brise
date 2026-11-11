@@ -40,7 +40,7 @@
    "eyebrow": "Cours 19 · Conducteur",
    "titre": "Drogues et médicaments",
    "sous": "ce qui altère sans prévenir",
-   "dire": "Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
+   "dire": "Avant de conduire, tu observes une boîte de médicaments et les risques liés aux substances. Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
    "vitesse": 50
   },
   {
@@ -119,7 +119,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 19",
-   "titre": "Substances : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "0",
@@ -130,7 +130,7 @@
      "niveaux de pictogramme"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour vérifier ce que tu as retenu."
   }
  ]
 }

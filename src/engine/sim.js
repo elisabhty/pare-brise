@@ -170,6 +170,32 @@ function busMesh(color = 0x1E5BFF, truck = false) {
   return shadowAll(g);
 }
 
+/* Tramway : deux caisses articulées, longues de 23 m en tout. */
+function tramMesh(color = 0x2FA37A) {
+  const g = new THREE.Group();
+  for (const z of [-5.8, 5.8]) { const b = busMesh(color); b.position.z = z; g.add(b); }
+  g.userData.tail = g.children[1].userData.tail;
+  return g;
+}
+/* Marquages peints : flèches de direction, de rabattement, « BUS » */
+const MARKS = {};
+function markTex(kind, K) {
+  if (MARKS[kind]) return MARKS[kind];
+  const c = canvas(192, 384, (x, w, h) => {
+    x.clearRect(0, 0, w, h); x.fillStyle = '#F2F2EC'; x.strokeStyle = '#F2F2EC'; x.lineCap = 'butt'; x.lineJoin = 'round'; x.lineWidth = 16;
+    const head = (cx, cy, ang) => { x.save(); x.translate(cx, cy); x.rotate(ang); x.beginPath(); x.moveTo(0, -46); x.lineTo(30, 6); x.lineTo(-30, 6); x.closePath(); x.fill(); x.restore(); };
+    const line = (...pts) => { x.beginPath(); pts.forEach(([a, b], i) => (i ? x.lineTo(a, b) : x.moveTo(a, b))); x.stroke(); };
+    const curve = (x0, y0, sd, y1) => { x.beginPath(); x.moveTo(x0, y0); x.quadraticCurveTo(x0, y1, x0 + sd * 40, y1); x.stroke(); head(x0 + sd * 44, y1, sd * Math.PI / 2); };
+    const up = () => { line([96, 384], [96, 90]); head(96, 70, 0); };
+    if (kind === 'tout-droit') up();
+    else if (kind === 'gauche' || kind === 'droite') { line([96, 384], [96, 210]); curve(96, 212, kind === 'droite' ? 1 : -1, 160); }
+    else if (kind === 'tout-droit-gauche' || kind === 'tout-droit-droite') { up(); curve(96, 320, kind.endsWith('droite') ? 1 : -1, 262); }
+    else if (kind === 'rabat-droite' || kind === 'rabat-gauche') { const sd = kind === 'rabat-droite' ? 1 : -1; line([96 - sd * 36, 384], [96 - sd * 36, 260], [96 + sd * 30, 120]); head(96 + sd * 30, 118, sd * 0.44); }
+    else if (kind === 'bus') { x.font = 'bold 92px Arial, Helvetica, sans-serif'; x.textAlign = 'center'; x.save(); x.translate(96, 192); x.scale(0.62, 1.9); x.fillText('BUS', 0, 30); x.restore(); }
+  });
+  const t = K.canvasTex(c); t.anisotropy = 8; return (MARKS[kind] = t);
+}
+
 function lightMesh() {
   const g = new THREE.Group(), pole = mat('poleD', () => std(0x3B414B, { roughness: 0.4, metalness: 0.6 })), box = mat('boxD', () => std(0x1E222A, { roughness: 0.5 }));
   const p = new THREE.Mesh(geo('tlP', () => new THREE.CylinderGeometry(0.07, 0.08, 3.1, 10)), pole); p.position.y = 1.55; g.add(p);
@@ -467,6 +493,7 @@ export function buildSim(K) {
     tracteur(o = {}) { const g = tractorMesh(); return actor(g, { kind: 'tracteur', len: 4, wid: 2.2, ...o }); },
     bus(o = {}) { const g = busMesh(o.couleur ?? 0x1E5BFF); return actor(g, { kind: 'bus', len: 11, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     camion(o = {}) { const g = busMesh(o.couleur ?? 0xE84A4A, true); return actor(g, { kind: 'camion', len: 11, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
+    tram(o = {}) { const g = tramMesh(o.couleur ?? 0x2FA37A); return actor(g, { kind: 'tram', len: 23, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     triangle(o = {}) { const g = triangleMesh(); return actor(g, { kind: 'triangle', len: 0.4, wid: 0.6, ...o }); },
     feu(o = {}) { const g = lightMesh(); const a = actor(g, { kind: 'feu', len: 0.3, wid: 0.3, x: 4.3, ...o }); a.set = st => setLight(g, st); a.set(o.etat || 'vert'); return a; },
     portiere(o = {}) {
@@ -476,6 +503,17 @@ export function buildSim(K) {
       const a = actor(g, { kind: 'portiere', x: 4.6, ...o }); a.open = (ms = 650) => K.tween(ms, e => { door.rotation.y = -1.05 * e; }); return a;
     },
     panneau(id, S, x = 4.3, o = {}) { const g = K.makeSign(id, o.taille || 0.9, o.mat ?? 1.35, 0.15); g.position.set(x, 0, local(S)); if (o.face) g.rotation.y = o.face; run.add(g); signs.push(g); return g; },
+    /* marquage au sol : flèche ou « BUS », posé dans une voie (x = centre de la voie) */
+    marquage(S, x, kind) {
+      const m = new THREE.Mesh(geo('mark', () => new THREE.PlaneGeometry(2.25, 4.5).rotateX(-Math.PI / 2)), new THREE.MeshBasicMaterial({ map: markTex(kind, K), transparent: true, depthWrite: false, toneMapped: false, color: cfg.meteo === 'nuit' ? 0x9aa0a8 : 0xffffff }));
+      ownMats.push(m.material); m.position.set(x, 0.016, local(S)); m.renderOrder = 1; run.add(m); return m;
+    },
+    /* voie de tramway qui traverse la route en S */
+    rails(S) {
+      const steel = mat('railS', () => std(0x9AA1AB, { metalness: 0.8, roughness: 0.35 })), slab = mat('railB', () => std(0x5C6168, { roughness: 0.9 }));
+      const bed = new THREE.Mesh(geo('railBed', () => new THREE.PlaneGeometry(1, 2.6).rotateX(-Math.PI / 2)), slab); bed.scale.x = 160; bed.position.set(0, 0.009, local(S)); bed.receiveShadow = true; run.add(bed);
+      for (const dz of [-0.72, 0.72]) { const r = new THREE.Mesh(geo('railL', () => new THREE.BoxGeometry(1, 0.04, 0.09)), steel); r.scale.x = 160; r.position.set(0, 0.02, local(S) + dz); run.add(r); }
+    },
     passage(S, o = {}) {
       const white = mat('paintW', () => new THREE.MeshStandardMaterial({ color: 0xF2F2EC, roughness: 0.6 }));
       const half = (o.largeur || (cfg.env === 'ville' ? 11.4 : 7)) / 2;

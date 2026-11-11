@@ -44,7 +44,7 @@
    "eyebrow": "Cours 10 · Circulation",
    "titre": "Autoroute",
    "sous": "vitesse et rigueur",
-   "dire": "Cours numéro 10 : l’autoroute. On y roule vite : chaque règle compte double.",
+   "dire": "Tu arrives à l’entrée d’une autoroute. La circulation accélère progressivement. Cours numéro 10 : l’autoroute. On y roule vite : chaque règle compte double.",
    "vitesse": 110
   },
   {
@@ -232,7 +232,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 10",
-   "titre": "Autoroute : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "2",
@@ -247,7 +247,7 @@
      "gestes en cas de panne"
     ]
    ],
-   "dire": "Cours terminé. Essaie l’exercice « Les chevrons » pour garder tes distances à grande vitesse."
+   "dire": "Cours terminé. Passe à la pratique pour garder tes distances à grande vitesse."
   }
  ]
 }

@@ -41,7 +41,7 @@
    "eyebrow": "Cours 15 · Route",
    "titre": "La nuit et l’éclairage",
    "sous": "voir et être vu",
-   "dire": "Cours numéro 15 : la nuit. Tu ne vois que ce que tes phares éclairent, et les autres te voient grâce à eux.",
+   "dire": "Le soleil se couche. Les premières ombres apparaissent sur la route. Cours numéro 15 : la nuit. Tu ne vois que ce que tes phares éclairent, et les autres te voient grâce à eux.",
    "vitesse": 60
   },
   {
@@ -197,7 +197,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 15",
-   "titre": "Éclairage : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "30",
@@ -212,7 +212,7 @@
      "feux de brouillard"
     ]
    ],
-   "dire": "Cours terminé. L’exercice « Les bons feux » te met dans six situations."
+   "dire": "Cours terminé. Passe à la pratique : à toi de choisir les bons feux."
   }
  ]
 }

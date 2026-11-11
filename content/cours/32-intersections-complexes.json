@@ -1,0 +1,355 @@
+{
+ "id": "intersections-complexes",
+ "ordre": 32,
+ "theme": "circulation",
+ "titre": "Les intersections complexes",
+ "accroche": "comprendre les trajectoires qui se croisent",
+ "resume": "Virages à gauche, croisements, tramways et règles particulières de priorité.",
+ "chapitres": [
+  "Lire l’intersection",
+  "Trajectoires croisées",
+  "Cas particuliers"
+ ],
+ "affiche": [
+  "AB1",
+  "A17",
+  "AB3a"
+ ],
+ "series": [
+  "serie-intersections-complexes"
+ ],
+ "memo": [
+  {
+   "texte": "Agent, puis feux, puis panneaux",
+   "tag": "qui commande"
+  },
+  {
+   "panneau": "AB1",
+   "texte": "Rien du tout",
+   "tag": "priorité à droite"
+  },
+  {
+   "texte": "Tourner à gauche",
+   "tag": "laisser passer en face"
+  },
+  {
+   "texte": "Rails de tramway",
+   "tag": "ne jamais s’y arrêter"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 32 · Circulation",
+   "titre": "Les intersections complexes",
+   "sous": "comprendre les trajectoires qui se croisent",
+   "vitesse": 30,
+   "dire": "Tu approches d’un carrefour où des voitures, un vélo et un tramway peuvent se croiser. Avant de décider, observe les feux, les panneaux, les marquages et la trajectoire de chaque usager."
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Qui commande ?",
+   "titre": "Qui règle le passage ?",
+   "puce": "Feu orange clignotant : règles habituelles",
+   "env": "ville",
+   "kmh": 22,
+   "camera": "drone",
+   "carrefour": {
+    "S": 34
+   },
+   "acteurs": [
+    {
+     "type": "feu",
+     "S": 29.5,
+     "x": 5.2,
+     "etat": "clignotant"
+    },
+    {
+     "type": "voiture",
+     "S": 35.75,
+     "x": 40,
+     "vx": -4.5,
+     "couleur": 15223370
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Il vient de ta droite",
+     "priorité à droite"
+    ]
+   ],
+   "script": [
+    [
+     0.6,
+     "arret",
+     30
+    ],
+    [
+     10.0,
+     "vitesse",
+     15,
+     1.5
+    ]
+   ],
+   "dire": "Si un agent dirige la circulation, suis ses indications. Sinon, regarde les feux et la signalisation. Quand aucune règle particulière ne s’applique, la priorité à droite peut entrer en jeu.",
+   "ch": 0
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Tourner à gauche",
+   "titre": "Tourner à gauche face à une voiture",
+   "env": "ville",
+   "kmh": 22,
+   "camera": "drone",
+   "carrefour": {
+    "S": 34
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 96,
+     "x": -1.75,
+     "kmh": -38,
+     "couleur": 3829232
+    },
+    {
+     "type": "pieton",
+     "S": 24,
+     "x": -7.4,
+     "kmh": 4.5
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Il va tout droit",
+     "il passe avant toi"
+    ]
+   ],
+   "script": [
+    [
+     0.5,
+     "clignotant",
+     "g"
+    ],
+    [
+     0.9,
+     "arret",
+     31
+    ]
+   ],
+   "dire": "Tu veux tourner à gauche. Une voiture arrive en face et continue tout droit. Laisse-la passer avant de traverser sa trajectoire. Vérifie aussi les piétons et cyclistes sur la route que tu vas emprunter.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Face à face",
+   "titre": "Deux véhicules tournent à gauche",
+   "env": "ville",
+   "kmh": 18,
+   "camera": "drone",
+   "carrefour": {
+    "S": 32
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 38.5,
+     "x": -1.75,
+     "couleur": 15905331
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Il tourne aussi",
+     "à gauche, en face"
+    ]
+   ],
+   "script": [
+    [
+     0.4,
+     "clignotant",
+     "g"
+    ],
+    [
+     0.8,
+     "arret",
+     28.5
+    ]
+   ],
+   "dire": "Lorsque deux véhicules venant en sens opposés tournent tous deux à gauche, leurs trajectoires dépendent de la configuration et du marquage du carrefour. Observe les aménagements et évite de couper la trajectoire de l’autre.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Le tramway",
+   "titre": "Le tramway : une vigilance particulière",
+   "env": "ville",
+   "kmh": 22,
+   "camera": "poursuite",
+   "carrefour": {
+    "S": 32
+   },
+   "rails": 32,
+   "acteurs": [
+    {
+     "type": "tram",
+     "S": 32,
+     "x": 46,
+     "vx": -8.5
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Tramway",
+     "tu le laisses passer"
+    ]
+   ],
+   "script": [
+    [
+     0.6,
+     "arret",
+     26
+    ],
+    [
+     10.4,
+     "vitesse",
+     18,
+     1.5
+    ]
+   ],
+   "dire": "À l’approche de rails, repère la signalisation et la direction du tramway. En règle générale, laisse passer le tramway lorsqu’il bénéficie de la priorité. N’entre jamais sur les rails si tu risques d’y rester immobilisé.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Vert, mais bouché",
+   "titre": "Un feu vert ne garantit pas une voie libre",
+   "env": "ville",
+   "kmh": 22,
+   "camera": "drone",
+   "carrefour": {
+    "S": 34,
+    "ligne": "feu"
+   },
+   "acteurs": [
+    {
+     "type": "feu",
+     "S": 29.5,
+     "x": 5.2,
+     "etat": "vert"
+    },
+    {
+     "type": "voiture",
+     "S": 41.5,
+     "x": 1.75,
+     "freine": true,
+     "couleur": 3028032
+    },
+    {
+     "type": "voiture",
+     "S": 47,
+     "x": 1.75,
+     "couleur": 10134447
+    },
+    {
+     "type": "voiture",
+     "S": 52.5,
+     "x": 1.75,
+     "couleur": 3829232
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Plus de place",
+     "tu attends avant le carrefour"
+    ]
+   ],
+   "script": [
+    [
+     0.8,
+     "arret",
+     29.5
+    ]
+   ],
+   "dire": "Même au vert, n’avance pas si tu risques de bloquer le carrefour. Et si tu tournes, reste attentif aux usagers qui traversent légalement la chaussée.",
+   "ch": 2
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Sans visibilité",
+   "titre": "Intersection sans visibilité",
+   "env": "ville",
+   "kmh": 25,
+   "camera": "cockpit",
+   "carrefour": {
+    "S": 46,
+    "forme": "T-droite"
+   },
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 36,
+     "x": 4.5
+    },
+    {
+     "type": "voiture",
+     "S": 47.75,
+     "x": 30,
+     "vx": -4.2,
+     "couleur": 15223370
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Il arrive",
+     "de la rue masquée"
+    ]
+   ],
+   "script": [
+    [
+     0.6,
+     "vitesse",
+     10,
+     2
+    ],
+    [
+     2.8,
+     "arret",
+     41
+    ],
+    [
+     11.4,
+     "vitesse",
+     14,
+     1.2
+    ]
+   ],
+   "dire": "Des voitures garées masquent une rue sur ta droite. Réduis ta vitesse et avance avec prudence pour mieux voir, tout en respectant les priorités. Ne t’engage que lorsque la situation est suffisamment claire.",
+   "ch": 2
+  },
+  {
+   "type": "fin",
+   "eyebrow": "Fin du cours 32",
+   "titre": "Ce qu’il faut retenir",
+   "stats": [
+    [
+     "4",
+     "niveaux : agent, feux, panneaux, règle"
+    ],
+    [
+     "1",
+     "réflexe : jamais sur les rails"
+    ]
+   ],
+   "dire": "À chaque carrefour, repère la règle applicable, les usagers concernés et les trajectoires qui se croisent. Passe à la pratique pour appliquer cette méthode.",
+   "ch": 2
+  }
+ ]
+}

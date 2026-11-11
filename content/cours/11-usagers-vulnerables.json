@@ -46,7 +46,7 @@
    "eyebrow": "Cours 11 · Usagers",
    "titre": "Piétons et enfants",
    "sous": "les plus fragiles d’abord",
-   "dire": "Cours numéro 11 : les piétons et les enfants. Face à une voiture, ils n’ont aucune protection.",
+   "dire": "Tu traverses une rue commerçante fréquentée par des piétons. Cours numéro 11 : les piétons et les enfants. Face à une voiture, ils n’ont aucune protection.",
    "vitesse": 30
   },
   {
@@ -183,7 +183,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 11",
-   "titre": "Piétons : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "6",
@@ -198,7 +198,7 @@
      "km/h en zone 30"
     ]
    ],
-   "dire": "Cours terminé. Fais l’exercice « Sortie d’école » pour t’entraîner à freiner à temps."
+   "dire": "Cours terminé. Passe à la pratique pour repérer les piétons à temps."
   }
  ]
 }

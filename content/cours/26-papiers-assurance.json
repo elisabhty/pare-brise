@@ -133,7 +133,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 26",
-   "titre": "Papiers : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "4",
@@ -144,7 +144,7 @@
      "jours pour le constat"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour revoir les papiers et le constat."
   }
  ]
 }

@@ -352,5 +352,89 @@
    "vp29-4",
    "vp29-5"
   ]
+ },
+ {
+  "id": "serie-changer-direction-voie",
+  "titre": "Regarder, signaler, tourner",
+  "cours": "changer-direction-voie",
+  "questions": [
+   "cdv30-1",
+   "cdv30-2",
+   "cdv30-3",
+   "cdv30-4",
+   "cdv30-5",
+   "cdv30-6",
+   "cdv30-7"
+  ]
+ },
+ {
+  "id": "serie-placement-chaussee",
+  "titre": "La bonne voie",
+  "cours": "placement-chaussee",
+  "questions": [
+   "pc31-1",
+   "pc31-2",
+   "pc31-3",
+   "pc31-4",
+   "pc31-5",
+   "pc31-6",
+   "pc31-7"
+  ]
+ },
+ {
+  "id": "serie-intersections-complexes",
+  "titre": "Carrefours difficiles",
+  "cours": "intersections-complexes",
+  "questions": [
+   "ic32-1",
+   "ic32-2",
+   "ic32-3",
+   "ic32-4",
+   "ic32-5",
+   "ic32-6",
+   "ic32-7"
+  ]
+ },
+ {
+  "id": "serie-anticiper-dangers",
+  "titre": "Voir venir le danger",
+  "cours": "anticiper-dangers",
+  "questions": [
+   "ad33-1",
+   "ad33-2",
+   "ad33-3",
+   "ad33-4",
+   "ad33-5",
+   "ad33-6",
+   "ad33-7"
+  ]
+ },
+ {
+  "id": "serie-controles-vehicule",
+  "titre": "Contrôles avant de partir",
+  "cours": "controles-vehicule",
+  "questions": [
+   "cv34-1",
+   "cv34-2",
+   "cv34-3",
+   "cv34-4",
+   "cv34-5",
+   "cv34-6",
+   "cv34-7"
+  ]
+ },
+ {
+  "id": "serie-demarches-conducteur",
+  "titre": "Papiers et démarches",
+  "cours": "demarches-conducteur",
+  "questions": [
+   "dc35-1",
+   "dc35-2",
+   "dc35-3",
+   "dc35-4",
+   "dc35-5",
+   "dc35-6",
+   "dc35-7"
+  ]
  }
 ]

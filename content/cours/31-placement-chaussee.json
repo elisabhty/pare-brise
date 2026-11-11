@@ -1,0 +1,385 @@
+{
+ "id": "placement-chaussee",
+ "ordre": 31,
+ "theme": "circulation",
+ "titre": "Se positionner sur la chaussée",
+ "accroche": "choisir la bonne voie au bon moment",
+ "resume": "Placement, voies multiples, voies réservées, insertion et rabattement.",
+ "chapitres": [
+  "Choisir sa voie",
+  "S’insérer",
+  "Circuler sur plusieurs voies"
+ ],
+ "affiche": [
+  "C12",
+  "A3b",
+  "C107"
+ ],
+ "series": [
+  "serie-placement-chaussee"
+ ],
+ "memo": [
+  {
+   "panneau": "C12",
+   "texte": "Plusieurs voies dans ton sens",
+   "tag": "la voie de droite"
+  },
+  {
+   "texte": "Flèches au sol, panneaux de voie",
+   "tag": "se placer tôt"
+  },
+  {
+   "texte": "Voie de bus, piste cyclable",
+   "tag": "réservées"
+  },
+  {
+   "panneau": "A3b",
+   "texte": "Ta voie se termine",
+   "tag": "se rabattre"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 31 · Circulation",
+   "titre": "Se positionner sur la chaussée",
+   "sous": "choisir la bonne voie au bon moment",
+   "vitesse": 90,
+   "dire": "Tu arrives sur une route à plusieurs voies. Le bon placement te permet de circuler sans gêner et d’anticiper la prochaine direction. Commençons par la règle générale : en France, on circule à droite."
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Ta place",
+   "titre": "Rester à droite en circulation normale",
+   "env": "autoroute",
+   "kmh": 110,
+   "camera": "drone",
+   "voie": -1.75,
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 14,
+     "x": 1.75,
+     "kmh": 88
+    }
+   ],
+   "script": [
+    [
+     6.4,
+     "clignotant",
+     "d"
+    ],
+    [
+     7.4,
+     "voie",
+     1.75,
+     2400
+    ],
+    [
+     10.2,
+     "clignotant",
+     null
+    ]
+   ],
+   "dire": "Sur une chaussée à plusieurs voies dans le même sens, utilise normalement la voie la plus à droite. La voie de gauche sert notamment à dépasser ou à préparer certaines manœuvres, selon la signalisation.",
+   "ch": 0
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Les flèches",
+   "titre": "Lire les flèches et les panneaux de voie",
+   "env": "ville",
+   "kmh": 30,
+   "camera": "drone",
+   "carrefour": {
+    "S": 70
+   },
+   "signaux": [
+    [
+     "C12",
+     10
+    ]
+   ],
+   "marquages": [
+    [
+     30,
+     -1.75,
+     "gauche"
+    ],
+    [
+     30,
+     1.75,
+     "tout-droit-droite"
+    ],
+    [
+     52,
+     -1.75,
+     "gauche"
+    ],
+    [
+     52,
+     1.75,
+     "tout-droit-droite"
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 16,
+     "x": -1.75,
+     "kmh": 28,
+     "couleur": 3122042
+    }
+   ],
+   "script": [
+    [
+     4.0,
+     "vitesse",
+     20,
+     1.5
+    ]
+   ],
+   "dire": "À l’approche d’un carrefour, observe les flèches peintes au sol et les panneaux au-dessus des voies. Ils indiquent les directions autorisées. Place-toi à temps, sans traverser plusieurs files au dernier moment.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Les voies réservées",
+   "titre": "Une voie réservée n’est pas une voie libre",
+   "env": "ville",
+   "kmh": 25,
+   "camera": "poursuite",
+   "voie": -1.75,
+   "ligne": "continue",
+   "signaux": [
+    [
+     "C12",
+     8
+    ]
+   ],
+   "marquages": [
+    [
+     24,
+     1.75,
+     "bus"
+    ],
+    [
+     52,
+     1.75,
+     "bus"
+    ],
+    [
+     80,
+     1.75,
+     "bus"
+    ],
+    [
+     108,
+     1.75,
+     "bus"
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "bus",
+     "S": 42,
+     "x": 1.75,
+     "kmh": 25
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Voie de bus",
+     "réservée, même si elle semble libre"
+    ]
+   ],
+   "dire": "Une voie de bus, une piste cyclable ou une voie réservée à certaines catégories de véhicules ne se prend pas simplement parce qu’elle est dégagée. Vérifie les panneaux et les marquages qui indiquent qui peut l’emprunter.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "L’insertion",
+   "titre": "S’insérer sur une voie rapide",
+   "env": "autoroute",
+   "kmh": 70,
+   "camera": "drone",
+   "voie": 5.0,
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 60,
+     "x": 1.75,
+     "kmh": 100
+    },
+    {
+     "type": "voiture",
+     "S": -46,
+     "x": 1.75,
+     "kmh": 118,
+     "couleur": 3829232
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Déjà sur la voie",
+     "tu lui cèdes le passage"
+    ]
+   ],
+   "script": [
+    [
+     0.4,
+     "vitesse",
+     92,
+     2.5
+    ],
+    [
+     1.2,
+     "clignotant",
+     "g"
+    ],
+    [
+     6.4,
+     "voie",
+     1.75,
+     2600
+    ],
+    [
+     9.4,
+     "clignotant",
+     null
+    ]
+   ],
+   "dire": "Sur une voie d’accélération, observe le trafic, adapte ta vitesse et cherche un espace suffisant. Signale ton intention et cède le passage aux véhicules déjà sur la chaussée. Ne force jamais ton insertion.",
+   "ch": 1
+  },
+  {
+   "type": "situation",
+   "eyebrow": "La sortie",
+   "titre": "Sortir sans couper les voies",
+   "env": "autoroute",
+   "kmh": 110,
+   "camera": "drone",
+   "voie": -1.75,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 120,
+     "x": 1.75,
+     "kmh": 100,
+     "couleur": 10134447
+    }
+   ],
+   "script": [
+    [
+     1.4,
+     "clignotant",
+     "d"
+    ],
+    [
+     5.6,
+     "voie",
+     1.75,
+     2600
+    ],
+    [
+     8.6,
+     "clignotant",
+     null
+    ],
+    [
+     9.0,
+     "vitesse",
+     92,
+     1.5
+    ]
+   ],
+   "dire": "Pour prendre une sortie, repère les panneaux assez tôt. Rejoins la voie appropriée avec les contrôles nécessaires, puis emprunte la voie de décélération. Si tu rates la sortie, continue jusqu’à la suivante.",
+   "ch": 2
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Fin de voie",
+   "titre": "Quand les voies se réduisent",
+   "env": "ville",
+   "kmh": 25,
+   "camera": "poursuite",
+   "voie": -1.75,
+   "signaux": [
+    [
+     "C12",
+     6
+    ],
+    [
+     "A3b",
+     20
+    ]
+   ],
+   "marquages": [
+    [
+     36,
+     -1.75,
+     "rabat-droite"
+    ],
+    [
+     56,
+     -1.75,
+     "rabat-droite"
+    ],
+    [
+     76,
+     -1.75,
+     "rabat-droite"
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 18,
+     "x": 1.75,
+     "kmh": 25,
+     "couleur": 15905331
+    }
+   ],
+   "script": [
+    [
+     2.6,
+     "clignotant",
+     "d"
+    ],
+    [
+     5.2,
+     "voie",
+     1.75,
+     2600
+    ],
+    [
+     8.2,
+     "clignotant",
+     null
+    ]
+   ],
+   "dire": "Un panneau annonce la fin de ta voie. Anticipe, vérifie les rétroviseurs et l’angle mort, puis rabats-toi lorsque l’espace le permet. Les flèches au sol t’aident à prévoir la réduction.",
+   "ch": 2
+  },
+  {
+   "type": "fin",
+   "eyebrow": "Fin du cours 31",
+   "titre": "Ce qu’il faut retenir",
+   "stats": [
+    [
+     "1",
+     "voie normale : celle de droite"
+    ],
+    [
+     "3",
+     "réflexes de placement"
+    ]
+   ],
+   "dire": "Retiens trois réflexes : rester à droite quand c’est la règle, lire la signalisation assez tôt et ne jamais changer de file sans contrôle. Place à la pratique.",
+   "ch": 2
+  }
+ ]
+}

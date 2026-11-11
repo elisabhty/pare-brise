@@ -45,7 +45,7 @@
    "eyebrow": "Cours 16 · Route",
    "titre": "Pluie, brouillard, neige",
    "sous": "adapter sa conduite",
-   "dire": "Cours numéro 16 : la météo. Elle ne change pas les règles… elle change les distances.",
+   "dire": "Le temps change pendant le trajet. Des nuages sombres apparaissent. Cours numéro 16 : la météo. Elle ne change pas les règles… elle change les distances.",
    "vitesse": 50
   },
   {
@@ -161,7 +161,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 16",
-   "titre": "Météo : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "1,5",
@@ -176,7 +176,7 @@
      "mois d’équipement hiver"
     ]
    ],
-   "dire": "Cours terminé. L’exercice « Freinage sous la pluie » te fera sentir la différence."
+   "dire": "Cours terminé. Passe à la pratique : pluie, brouillard et neige t’attendent."
   }
  ]
 }

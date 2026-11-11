@@ -83,6 +83,12 @@ DECOR = {
     'infractions': dict(env='ville', kmh=30, compteur=True),
     'ecoconduite': dict(env='route', kmh=70, compteur=True, acteurs=[V(48, kmh=70)]),
     'vehicules-propres': dict(env='ville', kmh=20, passage=26, acteurs=[P(26, 5.8, vx=-1.0)]),
+    'changer-direction-voie': dict(env='ville', kmh=25, camera='poursuite'),
+    'placement-chaussee': dict(env='autoroute', kmh=110, camera='poursuite'),
+    'intersections-complexes': dict(env='ville', kmh=15, camera='drone', carrefour={'S': 20}),
+    'anticiper-dangers': dict(env='ville', kmh=30),
+    'controles-vehicule': dict(env='ville', kmh=0, camera='poursuite', voie=4.6),
+    'demarches-conducteur': dict(env='ville', kmh=0, camera='poursuite', voie=4.6),
 }
 FEU = lambda etat, S=21.5: {'carrefour': {'S': S + 4.5}, 'acteurs': [dict(type='feu', S=S, x=5.2, etat=etat)]}
 # mises en scène sur mesure (question → décor)
@@ -164,6 +170,42 @@ QOV = {
     'i27-3': dict(env='route', kmh=105, compteur=True, limite=80, signaux=[['B14:80', 34]]),
     # véhicules propres
     'vp29-2': dict(env='ville', kmh=30, signaux=[['B30', 24]]),
+    # changer de direction et de voie
+    'cdv30-1': dict(env='ville', kmh=20, camera='poursuite', carrefour={'S': 30, 'forme': 'T-droite'}, feux={'clignotant': 'd'}, acteurs=[dict(type='velo', S=6, x=3.0, kmh=20)]),
+    'cdv30-2': dict(env='autoroute', kmh=90, camera='poursuite', feux={'clignotant': 'g'}, acteurs=[V(-2, -1.75, kmh=108)]),
+    'cdv30-3': dict(env='autoroute', kmh=100, camera='drone', feux={'clignotant': 'g'}, acteurs=[V(3, -1.75, kmh=100)]),
+    'cdv30-4': dict(env='autoroute', kmh=100, camera='haut', voie=0.2, feux={'clignotant': 'g'}, acteurs=[V(42, 1.75, kmh=86)]),
+    'cdv30-5': dict(env='ville', kmh=12, carrefour={'S': 24, 'forme': 'T-droite'}, feux={'clignotant': 'd'}, acteurs=[dict(type='velo', S=12, x=3.1, kmh=20)]),
+    'cdv30-6': dict(env='ville', kmh=10, carrefour={'S': 20}, feux={'clignotant': 'g'}, acteurs=[V(36, -1.75, kmh=-35)]),
+    'cdv30-7': dict(env='route', kmh=50, camera='poursuite', carrefour={'S': 70, 'forme': 'T-droite'}, feux={'clignotant': 'd'}),
+    # se positionner sur la chaussée
+    'pc31-1': dict(env='autoroute', kmh=110, camera='poursuite', acteurs=[V(46, 1.75, kmh=110), V(-20, -1.75, kmh=125)]),
+    'pc31-2': dict(env='ville', kmh=20, camera='haut', voie=-1.75, signaux=[['C12', 4]], carrefour={'S': 52}, marquages=[[24, -1.75, 'gauche'], [24, 1.75, 'tout-droit-droite'], [40, -1.75, 'gauche'], [40, 1.75, 'tout-droit-droite']], acteurs=[V(30, 1.75, kmh=20)]),
+    'pc31-3': dict(env='ville', kmh=25, voie=-1.75, ligne='continue', marquages=[[16, 1.75, 'bus'], [42, 1.75, 'bus'], [68, 1.75, 'bus']]),
+    'pc31-4': dict(env='autoroute', kmh=80, camera='poursuite', voie=5.0, feux={'clignotant': 'g'}, acteurs=[V(4, 1.75, kmh=115)]),
+    'pc31-5': dict(env='autoroute', kmh=110, camera='poursuite', acteurs=[V(40, 1.75, kmh=105)]),
+    'pc31-6': dict(env='ville', kmh=25, voie=-1.75, signaux=[['A3b', 30]], marquages=[[20, -1.75, 'rabat-droite'], [38, -1.75, 'rabat-droite']], feux={'clignotant': 'd'}, acteurs=[V(22, 1.75, kmh=25)]),
+    'pc31-7': dict(env='route', kmh=50),
+    # intersections complexes
+    'ic32-1': dict(env='ville', kmh=15, carrefour={'S': 24, 'ligne': 'feu'}, acteurs=[dict(type='feu', S=19.5, x=5.2, etat='vert'), P(25, 0.4, gilet=True, cap=180)]),
+    'ic32-2': dict(env='ville', kmh=15, camera='drone', carrefour={'S': 20}, acteurs=[dict(type='feu', S=15.5, x=5.2, etat='clignotant'), V(21.75, 9, vx=-4)]),
+    'ic32-3': dict(env='ville', kmh=10, camera='drone', carrefour={'S': 20}, feux={'clignotant': 'g'}, acteurs=[P(15, -7.6, kmh=4), dict(type='velo', S=34, x=-2.6, kmh=-18)]),
+    'ic32-4': dict(env='ville', kmh=15, carrefour={'S': 22}, rails=22, acteurs=[dict(type='tram', S=22, x=16, vx=-8)]),
+    'ic32-5': dict(env='ville', kmh=15, carrefour={'S': 20, 'ligne': 'feu'}, acteurs=[dict(type='feu', S=15.5, x=5.2, etat='vert'), V(27.5, freine=True), V(33)]),
+    'ic32-6': dict(env='ville', kmh=20, carrefour={'S': 28, 'forme': 'T-droite'}, acteurs=[dict(type='camion', S=18, x=4.5)]),
+    'ic32-7': dict(env='ville', kmh=10, camera='haut', carrefour={'S': 20}, feux={'clignotant': 'g'}, acteurs=[V(26.5, -1.75)]),
+    # anticiper les dangers
+    'ad33-1': dict(env='ville', kmh=30, acteurs=[dict(type='ballon', S=24, x=2.6, vx=-2.0), dict(type='camion', S=30, x=4.5)]),
+    'ad33-2': dict(env='ville', kmh=30, acteurs=[dict(type='camion', S=26, x=4.5)]),
+    'ad33-3': dict(env='route', kmh=70, acteurs=[V(30, kmh=70), dict(type='tracteur', S=150, x=1.75, kmh=25)]),
+    'ad33-4': dict(env='route', meteo='pluie', kmh=80, compteur=True, acteurs=[V(32, kmh=80)]),
+    'ad33-5': dict(env='autoroute', kmh=110, camera='drone', acteurs=[V(12, -1.75, kmh=110)]),
+    'ad33-6': dict(env='ville', kmh=30, signaux=[['A13a', 14]], acteurs=[dict(type='enfant', S=24, x=6.4, kmh=3), dict(type='enfant', S=30, x=6.8, cap=90)]),
+    'ad33-7': dict(env='ville', kmh=30, passage=40, acteurs=[V(22, freine=True), P(40, 4.6, vx=-1.2)]),
+    # contrôles du véhicule
+    'cv34-3': dict(env='route', kmh=70),
+    'cv34-4': dict(env='route', meteo='pluie', kmh=60, acteurs=[V(90, -1.75, kmh=-60)]),
+    'cv34-6': dict(env='route', kmh=0, meteo='nuit', camera='arriere', voie=3.9, feux={'croisement': True, 'clignotant': 'd'}),
 }
 # leçons sans image évidente : on varie les décors d'une situation à l'autre
 VAR = {
@@ -179,6 +221,8 @@ VAR = {
     'infractions': [DECOR['infractions'], dict(env='route', kmh=90, compteur=True), dict(env='ville', kmh=20, **FEU('rouge', 20))],
     'ecoconduite': [DECOR['ecoconduite'], dict(env='ville', kmh=0, **FEU('rouge', 9)), dict(env='autoroute', kmh=110, compteur=True)],
     'vehicules-propres': [DECOR['vehicules-propres'], dict(env='ville', kmh=30, camera='poursuite'), dict(env='autoroute', kmh=110, camera='poursuite')],
+    'controles-vehicule': [DECOR['controles-vehicule'], dict(env='route', kmh=70), dict(env='route', meteo='nuit', kmh=0, camera='arriere', voie=3.9, feux={'croisement': True})],
+    'demarches-conducteur': [DECOR['demarches-conducteur'], dict(env='route', kmh=70, camera='poursuite'), dict(env='ville', kmh=30), dict(env='autoroute', kmh=110, camera='poursuite')],
     'premiers-secours': [DECOR['premiers-secours'], dict(env='autoroute', kmh=0, camera='poursuite', voie=5.0, feux={'detresse': True}, acteurs=[V(-40, kmh=110)])],
 }
 # mots de la question qui changent l'ambiance

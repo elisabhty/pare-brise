@@ -40,7 +40,7 @@
    "eyebrow": "Cours 29 · Environnement",
    "titre": "Électrique, Crit’Air, ZFE",
    "sous": "les nouvelles règles de la ville",
-   "dire": "Cours numéro 29 : la voiture électrique et les zones à faibles émissions.",
+   "dire": "Une voiture électrique traverse une zone urbaine. Cours numéro 29 : la voiture électrique et les zones à faibles émissions.",
    "vitesse": 40
   },
   {
@@ -145,7 +145,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 29",
-   "titre": "Nouvelles mobilités : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "6",
@@ -156,7 +156,7 @@
      "réflexe : penser aux piétons"
     ]
    ],
-   "dire": "Cours terminé. Tu as vu tout le programme : place aux examens blancs."
+   "dire": "Cours terminé. Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions."
   }
  ]
 }

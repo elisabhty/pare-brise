@@ -44,7 +44,7 @@
    "eyebrow": "Cours 12 · Usagers",
    "titre": "Vélos et trottinettes",
    "sous": "partager la route",
-   "dire": "Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
+   "dire": "Une piste cyclable longe la route. Plusieurs mobilités partagent l’espace. Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
    "vitesse": 30
   },
   {
@@ -160,7 +160,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 12",
-   "titre": "Vélos : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "1,5",
@@ -175,7 +175,7 @@
      "km/h maximum"
     ]
    ],
-   "dire": "Cours terminé. Retiens le réflexe angle mort avant chaque virage à droite."
+   "dire": "Cours terminé. Retiens le réflexe angle mort avant chaque virage à droite. Place à la pratique."
   }
  ]
 }

@@ -47,7 +47,7 @@
    "eyebrow": "Cours 6 · Circulation",
    "titre": "Carrefours et feux",
    "sous": "qui commande à l’intersection",
-   "dire": "Cours numéro 6 : les carrefours. Qui commande, comment lire un feu, et comment entrer dans un giratoire sans hésiter.",
+   "dire": "Tu arrives dans un quartier animé où se croisent voitures, cyclistes et piétons. Cours numéro 6 : les carrefours. Qui commande, comment lire un feu, et comment entrer dans un giratoire sans hésiter.",
    "vitesse": 45
   },
   {
@@ -207,7 +207,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 6",
-   "titre": "Carrefours : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "4",
@@ -222,7 +222,7 @@
      "règle au giratoire"
     ]
    ],
-   "dire": "Cours terminé. Passe à l’exercice « Feu orange » pour t’entraîner à décider en une seconde."
+   "dire": "Cours terminé. Passe à la pratique : à toi de décider quand le feu change."
   }
  ]
 }

@@ -39,7 +39,7 @@
    "eyebrow": "Cours 28 · Environnement",
    "titre": "Écoconduite",
    "sous": "moins consommer, plus de sécurité",
-   "dire": "Cours numéro 28 : l’écoconduite. Bonne nouvelle : conduire économique, c’est aussi conduire plus sûr.",
+   "dire": "Tu conduis sur une route fluide. L’objectif est de consommer moins en anticipant. Cours numéro 28 : l’écoconduite. Bonne nouvelle : conduire économique, c’est aussi conduire plus sûr.",
    "vitesse": 70
   },
   {
@@ -97,7 +97,7 @@
    "type": "fin",
    "ch": 0,
    "eyebrow": "Fin du cours 28",
-   "titre": "Écoconduite : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "4",
@@ -108,7 +108,7 @@
      "réglages avant de partir"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique pour conduire plus souple."
   }
  ]
 }

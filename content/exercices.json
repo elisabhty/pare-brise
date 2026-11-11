@@ -5553,6 +5553,1205 @@
   ]
  },
  {
+  "id": "p-changer-direction-voie",
+  "meca": "examen",
+  "famille": "Pratique",
+  "niveau": 1,
+  "cours": "changer-direction-voie",
+  "titre": "Changer de direction et de voie",
+  "sous": "7 situations en 3D",
+  "duree": "4 min",
+  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Changer de direction et de voie », tu le retrouves ici, sur la route.",
+  "env": "ville",
+  "situations": [
+   {
+    "q": "Je veux tourner à droite. Avant de me déporter, je regarde :",
+    "choix": [
+     "le rétroviseur intérieur",
+     "le rétroviseur extérieur droit",
+     "l’angle mort à droite"
+    ],
+    "bonnes": [
+     0,
+     1,
+     2
+    ],
+    "explication": "Rétroviseur intérieur, rétroviseur du côté de la manœuvre, puis un coup d’œil dans l’angle mort : un deux-roues peut s’y cacher.",
+    "qid": "cdv30-1",
+    "env": "ville",
+    "kmh": 20,
+    "camera": "poursuite",
+    "carrefour": {
+     "S": 30,
+     "forme": "T-droite"
+    },
+    "feux": {
+     "clignotant": "d"
+    },
+    "acteurs": [
+     {
+      "type": "velo",
+      "S": 6,
+      "x": 3.0,
+      "kmh": 20
+     }
+    ],
+    "graine": 11
+   },
+   {
+    "q": "Mon clignotant est allumé. Les autres usagers doivent me laisser passer :",
+    "choix": [
+     "oui",
+     "non"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Le clignotant annonce ton intention, il ne donne aucune priorité. Tu attends un espace suffisant avant de te déporter.",
+    "qid": "cdv30-2",
+    "env": "autoroute",
+    "kmh": 90,
+    "camera": "poursuite",
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": -2,
+      "x": -1.75,
+      "kmh": 108
+     }
+    ],
+    "graine": 18
+   },
+   {
+    "q": "Une voiture roule à ma gauche, légèrement en arrière. Je peux changer de voie maintenant :",
+    "choix": [
+     "oui, mon rétroviseur gauche est libre",
+     "non, elle est peut-être dans mon angle mort"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Un véhicule légèrement en arrière, à côté de toi, se trouve souvent dans l’angle mort : le rétroviseur ne le montre pas.",
+    "qid": "cdv30-3",
+    "env": "autoroute",
+    "kmh": 100,
+    "camera": "drone",
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 3,
+      "x": -1.75,
+      "kmh": 100
+     }
+    ],
+    "graine": 25
+   },
+   {
+    "q": "Pour changer de file, je dois :",
+    "choix": [
+     "me déporter d’un coup",
+     "me déporter progressivement",
+     "garder mes distances devant et derrière"
+    ],
+    "bonnes": [
+     1,
+     2
+    ],
+    "explication": "Un changement de file se fait progressivement, sans couper la route de quelqu’un, en gardant tes distances avec les véhicules devant et derrière.",
+    "qid": "cdv30-4",
+    "env": "autoroute",
+    "kmh": 100,
+    "camera": "haut",
+    "voie": 0.2,
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 42,
+      "x": 1.75,
+      "kmh": 86
+     }
+    ],
+    "graine": 32
+   },
+   {
+    "q": "Je tourne à droite. Un cycliste continue tout droit à ma droite :",
+    "choix": [
+     "je passe avant lui",
+     "je le laisse passer"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Le cycliste qui va tout droit garde la priorité sur toi qui tournes : tu le laisses passer avant de couper sa trajectoire.",
+    "qid": "cdv30-5",
+    "env": "ville",
+    "kmh": 12,
+    "carrefour": {
+     "S": 24,
+     "forme": "T-droite"
+    },
+    "feux": {
+     "clignotant": "d"
+    },
+    "acteurs": [
+     {
+      "type": "velo",
+      "S": 12,
+      "x": 3.1,
+      "kmh": 20
+     }
+    ],
+    "graine": 39
+   },
+   {
+    "q": "Je veux tourner à gauche. Une voiture arrive en face et va tout droit :",
+    "choix": [
+     "je passe en premier, j’ai mis mon clignotant",
+     "je la laisse passer"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "En tournant à gauche, tu coupes la trajectoire de ceux qui viennent en face : tu les laisses passer avant de tourner.",
+    "qid": "cdv30-6",
+    "env": "ville",
+    "kmh": 10,
+    "carrefour": {
+     "S": 20
+    },
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 36,
+      "x": -1.75,
+      "kmh": -35
+     }
+    ],
+    "graine": 46
+   },
+   {
+    "q": "Je mets mon clignotant :",
+    "choix": [
+     "au moment de tourner le volant",
+     "suffisamment tôt, avant de ralentir et de me placer"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Le clignotant s’allume assez tôt pour que les autres comprennent ton intention avant que tu ralentisses et que tu te places.",
+    "qid": "cdv30-7",
+    "env": "route",
+    "kmh": 50,
+    "camera": "poursuite",
+    "carrefour": {
+     "S": 70,
+     "forme": "T-droite"
+    },
+    "feux": {
+     "clignotant": "d"
+    },
+    "graine": 53
+   }
+  ]
+ },
+ {
+  "id": "p-placement-chaussee",
+  "meca": "examen",
+  "famille": "Pratique",
+  "niveau": 1,
+  "cours": "placement-chaussee",
+  "titre": "Se positionner sur la chaussée",
+  "sous": "7 situations en 3D",
+  "duree": "4 min",
+  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Se positionner sur la chaussée », tu le retrouves ici, sur la route.",
+  "env": "autoroute",
+  "situations": [
+   {
+    "q": "Deux voies dans mon sens, circulation normale. Je roule :",
+    "choix": [
+     "sur la voie de droite",
+     "sur la voie de gauche",
+     "sur n’importe quelle voie"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "En circulation normale, tu utilises la voie la plus à droite. La voie de gauche sert surtout à dépasser.",
+    "qid": "pc31-1",
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "poursuite",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 46,
+      "x": 1.75,
+      "kmh": 110
+     },
+     {
+      "type": "voiture",
+      "S": -20,
+      "x": -1.75,
+      "kmh": 125
+     }
+    ],
+    "graine": 11
+   },
+   {
+    "q": "Je vais tout droit au prochain carrefour. D’après les flèches, je me place :",
+    "choix": [
+     "dans la voie de gauche",
+     "dans la voie de droite"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "La voie de droite porte la flèche tout droit et à droite. La voie de gauche est réservée à ceux qui tournent à gauche.",
+    "qid": "pc31-2",
+    "env": "ville",
+    "kmh": 20,
+    "camera": "haut",
+    "voie": -1.75,
+    "signaux": [
+     [
+      "C12",
+      4
+     ]
+    ],
+    "carrefour": {
+     "S": 52
+    },
+    "marquages": [
+     [
+      24,
+      -1.75,
+      "gauche"
+     ],
+     [
+      24,
+      1.75,
+      "tout-droit-droite"
+     ],
+     [
+      40,
+      -1.75,
+      "gauche"
+     ],
+     [
+      40,
+      1.75,
+      "tout-droit-droite"
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 30,
+      "x": 1.75,
+      "kmh": 20
+     }
+    ],
+    "graine": 18
+   },
+   {
+    "q": "La voie de droite est réservée aux bus et elle est vide. Je peux l’emprunter :",
+    "choix": [
+     "oui, puisqu’elle est libre",
+     "non, elle est réservée"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Une voie réservée reste interdite aux autres véhicules, même vide. Seuls les usagers autorisés par la signalisation l’empruntent.",
+    "qid": "pc31-3",
+    "env": "ville",
+    "kmh": 25,
+    "voie": -1.75,
+    "ligne": "continue",
+    "marquages": [
+     [
+      16,
+      1.75,
+      "bus"
+     ],
+     [
+      42,
+      1.75,
+      "bus"
+     ],
+     [
+      68,
+      1.75,
+      "bus"
+     ]
+    ],
+    "graine": 25
+   },
+   {
+    "q": "Sur la voie d’insertion, je dois :",
+    "choix": [
+     "m’arrêter au bout de la voie",
+     "adapter ma vitesse à celle du trafic",
+     "céder le passage aux véhicules déjà sur la chaussée"
+    ],
+    "bonnes": [
+     1,
+     2
+    ],
+    "explication": "Tu accélères pour te rapprocher de la vitesse du trafic et tu cèdes le passage à ceux qui y circulent déjà. On ne s’arrête pas sans nécessité.",
+    "qid": "pc31-4",
+    "env": "autoroute",
+    "kmh": 80,
+    "camera": "poursuite",
+    "voie": 5.0,
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 4,
+      "x": 1.75,
+      "kmh": 115
+     }
+    ],
+    "graine": 32
+   },
+   {
+    "q": "J’ai manqué ma sortie sur une voie rapide. Je :",
+    "choix": [
+     "recule sur la bande d’arrêt d’urgence",
+     "continue jusqu’à la sortie suivante",
+     "coupe les voies pour la rattraper"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Marche arrière et changement de voie de dernière minute sont dangereux : tu continues simplement jusqu’à la sortie suivante.",
+    "qid": "pc31-5",
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "poursuite",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 40,
+      "x": 1.75,
+      "kmh": 105
+     }
+    ],
+    "graine": 39
+   },
+   {
+    "q": "Des flèches de rabattement apparaissent dans ma voie. Je :",
+    "choix": [
+     "accélère pour passer avant tout le monde",
+     "contrôle, signale, puis me rabats quand l’espace le permet"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Les flèches de rabattement annoncent la fin de ta voie : rétroviseurs, angle mort, clignotant, puis tu te rabats dans un espace suffisant.",
+    "qid": "pc31-6",
+    "env": "ville",
+    "kmh": 25,
+    "voie": -1.75,
+    "signaux": [
+     [
+      "A3b",
+      30
+     ]
+    ],
+    "marquages": [
+     [
+      20,
+      -1.75,
+      "rabat-droite"
+     ],
+     [
+      38,
+      -1.75,
+      "rabat-droite"
+     ]
+    ],
+    "feux": {
+     "clignotant": "d"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 22,
+      "x": 1.75,
+      "kmh": 25
+     }
+    ],
+    "graine": 46
+   },
+   {
+    "q": "Ce panneau m’annonce :",
+    "choix": [
+     "une chaussée rétrécie par la gauche",
+     "un virage à gauche",
+     "une fin de route prioritaire"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Ce triangle annonce que la chaussée se rétrécit par la gauche : prépare-toi à te rabattre sur la droite.",
+    "qid": "pc31-7",
+    "env": "route",
+    "kmh": 50,
+    "signaux": [
+     [
+      "A3b",
+      24
+     ]
+    ],
+    "graine": 53
+   }
+  ]
+ },
+ {
+  "id": "p-intersections-complexes",
+  "meca": "examen",
+  "famille": "Pratique",
+  "niveau": 1,
+  "cours": "intersections-complexes",
+  "titre": "Les intersections complexes",
+  "sous": "7 situations en 3D",
+  "duree": "4 min",
+  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Les intersections complexes », tu le retrouves ici, sur la route.",
+  "env": "ville",
+  "situations": [
+   {
+    "q": "Un agent règle la circulation, mais mon feu est vert. J’obéis :",
+    "choix": [
+     "au feu",
+     "à l’agent"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Les indications de l’agent passent avant les feux, les panneaux et les marquages.",
+    "qid": "ic32-1",
+    "env": "ville",
+    "kmh": 15,
+    "carrefour": {
+     "S": 24,
+     "ligne": "feu"
+    },
+    "acteurs": [
+     {
+      "type": "feu",
+      "S": 19.5,
+      "x": 5.2,
+      "etat": "vert"
+     },
+     {
+      "type": "pieton",
+      "S": 25,
+      "x": 0.4,
+      "gilet": true,
+      "cap": 180
+     }
+    ],
+    "graine": 11
+   },
+   {
+    "q": "Feu orange clignotant, aucun panneau. Je cède le passage :",
+    "choix": [
+     "aux véhicules venant de droite",
+     "à personne : j’ai la priorité"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Un feu orange clignotant ne donne aucune priorité : les règles habituelles s’appliquent, ici la priorité à droite.",
+    "qid": "ic32-2",
+    "env": "ville",
+    "kmh": 15,
+    "camera": "drone",
+    "carrefour": {
+     "S": 20
+    },
+    "acteurs": [
+     {
+      "type": "feu",
+      "S": 15.5,
+      "x": 5.2,
+      "etat": "clignotant"
+     },
+     {
+      "type": "voiture",
+      "S": 21.75,
+      "x": 9,
+      "vx": -4
+     }
+    ],
+    "graine": 18
+   },
+   {
+    "q": "Je tourne à gauche. En plus des voitures d’en face, je surveille :",
+    "choix": [
+     "les piétons qui traversent la rue où je vais",
+     "les cyclistes qui viennent en face",
+     "seulement mon rétroviseur"
+    ],
+    "bonnes": [
+     0,
+     1
+    ],
+    "explication": "En tournant, tu croises aussi la route des piétons qui traversent la rue où tu entres et des cyclistes venant d’en face.",
+    "qid": "ic32-3",
+    "env": "ville",
+    "kmh": 10,
+    "camera": "drone",
+    "carrefour": {
+     "S": 20
+    },
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 15,
+      "x": -7.6,
+      "kmh": 4
+     },
+     {
+      "type": "velo",
+      "S": 34,
+      "x": -2.6,
+      "kmh": -18
+     }
+    ],
+    "graine": 25
+   },
+   {
+    "q": "Un tramway arrive au carrefour. Je :",
+    "choix": [
+     "passe avant lui s’il est encore loin",
+     "le laisse passer",
+     "peux m’arrêter sur les rails en attendant"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Le tramway est en général prioritaire et ne peut pas t’éviter. Laisse-le passer et ne t’arrête jamais sur les rails.",
+    "qid": "ic32-4",
+    "env": "ville",
+    "kmh": 15,
+    "carrefour": {
+     "S": 22
+    },
+    "rails": 22,
+    "acteurs": [
+     {
+      "type": "tram",
+      "S": 22,
+      "x": 16,
+      "vx": -8
+     }
+    ],
+    "graine": 32
+   },
+   {
+    "q": "Mon feu est vert, mais la file est arrêtée juste après le carrefour. Je :",
+    "choix": [
+     "m’engage quand même, j’ai le vert",
+     "attends avant le carrefour pour ne pas le bloquer"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Même au vert, tu ne t’engages pas si tu risques de rester bloqué au milieu du carrefour et de gêner la circulation transversale.",
+    "qid": "ic32-5",
+    "env": "ville",
+    "kmh": 15,
+    "carrefour": {
+     "S": 20,
+     "ligne": "feu"
+    },
+    "acteurs": [
+     {
+      "type": "feu",
+      "S": 15.5,
+      "x": 5.2,
+      "etat": "vert"
+     },
+     {
+      "type": "voiture",
+      "S": 27.5,
+      "x": 1.75,
+      "freine": true
+     },
+     {
+      "type": "voiture",
+      "S": 33,
+      "x": 1.75
+     }
+    ],
+    "graine": 39
+   },
+   {
+    "q": "Une camionnette masque la rue à droite. Pas de panneau. Je :",
+    "choix": [
+     "garde ma vitesse",
+     "ralentis et avance prudemment pour mieux voir",
+     "cède le passage à droite"
+    ],
+    "bonnes": [
+     1,
+     2
+    ],
+    "explication": "Sans visibilité, tu ralentis pour pouvoir t’arrêter. Sans panneau, la priorité à droite s’applique : un véhicule peut surgir de la rue masquée.",
+    "qid": "ic32-6",
+    "env": "ville",
+    "kmh": 20,
+    "carrefour": {
+     "S": 28,
+     "forme": "T-droite"
+    },
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 18,
+      "x": 4.5
+     }
+    ],
+    "graine": 46
+   },
+   {
+    "q": "La voiture d’en face tourne aussi à gauche. Je :",
+    "choix": [
+     "observe le marquage et évite de couper sa trajectoire",
+     "passe le plus vite possible"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Quand deux véhicules face à face tournent à gauche, le marquage et la forme du carrefour guident les trajectoires : on ne se coupe pas la route.",
+    "qid": "ic32-7",
+    "env": "ville",
+    "kmh": 10,
+    "camera": "haut",
+    "carrefour": {
+     "S": 20
+    },
+    "feux": {
+     "clignotant": "g"
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 26.5,
+      "x": -1.75
+     }
+    ],
+    "graine": 53
+   }
+  ]
+ },
+ {
+  "id": "p-anticiper-dangers",
+  "meca": "examen",
+  "famille": "Pratique",
+  "niveau": 1,
+  "cours": "anticiper-dangers",
+  "titre": "Anticiper les dangers",
+  "sous": "7 situations en 3D",
+  "duree": "4 min",
+  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Anticiper les dangers », tu le retrouves ici, sur la route.",
+  "env": "ville",
+  "situations": [
+   {
+    "q": "Un ballon traverse la chaussée. Je m’attends à :",
+    "choix": [
+     "rien de particulier",
+     "voir un enfant surgir"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Le ballon est un indice : un enfant peut courir derrière sans regarder. Ralentis et prépare-toi à t’arrêter.",
+    "qid": "ad33-1",
+    "env": "ville",
+    "kmh": 30,
+    "acteurs": [
+     {
+      "type": "ballon",
+      "S": 24,
+      "x": 2.6,
+      "vx": -2.0
+     },
+     {
+      "type": "camion",
+      "S": 30,
+      "x": 4.5
+     }
+    ],
+    "graine": 11
+   },
+   {
+    "q": "Une camionnette est garée au bord de la rue. Je :",
+    "choix": [
+     "ralentis et augmente mon attention",
+     "klaxonne et garde ma vitesse"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Un véhicule garé masque le trottoir : un piéton peut surgir devant lui. Ralentis et garde une marge pour réagir.",
+    "qid": "ad33-2",
+    "env": "ville",
+    "kmh": 30,
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 26,
+      "x": 4.5
+     }
+    ],
+    "graine": 18
+   },
+   {
+    "q": "En roulant, je regarde surtout :",
+    "choix": [
+     "le véhicule juste devant moi",
+     "loin devant, les abords et mes rétroviseurs, à tour de rôle"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Un regard qui balaye loin, près, sur les côtés et dans les rétroviseurs repère les dangers avant qu’ils n’arrivent.",
+    "qid": "ad33-3",
+    "env": "route",
+    "kmh": 70,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 30,
+      "x": 1.75,
+      "kmh": 70
+     },
+     {
+      "type": "tracteur",
+      "S": 150,
+      "x": 1.75,
+      "kmh": 25
+     }
+    ],
+    "graine": 25
+   },
+   {
+    "q": "Il commence à pleuvoir. Je :",
+    "choix": [
+     "garde ma vitesse : la limite n’a pas changé",
+     "réduis mon allure",
+     "augmente mes distances"
+    ],
+    "bonnes": [
+     1,
+     2
+    ],
+    "explication": "Sur chaussée mouillée, l’adhérence baisse et le freinage s’allonge : moins vite, plus de distance. La limite affichée reste un maximum.",
+    "qid": "ad33-4",
+    "env": "route",
+    "meteo": "pluie",
+    "kmh": 80,
+    "compteur": true,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 32,
+      "x": 1.75,
+      "kmh": 80
+     }
+    ],
+    "graine": 32
+   },
+   {
+    "q": "Je roule à hauteur d’une voiture, dans son angle mort. Je :",
+    "choix": [
+     "reste à sa hauteur",
+     "évite d’y rester : je ralentis ou je la dépasse franchement"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Dans l’angle mort d’un autre véhicule, son conducteur ne te voit pas : ne t’y attarde pas, garde une porte de sortie.",
+    "qid": "ad33-5",
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "drone",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 12,
+      "x": -1.75,
+      "kmh": 110
+     }
+    ],
+    "graine": 39
+   },
+   {
+    "q": "Près d’une école, des enfants marchent sur le trottoir. Je :",
+    "choix": [
+     "ralentis et surveille les abords",
+     "garde ma vitesse : ils sont sur le trottoir"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Le comportement d’un enfant est imprévisible : même sur le trottoir, il peut traverser sans regarder.",
+    "qid": "ad33-6",
+    "env": "ville",
+    "kmh": 30,
+    "signaux": [
+     [
+      "A13a",
+      14
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "enfant",
+      "S": 24,
+      "x": 6.4,
+      "kmh": 3
+     },
+     {
+      "type": "enfant",
+      "S": 30,
+      "x": 6.8,
+      "cap": 90
+     }
+    ],
+    "graine": 46
+   },
+   {
+    "q": "La voiture devant moi freine fort sans raison visible. Je pense d’abord :",
+    "choix": [
+     "qu’elle fait une erreur",
+     "qu’il y a peut-être un danger que je ne vois pas encore"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Un freinage devant toi est un indice : piéton, obstacle, animal… Ralentis aussi et cherche la cause.",
+    "qid": "ad33-7",
+    "env": "ville",
+    "kmh": 30,
+    "passage": 40,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 22,
+      "x": 1.75,
+      "freine": true
+     },
+     {
+      "type": "pieton",
+      "S": 40,
+      "x": 4.6,
+      "vx": -1.2
+     }
+    ],
+    "graine": 53
+   }
+  ]
+ },
+ {
+  "id": "p-controles-vehicule",
+  "meca": "examen",
+  "famille": "Pratique",
+  "niveau": 1,
+  "cours": "controles-vehicule",
+  "titre": "Les contrôles du véhicule",
+  "sous": "7 situations en 3D",
+  "duree": "4 min",
+  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Les contrôles du véhicule », tu le retrouves ici, sur la route.",
+  "env": "ville",
+  "situations": [
+   {
+    "q": "Je contrôle la pression des pneus de préférence :",
+    "choix": [
+     "à froid",
+     "après un long trajet"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "La pression se mesure pneus froids, selon les valeurs indiquées par le constructeur du véhicule.",
+    "qid": "cv34-1",
+    "env": "ville",
+    "kmh": 0,
+    "camera": "poursuite",
+    "voie": 4.6,
+    "graine": 11
+   },
+   {
+    "q": "Un pneu présente une coupure sur le flanc. Je :",
+    "choix": [
+     "roule doucement jusqu’au prochain contrôle technique",
+     "le fais remplacer"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Une coupure ou une déformation fragilise le pneu : il peut éclater. Fais-le vérifier et remplacer sans attendre.",
+    "qid": "cv34-2",
+    "env": "route",
+    "kmh": 70,
+    "graine": 18
+   },
+   {
+    "q": "Un voyant rouge s’allume en roulant. Je :",
+    "choix": [
+     "continue jusqu’à destination",
+     "m’arrête dès que possible, en sécurité"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Rouge, c’est une alerte : une anomalie grave peut endommager le véhicule ou te mettre en danger. Arrête-toi dès que possible, là où c’est sûr.",
+    "qid": "cv34-3",
+    "env": "route",
+    "kmh": 70,
+    "graine": 25
+   },
+   {
+    "q": "Mes essuie-glaces laissent des traces sur le pare-brise. Je :",
+    "choix": [
+     "change les balais",
+     "attends qu’ils cassent"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Des balais usés laissent des traces qui masquent la route, surtout de nuit et sous la pluie : remplace-les.",
+    "qid": "cv34-4",
+    "env": "route",
+    "meteo": "pluie",
+    "kmh": 60,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 90,
+      "x": -1.75,
+      "kmh": -60
+     }
+    ],
+    "graine": 32
+   },
+   {
+    "q": "Le moteur est chaud. Je peux ouvrir le bouchon du liquide de refroidissement :",
+    "choix": [
+     "oui",
+     "non"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "Circuit chaud, liquide sous pression : il peut jaillir et te brûler. On ne l’ouvre que moteur froid.",
+    "qid": "cv34-5",
+    "env": "route",
+    "kmh": 70,
+    "graine": 39
+   },
+   {
+    "q": "Avant de partir, je vérifie que fonctionnent :",
+    "choix": [
+     "les feux et les clignotants",
+     "les feux stop",
+     "l’autoradio"
+    ],
+    "bonnes": [
+     0,
+     1
+    ],
+    "explication": "Feux, clignotants et feux stop te permettent de voir et d’être vu : les autres comprennent tes intentions.",
+    "qid": "cv34-6",
+    "env": "route",
+    "kmh": 0,
+    "meteo": "nuit",
+    "camera": "arriere",
+    "voie": 3.9,
+    "feux": {
+     "croisement": true,
+     "clignotant": "d"
+    },
+    "graine": 46
+   },
+   {
+    "q": "Un voyant orange s’allume. Je :",
+    "choix": [
+     "fais vérifier le véhicule rapidement",
+     "l’ignore, ce n’est pas rouge"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Orange signale une anomalie : ce n’est pas une urgence absolue, mais fais vérifier rapidement le véhicule.",
+    "qid": "cv34-7",
+    "env": "ville",
+    "kmh": 0,
+    "camera": "poursuite",
+    "voie": 4.6,
+    "graine": 53
+   }
+  ]
+ },
+ {
+  "id": "p-demarches-conducteur",
+  "meca": "examen",
+  "famille": "Pratique",
+  "niveau": 1,
+  "cours": "demarches-conducteur",
+  "titre": "Documents et démarches du conducteur",
+  "sous": "7 situations en 3D",
+  "duree": "4 min",
+  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Documents et démarches du conducteur », tu le retrouves ici, sur la route.",
+  "env": "ville",
+  "situations": [
+   {
+    "q": "Pour conduire une voiture, il faut le permis de catégorie :",
+    "choix": [
+     "A",
+     "B",
+     "C"
+    ],
+    "bonnes": [
+     1
+    ],
+    "explication": "La catégorie B permet de conduire une voiture. A concerne les motos, C les poids lourds.",
+    "qid": "dc35-1",
+    "env": "ville",
+    "kmh": 0,
+    "camera": "poursuite",
+    "voie": 4.6,
+    "graine": 11
+   },
+   {
+    "q": "L’assurance minimale obligatoire d’une voiture est :",
+    "choix": [
+     "la responsabilité civile",
+     "la tous risques",
+     "l’assurance vol"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "La responsabilité civile est obligatoire : elle indemnise les dommages que tu causes aux autres.",
+    "qid": "dc35-2",
+    "env": "route",
+    "kmh": 70,
+    "camera": "poursuite",
+    "graine": 18
+   },
+   {
+    "q": "Le premier contrôle technique d’une voiture a lieu :",
+    "choix": [
+     "avant ses 4 ans",
+     "à 2 ans",
+     "à 10 ans"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Le premier contrôle a lieu dans les 6 mois qui précèdent les 4 ans de la voiture, puis tous les 2 ans.",
+    "qid": "dc35-3",
+    "env": "ville",
+    "kmh": 30,
+    "graine": 25
+   },
+   {
+    "q": "Je vends ma voiture de 6 ans à un particulier. Le contrôle technique doit dater de moins de :",
+    "choix": [
+     "6 mois",
+     "1 an",
+     "2 ans"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Pour vendre à un particulier une voiture de plus de 4 ans, le procès-verbal de contrôle technique doit dater de moins de 6 mois.",
+    "qid": "dc35-4",
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "poursuite",
+    "graine": 32
+   },
+   {
+    "q": "Après une vente, je déclare la cession dans un délai de :",
+    "choix": [
+     "15 jours",
+     "3 mois"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Le vendeur déclare la cession en ligne dans les 15 jours. Il remet aussi la carte grise barrée, datée et signée.",
+    "qid": "dc35-5",
+    "env": "ville",
+    "kmh": 0,
+    "camera": "poursuite",
+    "voie": 4.6,
+    "graine": 39
+   },
+   {
+    "q": "J’achète une voiture d’occasion. Pour l’immatriculer à mon nom, j’ai :",
+    "choix": [
+     "1 mois",
+     "1 an"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "L’acheteur a un mois pour faire établir le certificat d’immatriculation à son nom.",
+    "qid": "dc35-6",
+    "env": "route",
+    "kmh": 70,
+    "camera": "poursuite",
+    "graine": 46
+   },
+   {
+    "q": "Je déménage. Ma carte grise :",
+    "choix": [
+     "doit être mise à jour avec ma nouvelle adresse",
+     "reste valable sans démarche"
+    ],
+    "bonnes": [
+     0
+    ],
+    "explication": "Un changement d’adresse se déclare pour mettre à jour le certificat d’immatriculation, dans le mois qui suit.",
+    "qid": "dc35-7",
+    "env": "ville",
+    "kmh": 30,
+    "graine": 53
+   }
+  ]
+ },
+ {
   "id": "x-freinage-ville",
   "meca": "freinage",
   "famille": "Défi 3D",

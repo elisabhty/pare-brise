@@ -39,7 +39,7 @@
    "titre": "Alcool et conduite",
    "sous": "les taux, et ce qu'ils changent",
    "vitesse": 50,
-   "dire": "Cours numéro 5 : l'alcool au volant. Les taux à connaître, et pourquoi ils existent."
+   "dire": "Une soirée se termine. Avant de prendre le volant, un sujet essentiel s’impose : l’alcool. Cours numéro 5 : l'alcool au volant. Les taux à connaître, et pourquoi ils existent."
   },
   {
    "type": "chiffres",
@@ -105,7 +105,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 5",
-   "titre": "Alcool : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "0,5",

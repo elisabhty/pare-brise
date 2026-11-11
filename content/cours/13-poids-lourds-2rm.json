@@ -37,7 +37,7 @@
    "eyebrow": "Cours 13 · Usagers",
    "titre": "Poids lourds, bus et motos",
    "sous": "les gabarits à part",
-   "dire": "Cours numéro 13 : les gros véhicules et les deux-roues motorisés.",
+   "dire": "Un camion, un bus et une moto circulent autour de toi. Cours numéro 13 : les gros véhicules et les deux-roues motorisés.",
    "vitesse": 60
   },
   {
@@ -160,7 +160,7 @@
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 13",
-   "titre": "Gabarits : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "4",
@@ -175,7 +175,7 @@
      "réflexe : chercher les motos"
     ]
    ],
-   "dire": "Cours terminé."
+   "dire": "Cours terminé. Passe à la pratique : à toi de repérer les angles morts et les deux-roues."
   }
  ]
 }

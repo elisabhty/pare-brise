@@ -56,7 +56,7 @@
    "titre": "Les priorités",
    "sous": "qui passe en premier ?",
    "vitesse": 50,
-   "dire": "Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ?"
+   "dire": "Tu approches d’une intersection. Plusieurs véhicules arrivent de directions différentes. Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ?"
   },
   {
    "type": "panneaux",
@@ -139,7 +139,7 @@
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 3",
-   "titre": "Priorités : OK",
+   "titre": "Ce qu’il faut retenir",
    "stats": [
     [
      "1",

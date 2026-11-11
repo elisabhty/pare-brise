@@ -6,7 +6,9 @@ Une app iOS (Capacitor 8) de code de la route en 3D.
 
 Dans cette version, **l'app est un moteur** et **le contenu est en JSON**. Tu ajoutes un cours, une série ou des questions en écrivant un fichier dans `content/`, sans toucher au code. Le build vérifie tout le contenu avant de fabriquer l'app.
 
-Contenu fourni : les 10 thèmes officiels, **29 cours** (219 scènes), 151 questions, 29 séries et **19 exercices en 3D** de 10 situations chacun, dont **50 situations d’examen** (scène 3D, question, réponses A à D) et un **examen blanc de 40 situations**.
+Contenu fourni : les 10 thèmes officiels, **35 cours** (237 scènes), chacun suivi de sa **pratique en 3D**, 193 questions, 35 séries, 14 défis 3D et un **examen blanc de 40 situations**.
+
+Les cours 2 à 35 viennent du fichier « cours immersifs » (`gen/cours-immersifs-35.json`, intégré par `gen/integrer35.py`) : textes nettoyés des phrases répétées, indications de mise en scène gardées dans le champ `realisation_3d` du fichier source. Les cours 30 à 35 sont nouveaux et **pas encore vérifiés juridiquement** : règles, délais et seuils sont à contrôler avant publication.
 
 L'interface suit les codes d'iOS : police système (SF Pro sur iPhone, Inter en repli ailleurs), grands titres, listes groupées, boutons capsule et barre d'onglets flottante façon Liquid Glass.
 
@@ -84,14 +86,16 @@ panneau ou l'usager à observer, puis vient le QCM et sa correction. Les répons
 les révisions. Les défis 3D (freinage, feux, priorités…) sont rattachés à leur leçon : aucun exercice n'est seul. Les pratiques
 sont générées par `gen/pratique.py` (décor par leçon, mises en scène sur mesure par question).
 
-Les mises en situation des leçons peuvent jouer un petit scénario (`script`) : dépasser, s'arrêter avant un point, changer de
-voie avec le clignotant, faire repartir un bus, ouvrir une portière, changer un feu.
+Les mises en situation des leçons peuvent jouer un petit scénario (`script`, minuté sur le temps du simulateur) : dépasser,
+s'arrêter avant un point, changer de voie avec le clignotant, faire repartir un bus, ouvrir une portière, changer un feu
+(`'clignotant'` le fait clignoter), faire freiner un usager (`freiner`), changer de caméra (`camera`), retirer les étiquettes
+(`etiquettes`) quand elles ne sont plus vraies.
 
 Chaque exercice est décrit dans `content/exercices.json` et joué par une **mécanique** :
 
 | Mécanique | Ce que fait l'élève | Champs |
 |---|---|---|
-| `examen` | une scène 3D se fige, une question façon examen, une ou plusieurs bonnes réponses parmi A à D, puis l’explication | `situations` : `{ q, choix, bonnes, explication, env, meteo, kmh, camera, compteur, signaux, acteurs, carrefour, giratoire, passage, chevrons, tunnel, feux }` |
+| `examen` | une scène 3D se fige, une question façon examen, une ou plusieurs bonnes réponses parmi A à D, puis l’explication | `situations` : `{ q, choix, bonnes, explication, env, meteo, kmh, camera, compteur, signaux, acteurs, carrefour, giratoire, passage, chevrons, tunnel, rails, marquages, feux }` |
 | `freinage` | maintient « Freiner » quand un danger surgit ; on mesure réaction, distance de freinage, et ce qui se serait passé 20 km/h plus vite | `env`, `meteo`, `kmh`, `evenements` |
 | `vitesse` | conduit avec les pédales et respecte chaque limitation dès son panneau | `zones` : `{ d, lim, panneau, maisons, msg }` |
 | `distance` | garde au moins `cible` secondes derrière une voiture qui ralentit et accélère | `kmh`, `cible`, `profil` |
@@ -197,11 +201,16 @@ Toutes les questions alimentent automatiquement l'examen blanc et les révisions
   "etiquettes": [[0, "1,50 m", "minimum hors agglomération"]], "dire": "…" }
 ```
 
-Caméras : `cockpit`, `poursuite`, `drone`, `haut`, `cote`. Acteurs : `voiture`, `velo`, `pieton`, `enfant`, `bus`, `camion`, `tracteur`, `biche`, `ambulance`, `triangle`, `portiere`, `feu`, `ballon`. `S` = mètres devant, `x` = position latérale (notre voie est à 1,75), `kmh` négatif = en sens inverse.
+Caméras : `cockpit`, `poursuite`, `drone`, `haut`, `cote`. Acteurs : `voiture`, `velo`, `pieton`, `enfant`, `bus`, `camion`, `tracteur`, `tram`, `biche`, `ambulance`, `triangle`, `portiere`, `feu`, `ballon`. `S` = mètres devant, `x` = position latérale (notre voie est à 1,75), `kmh` négatif = en sens inverse.
+
+Décor en plus : `carrefour` (nombre ou `{ "S", "forme": "T-droite" | "T-gauche", "ligne": "feu" | "stop" | "cedez" }`), `giratoire`,
+`passage`, `rails` (voie de tramway en travers), `tunnel`, `maisons`, `chevrons`, `signaux` (`[panneau, S, x]`) et `marquages`
+(`[S, x, type]` : `tout-droit`, `gauche`, `droite`, `tout-droit-gauche`, `tout-droit-droite`, `rabat-droite`, `rabat-gauche`, `bus`).
+Une rue à sens unique à deux voies : `env: "ville"`, le panneau `C12`, et notre voiture à `voie: -1.75` ou `1.75`.
 
 ## Panneaux disponibles
 
-`A14 A1a A3 A2b A4 A7 A13a A13b A15b A17 A21 AK14 AK5 AB1 AB2 AB25 B0 B1 B3 B14 B2a B6a1 B6d B211 B21a1 B22a B30 B40 B33 B31 B51 C12 C20a C1a C107 C108 EB10 EB20 AB3a AB4 AB6 AB7`
+`A14 A1a A3 A3b A2b A4 A7 A13a A13b A15b A17 A21 AK14 AK5 AB1 AB2 AB25 B0 B1 B3 B14 B2a B6a1 B6d B211 B21a1 B22a B30 B40 B33 B31 B51 C12 C20a C1a C107 C108 EB10 EB20 AB3a AB4 AB6 AB7`
 
 Certains panneaux prennent un paramètre :
 
