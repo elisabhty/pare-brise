@@ -729,3 +729,15 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .hubcard h2.d{font-size:28px;line-height:1.1}
 .facts b{font-size:24px}
 .hubcard{border-radius:26px}
+
+/* Écrans « liste » : fond opaque, la 3D est mise en pause derrière */
+.screen.dimbg{background:var(--nuit)}
+.xfade{position:absolute;inset:0;z-index:7;background:var(--nuit);opacity:0;pointer-events:none;transition:opacity .28s ease}
+.xfade.on{opacity:1}
+.xlights{grid-template-columns:repeat(3,1fr)}
+/* Fluidité : pas de flou d'arrière-plan sur ce qui reste affiché pendant la conduite (le flou d'une 3D animée coûte cher) */
+.xspeed,.xtitle,.xbtn,.xgap,.xfound,.xlight,.lab,.olist li,.lower3 .chip{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.xspeed,.xtitle,.xbtn,.xgap,.xfound{background:rgba(255,255,255,.9)}
+.xlight{background:rgba(255,255,255,.92)}
+.lab{background:rgba(255,255,255,.94)}
+.olist li{background:rgba(255,255,255,.93)}

@@ -29,15 +29,15 @@ function canvas(w, h, draw) { const c = document.createElement('canvas'); c.widt
 /* ======================= Modèles ======================= */
 function carMesh(color = 0x3A6DF0, o = {}) {
   const g = new THREE.Group();
-  const paint = mat('paint' + color, () => new THREE.MeshPhysicalMaterial({ color, roughness: 0.32, metalness: 0.25, clearcoat: 1, clearcoatRoughness: 0.08 }));
-  const glass = mat('glass', () => new THREE.MeshPhysicalMaterial({ color: 0x172235, roughness: 0.06, metalness: 0.3, clearcoat: 1 }));
+  const paint = mat('paint' + color, () => new THREE.MeshStandardMaterial({ color, roughness: 0.28, metalness: 0.35 }));
+  const glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x172235, roughness: 0.08, metalness: 0.45 }));
   const tire = mat('tire', () => std(0x1c1f25, { roughness: 0.92 }));
   const rim = mat('rim', () => std(0xCDD3DC, { metalness: 0.85, roughness: 0.28 }));
   const trim = mat('trim', () => std(0x2a2f38, { roughness: 0.6 }));
   const len = o.long || 4.2;
-  const body = new THREE.Mesh(geo('body' + len, () => new RoundedBoxGeometry(1.82, 0.6, len, 4, 0.2)), paint); body.position.y = 0.62;
+  const body = new THREE.Mesh(geo('body' + len, () => new RoundedBoxGeometry(1.82, 0.6, len, 3, 0.2)), paint); body.position.y = 0.62;
   const skirt = new THREE.Mesh(geo('skirt' + len, () => new RoundedBoxGeometry(1.86, 0.18, len - 0.3, 2, 0.06)), trim); skirt.position.y = 0.36;
-  const cab = new THREE.Mesh(geo('cab', () => new RoundedBoxGeometry(1.6, 0.54, 2.2, 4, 0.24)), glass); cab.position.set(0, 1.12, 0.2);
+  const cab = new THREE.Mesh(geo('cab', () => new RoundedBoxGeometry(1.6, 0.54, 2.2, 3, 0.24)), glass); cab.position.set(0, 1.12, 0.2);
   const roof = new THREE.Mesh(geo('roof', () => new RoundedBoxGeometry(1.5, 0.09, 1.72, 2, 0.04)), paint); roof.position.set(0, 1.4, 0.26);
   g.add(body, skirt, cab, roof);
   const wg = geo('wheel', () => new THREE.CylinderGeometry(0.35, 0.35, 0.26, 22).rotateZ(Math.PI / 2));
@@ -142,7 +142,7 @@ function ballMesh() {
 }
 
 function tractorMesh() {
-  const g = new THREE.Group(), green = mat('tracG', () => std(0x2F9E44, { roughness: 0.5 })), glass = M.glass || mat('glass', () => new THREE.MeshPhysicalMaterial({ color: 0x172235, roughness: 0.06, metalness: 0.3, clearcoat: 1 })), tire = mat('tire', () => std(0x1c1f25, { roughness: 0.92 })), yel = mat('yel', () => std(0xF2C230));
+  const g = new THREE.Group(), green = mat('tracG', () => std(0x2F9E44, { roughness: 0.5 })), glass = M.glass || mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x172235, roughness: 0.08, metalness: 0.45 })), tire = mat('tire', () => std(0x1c1f25, { roughness: 0.92 })), yel = mat('yel', () => std(0xF2C230));
   const body = new THREE.Mesh(geo('trB', () => new RoundedBoxGeometry(1.2, 0.95, 2.4, 3, 0.12)), green); body.position.set(0, 1.0, -0.3);
   const cab = new THREE.Mesh(geo('trC', () => new RoundedBoxGeometry(1.35, 1.25, 1.3, 3, 0.1)), glass); cab.position.set(0, 2.05, 0.45);
   const roofT = new THREE.Mesh(geo('trR', () => new RoundedBoxGeometry(1.45, 0.12, 1.45, 2, 0.04)), green); roofT.position.set(0, 2.72, 0.45);
@@ -156,7 +156,7 @@ function tractorMesh() {
 }
 
 function busMesh(color = 0x1E5BFF, truck = false) {
-  const g = new THREE.Group(), white = mat('busW', () => std(0xF4F6FA, { roughness: 0.4 })), band = cloth(color), glass = mat('glass', () => new THREE.MeshPhysicalMaterial({ color: 0x172235, roughness: 0.06, metalness: 0.3, clearcoat: 1 })), tire = mat('tire', () => std(0x1c1f25, { roughness: 0.92 }));
+  const g = new THREE.Group(), white = mat('busW', () => std(0xF4F6FA, { roughness: 0.4 })), band = cloth(color), glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x172235, roughness: 0.08, metalness: 0.45 })), tire = mat('tire', () => std(0x1c1f25, { roughness: 0.92 }));
   const L = truck ? 9 : 11;
   const b = new THREE.Mesh(geo('busB' + L, () => new RoundedBoxGeometry(2.5, 2.8, L, 3, 0.22)), white); b.position.y = 1.75;
   g.add(b);
@@ -248,7 +248,7 @@ export function buildSim(K) {
   /* lumières */
   const hemi = new THREE.HemisphereLight(0xDDEBFF, 0x6B8455, 1.6); s.add(hemi);
   const sun = new THREE.DirectionalLight(0xFFF8EE, 2.6); sun.castShadow = true;
-  sun.shadow.mapSize.set(1536, 1536); sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.03;
+  sun.shadow.mapSize.set(1024, 1024); sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.03;
   Object.assign(sun.shadow.camera, { left: -32, right: 32, top: 40, bottom: -40, near: 10, far: 220 });
   s.add(sun, sun.target);
   const heads = [-0.62, 0.62].map(dx => { const l = new THREE.SpotLight(0xfff1dc, 0, 70, 0.42, 0.55, 1.2); s.add(l, l.target); l.userData.dx = dx; return l; });
@@ -258,9 +258,12 @@ export function buildSim(K) {
   const hood = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 14, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshPhysicalMaterial({ color: 0xF2F5FA, roughness: 0.25, metalness: 0.1, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 0.9 }));
   hood.scale.set(1.0, 0.26, 1.0); s.add(hood);
   const me = carMesh(0xF4F6FA, { ecole: true }); me.visible = false; s.add(me);
+  const amber = new THREE.MeshStandardMaterial({ color: 0xffa21a, emissive: 0xff8a00, emissiveIntensity: 0.1 }), fogR = new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1020, emissiveIntensity: 0 });
+  for (const [x, z] of [[-0.86, -2.05], [0.86, -2.05], [-0.86, 2.06], [0.86, 2.06]]) { const b = new THREE.Mesh(geo('blink', () => new RoundedBoxGeometry(0.16, 0.1, 0.06, 2, 0.02)), amber); b.position.set(x, 0.74, z); me.add(b); }
+  const fr = new THREE.Mesh(geo('fogR', () => new RoundedBoxGeometry(0.22, 0.08, 0.05, 2, 0.02)), fogR); fr.position.set(-0.5, 0.42, 2.11); me.add(fr);
 
   /* pluie / neige */
-  const RAIN_N = 1400;
+  const RAIN_N = 800;
   const rainGeo = new THREE.BufferGeometry(); const rp = new Float32Array(RAIN_N * 6); rainGeo.setAttribute('position', new THREE.BufferAttribute(rp, 3));
   const rain = new THREE.LineSegments(rainGeo, new THREE.LineBasicMaterial({ color: 0xc9d6e6, transparent: true, opacity: 0.55 })); rain.frustumCulled = false; rain.visible = false; s.add(rain);
   const drops = Array.from({ length: RAIN_N }, () => ({ x: (Math.random() - 0.5) * 40, y: Math.random() * 14, z: -Math.random() * 60 + 6 }));
@@ -270,12 +273,12 @@ export function buildSim(K) {
   /* ---------- état ---------- */
   const P = { s: 0, v: 0, mode: 'auto', target: 0, gas: 0, brake: 0, decel: 6, x: LANE, lastA: 0 };
   let cfg = { env: 'route', meteo: 'jour' };
-  let actors = [], ticks = new Set(), pick = [], anchorList = [], ownMats = [], signs = [];
+  let actors = [], ticks = new Set(), pick = [], anchorList = [], ownMats = [], signs = [], chunks = [];
   let camMode = 'cockpit', camT = { pos: V(0, 0, 0), target: V(0, 0, 0), fov: 58 }, camFree = null;
   let shakeK = 0, envLen = 1600, stopAtEnd = true, timeScale = 1;
   const guide = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0x34C759, transparent: true, opacity: 0.32, depthWrite: false })); guide.visible = false; s.add(guide);
   let guideLen = 0;
-  const lightsCfg = { position: false, croisement: false, route: false, brouillardAv: false, brouillardAr: false };
+  const lightsCfg = { position: false, croisement: false, route: false, brouillardAv: false, brouillardAr: false, detresse: false };
 
   const local = S => -S;                         // z local (dans root) pour une position S
   const ahead = S => S - P.s;                   // distance devant le conducteur
@@ -285,11 +288,12 @@ export function buildSim(K) {
     signs.forEach(g => K.disposeObj(g));
     ownMats.forEach(m => m.dispose());
     root.remove(run); run = new THREE.Group(); root.add(run);
-    actors = []; signs = []; ownMats = []; pick = []; anchorList = [];
+    actors = []; signs = []; ownMats = []; pick = []; anchorList = []; chunks = [];
   }
   const own = g => { (g.userData.own || []).forEach(m => ownMats.push(m)); return g; };
 
   /* ---------- chargement d'une étape ---------- */
+  const envCache = {};
   function applyWeather(meteo, env) {
     const night = meteo === 'nuit';
     const k = SKY[meteo === 'sec' ? 'jour' : meteo] || SKY.jour;
@@ -311,7 +315,7 @@ export function buildSim(K) {
     K.setBloom(night ? 0.75 : 0.22);
     P.decel = DECEL[meteo] ?? 6;
     // environnement pour les reflets
-    try { const pm = new THREE.PMREMGenerator(K.renderer()); const es = new THREE.Scene(); es.add(sky.clone()); if (s.environment) s.environment.dispose(); s.environment = pm.fromScene(es, 0.04).texture; s.environmentIntensity = night ? 0.15 : 0.7; pm.dispose(); } catch (e) {}
+    try { const key = meteo === 'sec' ? 'jour' : meteo; if (!envCache[key]) { const pm = new THREE.PMREMGenerator(K.renderer()); const es = new THREE.Scene(); es.add(sky.clone()); envCache[key] = pm.fromScene(es, 0.04).texture; pm.dispose(); } s.environment = envCache[key]; s.environmentIntensity = night ? 0.15 : 0.7; } catch (e) {}
   }
 
   const roadWidth = { route: 7, ville: 11.4, autoroute: 10 };
@@ -354,11 +358,20 @@ export function buildSim(K) {
   }
 
   /* ---------- décor ---------- */
-  function inst(geoK, geoF, material, items, cast = true) {
+  /* décor instancié, découpé en tronçons de 140 m : seuls les tronçons proches sont dessinés */
+  const CHUNK = 140;
+  function inst(geoK, geoF, material, items, cast = false) {
     if (!items.length) return null;
-    const im = new THREE.InstancedMesh(geo(geoK, geoF), material, items.length); const o = new THREE.Object3D();
-    items.forEach((it, i) => { o.position.set(it[0], it[1], it[2]); o.rotation.set(0, it[6] || 0, 0); o.scale.set(it[3], it[4], it[5]); o.updateMatrix(); im.setMatrixAt(i, o.matrix); if (it[7] !== undefined) im.setColorAt(i, new THREE.Color(it[7])); });
-    im.castShadow = cast; im.receiveShadow = true; run.add(im); return im;
+    const groups = new Map();
+    items.forEach(it => { const k = Math.floor(-it[2] / CHUNK); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(it); });
+    const o = new THREE.Object3D(), col = new THREE.Color(); let first = null;
+    groups.forEach((list, k) => {
+      const im = new THREE.InstancedMesh(geo(geoK, geoF), material, list.length);
+      list.forEach((it, i) => { o.position.set(it[0], it[1], it[2]); o.rotation.set(0, it[6] || 0, 0); o.scale.set(it[3], it[4], it[5]); o.updateMatrix(); im.setMatrixAt(i, o.matrix); if (it[7] !== undefined) im.setColorAt(i, col.set(it[7])); });
+      im.castShadow = cast; im.receiveShadow = true; im.computeBoundingSphere(); run.add(im);
+      chunks.push({ m: im, S0: k * CHUNK - 30, S1: (k + 1) * CHUNK + 30 }); first = first || im;
+    });
+    return first;
   }
   function buildDecor(env, free, spec) {
     const r = rng(spec.graine || 7), L = envLen + 120;
@@ -400,16 +413,16 @@ export function buildSim(K) {
       inst('lampH', () => new THREE.BoxGeometry(2.2, 0.12, 0.4), night ? glow(0xffe2b0, 3) : mat('lampHM', () => std(0xE9EEF5)), lampH, false);
       if (night) { const pm = mat('poolM', () => new THREE.MeshBasicMaterial({ map: K.radial(), color: 0xffc98a, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false })); inst('pool', () => new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), pm, pools, false); }
       if (parked.length) {
-        const paint = mat('paintI', () => new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.32, metalness: 0.25, clearcoat: 1, clearcoatRoughness: 0.08 }));
-        const glass = mat('glass', () => new THREE.MeshPhysicalMaterial({ color: 0x172235, roughness: 0.06, metalness: 0.3, clearcoat: 1 }));
+        const paint = mat('paintI', () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.28, metalness: 0.35 }));
+        const glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x172235, roughness: 0.08, metalness: 0.45 }));
         const P0 = parked.map(p => [p.x, 0, local(p.S)]);
         const put = (k, f, m, dy, dz, sc, col) => inst(k, f, m, P0.map((q, i) => [q[0], q[1] + dy, q[2] + dz, sc[0], sc[1], sc[2], 0, col ? parked[i].c : undefined]));
-        put('body4.2', () => new RoundedBoxGeometry(1.82, 0.6, 4.2, 4, 0.2), paint, 0.62, 0, [1, 1, 1], true);
+        put('body4.2i', () => new RoundedBoxGeometry(1.82, 0.6, 4.2, 2, 0.2), paint, 0.62, 0, [1, 1, 1], true);
         put('skirt4.2', () => new RoundedBoxGeometry(1.86, 0.18, 3.9, 2, 0.06), mat('trim', () => std(0x2a2f38, { roughness: 0.6 })), 0.36, 0, [1, 1, 1]);
-        put('cab', () => new RoundedBoxGeometry(1.6, 0.54, 2.2, 4, 0.24), glass, 1.12, 0.2, [1, 1, 1]);
+        put('cabI', () => new RoundedBoxGeometry(1.6, 0.54, 2.2, 2, 0.24), glass, 1.12, 0.2, [1, 1, 1]);
         put('roof', () => new RoundedBoxGeometry(1.5, 0.09, 1.72, 2, 0.04), paint, 1.4, 0.26, [1, 1, 1], true);
         const wheels = []; P0.forEach(q => [[-0.8, -1.35], [0.8, -1.35], [-0.8, 1.4], [0.8, 1.4]].forEach(([x, z]) => wheels.push([q[0] + x, 0.35, q[2] + z, 1, 1, 1])));
-        inst('wheel', () => new THREE.CylinderGeometry(0.35, 0.35, 0.26, 22).rotateZ(Math.PI / 2), mat('tire', () => std(0x1c1f25, { roughness: 0.92 })), wheels);
+        inst('wheelI', () => new THREE.CylinderGeometry(0.35, 0.35, 0.26, 12).rotateZ(Math.PI / 2), mat('tire', () => std(0x1c1f25, { roughness: 0.92 })), wheels);
         put('tailI', () => new THREE.BoxGeometry(1.5, 0.12, 0.05), mat('tailM', () => new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1a2a, emissiveIntensity: 0.25 })), 0.76, 2.11, [1, 1, 1]);
       }
     }
@@ -548,6 +561,18 @@ export function buildSim(K) {
     });
     fogLamps.forEach(l => { l.intensity = lightsCfg.brouillardAv ? (murk ? 30 : 6) : 0; });
   }
+  /* tunnel : murs, voûte et éclairage, entre deux positions S */
+  function tunnel(de, a) {
+    const len = a - de, mid = local((de + a) / 2);
+    const wall = mat('tunW', () => std(0x8C929C, { roughness: 0.9 })), dark = mat('tunD', () => std(0x4A5059, { roughness: 1 }));
+    for (const sx of [-1, 1]) { const w = new THREE.Mesh(geo('tunWall', () => new THREE.BoxGeometry(0.6, 5.6, 1)), wall); w.scale.z = len; w.position.set(sx * 4.9, 2.8, mid); w.castShadow = true; w.receiveShadow = true; run.add(w); }
+    const roof = new THREE.Mesh(geo('tunRoof', () => new THREE.BoxGeometry(10.4, 0.6, 1)), dark); roof.scale.z = len; roof.position.set(0, 5.9, mid); roof.castShadow = true; run.add(roof);
+    const portal = new THREE.Mesh(geo('tunPortal', () => new THREE.BoxGeometry(13, 7.5, 1.2)), mat('tunP', () => std(0xB9BFC8, { roughness: 0.8 })));
+    const hole = new THREE.Mesh(geo('tunHole', () => new THREE.PlaneGeometry(9.2, 5.6)), mat('tunHoleM', () => new THREE.MeshBasicMaterial({ color: 0x0b0e14 }))); void hole;
+    for (const S of [de]) { for (const sx of [-1, 1]) { const p = new THREE.Mesh(geo('tunJamb', () => new THREE.BoxGeometry(2.2, 7.5, 1.2)), portal.material); p.position.set(sx * 6.3, 3.75, local(S) + 0.6); p.castShadow = true; run.add(p); } const top = new THREE.Mesh(geo('tunTop', () => new THREE.BoxGeometry(13, 1.6, 1.2)), portal.material); top.position.set(0, 6.7, local(S) + 0.6); top.castShadow = true; run.add(top); }
+    const lamps = []; for (let S = de + 3; S < a; S += 6) for (const sx of [-1, 1]) lamps.push([sx * 3.6, 5.5, local(S), 1, 1, 1]);
+    inst('tunLamp', () => new THREE.BoxGeometry(0.5, 0.12, 1.6), glow(0xffd29a, 2.2), lamps);
+  }
 
   /* ======================= Boucle ======================= */
   const tmpA = V(0, 0, 0), tmpB = V(0, 0, 0);
@@ -561,6 +586,8 @@ export function buildSim(K) {
     enter() {},
     load, clear: clearRun, pose, lights,
     get lightsCfg() { return { ...lightsCfg }; },
+    tunnel,
+    meteo(m) { cfg.meteo = m; applyWeather(m, cfg.env); lights(lightsCfg); },
     ...API,
     ahead,
     local,
@@ -608,6 +635,7 @@ export function buildSim(K) {
       P.lastA = (P.v - v0) / Math.max(dt, 1e-4);
       P.s += P.v * dt;
       root.position.z = P.s;
+      for (const c of chunks) c.m.visible = c.S1 > P.s - 40 && c.S0 < P.s + 360;
       const ox = roadX[cfg.env] || 0;
       if (roadMat.map) roadMat.map.offset.y = (P.s / (cfg.env === 'ville' ? 26 : 24)) % 1;
       road.position.x = ox;
@@ -623,7 +651,11 @@ export function buildSim(K) {
       hood.position.set(P.x - 0.02, 0.3, -2.0); hood.visible = false;
       me.position.set(P.x, 0, 0.1); me.visible = camMode !== 'cockpit' && camMode !== 'free-cockpit';
       me.userData.wheels.forEach(w => { w.rotation.x -= P.v * dt / 0.35; });
-      me.userData.tail.emissiveIntensity = (P.lastA < -1.5 || P.brake > 0) ? 3.2 : cfg.meteo === 'nuit' ? 1.2 : 0.25;
+      const lit = lightsCfg.croisement || lightsCfg.route || lightsCfg.position;
+      me.userData.tail.emissiveIntensity = (P.lastA < -1.5 || P.brake > 0) ? 3.2 : lit ? 1.4 : 0.25;
+      me.userData.head.emissiveIntensity = lightsCfg.route || lightsCfg.croisement ? 3 : lightsCfg.position ? 1.2 : 0.25;
+      amber.emissiveIntensity = lightsCfg.detresse && Math.sin(t * 8) > 0 ? 4 : 0.1;
+      fogR.emissiveIntensity = lightsCfg.brouillardAr ? 4 : 0;
       heads.forEach(l => { l.position.set(P.x + l.userData.dx, 0.72, -2.0); l.target.position.set(P.x + l.userData.dx * 2, 0, l.userData.far || -28); });
       fogLamps.forEach(l => { l.position.set(P.x + l.userData.dx, 0.4, -2.1); l.target.position.set(P.x + l.userData.dx * 4, 0, -12); });
       // caméra

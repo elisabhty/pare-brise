@@ -62,9 +62,9 @@ export function validate(root = '.') {
     (s.questions || []).forEach(id => { if (!qIds.has(id)) warn(`Série ${s.id} : question inconnue « ${id} »`); });
   }
   const MECAS = { freinage: ['evenements', 'kmh'], vitesse: ['zones'], distance: ['profil', 'kmh'], feu: ['distances', 'kmh'], priorite: ['scenarios'], depassement: ['scenarios'], danger: ['scenes'], eclairage: ['situations'], reflexe: [], decodeur: [] };
-  const HZ = ['pieton', 'enfant', 'ballon', 'portiere', 'sortie', 'biche', 'bouchon', 'faux-pieton'];
-  const PERC = ['ballon', 'portiere', 'bus', 'telephone', 'velo', 'recul', 'camion', 'enfants', 'pietonNuit', 'veloNuit', 'biche', 'passant', 'garee', 'face'];
-  const FEUX = ['position', 'croisement', 'route', 'brouillardAv', 'brouillardAr'];
+  const HZ = ['pieton', 'enfant', 'ballon', 'portiere', 'sortie', 'biche', 'bouchon', 'faux-pieton', 'freine-devant', 'bus'];
+  const PERC = ['ballon', 'portiere', 'bus', 'telephone', 'velo', 'recul', 'camion', 'enfants', 'pietonNuit', 'veloNuit', 'biche', 'passant', 'garee', 'face', 'tracteur', 'panne', 'joggeur'];
+  const FEUX = ['position', 'croisement', 'route', 'brouillardAv', 'brouillardAr', 'detresse'];
   uniq(exercices, 'Exercice');
   for (const x of exercices) {
     const w = `exercices.json ${x.id}`;
@@ -77,7 +77,7 @@ export function validate(root = '.') {
     (x.zones || []).forEach(z => { if (!(z.d > 0 && z.lim > 0)) warn(`${w} : zone invalide`); if (z.panneau) checkSigns([z.panneau], w); (z.extra || []).forEach(e => checkSigns([e[0]], w)); });
     (x.scenarios || []).forEach((s, i) => { if (!['passer', 'ceder', 'doubler', 'rester'].includes(s.bonne)) warn(`${w} scénario ${i} : « bonne » invalide`); if (!s.explication) warn(`${w} scénario ${i} : explication manquante`); (s.panneaux || []).forEach(p => checkSigns([p[0]], w)); });
     (x.scenes || []).forEach((s, i) => (s.elements || []).forEach(e => { if (!PERC.includes(e[0])) warn(`${w} scène ${i} : élément inconnu « ${e[0]} »`); }));
-    (x.situations || []).forEach((s, i) => (s.bons || []).forEach(b => { if (!FEUX.includes(b)) warn(`${w} situation ${i} : feu inconnu « ${b} »`); }));
+    (x.situations || []).forEach((s, i) => (s.bons || []).concat(s.permis || []).forEach(b => { if (!FEUX.includes(b)) warn(`${w} situation ${i} : feu inconnu « ${b} »`); }));
   }
   const strip = o => JSON.parse(JSON.stringify(o, (k, v) => (k === '_file' ? undefined : v)));
   return { errors, types: TYPES, data: strip({ themes, cours, questions, series, exercices }),

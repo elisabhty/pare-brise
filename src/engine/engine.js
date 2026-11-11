@@ -21,7 +21,8 @@ const texCache = new Map();
 const listeners = {};
 const frameHooks = new Set();
 const tweens = new Set();
-let slowFrames = 0, frameCount = 0, bloomOn = true;
+let slowFrames = 0, frameCount = 0, bloomOn = false, paused = false, maxDpr = 1.5, perfAcc = 0, perfN = 0;
+const wantBloom = () => bloom && bloom.strength >= 0.45 && maxDpr > 1.1;
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -183,7 +184,7 @@ function buildSalle() {
   }
   // sièges (instanciés)
   const seatMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.82 });
-  const cushion = new RoundedBoxGeometry(0.52, 0.14, 0.5, 3, 0.05), backG = new RoundedBoxGeometry(0.54, 0.68, 0.12, 3, 0.06), arm = new RoundedBoxGeometry(0.06, 0.32, 0.5, 2, 0.025);
+  const cushion = new RoundedBoxGeometry(0.52, 0.14, 0.5, 2, 0.05), backG = new RoundedBoxGeometry(0.54, 0.68, 0.12, 2, 0.06), arm = new RoundedBoxGeometry(0.06, 0.32, 0.5, 1, 0.025);
   const seats = [];
   for (let r = 0; r < ROWS; r++) for (const side of [-1, 1]) for (let k = 0; k < PER; k++) seats.push({ r, x: side * (0.95 + k * 0.64), y: rowY(r), z: rowZ(r), me: r === 2 && side === 1 && k === 0 });
   const others = seats.filter(t => !t.me);
@@ -206,7 +207,7 @@ function buildSalle() {
   const meLight = new THREE.PointLight(0xFF8A30, 2, 4, 2); meLight.position.set(me.x, me.y + 1.4, me.z + 0.4); s.add(meLight);
   // élèves (silhouettes)
   const occupied = others.filter((t, i) => ((i * 7919) % 13) < 6 && !(t.r === 2 && Math.abs(t.x - me.x) < 0.7));
-  const bodyG = new THREE.CapsuleGeometry(0.2, 0.34, 6, 14), headG = new THREE.SphereGeometry(0.135, 20, 14), hairG = new THREE.SphereGeometry(0.143, 20, 10, 0, Math.PI * 2, 0, Math.PI * 0.55);
+  const bodyG = new THREE.CapsuleGeometry(0.2, 0.34, 4, 10), headG = new THREE.SphereGeometry(0.135, 14, 10), hairG = new THREE.SphereGeometry(0.143, 14, 7, 0, Math.PI * 2, 0, Math.PI * 0.55);
   const stuMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 });
   const imS = new THREE.InstancedMesh(bodyG, stuMat, occupied.length), imH = new THREE.InstancedMesh(headG, stuMat, occupied.length), imR = new THREE.InstancedMesh(hairG, stuMat, occupied.length);
   const SHIRT = [0x3D7BFF, 0xFF7A1A, 0x2FA37A, 0xE5484D, 0x8E5CF6, 0xF2B233, 0x0EA5E9, 0xF4F6FA, 0x2E3440], SKIN = [0xF1C9A5, 0xE0AC85, 0xC68863, 0x8D5A3B, 0xF5D6BC], HAIR = [0x2B1D16, 0x4A3222, 0x111111, 0x8A5A2B, 0xC9A06A];
@@ -645,21 +646,27 @@ function setFov(fovRegion) {
 function resize() {
   const r = canvas.getBoundingClientRect();
   W = Math.max(1, r.width); H = Math.max(1, r.height);
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const dpr = Math.min(maxDpr, window.devicePixelRatio || 1);
   renderer.setPixelRatio(dpr); renderer.setSize(W, H, false);
   composer.setPixelRatio(dpr); composer.setSize(W, H);
   bloom.resolution.set(W * dpr / 2, H * dpr / 2);
 }
 function loop(now) {
   requestAnimationFrame(loop);
-  const dt = Math.min(window.__dtCap || 0.05, (now - (last || now)) / 1000); last = now;
+  const raw = (now - (last || now)) / 1000; last = now;
+  if (paused) return;
+  const dt = Math.min(window.__dtCap || 0.05, raw);
   runTweens(now);
   const w = worlds[worldName]; if (!w) return;
   w.update(dt, now / 1000);
   frameHooks.forEach(f => { try { f(dt); } catch (e) {} });
   if (bloomOn) composer.render(); else renderer.render(w.scene, camera);
   frameCount++;
-  if (!window.__noAutoPerf && frameCount > 30 && frameCount < 400) { if (dt > 0.034) slowFrames++; if (slowFrames > 90) { bloomOn = false; renderer.toneMapping = THREE.ACESFilmicToneMapping; } }
+  // qualité adaptative : si l'appareil peine, on baisse la résolution (jusqu'à 1×) puis on coupe le bloom
+  if (!window.__noAutoPerf && frameCount > 20 && raw < 0.25) {
+    perfAcc += raw; perfN++;
+    if (perfN >= 60) { const avg = perfAcc / perfN; perfAcc = 0; perfN = 0; if (avg > 0.024 && maxDpr > 1) { maxDpr = Math.max(1, maxDpr - 0.25); resize(); bloomOn = wantBloom(); } }
+  }
 }
 
 E.init = cv => {
@@ -686,7 +693,7 @@ E.init = cv => {
   worlds.studio = buildStudio();
   worlds.sim = buildSim({
     renderer: () => renderer, camera: () => camera, tween, ease, sleep, emit, makeSign, signTex, canvasTex, disposeObj, setFov,
-    radial: () => RADIAL, setBloom: v => { if (worldName === 'sim') bloom.strength = v; worlds.sim && (worlds.sim.bloom = v); }
+    radial: () => RADIAL, setBloom: v => { if (worldName === 'sim') { bloom.strength = v; bloomOn = wantBloom(); } worlds.sim && (worlds.sim.bloom = v); }
   });
   resize();
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas); else window.addEventListener('resize', resize);
@@ -698,8 +705,14 @@ E.world = n => {
   if (!worlds[n]) return;
   worldName = n; renderPass.scene = worlds[n].scene; worlds[n].enter();
   bloom.strength = worlds[n].bloom ?? (n === 'studio' ? 0.2 : n === 'salle' ? 0.3 : 0.35);
+  bloomOn = wantBloom();
+  // ombres : recalculées à chaque image seulement dans le simulateur ; une seule fois ailleurs (décor fixe)
+  renderer.shadowMap.autoUpdate = n === 'sim'; renderer.shadowMap.needsUpdate = true;
 };
 E.get = n => worlds[n];
+/* Pause du rendu quand l'écran couvre entièrement la 3D (listes, catalogue…) : batterie et fluidité */
+E.pause = v => { paused = !!v; if (!v) last = 0; };
+E.info = () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.triangles, dpr: renderer.getPixelRatio(), bloom: bloomOn, paused });
 Object.defineProperty(E, 'current', { get: () => worldName });
 E.region = (top, height) => { region = { top, height }; };
 E.regionFromEl = el => { if (!el || !canvas) return; const r = el.getBoundingClientRect(), c = canvas.getBoundingClientRect(); region = { top: (r.top - c.top) / c.height, height: r.height / c.height }; };

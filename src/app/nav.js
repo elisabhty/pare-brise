@@ -31,6 +31,7 @@ export async function show(name, opts = {}) {
   try { history.replaceState(null, '', '#' + name); } catch (e) {}
   if (!opts.keepScroll) $('#s-' + name).scrollTop = 0;
   if (has3D && def.world) Engine.world(def.world);
+  if (has3D) Engine.pause(!!def.still);
   if (def.enter) def.enter(prev, opts);
   Sound.ambience(def.amb === undefined ? null : def.amb);
   requestAnimationFrame(() => { syncRegion(); requestAnimationFrame(syncRegion); });

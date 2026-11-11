@@ -97,6 +97,7 @@ function makeX(ex) {
       });
     },
     wet(on) { $('#xWet').hidden = !on; },
+    async fade(on) { const f = $('#xFade'); f.classList.toggle('on', on); await wait(on ? 300 : 0); },
     gap(on) { $('#xGap').hidden = !on; }
   };
   return X;
@@ -149,6 +150,19 @@ const HZ = {
     const cars = [0, 6.2, 12.4].map((d, i) => { const c = W.voiture({ S: S + 2.1 + d, x: LANE, couleur: [0x2E3440, 0xE84A4A, 0x9AA3AF][i] }); c.brake = true; return c; });
     return { S: S + 0.1, half: 0, real: true, nom: 'Bouchon à l’arrêt', extra: 3.2, start() {}, inLane: () => true, resume() { cars.forEach((c, i) => { c.brake = false; c.go(0, 0); setTimeout(() => c.go(7, 0), 300 + i * 250); }); this.cleared = true; } };
   },
+  'freine-devant'(W, S, o) {
+    const v0 = W.player.v || 13; let c = null, vl = v0 * 0.82, braking = false;
+    return { get S() { return c ? c.S - 2.1 : Infinity; }, half: 0, real: true, nom: 'La voiture de devant pile', extra: 0, follow: true,
+      prepare() { c = W.voiture({ S: W.player.s + FRONT + 2.1 + v0 * 3.4, x: LANE, couleur: pick([0x2E3440, 0x9AA3AF, 0x3A6DF0]) }); c.vS = vl; c.tick = dt => { if (braking) { vl = Math.max(0, vl - 7 * dt); c.brake = true; } c.vS = vl; }; },
+      start() { braking = true; Sound.ui('brake'); }, inLane: () => true, resume() { braking = false; if (c) c.brake = false; vl = 0; setTimeout(() => { vl = v0 * 1.7; }, 400); setTimeout(() => { if (c) c.remove(); }, 9000); } };
+  },
+  bus(W, S, o) {
+    const b = W.bus({ S: S + 7, x: 4.5 }); b.brake = true;
+    const a = W.pieton({ S: S + 0.6, x: 3.2, haut: pick(SHIRTS) }); a.g.rotation.y = Math.PI / 2; a.g.visible = true;
+    return { S, half: 0.3, real: true, nom: 'Piéton qui passe devant le bus', extra: 0.95,
+      start() { a.go(0, -1.6); }, tick() { if (!this.free && a.x <= LANE + 0.15) a.go(0, 0); },
+      inLane: () => Math.abs(a.x - W.player.x) < 1.3, resume() { this.free = true; a.go(0, -1.5); } };
+  },
   'faux-pieton'(W, S, o) {
     const ville = W.cfg.env === 'ville';
     const a = W.pieton({ S, x: ville ? 6.3 : 5.2, haut: pick(SHIRTS) }); a.g.rotation.y = Math.PI / 2;
@@ -177,7 +191,7 @@ MECA.freinage = async (ex, X) => {
   const W = X.W, v0 = ms(ex.kmh), meteo = ex.meteo || 'jour', env = ex.env || 'ville';
   const gap = Math.max(150, v0 * 11);
   const evs = ex.evenements.map((t, i) => ({ t, S: 110 + i * gap }));
-  W.load({ env, meteo, kmh: ex.kmh, longueur: evs[evs.length - 1].S + 240, reserve: evs.map(e => e.S), graine: ex.id.length });
+  W.load({ env, meteo, kmh: ex.kmh, longueur: evs[evs.length - 1].S + 240, reserve: evs.flatMap(e => e.t === 'bus' ? [e.S, e.S + 10] : [e.S]), graine: ex.id.length });
   W.lights({ croisement: meteo === 'nuit' || meteo === 'brouillard', position: false, route: false, brouillardAv: false, brouillardAr: false });
   (ex.panneaux || []).forEach(([id, S, x]) => W.panneau(id, S, x ?? (env === 'ville' ? 6.2 : 4.4)));
   X.wet(meteo === 'pluie');
@@ -190,7 +204,8 @@ MECA.freinage = async (ex, X) => {
   for (let i = 0; i < list.length; i++) {
     const h = list[i]; X.step(i + 1, list.length);
     const a = W.player.decel;
-    h.trig = h.type === 'bouchon' ? v0 * 6 : v0 * h.extra + v0 * v0 / (2 * a) + 2.5;
+    h.trig = h.type === 'bouchon' ? v0 * 6 : h.follow ? v0 * 1.5 : v0 * h.extra + v0 * v0 / (2 * a) + 2.5;
+    if (h.prepare) { await X.tick(() => W.player.s >= evs[i].S - 40); h.prepare(); }
     await X.tick(() => W.player.s + FRONT >= h.S - h.trig);
     const sTrig = W.player.s, vTrig = W.player.v, tTrig = performance.now();
     let tPress = pressed ? tTrig : 0, sPress = pressed ? sTrig : 0;
@@ -202,7 +217,7 @@ MECA.freinage = async (ex, X) => {
       const front = W.player.s + FRONT;
       if (h.real && h.inLane() && front >= h.S - h.half && W.player.v > 0.3) { out = { hit: true, v: W.player.v }; return true; }
       if (W.player.v < 0.15 && (tPress || pressed)) { out = { stop: true, rest: h.S - h.half - front }; return true; }
-      if (front > h.S + 3) { out = { passed: true }; return true; }
+      if (!h.follow && front > h.S + 3) { out = { passed: true }; return true; }
       return false;
     });
     onPress = null;
@@ -214,13 +229,13 @@ MECA.freinage = async (ex, X) => {
       res.push({ nom: h.nom, ok: false, score: 0, txt: `Choc à ${vi} km/h${tr !== null ? ` · réaction ${n1(tr)} s` : ' · pas de freinage'}` });
       await X.sleep(2600);
       W.actors.filter(x => Math.abs(x.S - h.S) < 3 && x.kind !== 'voiture').forEach(x => x.remove());
-      if (h.type === 'bouchon' || h.type === 'sortie' || h.type === 'portiere') h.resume();
+      if (['bouchon', 'sortie', 'portiere', 'freine-devant'].includes(h.type)) h.resume();
     } else if (out.stop) {
       const dR = sPress - sTrig, dB = W.player.s - sPress;
       const bandsShown = showBands(X, W.bandes(sTrig + FRONT, dR, dB), dR, dB);
       if (h.real) {
         const sc = Math.round(Math.max(55, Math.min(100, 100 - Math.max(0, (tr ?? 0) - 0.75) * 70)));
-        const vp = vTrig + ms(20), avail = h.S - h.half - (sTrig + FRONT), dr = vp * (tr ?? 1), rest = avail - dr;
+        const vp = vTrig + ms(20), avail = (h.follow ? out.rest + (W.player.s - sTrig) : h.S - h.half - (sTrig + FRONT)), dr = vp * (tr ?? 1), rest = avail - dr;
         const what = rest <= 0 ? `choc à ${kmh(vp)} km/h` : vp * vp / (2 * a) > rest ? `choc à ${kmh(Math.sqrt(vp * vp - 2 * a * rest))} km/h` : `arrêt à ${m0(rest - vp * vp / (2 * a))} seulement`;
         Sound.ui('ok'); haptic('ok');
         X.msg(`<b>Arrêt à ${m0(out.rest)}</b><span>Réaction ${n1(tr ?? 0)} s · ${m0(dR)} parcourus · freinage ${m0(dB)}</span><em>À ${kmh(vTrig) + 20} km/h : ${what}</em>`, 'ok', 3600);
@@ -259,11 +274,11 @@ MECA.vitesse = async (ex, X) => {
   X.hold($('#xGas'), () => { g = 1; W.pedals(g, b); haptic(); }, () => { g = 0; W.pedals(g, b); });
   X.hold($('#xBrake'), () => { b = 1; W.pedals(g, b); haptic(); }, () => { b = 0; W.pedals(g, b); });
   const st = zones.map(() => ({ ok: 0, over: 0, slow: 0, t: 0, max: 0 }));
-  let zi = 0, since = 0, warned = 0;
+  let zi = 0, since = 0, warned = 0, kState = null; const kmhEl = $('#xKmh');
   X.msg(`<b>${esc(ex.consigne || 'Respecte les limitations')}</b><span>Maintiens les pédales pour accélérer ou freiner.</span>`, '', 3200);
   await X.tick(dt => {
     const p = W.player.s;
-    while (zi < zones.length - 1 && p + 4 >= zones[zi + 1].S0) { zi++; since = 0; X.limit(zones[zi].lim); if (zones[zi].msg) X.msg(`<b>${esc(zones[zi].msg)}</b>`, '', 2600); Sound.ui('tick'); }
+    while (zi < zones.length - 1 && p + 4 >= zones[zi + 1].S0) { zi++; since = 0; X.limit(zones[zi].lim); if (zones[zi].meteo) { W.meteo(zones[zi].meteo); X.wet(zones[zi].meteo === 'pluie'); W.lights({ croisement: zones[zi].meteo !== 'jour', brouillardAv: zones[zi].meteo === 'brouillard' }); } if (zones[zi].msg) X.msg(`<b>${esc(zones[zi].msg)}</b>`, '', 2600); Sound.ui('tick'); }
     since += dt;
     const z = zones[zi], v = W.player.v * 3.6, s = st[zi], lim = z.lim;
     const grace = zi && lim < zones[zi - 1].lim ? 1.5 : 4;
@@ -272,7 +287,7 @@ MECA.vitesse = async (ex, X) => {
       if (v > lim + 2) { s.over += dt; if (performance.now() - warned > 2500) { warned = performance.now(); X.msg(`<b>Trop vite</b><span>${Math.round(v)} km/h pour ${lim} autorisés</span>`, 'ko', 1600); haptic('ko'); } }
       else if (v < lim - 14) s.slow += dt; else s.ok += dt;
     }
-    const el = $('#xKmh'); el.classList.toggle('over', v > lim + 2); el.classList.toggle('good', v <= lim + 2 && v >= lim - 14);
+    const st2 = v > lim + 2 ? 'over' : v >= lim - 14 ? 'good' : ''; if (st2 !== kState) { kState = st2; kmhEl.className = 'num ' + st2; }
     return p >= total;
   });
   W.pedals(0, 1);
@@ -300,13 +315,13 @@ MECA.distance = async (ex, X) => {
   X.hold($('#xGas'), () => { g = 1; W.pedals(g, b); haptic(); }, () => { g = 0; W.pedals(g, b); });
   X.hold($('#xBrake'), () => { b = 1; W.pedals(g, b); haptic(); }, () => { b = 0; W.pedals(g, b); });
   X.msg(`<b>Garde au moins ${cible} secondes</b><span>La bande verte montre ta zone de sécurité.</span>`, '', 3400);
-  let okT = 0, tT = 0, minG = 99, crash = 0, cool = 0;
+  let okT = 0, tT = 0, minG = 99, crash = 0, cool = 0, lastGT = ''; const gapV = $('#xGapV'), gapBox = $('#xGap');
   const total = prof.reduce((a, p) => a + p.t, 0);
   await X.tick(dt => {
     const v = W.player.v, gap = lead.S - 2.1 - (W.player.s + FRONT), tg = gap / Math.max(v, 0.5);
     W.guide(Math.min(cible * v, 140), tg >= cible ? 0x34C759 : tg >= 1 ? 0xFF9F0A : 0xFF3B30);
-    $('#xGapV').textContent = v < 1 ? '—' : n1(Math.min(tg, 9.9)) + ' s';
-    $('#xGap').dataset.k = tg >= cible ? 'ok' : tg >= 1 ? 'mid' : 'ko';
+    const gt = v < 1 ? '—' : n1(Math.min(tg, 9.9)) + ' s', gk = tg >= cible ? 'ok' : tg >= 1 ? 'mid' : 'ko';
+    if (gt !== lastGT) { lastGT = gt; gapV.textContent = gt; } if (gk !== gapBox.dataset.k) gapBox.dataset.k = gk;
     if (v > 4) { tT += dt; if (tg >= cible) okT += dt; minG = Math.min(minG, tg); }
     cool -= dt;
     if (gap <= 0.2 && cool <= 0) { crash++; cool = 3; W.player.v = Math.max(0, lv - 4); W.shake(1.4); X.flash('ko'); Sound.ui('crash'); haptic('ko'); X.msg('<b>Collision</b><span>Trop près : tu n’as pas pu t’arrêter à temps.</span>', 'ko', 2400); lead.S += 14; }
@@ -408,8 +423,8 @@ function stagePriorite(sc, X) {
   (sc.acteurs || []).forEach(o => {
     const sp = ms(o.kmh || 30), cede = o.role === 'cede';
     let a;
-    if (o.depuis === 'droite') { a = (o.type === 'velo' ? W.velo : W.voiture)({ S: Sc + 1.75, x: 41, couleur: o.couleur }); a.g.rotation.y = Math.PI / 2; mover(W, a, { axis: 'x', dir: -1, speed: sp, stopAt: 6.6, wait: cede }); a.place = eta => { a.x = 9.5 + sp * eta * 0.85; }; a.conflict = () => a.x < 7.5 && a.x > -3; a.dist = () => a.x - 3.5; }
-    else if (o.depuis === 'gauche') { a = (o.type === 'velo' ? W.velo : W.voiture)({ S: Sc - 1.75, x: -41, couleur: o.couleur }); a.g.rotation.y = -Math.PI / 2; mover(W, a, { axis: 'x', dir: 1, speed: sp, stopAt: -6.6, wait: cede }); a.place = eta => { a.x = -(9.5 + sp * eta * 0.85); }; a.conflict = () => a.x > -7.5 && a.x < 3.5; a.dist = () => -3.5 - a.x; }
+    if (o.depuis === 'droite') { a = (o.type === 'velo' ? W.velo : o.type === 'ambulance' ? W.ambulance : W.voiture)({ S: Sc + 1.75, x: 41, couleur: o.couleur }); a.g.rotation.y = Math.PI / 2; mover(W, a, { axis: 'x', dir: -1, speed: sp, stopAt: 6.6, wait: cede }); a.place = eta => { a.x = 9.5 + sp * eta * 0.85; }; a.conflict = () => a.x < 7.5 && a.x > -3; a.dist = () => a.x - 3.5; }
+    else if (o.depuis === 'gauche') { a = (o.type === 'velo' ? W.velo : o.type === 'ambulance' ? W.ambulance : W.voiture)({ S: Sc - 1.75, x: -41, couleur: o.couleur }); a.g.rotation.y = -Math.PI / 2; mover(W, a, { axis: 'x', dir: 1, speed: sp, stopAt: -6.6, wait: cede }); a.place = eta => { a.x = -(9.5 + sp * eta * 0.85); }; a.conflict = () => a.x > -7.5 && a.x < 3.5; a.dist = () => -3.5 - a.x; }
     else if (o.depuis === 'face') { a = (o.type === 'bus' ? W.bus : W.voiture)({ S: Sc + 48, x: -LANE, couleur: o.couleur, sens: -1 }); a.g.rotation.y = Math.PI; mover(W, a, { axis: 'S', dir: -1, speed: sp, stopAt: Sc + w / 2 + 2.4, wait: cede }); a.place = eta => { a.S = Sc + 12 + sp * eta * 0.85; }; a.conflict = () => a.S < Sc + w / 2 + 2 && a.S > Sc - w / 2 - 2; a.dist = () => a.S - (Sc + w / 2); }
     else if (o.depuis === 'pieton') { a = W.pieton({ S: o.S ? Sc + o.S : Sc + w / 2 + 3, x: o.x ?? 6.4, haut: pick(SHIRTS) }); a.g.rotation.y = Math.PI / 2; mover(W, a, { axis: 'x', dir: -1, speed: 1.4, stopAt: -8, wait: false }); a.conflict = () => a.x < 3.8 && a.x > -0.2; a.dist = () => 0; a.ped = true; }
     else if (o.depuis === 'derriere') { a = W.ambulance({ S: -48, x: LANE }); mover(W, a, { axis: 'S', dir: 1, speed: ms(55), wait: false }); a.urgence = true; a.conflict = () => false; a.dist = () => 99; }
@@ -421,7 +436,7 @@ function stagePriorite(sc, X) {
     }
     a.role = o.role; actors.push(a);
   });
-  return { Sc, meZone, actors, Sdec: Sc - (gir ? 9 : w / 2 + 8.5), stopS: Sc - (gir ? 2.2 : w / 2 + 1.6) };
+  return { Sc, gir, meZone, actors, Sdec: Sc - (gir ? 9 : w / 2 + 8.5), stopS: Sc - (gir ? 2.2 : w / 2 + 1.6), siren: (sc.acteurs || []).some(o => o.type === 'ambulance') };
 }
 
 async function playPriorite(st, sc, choice, X) {
@@ -441,6 +456,7 @@ async function playPriorite(st, sc, choice, X) {
   await X.tick(() => {
     const p = W.player.s + FRONT;
     if (!passer) { if (W.player.s + FRONT > st.stopS) { W.player.v = Math.max(0, W.player.v - 0.6); } }
+    if (st.gir && W.player.s + FRONT > st.Sc + 3) { W.auto(0, 6); W.player.v = Math.max(0, W.player.v - 0.5); }
     const meIn = p > st.meZone.in - 1 && W.player.s - 2 < st.meZone.out;
     st.actors.forEach(a => {
       if (a.role === 'prioritaire' && passer && !a.data.panic && meIn && a.dist() < 9 && a.dist() > -2) { a.data.panic = true; nearMiss = true; }
@@ -494,13 +510,16 @@ async function decision(ex, X, stage, play, labels, keys) {
   const list = ex.scenarios;
   for (let i = 0; i < list.length; i++) {
     const sc = list[i]; X.step(i + 1, list.length);
+    if (i) await X.fade(true);
     const st = await stage(sc, X);
+    if (i) { await wait(120); X.fade(false); }
     X.speedo(true, sc.limite || null); X.wet(sc.meteo === 'pluie');
     X.msg(`<b>${esc(sc.titre || '')}</b>${sc.contexte ? `<span>${esc(sc.contexte)}</span>` : ''}`, '', 2600);
     if (keys[0] === 'passer') {
       W.auto(sc.kmh || 30);
       await X.tick(() => { const rem = st.Sdec - W.player.s; if (rem < 30) W.auto(Math.max(14, (sc.kmh || 30) * 0.55), 2.5); if (rem < 22 && !st.woke) { st.woke = true; const vt = ms(Math.max(14, (sc.kmh || 30) * 0.55)), eta = rem / Math.max(2, (W.player.v + vt) / 2); st.actors.forEach(a => { if (a.place) a.place(eta); if (a.data && !a.urgence) a.data.go = true; }); } if (st.actors.some(a => a.urgence)) st.actors.forEach(a => { if (a.urgence) a.data.go = true; }); return rem <= 0; });
       if (st.actors.some(a => a.urgence)) { Sound.ui('siren'); X.msg('<b>Sirène deux tons derrière toi</b>', 'ko', 2200); }
+      if (st.siren) { Sound.ui('siren'); X.msg('<b>Sirène deux tons</b><span>Un véhicule d’urgence arrive par la droite.</span>', 'ko', 2400); }
     } else await X.sleep(sc.attente || 2600);
     await W.slow(0.02, 500); X.speedo(false);
     W.pose(keys[0] === 'passer' ? 'drone' : 'poursuite', 1300);
@@ -530,6 +549,9 @@ const PERC = {
   pietonNuit(W, S) { const p = W.pieton({ S, x: 3.8, haut: 0x2a2e36, bas: 0x1d2026 }); p.g.rotation.y = Math.PI; return { obj: p, hit: W.hitbox(p, 1.6, 2.1, 1.6), nom: 'Piéton sans gilet sur le bas-côté', exp: 'Vêtements sombres : on ne le voit qu’au dernier moment.', danger: true }; },
   veloNuit(W, S) { const v = W.velo({ S, x: 3.0, haut: 0x2a2e36 }); return { obj: v, hit: W.hitbox(v, 1.5, 2, 2.2), nom: 'Cycliste sans éclairage', exp: 'Sans feux ni gilet, il est presque invisible la nuit.', danger: true }; },
   biche(W, S) { const b = W.biche({ S, x: -7.5 }); b.g.rotation.y = -Math.PI / 2; return { obj: b, hit: W.hitbox(b, 2, 2, 2), nom: 'Animal au bord de la route', exp: 'Un animal peut traverser d’un bond, souvent suivi d’un autre.', danger: true }; },
+  tracteur(W, S) { const t = W.tracteur({ S, x: 9 }); t.g.rotation.y = Math.PI / 2; t.fixedHeading = true; return { obj: t, hit: W.hitbox(t, 2.6, 3, 4.6), nom: 'Tracteur qui sort d’un champ', exp: 'Lent et large, il va s’engager sur la route.', danger: true }; },
+  panne(W, S) { const c = W.voiture({ S, x: 4.2, couleur: 0x9AA3AF }); c.brake = true; const p = W.pieton({ S: S - 3, x: 3.1, gilet: true }); p.g.rotation.y = Math.PI / 2; return { obj: c, hit: W.hitbox(c, 2.4, 1.9, 6), nom: 'Voiture en panne sur le bas-côté', exp: 'Quelqu’un marche à côté, sur la chaussée.', danger: true }; },
+  joggeur(W, S) { const p = W.pieton({ S, x: 3.4, haut: 0xFF2D55 }); p.go(-2.4, 0); return { obj: p, hit: W.hitbox(p, 1.3, 2.1, 1.3), nom: 'Joggeur sur le bord de la chaussée', exp: 'Il court vers toi, au ras de ta voie.', danger: true }; },
   // leurres
   passant(W, S) { const p = W.pieton({ S, x: 7.6, haut: pick(SHIRTS) }); p.go(1.1, 0); return { obj: p, hit: W.hitbox(p, 1.2, 2, 1.2), nom: 'Passant qui s’éloigne', exp: 'Il marche sur le trottoir, loin de la chaussée.', danger: false }; },
   garee(W, S) { const c = W.voiture({ S, x: 4.6, couleur: 0x9AA3AF }); return { obj: c, hit: W.hitbox(c, 2.2, 1.8, 4.4), nom: 'Voiture garée vide', exp: 'Personne à bord, feux éteints.', danger: false }; },
@@ -539,11 +561,13 @@ MECA.danger = async (ex, X) => {
   const W = X.W, res = [];
   for (let i = 0; i < ex.scenes.length; i++) {
     const sc = ex.scenes[i]; X.step(i + 1, ex.scenes.length);
+    if (i) await X.fade(true);
     const items = sc.elements.map(([t, d]) => ({ t, d }));
     W.load({ env: sc.env || 'ville', meteo: sc.meteo || 'jour', kmh: 18, longueur: 400, depart: 0, reserve: items.map(it => it.d + 18), graine: 50 + i });
     W.lights({ croisement: sc.meteo === 'nuit', position: false, route: false, brouillardAv: false, brouillardAr: false });
     (sc.panneaux || []).forEach(([id, d, x]) => W.panneau(id, d, x));
     const els = items.map(it => PERC[it.t](W, it.d + 18));
+    if (i) { await wait(120); X.fade(false); }
     X.speedo(true);
     W.auto(18);
     await X.sleep(1300);
@@ -588,24 +612,31 @@ const FEUX = [
   { k: 'croisement', n: 'Croisement', i: '<path d="M8 6c-3 0-5 2.7-5 6s2 6 5 6h1V6H8Z"/><path d="M12 9l7 2M12 12.5l7 2M12 16l7 2"/>' },
   { k: 'route', n: 'Route', i: '<path d="M8 6c-3 0-5 2.7-5 6s2 6 5 6h1V6H8Z"/><path d="M12 8h8M12 12h8M12 16h8"/>' },
   { k: 'brouillardAv', n: 'Brouillard AV', i: '<path d="M8 6c-3 0-5 2.7-5 6s2 6 5 6h1V6H8Z"/><path d="M12 9l7 2M12 12.5l7 2M12 16l7 2"/><path d="M15 7.5v11" stroke-dasharray="1.6 1.6"/>' },
-  { k: 'brouillardAr', n: 'Brouillard AR', i: '<path d="M16 6c3 0 5 2.7 5 6s-2 6-5 6h-1V6h1Z"/><path d="M4 9h7M4 12h7M4 15h7"/><path d="M8 7v10" stroke-dasharray="1.6 1.6"/>' }
+  { k: 'brouillardAr', n: 'Brouillard AR', i: '<path d="M16 6c3 0 5 2.7 5 6s-2 6-5 6h-1V6h1Z"/><path d="M4 9h7M4 12h7M4 15h7"/><path d="M8 7v10" stroke-dasharray="1.6 1.6"/>' },
+  { k: 'detresse', n: 'Détresse', i: '<path d="M12 4 3 19h18L12 4Z"/><path d="M12 9.5 7.5 17h9L12 9.5Z"/>' }
 ];
 MECA.eclairage = async (ex, X) => {
   const W = X.W, res = [];
   for (let i = 0; i < ex.situations.length; i++) {
     const sc = ex.situations[i]; X.step(i + 1, ex.situations.length);
-    W.load({ env: sc.env || 'route', meteo: sc.meteo || 'nuit', kmh: sc.kmh || 50, longueur: 2400, graine: 60 + i });
-    const cur = { position: false, croisement: false, route: false, brouillardAv: false, brouillardAr: false };
+    if (i) await X.fade(true);
+    W.load({ env: sc.env || 'route', meteo: sc.meteo || 'nuit', kmh: sc.kmh ?? 50, longueur: 2400, graine: 60 + i, camera: sc.camera || 'cockpit', zones: sc.tunnel ? [{ de: 30, a: 900 }] : [] });
+    if (sc.tunnel) W.tunnel(40, 900);
+    if (sc.bouchon) [0, 6.4, 12.8].forEach((d, k) => { const c = W.voiture({ S: sc.bouchon + d, x: LANE, couleur: [0x2E3440, 0xE84A4A, 0x9AA3AF][k] }); c.brake = true; });
+    if (sc.kmh === 0) W.auto(0);
+    const cur = { position: false, croisement: false, route: false, brouillardAv: false, brouillardAr: false, detresse: false };
     W.lights(cur);
+    if (i) { await wait(120); X.fade(false); }
     if (sc.enFace) { const c = W.voiture({ S: 260, x: -LANE, couleur: 0x9AA3AF, sens: -1 }); c.vS = -ms(60); c.g.rotation.y = Math.PI; }
     if (sc.devant) { const c = W.voiture({ S: 26, x: LANE, couleur: 0x2E3440 }); c.vS = ms(sc.kmh || 50); }
+    if (sc.bouchon && sc.kmh) { const stopAt = sc.bouchon - 9; const t0 = W.onTick(() => { const rem = stopAt - (W.player.s + FRONT); if (rem < W.player.v * W.player.v / 6 + 6) { W.auto(0, 3); t0(); } }); }
     X.wet(sc.meteo === 'pluie'); X.speedo(true);
     X.msg(`<b>${esc(sc.titre)}</b><span>${esc(sc.contexte || 'Allume les bons feux, puis valide.')}</span>`, '', 3400);
     X.ctl(`<div class="xlights">${FEUX.map(f => `<button class="xlight" data-k="${f.k}" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${f.i}</svg><span>${f.n}</span></button>`).join('')}</div><button class="btn" id="xValide">Valider</button>`);
     $$('.xlight').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; cur[k] = !cur[k]; if (k === 'route' && cur.route) cur.croisement = false; if (k === 'croisement' && cur.croisement) cur.route = false; $$('.xlight').forEach(x => x.setAttribute('aria-pressed', cur[x.dataset.k])); W.lights(cur); Sound.ui('tick'); haptic(); }));
     await Promise.race([new Promise(r => $('#xValide').addEventListener('click', r, { once: true })), X.tick(() => false)]);
-    const want = sc.bons, keys = FEUX.map(f => f.k);
-    const ok = keys.every(k => !!cur[k] === want.includes(k) || (k === 'position' && (cur.croisement || cur.route)));
+    const want = sc.bons, also = sc.permis || [], keys = FEUX.map(f => f.k);
+    const ok = keys.every(k => want.includes(k) ? (!!cur[k] || (k === 'position' && (cur.croisement || cur.route))) : (!cur[k] || also.includes(k) || (k === 'position' && (cur.croisement || cur.route))));
     if (ok) { Sound.ui('ok'); haptic('ok'); } else { Sound.ui('ko'); haptic('ko'); }
     const good = want.length ? want.map(k => FEUX.find(f => f.k === k).n).join(' + ') : 'Aucun feu à allumer';
     res.push({ nom: sc.titre, ok, score: ok ? 100 : 0, txt: ok ? 'Bons feux' : `Attendu : ${good}` });
@@ -652,8 +683,9 @@ async function start(ex) {
   for (const n of ['3', '2', '1']) { cd.textContent = n; cd.classList.remove('pop'); void cd.offsetWidth; cd.classList.add('pop'); Sound.ui('tick'); await wait(650); if (!X.live()) return; }
   cd.hidden = true;
   Sound.ambience('route');
-  const stopSnd = SIM.onTick(() => Sound.speed(SIM.player.v * 3.6));
-  const stopKmh = SIM.onTick(() => { const el = $('#xKmh'); if (el) el.textContent = Math.round(SIM.player.v * 3.6); });
+  let sndT = 0, lastK = -1; const kEl = $('#xKmh');
+  const stopSnd = SIM.onTick(dt => { sndT += dt; if (sndT > 0.12) { sndT = 0; Sound.speed(SIM.player.v * 3.6); } });
+  const stopKmh = SIM.onTick(() => { const k = Math.round(SIM.player.v * 3.6); if (k !== lastK) { lastK = k; kEl.textContent = k; } });
   let out = null;
   try { out = await MECA[ex.meca](ex, X); }
   catch (e) { if (!(e instanceof Abort)) console.error(e); }
@@ -700,7 +732,7 @@ export function renderHomeExos() {
 document.addEventListener('click', e => { const b = e.target.closest('[data-exo]'); if (!b) return; haptic(); Sound.ui('tap'); runExo(b.dataset.exo); });
 
 export function setupExos() {
-  register('exos', { world: 'salle', amb: 'salle', region: () => $('#s-exos'), enter() { renderExos(); } });
+  register('exos', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-exos'), enter() { renderExos(); } });
   register('exo', { world: 'sim', amb: null, noTab: true, tab: 'exos', region: () => $('#v-exo'), enter(prev, o) { if (o && o.arg) runExo(o.arg); }, leave() { stopRun(); Sound.ambience(null); } });
   $('#xQuit').addEventListener('click', () => { haptic(); stopRun(); show('exos'); });
 }

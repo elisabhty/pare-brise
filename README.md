@@ -6,7 +6,7 @@ Une app iOS (Capacitor 8) de code de la route en 3D.
 
 Dans cette version, **l'app est un moteur** et **le contenu est en JSON**. Tu ajoutes un cours, une série ou des questions en écrivant un fichier dans `content/`, sans toucher au code. Le build vérifie tout le contenu avant de fabriquer l'app.
 
-Contenu fourni : les 10 thèmes officiels, **29 cours** (219 scènes), 151 questions, 29 séries et **22 exercices de conduite en 3D**.
+Contenu fourni : les 10 thèmes officiels, **29 cours** (219 scènes), 151 questions, 29 séries et **20 exercices de conduite en 3D**, de 10 situations chacun.
 
 L'interface suit les codes d'iOS : police système (SF Pro sur iPhone, Inter en repli ailleurs), grands titres, listes groupées, boutons capsule et barre d'onglets flottante façon Liquid Glass.
 
@@ -77,7 +77,9 @@ Chaque exercice est décrit dans `content/exercices.json` et joué par une **mé
 | `danger` | arrêt sur image : touche tous les dangers, attention aux leurres | `scenes` |
 | `eclairage` | allume les bons feux, effet visible en direct | `situations` |
 
-Événements de freinage : `pieton`, `enfant`, `ballon`, `portiere`, `sortie`, `biche`, `bouchon`, `faux-pieton`.
+Chaque exercice compte 10 situations (10 événements, 10 feux, 10 zones, 10 scénarios…).
+
+Événements de freinage : `pieton`, `enfant`, `ballon`, `portiere`, `sortie`, `bus`, `freine-devant`, `biche`, `bouchon`, `faux-pieton`. Une zone de vitesse peut changer la météo en route (`"meteo": "pluie"`). Feux : `position`, `croisement`, `route`, `brouillardAv`, `brouillardAr`, `detresse` ; une situation peut accepter des feux en plus avec `permis`, et se passer dans un tunnel (`tunnel`) ou un bouchon (`bouchon`).
 Environnements : `ville`, `route`, `autoroute`. Météo : `jour`, `pluie`, `brouillard`, `nuit`, `neige`.
 
 Exemple de scénario de priorité :

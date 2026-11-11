@@ -29,3 +29,9 @@ test('les cours utilisent les scènes « liste » et « situation » du simulate
 test('chaque cours a une série d’exercices', () => {
   data.cours.forEach(c => assert.ok((c.series || []).length, c.id));
 });
+test('chaque exercice propose 10 situations', () => {
+  exos.filter(e => e.meca !== 'reflexe' && e.meca !== 'decodeur').forEach(e => {
+    const n = (e.evenements || e.distances || e.zones || e.profil || e.scenarios || e.scenes || e.situations || []).length;
+    assert.equal(n, 10, e.id);
+  });
+});
