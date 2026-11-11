@@ -692,7 +692,7 @@ E.init = cv => {
   worlds.route = buildRoute();
   worlds.studio = buildStudio();
   worlds.sim = buildSim({
-    renderer: () => renderer, camera: () => camera, tween, ease, sleep, emit, makeSign, signTex, canvasTex, disposeObj, setFov,
+    renderer: () => renderer, camera: () => camera, tween, ease, sleep, emit, makeSign, signTex, canvasTex, disposeObj, setFov, flashSign,
     radial: () => RADIAL, setBloom: v => { if (worldName === 'sim') { bloom.strength = v; bloomOn = wantBloom(); } worlds.sim && (worlds.sim.bloom = v); }
   });
   resize();

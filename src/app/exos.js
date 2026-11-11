@@ -99,7 +99,21 @@ function makeX(ex) {
     },
     wet(on) { $('#xWet').hidden = !on; },
     async fade(on) { const f = $('#xFade'); f.classList.toggle('on', on); await wait(on ? 300 : 0); },
-    gap(on) { $('#xGap').hidden = !on; }
+    gap(on) { $('#xGap').hidden = !on; },
+    /* bandeau « Observe la situation » avec sa barre de progression (durée T en secondes) */
+    obs(on, T = 3) {
+      const el = $('#xObs'), bar = $('#xObsBar');
+      if (!on) { el.classList.remove('on'); return; }
+      el.hidden = false; bar.style.transition = 'none'; bar.style.transform = 'scaleX(0)'; void bar.offsetWidth;
+      bar.style.transition = `transform ${T}s linear`; bar.style.transform = 'scaleX(1)'; requestAnimationFrame(() => el.classList.add('on'));
+    },
+    /* loupe : le panneau de la scène, net et lisible, dans un coin de l'image */
+    loupe(ids) {
+      const el = $('#xZoom'); if (!el) return;
+      if (!ids || !ids.length) { el.classList.remove('on'); return; }
+      el.innerHTML = ids.slice(0, 2).map(id => `<span>${sign(id)}</span>`).join('') + '<em>Zoom</em>';
+      el.hidden = false; requestAnimationFrame(() => el.classList.add('on'));
+    }
   };
   return X;
 }
@@ -187,82 +201,137 @@ async function showBands(X, bands, dR, dB) {
 /* ======================= Mécaniques ======================= */
 const MECA = {};
 
-/* ---------- Situations d'examen : une scène 3D figée, une question, des réponses A à D ---------- */
+/* ---------- Situations d'examen : une courte vidéo, un arrêt sur image, une question, des réponses A à D ---------- */
 const TYPES3D = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
-function stageScene(W, sc) {
-  const env = sc.env || 'ville', cars = sc.carrefour ? [sc.carrefour.S] : [];
-  W.load({ env, meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, depart: 0, graine: sc.graine || 9, camera: sc.camera || 'vue', voie: sc.voie,
-    ligne: typeof sc.ligne === 'string' ? [{ de: 0, a: 900, type: sc.ligne }] : sc.ligne, carrefours: cars,
+const OBS = 3.6;                                                   // durée de la « vidéo » avant l'arrêt sur image (s)
+const BIG = ['voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
+const rollOf = sc => { const v = (sc.kmh ?? 30) / 3.6; return { v, d: Math.min(8, v * 0.6) }; };
+/* T : durée de la vidéo. La voiture et les usagers mobiles partent en arrière d'autant,
+   pour se trouver exactement à la place prévue au moment de l'arrêt sur image. */
+function stageScene(W, sc, T = 0) {
+  const env = sc.env || 'ville', cars = sc.carrefour ? [sc.carrefour.S] : [], { v, d } = rollOf(sc), tR = v > 0 ? d / v : 0.6;
+  const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
+  W.load({ env, meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, depart: v > 0 ? d - v * T : 0, graine: sc.graine || 9, camera: sc.camera || 'vue', voie: sc.voie,
+    ligne, carrefours: cars,
     zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : []),
-    reserve: (sc.acteurs || []).map(a => a.S || 0).concat(sc.passage ? [sc.passage] : []) });
+    // pas de voiture garée entre nous et un piéton ou un usager au bord de la route : il doit rester bien visible
+    reserve: (sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10, (a.S || 0) - 20] : [a.S || 0])).concat(sc.passage ? [sc.passage, sc.passage - 10, sc.passage - 20] : []) });
   W.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false }, sc.feux || {}));
   if (sc.carrefour) W.carrefour(sc.carrefour.S, { ligne: sc.carrefour.ligne, forme: sc.carrefour.forme });
   if (sc.giratoire) W.giratoire(sc.giratoire);
   if (sc.passage) W.passage(sc.passage);
-  if (sc.chevrons) W.chevrons(10, 800, 38);
+  if (sc.chevrons) W.chevrons(-190, 800, 38);
   if (sc.tunnel) W.tunnel(sc.tunnel, 900);
-  if (sc.maisons) W.maisons(0, 300);
+  if (sc.maisons) W.maisons(-160, 300);
   const sx = env === 'ville' ? 5.9 : env === 'autoroute' ? 7.2 : 4.4;
-  (sc.signaux || []).forEach(([id, S, x, t]) => W.panneau(id, S, x ?? sx, { taille: t || 1.2 }));
-  const list = (sc.acteurs || []).map(o => {
+  const signs = (sc.signaux || []).map(([id, S, x, t]) => W.panneau(id, S, x ?? sx, { taille: t || 1.2 }));
+  const actors = (sc.acteurs || []).map(o => {
     const t = TYPES3D.includes(o.type) ? o.type : 'voiture';
+    // positions de la fiche = départ d'un court roulage (tR) : on en déduit la place à l'arrêt sur image, puis le départ de la vidéo
+    const vS = o.kmh ? o.kmh / 3.6 : 0, vx = o.vx || 0, x1 = (o.x ?? LANE) + vx * tR;
+    // un piéton qui traverse part du trottoir (pas de l'intérieur d'un immeuble) : il attend puis se met en marche
+    let xs = x1 - vx * T, attente = 0;
+    if (vx) { const lim = BIG.includes(t) ? 45 : env === 'ville' ? 8.4 : 11; if (Math.abs(xs) > lim && Math.abs(xs) > Math.abs(x1)) { const xc = Math.sign(xs) * lim; attente = T - Math.abs(xc - x1) / Math.abs(vx); xs = xc; } }
     const a = t === 'feu' ? W.feu({ S: o.S, x: o.x ?? 5.4, etat: o.etat || 'vert' })
-      : W[t]({ S: o.S ?? 20, x: o.x ?? LANE, couleur: o.couleur, gilet: o.gilet, haut: o.haut, sens: (o.kmh || 0) < 0 ? -1 : 1 });
-    if (o.kmh) a.vS = o.kmh / 3.6;
-    if (o.vx) a.vx = o.vx;
+      : W[t]({ S: (o.S ?? 20) + vS * (tR - T), x: xs, couleur: o.couleur, gilet: o.gilet, haut: o.haut, sens: (o.kmh || 0) < 0 ? -1 : 1 });
+    if (vS) a.vS = vS;
+    if (vx) {
+      if (o.cap === undefined) a.g.rotation.y = Math.atan2(-vx, vS);
+      if (attente > 0) { let w = attente; const prev = a.tick; a.tick = (dt, tt, self) => { if (w > 0 && (w -= dt) <= 0) a.vx = vx; if (prev) prev(dt, tt, self); }; } else a.vx = vx;
+    }
     if (o.cap !== undefined) { a.g.rotation.y = o.cap * Math.PI / 180; a.fixedHeading = true; }
     if (o.freine) a.brake = true;
     if (t === 'portiere' && o.ouverte) a.open(10);
     if (t === 'feu' && o.etat === 'clignotant') { let on = true; a.tick = (dt, tt) => { const k = Math.sin(tt * 6) > 0; if (k !== on) { on = k; a.set(k ? 'clignotant' : 'eteint'); } }; }
     return a;
   });
-  return list;
+  return { actors, signs };
+}
+/* Joue la situation comme une courte vidéo, puis fige l'image et zoome sur le panneau à lire.
+   head : [libellé, numéro] affichés pendant le fondu ; null pour « Revoir la scène ». */
+async function playScene(X, sc, head) {
+  const W = X.W, f = $('#xFade');
+  if (head) { $('#xFiK').textContent = head[0]; $('#xFiN').textContent = head[1]; }
+  f.classList.toggle('txt', !!head);
+  X.loupe(null);
+  await X.fade(true);
+  const st = stageScene(W, sc, OBS); W.slow(0, 0);
+  X.wet(sc.meteo === 'pluie'); X.speedo(!!sc.compteur, sc.limite || null);
+  W.setAnchors(sc.etiquettes ? sc.etiquettes.map(([k]) => ({ id: 'q' + k, obj: st.actors[k], dy: 2.3 })) : []);
+  await X.sleep(head ? 800 : 200);
+  X.fade(false);
+  // la vidéo : quelques secondes à vitesse réelle, avec une barre de progression
+  const { v, d } = rollOf(sc);
+  X.obs(true, OBS);
+  W.slow(1, 0);
+  if (v > 0) await X.tick(() => W.player.s >= d - v * 0.25); else await X.sleep((OBS - 0.25) * 1000);
+  await W.slow(0, 500);
+  X.obs(false);
+  // arrêt sur image : la caméra se rapproche du panneau, puis recule pour montrer toute la scène
+  // sans panneau : on se rapproche de l'usager à observer (piéton, ballon, cycliste…)
+  const cam = sc.camera || 'vue', proche = a => { const e = a.S - W.player.s; return a.kind !== 'feu' && e > 6 && e < 90; };
+  const sign = st.signs[sc.cle ?? 0], key = sign || (sc.focus !== undefined ? st.actors[sc.focus] : st.actors.find(proche));
+  if (key && (cam === 'vue' || cam === 'cockpit')) {
+    if (sign) { W.eclaire(sign, 0xffc629, 1300); await W.regarde(sign, 17, 1000, 1); }
+    else await W.regarde(key, 24, 1000, 0.85, 0.9);
+    await X.sleep(800);
+    await (sign ? W.regarde(sign, 34, 800, 0.55) : W.regarde(key, 36, 800, 0.55, 0.9));
+  } else await X.sleep(400);
+  if (sc.signaux && sc.signaux.length) X.loupe(sc.signaux.map(g => g[0]));
+  if (sc.etiquettes) Labels.set(sc.etiquettes.map(([k]) => 'q' + k), sc.etiquettes.map(e => [e[1], e[2]]), 'exo');
+  return st;
 }
 MECA.examen = async (ex, X) => {
-  const W = X.W, res = [], L = 'ABCD';
-  for (let i = 0; i < ex.situations.length; i++) {
-    const sc = ex.situations[i]; X.step(i + 1, ex.situations.length);
-    if (i) await X.fade(true);
-    const actors = stageScene(W, sc); W.slow(0, 0);
-    X.wet(sc.meteo === 'pluie'); X.speedo(!!sc.compteur, sc.limite || null);
-    if (sc.etiquettes) { W.setAnchors(sc.etiquettes.map(([k]) => ({ id: 'q' + k, obj: actors[k], dy: 2.3 }))); }
-    if (i) { await wait(120); X.fade(false); }
-    // la scène s'anime quelques mètres, puis se fige comme une photo d'examen
-    W.slow(1, 0); const s0 = W.player.s, kmhS = sc.kmh ?? 30, dRoll = Math.min(8, kmhS / 3.6 * 0.6);
-    if (kmhS > 0) await X.tick(() => W.player.s - s0 >= dRoll); else await X.sleep(600);
-    await W.slow(0, 160);
-    if (sc.etiquettes) Labels.set(sc.etiquettes.map(([k]) => 'q' + k), sc.etiquettes.map(e => [e[1], e[2]]), 'exo');
-    const offL = W.onTick(() => Labels.frame());
-    // question façon examen : une ou plusieurs bonnes réponses
-    const chosen = new Set();
-    const c = X.card(`<div class="xq"><b>${esc(sc.q)}</b>${sc.contexte ? `<p>${esc(sc.contexte)}</p>` : ''}</div>
-      <div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${esc(t)}</span></button>`).join('')}</div>
-      ${ex.mode === 'blanc' ? '<div class="xtimer"><i id="xQbar"></i></div>' : ''}<button class="btn" id="xOk" disabled>Valider</button>`, 'xask');
-    $$('.xan', c).forEach(b => b.addEventListener('click', () => { const k = +b.dataset.k; chosen.has(k) ? chosen.delete(k) : chosen.add(k); b.setAttribute('aria-pressed', chosen.has(k)); $('#xOk', c).disabled = !chosen.size; haptic(); Sound.ui('tick'); }));
-    const v3 = $('#v-exo'), frame = () => { v3.style.bottom = Math.round(c.getBoundingClientRect().height + 20) + 'px'; syncRegion(); };
-    requestAnimationFrame(() => requestAnimationFrame(frame));
-    const tQ = performance.now(), limit = 20000;
-    await Promise.race([new Promise(r => $('#xOk', c).addEventListener('click', r, { once: true })),
-      X.tick(() => { if (ex.mode !== 'blanc') return false; const k = (performance.now() - tQ) / limit; const bar = $('#xQbar'); if (bar) bar.style.transform = `scaleX(${Math.max(0, 1 - k)})`; return k >= 1; })]);
-    const good = new Set(sc.bonnes), ok = good.size === chosen.size && [...good].every(k => chosen.has(k));
-    if (ex.mode === 'blanc') {
-      res.push({ nom: sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${[...good].sort().map(k => L[k]).join(' et ')} : ${sc.explication}` });
-      Sound.ui('tap'); X.hideCard(); offL(); Labels.clear(); W.setAnchors([]); v3.style.bottom = ''; syncRegion(); await W.slow(1, 1);
-      continue;
+  const W = X.W, res = [], L = 'ABCD', blanc = ex.mode === 'blanc', n = ex.situations.length, v3 = $('#v-exo');
+  const offL = W.onTick(() => Labels.frame());
+  try {
+    for (let i = 0; i < n; i++) {
+      const sc = ex.situations[i]; X.step(i + 1, n);
+      await playScene(X, sc, [blanc ? 'Question' : 'Situation', `${i + 1} sur ${n}`]);
+      // question façon examen : une ou plusieurs bonnes réponses
+      const chosen = new Set();
+      const c = X.card(`<div class="xq"><b>${esc(sc.q)}</b>${sc.contexte ? `<p>${esc(sc.contexte)}</p>` : ''}</div>
+        <div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${esc(t)}</span></button>`).join('')}</div>
+        ${blanc ? '<div class="xtimer"><i id="xQbar"></i></div>' : ''}
+        <div class="xbtns">${blanc ? '' : '<button class="btn ghost" id="xReplay" aria-label="Revoir la scène"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Revoir</span></button>'}<button class="btn" id="xOk" disabled>Valider</button></div>`, 'xask');
+      $$('.xan', c).forEach(b => b.addEventListener('click', () => { const k = +b.dataset.k; chosen.has(k) ? chosen.delete(k) : chosen.add(k); b.setAttribute('aria-pressed', chosen.has(k)); $('#xOk', c).disabled = !chosen.size; haptic(); Sound.ui('tick'); }));
+      const frame = () => { if (c.hidden || !c.classList.contains('on')) return; v3.style.bottom = Math.round(c.getBoundingClientRect().height + 20) + 'px'; syncRegion(); };
+      requestAnimationFrame(() => requestAnimationFrame(frame));
+      // « Revoir la scène » : la carte s'efface, la vidéo est rejouée, puis la carte revient telle quelle
+      let busy = false;
+      const replay = async () => {
+        if (busy) return; busy = true; haptic(); Sound.ui('tap');
+        c.classList.remove('on'); X.loupe(null); Labels.clear(); v3.style.bottom = ''; syncRegion();
+        await wait(260); c.hidden = true;
+        try { await playScene(X, sc, null); } catch (e) { busy = false; return; }
+        c.hidden = false; requestAnimationFrame(() => { c.classList.add('on'); requestAnimationFrame(frame); });
+        busy = false;
+      };
+      const rb = $('#xReplay', c); if (rb) rb.addEventListener('click', () => { replay(); });
+      const tQ = performance.now(), limit = 20000;
+      await Promise.race([new Promise(r => $('#xOk', c).addEventListener('click', r, { once: true })),
+        X.tick(() => { if (!blanc) return false; const k = (performance.now() - tQ) / limit; const bar = $('#xQbar'); if (bar) bar.style.transform = `scaleX(${Math.max(0, 1 - k)})`; return k >= 1; })]);
+      const good = new Set(sc.bonnes), ok = good.size === chosen.size && [...good].every(k => chosen.has(k));
+      const attendu = [...good].sort().map(k => L[k]).join(' et ');
+      if (blanc) {
+        res.push({ nom: sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${attendu} : ${sc.explication}` });
+        Sound.ui('tap'); X.hideCard(); X.loupe(null); Labels.clear(); v3.style.bottom = ''; syncRegion();
+        continue;
+      }
+      $$('.xan', c).forEach(b => { const k = +b.dataset.k; b.classList.add(good.has(k) ? 'good' : chosen.has(k) ? 'bad' : 'dim'); b.disabled = true; });
+      $('#xOk', c).remove();
+      if (ok) { Sound.ui('ok'); haptic('ok'); } else { Sound.ui('ko'); haptic('ko'); }
+      $('.xbtns', c).insertAdjacentHTML('beforebegin', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? 'Bonne réponse' : `Réponse : ${attendu}`}</b><p>${esc(sc.explication)}</p></div>`);
+      $('.xbtns', c).insertAdjacentHTML('beforeend', `<button class="btn" id="xNext">${i + 1 < n ? 'Situation suivante' : 'Voir le résultat'}</button>`);
+      requestAnimationFrame(frame);
+      res.push({ nom: sc.titre || sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `Réponse attendue : ${[...good].sort().map(k => L[k]).join(', ')}` });
+      await Promise.race([new Promise(r => $('#xNext', c).addEventListener('click', () => { if (busy) return; haptic(); Sound.ui('tap'); r(); })), X.tick(() => false)]);
+      X.hideCard(); X.loupe(null); Labels.clear(); W.setAnchors([]);
+      v3.style.bottom = ''; syncRegion();
     }
-    $$('.xan', c).forEach(b => { const k = +b.dataset.k; b.classList.add(good.has(k) ? 'good' : chosen.has(k) ? 'bad' : 'dim'); b.disabled = true; });
-    $('#xOk', c).remove();
-    requestAnimationFrame(frame);
-    if (ok) { Sound.ui('ok'); haptic('ok'); } else { Sound.ui('ko'); haptic('ko'); }
-    c.insertAdjacentHTML('beforeend', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? 'Bonne réponse' : `Réponse : ${[...good].sort().map(k => L[k]).join(' et ')}`}</b><p>${esc(sc.explication)}</p></div><button class="btn" id="xNext">Continuer</button>`);
-    res.push({ nom: sc.titre || sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `Réponse attendue : ${[...good].sort().map(k => L[k]).join(', ')}` });
-    await Promise.race([new Promise(r => $('#xNext', c).addEventListener('click', () => { haptic(); Sound.ui('tap'); r(); }, { once: true })), X.tick(() => false)]);
-    X.hideCard(); offL(); Labels.clear(); W.setAnchors([]);
-    v3.style.bottom = ''; syncRegion();
-    await W.slow(1, 1);
-  }
+  } finally { offL(); }
   const nOk = res.filter(r => r.ok).length, score = Math.round(nOk / res.length * 100);
-  if (ex.mode === 'blanc') { const pass = nOk >= Math.ceil(res.length * 0.875); return { score, total: `${nOk} / ${res.length}`, lignes: res, conseil: pass ? `Reçu : ${nOk} bonnes réponses sur ${res.length}. Il en faut 35 sur 40 le jour J.` : `Pas encore : ${nOk} sur ${res.length}. Il faut 35 bonnes réponses sur 40. Relis les corrections ci-dessus.` }; }
+  if (blanc) { const pass = nOk >= Math.ceil(res.length * 0.875); return { score, total: `${nOk} / ${res.length}`, lignes: res, conseil: pass ? `Reçu : ${nOk} bonnes réponses sur ${res.length}. Il en faut 35 sur 40 le jour J.` : `Pas encore : ${nOk} sur ${res.length}. Il faut 35 bonnes réponses sur 40. Relis les corrections ci-dessus.` }; }
   return { score, lignes: res, conseil: score >= 90 ? 'Niveau examen : 35 bonnes réponses sur 40 suffisent le jour J.' : 'Relis chaque explication, puis rejoue : à l’examen, il faut 35 bonnes réponses sur 40.' };
 };
 
@@ -643,15 +712,20 @@ MECA.danger = async (ex, X) => {
     const sc = ex.scenes[i]; X.step(i + 1, ex.scenes.length);
     if (i) await X.fade(true);
     const items = sc.elements.map(([t, d]) => ({ t, d }));
-    W.load({ env: sc.env || 'ville', meteo: sc.meteo || 'jour', kmh: 18, longueur: 400, depart: 0, reserve: items.map(it => it.d + 18), graine: 50 + i });
+    // la rue défile quelques secondes avant l'arrêt sur image : la voiture part un peu plus loin en arrière
+    const EXTRA = 2.2;
+    W.load({ env: sc.env || 'ville', meteo: sc.meteo || 'jour', kmh: 18, longueur: 400, depart: -5 * EXTRA, reserve: items.map(it => it.d + 18), graine: 50 + i });
     W.lights({ croisement: sc.meteo === 'nuit', position: false, route: false, brouillardAv: false, brouillardAr: false });
     (sc.panneaux || []).forEach(([id, d, x]) => W.panneau(id, d, x));
     const els = items.map(it => PERC[it.t](W, it.d + 18));
+    els.forEach(e => { const a = e.obj; if (a && a.vS) a.S -= a.vS * EXTRA; });
     if (i) { await wait(120); X.fade(false); }
     X.speedo(true);
     W.auto(18);
-    await X.sleep(1300);
+    X.obs(true, 1.3 + EXTRA + 0.3);
+    await X.sleep(1300 + EXTRA * 1000);
     await W.slow(0, 600);
+    X.obs(false);
     X.speedo(false);
     W.setPick(els.map(e => e.hit));
     W.setAnchors(els.map(e => ({ id: e.nom, obj: e.obj, dy: 2.2 })));
@@ -798,7 +872,7 @@ function results(ex, out) {
   $('#xDone').addEventListener('click', () => show('exos'), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
-function stopRun() { const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
+function stopRun() { const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } ['#xObs', '#xZoom'].forEach(k => { const e = $(k); if (e) e.classList.remove('on'); }); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
 
 /* ======================= Hub « Exercices » ======================= */
 export function renderExos() {

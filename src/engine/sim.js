@@ -342,7 +342,7 @@ export function buildSim(K) {
   /* ---------- marquage axial ---------- */
   function buildCenterLine(env, ligne, free) {
     if (env === 'autoroute') return;
-    const segs = ligne || [{ de: 0, a: envLen, type: 'discontinue' }];
+    const segs = ligne || [{ de: -200, a: envLen, type: 'discontinue' }];
     const white = mat('paintW', () => new THREE.MeshStandardMaterial({ color: 0xF2F2EC, roughness: 0.6 }));
     const dashG = geo('dash', () => new THREE.PlaneGeometry(0.15, 3).rotateX(-Math.PI / 2));
     let n = 0; const list = [];
@@ -378,14 +378,14 @@ export function buildSim(K) {
     const night = cfg.meteo === 'nuit';
     if (env === 'route') {
       const pines = [], round = [], trunks = [], houses = [], roofs = [], posts = [];
-      for (let S = -40; S < L; S += 7 + r() * 9) for (const side of [-1, 1]) {
+      for (let S = -200; S < L; S += 7 + r() * 9) for (const side of [-1, 1]) {
         if (r() < 0.45 || !free(S)) continue;
         const x = side * (9 + r() * 26), h = 5 + r() * 6;
         if (r() < 0.55) pines.push([x, h / 2, local(S), 1.5 + r(), h, 1.5 + r()]);
         else { round.push([x, 3.2 + r(), local(S), 2 + r() * 1.4, 1.8 + r(), 2 + r() * 1.4, 0, [0x4E9A52, 0x5BA65A, 0x3F8A4C][(r() * 3) | 0]]); trunks.push([x, 1.2, local(S), 1, 2.4, 1]); }
       }
-      for (let S = 60; S < L; S += 140 + r() * 160) { if (!free(S)) continue; const side = r() < 0.5 ? -1 : 1, x = side * (16 + r() * 14); const rot = r() * 0.3; houses.push([x, 2, local(S), 8, 4, 7, rot, [0xF5EFE6, 0xEDE6DA, 0xF3F0EA][(r() * 3) | 0]]); roofs.push([x, 4, local(S), 8.8, 2.4, 7.6, rot]); }
-      for (let S = 0; S < L; S += 50) if (free(S)) posts.push([4.3, 0.5, local(S), 1, 1, 1]);
+      for (let S = -150; S < L; S += 140 + r() * 160) { if (!free(S)) continue; const side = r() < 0.5 ? -1 : 1, x = side * (16 + r() * 14); const rot = r() * 0.3; houses.push([x, 2, local(S), 8, 4, 7, rot, [0xF5EFE6, 0xEDE6DA, 0xF3F0EA][(r() * 3) | 0]]); roofs.push([x, 4, local(S), 8.8, 2.4, 7.6, rot]); }
+      for (let S = -200; S < L; S += 50) if (free(S)) posts.push([4.3, 0.5, local(S), 1, 1, 1]);
       inst('pine', () => new THREE.ConeGeometry(1, 1, 7), mat('pineM', () => std(0x3E8A4C, { flatShading: true, roughness: 1 })), pines);
       inst('crown', () => new THREE.IcosahedronGeometry(1, 1), mat('crownM', () => std(0xffffff, { flatShading: true, roughness: 1 })), round);
       inst('trunk', () => new THREE.CylinderGeometry(0.14, 0.2, 1, 6), mat('trunkM', () => std(0x6B4F3A)), trunks);
@@ -397,13 +397,13 @@ export function buildSim(K) {
       const blds = [], swalk = [], parked = [], trees = [], lampP = [], lampH = [], pools = [];
       const PALETTE = [0xF6F1E9, 0xE9EEF6, 0xF4E6DE, 0xE7F0EA, 0xFFFFFF, 0xF2ECF8];
       // trottoirs par tronçons (coupés aux carrefours)
-      let a = -60;
-      for (let S = -60; S <= L; S += 2) { if (!free(S) || S >= L) { if (S - a > 2) for (const sd of [-1, 1]) swalk.push([sd * 7.35, 0.08, local((a + S) / 2), 3.3, 0.16, S - a]); a = S + 2; } }
+      let a = -220;
+      for (let S = -220; S <= L; S += 2) { if (!free(S) || S >= L) { if (S - a > 2) for (const sd of [-1, 1]) swalk.push([sd * 7.35, 0.08, local((a + S) / 2), 3.3, 0.16, S - a]); a = S + 2; } }
       for (const sd of [-1, 1]) {
-        let S = -50; while (S < L) { const w = 8 + r() * 8; if (free(S) && free(S + w)) blds.push([sd * (9.5 + 5), 0, local(S + w / 2), 10, 7 + r() * 13, w - 0.6, 0, PALETTE[(r() * PALETTE.length) | 0]]); S += w; }
-        const reserve = spec.reserve || []; for (let S2 = 10; S2 < L; S2 += 6 + r() * 7) { if (!free(S2) || r() < 0.35 || reserve.some(q => Math.abs(q - S2) < 9)) continue; parked.push({ S: S2, x: sd * 4.6, c: [0x3A6DF0, 0xE84A4A, 0x2E3440, 0xF4F6FA, 0x9AA3AF, 0x2FA37A, 0xF2B233][(r() * 7) | 0], sd }); S2 += 3; }
-        for (let S2 = 8; S2 < L; S2 += 18) if (free(S2)) { trees.push([sd * 6.4, 3.4, local(S2), 1.5, 1.6, 1.5, 0, [0x5BA65A, 0x4E9A52][(S2 | 0) % 2]]); }
-        for (let S2 = 0; S2 < L; S2 += 26) if (free(S2)) { lampP.push([sd * 6.0, 3, local(S2), 1, 6, 1]); lampH.push([sd * 5.0, 6.05, local(S2), 1, 1, 1]); pools.push([sd * 4.2, 0.03, local(S2), 9, 1, 9]); }
+        let S = -210; while (S < L) { const w = 8 + r() * 8; if (free(S) && free(S + w)) blds.push([sd * (9.5 + 5), 0, local(S + w / 2), 10, 7 + r() * 13, w - 0.6, 0, PALETTE[(r() * PALETTE.length) | 0]]); S += w; }
+        const reserve = spec.reserve || []; for (let S2 = -190; S2 < L; S2 += 6 + r() * 7) { if (!free(S2) || r() < 0.35 || reserve.some(q => Math.abs(q - S2) < 9)) continue; parked.push({ S: S2, x: sd * 4.6, c: [0x3A6DF0, 0xE84A4A, 0x2E3440, 0xF4F6FA, 0x9AA3AF, 0x2FA37A, 0xF2B233][(r() * 7) | 0], sd }); S2 += 3; }
+        for (let S2 = -190; S2 < L; S2 += 18) if (free(S2)) { trees.push([sd * 6.4, 3.4, local(S2), 1.5, 1.6, 1.5, 0, [0x5BA65A, 0x4E9A52][Math.abs(S2 | 0) % 2]]); }
+        for (let S2 = -208; S2 < L; S2 += 26) if (free(S2)) { lampP.push([sd * 6.0, 3, local(S2), 1, 6, 1]); lampH.push([sd * 5.0, 6.05, local(S2), 1, 1, 1]); pools.push([sd * 4.2, 0.03, local(S2), 9, 1, 9]); }
       }
       inst('bld', () => new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0), mat('bldM', () => new THREE.MeshStandardMaterial({ map: tex(canvas(256, 512, (x, w, h) => { x.fillStyle = '#fff'; x.fillRect(0, 0, w, h); for (let yy = 30; yy < h - 90; yy += 62) for (let xx = 18; xx < w - 30; xx += 60) { x.fillStyle = '#8FA6C4'; x.fillRect(xx, yy, 36, 40); x.fillStyle = 'rgba(255,255,255,.55)'; x.fillRect(xx, yy, 36, 4); } x.fillStyle = '#6E7F98'; x.fillRect(0, h - 70, w, 70); x.fillStyle = '#B9C8DB'; x.fillRect(16, h - 62, w - 32, 50); })), roughness: 0.9 })), blds.map(b => [b[0] + (b[0] > 0 ? b[3] / 2 - 5 : -b[3] / 2 + 5), b[1], b[2], b[3], b[4], b[5], 0, b[7]]));
       inst('swk', () => new THREE.BoxGeometry(1, 1, 1), mat('swkM', () => std(0xD8DCE3, { roughness: 0.95 })), swalk, false);
@@ -428,13 +428,13 @@ export function buildSim(K) {
     }
     if (env === 'autoroute') {
       const rails = [], posts = [], far = [], opp = [];
-      for (let S = -40; S < L; S += 4) { posts.push([6.6, 0.4, local(S), 1, 1, 1]); posts.push([-3.95, 0.4, local(S), 1, 1, 1]); }
-      for (let S = -40; S < L; S += 9 + r() * 12) for (const sd of [-1, 1]) if (r() < 0.5) far.push([sd > 0 ? 12 + r() * 30 : -24 - r() * 30, 3.5, local(S), 2 + r(), 2 + r(), 2 + r(), 0, [0x4E9A52, 0x5BA65A, 0x3F8A4C][(r() * 3) | 0]]);
+      for (let S = -200; S < L; S += 4) { posts.push([6.6, 0.4, local(S), 1, 1, 1]); posts.push([-3.95, 0.4, local(S), 1, 1, 1]); }
+      for (let S = -200; S < L; S += 9 + r() * 12) for (const sd of [-1, 1]) if (r() < 0.5) far.push([sd > 0 ? 12 + r() * 30 : -24 - r() * 30, 3.5, local(S), 2 + r(), 2 + r(), 2 + r(), 0, [0x4E9A52, 0x5BA65A, 0x3F8A4C][(r() * 3) | 0]]);
       inst('post', () => new THREE.BoxGeometry(0.12, 1, 0.12), mat('postM', () => std(0xF4F4F0)), posts, false);
       const rail = mat('railM', () => std(0xC6CCD4, { metalness: 0.7, roughness: 0.35 }));
-      for (const x of [6.6, -3.95]) { const m = new THREE.Mesh(geo('rail', () => new THREE.BoxGeometry(0.08, 0.32, 1)), rail); m.scale.z = L + 80; m.position.set(x, 0.7, local(L / 2 - 20)); m.castShadow = true; run.add(m); rails.push(m); }
-      const med = new THREE.Mesh(geo('med', () => new THREE.BoxGeometry(0.6, 0.9, 1)), mat('medM', () => std(0xD5D8DC))); med.scale.z = L + 80; med.position.set(-4.4, 0.45, local(L / 2 - 20)); med.castShadow = true; run.add(med);
-      const oppRoad = new THREE.Mesh(geo('oppR', () => new THREE.PlaneGeometry(8, 1).rotateX(-Math.PI / 2)), roadMat); oppRoad.scale.z = L + 80; oppRoad.position.set(-9.4, 0.001, local(L / 2 - 20)); oppRoad.receiveShadow = true; run.add(oppRoad);
+      for (const x of [6.6, -3.95]) { const m = new THREE.Mesh(geo('rail', () => new THREE.BoxGeometry(0.08, 0.32, 1)), rail); m.scale.z = L + 240; m.position.set(x, 0.7, local(L / 2 - 100)); m.castShadow = true; run.add(m); rails.push(m); }
+      const med = new THREE.Mesh(geo('med', () => new THREE.BoxGeometry(0.6, 0.9, 1)), mat('medM', () => std(0xD5D8DC))); med.scale.z = L + 240; med.position.set(-4.4, 0.45, local(L / 2 - 100)); med.castShadow = true; run.add(med);
+      const oppRoad = new THREE.Mesh(geo('oppR', () => new THREE.PlaneGeometry(8, 1).rotateX(-Math.PI / 2)), roadMat); oppRoad.scale.z = L + 240; oppRoad.position.set(-9.4, 0.001, local(L / 2 - 100)); oppRoad.receiveShadow = true; run.add(oppRoad);
       inst('crownA', () => new THREE.IcosahedronGeometry(1, 1), mat('crownM', () => std(0xffffff, { flatShading: true, roughness: 1 })), far);
       void opp; void rails;
     }
@@ -620,6 +620,13 @@ export function buildSim(K) {
       inst('house', () => new THREE.BoxGeometry(1, 1, 1), mat('houseM', () => std(0xffffff, { roughness: 0.9 })), H);
       inst('roofP', () => new THREE.ExtrudeGeometry(new THREE.Shape([new THREE.Vector2(-0.5, 0), new THREE.Vector2(0.5, 0), new THREE.Vector2(0, 1)]), { depth: 1, bevelEnabled: false }).translate(0, 0, -0.5), mat('roofM', () => std(0xC2593E, { roughness: 0.8 })), R2);
     },
+    /* zoom de la caméra sur un objet (panneau, acteur) sans la déplacer : k = part du regard tournée vers l'objet */
+    regarde(o, fov = 20, ms = 1000, k = 1, dy = 0) {
+      const p = new THREE.Vector3(); const obj = o.isObject3D ? (o.userData.head || o) : o.g; obj.getWorldPosition(p); p.y += dy;
+      const base = (POSES[camMode] || POSES.vue)();
+      return pose({ pos: base.pos, target: base.target.clone().lerp(p, k), fov }, ms);
+    },
+    eclaire(g, color = 0xffc629, ms = 1200) { if (g && g.userData && g.userData.halo && K.flashSign) return K.flashSign(g, color, ms); },
     hitbox(a, w = 1.2, h = 2, d = 1.2, dy = 0) { const m = new THREE.Mesh(geo('hit', () => new THREE.BoxGeometry(1, 1, 1)), mat('hitM', () => new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }))); m.scale.set(w, h, d); m.position.y = h / 2 + dy; (a.g || a).add(m); return m; },
     marque(S, x, color = 0x34C759) { const m = new THREE.Mesh(geo('mark', () => new THREE.RingGeometry(0.5, 0.62, 40).rotateX(-Math.PI / 2)), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.9, depthWrite: false })); ownMats.push(m.material); m.position.set(x, 0.03, local(S)); run.add(m); return m; },
     update(dt, t) {
