@@ -305,7 +305,7 @@ button:focus-visible{outline:2px solid var(--jaune);outline-offset:3px;border-ra
 }
 
 /* ===================== v3 : catalogue, fiche, séries ===================== */
-.screen.dimbg{background:linear-gradient(to bottom,rgba(238,244,255,.62) 0,rgba(238,244,255,.9) 240px,rgba(238,244,255,.96) 100%)}
+.screen.dimbg{background:linear-gradient(to bottom,rgba(238,244,255,.86) 0,rgba(238,244,255,.9) 240px,rgba(238,244,255,.96) 100%)}
 .page-head{display:grid;gap:8px}
 .page-head h1{font-size:56px}
 .road li{display:block;padding:0}
@@ -477,3 +477,4 @@ button:focus-visible{outline:2px solid var(--jaune);outline-offset:3px;border-ra
 .plot{filter:drop-shadow(0 8px 12px rgba(16,42,96,.22))}
 .welcome .scene{box-shadow:0 10px 24px -12px rgba(16,42,96,.45)}
 .track .tick{background:#fff}
+#s-salle .hero{box-shadow:0 400vh 0 400vh var(--nuit)}
