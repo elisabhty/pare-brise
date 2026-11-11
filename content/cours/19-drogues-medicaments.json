@@ -41,7 +41,35 @@
    "titre": "Drogues et médicaments",
    "sous": "ce qui altère sans prévenir",
    "dire": "Avant de conduire, tu observes une boîte de médicaments et les risques liés aux substances. Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -62,7 +90,47 @@
      "Réflexes, vision, jugement altérés"
     ]
    ],
-   "dire": "Pour les stupéfiants, il n’y a aucun seuil toléré : une trace suffit. Le dépistage se fait par un test salivaire. Le cannabis, par exemple, ralentit les réflexes et perturbe la perception des distances."
+   "dire": "Pour les stupéfiants, il n’y a aucun seuil toléré : une trace suffit. Le dépistage se fait par un test salivaire. Le cannabis, par exemple, ralentit les réflexes et perturbe la perception des distances.",
+   "decor": {
+    "env": "route",
+    "kmh": 30,
+    "camera": "proche",
+    "meteo": "jour",
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 35,
+      "x": 4.3,
+      "gilet": true,
+      "cap": -90
+     },
+     {
+      "type": "ambulance",
+      "S": 44,
+      "x": 4.7,
+      "couleur": 1981066
+     },
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "gilet": true,
+      "haut": 1981066
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.42,
+    1.62,
+    2.41
+   ]
   },
   {
    "type": "chiffres",
@@ -87,7 +155,47 @@
     ]
    ],
    "dire": "Conduire après avoir consommé des stupéfiants : jusqu’à deux ans de prison, 4 500 euros d’amende et 6 points. Avec de l’alcool en plus : jusqu’à trois ans et 9 000 euros.",
-   "vitesse": 0
+   "vitesse": 0,
+   "decor": {
+    "env": "route",
+    "kmh": 30,
+    "camera": "proche",
+    "meteo": "jour",
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 35,
+      "x": 4.3,
+      "gilet": true,
+      "cap": -90
+     },
+     {
+      "type": "ambulance",
+      "S": 44,
+      "x": 4.7,
+      "couleur": 1981066
+     },
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "gilet": true,
+      "haut": 1981066
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.59,
+    0.67,
+    0.89
+   ]
   },
   {
    "type": "liste",
@@ -113,6 +221,39 @@
     "1",
     "2",
     "3"
+   ],
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    1.0,
+    2.0,
+    3.0
    ]
   },
   {
@@ -130,7 +271,41 @@
      "niveaux de pictogramme"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier ce que tu as retenu."
+   "dire": "Cours terminé. Passe à la pratique pour vérifier ce que tu as retenu.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

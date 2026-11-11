@@ -42,7 +42,32 @@
    "titre": "La nuit et l’éclairage",
    "sous": "voir et être vu",
    "dire": "Le soleil se couche. Les premières ombres apparaissent sur la route. Cours numéro 15 : la nuit. Tu ne vois que ce que tes phares éclairent, et les autres te voient grâce à eux.",
-   "vitesse": 60
+   "vitesse": 60,
+   "decor": {
+    "env": "route",
+    "kmh": 60,
+    "camera": "plan",
+    "meteo": "couchant",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 240,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "feux",
+      {
+       "croisement": true
+      }
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -104,7 +129,7 @@
      }
     ],
     [
-     1.6,
+     "p0+1.6",
      "feux",
      {
       "route": false,
@@ -132,7 +157,53 @@
      "Pas de brouillard arrière : il éblouit"
     ]
    ],
-   "dire": "Les feux de brouillard avant s’utilisent par brouillard, neige ou forte pluie. Le feu de brouillard arrière, uniquement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit."
+   "dire": "Les feux de brouillard avant s’utilisent par brouillard, neige ou forte pluie. Le feu de brouillard arrière, uniquement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit.",
+   "decor": {
+    "env": "route",
+    "kmh": 40,
+    "camera": "poursuite",
+    "meteo": "brouillard",
+    "feux": {
+     "croisement": true,
+     "brouillardAv": true
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -40,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "feux",
+      {
+       "brouillardAr": true
+      }
+     ],
+     [
+      "p2",
+      "meteo",
+      "pluie"
+     ],
+     [
+      "p2",
+      "feux",
+      {
+       "brouillardAr": false,
+       "brouillardAv": false
+      }
+     ]
+    ]
+   },
+   "sync": [
+    0.26,
+    1.25,
+    2.1
+   ]
   },
   {
    "type": "chiffres",
@@ -151,8 +222,35 @@
      "pour s’arrêter à 70 km/h (règle du code)"
     ]
    ],
-   "dire": "À 70 kilomètres heure, ta distance d’arrêt approche 50 mètres, alors que tes feux de croisement n’éclairent qu’à 30. La nuit, adapte ta vitesse à ce que tu vois.",
-   "vitesse": 70
+   "dire": "À 70 kilomètres heure, ta distance d’arrêt est d’environ 49 mètres, alors que tes feux de croisement n’éclairent qu’à 30 mètres. La nuit, adapte ta vitesse à ce que tu vois.",
+   "vitesse": 70,
+   "decor": {
+    "env": "route",
+    "kmh": 70,
+    "camera": "plan",
+    "meteo": "nuit",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": 4.4
+     },
+     {
+      "type": "voiture",
+      "S": 300,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.89,
+    0.42
+   ]
   },
   {
    "type": "situation",
@@ -184,12 +282,14 @@
     [
      0,
      "Sans gilet",
-     "vu tard"
+     "vu tard",
+     0
     ],
     [
      1,
      "Avec gilet",
-     "vu de loin"
+     "vu de loin",
+     1
     ]
    ]
   },
@@ -212,7 +312,25 @@
      "feux de brouillard"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de choisir les bons feux."
+   "dire": "Cours terminé. Passe à la pratique : à toi de choisir les bons feux.",
+   "decor": {
+    "env": "route",
+    "kmh": 60,
+    "camera": "plan",
+    "meteo": "nuit",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 220,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 10134447
+     }
+    ]
+   }
   }
  ]
 }

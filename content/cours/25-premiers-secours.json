@@ -42,7 +42,48 @@
    "titre": "Protéger, alerter, secourir",
    "sous": "les gestes qui sauvent",
    "dire": "Un accident vient de se produire sur une route. La priorité est d’éviter un second accident. Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir.",
-   "vitesse": 30
+   "vitesse": 30,
+   "decor": {
+    "env": "route",
+    "kmh": 35,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 50,
+      "x": 1.2,
+      "cap": 28,
+      "couleur": 9876655
+     },
+     {
+      "type": "voiture",
+      "S": 57,
+      "x": -0.6,
+      "cap": -150,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 43,
+      "x": 4.4,
+      "gilet": true
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      28
+     ],
+     [
+      "p1",
+      "feux",
+      {
+       "detresse": true
+      }
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -120,6 +161,49 @@
     "18",
     "17",
     "114"
+   ],
+   "decor": {
+    "env": "route",
+    "kmh": 0,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 24,
+      "x": 1.2,
+      "cap": 28,
+      "couleur": 9876655
+     },
+     {
+      "type": "voiture",
+      "S": 31,
+      "x": -0.6,
+      "cap": -150,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 17,
+      "x": 4.4,
+      "gilet": true
+     }
+    ],
+    "script": [
+     [
+      0,
+      "feux",
+      {
+       "detresse": true
+      }
+     ]
+    ]
+   },
+   "sync": [
+    1.05,
+    2.02,
+    2.32,
+    2.7,
+    3.06
    ]
   },
   {
@@ -145,7 +229,49 @@
      "Fuite, incendie, circulation"
     ]
    ],
-   "dire": "Ton message : le lieu exact, ce qui s’est passé, le nombre de victimes et leur état, et les dangers éventuels. Et ne raccroche que lorsqu’on te le dit."
+   "dire": "Ton message : le lieu exact, ce qui s’est passé, le nombre de victimes et leur état, et les dangers éventuels. Et ne raccroche que lorsqu’on te le dit.",
+   "decor": {
+    "env": "route",
+    "kmh": 0,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 24,
+      "x": 1.2,
+      "cap": 28,
+      "couleur": 9876655
+     },
+     {
+      "type": "voiture",
+      "S": 31,
+      "x": -0.6,
+      "cap": -150,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 17,
+      "x": 4.4,
+      "gilet": true
+     }
+    ],
+    "script": [
+     [
+      0,
+      "feux",
+      {
+       "detresse": true
+      }
+     ]
+    ]
+   },
+   "sync": [
+    0.12,
+    0.35,
+    0.44,
+    0.81
+   ]
   },
   {
    "type": "liste",
@@ -174,7 +300,50 @@
      "Massage cardiaque et défibrillateur"
     ]
    ],
-   "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Une victime inconsciente qui respire : position latérale de sécurité. Si elle ne respire plus : massage cardiaque et défibrillateur."
+   "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Une victime inconsciente qui respire : position latérale de sécurité. Si elle ne respire plus : massage cardiaque et défibrillateur.",
+   "decor": {
+    "env": "route",
+    "kmh": 0,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 24,
+      "x": 1.2,
+      "cap": 28,
+      "couleur": 9876655
+     },
+     {
+      "type": "voiture",
+      "S": 31,
+      "x": -0.6,
+      "cap": -150,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 17,
+      "x": 4.4,
+      "gilet": true
+     }
+    ],
+    "script": [
+     [
+      0,
+      "feux",
+      {
+       "detresse": true
+      }
+     ]
+    ]
+   },
+   "sync": [
+    1.03,
+    2.05,
+    3.04,
+    4.14,
+    5.15
+   ]
   },
   {
    "type": "fin",
@@ -195,7 +364,43 @@
      "partout en Europe"
     ]
    ],
-   "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo, puis passe à la pratique."
+   "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo, puis passe à la pratique.",
+   "decor": {
+    "env": "route",
+    "kmh": 0,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 24,
+      "x": 1.2,
+      "cap": 28,
+      "couleur": 9876655
+     },
+     {
+      "type": "voiture",
+      "S": 31,
+      "x": -0.6,
+      "cap": -150,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 17,
+      "x": 4.4,
+      "gilet": true
+     }
+    ],
+    "script": [
+     [
+      0,
+      "feux",
+      {
+       "detresse": true
+      }
+     ]
+    ]
+   }
   }
  ]
 }

@@ -126,7 +126,12 @@
      "Passage piéton"
     ]
    ],
-   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce généralement un danger. Un virage dangereux, une chaussée glissante ou encore un passage piéton. Ces panneaux sont habituellement placés à 150 mètres du danger hors agglomération et à 50 mètres en ville. Ton réflexe ? Rester vigilant, anticiper et adapter ta vitesse."
+   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce généralement un danger. Un virage dangereux, une chaussée glissante ou encore un passage piéton. Ces panneaux sont habituellement placés à 150 mètres du danger hors agglomération et à 50 mètres en ville. Ton réflexe ? Rester vigilant, anticiper et adapter ta vitesse.",
+   "sync": [
+    1.01,
+    1.32,
+    1.76
+   ]
   },
   {
    "type": "famille",
@@ -140,7 +145,12 @@
     "B14:90"
    ],
    "puce": "Rond bordé de rouge",
-   "dire": "Un panneau rond bordé de rouge indique généralement une interdiction ou une restriction. Il peut t’interdire de dépasser, de tourner ou de circuler au-delà d’une certaine vitesse."
+   "dire": "Un panneau rond bordé de rouge indique généralement une interdiction ou une restriction. Il peut t’interdire de dépasser, de tourner ou de circuler au-delà d’une certaine vitesse.",
+   "sync": [
+    1.23,
+    1.37,
+    1.88
+   ]
   },
   {
    "type": "panneaux",
@@ -161,7 +171,11 @@
      "Arrêt et stationnement interdits"
     ]
    ],
-   "dire": "Attention à deux panneaux souvent confondus ! Une seule barre rouge sur fond bleu interdit le stationnement, mais autorise généralement un arrêt. Une croix rouge sur fond bleu interdit à la fois l’arrêt et le stationnement."
+   "dire": "Attention à deux panneaux souvent confondus ! Une seule barre rouge sur fond bleu interdit le stationnement, mais autorise généralement un arrêt. Une croix rouge sur fond bleu interdit à la fois l’arrêt et le stationnement.",
+   "sync": [
+    1.07,
+    2.02
+   ]
   },
   {
    "type": "famille",
@@ -175,7 +189,12 @@
     "B22a"
    ],
    "puce": "Tu dois le faire",
-   "dire": "Un panneau rond bleu indique généralement une obligation. Contrairement aux interdictions, il te précise ce que tu dois faire. Par exemple, tourner dans une direction imposée ou emprunter une voie réservée."
+   "dire": "Un panneau rond bleu indique généralement une obligation. Contrairement aux interdictions, il te précise ce que tu dois faire. Par exemple, tourner dans une direction imposée ou emprunter une voie réservée.",
+   "sync": [
+    2.13,
+    2.38,
+    2.62
+   ]
   },
   {
    "type": "famille",
@@ -189,7 +208,12 @@
     "C20a"
    ],
    "puce": "Il te renseigne",
-   "dire": "Un panneau carré ou rectangulaire, souvent bleu, te donne une information utile. Il peut signaler un parking, un passage piéton ou un sens unique. Ces panneaux t’aident à comprendre ton environnement et les conditions de circulation."
+   "dire": "Un panneau carré ou rectangulaire, souvent bleu, te donne une information utile. Il peut signaler un parking, un passage piéton ou un sens unique. Ces panneaux t’aident à comprendre ton environnement et les conditions de circulation.",
+   "sync": [
+    1.28,
+    1.79,
+    1.46
+   ]
   },
   {
    "type": "famille",
@@ -204,7 +228,12 @@
     "B40"
    ],
    "puce": "Fin de prescription",
-   "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir peut signaler la fin de cette limitation. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin."
+   "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir peut signaler la fin de cette limitation. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin.",
+   "sync": [
+    2.15,
+    1.45,
+    1.45
+   ]
   },
   {
    "type": "famille",
@@ -218,7 +247,11 @@
     "AB3a"
    ],
    "puce": "Des formes uniques",
-   "dire": "Certains panneaux possèdent une forme unique pour être facilement reconnaissables. Le STOP, avec ses huit côtés, impose un arrêt complet, même si personne n’arrive. Le triangle pointe vers le bas signifie « Cédez le passage ». Tu ralentis et tu t’arrêtes uniquement si nécessaire pour laisser passer les usagers prioritaires."
+   "dire": "Certains panneaux possèdent une forme unique pour être facilement reconnaissables. Le STOP, avec ses huit côtés, impose un arrêt complet, même si personne n’arrive. Le triangle pointe vers le bas signifie « Cédez le passage ». Tu ralentis et tu t’arrêtes uniquement si nécessaire pour laisser passer les usagers prioritaires.",
+   "sync": [
+    1.01,
+    2.66
+   ]
   },
   {
    "type": "famille",
@@ -231,7 +264,11 @@
     "AB7"
    ],
    "puce": "Route prioritaire",
-   "dire": "Enfin, le losange jaune indique une route prioritaire. Lorsqu’il est barré d’une bande noire, cette priorité prend fin."
+   "dire": "Enfin, le losange jaune indique une route prioritaire. Lorsqu’il est barré d’une bande noire, cette priorité prend fin.",
+   "sync": [
+    0.16,
+    1.19
+   ]
   },
   {
    "type": "famille",
@@ -244,7 +281,11 @@
     "AK14"
    ],
    "puce": "Prime sur le permanent",
-   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est notamment le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : lorsqu’elles se contredisent, les indications de la signalisation temporaire priment sur celles de la signalisation permanente."
+   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est notamment le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : lorsqu’elles se contredisent, les indications de la signalisation temporaire priment sur celles de la signalisation permanente.",
+   "sync": [
+    1.74,
+    2.18
+   ]
   },
   {
    "type": "panneaux",
@@ -270,7 +311,12 @@
      "Symbole"
     ]
    ],
-   "dire": "Pour reconnaître rapidement un panneau, retiens cette méthode en trois étapes. D’abord, observe sa forme. Elle t’aide à identifier sa famille. Ensuite, regarde sa couleur. Elle te donne un indice supplémentaire. Enfin, identifie son symbole. C’est lui qui précise le message. Avec cette méthode, tu pourras comprendre plus facilement les panneaux que tu rencontreras."
+   "dire": "Pour reconnaître rapidement un panneau, retiens cette méthode en trois étapes. D’abord, observe sa forme. Elle t’aide à identifier sa famille. Ensuite, regarde sa couleur. Elle te donne un indice supplémentaire. Enfin, identifie son symbole. C’est lui qui précise le message. Avec cette méthode, tu pourras comprendre plus facilement les panneaux que tu rencontreras.",
+   "sync": [
+    1.74,
+    3.68,
+    5.69
+   ]
   },
   {
    "type": "liste",
@@ -308,7 +354,16 @@
      "Temporaire"
     ]
    ],
-   "dire": "Bravo ! Tu connais maintenant les sept règles essentielles pour reconnaître les panneaux."
+   "dire": "Bravo ! Tu connais maintenant les sept règles essentielles pour reconnaître les panneaux.",
+   "sync": [
+    0.0,
+    0.5,
+    1.0,
+    1.14,
+    1.28,
+    1.42,
+    1.56
+   ]
   },
   {
    "type": "fin",

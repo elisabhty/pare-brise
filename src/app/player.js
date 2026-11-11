@@ -7,7 +7,7 @@ import { saveCourse } from './progress.js';
 import { Voice, splitSentences, estimate, sayTimed } from './voice.js';
 import { Sound } from './sound.js';
 import { Labels } from './labels.js';
-import { TYPES, ov, isQuestion, View, Live, camOf, paintDash } from './scenes.js';
+import { TYPES, ov, isQuestion, View, Live, camOf, paintDash, Frame } from './scenes.js';
 import { actorInfo, signInfo } from './infos.js';
 import { show, currentScreen } from './nav.js';
 import { plot, react, line } from './mascot.js';
@@ -65,10 +65,14 @@ export const Player = {
     this.caption(sc, -1);
     $('#quiz').hidden = true;
     this.answered = -1;
-    const ctx = { live: () => tok === this.sceneTok && currentScreen() === 'cours' };
+    const ctx = { live: () => tok === this.sceneTok && currentScreen() === 'cours', phrase: () => this.k };
+    this.ctx = ctx;
     const T = TYPES[sc.type];
     if (T) T.enter(sc, ctx);
+    Frame.set(sc.decor && has3D);
     if (isQuestion(sc)) this.showQuiz(sc);
+    // en pause, l'écran montre tout (la liste entière, toutes les étiquettes) ; en lecture, il se construit avec la voix
+    if (!this.playing && T.beat) setTimeout(() => { if (tok === this.sceneTok && !this.playing) try { T.beat(sc, 999, ctx, 0); } catch (e) {} }, 0);
     saveCourse(this.c.id, { scene: i });
     this.paintRail(); this.paintText();
   },
@@ -131,6 +135,7 @@ export const Player = {
     for (let k = from; k < sc.sents.length; k++) {
       if (!live()) return;
       this.k = k; this.kT0 = performance.now(); this.paintText();
+      { const T = TYPES[sc.type]; if (T && T.beat && this.ctx) try { T.beat(sc, k, this.ctx, sEst(sc.sents[k])); } catch (e) {} }
       this.caption(sc, k);
       Sound.duck(true); await sayTimed(sc.sents[k], live); Sound.duck(false);
       if (!live()) return;
@@ -138,6 +143,7 @@ export const Player = {
     }
     if (!live()) return;
     this.k = sc.sents.length; this.caption(sc, sc.sents.length);
+    { const T = TYPES[sc.type]; if (T && T.beat && this.ctx) try { T.beat(sc, 999, this.ctx, 0); } catch (e) {} }
     if (isQuestion(sc)) return;
     const rest = (sc.min || 4.5) * 1000 - (performance.now() - this.sceneT0);
     if (rest > 0) await wait(rest);
@@ -270,7 +276,7 @@ export const Player = {
       if (has3D) { if (inSim()) { const cam = camOf(Live.sc); SIM.pose(cam, 900); paintDash(cam); } if (R && R.explore) R.explore(false); }
       if (resume) this.play(); else this.setPlaying(this.playing);
     }
-    this.paintRail();
+    Frame.apply(); this.paintRail();
   },
   turn(dx, dy) { if (!has3D) return; if (inSim()) SIM.orbitBy(-dx * 0.006, dy * 0.004); else if (R && R.look) R.look(dx, dy); },
   zoom(k) { if (!has3D) return; if (inSim()) SIM.orbitBy(0, 0, k); else if (R && R.zoomBy) R.zoomBy(1 / k); },
@@ -343,7 +349,7 @@ export const Player = {
   },
   toggleChrome() {
     const s = $('#s-cours'), on = !s.classList.contains('immersif');
-    s.classList.toggle('immersif', on);
+    s.classList.toggle('immersif', on); Frame.apply();
     if (on && !store.get('immersifVu', false)) { store.set('immersifVu', true); this.toast('Plein écran : touche l’image pour revenir'); }
   },
   tickUI() {

@@ -47,7 +47,48 @@
    "titre": "Piétons et enfants",
    "sous": "les plus fragiles d’abord",
    "dire": "Tu traverses une rue commerçante fréquentée par des piétons. Cours numéro 11 : les piétons et les enfants. Face à une voiture, ils n’ont aucune protection.",
-   "vitesse": 30
+   "vitesse": 30,
+   "decor": {
+    "env": "ville",
+    "kmh": 20,
+    "camera": "proche",
+    "passage": 46,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "vx": -1.1,
+      "haut": 3122042
+     },
+     {
+      "type": "pieton",
+      "S": 30,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 58,
+      "x": -6.5,
+      "kmh": -3.4,
+      "haut": 16742938
+     },
+     {
+      "type": "enfant",
+      "S": 66,
+      "x": 6.4,
+      "kmh": 3
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      41
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -105,7 +146,39 @@
     ]
    ],
    "dire": "Ne pas céder le passage à un piéton coûte 135 euros et 6 points. C’est autant qu’un excès de vitesse de 50 kilomètres heure.",
-   "vitesse": 20
+   "vitesse": 20,
+   "decor": {
+    "env": "ville",
+    "kmh": 20,
+    "camera": "proche",
+    "passage": 40,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 40,
+      "x": 5.4,
+      "vx": -1.15,
+      "haut": 16734815
+     },
+     {
+      "type": "pieton",
+      "S": 41.5,
+      "x": -6.2,
+      "vx": 1.0
+     }
+    ],
+    "script": [
+     [
+      0.2,
+      "arret",
+      35
+     ]
+    ]
+   },
+   "sync": [
+    0.83,
+    0.63
+   ]
   },
   {
    "type": "panneaux",
@@ -177,7 +250,64 @@
      "À l’allure du pas, seulement si l’accès est autorisé"
     ]
    ],
-   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : on y roule au pas, seulement si l’accès est autorisé, et les piétons sont toujours prioritaires."
+   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : on y roule au pas, seulement si l’accès est autorisé, et les piétons sont toujours prioritaires.",
+   "decor": {
+    "env": "ville",
+    "kmh": 38,
+    "camera": "plan",
+    "signaux": [
+     [
+      "B30",
+      60
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 60,
+      "x": 6.6,
+      "kmh": 3.4
+     },
+     {
+      "type": "pieton",
+      "S": 95,
+      "x": 0.4,
+      "kmh": 3.4,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 99,
+      "x": -0.6,
+      "kmh": 3.2
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "vitesse",
+      30,
+      2
+     ],
+     [
+      "p2",
+      "vitesse",
+      20,
+      2
+     ],
+     [
+      "p3",
+      "vitesse",
+      7,
+      2
+     ]
+    ]
+   },
+   "sync": [
+    1.3,
+    2.08,
+    3.0
+   ]
   },
   {
    "type": "fin",
@@ -198,7 +328,41 @@
      "km/h en zone 30"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour repérer les piétons à temps."
+   "dire": "Cours terminé. Passe à la pratique pour repérer les piétons à temps.",
+   "decor": {
+    "env": "ville",
+    "kmh": 20,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

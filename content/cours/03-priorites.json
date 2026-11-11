@@ -56,7 +56,65 @@
    "titre": "Les priorités",
    "sous": "qui passe en premier ?",
    "vitesse": 50,
-   "dire": "Tu approches d’une intersection. Plusieurs véhicules arrivent de directions différentes. Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ?"
+   "dire": "Tu approches d’une intersection. Plusieurs véhicules arrivent de directions différentes. Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ?",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "proche",
+    "carrefour": {
+     "S": 46
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 30,
+      "vx": -7,
+      "couleur": 15223370
+     },
+     {
+      "type": "voiture",
+      "S": 44.25,
+      "x": -40,
+      "vx": 8,
+      "couleur": 3829232
+     },
+     {
+      "type": "velo",
+      "S": 47.75,
+      "x": 62,
+      "vx": -4.5
+     },
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 95,
+      "vx": -7.5,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 44.25,
+      "x": -110,
+      "vx": 8,
+      "couleur": 3122042
+     },
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 150,
+      "vx": -7,
+      "couleur": 3028032
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      39
+     ]
+    ]
+   }
   },
   {
    "type": "panneaux",
@@ -91,7 +149,11 @@
     "AB7"
    ],
    "puce": "Jusqu'au panneau de fin",
-   "dire": "Le losange jaune, lui, te rend prioritaire à toutes les intersections, jusqu'au panneau de fin barré de noir."
+   "dire": "Le losange jaune, lui, te rend prioritaire à toutes les intersections, jusqu'au panneau de fin barré de noir.",
+   "sync": [
+    0.0,
+    0.84
+   ]
   },
   {
    "type": "panneaux",
@@ -112,7 +174,11 @@
      "Arrêt obligatoire"
     ]
    ],
-   "dire": "Au cédez le passage, tu laisses passer et tu ne t'arrêtes que si quelqu'un arrive. Au stop, l'arrêt est obligatoire dans tous les cas, même si la route est vide."
+   "dire": "Au cédez le passage, tu laisses passer et tu ne t'arrêtes que si quelqu'un arrive. Au stop, l'arrêt est obligatoire dans tous les cas, même si la route est vide.",
+   "sync": [
+    0.01,
+    1.01
+   ]
   },
   {
    "type": "panneaux",
@@ -133,7 +199,11 @@
      "À l'entrée"
     ]
    ],
-   "dire": "Ce panneau annonce un carrefour à sens giratoire. À l'entrée, il y a presque toujours un cédez le passage : tu laisses passer ceux qui sont déjà engagés sur l'anneau."
+   "dire": "Ce panneau annonce un carrefour à sens giratoire. À l'entrée, il y a presque toujours un cédez le passage : tu laisses passer ceux qui sont déjà engagés sur l'anneau.",
+   "sync": [
+    0.42,
+    1.31
+   ]
   },
   {
    "type": "fin",
@@ -154,7 +224,37 @@
      "questions"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de dire qui passe en premier."
+   "dire": "Cours terminé. Passe à la pratique : à toi de dire qui passe en premier.",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "proche",
+    "carrefour": {
+     "S": 46
+    },
+    "signaux": [
+     [
+      "AB1",
+      14
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 30,
+      "vx": -6,
+      "couleur": 15223370
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      39
+     ]
+    ]
+   }
   }
  ]
 }

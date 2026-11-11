@@ -38,7 +38,32 @@
    "titre": "Poids lourds, bus et motos",
    "sous": "les gabarits à part",
    "dire": "Un camion, un bus et une moto circulent autour de toi. Cours numéro 13 : les gros véhicules et les deux-roues motorisés.",
-   "vitesse": 60
+   "vitesse": 60,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 80,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 24,
+      "x": 1.75,
+      "kmh": 80
+     },
+     {
+      "type": "bus",
+      "S": 44,
+      "x": -1.75,
+      "kmh": 84
+     },
+     {
+      "type": "moto",
+      "S": -14,
+      "x": -1.75,
+      "kmh": 104
+     }
+    ]
+   }
   },
   {
    "type": "situation",
@@ -83,7 +108,32 @@
      "Plus long : il faut beaucoup de place"
     ]
    ],
-   "dire": "Dans un virage, un camion se déporte : ne te glisse pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place."
+   "dire": "Dans un virage, un camion se déporte : ne te glisse pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place.",
+   "decor": {
+    "env": "route",
+    "kmh": 45,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 22,
+      "kmh": 45
+     },
+     {
+      "type": "voiture",
+      "S": 200,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.08,
+    1.18,
+    1.52
+   ]
   },
   {
    "type": "situation",
@@ -154,7 +204,46 @@
      "Autorisée sous conditions : laisse-leur la place"
     ]
    ],
-   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. La circulation inter-files est autorisée sous conditions, entre les deux voies les plus à gauche : ne leur ferme pas la porte."
+   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. La circulation inter-files est autorisée sous conditions, entre les deux voies les plus à gauche : ne leur ferme pas la porte.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 45,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 14,
+      "x": -1.75,
+      "kmh": 45,
+      "couleur": 15223370
+     },
+     {
+      "type": "voiture",
+      "S": 40,
+      "x": -1.75,
+      "kmh": 45,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 32,
+      "x": 1.75,
+      "kmh": 45,
+      "couleur": 3829232
+     },
+     {
+      "type": "moto",
+      "S": -20,
+      "x": 0,
+      "kmh": 68
+     }
+    ]
+   },
+   "sync": [
+    0.53,
+    0.88,
+    1.09
+   ]
   },
   {
    "type": "fin",
@@ -175,7 +264,26 @@
      "réflexe : chercher les motos"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de repérer les angles morts et les deux-roues."
+   "dire": "Cours terminé. Passe à la pratique : à toi de repérer les angles morts et les deux-roues.",
+   "decor": {
+    "env": "route",
+    "kmh": 45,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 36,
+      "kmh": 45
+     },
+     {
+      "type": "moto",
+      "S": 120,
+      "x": -1.75,
+      "kmh": -60
+     }
+    ]
+   }
   }
  ]
 }

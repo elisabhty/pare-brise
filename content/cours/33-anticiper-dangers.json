@@ -46,7 +46,47 @@
    "titre": "Anticiper les dangers",
    "sous": "voir le risque avant qu’il apparaisse",
    "vitesse": 30,
-   "dire": "Tu roules dans une rue calme. Une balle apparaît près du trottoir. Aucun enfant n’est encore visible, mais cette balle est déjà un indice : quelqu’un peut surgir. Anticiper, c’est comprendre ce qui pourrait se produire."
+   "dire": "Tu roules dans une rue calme. Une balle apparaît près du trottoir. Aucun enfant n’est encore visible, mais cette balle est déjà un indice : quelqu’un peut surgir. Anticiper, c’est comprendre ce qui pourrait se produire.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "ballon",
+      "S": 42,
+      "x": 4.0
+     },
+     {
+      "type": "pieton",
+      "S": 70,
+      "x": 6.6,
+      "kmh": 3
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "vitesse",
+      12,
+      2
+     ],
+     [
+      "p1",
+      "acteur",
+      0,
+      0,
+      -0.9
+     ],
+     [
+      "p1+3",
+      "acteur",
+      0,
+      0,
+      0
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -325,7 +365,34 @@
     ]
    ],
    "dire": "Le réflexe essentiel : je repère les indices, j’imagine ce qui peut arriver, puis j’adapte ma vitesse et mes distances. Passe à la pratique pour t’entraîner à repérer les risques.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "passage": 60,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 60,
+      "x": 6.4
+     },
+     {
+      "type": "pieton",
+      "S": 42,
+      "x": 6.6,
+      "kmh": 3.4
+     }
+    ],
+    "script": [
+     [
+      1.0,
+      "vitesse",
+      15,
+      1.2
+     ]
+    ]
+   }
   }
  ]
 }

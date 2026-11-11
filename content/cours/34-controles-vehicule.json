@@ -42,7 +42,35 @@
    "titre": "Les contrôles du véhicule",
    "sous": "les vérifications qui évitent les mauvaises surprises",
    "vitesse": 30,
-   "dire": "Tu t’apprêtes à partir. Avant de démarrer, quelques vérifications simples peuvent éviter une panne ou une situation dangereuse. Commençons par ce que tu peux observer autour de la voiture."
+   "dire": "Tu t’apprêtes à partir. Avant de démarrer, quelques vérifications simples peuvent éviter une panne ou une situation dangereuse. Commençons par ce que tu peux observer autour de la voiture.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -67,7 +95,41 @@
     ]
    ],
    "dire": "Observe l’état général des pneus : usure, coupures, déformations ou sous-gonflage apparent. Contrôle régulièrement la pression selon les indications du constructeur, de préférence à froid.",
-   "ch": 0
+   "ch": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.35,
+    0.43,
+    0.77,
+    1.24
+   ]
   },
   {
    "type": "situation",
@@ -172,7 +234,41 @@
     ]
    ],
    "dire": "Selon le véhicule, repère le liquide de refroidissement, le lave-glace, le liquide de frein et la jauge d’huile lorsqu’elle existe. Consulte le manuel : les méthodes de contrôle varient selon les modèles.",
-   "ch": 1
+   "ch": 1,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.28,
+    0.43,
+    0.63,
+    0.78
+   ]
   },
   {
    "type": "liste",
@@ -198,7 +294,40 @@
     ]
    ],
    "dire": "Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt dès que possible en sécurité. Un voyant orange demande généralement une vérification rapide. Leur signification exacte dépend du véhicule : consulte le manuel.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.07,
+    1.13,
+    2.52
+   ]
   },
   {
    "type": "liste",
@@ -219,7 +348,40 @@
     ]
    ],
    "dire": "Même si tout paraît normal, respecte les échéances d’entretien et fais examiner les anomalies. N’ouvre jamais le circuit de refroidissement lorsqu’il est chaud.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.41,
+    0.86,
+    1.88
+   ]
   },
   {
    "type": "fin",
@@ -236,7 +398,35 @@
     ]
    ],
    "dire": "Avant de partir, pense aux pneus, aux feux, aux vitres et aux alertes du tableau de bord. Pour les contrôles précis, suis toujours les indications de ton véhicule. Place à la pratique.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   }
   }
  ]
 }

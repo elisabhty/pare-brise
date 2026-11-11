@@ -45,7 +45,38 @@
    "titre": "Les marquages au sol",
    "sous": "les lignes parlent",
    "dire": "Cours numéro 7 : les marquages au sol. Une ligne blanche, ce n’est pas de la décoration : c’est une règle.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "ligne": [
+     {
+      "de": -200,
+      "a": 70,
+      "type": "discontinue"
+     },
+     {
+      "de": 70,
+      "a": 120,
+      "type": "annonce"
+     },
+     {
+      "de": 120,
+      "a": 900,
+      "type": "continue"
+     }
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -50,
+      "couleur": 10134447
+     }
+    ]
+   }
   },
   {
    "type": "situation",
@@ -103,7 +134,52 @@
      "Stationnement interdit"
     ]
    ],
-   "dire": "Les flèches de rabattement, inclinées, t’obligent à te rabattre : une ligne continue approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Le long du trottoir, une ligne jaune continue interdit l’arrêt et le stationnement, une ligne jaune discontinue interdit seulement le stationnement."
+   "dire": "Les flèches de rabattement, inclinées, t’obligent à te rabattre : une ligne continue approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Le long du trottoir, une ligne jaune continue interdit l’arrêt et le stationnement, une ligne jaune discontinue interdit seulement le stationnement.",
+   "decor": {
+    "env": "route",
+    "kmh": 30,
+    "camera": "plan",
+    "ligne": [
+     {
+      "de": -200,
+      "a": 40,
+      "type": "discontinue"
+     },
+     {
+      "de": 40,
+      "a": 90,
+      "type": "annonce"
+     },
+     {
+      "de": 90,
+      "a": 900,
+      "type": "continue"
+     }
+    ],
+    "marquages": [
+     [
+      50,
+      -1.75,
+      "rabat-droite"
+     ],
+     [
+      66,
+      -1.75,
+      "rabat-droite"
+     ],
+     [
+      82,
+      -1.75,
+      "rabat-droite"
+     ]
+    ]
+   },
+   "sync": [
+    0.01,
+    1.03,
+    2.22,
+    2.65
+   ]
   },
   {
    "type": "fin",
@@ -124,7 +200,29 @@
      "règle : on lit son côté"
     ]
    ],
-   "dire": "Cours terminé. Les lignes, c’est la base des dépassements : passe à la pratique, puis enchaîne avec le cours suivant."
+   "dire": "Cours terminé. Les lignes, c’est la base des dépassements : passe à la pratique, puis enchaîne avec le cours suivant.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 90,
+      "x": 1.75,
+      "kmh": 50,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -50,
+      "couleur": 3829232
+     }
+    ]
+   }
   }
  ]
 }

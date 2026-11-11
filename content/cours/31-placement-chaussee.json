@@ -46,7 +46,34 @@
    "titre": "Se positionner sur la chaussée",
    "sous": "choisir la bonne voie au bon moment",
    "vitesse": 90,
-   "dire": "Tu arrives sur une route à plusieurs voies. Le bon placement te permet de circuler sans gêner et d’anticiper la prochaine direction. Commençons par la règle générale : en France, on circule à droite."
+   "dire": "Tu arrives sur une route à plusieurs voies. Le bon placement te permet de circuler sans gêner et d’anticiper la prochaine direction. Commençons par la règle générale : en France, on circule à droite.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 100,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 60,
+      "x": 1.75,
+      "kmh": 100,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 20,
+      "x": -1.75,
+      "kmh": 112,
+      "couleur": 15223370
+     },
+     {
+      "type": "camion",
+      "S": 140,
+      "x": 1.75,
+      "kmh": 90
+     }
+    ]
+   }
   },
   {
    "type": "situation",
@@ -379,7 +406,28 @@
     ]
    ],
    "dire": "Retiens trois réflexes : rester à droite quand c’est la règle, lire la signalisation assez tôt et ne jamais changer de file sans contrôle. Place à la pratique.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 100,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 70,
+      "x": 1.75,
+      "kmh": 100,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": -20,
+      "x": -1.75,
+      "kmh": 118,
+      "couleur": 3829232
+     }
+    ]
+   }
   }
  ]
 }

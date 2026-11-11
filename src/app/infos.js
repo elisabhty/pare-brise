@@ -5,6 +5,7 @@ import { meta, FAM } from './signs.js';
 const ACTEURS = {
   voiture: ['Une voiture', 'Garde au moins deux secondes d’écart avec celle qui te précède, davantage sous la pluie.'],
   velo: ['Un cycliste', 'Usager vulnérable : pour le dépasser, au moins 1 m d’écart en ville et 1,50 m hors agglomération.'],
+  trottinette: ['Une trottinette électrique', 'Dès 14 ans, 25 km/h au plus, une seule personne à bord : elle roule sur la piste cyclable ou la chaussée, pas sur le trottoir.'],
   moto: ['Un motard', 'Il se faufile vite et se glisse dans les angles morts : rétroviseurs et coup d’œil avant de bouger.'],
   pieton: ['Un piéton', 'Dès qu’il montre clairement qu’il veut traverser, tu lui cèdes le passage.'],
   enfant: ['Un enfant', 'Son comportement est imprévisible : il peut traverser sans regarder. Ralentis.'],

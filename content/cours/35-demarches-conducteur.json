@@ -42,7 +42,35 @@
    "titre": "Documents et démarches du conducteur",
    "sous": "les obligations à connaître au quotidien",
    "vitesse": 30,
-   "dire": "Tu viens de récupérer une voiture. Avant de prendre la route, tu dois savoir quels documents et quelles démarches concernent le véhicule et son conducteur. Faisons le point avec des exemples simples."
+   "dire": "Tu viens de récupérer une voiture. Avant de prendre la route, tu dois savoir quels documents et quelles démarches concernent le véhicule et son conducteur. Faisons le point avec des exemples simples.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -63,7 +91,47 @@
     ]
    ],
    "dire": "Le conducteur doit disposer du droit de conduire la catégorie de véhicule concernée. Le véhicule doit être correctement immatriculé. Les modalités de présentation et de contrôle des justificatifs peuvent évoluer : vérifie les règles en vigueur.",
-   "ch": 0
+   "ch": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "proche",
+    "meteo": "jour",
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 35,
+      "x": 4.3,
+      "gilet": true,
+      "cap": -90
+     },
+     {
+      "type": "ambulance",
+      "S": 44,
+      "x": 4.7,
+      "couleur": 1981066
+     },
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "gilet": true,
+      "haut": 1981066
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.59,
+    1.71,
+    2.41
+   ]
   },
   {
    "type": "liste",
@@ -83,8 +151,47 @@
      "Le véhicule ne doit pas circuler"
     ]
    ],
-   "dire": "Un véhicule terrestre à moteur soumis à l’obligation d’assurance doit au minimum être couvert en responsabilité civile. Cette garantie sert à indemniser les dommages causés aux tiers dans les conditions prévues.",
-   "ch": 1
+   "dire": "Un véhicule terrestre à moteur soumis à l’obligation d’assurance doit au minimum être couvert en responsabilité civile. Cette garantie sert à indemniser les dommages causés aux autres. Sans assurance, le véhicule ne doit pas circuler.",
+   "ch": 1,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.79,
+    1.2,
+    2.07
+   ]
   },
   {
    "type": "liste",
@@ -108,8 +215,42 @@
      "Remplacer l’entretien courant"
     ]
    ],
-   "dire": "Pour les véhicules concernés, le contrôle technique doit être réalisé aux échéances réglementaires. Il vérifie différents points de sécurité et d’environnement, mais ne remplace pas l’entretien courant.",
-   "ch": 1
+   "dire": "Pour une voiture, le premier contrôle technique a lieu avant ses 4 ans, puis tous les 2 ans. Il vérifie des points de sécurité et d’environnement, mais ne remplace pas l’entretien courant.",
+   "ch": 1,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.2,
+    0.9,
+    1.0,
+    1.62
+   ]
   },
   {
    "type": "liste",
@@ -129,8 +270,41 @@
      "Un mois pour l’immatriculer à ton nom"
     ]
    ],
-   "dire": "Avant un achat, vérifie les informations du véhicule, les documents nécessaires et les éventuelles obligations liées au contrôle technique. Après l’achat, effectue les démarches d’immatriculation dans le délai applicable.",
-   "ch": 1
+   "dire": "Avant un achat, vérifie le véhicule et ses documents. S’il a plus de 4 ans, le vendeur te remet un contrôle technique de moins de 6 mois. Après l’achat, tu as un mois pour l’immatriculer à ton nom.",
+   "ch": 1,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.0,
+    1.15,
+    2.11
+   ]
   },
   {
    "type": "liste",
@@ -154,8 +328,42 @@
      "Sur les services officiels"
     ]
    ],
-   "dire": "Lors d’une vente, les parties doivent accomplir les formalités de cession et remettre les documents requis. Utilise les services officiels pour connaître la liste à jour et éviter les erreurs.",
-   "ch": 2
+   "dire": "Lors d’une vente, la déclaration de cession se fait en ligne, dans les 15 jours. Tu remets à l’acheteur le certificat d’immatriculation barré, daté et signé, avec un certificat de situation administrative de moins de 15 jours. Pour la liste à jour, utilise les services officiels.",
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.23,
+    1.24,
+    1.65,
+    2.12
+   ]
   },
   {
    "type": "liste",
@@ -179,8 +387,48 @@
      "Sur les sources officielles : ils peuvent changer"
     ]
    ],
-   "dire": "Un changement de titulaire, d’adresse ou de situation administrative peut entraîner une formalité. Pour les délais, pièces justificatives et exceptions, consulte les sources officielles : ils peuvent changer.",
-   "ch": 2
+   "dire": "Un déménagement, un achat, une vente ou un don entraînent une démarche : changer l’adresse de la carte grise, l’immatriculer à ton nom, ou déclarer la cession. Pour les délais et les pièces, consulte les sources officielles : ils peuvent changer.",
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.0,
+    0.1,
+    0.16,
+    1.07
+   ]
   },
   {
    "type": "fin",
@@ -197,7 +445,41 @@
     ]
    ],
    "dire": "Avant de rouler, vérifie ton droit de conduire, l’immatriculation, l’assurance et les obligations de contrôle technique. Après une vente ou un achat, réalise les démarches officielles sans attendre. Tu as vu tout le programme : passe à la pratique, puis place aux examens blancs.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

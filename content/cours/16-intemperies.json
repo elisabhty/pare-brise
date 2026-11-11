@@ -46,7 +46,36 @@
    "titre": "Pluie, brouillard, neige",
    "sous": "adapter sa conduite",
    "dire": "Le temps change pendant le trajet. Des nuages sombres apparaissent. Cours numéro 16 : la météo. Elle ne change pas les règles… elle change les distances.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "route",
+    "kmh": 60,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 80,
+      "x": 1.75,
+      "kmh": 60,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "meteo",
+      "pluie"
+     ],
+     [
+      "p1+0.6",
+      "feux",
+      {
+       "croisement": true
+      }
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -88,7 +117,39 @@
      "Jusqu’à retrouver l’adhérence"
     ]
    ],
-   "dire": "Aquaplaning : une couche d’eau sépare les pneus de la route. La direction devient légère. Ne freine pas fort, lève le pied doucement et tiens le volant droit jusqu’à retrouver l’adhérence."
+   "dire": "Aquaplaning : une couche d’eau sépare les pneus de la route. La direction devient légère. Ne freine pas fort, lève le pied doucement et tiens le volant droit jusqu’à retrouver l’adhérence.",
+   "decor": {
+    "env": "route",
+    "kmh": 70,
+    "camera": "plan",
+    "meteo": "pluie",
+    "feux": {
+     "croisement": true
+    },
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 230,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      "p2",
+      "vitesse",
+      45,
+      1.2
+     ]
+    ]
+   },
+   "sync": [
+    2.0,
+    2.31,
+    2.44
+   ]
   },
   {
    "type": "situation",
@@ -124,7 +185,40 @@
      "Ils peuvent être déportés"
     ]
    ],
-   "dire": "Par vent fort, tiens ton volant à deux mains. Les rafales surprennent en sortie de forêt, de tunnel ou sur un pont. Et laisse de la marge aux camions et aux deux-roues : ils peuvent être déportés."
+   "dire": "Par vent fort, tiens ton volant à deux mains. Les rafales surprennent en sortie de forêt, de tunnel ou sur un pont. Et laisse de la marge aux camions et aux deux-roues : ils peuvent être déportés.",
+   "decor": {
+    "env": "route",
+    "kmh": 45,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "velo",
+      "S": 80,
+      "x": 3.4,
+      "kmh": 20
+     },
+     {
+      "type": "camion",
+      "S": 220,
+      "x": -1.75,
+      "kmh": -70
+     }
+    ],
+    "script": [
+     [
+      "p2",
+      "voie",
+      0.7,
+      1800
+     ]
+    ]
+   },
+   "sync": [
+    0.3,
+    1.36,
+    2.29
+   ]
   },
   {
    "type": "situation",
@@ -155,7 +249,29 @@
      "Ou chaînes ou chaussettes dans le coffre"
     ]
    ],
-   "dire": "Dans les communes de montagne concernées, du premier novembre au 31 mars, ta voiture doit avoir des pneus hiver ou quatre saisons, ou des chaînes ou chaussettes à neige dans le coffre."
+   "dire": "Dans les communes de montagne concernées, du premier novembre au 31 mars, ta voiture doit avoir des pneus hiver ou quatre saisons, ou des chaînes ou chaussettes à neige dans le coffre.",
+   "decor": {
+    "env": "route",
+    "kmh": 40,
+    "camera": "plan",
+    "meteo": "neige",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 60,
+      "x": 1.75,
+      "kmh": 40,
+      "couleur": 15223370
+     }
+    ]
+   },
+   "sync": [
+    0.26,
+    0.51
+   ]
   },
   {
    "type": "fin",
@@ -176,7 +292,25 @@
      "mois d’équipement hiver"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : pluie, brouillard et neige t’attendent."
+   "dire": "Cours terminé. Passe à la pratique : pluie, brouillard et neige t’attendent.",
+   "decor": {
+    "env": "route",
+    "kmh": 60,
+    "camera": "plan",
+    "meteo": "pluie",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 75,
+      "x": 1.75,
+      "kmh": 60,
+      "couleur": 10134447
+     }
+    ]
+   }
   }
  ]
 }

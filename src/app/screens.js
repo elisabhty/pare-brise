@@ -12,6 +12,7 @@ import { Serie, setSerieDone, drawExam } from './serie.js';
 import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
+import { Frame } from './scenes.js';
 import { roadmap } from './roadmap.js';
 import { renderHomeExos, Exos, practiceOf, defisOf, best as exoBest, starsHtml, icon } from './exos.js';
 import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plannedDays, refreshBadge, launch, openSheet } from './planning.js';
@@ -187,7 +188,7 @@ export function setupScreens() {
   document.addEventListener('pb:profil', () => { if (currentScreen() === 'salle') renderHello(); });
   register('parcours', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
   register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
-  register('cours', { world: 'route', amb: 'route', noTab: true,
+  register('cours', { world: 'route', amb: 'route', noTab: true, reframe: () => Frame.apply(),
     enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) { if (o.k > 0) Player.goTo(o.at, o.k); else Player.play(); } } },
     leave() { if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'examen', enter() { R.reset(); }, leave() { Serie.stop(); } });

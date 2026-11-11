@@ -44,7 +44,43 @@
    "titre": "Changer de direction et de voie",
    "sous": "préparer chaque manœuvre sans surprise",
    "vitesse": 40,
-   "dire": "Tu roules en ville. À la prochaine intersection, tu dois tourner. Avant de déplacer le volant, il faut préparer la manœuvre : observer, signaler, adapter ta vitesse, puis agir quand la voie est libre."
+   "dire": "Tu roules en ville. À la prochaine intersection, tu dois tourner. Avant de déplacer le volant, il faut préparer la manœuvre : observer, signaler, adapter ta vitesse, puis agir quand la voie est libre.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "carrefour": {
+     "S": 70
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 180,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 3829232
+     },
+     {
+      "type": "pieton",
+      "S": 40,
+      "x": 6.6,
+      "kmh": 3.4
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "clignotant",
+      "d"
+     ],
+     [
+      "p1+0.4",
+      "vitesse",
+      14,
+      1.5
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -340,7 +376,39 @@
     ]
    ],
    "dire": "Avant chaque changement de direction ou de voie : je regarde, je signale, je vérifie, puis je manœuvre uniquement si c’est sûr. Passe à la pratique pour t’entraîner en situation.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 100,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 46,
+      "x": 1.75,
+      "kmh": 86,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      1.2,
+      "clignotant",
+      "g"
+     ],
+     [
+      3.2,
+      "voie",
+      -1.75,
+      3000
+     ],
+     [
+      6.4,
+      "clignotant",
+      null
+     ]
+    ]
+   }
   }
  ]
 }

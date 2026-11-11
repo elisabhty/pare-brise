@@ -41,7 +41,41 @@
    "titre": "Électrique, Crit’Air, ZFE",
    "sous": "les nouvelles règles de la ville",
    "dire": "Une voiture électrique traverse une zone urbaine. Cours numéro 29 : la voiture électrique et les zones à faibles émissions.",
-   "vitesse": 40
+   "vitesse": 40,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -67,6 +101,45 @@
     "0",
     "1",
     "2-5"
+   ],
+   "decor": {
+    "env": "ville",
+    "kmh": 28,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.55,
+    0.73,
+    0.9
    ]
   },
   {
@@ -88,7 +161,46 @@
      "Elles changent d’une ville à l’autre"
     ]
    ],
-   "dire": "Les zones à faibles émissions limitent l’accès des véhicules les plus polluants, selon leur vignette Crit’Air. Leur avenir fait débat au Parlement, mais à ce jour elles restent en vigueur là où elles existent. Vérifie toujours les règles de ta ville."
+   "dire": "Les zones à faibles émissions limitent l’accès des véhicules les plus polluants, selon leur vignette Crit’Air. Leur avenir fait débat au Parlement, mais à ce jour elles restent en vigueur là où elles existent. Vérifie toujours les règles de ta ville.",
+   "decor": {
+    "env": "ville",
+    "kmh": 28,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.24,
+    0.81,
+    2.5
+   ]
   },
   {
    "type": "situation",
@@ -139,7 +251,60 @@
      "Elle baisse avec le froid et la vitesse"
     ]
    ],
-   "dire": "Au volant d’une électrique : lever le pied ralentit nettement la voiture, tout en rechargeant la batterie. L’accélération est immédiate, il faut la doser. Et l’autonomie baisse avec le froid et la vitesse."
+   "dire": "Au volant d’une électrique : lever le pied ralentit nettement la voiture, tout en rechargeant la batterie. L’accélération est immédiate, il faut la doser. Et l’autonomie baisse avec le froid et la vitesse.",
+   "decor": {
+    "env": "ville",
+    "kmh": 40,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ],
+    "script": [
+     [
+      "p0+0.5",
+      "vitesse",
+      18,
+      1.6
+     ],
+     [
+      "p1",
+      "vitesse",
+      42,
+      3.2
+     ]
+    ]
+   },
+   "sync": [
+    0.24,
+    1.01,
+    2.07
+   ]
   },
   {
    "type": "fin",
@@ -156,7 +321,41 @@
      "réflexe : penser aux piétons"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions."
+   "dire": "Cours terminé. Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

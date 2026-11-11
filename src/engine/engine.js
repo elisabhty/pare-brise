@@ -583,6 +583,11 @@ function buildRoute() {
       }
     },
     clearExam() { removeList(examSigns); },
+    /* le panneau dont parle la voix grossit un peu, les autres s'effacent légèrement (i = -1 : tous égaux) */
+    spot(i) {
+      showcase.forEach((g, k) => { const b = g.userData.base || (g.userData.base = g.scale.x), to = i < 0 ? b : k === i ? b * 1.14 : b * 0.9, from = g.scale.x; if (Math.abs(from - to) < 1e-3) return; tween(420, e => g.scale.setScalar(from + (to - from) * e), ease.out); });
+      if (i >= 0 && showcase[i]) flashSign(showcase[i], 0xffc629, 700);
+    },
     flash(i, ok) { const g = showcase[i]; if (!g) return; flashSign(g, ok ? 0x2fbf71 : 0xff4d61, 1100); const r0 = g.rotation.y; tween(900, e => { g.rotation.y = r0 + e * Math.PI * 2; }, ease.io); },
     dim(except) { showcase.forEach((g, i) => { if (i !== except) tween(500, e => { g.position.y = -e * 0.5; }); }); },
     pickables: () => showcase.map(g => g.userData.front),
@@ -732,6 +737,7 @@ E.info = () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.
 Object.defineProperty(E, 'current', { get: () => worldName });
 E.region = (top, height) => { region = { top, height }; };
 E.hiRes = on => { if (hiRes === !!on) return; hiRes = !!on; resize(); };
+E.regionPx = (top, bottom) => { if (!canvas) return; const c = canvas.getBoundingClientRect(); region = { top: (top - c.top) / c.height, height: Math.max(40, bottom - top) / c.height }; };
 E.regionFromEl = el => { if (!el || !canvas) return; const r = el.getBoundingClientRect(), c = canvas.getBoundingClientRect(); region = { top: (r.top - c.top) / c.height, height: r.height / c.height }; };
 E.pick = (cx, cy) => {
   const w = worlds[worldName]; if (!w) return null;

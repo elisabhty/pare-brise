@@ -14,9 +14,9 @@ export function validate(root = '.') {
   const series = read(P('content/series.json'));
   const exercices = fs.existsSync(P('content/exercices.json')) ? read(P('content/exercices.json')) : [];
   const TYPES = [...fs.readFileSync(P('src/app/scenes.js'), 'utf8').matchAll(/^  (\w+): \{$/gm)].map(m => m[1]);
-  const ACTEURS = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'moto', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+  const ACTEURS = ['voiture', 'trottinette', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'moto', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
   const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus'];
-  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere'];
+  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee'];
   const APRES = ['aucune', 'attendre', 'ralentir', 'distance', 'arret', 'freinage', 'voie', 'inserer', 'garer', 'depasser', 'feux'];
   const checkMarks = (s, w) => (s.marquages || []).forEach(m => { if (!MARQUES.includes(m[2])) warn(`${w} : marquage inconnu « ${m[2]} » (${MARQUES.join(', ')})`); });
   const SHAPES = ['tri', 'triBas', 'cercle', 'carre', 'octo', 'losange'];
@@ -46,6 +46,13 @@ export function validate(root = '.') {
       if (s.type === 'reperes' && !(Array.isArray(s.reperes) && s.reperes.every(r => typeof r[0] === 'number' && typeof r[1] === 'string'))) warn(`${w} : « reperes » attend [[mètres, "étiquette"], …]`);
       if (s.etiquettes && s.panneaux && s.etiquettes.length !== s.panneaux.length) warn(`${w} : autant d'étiquettes que de panneaux attendues`);
       if (s.type === 'liste' && !(Array.isArray(s.items) && s.items.length)) warn(`${w} : « items » attendus`);
+      const stg = s.type === 'situation' ? s : s.decor;
+      if (s.decor && !['titre', 'liste', 'chiffres', 'fin'].includes(s.type)) warn(`${w} : « decor » réservé aux titres, listes, chiffres et fins`);
+      if (stg && stg.camera && !CAMS.includes(stg.camera)) warn(`${w} : caméra inconnue « ${stg.camera} » (${CAMS.join(', ')})`);
+      if (stg && stg.meteo && !['jour', 'sec', 'nuit', 'pluie', 'brouillard', 'neige', 'couchant'].includes(stg.meteo)) warn(`${w} : météo inconnue « ${stg.meteo} »`);
+      if (stg && stg !== s) { checkMarks(stg, w); (stg.signaux || []).forEach(x => checkSigns([x[0]], w)); (stg.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${w} décor : acteur inconnu « ${a.type} »`); }); (stg.etiquettes || []).forEach(e => { if (!(e[0] >= 0 && e[0] < (stg.acteurs || []).length)) warn(`${w} décor : étiquette sur un acteur inexistant`); }); }
+      if (s.sync) { const n = (s.items || s.panneaux || []).length, k = (s.dire || '').match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g)?.length || 1; if (s.sync.length !== n || s.sync.some(v => !(v >= 0 && v < k))) warn(`${w} : « sync » doit donner, pour chaque élément, une phrase entre 0 et ${k - 1}`); }
+      if (stg && stg.script) stg.script.forEach(st => { const t = st[0]; if (typeof t === 'string' && !/^p\d+(\+[\d.]+)?$/.test(t)) warn(`${w} : temps de scénario « ${t} » (secondes ou « p2 », « p2+1.5 »)`); });
       if (s.type === 'situation') { checkMarks(s, w); (s.signaux || []).forEach(x => checkSigns([x[0]], w)); (s.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${w} : acteur inconnu « ${a.type} »`); }); (s.etiquettes || []).forEach(e => { if (!(e[0] >= 0 && e[0] < (s.acteurs || []).length)) warn(`${w} : étiquette sur un acteur inexistant`); }); }
     });
   }

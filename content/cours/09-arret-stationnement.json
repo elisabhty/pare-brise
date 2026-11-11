@@ -46,7 +46,49 @@
    "titre": "Arrêt et stationnement",
    "sous": "s’immobiliser au bon endroit",
    "dire": "Tu cherches un endroit où t’immobiliser dans une rue animée. Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
-   "vitesse": 30
+   "vitesse": 30,
+   "decor": {
+    "env": "ville",
+    "kmh": 22,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ],
+    "script": [
+     [
+      2.2,
+      "vitesse",
+      12,
+      1.5
+     ]
+    ]
+   }
   },
   {
    "type": "liste",
@@ -63,7 +105,53 @@
      "Tout le reste : tu quittes ta voiture ou tu restes longtemps"
     ]
    ],
-   "dire": "L’arrêt, c’est une immobilisation courte, pour déposer quelqu’un ou charger un objet, avec le conducteur à bord ou tout près. Le stationnement, c’est tout le reste."
+   "dire": "L’arrêt, c’est une immobilisation courte, pour déposer quelqu’un ou charger un objet, avec le conducteur à bord ou tout près. Le stationnement, c’est tout le reste.",
+   "decor": {
+    "env": "ville",
+    "kmh": 20,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 33,
+      "x": 6.4
+     },
+     {
+      "type": "voiture",
+      "S": 170,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 3829232
+     }
+    ],
+    "script": [
+     [
+      0.6,
+      "clignotant",
+      "d"
+     ],
+     [
+      1.0,
+      "voie",
+      4.0,
+      2400
+     ],
+     [
+      1.2,
+      "arret",
+      30
+     ],
+     [
+      4.2,
+      "clignotant",
+      null
+     ]
+    ]
+   },
+   "sync": [
+    0.0,
+    1.05
+   ]
   },
   {
    "type": "panneaux",
@@ -84,6 +172,10 @@
      "B6d",
      "Arrêt et stationnement interdits"
     ]
+   ],
+   "sync": [
+    0.14,
+    1.2
    ]
   },
   {
@@ -109,7 +201,41 @@
      "Interdits, sauf urgence"
     ]
    ],
-   "dire": "Même sans panneau, tu ne t’arrêtes pas sur un passage piéton ni sur un trottoir, ni sur une place réservée aux personnes handicapées sans la carte, ni sur une voie de bus ou une piste cyclable. Sur autoroute, dans un tunnel ou sur un passage à niveau, c’est interdit, sauf urgence."
+   "dire": "Même sans panneau, tu ne t’arrêtes pas sur un passage piéton ni sur un trottoir, ni sur une place réservée aux personnes handicapées sans la carte, ni sur une voie de bus ou une piste cyclable. Sur autoroute, dans un tunnel ou sur un passage à niveau, c’est interdit, sauf urgence.",
+   "decor": {
+    "env": "ville",
+    "kmh": 20,
+    "camera": "proche",
+    "passage": 40,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 40,
+      "x": 4.4,
+      "kmh": 0,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 37,
+      "x": 6.6,
+      "kmh": 3
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.25,
+    0.45,
+    0.79,
+    1.02
+   ]
   },
   {
    "type": "chiffres",
@@ -129,7 +255,40 @@
     ]
    ],
    "dire": "Le stationnement très gênant, sur un passage piéton ou une place handicapée par exemple, coûte 135 euros, avec possible mise en fourrière.",
-   "vitesse": 0
+   "vitesse": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 20,
+    "camera": "proche",
+    "passage": 40,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 40,
+      "x": 4.4,
+      "kmh": 0,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 42.5,
+      "x": 6.0,
+      "vx": -0.5,
+      "haut": 16742938
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.66,
+    0.77
+   ]
   },
   {
    "type": "situation",
@@ -188,7 +347,41 @@
      "réflexe avant d’ouvrir"
     ]
    ],
-   "dire": "Cours terminé. Retiens surtout le réflexe rétroviseur avant d’ouvrir ta portière. Place à la pratique."
+   "dire": "Cours terminé. Retiens surtout le réflexe rétroviseur avant d’ouvrir ta portière. Place à la pratique.",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

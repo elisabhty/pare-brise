@@ -62,12 +62,13 @@ function carMesh(color = 0x3A6DF0, o = {}) {
   }
   if (o.gyro) {
     const bar = new THREE.Group(); bar.position.set(0, 1.5, 0.1);
-    const b1 = new THREE.MeshStandardMaterial({ color: 0x1238ff, emissive: 0x2a5bff, emissiveIntensity: 0.2 });
+    const orange = o.gyro === 'orange';
+    const b1 = new THREE.MeshStandardMaterial({ color: orange ? 0xff8a00 : 0x1238ff, emissive: orange ? 0xff7a00 : 0x2a5bff, emissiveIntensity: 0.2 });
     const b2 = b1.clone();
     const gg = geo('gyro', () => new RoundedBoxGeometry(0.42, 0.14, 0.26, 2, 0.05));
     const l = new THREE.Mesh(gg, b1); l.position.x = -0.24; const r = new THREE.Mesh(gg, b2); r.position.x = 0.24;
     bar.add(l, r); g.add(bar); g.userData.gyro = [b1, b2]; g.userData.own.push(b1, b2);
-    const band = new THREE.Mesh(geo('band' + len, () => new THREE.BoxGeometry(1.84, 0.12, len - 0.4)), mat('bandR', () => std(0xE32636))); band.position.y = 0.78; g.add(band);
+    if (!orange) { const band = new THREE.Mesh(geo('band' + len, () => new THREE.BoxGeometry(1.84, 0.12, len - 0.4)), mat('bandR', () => std(0xE32636))); band.position.y = 0.78; g.add(band); }
   }
   return shadowAll(g);
 }
@@ -112,6 +113,18 @@ function bikeMesh(o = {}) {
   a.arms.forEach(p => { p.rotation.x = -1.05; });
   rider.children[0].children[0].rotation.x = -0.28;
   g.userData.anim = { bikeLegs: a.legs, wheels, phase: 0, k: 1 };
+  return shadowAll(g);
+}
+/* Trottinette électrique : plateau, petites roues, colonne de direction, conducteur debout */
+function scooterMesh(o = {}) {
+  const g = new THREE.Group(), dark = mat('dark', () => std(0x222730, { roughness: 0.5, metalness: 0.4 })), alu = mat('alu', () => std(0xC9CED6, { roughness: 0.35, metalness: 0.7 }));
+  const deck = new THREE.Mesh(geo('tDeck', () => new RoundedBoxGeometry(0.17, 0.06, 0.86, 2, 0.02)), dark); deck.position.set(0, 0.15, 0.05); g.add(deck);
+  [-0.38, 0.44].forEach(z => { const w = new THREE.Mesh(geo('tWheel', () => new THREE.CylinderGeometry(0.1, 0.1, 0.06, 14).rotateZ(Math.PI / 2)), dark); w.position.set(0, 0.1, z); g.add(w); });
+  const stem = new THREE.Mesh(geo('tStem', () => new THREE.CylinderGeometry(0.022, 0.022, 1.0, 8)), alu); stem.position.set(0, 0.64, -0.44); stem.rotation.x = -0.12; g.add(stem);
+  const bar = new THREE.Mesh(geo('tBar', () => new THREE.CylinderGeometry(0.02, 0.02, 0.5, 8).rotateZ(Math.PI / 2)), dark); bar.position.set(0, 1.13, -0.5); g.add(bar);
+  const rider = personMesh({ haut: o.haut ?? 0x8B5CF6, bas: 0x2B3445 }); rider.position.set(0, 0.17, 0.12); g.add(rider);
+  const a = rider.userData.anim; a.arms.forEach(p => { p.rotation.x = -0.95; }); a.legs[0].rotation.x = -0.12; a.legs[1].rotation.x = 0.16;
+  rider.children[0].children[0].rotation.x = -0.12;
   return shadowAll(g);
 }
 /* Moto : deux grosses roues, un réservoir, un pilote casqué penché sur le guidon */
@@ -510,6 +523,7 @@ export function buildSim(K) {
     tracteur(o = {}) { const g = tractorMesh(); return actor(g, { kind: 'tracteur', len: 4, wid: 2.2, ...o }); },
     bus(o = {}) { const g = busMesh(o.couleur ?? 0x1E5BFF); return actor(g, { kind: 'bus', len: 11, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     camion(o = {}) { const g = busMesh(o.couleur ?? 0xE84A4A, true); return actor(g, { kind: 'camion', len: 11, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
+    trottinette(o = {}) { const g = scooterMesh(o); return actor(g, { kind: 'trottinette', len: 1.1, wid: 0.6, ...o }); },
     moto(o = {}) { const g = motoMesh(o); return actor(g, { kind: 'moto', len: 2.1, wid: 0.8, ...o }); },
     tram(o = {}) { const g = tramMesh(o.couleur ?? 0x2FA37A); return actor(g, { kind: 'tram', len: 23, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     triangle(o = {}) { const g = triangleMesh(); return actor(g, { kind: 'triangle', len: 0.4, wid: 0.6, ...o }); },
@@ -594,6 +608,11 @@ export function buildSim(K) {
     cockpit: () => ({ pos: V(P.x - 0.36, 1.2, 0.25), target: V(P.x - 0.3, 0.1, -30), fov: 58 }),
     poursuite: () => ({ pos: V(P.x - 0.2, 3.1, 8.6), target: V(P.x, 1.0, -14), fov: 52 }),
     drone: () => ({ pos: V(P.x * 0.4, 19, 10), target: V(0.6, 0, -13), fov: 72 }),
+    // décors sous une carte de texte (la caméra vise la bande libre de l'écran) : plan large sur la route devant toi,
+    // ou plan rapproché sur ce qui se passe juste devant ta voiture arrêtée (feu, carrefour, passage piéton)
+    plan: () => ({ pos: V(P.x * 0.5 + 0.3, 5.0, 8), target: V(P.x * 0.4 + 0.3, 0.8, -18), fov: 34 }),
+    garee: () => ({ pos: V(P.x + 4.6, 3.6, 8.5), target: V(P.x - 0.4, 0.7, -1.5), fov: 36 }),
+    proche: () => ({ pos: V(P.x * 0.5 + 0.2, 8, 8), target: V(P.x * 0.3 + 0.6, 0.6, -12), fov: 44 }),
     haut: () => ({ pos: V(0.6, 34, -4), target: V(0.4, 0, -22), fov: 46 }),
     cote: () => ({ pos: V(-9, 2.2, -6), target: V(2, 1, -16), fov: 50 }),
     bilan: () => ({ pos: V(P.x + 7.5, 12, 21), target: V(P.x, 0, -5), fov: 50 }),

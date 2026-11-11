@@ -10,6 +10,8 @@ Contenu fourni : les 10 thèmes officiels, **35 cours** (237 scènes), chacun su
 
 Les cours 2 à 35 viennent du fichier « cours immersifs » (`gen/cours-immersifs-35.json`, intégré par `gen/integrer35.py`) : textes nettoyés des phrases répétées, indications de mise en scène gardées dans le champ `realisation_3d` du fichier source. Les cours 30 à 35 sont nouveaux et **pas encore vérifiés juridiquement** : règles, délais et seuils sont à contrôler avant publication.
 
+L'image suit la voix : chaque liste, série de chiffres ou groupe de panneaux apparaît (ou s'allume) au moment où la voix en parle (champ `sync`, calculé par `gen/synchro.py`), et les titres, listes, chiffres et fins se jouent dans un décor 3D qui montre le sujet (champ `decor`, posé par `gen/mise-en-scene.py` ; la caméra vise la bande libre sous la carte de texte). Ordre : `cd gen && python3 integrer35.py && python3 mise-en-scene.py && python3 synchro.py --ecrire`.
+
 L'interface suit les codes d'iOS : police système (SF Pro sur iPhone, Inter en repli ailleurs), grands titres, listes groupées, boutons capsule et barre d'onglets flottante façon Liquid Glass.
 
 ## Structure

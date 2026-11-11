@@ -16,6 +16,28 @@ const lower3 = ({ eyebrow, titre, couleur, puce, q }) =>
   `${eyebrow ? `<div class="eyebrow rise">${esc(eyebrow)}</div>` : ''}<div class="d ${q ? 'q' : 'fam'} rise" style="--d:.1s${couleur ? ';color:' + couleur : ''}">${esc(titre)}</div>${puce ? `<span class="chip rise" style="--d:.25s">${esc(puce)}</span>` : ''}`;
 const stats = list => `<div class="stats rise" style="--d:.35s">${list.map(([v, l]) => `<div><b class="num">${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>`;
 
+/* Cadrage : une carte de texte (titre, liste, chiffres) couvre le haut de l'écran. Pour un décor, la caméra vise
+   la bande libre entre la carte (toute dépliée) et les sous-titres : le sujet n'est jamais caché derrière le texte. */
+export const Frame = {
+  on: false, cur: null, to: null, raf: 0,
+  set(on) { this.on = !!on; this.cur = null; this.apply(); },
+  // la bande suit la carte : tant que la liste est courte, le décor a plus de place ; elle glisse en douceur quand la carte grandit
+  apply() {
+    if (!has3D || !Engine.regionPx) return;
+    const s = $('#s-cours'), o = $('#ovt'), v = $('#v-cours'), dock = $('#s-cours .dock');
+    if (!this.on || !o || !o.innerHTML || !s || s.classList.contains('explore') || s.classList.contains('immersif')) { this.cur = null; cancelAnimationFrame(this.raf); if (v) Engine.regionFromEl(v); return; }
+    const bottom = (dock ? dock.getBoundingClientRect().top : innerHeight) - 96;   // au-dessus des sous-titres
+    const top = Math.min(o.getBoundingClientRect().bottom + 6, bottom - 150);
+    this.to = [top, bottom];
+    if (!this.cur) { this.cur = this.to.slice(); Engine.regionPx(top, bottom); return; }
+    cancelAnimationFrame(this.raf); const from = this.cur.slice(), t0 = performance.now();
+    const step = () => { const e = Math.min(1, (performance.now() - t0) / 600), k = 1 - Math.pow(1 - e, 3);
+      this.cur = [from[0] + (this.to[0] - from[0]) * k, from[1] + (this.to[1] - from[1]) * k]; Engine.regionPx(this.cur[0], this.cur[1]);
+      if (e < 1 && this.on) this.raf = requestAnimationFrame(step); };
+    this.raf = requestAnimationFrame(step);
+  }
+};
+
 /* Le cours se joue sur la route (monde « route ») ; les mises en situation utilisent le simulateur (« sim »). */
 const useWorld = n => { if (has3D && Engine.current !== n) { Engine.world(n); if (n === 'route') R.pose('drive', 1); } };
 /* Le lecteur peut imposer un angle de vue (View.cam) ; Live garde la mise en situation en cours (usagers, panneaux) */
@@ -23,13 +45,78 @@ export const View = { cam: null };
 export const Live = { sc: null, actors: [] };
 export const camOf = sc => View.cam || (sc && sc.camera) || 'poursuite';
 export const paintDash = cam => { const d = $('#v-cours .dash'); if (d) d.hidden = cam !== 'cockpit'; };
-const ACT = { moto: 'moto', tram: 'tram', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
+const ACT = { trottinette: 'trottinette', moto: 'moto', tram: 'tram', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
+
+/* Monte une mise en scène dans le simulateur : celle d'une mise en situation, ou le décor d'un écran (liste, chiffres,
+   titre, fin) pour que l'image parle de la même chose que la voix. */
+function stage(sc, ctx) {
+  useWorld('sim'); Live.sc = sc; Live.actors = [];
+  const car = sc.carrefour ? (typeof sc.carrefour === 'object' ? sc.carrefour : { S: sc.carrefour, ligne: sc.ligneStop }) : null;
+  const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
+  SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: camOf(sc), voie: sc.voie, graine: sc.graine,
+    reserve: [0].concat((sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10] : [a.S || 0])), sc.passage ? [sc.passage, sc.passage - 10] : []),
+    carrefours: car ? [car.S] : [], zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : [], sc.rails ? [{ de: sc.rails - 8, a: sc.rails + 8 }] : []) });
+  SIM.slow(1, 0);
+  SIM.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false, clignotant: null }, sc.feux || {}));
+  if (car) SIM.carrefour(car.S, { ligne: car.ligne, forme: car.forme });
+  if (sc.giratoire) SIM.giratoire(sc.giratoire);
+  if (sc.passage) SIM.passage(sc.passage);
+  if (sc.rails) SIM.rails(sc.rails);
+  if (sc.tunnel) SIM.tunnel(sc.tunnel, 900);
+  if (sc.maisons) SIM.maisons(-160, 300);
+  if (sc.chevrons) SIM.chevrons(20, 800, 38);
+  (sc.marquages || []).forEach(([S, x, k]) => SIM.marquage(S, x, k));
+  (sc.signaux || []).forEach(([id, S, x]) => SIM.panneau(id, S, x ?? (sc.env === 'ville' ? 6.2 : sc.env === 'autoroute' ? 7.4 : 4.4)));
+  const actors = (sc.acteurs || []).map(o => {
+    const fn = SIM[ACT[o.type] || 'voiture'];
+    const a = o.type === 'feu' ? SIM.feu({ S: o.S, x: o.x ?? 5.2, etat: o.etat === 'clignotant' ? 'eteint' : o.etat || 'vert' }) : fn({ S: o.S || 20, x: o.x ?? 1.75, couleur: o.couleur, gilet: o.gilet, gyro: o.gyro, enfant: o.enfant, haut: o.haut, sens: (o.kmh || 0) < 0 ? -1 : 1 });
+    if (o.kmh) a.vS = o.kmh / 3.6;
+    if (o.vx) a.vx = o.vx;
+    if (o.cap !== undefined) { a.g.rotation.y = o.cap * Math.PI / 180; a.fixedHeading = true; }
+    if (o.freine) a.brake = true;
+    if (o.type === 'portiere' && o.ouverte) a.open(10);
+    if (o.type === 'feu' && o.etat === 'clignotant') clignote(a);
+    return a;
+  });
+  beatLabels.key = null; Live.actors = actors;
+  if (sc.etiquettes) beatLabels(sc, 0); else SIM.setAnchors([]);
+  Live.actors = actors; paintDash(camOf(sc));
+  if (sc.script) runScript(sc.script, actors, ctx);
+  return actors;
+}
+/* étiquettes : chacune peut n'apparaître qu'à la phrase où la voix en parle (4e élément : numéro de phrase) */
+function beatLabels(sc, k) {
+  if (!sc.etiquettes || !has3D || !SIM) return;
+  const on = sc.etiquettes.filter(e => (e[3] || 0) <= k), key = on.map(e => e[0]).join(',');
+  if (beatLabels.key === key && beatLabels.sc === sc) return; beatLabels.key = key; beatLabels.sc = sc;
+  SIM.setAnchors(on.map(([i]) => ({ id: 'a' + i, obj: Live.actors[i], dy: 2.3 })));
+  Labels.set(on.map(([i]) => 'a' + i), on.map(e => [e[1], e[2]]));
+}
+
+/* Les éléments d'une liste, de chiffres ou de panneaux apparaissent au moment où la voix en parle.
+   sync[n] = numéro de la phrase + fraction de la phrase (2.4 : à 40 % de la 3e phrase). */
+function revealAt(sc, k, ctx, dur, apply) {
+  const tok = (revealAt.tok = (revealAt.tok || 0) + 1), t0 = performance.now(), all = sc.sync.length;
+  const step = () => {
+    if (tok !== revealAt.tok || !ctx.live()) return;
+    const el = performance.now() - t0, shown = sc.sync.map(v => Math.floor(v) < k || (Math.floor(v) === k && el >= (v - Math.floor(v)) * dur));
+    // l'élément « en cours » est le dernier dit par la voix (pas forcément le dernier de la liste : « 135 euros et 4 points »)
+    let cur = -1; shown.forEach((on, n) => { if (on && (cur < 0 || sc.sync[n] >= sc.sync[cur])) cur = n; });
+    apply(shown, k >= 999 ? -1 : cur);
+    const next = sc.sync.map(v => (Math.floor(v) === k ? (v - Math.floor(v)) * dur - el : -1)).filter(x => x > 0);
+    if (next.length && shown.filter(Boolean).length < all) setTimeout(step, Math.min(...next) + 20);
+  };
+  step();
+}
+const revealList = sel => (shown, cur) => { document.querySelectorAll(sel).forEach((e, n) => { e.classList.toggle('in', shown[n]); e.classList.toggle('cur', n === cur); e.classList.toggle('past', shown[n] && cur >= 0 && n !== cur); }); Frame.apply(); };
+/* décor 3D de l'écran (s'il en a un), sinon la route */
+function backdrop(sc, ctx, kmh) { if (sc.decor && has3D && SIM) { stage(sc.decor, ctx); return true; } useWorld('route'); R.drive(kmh); return false; }
 
 export const TYPES = {
   /* Titre plein écran sur la route */
   titre: {
-    enter(sc) {
-      useWorld('route'); R.drive(sc.vitesse || 55);
+    enter(sc, ctx) {
+      backdrop(sc, ctx, sc.vitesse || 55);
       ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise" style="--d:.15s">${esc(sc.titre)}</h2>${sc.sous ? `<p class="rise" style="--d:.35s">${esc(sc.sous)}</p>` : ''}`);
     }
   },
@@ -48,8 +135,10 @@ export const TYPES = {
       const ok = await R.present(sc.panneaux);
       if (!ctx.live() || ok === false) return;
       Labels.set(sc.panneaux, sc.etiquettes);
+      if (sc.sync && ctx.phrase) TYPES.famille.beat(sc, ctx.phrase(), ctx, 0);
       if (sc.forme) await R.outline(sc.forme, sc.couleur || F.c, sc.barre);
-    }
+    },
+    beat(sc, k, ctx, dur) { if (!sc.sync || !has3D || !R.spot) return; revealAt(sc, k, ctx, dur, (shown, cur) => { R.spot(cur); Labels.focus(cur); }); }
   },
   /* Des panneaux présentés, avec un titre libre et des étiquettes optionnelles */
   panneaux: {
@@ -58,16 +147,20 @@ export const TYPES = {
       const ok = await R.present(sc.panneaux);
       if (!ctx.live() || ok === false) return;
       Labels.set(sc.panneaux, sc.etiquettes);
+      if (sc.sync && ctx.phrase) TYPES.panneaux.beat(sc, ctx.phrase(), ctx, 0);
       if (sc.forme) await R.outline(sc.forme, sc.couleur || '#FF7A1A', sc.barre);
-    }
+    },
+    beat(sc, k, ctx, dur) { if (!sc.sync || !has3D || !R.spot) return; revealAt(sc, k, ctx, dur, (shown, cur) => { R.spot(cur); Labels.focus(cur); }); }
   },
   /* De grands chiffres pendant que la voiture roule */
   chiffres: {
-    enter(sc) {
-      useWorld('route'); R.drive(sc.vitesse ?? 50);
+    enter(sc, ctx) {
+      backdrop(sc, ctx, sc.vitesse ?? 50);
+      const sy = !!sc.sync;
       ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise sm" style="--d:.1s">${esc(sc.titre || '')}</h2>
-        <div class="nums">${(sc.items || []).map(([v, u, l], k) => `<div class="rise" style="--d:${0.3 + k * 0.25}s"><b class="num">${esc(v)}<small>${esc(u || '')}</small></b><span>${esc(l || '')}</span></div>`).join('')}</div>`);
-    }
+        <div class="nums${sy ? ' sync' : ''}">${(sc.items || []).map(([v, u, l], k) => `<div class="${sy ? '' : 'rise'}" style="--d:${0.3 + k * 0.25}s"><b class="num">${esc(v)}<small>${esc(u || '')}</small></b><span>${esc(l || '')}</span></div>`).join('')}</div>`);
+    },
+    beat(sc, k, ctx, dur) { beatLabels(sc.decor || {}, k); if (sc.sync) revealAt(sc, k, ctx, dur, revealList('#ovt .nums > div')); }
   },
   /* Repères lumineux posés sur la route à une distance donnée (en mètres) */
   reperes: {
@@ -96,55 +189,26 @@ export const TYPES = {
   },
   /* Une liste d'étapes ou de règles qui apparaissent une à une, pendant que la voiture roule */
   liste: {
-    enter(sc) {
-      useWorld('route'); R.drive(sc.vitesse ?? 40);
+    enter(sc, ctx) {
+      backdrop(sc, ctx, sc.vitesse ?? 40); const sy = !!sc.sync;
       ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise sm" style="--d:.1s">${esc(sc.titre || '')}</h2>
-        <ol class="olist">${(sc.items || []).map((it, k) => { const [a, b] = Array.isArray(it) ? it : [it, '']; return `<li class="rise" style="--d:${0.35 + k * 0.4}s"><i class="num">${sc.puces ? esc(sc.puces[k] || '') : k + 1}</i><div><b>${esc(a)}</b>${b ? `<span>${esc(b)}</span>` : ''}</div></li>`; }).join('')}</ol>`);
-    }
+        <ol class="olist${sy ? ' sync' : ''}${sy && (sc.items || []).length >= 5 ? ' long' : ''}">${(sc.items || []).map((it, k) => { const [a, b] = Array.isArray(it) ? it : [it, '']; return `<li class="${sy ? '' : 'rise'}" style="--d:${0.35 + k * 0.4}s"><i class="num">${sc.puces ? esc(sc.puces[k] || '') : k + 1}</i><div><b>${esc(a)}</b>${b ? `<span>${esc(b)}</span>` : ''}</div></li>`; }).join('')}</ol>`);
+    },
+    beat(sc, k, ctx, dur) { beatLabels(sc.decor || {}, k); if (sc.sync) revealAt(sc, k, ctx, dur, revealList('#ovt .olist > li')); }
   },
   /* Mise en situation dans le simulateur : décor, météo, usagers, point de vue */
   situation: {
     enter(sc, ctx) {
       if (!has3D || !SIM) { useWorld('route'); R.drive(sc.kmh ?? 30); ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce })); return; }
-      useWorld('sim'); Live.sc = sc; Live.actors = [];
-      const car = sc.carrefour ? (typeof sc.carrefour === 'object' ? sc.carrefour : { S: sc.carrefour, ligne: sc.ligneStop }) : null;
-      const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
-      SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: camOf(sc), voie: sc.voie, graine: sc.graine,
-        reserve: [0].concat((sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10] : [a.S || 0])), sc.passage ? [sc.passage, sc.passage - 10] : []),
-        carrefours: car ? [car.S] : [], zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : [], sc.rails ? [{ de: sc.rails - 8, a: sc.rails + 8 }] : []) });
-      SIM.slow(1, 0);
-      SIM.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false, clignotant: null }, sc.feux || {}));
-      if (car) SIM.carrefour(car.S, { ligne: car.ligne, forme: car.forme });
-      if (sc.giratoire) SIM.giratoire(sc.giratoire);
-      if (sc.passage) SIM.passage(sc.passage);
-      if (sc.rails) SIM.rails(sc.rails);
-      if (sc.tunnel) SIM.tunnel(sc.tunnel, 900);
-      if (sc.maisons) SIM.maisons(-160, 300);
-      if (sc.chevrons) SIM.chevrons(20, 800, 38);
-      (sc.marquages || []).forEach(([S, x, k]) => SIM.marquage(S, x, k));
-      (sc.signaux || []).forEach(([id, S, x]) => SIM.panneau(id, S, x ?? (sc.env === 'ville' ? 6.2 : sc.env === 'autoroute' ? 7.4 : 4.4)));
-      const actors = (sc.acteurs || []).map(o => {
-        const fn = SIM[ACT[o.type] || 'voiture'];
-        const a = o.type === 'feu' ? SIM.feu({ S: o.S, x: o.x ?? 5.2, etat: o.etat === 'clignotant' ? 'eteint' : o.etat || 'vert' }) : fn({ S: o.S || 20, x: o.x ?? 1.75, couleur: o.couleur, gilet: o.gilet, enfant: o.enfant, haut: o.haut, sens: (o.kmh || 0) < 0 ? -1 : 1 });
-        if (o.kmh) a.vS = o.kmh / 3.6;
-        if (o.vx) a.vx = o.vx;
-        if (o.cap !== undefined) { a.g.rotation.y = o.cap * Math.PI / 180; a.fixedHeading = true; }
-        if (o.freine) a.brake = true;
-        if (o.type === 'portiere' && o.ouverte) a.open(10);
-        if (o.type === 'feu' && o.etat === 'clignotant') clignote(a);
-        return a;
-      });
-      if (sc.etiquettes) { SIM.setAnchors(sc.etiquettes.map(([i]) => ({ id: 'a' + i, obj: actors[i], dy: 2.3 }))); Labels.set(sc.etiquettes.map(([i]) => 'a' + i), sc.etiquettes.map(e => [e[1], e[2]])); }
-      else { SIM.setAnchors([]); }
-      Live.actors = actors; paintDash(camOf(sc));
+      stage(sc, ctx);
       ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce, couleur: sc.couleurTitre }));
-      if (sc.script) runScript(sc.script, actors, ctx);
-    }
+    },
+    beat(sc, k) { beatLabels(sc, k); }
   },
   /* Écran de fin du cours */
   fin: {
-    enter(sc) {
-      useWorld('route'); R.drive(sc.vitesse || 90);
+    enter(sc, ctx) {
+      backdrop(sc, ctx, sc.vitesse || 90);
       ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || 'Fin du cours')}</div><h2 class="d rise" style="--d:.15s">${esc(sc.titre || 'Cours terminé')}</h2>${sc.stats ? stats(sc.stats) : ''}`);
     }
   }
@@ -168,12 +232,17 @@ async function playSteps(steps, actors, ctx, now) {
     SIM.lights({ clignotant: 'd' }); await wait(700); SIM.lane(retour, 1600); await wait(1700); SIM.lights({ clignotant: null });
   };
   for (const [t, act, ...p] of steps) {
-    await until(() => now() >= t); if (!live()) return;
+    // un temps « p2 » ou « p2+1.5 » : à la 3e phrase de la voix (+ 1,5 s) ; sinon en secondes depuis le début de la scène
+    const m = typeof t === 'string' && /^p(\d+)(?:\+([\d.]+))?$/.exec(t);
+    if (m) { await until(() => (ctx.phrase ? ctx.phrase() : 0) >= +m[1]); const t1 = now(); await until(() => now() - t1 >= +(m[2] || 0)); }
+    else await until(() => now() >= t);
+    if (!live()) return;
     const a = actors[p[0]];
     if (act === 'vitesse') SIM.auto(p[0], p[1]);
     else if (act === 'voie') SIM.lane(p[0], p[1] || 1600);
     else if (act === 'clignotant') SIM.lights({ clignotant: p[0] || null });
     else if (act === 'feux') SIM.lights(p[0]);
+    else if (act === 'meteo') SIM.meteo(p[0]);
     else if (act === 'arret') { const d = Math.max(1.5, p[0] - SIM.FRONT - SIM.player.s), v = SIM.player.v; SIM.auto(0, Math.max(0.5, v * v / (2 * d))); }
     else if (act === 'acteur' && a) a.go((p[1] || 0) / 3.6, p[2] || 0);
     else if (act === 'ouvrir' && a && a.open) a.open(700);

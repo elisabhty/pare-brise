@@ -66,3 +66,23 @@ test('un marquage au sol inconnu est signalé', async () => {
   c.scenes.find(s => s.marquages).marquages[0][2] = 'zigzag'; fs.writeFileSync(f, JSON.stringify(c));
   assert.ok(validate(dir).errors.some(e => e.includes('marquage inconnu « zigzag »')));
 });
+
+// L'image parle de la même chose que la voix
+test('chaque liste et chaque série de chiffres apparaît au rythme de la voix (sync)', () => {
+  for (const c of data.cours) c.scenes.forEach((s, i) => {
+    if (s.type !== 'liste' && s.type !== 'chiffres') return;
+    assert.ok(Array.isArray(s.sync) && s.sync.length === s.items.length, `${c.id} scène ${i} : sync manquant`);
+    if (s.type === 'liste') s.sync.forEach((v, n) => assert.ok(n === 0 || v >= s.sync[n - 1], `${c.id} scène ${i} : la liste doit apparaître dans l’ordre`));
+  });
+});
+
+test('hors cours 1 (script des panneaux), titres, listes, chiffres et fins ont un décor qui parle du sujet', () => {
+  for (const c of data.cours) {
+    if (c.ordre === 1) continue;
+    c.scenes.forEach((s, i) => { if (['titre', 'liste', 'chiffres', 'fin'].includes(s.type)) assert.ok(s.decor && s.decor.env, `${c.id} scène ${i} (${s.type}) sans décor`); });
+  }
+});
+
+test('un décor sous une carte de texte utilise un plan qui garde le sujet visible', () => {
+  for (const c of data.cours) c.scenes.forEach((s, i) => { if (s.decor) assert.ok(['plan', 'proche', 'garee', 'poursuite'].includes(s.decor.camera), `${c.id} scène ${i} : caméra « ${s.decor.camera} »`); });
+});

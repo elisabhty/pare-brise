@@ -38,7 +38,44 @@
    "titre": "Véhicules prioritaires",
    "sous": "laisser passer l’urgence",
    "dire": "Une sirène se fait entendre au loin. Un véhicule d’intervention approche. Cours numéro 14 : les véhicules d’urgence. Quand ils sont en intervention, chaque seconde compte.",
-   "vitesse": 40
+   "vitesse": 40,
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "ambulance",
+      "S": 170,
+      "x": -1.75,
+      "kmh": -45
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "clignotant",
+      "d"
+     ],
+     [
+      "p1",
+      "voie",
+      2.9,
+      1700
+     ],
+     [
+      "p1",
+      "vitesse",
+      8,
+      3
+     ],
+     [
+      "p2+2",
+      "clignotant",
+      null
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -108,7 +145,49 @@
      "Tu peux avancer un peu si c’est sans danger"
     ]
    ],
-   "dire": "Garde ton calme : pas de freinage brusque. Serre-toi à droite pour libérer le passage. À un feu rouge, tu peux avancer légèrement pour lui laisser la place, uniquement si c’est sans danger."
+   "dire": "Garde ton calme : pas de freinage brusque. Serre-toi à droite pour libérer le passage. À un feu rouge, tu peux avancer légèrement pour lui laisser la place, uniquement si c’est sans danger.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "ambulance",
+      "S": 175,
+      "x": -1.75,
+      "kmh": -50
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "clignotant",
+      "d"
+     ],
+     [
+      "p1",
+      "voie",
+      2.9,
+      1800
+     ],
+     [
+      "p1",
+      "vitesse",
+      6,
+      3
+     ],
+     [
+      "p2+2",
+      "clignotant",
+      null
+     ]
+    ]
+   },
+   "sync": [
+    0.57,
+    1.0,
+    2.06
+   ]
   },
   {
    "type": "liste",
@@ -125,7 +204,41 @@
      "Mais un danger : ralentis"
     ]
    ],
-   "dire": "Un gyrophare orange signale un véhicule lent ou un danger : dépanneuse, engin de chantier, convoi exceptionnel. Ce n’est pas une priorité de passage, mais ralentis et sois prudent."
+   "dire": "Un gyrophare orange signale un véhicule lent ou un danger : dépanneuse, engin de chantier, convoi exceptionnel. Ce n’est pas une priorité de passage, mais ralentis et sois prudent.",
+   "decor": {
+    "env": "route",
+    "kmh": 35,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 30,
+      "x": 1.75,
+      "kmh": 18,
+      "gyro": "orange",
+      "couleur": 16756768
+     },
+     {
+      "type": "camion",
+      "S": 46,
+      "kmh": 18,
+      "couleur": 16756768
+     }
+    ],
+    "script": [
+     [
+      0.4,
+      "vitesse",
+      18,
+      2
+     ]
+    ]
+   },
+   "sync": [
+    0.09,
+    1.22
+   ]
   },
   {
    "type": "fin",
@@ -142,7 +255,20 @@
      "réflexe : serrer à droite"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : une ambulance t’attend."
+   "dire": "Cours terminé. Passe à la pratique : une ambulance t’attend.",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "ambulance",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -45
+     }
+    ]
+   }
   }
  ]
 }

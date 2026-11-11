@@ -11,6 +11,7 @@ export const currentScreen = () => current;
 export function syncRegion() {
   if (!has3D || !current) return;
   const def = screens[current] || {};
+  if (def.reframe) { def.reframe(); return; }
   const el = def.region ? def.region() : $(`#s-${current} .view3d`);
   if (el && !el.hidden && el.offsetParent !== null) Engine.regionFromEl(el);
 }

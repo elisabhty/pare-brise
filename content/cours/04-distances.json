@@ -44,7 +44,38 @@
    "titre": "Distances d'arrêt",
    "sous": "voir les mètres sur la route",
    "vitesse": 90,
-   "dire": "Tu roules à vitesse constante. Un obstacle apparaît au loin : il faut comprendre l’espace nécessaire pour s’arrêter. Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi."
+   "dire": "Tu roules à vitesse constante. Un obstacle apparaît au loin : il faut comprendre l’espace nécessaire pour s’arrêter. Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 105,
+      "x": 1.75,
+      "kmh": 0,
+      "couleur": 15223370,
+      "freine": true
+     }
+    ],
+    "script": [
+     [
+      1.6,
+      "arret",
+      78
+     ]
+    ],
+    "etiquettes": [
+     [
+      0,
+      "Obstacle",
+      "à toi de t’arrêter à temps",
+      1
+     ]
+    ]
+   }
   },
   {
    "type": "reperes",
@@ -132,7 +163,33 @@
      "de la bande d'arrêt d'urgence sur autoroute"
     ]
    ],
-   "dire": "Avec le véhicule de devant, garde au moins deux secondes d'écart. Sur autoroute, un repère simple : au moins deux traits de la bande d'arrêt d'urgence."
+   "dire": "Avec le véhicule de devant, garde au moins deux secondes d'écart. Sur autoroute, un repère simple : au moins deux traits de la bande d'arrêt d'urgence.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "chevrons": true,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 62,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": -40,
+      "x": -1.75,
+      "kmh": 125,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.09,
+    1.53
+   ]
   },
   {
    "type": "fin",
@@ -153,7 +210,22 @@
      "mouillé"
     ]
    ],
-   "dire": "Cours terminé. Trois calculs à retenir. Passe à la pratique pour les appliquer sur la route."
+   "dire": "Cours terminé. Trois calculs à retenir. Passe à la pratique pour les appliquer sur la route.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 90,
+    "camera": "plan",
+    "chevrons": true,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 52,
+      "x": 1.75,
+      "kmh": 90,
+      "couleur": 15223370
+     }
+    ]
+   }
   }
  ]
 }

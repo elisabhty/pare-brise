@@ -45,7 +45,52 @@
    "titre": "Autoroute",
    "sous": "vitesse et rigueur",
    "dire": "Tu arrives à l’entrée d’une autoroute. La circulation accélère progressivement. Cours numéro 10 : l’autoroute. On y roule vite : chaque règle compte double.",
-   "vitesse": 110
+   "vitesse": 110,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 70,
+    "camera": "plan",
+    "voie": 5.0,
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 36,
+      "x": 1.75,
+      "kmh": 100
+     },
+     {
+      "type": "voiture",
+      "S": -8,
+      "x": -1.75,
+      "kmh": 120,
+      "couleur": 15223370
+     }
+    ],
+    "script": [
+     [
+      0.4,
+      "vitesse",
+      104,
+      2.5
+     ],
+     [
+      2.2,
+      "clignotant",
+      "g"
+     ],
+     [
+      3.8,
+      "voie",
+      1.75,
+      2600
+     ],
+     [
+      6.8,
+      "clignotant",
+      null
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -115,7 +160,43 @@
      "Marche arrière, demi-tour, s’arrêter hors urgence"
     ]
    ],
-   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits."
+   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 32,
+      "x": 1.75,
+      "kmh": 92
+     },
+     {
+      "type": "voiture",
+      "S": -60,
+      "x": -1.75,
+      "kmh": 130,
+      "couleur": 3829232
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "depasser",
+      0,
+      {
+       "kmh": 125,
+       "marge": 10
+      }
+     ]
+    ]
+   },
+   "sync": [
+    0.3,
+    1.03,
+    2.81
+   ]
   },
   {
    "type": "situation",
@@ -159,7 +240,43 @@
     ]
    ],
    "dire": "Rappel : 130 par temps sec, 110 sous la pluie et pour les jeunes conducteurs, 50 si la visibilité tombe sous 50 mètres.",
-   "vitesse": 110
+   "vitesse": 110,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 130,
+    "camera": "plan",
+    "signaux": [
+     [
+      "B14:130",
+      70
+     ],
+     [
+      "B14:130",
+      600
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 30,
+      "x": -1.75,
+      "kmh": 134,
+      "couleur": 15223370
+     },
+     {
+      "type": "voiture",
+      "S": 120,
+      "x": 1.75,
+      "kmh": 128,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.05,
+    0.21,
+    0.63
+   ]
   },
   {
    "type": "liste",
@@ -184,7 +301,69 @@
      "Borne d’appel ou 112"
     ]
    ],
-   "dire": "En cas de panne : bande d’arrêt d’urgence, le plus à droite possible. Feux de détresse, gilet enfilé avant de sortir, et tout le monde sort côté droit pour se mettre derrière la glissière. Puis tu appelles avec une borne d’appel d’urgence ou le 112."
+   "dire": "En cas de panne : bande d’arrêt d’urgence, le plus à droite possible. Feux de détresse, gilet enfilé avant de sortir, et tout le monde sort côté droit pour se mettre derrière la glissière. Puis tu appelles avec une borne d’appel d’urgence ou le 112.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 5.0,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 0.8,
+      "x": 5.95
+     },
+     {
+      "type": "voiture",
+      "S": -50,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     },
+     {
+      "type": "camion",
+      "S": -170,
+      "x": 1.75,
+      "kmh": 88
+     },
+     {
+      "type": "voiture",
+      "S": -110,
+      "x": -1.75,
+      "kmh": 125,
+      "couleur": 15223370
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "feux",
+      {
+       "detresse": true
+      }
+     ],
+     [
+      "p1+1.5",
+      "acteur",
+      0,
+      0,
+      1.3
+     ],
+     [
+      "p1+3.3",
+      "acteur",
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   "sync": [
+    0.23,
+    1.0,
+    1.31,
+    2.1
+   ]
   },
   {
    "type": "situation",
@@ -247,7 +426,29 @@
      "gestes en cas de panne"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour garder tes distances à grande vitesse."
+   "dire": "Cours terminé. Passe à la pratique pour garder tes distances à grande vitesse.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "chevrons": true,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 70,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": -30,
+      "x": -1.75,
+      "kmh": 125,
+      "couleur": 3829232
+     }
+    ]
+   }
   }
  ]
 }

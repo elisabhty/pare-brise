@@ -45,7 +45,44 @@
    "titre": "Les intersections complexes",
    "sous": "comprendre les trajectoires qui se croisent",
    "vitesse": 30,
-   "dire": "Tu approches d’un carrefour où des voitures, un vélo et un tramway peuvent se croiser. Avant de décider, observe les feux, les panneaux, les marquages et la trajectoire de chaque usager."
+   "dire": "Tu approches d’un carrefour où des voitures, un vélo et un tramway peuvent se croiser. Avant de décider, observe les feux, les panneaux, les marquages et la trajectoire de chaque usager.",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "proche",
+    "carrefour": {
+     "S": 52
+    },
+    "rails": 52,
+    "acteurs": [
+     {
+      "type": "tram",
+      "S": 52,
+      "x": 70,
+      "vx": -8
+     },
+     {
+      "type": "velo",
+      "S": 30,
+      "x": 3.0,
+      "kmh": 14
+     },
+     {
+      "type": "voiture",
+      "S": 50.25,
+      "x": -50,
+      "vx": 6,
+      "couleur": 15223370
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      44
+     ]
+    ]
+   }
   },
   {
    "type": "situation",
@@ -349,7 +386,65 @@
     ]
    ],
    "dire": "À chaque carrefour, repère la règle applicable, les usagers concernés et les trajectoires qui se croisent. Passe à la pratique pour appliquer cette méthode.",
-   "ch": 2
+   "ch": 2,
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "proche",
+    "carrefour": {
+     "S": 46
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 30,
+      "vx": -7,
+      "couleur": 15223370
+     },
+     {
+      "type": "voiture",
+      "S": 44.25,
+      "x": -40,
+      "vx": 8,
+      "couleur": 3829232
+     },
+     {
+      "type": "velo",
+      "S": 47.75,
+      "x": 62,
+      "vx": -4.5
+     },
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 95,
+      "vx": -7.5,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 44.25,
+      "x": -110,
+      "vx": 8,
+      "couleur": 3122042
+     },
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 150,
+      "vx": -7,
+      "couleur": 3028032
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      39
+     ]
+    ]
+   }
   }
  ]
 }

@@ -41,7 +41,21 @@
    "titre": "Les aides à la conduite",
    "sous": "utiles, mais tu restes le pilote",
    "dire": "Tu montes dans une voiture équipée d’aides électroniques. Cours numéro 24 : les aides à la conduite. Les voitures récentes en sont pleines. Elles aident… elles ne conduisent pas à ta place.",
-   "vitesse": 80
+   "vitesse": 80,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 36,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -55,7 +69,7 @@
     ],
     [
      "Régulateur",
-     "La voiture garde la vitesse choisie"
+     "Il maintient la vitesse choisie"
     ],
     [
      "Régulateur adaptatif",
@@ -71,7 +85,55 @@
     ]
    ],
    "dire": "Le limiteur t’empêche de dépasser une vitesse. Le régulateur la maintient. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives.",
-   "vitesse": 80
+   "vitesse": 80,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 34,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      "p2",
+      "freiner",
+      0,
+      90,
+      1.5
+     ],
+     [
+      "p2+0.6",
+      "vitesse",
+      90,
+      1.5
+     ],
+     [
+      "p4",
+      "voie",
+      1.0,
+      2600
+     ],
+     [
+      "p4+2.8",
+      "voie",
+      1.75,
+      1100
+     ]
+    ]
+   },
+   "sync": [
+    0.04,
+    1.08,
+    2.15,
+    3.01,
+    4.05
+   ]
   },
   {
    "type": "situation",
@@ -113,7 +175,26 @@
      "C’est toi qui réponds"
     ]
    ],
-   "dire": "Quelle que soit l’aide, tu gardes les mains sur le volant et les yeux sur la route. Et en cas d’infraction ou d’accident, c’est le conducteur qui est responsable."
+   "dire": "Quelle que soit l’aide, tu gardes les mains sur le volant et les yeux sur la route. Et en cas d’infraction ou d’accident, c’est le conducteur qui est responsable.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 38,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.43,
+    0.75,
+    1.12
+   ]
   },
   {
    "type": "fin",
@@ -130,7 +211,21 @@
      "règle : tu restes responsable"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : les aides t’aident, mais c’est toi qui conduis."
+   "dire": "Cours terminé. Passe à la pratique : les aides t’aident, mais c’est toi qui conduis.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 38,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ]
+   }
   }
  ]
 }

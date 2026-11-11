@@ -1290,3 +1290,27 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 #v-salle .drag-hint{white-space:nowrap}
 /* sous le titre de la fiche, le fond est plein : la salle 3D ne transparaît plus derrière les cartes */
 .fhead{box-shadow:0 calc(400vh + 46px) 0 400vh var(--nuit)}
+
+/* ===================== Cours : l'image et la voix parlent de la même chose ===================== */
+/* une liste qui se construit au rythme de la voix : l'élément dit est mis en avant, les précédents se replient */
+.ovt .olist.sync > li{display:none}
+.ovt .olist.sync > li.in{display:grid;animation:syncIn .45s cubic-bezier(.2,.9,.25,1) both}
+.ovt .olist.sync > li.cur{margin:2px -8px;padding:9px 8px;border-radius:14px;border-top-color:transparent;background:rgba(10,102,255,.08)}
+.ovt .olist.sync > li.cur + li{border-top-color:transparent}
+.ovt .olist.sync > li.cur i{background:var(--accent);color:#fff}
+.ovt .olist.sync > li.past{opacity:.6}
+.ovt .olist.sync > li i{transition:background .3s,color .3s,transform .3s}
+.ovt .olist.sync > li.past i{transform:scale(.88)}
+@keyframes syncIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ovt .nums.sync > div{opacity:0;transform:translateY(10px);transition:opacity .4s,transform .45s cubic-bezier(.2,.9,.25,1)}
+.ovt .nums.sync > div.in{opacity:1;transform:none}
+.ovt .nums.sync > div.past{opacity:.5}
+.ovt .nums.sync > div.cur b{color:var(--accent)}
+/* le panneau dont parle la voix */
+.lab{transition:opacity .4s,transform .35s cubic-bezier(.2,.9,.25,1),box-shadow .3s}
+.lab.on.dim{opacity:.4}
+.lab.hot{box-shadow:inset 0 0 0 2px var(--accent),0 10px 22px -10px rgba(10,102,255,.6)}
+.lab.hot:not(.up){transform:translate(-50%,6px) scale(1.08)}
+/* longue liste : les éléments déjà dits se replient sur une ligne (le décor reste visible) */
+.ovt .olist.sync.long > li.past{padding:5px 0}
+.ovt .olist.sync.long > li.past span{display:none}

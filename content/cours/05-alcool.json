@@ -39,7 +39,45 @@
    "titre": "Alcool et conduite",
    "sous": "les taux, et ce qu'ils changent",
    "vitesse": 50,
-   "dire": "Une soirée se termine. Avant de prendre le volant, un sujet essentiel s’impose : l’alcool. Cours numéro 5 : l'alcool au volant. Les taux à connaître, et pourquoi ils existent."
+   "dire": "Une soirée se termine. Avant de prendre le volant, un sujet essentiel s’impose : l’alcool. Cours numéro 5 : l'alcool au volant. Les taux à connaître, et pourquoi ils existent.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "plan",
+    "meteo": "nuit",
+    "voie": 4.6,
+    "feux": {
+     "position": true
+    },
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 14,
+      "x": 6.3,
+      "kmh": 3.4,
+      "haut": 16734815
+     },
+     {
+      "type": "pieton",
+      "S": 18,
+      "x": 6.9,
+      "kmh": 3.4
+     },
+     {
+      "type": "pieton",
+      "S": 44,
+      "x": -6.6,
+      "kmh": -3
+     },
+     {
+      "type": "voiture",
+      "S": 180,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 10134447
+     }
+    ]
+   }
   },
   {
    "type": "chiffres",
@@ -59,7 +97,49 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "Avec un permis définitif, le taux maximal est de 0,5 gramme par litre de sang. Mesuré à l'éthylotest, ça correspond à 0,25 milligramme par litre d'air expiré."
+   "dire": "Avec un permis définitif, le taux maximal est de 0,5 gramme par litre de sang. Mesuré à l'éthylotest, ça correspond à 0,25 milligramme par litre d'air expiré.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "proche",
+    "meteo": "nuit",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 35,
+      "x": 4.3,
+      "gilet": true,
+      "cap": -90
+     },
+     {
+      "type": "ambulance",
+      "S": 44,
+      "x": 4.7,
+      "couleur": 1981066
+     },
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "gilet": true,
+      "haut": 1981066
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.6,
+    1.46
+   ]
   },
   {
    "type": "chiffres",
@@ -79,7 +159,49 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "En permis probatoire, c'est 0,2 gramme par litre. Dans les faits, un seul verre peut suffire à le dépasser."
+   "dire": "En permis probatoire, c’est 0,2 gramme par litre de sang, soit 0,1 milligramme par litre d’air expiré. Dans les faits, un seul verre peut suffire à le dépasser.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "proche",
+    "meteo": "nuit",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 35,
+      "x": 4.3,
+      "gilet": true,
+      "cap": -90
+     },
+     {
+      "type": "ambulance",
+      "S": 44,
+      "x": 4.7,
+      "couleur": 1981066
+     },
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "gilet": true,
+      "haut": 1981066
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.24,
+    0.59
+   ]
   },
   {
    "type": "chiffres",
@@ -99,7 +221,34 @@
      "visuel réduit"
     ]
    ],
-   "dire": "L'alcool allonge le temps de réaction et réduit le champ visuel. Tu vois moins, et tu réagis plus tard."
+   "dire": "L'alcool allonge le temps de réaction et réduit le champ visuel. Tu vois moins, et tu réagis plus tard.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "meteo": "nuit",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 70,
+      "x": 4.6
+     },
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.28,
+    0.77
+   ]
   },
   {
    "type": "fin",
@@ -116,7 +265,25 @@
      "g/L probatoire"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier les chiffres."
+   "dire": "Cours terminé. Passe à la pratique pour vérifier les chiffres.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "meteo": "nuit",
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 220,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 10134447
+     }
+    ]
+   }
   }
  ]
 }

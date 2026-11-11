@@ -16,6 +16,8 @@ export const Labels = {
     setTimeout(() => this.items.forEach(l => l.classList.add('on')), 700);
   },
   clear() { if (this.el) this.el.innerHTML = ''; this.items = []; },
+  /* l'étiquette dont parle la voix ressort, les autres s'estompent (k = -1 : toutes égales) */
+  focus(k) { this.items.forEach((l, n) => { l.classList.toggle('hot', n === k); l.classList.toggle('dim', k >= 0 && n !== k); }); },
   frame(limitEl) {
     if (!this.items.length || !has3D) return;
     const a = Engine.anchors(), app = $('#app').getBoundingClientRect();

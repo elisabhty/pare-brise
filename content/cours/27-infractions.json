@@ -42,7 +42,28 @@
    "titre": "Infractions et sanctions",
    "sous": "ce que coûte chaque écart",
    "dire": "Cours numéro 27 : les sanctions. Pas pour faire peur : pour comprendre ce qui est grave.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "route",
+    "kmh": 80,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "signaux": [
+     [
+      "B14:80",
+      70
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 240,
+      "x": -1.75,
+      "kmh": -80,
+      "couleur": 10134447
+     }
+    ]
+   }
   },
   {
    "type": "chiffres",
@@ -67,7 +88,46 @@
     ]
    ],
    "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Elles sont minorées si tu paies vite, majorées si tu tardes.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.34,
+    0.62,
+    0.79
+   ]
   },
   {
    "type": "liste",
@@ -92,7 +152,51 @@
      "6 points"
     ]
    ],
-   "dire": "Les retraits les plus fréquents : 3 points pour la ceinture ou le téléphone tenu en main, 4 points pour un feu rouge ou un stop, 6 points pour un refus de priorité à un piéton ou un excès de vitesse de 50 kilomètres heure ou plus."
+   "dire": "Les retraits les plus fréquents : 3 points pour la ceinture ou le téléphone tenu en main, 4 points pour un feu rouge ou un stop, 6 points pour un refus de priorité à un piéton ou un excès de vitesse de 50 kilomètres heure ou plus.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "proche",
+    "carrefour": {
+     "S": 46,
+     "ligne": "feu"
+    },
+    "acteurs": [
+     {
+      "type": "feu",
+      "S": 41.5,
+      "x": 5.2,
+      "etat": "rouge"
+     },
+     {
+      "type": "voiture",
+      "S": 47.75,
+      "x": 40,
+      "vx": -7.5,
+      "couleur": 15223370
+     },
+     {
+      "type": "voiture",
+      "S": 44.25,
+      "x": -60,
+      "vx": 8,
+      "couleur": 3829232
+     }
+    ],
+    "script": [
+     [
+      0.2,
+      "arret",
+      40.5
+     ]
+    ]
+   },
+   "sync": [
+    0.19,
+    0.45,
+    0.6,
+    0.76
+   ]
   },
   {
    "type": "chiffres",
@@ -122,7 +226,38 @@
     ]
    ],
    "dire": "Pour la vitesse : 1 point pour moins de 20 kilomètres heure de trop, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. Au-delà, c’est 6 points et une suspension possible.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "route",
+    "kmh": 80,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "signaux": [
+     [
+      "B14:80",
+      55
+     ],
+     [
+      "B14:80",
+      330
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 240,
+      "x": -1.75,
+      "kmh": -80,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.11,
+    0.5,
+    0.66,
+    0.82
+   ]
   },
   {
    "type": "fin",
@@ -139,7 +274,29 @@
      "points au maximum par infraction"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour connaître le prix de chaque infraction."
+   "dire": "Cours terminé. Passe à la pratique pour connaître le prix de chaque infraction.",
+   "decor": {
+    "env": "route",
+    "kmh": 80,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 90,
+      "x": 1.75,
+      "kmh": 80,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -80,
+      "couleur": 3829232
+     }
+    ]
+   }
   }
  ]
 }

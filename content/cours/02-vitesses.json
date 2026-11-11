@@ -55,7 +55,56 @@
    "titre": "Les limitations de vitesse",
    "sous": "le bon chiffre au bon endroit",
    "vitesse": 80,
-   "dire": "Tu quittes un parking et rejoins la circulation. La vitesse autorisée va changer selon la route. Cours numéro 2 : les limitations de vitesse. Quatre chiffres de base, puis ce qui change avec la météo et quand tu es jeune conducteur."
+   "dire": "Tu quittes un parking et rejoins la circulation. La vitesse autorisée va changer selon la route. Cours numéro 2 : les limitations de vitesse. Quatre chiffres de base, puis ce qui change avec la météo et quand tu es jeune conducteur.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "plan",
+    "voie": 4.6,
+    "signaux": [
+     [
+      "EB10",
+      30
+     ],
+     [
+      "B14:50",
+      75
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 170,
+      "x": -1.75,
+      "kmh": -35,
+      "couleur": 3829232
+     }
+    ],
+    "script": [
+     [
+      1.2,
+      "clignotant",
+      "g"
+     ],
+     [
+      2.4,
+      "vitesse",
+      30,
+      2
+     ],
+     [
+      2.6,
+      "voie",
+      1.75,
+      2600
+     ],
+     [
+      5.6,
+      "clignotant",
+      null
+     ]
+    ]
+   }
   },
   {
    "type": "panneaux",
@@ -86,7 +135,13 @@
      " "
     ]
    ],
-   "dire": "En agglomération : 50. Sur une route à double sens sans séparateur central : 80. Sur une route à chaussées séparées : 110. Sur autoroute : 130."
+   "dire": "En agglomération : 50. Sur une route à double sens sans séparateur central : 80. Sur une route à chaussées séparées : 110. Sur autoroute : 130.",
+   "sync": [
+    0.83,
+    1.11,
+    2.87,
+    3.17
+   ]
   },
   {
    "type": "panneaux",
@@ -108,7 +163,11 @@
     ]
    ],
    "puce": "50 km/h sauf panneau contraire",
-   "dire": "L'agglomération commence au panneau blanc bordé de rouge qui porte le nom de la ville. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie."
+   "dire": "L'agglomération commence au panneau blanc bordé de rouge qui porte le nom de la ville. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie.",
+   "sync": [
+    0.16,
+    2.71
+   ]
   },
   {
    "type": "chiffres",
@@ -128,7 +187,51 @@
      "si le département l'a relevée, avec panneaux"
     ]
    ],
-   "dire": "Depuis 2018, ces routes sont à 80 par défaut. Mais beaucoup de départements en ont relevé une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80."
+   "dire": "Depuis 2018, ces routes sont à 80 par défaut. Mais beaucoup de départements en ont relevé une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80.",
+   "decor": {
+    "env": "route",
+    "kmh": 80,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "signaux": [
+     [
+      "B14:80",
+      55
+     ],
+     [
+      "B14:90",
+      190
+     ],
+     [
+      "B14:80",
+      420
+     ],
+     [
+      "B14:90",
+      600
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 230,
+      "x": -1.75,
+      "kmh": -80,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 110,
+      "x": 1.75,
+      "kmh": 80,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.66,
+    1.9
+   ]
   },
   {
    "type": "chiffres",
@@ -153,7 +256,47 @@
      "route à double sens"
     ]
    ],
-   "dire": "Quand il pleut : 110 sur autoroute au lieu de 130, et 100 sur route à chaussées séparées au lieu de 110. Sur les routes à 80, rien ne change. Les routes à 90 descendent à 80."
+   "dire": "Quand il pleut : 110 sur autoroute au lieu de 130, et 100 sur route à chaussées séparées au lieu de 110. Sur les routes à 80, rien ne change. Les routes à 90 descendent à 80.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "meteo": "pluie",
+    "feux": {
+     "croisement": true
+    },
+    "signaux": [
+     [
+      "B14:110",
+      60
+     ],
+     [
+      "B14:110",
+      420
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 70,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": -10,
+      "x": -1.75,
+      "kmh": 118,
+      "couleur": 15223370
+     }
+    ]
+   },
+   "sync": [
+    0.13,
+    0.49,
+    1.44
+   ]
   },
   {
    "type": "chiffres",
@@ -168,7 +311,36 @@
      "partout, même sur autoroute"
     ]
    ],
-   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute."
+   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 50,
+    "camera": "plan",
+    "meteo": "brouillard",
+    "feux": {
+     "croisement": true,
+     "brouillardAv": true,
+     "brouillardAr": true
+    },
+    "signaux": [
+     [
+      "B14:50",
+      40
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 38,
+      "x": 1.75,
+      "kmh": 50,
+      "couleur": 15223370
+     }
+    ]
+   },
+   "sync": [
+    0.24
+   ]
   },
   {
    "type": "chiffres",
@@ -193,7 +365,37 @@
      "route à double sens"
     ]
    ],
-   "dire": "Pendant le permis probatoire : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90."
+   "dire": "Pendant le permis probatoire : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90.",
+   "decor": {
+    "env": "route",
+    "kmh": 80,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "signaux": [
+     [
+      "B14:80",
+      60
+     ],
+     [
+      "B14:80",
+      400
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 240,
+      "x": -1.75,
+      "kmh": -80,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.18,
+    0.31,
+    0.57
+   ]
   },
   {
    "type": "fin",
@@ -214,7 +416,35 @@
      "règles jeune conducteur"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : les vitesses tombent souvent à l’examen."
+   "dire": "Cours terminé. Passe à la pratique : les vitesses tombent souvent à l’examen.",
+   "decor": {
+    "env": "route",
+    "kmh": 80,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 90,
+      "x": 1.75,
+      "kmh": 80,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -80,
+      "couleur": 3829232
+     }
+    ],
+    "signaux": [
+     [
+      "B14:80",
+      90
+     ]
+    ]
+   }
   }
  ]
 }

@@ -40,7 +40,35 @@
    "eyebrow": "Cours 21 · Véhicule",
    "titre": "S’installer et quitter",
    "sous": "avant même de démarrer",
-   "dire": "Tu t’installes dans une voiture pour la première fois. Cours numéro 21 : s’installer. Une bonne position, c’est plus de contrôle et moins de blessures en cas de choc."
+   "dire": "Tu t’installes dans une voiture pour la première fois. Cours numéro 21 : s’installer. Une bonne position, c’est plus de contrôle et moins de blessures en cas de choc.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -70,7 +98,42 @@
     ]
    ],
    "dire": "D’abord le siège : jambes légèrement fléchies quand la pédale est au plancher. Puis le dossier : poignets posés sur le haut du volant, bras légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs. Et la ceinture, bien à plat.",
-   "vitesse": 0
+   "vitesse": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.11,
+    1.07,
+    2.01,
+    3.21,
+    4.18
+   ]
   },
   {
    "type": "situation",
@@ -145,7 +208,40 @@
      "Rétroviseur avant d’ouvrir"
     ]
    ],
-   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. Et avant d’ouvrir, un coup d’œil au rétroviseur : un cycliste peut arriver."
+   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. Et avant d’ouvrir, un coup d’œil au rétroviseur : un cycliste peut arriver.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "velo",
+      "S": -26,
+      "x": 2.6
+     },
+     {
+      "type": "pieton",
+      "S": 30,
+      "x": 6.5,
+      "kmh": 3
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "acteur",
+      0,
+      16
+     ]
+    ]
+   },
+   "sync": [
+    0.27,
+    0.61,
+    0.81,
+    1.01
+   ]
   },
   {
    "type": "fin",
@@ -162,7 +258,41 @@
      "gestes en quittant"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier tes réglages."
+   "dire": "Cours terminé. Passe à la pratique pour vérifier tes réglages.",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

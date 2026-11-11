@@ -44,7 +44,34 @@
    "titre": "Tunnels, passages à niveau, montagne",
    "sous": "les lieux à part",
    "dire": "Tu arrives devant un passage à niveau, puis un tunnel et une route de montagne. Cours numéro 17 : trois endroits où les règles changent un peu.",
-   "vitesse": 50
+   "vitesse": 50,
+   "decor": {
+    "env": "route",
+    "kmh": 40,
+    "camera": "proche",
+    "rails": 54,
+    "signaux": [
+     [
+      "A7",
+      18
+     ]
+    ],
+    "acteurs": [
+     {
+      "type": "feu",
+      "S": 49,
+      "x": 5.2,
+      "etat": "rouge"
+     }
+    ],
+    "script": [
+     [
+      0.4,
+      "arret",
+      46
+     ]
+    ]
+   }
   },
   {
    "type": "panneaux",
@@ -82,7 +109,61 @@
      "Avec le téléphone d’urgence ou le 112"
     ]
    ],
-   "dire": "Si ta voiture reste bloquée sur les rails : fais sortir tout le monde, éloignez-vous des voies, et prévenez avec le téléphone d’urgence ou le 112."
+   "dire": "Si ta voiture reste bloquée sur les rails : fais sortir tout le monde, éloignez-vous des voies, et prévenez avec le téléphone d’urgence ou le 112.",
+   "decor": {
+    "env": "route",
+    "kmh": 0,
+    "camera": "garee",
+    "rails": 1,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 0.5,
+      "x": 3.1
+     },
+     {
+      "type": "pieton",
+      "S": -1.2,
+      "x": 3.3,
+      "haut": 16734815
+     }
+    ],
+    "script": [
+     [
+      "p0+1.4",
+      "acteur",
+      0,
+      0,
+      1.6
+     ],
+     [
+      "p0+1.6",
+      "acteur",
+      1,
+      0,
+      1.5
+     ],
+     [
+      "p0+5",
+      "acteur",
+      0,
+      0,
+      0
+     ],
+     [
+      "p0+5.2",
+      "acteur",
+      1,
+      0,
+      0
+     ]
+    ]
+   },
+   "sync": [
+    0.31,
+    0.46,
+    0.65
+   ]
   },
   {
    "type": "liste",
@@ -107,7 +188,31 @@
      "On sort à pied par les issues de secours"
     ]
    ],
-   "dire": "Dans un tunnel, feux de croisement allumés et distances respectées, souvent repérées par des marques bleues. Demi-tour et marche arrière sont interdits. En cas d’incendie, on gare la voiture, on coupe le moteur et on rejoint à pied une issue de secours."
+   "dire": "Dans un tunnel, feux de croisement allumés et distances respectées, souvent repérées par des marques bleues. Demi-tour et marche arrière sont interdits. En cas d’incendie, on gare la voiture, on coupe le moteur et on rejoint à pied une issue de secours.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "tunnel": 30,
+    "feux": {
+     "croisement": true
+    },
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 52,
+      "x": 1.75,
+      "kmh": 50,
+      "couleur": 15223370
+     }
+    ]
+   },
+   "sync": [
+    0.12,
+    0.4,
+    1.74,
+    2.06
+   ]
   },
   {
    "type": "situation",
@@ -167,7 +272,32 @@
      "Ils perdent leur efficacité"
     ]
    ],
-   "dire": "En descente, rétrograde pour utiliser le frein moteur, et ne roule jamais au point mort. Freiner en continu fait chauffer les freins, qui perdent leur efficacité."
+   "dire": "En descente, rétrograde pour utiliser le frein moteur, et ne roule jamais au point mort. Freiner en continu fait chauffer les freins, qui perdent leur efficacité.",
+   "decor": {
+    "env": "route",
+    "kmh": 35,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "camion",
+      "S": 26,
+      "kmh": 35
+     },
+     {
+      "type": "voiture",
+      "S": 200,
+      "x": -1.75,
+      "kmh": -40,
+      "couleur": 10134447
+     }
+    ]
+   },
+   "sync": [
+    0.5,
+    0.84,
+    1.3
+   ]
   },
   {
    "type": "fin",
@@ -188,7 +318,16 @@
      "priorité à celui qui monte"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour revoir ces lieux à part."
+   "dire": "Cours terminé. Passe à la pratique pour revoir ces lieux à part.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "tunnel": 90,
+    "feux": {
+     "croisement": true
+    }
+   }
   }
  ]
 }

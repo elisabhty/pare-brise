@@ -40,7 +40,29 @@
    "titre": "Écoconduite",
    "sous": "moins consommer, plus de sécurité",
    "dire": "Tu conduis sur une route fluide. L’objectif est de consommer moins en anticipant. Cours numéro 28 : l’écoconduite. Bonne nouvelle : conduire économique, c’est aussi conduire plus sûr.",
-   "vitesse": 70
+   "vitesse": 70,
+   "decor": {
+    "env": "route",
+    "kmh": 70,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 90,
+      "x": 1.75,
+      "kmh": 70,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -70,
+      "couleur": 3829232
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -66,7 +88,50 @@
     ]
    ],
    "dire": "Anticipe : lève le pied tôt plutôt que de freiner tard. Passe les rapports tôt. Garde une vitesse stable. Et rouler un peu moins vite fait baisser nettement la consommation, surtout sur autoroute.",
-   "vitesse": 70
+   "vitesse": 70,
+   "decor": {
+    "env": "route",
+    "kmh": 60,
+    "camera": "plan",
+    "carrefour": {
+     "S": 160,
+     "ligne": "feu"
+    },
+    "acteurs": [
+     {
+      "type": "feu",
+      "S": 155.5,
+      "x": 5.2,
+      "etat": "rouge"
+     }
+    ],
+    "script": [
+     [
+      "p0+0.6",
+      "vitesse",
+      28,
+      0.9
+     ],
+     [
+      "p3",
+      "feu",
+      0,
+      "vert"
+     ],
+     [
+      "p3+0.5",
+      "vitesse",
+      45,
+      1.2
+     ]
+    ]
+   },
+   "sync": [
+    0.0,
+    1.0,
+    2.37,
+    3.0
+   ]
   },
   {
    "type": "liste",
@@ -91,7 +156,41 @@
      "Lors d’un arrêt prolongé"
     ]
    ],
-   "dire": "Côté voiture : des pneus bien gonflés, un coffre de toit retiré quand il ne sert pas, la climatisation avec mesure, et le moteur coupé lors d’un arrêt prolongé."
+   "dire": "Côté voiture : des pneus bien gonflés, un coffre de toit retiré quand il ne sert pas, la climatisation avec mesure, et le moteur coupé lors d’un arrêt prolongé.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "voie": 4.6,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 9,
+      "x": 6.5,
+      "kmh": 3.2
+     },
+     {
+      "type": "pieton",
+      "S": 26,
+      "x": -6.4,
+      "kmh": -3,
+      "haut": 16742938
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -25,
+      "couleur": 3829232
+     }
+    ]
+   },
+   "sync": [
+    0.09,
+    0.23,
+    0.53,
+    0.73
+   ]
   },
   {
    "type": "fin",
@@ -108,7 +207,29 @@
      "réglages avant de partir"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour conduire plus souple."
+   "dire": "Cours terminé. Passe à la pratique pour conduire plus souple.",
+   "decor": {
+    "env": "route",
+    "kmh": 70,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 90,
+      "x": 1.75,
+      "kmh": 70,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 260,
+      "x": -1.75,
+      "kmh": -70,
+      "couleur": 3829232
+     }
+    ]
+   }
   }
  ]
 }

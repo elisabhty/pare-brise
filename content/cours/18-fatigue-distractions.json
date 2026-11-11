@@ -41,7 +41,22 @@
    "titre": "Fatigue et distractions",
    "sous": "garder la tête à la route",
    "dire": "Tu conduis depuis longtemps. L’attention commence à diminuer. Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 25 mètres parcourus les yeux fermés.",
-   "vitesse": 90
+   "vitesse": 90,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "meteo": "couchant",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 130,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ]
+   }
   },
   {
    "type": "chiffres",
@@ -66,7 +81,26 @@
     ]
    ],
    "dire": "En une seconde, tu parcours 14 mètres à 50, 25 mètres à 90 et 36 mètres à 130. Lire un message prend bien plus qu’une seconde.",
-   "vitesse": 90
+   "vitesse": 90,
+   "decor": {
+    "env": "autoroute",
+    "kmh": 90,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 80,
+      "x": 1.75,
+      "kmh": 90,
+      "couleur": 15223370
+     }
+    ]
+   },
+   "sync": [
+    0.33,
+    0.53,
+    0.76
+   ]
   },
   {
    "type": "liste",
@@ -87,7 +121,41 @@
      "Tu ne te souviens plus des derniers kilomètres"
     ]
    ],
-   "dire": "Les signes de fatigue : bâillements, paupières lourdes, raideurs dans la nuque, et ces kilomètres dont tu ne te souviens plus. Dès le premier signe, arrête-toi."
+   "dire": "Les signes de fatigue : bâillements, paupières lourdes, raideurs dans la nuque, et ces kilomètres dont tu ne te souviens plus. Dès le premier signe, arrête-toi.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "meteo": "couchant",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 140,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ],
+    "script": [
+     [
+      "p0+2.5",
+      "voie",
+      0.9,
+      2600
+     ],
+     [
+      "p0+5.4",
+      "voie",
+      1.75,
+      900
+     ]
+    ]
+   },
+   "sync": [
+    0.16,
+    0.41,
+    0.66
+   ]
   },
   {
    "type": "liste",
@@ -108,7 +176,36 @@
      "Ça ne suffit pas"
     ]
    ],
-   "dire": "Fais une pause toutes les deux heures. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas."
+   "dire": "Fais une pause toutes les deux heures. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas.",
+   "decor": {
+    "env": "route",
+    "kmh": 50,
+    "camera": "plan",
+    "signaux": [
+     [
+      "C1a",
+      46
+     ]
+    ],
+    "script": [
+     [
+      "p0+0.8",
+      "clignotant",
+      "d"
+     ],
+     [
+      "p0+1",
+      "vitesse",
+      18,
+      1.5
+     ]
+    ]
+   },
+   "sync": [
+    0.21,
+    1.79,
+    2.03
+   ]
   },
   {
    "type": "chiffres",
@@ -128,7 +225,45 @@
     ]
    ],
    "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points. Les écouteurs, oreillettes et casques sont interdits aussi. Et si tu commets une autre infraction en même temps, ton permis peut être retenu sur place.",
-   "vitesse": 0
+   "vitesse": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.6,
+    0.82
+   ]
   },
   {
    "type": "fin",
@@ -149,7 +284,22 @@
      "points pour le téléphone"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour repérer les pièges de l’inattention."
+   "dire": "Cours terminé. Passe à la pratique pour repérer les pièges de l’inattention.",
+   "decor": {
+    "env": "autoroute",
+    "kmh": 110,
+    "camera": "plan",
+    "meteo": "couchant",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 130,
+      "x": 1.75,
+      "kmh": 110,
+      "couleur": 10134447
+     }
+    ]
+   }
   }
  ]
 }

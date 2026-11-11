@@ -41,7 +41,41 @@
    "titre": "Papiers et assurance",
    "sous": "être en règle",
    "dire": "Cours numéro 26 : les papiers. Ce que tu dois avoir, et ce que tu fais après un accrochage.",
-   "vitesse": 30
+   "vitesse": 30,
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -62,7 +96,47 @@
      "Vérifiée dans le fichier des véhicules assurés"
     ]
    ],
-   "dire": "Lors d’un contrôle : ton permis, papier ou dématérialisé dans l’application France Identité, et le certificat d’immatriculation, la carte grise. L’assurance se vérifie désormais dans le fichier des véhicules assurés : la carte verte n’est plus à apposer sur le pare-brise."
+   "dire": "Lors d’un contrôle : ton permis, papier ou dématérialisé dans l’application France Identité, et le certificat d’immatriculation, la carte grise. L’assurance se vérifie désormais dans le fichier des véhicules assurés : la carte verte n’est plus à apposer sur le pare-brise.",
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "proche",
+    "meteo": "jour",
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 35,
+      "x": 4.3,
+      "gilet": true,
+      "cap": -90
+     },
+     {
+      "type": "ambulance",
+      "S": 44,
+      "x": 4.7,
+      "couleur": 1981066
+     },
+     {
+      "type": "pieton",
+      "S": 46,
+      "x": 5.6,
+      "gilet": true,
+      "haut": 1981066
+     }
+    ],
+    "script": [
+     [
+      0.3,
+      "arret",
+      31
+     ]
+    ]
+   },
+   "sync": [
+    0.14,
+    0.66,
+    1.0
+   ]
   },
   {
    "type": "chiffres",
@@ -81,8 +155,46 @@
      "d’amende au maximum sans assurance"
     ]
    ],
-   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, pour les dommages causés aux autres. Rouler sans assurance est un délit.",
-   "vitesse": 0
+   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, pour les dommages causés aux autres. Rouler sans assurance est un délit : jusqu’à 3 750 euros d’amende.",
+   "vitesse": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 30,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.33,
+    1.65
+   ]
   },
   {
    "type": "chiffres",
@@ -102,7 +214,45 @@
     ]
    ],
    "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans.",
-   "vitesse": 0
+   "vitesse": 0,
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   },
+   "sync": [
+    0.0,
+    0.9
+   ]
   },
   {
    "type": "liste",
@@ -127,7 +277,49 @@
      "Sous 5 jours ouvrés"
     ]
    ],
-   "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés."
+   "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés.",
+   "decor": {
+    "env": "ville",
+    "kmh": 0,
+    "camera": "garee",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 6.6,
+      "x": 1.75,
+      "kmh": 0,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 3.4,
+      "x": 3.9,
+      "cap": 90
+     },
+     {
+      "type": "pieton",
+      "S": 4.0,
+      "x": 4.6,
+      "cap": -90,
+      "haut": 16742938
+     }
+    ],
+    "script": [
+     [
+      0,
+      "feux",
+      {
+       "detresse": true
+      }
+     ]
+    ]
+   },
+   "sync": [
+    0.9,
+    1.18,
+    2.0,
+    2.55
+   ]
   },
   {
    "type": "fin",
@@ -144,7 +336,41 @@
      "jours pour le constat"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour revoir les papiers et le constat."
+   "dire": "Cours terminé. Passe à la pratique pour revoir les papiers et le constat.",
+   "decor": {
+    "env": "ville",
+    "kmh": 25,
+    "camera": "plan",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 160,
+      "x": -1.75,
+      "kmh": -30,
+      "couleur": 15223370
+     },
+     {
+      "type": "pieton",
+      "S": 38,
+      "x": 6.6,
+      "kmh": 3.5
+     },
+     {
+      "type": "pieton",
+      "S": 62,
+      "x": -6.5,
+      "kmh": -3.2,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 85,
+      "x": 6.4,
+      "kmh": -3,
+      "haut": 3122042
+     }
+    ]
+   }
   }
  ]
 }

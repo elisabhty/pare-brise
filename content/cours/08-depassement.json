@@ -46,7 +46,28 @@
    "titre": "Dépasser et croiser",
    "sous": "seulement si tout est vert",
    "dire": "Un véhicule lent circule devant toi sur une route à double sens. Cours numéro 8 : le dépassement. C’est la manœuvre la plus risquée sur route. On ne la commence que si tout est réuni.",
-   "vitesse": 60
+   "vitesse": 60,
+   "decor": {
+    "env": "route",
+    "kmh": 25,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "tracteur",
+      "S": 24,
+      "kmh": 25
+     }
+    ],
+    "etiquettes": [
+     [
+      0,
+      "Véhicule lent",
+      "devant toi",
+      0
+     ]
+    ]
+   }
   },
   {
    "type": "liste",
@@ -71,7 +92,44 @@
      "Puis on se rabat sans gêner"
     ]
    ],
-   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Un coup d’œil aux rétroviseurs et dans l’angle mort. Clignotant, puis dépassement franc, et on se rabat sans couper la route."
+   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Un coup d’œil aux rétroviseurs et dans l’angle mort. Clignotant, puis dépassement franc, et on se rabat sans couper la route.",
+   "decor": {
+    "env": "route",
+    "kmh": 25,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "tracteur",
+      "S": 22,
+      "kmh": 25
+     },
+     {
+      "type": "voiture",
+      "S": 150,
+      "x": -1.75,
+      "kmh": -60,
+      "couleur": 3829232
+     }
+    ],
+    "script": [
+     [
+      "p3",
+      "depasser",
+      0,
+      {
+       "kmh": 60,
+       "marge": 8
+      }
+     ]
+    ]
+   },
+   "sync": [
+    0.29,
+    1.0,
+    2.32,
+    3.0
+   ]
   },
   {
    "type": "situation",
@@ -92,7 +150,7 @@
    ],
    "script": [
     [
-     0.8,
+     "p1",
      "depasser",
      0,
      {
@@ -121,6 +179,10 @@
      "AB1",
      "Intersection, priorité à droite"
     ]
+   ],
+   "sync": [
+    0.12,
+    1.54
    ]
   },
   {
@@ -180,7 +242,35 @@
      "Il peut se rabattre court"
     ]
    ],
-   "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt."
+   "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt.",
+   "decor": {
+    "env": "route",
+    "kmh": 55,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": -28,
+      "x": -1.75,
+      "kmh": 82,
+      "couleur": 15223370
+     }
+    ],
+    "script": [
+     [
+      "p1",
+      "voie",
+      2.4,
+      1800
+     ]
+    ]
+   },
+   "sync": [
+    0.78,
+    1.0,
+    1.51
+   ]
   },
   {
    "type": "fin",
@@ -201,7 +291,20 @@
      "exception : le cycliste"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de décider si tu peux doubler."
+   "dire": "Cours terminé. Passe à la pratique : à toi de décider si tu peux doubler.",
+   "decor": {
+    "env": "route",
+    "kmh": 30,
+    "camera": "plan",
+    "ligne": "discontinue",
+    "acteurs": [
+     {
+      "type": "tracteur",
+      "S": 26,
+      "kmh": 28
+     }
+    ]
+   }
   }
  ]
 }
