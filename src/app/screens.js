@@ -13,7 +13,11 @@ import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
 import { roadmap } from './roadmap.js';
-import { renderHomeExos } from './exos.js';
+import { renderHomeExos, Exos } from './exos.js';
+import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plannedDays, refreshBadge, launch, openSheet } from './planning.js';
+import { getProfil, salut, avatarHTML, openProfil } from './profil.js';
+import { weekHTML, streak, activeToday, FLAME } from './streak.js';
+import { currentScreen } from './nav.js';
 
 /* ---------- utilitaires d'affichage ---------- */
 export const courseMinutes = c => Math.max(1, Math.round(c.scenes.reduce((a, s) => a + splitSentences(s.dire || '').reduce((b, t) => b + estimate(t) + 180, 0) + 450, 0) / 60000));
@@ -25,7 +29,7 @@ const courseRow = (c, compact) => {
   return `<li class="${st}"><button data-go="fiche" data-arg="${c.id}"><span class="node num">${st === 'done' ? '✓' : courseNumber(c)}</span><div><b>${esc(c.titre)}</b><small>${compact ? esc(theme(c.theme).nom) : `${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`}</small></div><span class="tag">${tag}</span></button></li>`;
 };
 
-function drawPoster(c) {
+export function drawPoster(c = nextCourse()) {
   if (!has3D || !c) return;
   SALLE.setPoster((ctx, w, h) => {
     const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#2E7BFF'); g.addColorStop(1, '#0A2E8A');
@@ -50,19 +54,32 @@ function drawPoster(c) {
 }
 
 /* ---------- SALLE (accueil) ---------- */
+function renderHello() {
+  const p = getProfil() || {}, n = streak();
+  $('#helloT').textContent = p.prenom ? `${salut()}, ${p.prenom}` : salut();
+  $('#helloP').textContent = p.pseudo ? '@' + p.pseudo : '';
+  $('#meAv').innerHTML = avatarHTML(p.perso || 'lea');
+  const sp = $('#stkPill'); sp.innerHTML = `${FLAME}<b class="num">${n}</b>`; sp.className = 'stk-pill' + (n ? ' hot' : '') + (activeToday() ? ' done' : '');
+  sp.setAttribute('aria-label', `${n} jour${n > 1 ? 's' : ''} d’affilée, voir le planning`);
+}
 function renderHome() {
   const c = nextCourse(), st = courseState(c.id);
-  $('#heroEyebrow').textContent = `Séance ouverte · Cours ${courseNumber(c)} · ${courseMinutes(c)} min`;
-  $('#heroLead').textContent = `À l'écran : « ${c.titre} ». ${c.resume}`;
-  $('#takeSeat').textContent = st.scene > 0 && !st.done ? 'Reprendre ma place' : 'Prendre place';
+  renderHello();
+  const plan = getPlan();
+  $('#homeToday').innerHTML = plan ? todayCardHTML({ home: true }) : '';
+  bindToday($('#homeToday'), renderHome, id => (id[0] === 'c' ? seatAndPlay(id.slice(2)) : launch(id)));
+  $('#nextC').hidden = !!plan;
+  $('#homeStreak').innerHTML = weekHTML(plannedDays());
+  refreshBadge();
+  $('#heroEyebrow').textContent = `Ton prochain cours · Cours ${courseNumber(c)} · ${courseMinutes(c)} min`;
+  $('#heroLead').textContent = `« ${c.titre} ». ${c.resume}`;
+  $('#takeSeat').textContent = st.scene > 0 && !st.done ? 'Reprendre le cours' : 'Lancer le cours';
   const r = readiness();
   $('#readyPct').textContent = r + ' %'; $('#readyBar').style.width = r + '%';
   const rev = toReview().length;
   $('#readyTxt').textContent = `${doneCount()}/${COURSES.length} cours vus · ${mastered()} questions maîtrisées${exams().length ? ` · dernier examen ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}` : ''}`;
   $('#reviewCard').hidden = !rev;
   $('#reviewN').textContent = rev;
-  const started = COURSES.some(x => courseState(x.id).done || courseState(x.id).scene > 0);
-  $('#welcome').hidden = started;
   const i0 = Math.max(0, Math.min(COURSES.indexOf(c) - 1, COURSES.length - 4));
   roadmap($('#homeRoad'), COURSES.slice(i0, i0 + 4).map(courseRowData), { here: 'À suivre' });
 }
@@ -70,17 +87,17 @@ function courseRowData(c) {
   const [st, tag] = status(c);
   return { type: 'course', id: c.id, num: courseNumber(c), title: c.titre, sub: `${courseMinutes(c)} min · ${qCount(c)} questions`, status: st, tag };
 }
+let seating = false;
 async function seatAndPlay(id) {
-  const b = $('#takeSeat'); if (b.disabled) return;
+  if (seating) return; seating = true;
   Voice.unlock(); Sound.init(); haptic('heavy');
-  b.disabled = true;
   $('#s-salle').scrollTo({ top: 0, behavior: 'smooth' });
   $('.hero').style.transition = 'opacity .5s'; $('.hero').style.opacity = '0';
   $('#tabbar').style.transition = 'opacity .4s'; $('#tabbar').style.opacity = '0';
   Sound.ui('whoosh');
   await SALLE.takeSeat();
   await curtain('Les lumières s’éteignent', async () => {
-    $('.hero').style.opacity = ''; $('#tabbar').style.opacity = ''; b.disabled = false;
+    $('.hero').style.opacity = ''; $('#tabbar').style.opacity = ''; seating = false;
     await show('cours', { noCurtain: true, course: id, play: true });
   });
 }
@@ -121,7 +138,7 @@ function renderFiche(id) {
   $('#fMemo').innerHTML = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span>${esc(m.tag || '')}</span></li>`).join('');
   $('#fMemoT').hidden = !(c.memo || []).length;
 }
-function startSerie(id, extra = {}) {
+export function startSerie(id, extra = {}) {
   const s = SERIES.get(id); if (!s) return;
   Serie.start(Object.assign({ titre: s.titre, ids: s.questions, mode: 'entrainement', serieId: s.id }, extra));
 }
@@ -139,7 +156,17 @@ function renderHub() {
 
 /* ---------- Enregistrement des écrans ---------- */
 export function setupScreens() {
-  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); renderHomeExos(); drawPoster(nextCourse()); if (prev) SALLE.reset(1200); $('#seat27').classList.remove('open'); setTimeout(() => $('#seat27').classList.add('open'), 300); } });
+  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); renderHomeExos(); drawPoster(nextCourse()); if (prev && prev !== 'bienvenue') SALLE.reset(1200); } });
+  register('planning', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-planning'), enter() { renderPlanning(); SALLE.reset(900); } });
+  // une activité du planning s'ouvre là où elle vit, et revient à l'écran d'où on l'a lancée
+  setupPlanning({ minutesCours: courseMinutes, ouvrir(kind, ref) {
+    const from = currentScreen() || 'planning';
+    if (kind === 'cours') { Voice.unlock(); Sound.init(); show('cours', { course: ref, play: true }); }
+    else if (kind === 'serie') startSerie(ref, { retour: from });
+    else Exos.run(ref, from);
+  } });
+  $('#meBtn').addEventListener('click', () => { haptic(); Sound.ui('tap'); openProfil(openSheet, renderHome); });
+  document.addEventListener('pb:profil', () => { if (currentScreen() === 'salle') renderHello(); });
   register('parcours', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
   register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
   register('cours', { world: 'route', amb: 'route', noTab: true,

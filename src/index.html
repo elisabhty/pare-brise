@@ -26,17 +26,21 @@
       <div class="drag-hint small"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12 h16 M7 9 l-3 3 3 3 M17 9 l3 3 -3 3"/></svg>Glisse pour regarder la salle</div>
     </div>
     <div class="hero">
-      <div class="eyebrow"><span class="dot"></span><span id="heroEyebrow">Séance ouverte</span></div>
-      <h1 class="d">Ta place<br>est réservée</h1>
-      <div class="seatno"><span>Place</span><b class="num" id="seat27">27</b></div>
-      <p class="lead" id="heroLead"></p>
-      <button class="btn" id="takeSeat">Prendre place</button>
+      <div class="hello">
+        <button class="me" id="meBtn" aria-label="Mon profil"><span id="meAv"></span></button>
+        <div class="hello-t"><h1 class="d" id="helloT">Bonjour</h1><span id="helloP"></span></div>
+        <button class="stk-pill" id="stkPill" data-go="planning"></button>
+      </div>
+      <div id="homeToday"></div>
+      <div class="next-c" id="nextC">
+        <div class="eyebrow"><span class="dot"></span><span id="heroEyebrow">Séance ouverte</span></div>
+        <p class="lead" id="heroLead"></p>
+        <button class="btn" id="takeSeat">Lancer le cours</button>
+        <button class="more" data-go="planning">Créer mon planning pour le jour J →</button>
+      </div>
     </div>
     <div class="below">
-      <div class="welcome" id="welcome" hidden>
-        <div class="scene" role="img" aria-label="Plot, le moniteur, au bord de la route"></div>
-        <div><b>Moi c'est Plot, ton moniteur.</b><p>Je t'accompagne de ta première séance jusqu'au jour J : cours en 3D, exercices corrigés et examens blancs.</p><button class="more" data-go="parcours">Voir le parcours →</button></div>
-      </div>
+      <div id="homeStreak"></div>
       <button class="review" id="reviewCard" hidden><b class="num" id="reviewN">0</b><div><strong>Questions à revoir</strong><span>Tes erreurs reviennent jusqu’à ce que tu les maîtrises.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
       <div class="glass ready">
         <div class="ready-top"><span class="eyebrow">Objectif jour J · 35/40</span><b class="num" id="readyPct">0 %</b></div>
@@ -68,6 +72,19 @@
       <button class="tile glass" data-go="parebrise"><b class="d">Pare-brise</b><span>Réflexe en conduite 3D</span></button>
       <button class="tile glass" data-go="decodeur"><b class="d">Décodeur</b><span>Forme + couleur = sens</span></button>
     </div>
+  </section>
+
+  <!-- ================= PLANNING ================= -->
+  <section class="screen dimbg" id="s-planning" aria-label="Planning">
+    <div class="page-head"><div class="eyebrow">Ton rythme</div><h1 class="d">Planning</h1><p class="pl-sub" id="plSub"></p></div>
+    <div id="plBody" class="pl-body"></div>
+  </section>
+
+  <!-- ================= ARRIVÉE (premier lancement) ================= -->
+  <section class="screen ob" id="s-bienvenue" aria-label="Bienvenue">
+    <div class="view3d" id="v-bienv"></div>
+    <div class="ob-card" id="obCard"></div>
+    <div class="ob-foot" id="obFoot"></div>
   </section>
 
   <!-- ================= FICHE COURS ================= -->
@@ -222,11 +239,13 @@
 
   <nav class="tabbar" id="tabbar" aria-label="Navigation">
     <button data-go="salle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 10.5 12 4l8.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19v-8.5Z"/></svg><span>Salle</span></button>
+    <button data-go="planning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 9.5h17M8 3v4M16 3v4M8 13.5h2M14 13.5h2M8 17h2"/></svg><span>Planning</span><i class="tbadge num" id="plBadge" hidden></i></button>
     <button data-go="parcours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 16.5v-11ZM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5v-11Z"/></svg><span>Cours</span></button>
     <button data-go="exos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4"/><path d="M12 3.5v6.1M4.2 15.4l5.5-2.6M19.8 15.4l-5.5-2.6"/></svg><span>Exercices</span></button>
     <button data-go="examen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.5h6M9 4.5A1.5 1.5 0 0 0 7.5 6v0H6a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 18 6h-1.5A1.5 1.5 0 0 0 15 4.5"/><path d="m8.5 13 2.3 2.3L15.5 10.5"/></svg><span>Examen</span></button>
   </nav>
 
+  <div class="sheet-ov" id="sheetOv" hidden><div class="bsheet" id="bsheet" role="dialog" aria-modal="true" aria-label="Réglages"></div></div>
   <div class="curtain" id="curtain"><span id="curtainTxt"></span></div>
 </div>
 <script type="application/json" id="content">/*@CONTENT@*/</script>

@@ -35,6 +35,7 @@ export async function show(name, opts = {}) {
   if (def.enter) def.enter(prev, opts);
   Sound.ambience(def.amb === undefined ? null : def.amb);
   requestAnimationFrame(() => { syncRegion(); requestAnimationFrame(syncRegion); });
+  try { document.dispatchEvent(new CustomEvent('pb:ecran', { detail: name })); } catch (e) {}
   if (worldChange && prev && !opts.noCurtain) { await wait(80); cur.classList.remove('on'); }
 }
 

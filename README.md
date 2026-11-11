@@ -28,6 +28,10 @@ src/
   app/serie.js           séries : entraînement ou examen, QCM et association
   app/progress.js        progression et révision espacée (boîtes de Leitner)
   app/screens.js         salle, parcours, fiche cours, examen
+  app/planning.js        onglet Planning : séance du jour, semaine, avancement, « Adapter mon rythme »
+  app/planning-core.js   répartition des activités dans les jours choisis, retards, série (sans DOM, testé)
+  app/streak.js          série de jours actifs et semaine en flammes
+  app/profil.js          prénom, pseudo, personnage (8 avatars SVG) et arrivée au premier lancement
   app/roadmap.js         la carte du parcours en route sinueuse
   app/mascot.js          Plot, le moniteur (sprite animé)
   assets/                images de Plot (WebP)
@@ -61,6 +65,15 @@ La scène animée de l'accueil est `src/assets/plot-scene.webp`. Pour changer de
 - **Examen blanc** : 20 questions tirées dans toute la banque, en alternant les thèmes, avec chrono et correction à la fin.
 - **À revoir** : chaque question ratée revient (révision espacée) jusqu'à ce qu'elle soit maîtrisée.
 - **Jauge « jour J »** : calculée à partir des cours vus, des questions maîtrisées et des derniers examens.
+
+## Profil, série et planning
+
+Au premier lancement, Plot accueille l'élève : prénom, pseudo, personnage, puis son rythme (jours, minutes par séance, date
+d'examen). Le planning range ensuite tout le parcours dans l'ordre : chaque cours, sa série de questions, ses exercices 3D,
+et 4 examens blancs (à 60 %, à 85 %, puis deux à la fin). L'accueil salue l'élève par son prénom et montre la séance du jour ;
+l'onglet Planning montre 6 jours à partir d'aujourd'hui, l'avancement et la date de fin prévue. Les activités en retard se
+replacent d'un appui. La série compte les jours où l'élève a fait au moins une activité (cours terminé, série, exercice 3D,
+examen, ou une question répondue). Le profil se modifie d'un appui sur l'avatar de l'accueil.
 
 ## Exercices de conduite (simulateur 3D)
 

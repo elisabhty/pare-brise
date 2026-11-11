@@ -7,7 +7,8 @@ import { sign } from './signs.js';
 import { EXOS, course } from './content.js';
 import { Sound } from './sound.js';
 import { Labels } from './labels.js';
-import { register, show, syncRegion } from './nav.js';
+import { register, show, syncRegion, currentScreen } from './nav.js';
+import { markActive } from './streak.js';
 import { plot, react } from './mascot.js';
 
 const LANE = 1.75, FRONT = 1.9;
@@ -40,7 +41,12 @@ export const FAMILLES = [
   { id: 'perception', nom: 'Voir et être vu', sous: 'Dangers et éclairage', meca: ['danger', 'eclairage', 'reflexe'] }
 ];
 export const best = id => (store.get('exoBest', {}) || {})[id] || null;
-const saveBest = (id, score) => { const all = store.get('exoBest', {}) || {}; if (!all[id] || score > all[id].score) all[id] = { score, at: Date.now() }; store.set('exoBest', all); };
+const saveBest = (id, score) => {
+  const all = store.get('exoBest', {}) || {}; if (!all[id] || score > all[id].score) all[id] = { score, at: Date.now() }; store.set('exoBest', all);
+  const runs = store.get('exoRuns', {}) || {}; runs[id] = (runs[id] || 0) + 1; store.set('exoRuns', runs);   // compte les examens blancs du planning
+  markActive();
+};
+let retourX = 'exos';
 export const stars = sc => (sc >= 90 ? 3 : sc >= 70 ? 2 : sc >= 40 ? 1 : 0);
 export const starsHtml = sc => `<span class="stars" aria-label="${stars(sc)} étoiles sur 3">${[0, 1, 2].map(i => `<i class="${i < stars(sc) ? 'on' : ''}"></i>`).join('')}</span>`;
 
@@ -810,8 +816,9 @@ function examBlanc() {
     consigne: `${pool.length} situations comme le jour du code : 20 secondes pour répondre, pas de correction avant la fin. Il faut 35 bonnes réponses sur 40 pour réussir.`,
     astuce: 'Une ou plusieurs réponses peuvent être justes : coche-les toutes.', env: pool[0].env || 'ville', situations: pool };
 }
-async function runExo(id) {
+async function runExo(id, retour) {
   const ex = id === 'x-exam-blanc' ? examBlanc() : EXOS.find(e => e.id === id); if (!ex) return;
+  retourX = retour && retour !== 'exo' ? retour : 'exos';
   if (ex.meca === 'reflexe') { show('parebrise'); return; }
   if (ex.meca === 'decodeur') { show('decodeur'); return; }
   curEx = ex;
@@ -869,7 +876,7 @@ function results(ex, out) {
   requestAnimationFrame(() => c.classList.add('on'));
   react(c, out.score >= 70);
   $('#xAgain').addEventListener('click', () => intro(ex), { once: true });
-  $('#xDone').addEventListener('click', () => show('exos'), { once: true });
+  $('#xDone').addEventListener('click', () => show(retourX), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
 function stopRun() { const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } ['#xObs', '#xZoom'].forEach(k => { const e = $(k); if (e) e.classList.remove('on'); }); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
@@ -890,11 +897,11 @@ export function renderHomeExos() {
   const pickL = ['x-exam-signalisation', 'x-exam-priorites', 'x-priorites', 'x-eclairage', 'x-exam-usagers', 'x-danger-ville'];
   el.innerHTML = pickL.map(id => EXOS.find(e => e.id === id)).filter(Boolean).map(e => { const b = best(e.id); return `<button class="xcar m-${e.meca}" data-exo="${e.id}"><span class="cell-ic m-${e.meca}">${icon(e.meca)}</span><b>${esc(e.titre)}</b><small>${esc(e.sous || '')}</small><span class="xcar-f">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}</span></button>`; }).join('');
 }
-document.addEventListener('click', e => { const b = e.target.closest('[data-exo]'); if (!b) return; haptic(); Sound.ui('tap'); runExo(b.dataset.exo); });
+document.addEventListener('click', e => { const b = e.target.closest('[data-exo]'); if (!b) return; haptic(); Sound.ui('tap'); runExo(b.dataset.exo, currentScreen()); });
 
 export function setupExos() {
   register('exos', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-exos'), enter() { renderExos(); } });
   register('exo', { world: 'sim', amb: null, noTab: true, tab: 'exos', region: () => $('#v-exo'), enter(prev, o) { if (o && o.arg) runExo(o.arg); }, leave() { stopRun(); Sound.ambience(null); } });
-  $('#xQuit').addEventListener('click', () => { haptic(); stopRun(); show('exos'); });
+  $('#xQuit').addEventListener('click', () => { haptic(); stopRun(); show(retourX); });
 }
 export const Exos = { run: runExo, list: () => EXOS };
