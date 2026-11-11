@@ -170,8 +170,8 @@ export function setupScreens() {
   register('parcours', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
   register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
   register('cours', { world: 'route', amb: 'route', noTab: true,
-    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) Player.play(); $('#s-cours .sheet').scrollTop = 0; } },
-    leave() { Player.pause(); Labels.clear(); } });
+    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) Player.play(); } },
+    leave() { Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); } });
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'examen', enter() { R.reset(); }, leave() { Serie.stop(); } });
   register('examen', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-examen'), enter() { renderHub(); SALLE.reset(900); } });
   register('parebrise', { world: 'route', amb: 'route', enter() { R.reset(); R.setSpeed(40, 20); R.pose('reflex', 1); }, leave() { Reflex.stop(); } });

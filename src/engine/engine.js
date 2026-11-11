@@ -75,11 +75,12 @@ function signTex(id) {
   const p = (async () => {
     const c = await svgToCanvas(signFactory(id), 512);
     if (!c) return null;
-    const tex = canvasTex(c);
+    const tex = canvasTex(c); tex.premultiplyAlpha = true;
     const m = document.createElement('canvas'); m.width = m.height = 128;
     const mx = m.getContext('2d'); mx.drawImage(c, 0, 0, 128, 128);
     mx.globalCompositeOperation = 'source-in'; mx.fillStyle = '#fff'; mx.fillRect(0, 0, 128, 128);
-    return { tex, mask: canvasTex(m, false) };
+    const mask = canvasTex(m, false); mask.premultiplyAlpha = true;
+    return { tex, mask };
   })();
   texCache.set(id, p);
   return p;
@@ -92,8 +93,9 @@ function makeSign(id, size = 1, pole = 1, glow = 0.32) {
   const g = new THREE.Group(); g.userData.id = id;
   const head = new THREE.Group(); head.position.y = pole + size / 2; g.add(head);
   // panneau net : couleurs exactes (pas de tone mapping), bords lissés (alpha to coverage) au lieu des escaliers de l'alphaTest
-  const front = new THREE.Mesh(signGeo, new THREE.MeshBasicMaterial({ alphaTest: 0.5, alphaToCoverage: true, toneMapped: false, color: new THREE.Color(1, 1, 1).multiplyScalar(Math.min(1, 0.93 + glow * 0.2)) }));
-  const back = new THREE.Mesh(signGeo, new THREE.MeshStandardMaterial({ color: 0x6d747e, alphaTest: 0.5, alphaToCoverage: true, roughness: 0.55, metalness: 0.5 }));
+  // bords lisses : vraie transparence (alpha prémultiplié, sans liseré ni escalier), couleurs exactes (pas de tone mapping)
+  const front = new THREE.Mesh(signGeo, new THREE.MeshBasicMaterial({ transparent: true, premultipliedAlpha: true, alphaTest: 0.01, depthWrite: true, toneMapped: false, color: new THREE.Color(1, 1, 1).multiplyScalar(Math.min(1, 0.93 + glow * 0.2)) }));
+  const back = new THREE.Mesh(signGeo, new THREE.MeshStandardMaterial({ color: 0x6d747e, transparent: true, premultipliedAlpha: true, alphaTest: 0.01, depthWrite: true, roughness: 0.55, metalness: 0.5 }));
   front.scale.setScalar(size); back.scale.setScalar(size);
   back.rotation.y = Math.PI; back.position.z = -0.014;
   front.visible = back.visible = false;
@@ -632,9 +634,13 @@ function buildStudio() {
    Moteur
    ========================================================= */
 function setFov(fovRegion) {
+  // écran très haut (portrait) : sur la route des leçons, on garde assez de champ en largeur pour voir les panneaux des deux côtés
+  if (worldName === 'route' && region.height > 0) { const asp = W / Math.max(1, region.height * H); if (asp < 0.72) fovRegion = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(fovRegion) / 2) * 0.72 / asp)); }
   // la « fenêtre » utile est une bande de l'écran (region) : on décale le centre optique
   const rTop = region.top * H, rH = Math.max(1, region.height * H);
-  const yc = rTop + rH / 2;
+  // simulateur en portrait : le centre optique remonte (comme un objectif décentrable), l'horizon passe vers le tiers haut
+  const bias = worldName === 'sim' && W / rH < 0.8 ? 0.13 : 0;
+  const yc = rTop + rH * (0.5 - bias);
   const pxPerTan = rH / (2 * Math.tan(THREE.MathUtils.degToRad(fovRegion) / 2));
   let Hf, y0;
   if (yc <= H / 2) { Hf = 2 * (H - yc); y0 = H - 2 * yc; } else { Hf = 2 * yc; y0 = 0; }

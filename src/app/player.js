@@ -54,7 +54,8 @@ export const Player = {
     if (isQuestion(sc)) this.showQuiz(sc);
     saveCourse(this.c.id, { scene: i });
   },
-  caption(sc, k) { $('#caption').innerHTML = '<span class="eyebrow cc">Sous-titres</span>' + sc.sents.map((s, j) => `<span class="${j < k ? 'done' : j === k ? 'now' : ''}">${esc(s)}</span>`).join(' '); },
+  /* sous-titres façon vidéo : une seule phrase à la fois, posée sur l'image */
+  caption(sc, k) { const el = $('#caption'), s = sc.sents[Math.max(0, Math.min(k, sc.sents.length - 1))] || ''; el.innerHTML = s ? `<span>${esc(s)}</span>` : ''; el.classList.toggle('wait', k < 0); el.hidden = !s || !this.started; },
   setPlaying(p) {
     this.playing = p;
     $('#cPlay').innerHTML = p ? '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="5" height="16" rx="1.2"/><rect x="14" y="4" width="5" height="16" rx="1.2"/></svg>' : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4 L20 12 L7 20 Z"/></svg>';
@@ -62,7 +63,7 @@ export const Player = {
     $('#playOver').hidden = p || isQuestion(this.scenes[this.i]);
     $('#playOverTxt').textContent = this.started ? 'Reprendre' : 'Lancer la séance';
   },
-  play() { this.started = true; this.setPlaying(true); const tok = ++this.tok; this.enterScene(this.i); this.t0 = performance.now(); this.run(tok); },
+  play() { this.started = true; $('#endcard').hidden = true; this.setPlaying(true); const tok = ++this.tok; this.enterScene(this.i); this.t0 = performance.now(); this.run(tok); },
   pause() { this.tok++; Voice.stop(); Sound.duck(false); this.setPlaying(false); },
   go(i, autoplay = this.playing) {
     this.tok++; Voice.stop();
@@ -137,9 +138,9 @@ export const Player = {
       ${nxt ? `<button class="btn ghost sm" id="endNext">Cours suivant →</button>` : ''}
       <button class="btn ghost sm" id="endHome">Retour au parcours</button>`;
     if (pr) $('#endSerie').addEventListener('click', () => onSerie(pr.id));
-    if (nxt) $('#endNext').addEventListener('click', () => { Voice.unlock(); this.load(nxt.id); this.play(); $('#s-cours .sheet').scrollTop = 0; });
+    if (nxt) $('#endNext').addEventListener('click', () => { Voice.unlock(); this.load(nxt.id); this.play(); });
     $('#endHome').addEventListener('click', () => onHome());
-    e.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    e.scrollTop = 0; $('#caption').hidden = true;
     setTimeout(() => react(e, true), 500);
     Sound.ui('ok');
   },
@@ -168,7 +169,13 @@ export const Player = {
       if (has3D) { const k = Engine.pick(e.clientX, e.clientY); if (k !== null && k >= 0) this.answer(k); }
       else { const s = e.target.closest('[data-k]'); if (s) this.answer(+s.dataset.k); }
     });
-    const loop = () => { if (currentScreen() === 'cours') { this.tickUI(); Labels.frame($('#s-cours .sheet')); } requestAnimationFrame(loop); };
+    // chapitres : une feuille qui monte du bas
+    const chap = on => { const sh = $('#chapSheet'); sh.hidden = false; requestAnimationFrame(() => sh.classList.toggle('on', on)); $('#cChapBtn').setAttribute('aria-expanded', on); if (!on) setTimeout(() => { if (!sh.classList.contains('on')) sh.hidden = true; }, 320); };
+    $('#cChapBtn').addEventListener('click', () => { haptic(); Sound.ui('tap'); chap(!$('#chapSheet').classList.contains('on')); });
+    $('#chapClose').addEventListener('click', () => chap(false));
+    $('#chapters').addEventListener('click', e => { if (e.target.closest('button')) chap(false); });
+    this.closeChapters = () => chap(false);
+    const loop = () => { if (currentScreen() === 'cours') { this.tickUI(); Labels.frame($('#caption').hidden ? $('#s-cours .dock') : $('#caption')); } requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
   }
 };

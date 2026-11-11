@@ -1072,3 +1072,50 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .xzoom.multi{grid-template-columns:repeat(var(--n),auto);column-gap:8px;align-items:center}
 .xzoom.multi em{grid-column:1/-1}
 .xzoom.multi span{width:58px}
+
+/* =====================================================================
+   Lecteur de leçon façon vidéo : l'image en grand, les sous-titres posés dessus,
+   des commandes compactes en bas ; chapitres et fin de leçon dans des feuilles.
+   ===================================================================== */
+#s-cours{padding:0;gap:0;overflow:hidden;background:transparent}
+#s-cours.active{display:block}
+#s-cours #v-cours{position:absolute;left:0;right:0;top:0;bottom:calc(env(safe-area-inset-bottom) + 128px);height:auto;flex:none;margin:0}
+#s-cours .topbar{z-index:7}
+#s-cours .ovt{top:calc(env(safe-area-inset-top) + 70px)}
+#s-cours .lower3{top:calc(env(safe-area-inset-top) + 70px);bottom:auto}
+#s-cours .caption{position:absolute;z-index:6;left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom) + 140px);min-height:0;margin:0;padding:11px 16px 12px;border-radius:18px;background:rgba(255,255,255,.95);box-shadow:0 12px 30px -18px rgba(16,24,40,.55);font-size:17px;line-height:1.38;letter-spacing:-.012em;color:var(--craie);text-align:center;pointer-events:none}
+#s-cours .caption[hidden]{display:none}
+#s-cours .caption.wait{color:var(--label2)}
+#s-cours .caption span{animation:capIn .35s ease both}
+@keyframes capIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+#s-cours .playover{position:absolute;top:0;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 128px);z-index:6;background:rgba(242,245,250,.35)}
+.dock{position:absolute;left:0;right:0;bottom:0;z-index:7;display:grid;gap:8px;padding:12px 18px calc(env(safe-area-inset-bottom) + 12px);border-radius:24px 24px 0 0;background:rgba(246,248,252,.98);box-shadow:0 -12px 30px -20px rgba(16,24,40,.4)}
+.dock .scrub{gap:5px}
+.dock .track{height:5px}
+.dock .times{font-size:12px;color:var(--label2)}
+.dock .controls{gap:10px}
+.dock .play-main{width:56px;height:56px}
+.dock .ibtn.g{width:44px;height:44px;border-radius:14px;background:#fff;box-shadow:var(--sh-1)}
+.chapsheet,#s-cours #endcard{position:absolute;left:0;right:0;bottom:0;z-index:9;max-height:84%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 18px calc(env(safe-area-inset-bottom) + 18px);border-radius:28px 28px 0 0;background:var(--nuit);box-shadow:0 -20px 50px -20px rgba(10,18,36,.45)}
+.chapsheet{display:grid;gap:10px;transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.9,.25,1)}
+.chapsheet.on{transform:none}
+.chapsheet[hidden],#s-cours #endcard[hidden]{display:none}
+.cs-head{display:flex;align-items:center;justify-content:space-between}
+.cs-head h2{margin:0;font-family:var(--fd);font-size:24px;font-weight:700;letter-spacing:-.025em}
+.cs-x{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(20,28,48,.07);color:var(--label2)}
+.cs-x svg{width:16px;height:16px}
+.chapsheet .chapters{background:#fff;border-radius:var(--r-card);padding:6px;box-shadow:var(--sh-1)}
+#s-cours #endcard{gap:14px;margin:0;animation:endUp .45s cubic-bezier(.2,.9,.25,1) both}
+@keyframes endUp{from{transform:translateY(60%);opacity:0}to{transform:none;opacity:1}}
+/* listes de la leçon : des lignes dans le cadre, pas des cartes dans une carte */
+.ovt .olist{gap:0;margin-top:8px;width:100%}
+.ovt .olist li{background:transparent;box-shadow:none;padding:9px 0;border-radius:0;border-top:.5px solid var(--sep)}
+.ovt .olist li:first-child{border-top:0}
+.ovt h2.sm{font-size:28px}
+.ovt h2{font-size:34px}
+/* étiquettes posées sur la 3D : au-dessus des usagers, jamais sur eux */
+.lab.up{transform:translate(-50%,calc(-100% - 10px))}
+.lab.up::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;margin-left:-5px;background:inherit;transform:rotate(45deg);border-radius:2px}
+/* pratique : la barre « Observe la situation » en haut, l'image reste libre */
+.xobs{top:calc(env(safe-area-inset-top) + 64px);bottom:auto;transform:translate(-50%,-8px)}
+.xobs.on{transform:translate(-50%,0)}
