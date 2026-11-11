@@ -7,7 +7,7 @@ import { courseState, seriesBest, seriesTotal, toReview, mastered, nextCourse, d
 import { Voice, splitSentences, estimate } from './voice.js';
 import { Sound } from './sound.js';
 import { register, show, curtain } from './nav.js';
-import { Player, setPlayerLinks } from './player.js';
+import { Player, setPlayerLinks, notes } from './player.js';
 import { Serie, setSerieDone, drawExam } from './serie.js';
 import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
@@ -137,6 +137,11 @@ function renderFiche(id) {
     + defis.map(x => { const b = exoBest(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('');
   $('#fMemo').innerHTML = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span>${esc(m.tag || '')}</span></li>`).join('');
   $('#fMemoT').hidden = !(c.memo || []).length;
+  // les passages que l'élève a retenus pendant le cours (étoile du lecteur)
+  const ns = notes().filter(n => n.c === c.id && n.i < c.scenes.length).sort((a, b) => a.i - b.i);
+  $('#fNotesT').hidden = $('#fNotes').hidden = !ns.length;
+  $('#fNotes').innerHTML = ns.map(n => `<li><button data-i="${n.i}" data-k="${n.k || 0}"><i>★</i><div><b>${esc(n.t)}</b><span>${esc(n.s)}</span></div></button></li>`).join('');
+  $$('#fNotes button').forEach(b => b.addEventListener('click', () => { Voice.unlock(); Sound.init(); show('cours', { course: c.id, at: +b.dataset.i, k: +b.dataset.k, play: true }); }));
 }
 export function startSerie(id, extra = {}) {
   const s = SERIES.get(id); if (!s) return;
@@ -170,8 +175,8 @@ export function setupScreens() {
   register('parcours', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
   register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
   register('cours', { world: 'route', amb: 'route', noTab: true,
-    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) Player.play(); } },
-    leave() { Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); } });
+    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) { if (o.k > 0) Player.goTo(o.at, o.k); else Player.play(); } } },
+    leave() { if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'examen', enter() { R.reset(); }, leave() { Serie.stop(); } });
   register('examen', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-examen'), enter() { renderHub(); SALLE.reset(900); } });
   register('parebrise', { world: 'route', amb: 'route', enter() { R.reset(); R.setSpeed(40, 20); R.pose('reflex', 1); }, leave() { Reflex.stop(); } });

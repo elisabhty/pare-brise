@@ -18,6 +18,11 @@ const stats = list => `<div class="stats rise" style="--d:.35s">${list.map(([v, 
 
 /* Le cours se joue sur la route (monde « route ») ; les mises en situation utilisent le simulateur (« sim »). */
 const useWorld = n => { if (has3D && Engine.current !== n) { Engine.world(n); if (n === 'route') R.pose('drive', 1); } };
+/* Le lecteur peut imposer un angle de vue (View.cam) ; Live garde la mise en situation en cours (usagers, panneaux) */
+export const View = { cam: null };
+export const Live = { sc: null, actors: [] };
+export const camOf = sc => View.cam || (sc && sc.camera) || 'poursuite';
+export const paintDash = cam => { const d = $('#v-cours .dash'); if (d) d.hidden = cam !== 'cockpit'; };
 const ACT = { moto: 'moto', tram: 'tram', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
 
 export const TYPES = {
@@ -101,12 +106,13 @@ export const TYPES = {
   situation: {
     enter(sc, ctx) {
       if (!has3D || !SIM) { useWorld('route'); R.drive(sc.kmh ?? 30); ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce })); return; }
-      useWorld('sim');
+      useWorld('sim'); Live.sc = sc; Live.actors = [];
       const car = sc.carrefour ? (typeof sc.carrefour === 'object' ? sc.carrefour : { S: sc.carrefour, ligne: sc.ligneStop }) : null;
       const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
-      SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: sc.camera || 'poursuite', voie: sc.voie, graine: sc.graine,
+      SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: camOf(sc), voie: sc.voie, graine: sc.graine,
         reserve: [0].concat((sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10] : [a.S || 0])), sc.passage ? [sc.passage, sc.passage - 10] : []),
         carrefours: car ? [car.S] : [], zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : [], sc.rails ? [{ de: sc.rails - 8, a: sc.rails + 8 }] : []) });
+      SIM.slow(1, 0);
       SIM.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false, clignotant: null }, sc.feux || {}));
       if (car) SIM.carrefour(car.S, { ligne: car.ligne, forme: car.forme });
       if (sc.giratoire) SIM.giratoire(sc.giratoire);
@@ -130,7 +136,7 @@ export const TYPES = {
       });
       if (sc.etiquettes) { SIM.setAnchors(sc.etiquettes.map(([i]) => ({ id: 'a' + i, obj: actors[i], dy: 2.3 }))); Labels.set(sc.etiquettes.map(([i]) => 'a' + i), sc.etiquettes.map(e => [e[1], e[2]])); }
       else { SIM.setAnchors([]); }
-      { const d = $('#v-cours .dash'); if (d) d.hidden = (sc.camera || 'poursuite') !== 'cockpit'; }
+      Live.actors = actors; paintDash(camOf(sc));
       ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce, couleur: sc.couleurTitre }));
       if (sc.script) runScript(sc.script, actors, ctx);
     }
@@ -174,7 +180,7 @@ async function playSteps(steps, actors, ctx, now) {
     else if (act === 'feu' && a && a.set) { if (p[1] === 'clignotant') { if (!a.blink) clignote(a); } else { a.blink = false; a.set(p[1]); } }
     else if (act === 'depasser' && a) depasser(a, p[1]);
     else if (act === 'freiner' && a) freiner(a, p[1] || 0, p[2] || 4);
-    else if (act === 'camera') SIM.pose(p[0], p[1] || 1400);
+    else if (act === 'camera') { if (!View.cam && SIM.camMode !== 'libre') { SIM.pose(p[0], p[1] || 1400); paintDash(p[0]); } }
     else if (act === 'etiquettes') { SIM.setAnchors([]); Labels.clear(); }
   }
 }

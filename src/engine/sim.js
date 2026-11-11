@@ -520,7 +520,7 @@ export function buildSim(K) {
       const p = personMesh({ haut: 0x5856D6 }); p.scale.setScalar(0.92); p.position.set(-0.35, -0.55, 0.1); g.add(p);
       const a = actor(g, { kind: 'portiere', x: 4.6, ...o }); a.open = (ms = 650) => K.tween(ms, e => { door.rotation.y = -1.05 * e; }); return a;
     },
-    panneau(id, S, x = 4.3, o = {}) { const g = K.makeSign(id, o.taille || 0.9, o.mat ?? 1.35, 0.15); g.position.set(x, 0, local(S)); if (o.face) g.rotation.y = o.face; run.add(g); signs.push(g); return g; },
+    panneau(id, S, x = 4.3, o = {}) { const g = K.makeSign(id, o.taille || 0.9, o.mat ?? 1.35, 0.15); g.userData.signId = id; g.position.set(x, 0, local(S)); if (o.face) g.rotation.y = o.face; run.add(g); signs.push(g); return g; },
     /* marquage au sol : flèche ou « BUS », posé dans une voie (x = centre de la voie) */
     marquage(S, x, kind) {
       const m = new THREE.Mesh(geo('mark', () => new THREE.PlaneGeometry(2.25, 4.5).rotateX(-Math.PI / 2)), new THREE.MeshBasicMaterial({ map: markTex(kind, K), transparent: true, depthWrite: false, toneMapped: false, color: cfg.meteo === 'nuit' ? 0x9aa0a8 : 0xffffff }));
@@ -601,7 +601,7 @@ export function buildSim(K) {
     arriere: () => ({ pos: V(P.x + 2.6, 4.2, -9), target: V(P.x - 0.4, 0.8, 9), fov: 56 })
   };
   function pose(name, ms = 1100) {
-    const to = typeof name === 'string' ? POSES[name] : () => name;
+    const to = typeof name === 'string' ? POSES[name] : typeof name === 'function' ? name : () => name;
     if (typeof name === 'string') camMode = name;
     const from = { pos: camT.pos.clone(), target: camT.target.clone(), fov: camT.fov };
     camFree = to;
@@ -610,6 +610,9 @@ export function buildSim(K) {
     return K.tween(ms, e => { camBlend = e; }, K.ease.io);
   }
   let camFrom = null, camBlend = 1;
+  /* caméra libre du lecteur : on tourne autour de la voiture (lacet, hauteur, distance) */
+  const orb = { yaw: 0.55, pitch: 0.42, dist: 14, fov: 50 };
+  const orbitPose = () => { const t = V(P.x, 0.9, -2), cp = Math.cos(orb.pitch); return { pos: V(P.x + Math.sin(orb.yaw) * cp * orb.dist, 0.9 + Math.sin(orb.pitch) * orb.dist, -2 + Math.cos(orb.yaw) * cp * orb.dist), target: t, fov: orb.fov }; };
 
   /* ======================= Feux du véhicule ======================= */
   function lights(c) {
@@ -661,6 +664,10 @@ export function buildSim(K) {
     lane(x, ms = 1600) { const x0 = P.x; return K.tween(ms, e => { P.x = lerp(x0, x, e); }, K.ease.io); },
     shake(k = 1) { shakeK = Math.max(shakeK, k); },
     showMe(v) { me.visible = v; },
+    orbit(ms = 900) { const p = pose(orbitPose, ms); camMode = 'libre'; return p; },
+    orbitBy(dyaw, dpitch, kz = 1) { orb.yaw += dyaw; orb.pitch = Math.max(0.06, Math.min(1.45, orb.pitch + dpitch)); orb.dist = Math.max(4, Math.min(70, orb.dist * kz)); },
+    get camMode() { return camMode; },
+    get signs() { return signs; },
     setPick(list) { pick = list; },
     pickables: () => pick,
     setAnchors(list) { anchorList = list; },

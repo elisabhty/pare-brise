@@ -77,6 +77,22 @@ l'onglet Planning montre 6 jours à partir d'aujourd'hui, l'avancement et la dat
 replacent d'un appui. La série compte les jours où l'élève a fait au moins une activité (cours terminé, série, exercice 3D,
 examen, ou une question répondue). Le profil se modifie d'un appui sur l'avatar de l'accueil.
 
+## Le lecteur de cours
+
+La leçon reste une leçon (aucune question), mais on peut s'en servir :
+- **Vraie pause** : la scène 3D se fige avec la voix, et la lecture reprend à la même phrase.
+- **360°** : on fige la scène et on tourne autour de la voiture (glisser), on zoome (pincer, molette) ; dans les scènes
+  de panneaux, on regarde autour. Glisser sur l'image y entre directement.
+- **Toucher pour comprendre** : toucher un usager ou un panneau ouvre une petite fiche, lue à voix haute
+  (`src/app/infos.js`), avec l'étiquette de la scène si elle en a une.
+- **Angle de vue** des mises en situation : celui du cours, conducteur, derrière ou dessus (gardé d'une séance à l'autre).
+- **Ralenti** : la mise en situation se rejoue sans la voix, à 0,35 ×.
+- **Retenir** : l'étoile garde le passage ; il apparaît sur la barre, dans le texte, en fin de cours et dans la fiche du cours.
+- **Texte** : toutes les phrases du cours, celle qui est dite en surbrillance ; toucher une phrase y emmène.
+- **Barre** : scènes et chapitres marqués ; en glissant, un aperçu montre la scène visée.
+- **Gestes** : toucher l'image = plein écran ; double toucher à gauche ou à droite = phrase précédente ou suivante ;
+  au clavier : espace, flèches, Échap.
+
 ## Exercices de conduite (simulateur 3D)
 
 **Une leçon, puis sa pratique.** La leçon est une leçon : aucune question pendant la vidéo. Sa deuxième partie est la pratique

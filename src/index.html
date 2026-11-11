@@ -105,6 +105,8 @@
     <ul class="srows" id="fSeries"></ul>
     <h2 class="h-sec" id="fMemoT">Fiche mémo</h2>
     <ul class="memo glass" id="fMemo"></ul>
+    <h2 class="h-sec" id="fNotesT" hidden>Tes passages retenus</h2>
+    <ul class="fnotes" id="fNotes" hidden></ul>
   </section>
 
   <!-- ================= COURS (lecteur) ================= -->
@@ -123,9 +125,21 @@
         <button class="ibtn glass" id="cChapBtn" aria-label="Chapitres" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.3" fill="currentColor" stroke="none"/></svg></button>
     </header>
     <div class="caption" id="caption" aria-live="polite"></div>
+    <div class="explorebar" id="exploreBar"><div><b>Mode exploration</b><span id="exploreTip"></span></div><button class="ibtn glass sm" id="exploreHome" aria-label="Recentrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/></svg></button><button class="btn sm" id="exploreGo">Reprendre</button></div>
+    <div class="infocard" id="infoCard" role="dialog" aria-live="polite" hidden></div>
+    <div class="ctoast" id="cToast" role="status" hidden></div>
+    <div class="seekflash" id="seekFlash" hidden aria-hidden="true"></div>
     <button class="playover" id="playOver"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4 L20 12 L6 20 Z"/></svg></i><span id="playOverTxt">Lancer la séance</span></button>
     <div class="dock">
-      <div class="scrub"><div class="track" id="track"><div class="fill" id="trackFill"></div></div><div class="times num"><span id="tCur">0:00</span><span id="tTot">0:00</span></div></div>
+      <!-- outils du lecteur : angle de vue, exploration 3D, ralenti, passages retenus, texte -->
+      <nav class="ptools" id="cRail" aria-label="Outils du lecteur">
+        <button class="rbtn" id="rView" aria-label="Changer l’angle de vue"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h2l1.6-2h5.8l1.6 2h2A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5Z"/><circle cx="12" cy="13" r="3.6"/></svg></i><span id="rViewT">Auto</span></button>
+        <button class="rbtn" id="rExplore" aria-label="Explorer la scène en 3D"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="9" ry="3.6"/><path d="M12 3a3.6 9 0 0 1 0 18"/><path d="M12 3a3.6 9 0 0 0 0 18"/><path d="M18.5 15.6l2.4.6-.6 2.4"/></svg></i><span>360°</span></button>
+        <button class="rbtn" id="rSlow" aria-label="Revoir la scène au ralenti"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.6 1.6"/><path d="M9.5 2.5h5"/></svg></i><span>Ralenti</span></button>
+        <button class="rbtn" id="rNote" aria-label="Retenir ce passage" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.2l2.7 5.5 6 .9-4.35 4.25 1 6L12 17l-5.4 2.85 1-6L3.3 9.6l6-.9Z"/></svg></i><span id="rNoteT">Retenir</span></button>
+        <button class="rbtn" id="rText" aria-label="Le texte du cours"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 6h14M5 10.5h14M5 15h9M5 19.5h6"/></svg></i><span>Texte</span></button>
+      </nav>
+      <div class="scrub"><div class="tracktip" id="trackTip" hidden></div><div class="track" id="track"><div class="fill" id="trackFill"></div></div><div class="times num"><span id="tCur">0:00</span><span id="tTot">0:00</span></div></div>
       <div class="controls">
         <button class="ibtn g rate num" id="cRate" aria-label="Vitesse de lecture">1×</button>
         <button class="ibtn g" id="cPrev" aria-label="Passage précédent"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5 h2.4 v14 H6 Z M20 5 L9.5 12 L20 19 Z"/></svg></button>
@@ -139,6 +153,12 @@
       <div class="bs-grab" aria-hidden="true"></div>
       <div class="cs-head"><h2>Chapitres</h2><button class="cs-x" id="chapClose" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></button></div>
       <ol class="chapters" id="chapters"></ol>
+    </div>
+    <div class="chapsheet txtsheet" id="txtSheet" hidden>
+      <div class="bs-grab" aria-hidden="true"></div>
+      <div class="cs-head"><h2>Le texte du cours</h2><button class="cs-x" id="txtClose" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></button></div>
+      <p class="tx-help">Touche une phrase pour y aller. L’étoile marque tes passages retenus.</p>
+      <ol class="txlist" id="txtList"></ol>
     </div>
     <div class="endcard" id="endcard" hidden></div>
   </section>

@@ -457,6 +457,7 @@ function buildRoute() {
     if (nn) { s.remove(nn); disposeObj(nn); }
   }
 
+  const lk = { yaw: 0, pitch: 0, zoom: 1, hold: false, drag: false };
   const W2 = {
     scene: s,
     enter() {},
@@ -465,6 +466,10 @@ function buildRoute() {
     setSpeed(kmh, ac = 6) { speedTarget = kmh / 3.6; accel = ac; },
     setHood(v) { hood.visible = v; },
     pose: poseTo,
+    look(dx, dy) { lk.yaw = Math.max(-1.25, Math.min(1.25, lk.yaw - dx * 0.004)); lk.pitch = Math.max(-0.4, Math.min(0.5, lk.pitch - dy * 0.003)); },
+    zoomBy(k) { lk.zoom = Math.max(0.45, Math.min(1.35, lk.zoom * k)); },
+    explore(on) { lk.hold = !!on; },
+    setDrag(v) { lk.drag = !!v; },
     update(dt, t) {
       const d = speedTarget - speed; speed += Math.sign(d) * Math.min(Math.abs(d), accel * dt);
       roadT.offset.y = (roadT.offset.y + speed * dt / 24) % 1;
@@ -479,9 +484,12 @@ function buildRoute() {
       rings.forEach(r => { r.rotation.z += dt * 0.6; });
       const sway = Math.min(1, speed / 25);
       camera.position.copy(rig.pos).add(V(Math.sin(t * 0.9) * 0.02 * sway, Math.sin(t * 7.3) * 0.006 * sway + Math.sin(t * 1.3) * 0.01, 0));
-      camera.lookAt(rig.target);
+      // exploration : on regarde autour (lacet, tangage) et on zoome ; sinon le regard revient doucement
+      if (!lk.hold && !lk.drag) { lk.yaw *= 0.9; lk.pitch *= 0.9; lk.zoom += (1 - lk.zoom) * 0.1; }
+      if (Math.abs(lk.yaw) > 1e-4 || Math.abs(lk.pitch) > 1e-4) { const dir = rig.target.clone().sub(rig.pos); dir.applyAxisAngle(V(0, 1, 0), lk.yaw); dir.y += lk.pitch * dir.length(); camera.lookAt(rig.pos.clone().add(dir)); }
+      else camera.lookAt(rig.target);
       camera.rotateZ(Math.sin(t * 0.7) * 0.004 * sway);
-      setFov(rig.fov);
+      setFov(rig.fov * lk.zoom);
     },
     async present(ids, opt = {}) {
       const my = ++gen; clearMarkers();
@@ -734,6 +742,20 @@ E.pick = (cx, cy) => {
   const hit = rc.intersectObjects(list, false)[0];
   if (!hit) return null;
   return list.indexOf(hit.object);
+};
+/* toucher un objet de la scène (groupes compris) : index dans objs, ou -1 */
+E.pickDeep = (cx, cy, objs) => {
+  if (!objs || !objs.length) return -1;
+  const r = canvas.getBoundingClientRect();
+  const ndc = new THREE.Vector2((cx - r.left) / r.width * 2 - 1, -((cy - r.top) / r.height * 2 - 1));
+  const rc = new THREE.Raycaster(); rc.setFromCamera(ndc, camera);
+  for (const h of rc.intersectObjects(objs, true)) { let o = h.object; while (o) { const k = objs.indexOf(o); if (k >= 0) return k; o = o.parent; } }
+  return -1;
+};
+/* où se trouve un objet à l'écran (dy : hauteur au-dessus de son pied) */
+E.screenOf = (obj, dy = 1) => {
+  const r = canvas.getBoundingClientRect(), p = new THREE.Vector3(); obj.getWorldPosition(p); p.y += dy;
+  const v = p.project(camera); return { x: (v.x + 1) / 2 * r.width + r.left, y: (1 - v.y) / 2 * r.height + r.top, vis: v.z < 1 && Math.abs(v.x) < 1.2 && Math.abs(v.y) < 1.2 };
 };
 E.anchors = () => {
   const w = worlds[worldName]; if (!w) return [];

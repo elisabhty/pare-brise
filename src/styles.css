@@ -1140,3 +1140,107 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 #s-cours .topbar .mid div:last-child{max-width:100%}
 .xtop{grid-template-columns:44px minmax(0,1fr) 44px}
 .xtitle{max-width:100%;min-width:0}
+
+/* ===================== Lecteur avancé : outils, exploration 3D, infos au toucher, texte, plein écran ===================== */
+#s-cours #v-cours{touch-action:none;-webkit-user-select:none;user-select:none}
+#s-cours .playover{pointer-events:none}
+#s-cours .playover i,#s-cours .playover span{pointer-events:auto;cursor:pointer}
+/* les outils, en tête du dock : rien ne se pose sur l'image */
+.ptools{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.rbtn{height:46px;display:grid;justify-items:center;align-content:center;gap:2px;padding:0 2px;border-radius:13px;background:#fff;box-shadow:var(--sh-1);color:var(--craie);-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s,transform .15s}
+.rbtn i{display:grid;place-items:center}
+.rbtn i svg{width:19px;height:19px}
+.rbtn span{font-size:10.5px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.rbtn:active{transform:scale(.95)}
+.rbtn.on{background:var(--accent);color:#fff}
+#rNote.on{background:#FFB21A;color:#fff}
+#rNote.on i svg path{fill:currentColor}
+.rbtn.off{color:var(--label3)}
+#s-cours #v-cours{bottom:calc(env(safe-area-inset-bottom) + 180px)}
+#s-cours .playover{bottom:calc(env(safe-area-inset-bottom) + 180px)}
+#s-cours .caption{bottom:calc(env(safe-area-inset-bottom) + 192px)}
+
+/* exploration : la scène est figée, on tourne autour */
+.explorebar{position:absolute;z-index:8;top:calc(env(safe-area-inset-top) + 64px);left:12px;right:12px;display:none;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:10px 10px 10px 14px;border-radius:18px;background:rgba(255,255,255,.95);box-shadow:var(--sh-2);animation:capIn .3s ease both}
+.explorebar b{display:block;font-size:15px;font-weight:650;letter-spacing:-.015em}
+.explorebar span{display:block;font-size:12px;line-height:1.3;color:var(--label2);margin-top:2px}
+.explorebar .btn.sm{height:38px;padding:0 14px;font-size:13px;border-radius:12px}
+.explorebar .ibtn.sm{width:38px;height:38px;border-radius:12px}
+.explorebar .ibtn.sm svg{width:18px;height:18px}
+#s-cours.explore .explorebar{display:grid}
+#s-cours.explore #lower3,#s-cours.explore #ovt,#s-cours.explore .caption,#s-cours.explore .dash{display:none!important}
+#s-cours.explore #v-cours{cursor:grab}
+#s-cours.explore #v-cours:active{cursor:grabbing}
+#s-cours.ralenti .caption{display:none!important}
+
+/* toucher pour comprendre */
+.infocard{position:absolute;z-index:9;padding:12px 40px 13px 14px;border-radius:18px;background:#fff;box-shadow:0 2px 6px rgba(16,24,40,.08),0 24px 48px -18px rgba(16,24,40,.45);opacity:0;transform:translateY(6px) scale(.97);transition:opacity .2s,transform .25s cubic-bezier(.2,.9,.25,1)}
+.infocard.on{opacity:1;transform:none}
+.infocard[hidden]{display:none}
+.ic-k{font-size:11px;font-weight:650;color:var(--accent);letter-spacing:-.005em;margin-bottom:4px}
+.ic-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:11px;align-items:start}
+.ic-row b{display:block;font-size:16px;font-weight:650;letter-spacing:-.02em}
+.ic-row p{margin:3px 0 0;font-size:13.5px;line-height:1.4;color:var(--label2)}
+.ic-sign svg{width:48px;height:48px;display:block}
+.ic-x{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(16,24,40,.06);color:var(--label2)}
+.ic-x svg{width:13px;height:13px}
+.ic-foot{margin-top:8px;font-size:11px;color:var(--label3)}
+
+/* message bref en haut */
+.ctoast{position:absolute;z-index:10;top:calc(env(safe-area-inset-top) + 66px);left:50%;max-width:86%;padding:8px 14px 9px;border-radius:999px;background:rgba(11,18,32,.88);color:#fff;font-size:13px;font-weight:600;letter-spacing:-.01em;text-align:center;opacity:0;transform:translate(-50%,-8px);transition:opacity .25s,transform .3s cubic-bezier(.2,.9,.25,1);pointer-events:none}
+.ctoast.on{opacity:1;transform:translate(-50%,0)}
+.ctoast[hidden]{display:none}
+
+/* double toucher sur un côté : phrase précédente / suivante */
+.seekflash{position:absolute;z-index:6;top:34%;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--craie);font-size:28px;font-weight:700;opacity:0;pointer-events:none}
+.seekflash.l{left:7%}.seekflash.r{right:7%}
+.seekflash.l::after{content:"‹‹"}.seekflash.r::after{content:"››"}
+.seekflash.on{animation:seekF .6s ease both}
+.seekflash[hidden]{display:none}
+@keyframes seekF{0%{opacity:0;transform:scale(.8)}25%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.08)}}
+
+/* barre : scènes, chapitres, passages retenus, aperçu en glissant */
+.dock .scrub{position:relative}
+.track .sep{position:absolute;top:0;bottom:0;width:1.5px;background:rgba(255,255,255,.95)}
+.track .marks{position:absolute;inset:0;pointer-events:none}
+.track .marks i{position:absolute;top:-14px;width:12px;margin-left:-6px;font-style:normal;text-align:center}
+.track .marks i::before{content:"★";font-size:11px;color:#FFB21A;text-shadow:0 1px 2px rgba(16,24,40,.25)}
+.dock .track{transition:height .15s}
+.dock .track.scrub{height:10px}
+.tracktip{position:absolute;bottom:calc(100% + 10px);z-index:2;display:grid;gap:1px;max-width:72%;padding:7px 11px 8px;border-radius:12px;background:#fff;box-shadow:var(--sh-2);pointer-events:none}
+.tracktip span{font-size:10.5px;font-weight:650;color:var(--accent)}
+.tracktip b{font-size:13px;font-weight:650;letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tracktip em{font-style:normal;font-size:11px;color:var(--label2)}
+.tracktip[hidden]{display:none}
+
+/* le texte du cours */
+.tx-help{margin:0;font-size:13px;color:var(--label2)}
+.txlist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tx-sc{padding:11px 13px 12px;border-radius:16px;background:#fff;box-shadow:var(--sh-1)}
+.tx-sc.cur{box-shadow:inset 0 0 0 1.5px var(--accent),var(--sh-1)}
+.tx-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.tx-h span{font-size:11px;font-weight:650;color:var(--accent)}
+.tx-h b{font-size:14px;font-weight:650;letter-spacing:-.015em}
+.tx-star{font-style:normal;color:#FFB21A;margin-left:auto}
+.tx-sc p{margin:6px 0 0;line-height:1.5}
+.tx-s{display:inline;padding:1px 3px;margin:0 -1px;border-radius:6px;background:none;font-size:15px;line-height:1.5;text-align:left;color:var(--label2);letter-spacing:-.01em}
+.tx-s.now{color:var(--craie);background:rgba(10,102,255,.12)}
+.tx-s:active{background:rgba(10,102,255,.2)}
+
+/* plein écran : l'interface s'efface, il ne reste que l'image et le sous-titre */
+#s-cours .topbar,#s-cours .dock,#s-cours #lower3,#s-cours #ovt{transition:opacity .3s,transform .35s cubic-bezier(.2,.9,.25,1)}
+#s-cours.immersif .topbar{opacity:0;transform:translateY(-16px);pointer-events:none}
+#s-cours.immersif .dock{opacity:0;transform:translateY(30px);pointer-events:none}
+#s-cours.immersif #lower3,#s-cours.immersif #ovt{opacity:0}
+#s-cours.immersif .caption{bottom:calc(env(safe-area-inset-bottom) + 26px)}
+#s-cours .caption{transition:bottom .35s cubic-bezier(.2,.9,.25,1)}
+
+/* passages retenus : fiche du cours et fin de cours */
+.fnotes,.end-notes ul{list-style:none;margin:0;padding:6px;display:grid;gap:2px;border-radius:var(--r-card);background:#fff;box-shadow:var(--sh-1)}
+.fnotes[hidden]{display:none}
+.fnotes button,.end-notes button{width:100%;display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:10px;border-radius:14px;text-align:left;background:none}
+.fnotes button:active,.end-notes button:active{background:rgba(16,24,40,.05)}
+.fnotes i,.end-notes i{font-style:normal;color:#FFB21A;font-size:16px;line-height:1.2}
+.fnotes b,.end-notes b{display:block;font-size:14.5px;font-weight:650;letter-spacing:-.015em}
+.fnotes span,.end-notes span{display:block;margin-top:2px;font-size:13px;line-height:1.35;color:var(--label2)}
+.end-notes{display:grid;gap:8px}
