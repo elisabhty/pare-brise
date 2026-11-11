@@ -14,7 +14,7 @@ function paintSound() {
   $('#soundBtn').setAttribute('aria-label', Sound.on ? 'Couper le son' : 'Activer le son');
 }
 
-try { const P = window.Capacitor && window.Capacitor.Plugins; if (P && P.StatusBar) P.StatusBar.setStyle({ style: 'DARK' }); } catch (e) {}
+try { const P = window.Capacitor && window.Capacitor.Plugins; if (P && P.StatusBar) P.StatusBar.setStyle({ style: 'LIGHT' }); } catch (e) {}
 paintSound();
 $('#soundBtn').addEventListener('click', () => { Sound.init(); Sound.setOn(!Sound.on); paintSound(); });
 setupScreens();

@@ -2,10 +2,10 @@
   "appId": "fr.parebrise.code",
   "appName": "Pare-Brise",
   "webDir": "docs",
-  "backgroundColor": "#0A0F1A",
+  "backgroundColor": "#EEF4FF",
   "ios": {
     "contentInset": "never",
-    "backgroundColor": "#0A0F1A",
+    "backgroundColor": "#EEF4FF",
     "scrollEnabled": false
   }
 }

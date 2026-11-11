@@ -13,7 +13,7 @@ export let R, SALLE, STUDIO;
 
 export function roadPhoto(ids) {
   const posts = ids.length === 1 ? [{ x: 258, s: 74 }] : [{ x: 210, s: 60 }, { x: 274, s: 60 }];
-  let s = `<svg viewBox="0 0 320 180" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="skyE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3966"/><stop offset="1" stop-color="#f09a58"/></linearGradient></defs><rect width="320" height="180" fill="url(#skyE)"/><rect y="102" width="320" height="78" fill="#111a16"/><polygon points="150,101 170,101 276,180 44,180" fill="#2b2e34"/>`;
+  let s = `<svg viewBox="0 0 320 180" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="skyE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F7BEA"/><stop offset="1" stop-color="#D8EBFF"/></linearGradient></defs><rect width="320" height="180" fill="url(#skyE)"/><rect y="102" width="320" height="78" fill="#7FB062"/><polygon points="150,101 170,101 276,180 44,180" fill="#5E636B"/>`;
   ids.forEach((id, k) => { const p = posts[k]; if (!p) return; s += `<rect x="${p.x - 1.8}" y="${26 + p.s * .8}" width="3.6" height="${124 - p.s * .8}" fill="#80868F"/><svg x="${p.x - p.s / 2}" y="26" width="${p.s}" height="${p.s}" viewBox="0 0 100 100">${inner(id)}</svg>`; });
   return s + '</svg>';
 }
@@ -51,7 +51,7 @@ if (has3D) {
     spawn(id) { const el = document.createElement('img'); el.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(sign(id, 'width="200" height="200"')); box('fb-pb').appendChild(el); const m = { el, z: 80, passed: false }; m.handle = { id, get dist() { return Math.max(0, m.z); }, get passed() { return m.passed; }, flash: () => {} }; moving.push(m); return m.handle; },
     clearMoving() { moving.forEach(m => m.el.remove()); moving = []; },
     async exam(ids) { const b = box('fb-serie'); if (b) b.innerHTML = roadPhoto(ids || []); }, clearExam() {},
-    flash(i, ok) { const el = fb().children[i]; if (el) el.style.filter = `drop-shadow(0 0 18px ${ok ? '#34C77B' : '#FF5A6E'})`; }, dim() {},
+    flash(i, ok) { const el = fb().children[i]; if (el) el.style.filter = `drop-shadow(0 0 18px ${ok ? '#12A150' : '#D7263D'})`; }, dim() {},
     onPass(f) { passCb = f; }
   };
   SALLE = { setPoster() {}, look() {}, setDrag() {}, takeSeat: () => wait(400), reset: async () => {}, focusScreen: async () => {}, snapIdle() {} };

@@ -33,13 +33,13 @@ function draw(el) {
   let topo = '';
   for (let k = 0; k < Math.ceil(H / 90); k++) { const yy = k * 90 + 30; topo += `<path d="M -20 ${yy} C ${w * 0.3} ${yy - 40} ${w * 0.6} ${yy + 50} ${w + 20} ${yy - 10}" />`; }
   const svg = `<svg class="rm-svg" width="${w}" height="${H}" viewBox="0 0 ${w} ${H}" aria-hidden="true">
-    <defs><linearGradient id="rmg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7B63FF"/><stop offset="1" stop-color="#4A39C9"/></linearGradient>
+    <defs><linearGradient id="rmg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C86FF"/><stop offset="1" stop-color="#1F4FD8"/></linearGradient>
     <filter id="rmglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter></defs>
     <g class="topo">${topo}</g>
-    <path d="${path}" fill="none" stroke="rgba(123,99,255,.22)" stroke-width="50" stroke-linecap="round"/>
+    <path d="${path}" fill="none" stroke="rgba(47,107,255,.14)" stroke-width="50" stroke-linecap="round"/>
     <path d="${path}" fill="none" stroke="url(#rmg)" stroke-width="34" stroke-linecap="round"/>
     <path d="${path}" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2.4" stroke-dasharray="9 11" stroke-linecap="round"/>
-    ${done ? `<path d="${done}" fill="none" stroke="#FFC629" stroke-width="5" filter="url(#rmglow)" opacity=".8"/><path d="${done}" fill="none" stroke="#FFE08A" stroke-width="2.6" stroke-linecap="round"/>` : ''}
+    ${done ? `<path d="${done}" fill="none" stroke="#FF7A1A" stroke-width="5" filter="url(#rmglow)" opacity=".7"/><path d="${done}" fill="none" stroke="#FFD2B0" stroke-width="2.6" stroke-linecap="round"/>` : ''}
   </svg>`;
   const items = pts.map((p, i) => {
     const r = p.r, cardSide = p.side === 'L' ? 'right' : 'left';

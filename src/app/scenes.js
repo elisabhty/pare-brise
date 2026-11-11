@@ -49,7 +49,7 @@ export const TYPES = {
       const ok = await R.present(sc.panneaux);
       if (!ctx.live() || ok === false) return;
       Labels.set(sc.panneaux, sc.etiquettes);
-      if (sc.forme) await R.outline(sc.forme, sc.couleur || '#FFC629', sc.barre);
+      if (sc.forme) await R.outline(sc.forme, sc.couleur || '#FF7A1A', sc.barre);
     }
   },
   /* De grands chiffres pendant que la voiture roule */

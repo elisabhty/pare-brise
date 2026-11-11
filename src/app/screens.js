@@ -27,20 +27,20 @@ const courseRow = (c, compact) => {
 function drawPoster(c) {
   if (!has3D || !c) return;
   SALLE.setPoster((ctx, w, h) => {
-    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#13244A'); g.addColorStop(1, '#050913');
+    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#3D7BFF'); g.addColorStop(1, '#0B2A7A');
     ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
-    ctx.strokeStyle = 'rgba(255,255,255,.05)'; ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 1;
     for (let x = 0; x < w; x += 48) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
     for (let y = 0; y < h; y += 48) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-    ctx.fillStyle = '#FFC629'; ctx.font = '700 expanded 22px Archivo, Arial';
+    ctx.fillStyle = '#FFB27A'; ctx.font = '700 expanded 22px Archivo, Arial';
     ctx.fillText(`COURS ${courseNumber(c)} · ${theme(c.theme).nom.toUpperCase()}`, 70, 110);
-    ctx.fillStyle = '#F4F2EC';
+    ctx.fillStyle = '#FFFFFF';
     const words = c.titre.toUpperCase().split(' '); const lines = []; let line = '';
     ctx.font = '900 extra-condensed 118px Archivo, "Arial Narrow", Arial';
     words.forEach(wd => { const t = line ? line + ' ' + wd : wd; if (ctx.measureText(t).width > w - 140 && line) { lines.push(line); line = wd; } else line = t; });
     lines.push(line);
     lines.slice(0, 3).forEach((l, k) => ctx.fillText(l, 66, 222 + k * 108));
-    ctx.fillStyle = 'rgba(244,242,236,.7)'; ctx.font = '500 26px Archivo, Arial';
+    ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.font = '500 26px Archivo, Arial';
     ctx.fillText(`${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`, 70, 222 + Math.min(3, lines.length) * 108 - 30);
   });
   const ids = signsOfCourse(c).slice(0, 6); let n = 0; const imgs = [];

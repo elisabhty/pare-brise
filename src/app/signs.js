@@ -88,9 +88,9 @@ export const FAM = {
   interdiction: { n: 'Interdiction', c: '#FF3048', t: 'var(--rouge-t)', rule: 'rond, bord rouge' },
   obligation: { n: 'Obligation', c: '#3D8BFF', t: 'var(--bleu-t)', rule: 'rond bleu' },
   indication: { n: 'Indication', c: '#3D8BFF', t: 'var(--bleu-t)', rule: 'carré bleu' },
-  priorite: { n: 'Priorité', c: '#FFC629', t: 'var(--jaune)', rule: 'forme unique' },
-  fin: { n: 'Fin', c: '#DDE3EE', t: '#DDE3EE', rule: 'panneau barré' },
-  temporaire: { n: 'Temporaire', c: '#FFC629', t: 'var(--jaune)', rule: 'fond jaune' },
+  priorite: { n: 'Priorité', c: '#FFC629', t: '#C77700', rule: 'forme unique' },
+  fin: { n: 'Fin', c: '#DDE3EE', t: '#4A5878', rule: 'panneau barré' },
+  temporaire: { n: 'Temporaire', c: '#FFC629', t: '#C77700', rule: 'fond jaune' },
   localisation: { n: 'Localisation', c: '#FF3048', t: 'var(--rouge-t)', rule: 'rectangle blanc bordé de rouge' }
 };
 

@@ -12,7 +12,7 @@ import { plot, react, line } from './mascot.js';
 
 let onDone = () => {};
 export const setSerieDone = f => { onDone = f; };
-const PAIR_COLORS = ['#FFC629', '#7DB2F7', '#FF5A6E', '#34C77B', '#C792EA'];
+const PAIR_COLORS = ['#1F5BFF', '#FF7A1A', '#D7263D', '#12A150', '#8B5CF6'];
 
 /* Examen blanc : questions tirées dans toute la banque, en alternant les thèmes */
 export function drawExam(n = 20) {
