@@ -3,8 +3,8 @@
  "ordre": 1,
  "theme": "circulation",
  "titre": "Reconnaître les panneaux",
- "accroche": "en moins d'une seconde",
- "resume": "Les 7 règles de forme et de couleur qui permettent de lire n'importe quel panneau, même un panneau que tu n'as jamais vu.",
+ "accroche": "en un coup d’œil",
+ "resume": "Les 7 règles essentielles pour reconnaître n’importe quel panneau en un coup d’œil : observer sa forme, sa couleur et son symbole.",
  "affiche": [
   "A14",
   "B14",
@@ -15,10 +15,10 @@
  ],
  "chapitres": [
   "Bienvenue",
-  "Les cinq familles",
-  "Les formes uniques",
-  "Le jaune",
-  "La méthode"
+  "Les grandes familles de panneaux",
+  "Les panneaux de priorité",
+  "La signalisation temporaire",
+  "La méthode à retenir"
  ],
  "series": [
   "serie-panneaux"
@@ -46,7 +46,7 @@
   },
   {
    "panneau": "B33",
-   "texte": "Panneau barré",
+   "texte": "Panneau barré : fin de prescription",
    "famille": "fin"
   },
   {
@@ -58,6 +58,10 @@
    "panneau": "AK5",
    "texte": "Fond jaune",
    "famille": "temporaire"
+  },
+  {
+   "texte": "Forme → couleur → symbole",
+   "tag": "La méthode"
   }
  ],
  "scenes": [
@@ -66,8 +70,8 @@
    "ch": 0,
    "eyebrow": "Cours 1 · Signalisation",
    "titre": "Reconnaître les panneaux",
-   "sous": "en moins d'une seconde",
-   "dire": "Bienvenue dans ta salle de code. Cours numéro 1 : reconnaître les panneaux. À la fin, tu identifieras n'importe quel panneau en moins d'une seconde."
+   "sous": "en un coup d’œil",
+   "dire": "Bienvenue dans ton premier cours de Code de la route ! Aujourd’hui, tu vas apprendre à reconnaître les panneaux de signalisation. À la fin de cette vidéo, tu sauras identifier les grandes familles de panneaux en un coup d’œil."
   },
   {
    "type": "defile",
@@ -93,8 +97,8 @@
     "A2b"
    ],
    "grand": "7",
-   "texte": "règles suffisent",
-   "dire": "En France, il existe des centaines de panneaux. Bonne nouvelle : tu n'as pas à les apprendre un par un. Leur forme et leur couleur parlent pour eux. Sept règles suffisent."
+   "texte": "règles essentielles",
+   "dire": "En France, il existe des centaines de panneaux. Mais rassure-toi, tu n’as pas besoin de tous les mémoriser pour comprendre leur signification. Le secret ? Observer leur forme, leur couleur et leur symbole. Découvrons ensemble les 7 règles essentielles pour les reconnaître."
   },
   {
    "type": "famille",
@@ -103,12 +107,26 @@
    "famille": "danger",
    "forme": "tri",
    "panneaux": [
-    "A14",
     "A1a",
-    "A3"
+    "A4",
+    "A13b"
    ],
    "puce": "150 m avant · 50 m en ville",
-   "dire": "Règle 1. Un triangle pointe en haut, bordé de rouge : danger. Il est placé environ 150 mètres avant le danger hors agglomération, 50 mètres en ville. Ton réflexe : tu ralentis et tu anticipes."
+   "etiquettes": [
+    [
+     "A1a",
+     "Virage dangereux"
+    ],
+    [
+     "A4",
+     "Chaussée glissante"
+    ],
+    [
+     "A13b",
+     "Passage piéton"
+    ]
+   ],
+   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce généralement un danger. Un virage dangereux, une chaussée glissante ou encore un passage piéton. Ces panneaux sont habituellement placés à 150 mètres du danger hors agglomération et à 50 mètres en ville. Ton réflexe ? Rester vigilant, anticiper et adapter ta vitesse."
   },
   {
    "type": "famille",
@@ -117,12 +135,33 @@
    "famille": "interdiction",
    "forme": "cercle",
    "panneaux": [
-    "B14",
+    "B3",
+    "B2a",
+    "B14:90"
+   ],
+   "puce": "Rond bordé de rouge",
+   "dire": "Un panneau rond bordé de rouge indique généralement une interdiction ou une restriction. Il peut t’interdire de dépasser, de tourner ou de circuler au-delà d’une certaine vitesse."
+  },
+  {
+   "type": "panneaux",
+   "ch": 1,
+   "eyebrow": "Règle 2 · Attention",
+   "titre": "Deux panneaux souvent confondus",
+   "panneaux": [
     "B6a1",
     "B6d"
    ],
-   "puce": "Barre ≠ croix",
-   "dire": "Règle 2. Un rond bordé de rouge : interdiction. Ce qui est dessiné à l'intérieur, tu n'as pas le droit de le faire. Même sur fond bleu, c'est le bord rouge qui compte. Et attention au piège : une barre, c'est le stationnement interdit, mais tu peux t'arrêter. Une croix, c'est l'arrêt et le stationnement interdits."
+   "etiquettes": [
+    [
+     "Une barre",
+     "Stationnement interdit, arrêt permis"
+    ],
+    [
+     "Une croix",
+     "Arrêt et stationnement interdits"
+    ]
+   ],
+   "dire": "Attention à deux panneaux souvent confondus ! Une seule barre rouge sur fond bleu interdit le stationnement, mais autorise généralement un arrêt. Une croix rouge sur fond bleu interdit à la fois l’arrêt et le stationnement."
   },
   {
    "type": "famille",
@@ -135,8 +174,8 @@
     "B21a1",
     "B22a"
    ],
-   "puce": "Dessiné = obligatoire",
-   "dire": "Règle 3. Un rond tout bleu : obligation. Cette fois, ce qui est dessiné, tu dois le faire."
+   "puce": "Tu dois le faire",
+   "dire": "Un panneau rond bleu indique généralement une obligation. Contrairement aux interdictions, il te précise ce que tu dois faire. Par exemple, tourner dans une direction imposée ou emprunter une voie réservée."
   },
   {
    "type": "famille",
@@ -145,12 +184,12 @@
    "famille": "indication",
    "forme": "carre",
    "panneaux": [
+    "C1a",
     "C12",
-    "C20a",
-    "C1a"
+    "C20a"
    ],
    "puce": "Il te renseigne",
-   "dire": "Règle 4. Un carré ou un rectangle bleu : indication. Il ne t'interdit rien, il ne t'oblige à rien : il te renseigne. Sens unique, passage pour piétons, parking."
+   "dire": "Un panneau carré ou rectangulaire, souvent bleu, te donne une information utile. Il peut signaler un parking, un passage piéton ou un sens unique. Ces panneaux t’aident à comprendre ton environnement et les conditions de circulation."
   },
   {
    "type": "famille",
@@ -160,12 +199,12 @@
    "forme": "cercle",
    "barre": true,
    "panneaux": [
-    "B33",
+    "B33:70",
     "B31",
     "B40"
    ],
-   "puce": "La règle s'arrête ici",
-   "dire": "Règle 5. Un panneau barré : la règle s'arrête. Des bandes noires sur fond blanc : fin d'une interdiction. Une barre rouge sur fond bleu : fin d'une obligation."
+   "puce": "Fin de prescription",
+   "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir peut signaler la fin de cette limitation. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin."
   },
   {
    "type": "famille",
@@ -178,8 +217,8 @@
     "AB4",
     "AB3a"
    ],
-   "puce": "Reconnus même de dos",
-   "dire": "Règle 6. Les panneaux de priorité ont des formes à part, pour être reconnus même de dos ou couverts de neige. L'octogone du stop : arrêt obligatoire, puis tu cèdes le passage. Le triangle pointe en bas : tu cèdes le passage, sans être obligé de t'arrêter."
+   "puce": "Des formes uniques",
+   "dire": "Certains panneaux possèdent une forme unique pour être facilement reconnaissables. Le STOP, avec ses huit côtés, impose un arrêt complet, même si personne n’arrive. Le triangle pointe vers le bas signifie « Cédez le passage ». Tu ralentis et tu t’arrêtes uniquement si nécessaire pour laisser passer les usagers prioritaires."
   },
   {
    "type": "famille",
@@ -191,8 +230,8 @@
     "AB6",
     "AB7"
    ],
-   "puce": "Tu passes en premier",
-   "dire": "Et le losange jaune : tu es sur une route prioritaire. Aux intersections, les autres te laissent passer. Barré de noir, ta priorité s'arrête."
+   "puce": "Route prioritaire",
+   "dire": "Enfin, le losange jaune indique une route prioritaire. Lorsqu’il est barré d’une bande noire, cette priorité prend fin."
   },
   {
    "type": "famille",
@@ -205,13 +244,13 @@
     "AK14"
    ],
    "puce": "Prime sur le permanent",
-   "dire": "Règle 7. Un fond jaune : c'est temporaire, le plus souvent des travaux. Retiens bien ceci : la signalisation temporaire l'emporte sur la signalisation permanente."
+   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est notamment le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : lorsqu’elles se contredisent, les indications de la signalisation temporaire priment sur celles de la signalisation permanente."
   },
   {
    "type": "panneaux",
    "ch": 4,
-   "eyebrow": "La méthode",
-   "titre": "Forme → Couleur → Dessin",
+   "eyebrow": "La méthode à retenir",
+   "titre": "Forme → Couleur → Symbole",
    "panneaux": [
     "X_FORME",
     "X_COULEUR",
@@ -228,31 +267,69 @@
     ],
     [
      "03",
-     "Dessin"
+     "Symbole"
     ]
    ],
-   "dire": "La méthode tient en trois mots : forme, couleur, dessin. La forme te donne la famille en un coup d'œil. La couleur confirme. Le dessin précise. Avec ça, tu décodes même un panneau que tu n'as jamais vu."
+   "dire": "Pour reconnaître rapidement un panneau, retiens cette méthode en trois étapes. D’abord, observe sa forme. Elle t’aide à identifier sa famille. Ensuite, regarde sa couleur. Elle te donne un indice supplémentaire. Enfin, identifie son symbole. C’est lui qui précise le message. Avec cette méthode, tu pourras comprendre plus facilement les panneaux que tu rencontreras."
+  },
+  {
+   "type": "liste",
+   "ch": 4,
+   "eyebrow": "À retenir",
+   "titre": "Les 7 règles",
+   "vitesse": 40,
+   "items": [
+    [
+     "Triangle bordé de rouge",
+     "Danger"
+    ],
+    [
+     "Rond bordé de rouge",
+     "Interdiction"
+    ],
+    [
+     "Rond bleu",
+     "Obligation"
+    ],
+    [
+     "Carré ou rectangle bleu",
+     "Indication"
+    ],
+    [
+     "Panneau barré",
+     "Fin de prescription"
+    ],
+    [
+     "Formes uniques",
+     "Priorité"
+    ],
+    [
+     "Fond jaune",
+     "Temporaire"
+    ]
+   ],
+   "dire": "Bravo ! Tu connais maintenant les sept règles essentielles pour reconnaître les panneaux."
   },
   {
    "type": "fin",
    "ch": 4,
    "eyebrow": "Fin du cours 1",
-   "titre": "7 règles en poche",
+   "titre": "À toi de jouer",
    "stats": [
     [
      "7",
      "règles"
     ],
     [
-     "25",
-     "panneaux"
+     "3",
+     "étapes"
     ],
     [
-     "2",
-     "questions"
+     "11",
+     "situations"
     ]
    ],
-   "dire": "Cours terminé. Tu as les sept règles. Passe maintenant à la pratique : tu vas les retrouver sur la route."
+   "dire": "Il est temps de passer à la pratique ! À toi de reconnaître les panneaux dans de vraies situations de circulation."
   }
  ]
 }

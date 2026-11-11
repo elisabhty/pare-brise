@@ -635,7 +635,7 @@ function buildStudio() {
    ========================================================= */
 function setFov(fovRegion) {
   // écran très haut (portrait) : sur la route des leçons, on garde assez de champ en largeur pour voir les panneaux des deux côtés
-  if (worldName === 'route' && region.height > 0) { const asp = W / Math.max(1, region.height * H); if (asp < 0.72) fovRegion = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(fovRegion) / 2) * 0.72 / asp)); }
+  if (worldName === 'route' && region.height > 0) { const asp = W / Math.max(1, region.height * H); if (asp < 0.92) fovRegion = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(fovRegion) / 2) * 0.92 / asp)); }
   // la « fenêtre » utile est une bande de l'écran (region) : on décale le centre optique
   const rTop = region.top * H, rH = Math.max(1, region.height * H);
   // simulateur en portrait : le centre optique remonte (comme un objectif décentrable), l'horizon passe vers le tiers haut
