@@ -16,11 +16,15 @@ export const rectRed = () => `<rect x="4" y="22" width="92" height="56" rx="7" f
 export const octo = () => `<polygon points="${pts(octPts(48))}" fill="#fff"/><polygon points="${pts(octPts(44.5))}" fill="${K.r}"/>`;
 export const losange = (c = K.y) => `<polygon points="50,3 97,50 50,97 3,50" fill="#fff" stroke="${K.k}" stroke-width="1.2" stroke-linejoin="round"/><polygon points="50,15 85,50 50,85 15,50" fill="${c}"/>`;
 export const bars = (c = K.k, n = 5, half = 38, gap = 3.6, w = 1.7) => { let o = ''; for (let i = 0; i < n; i++) { const s = (i - (n - 1) / 2) * gap, cx = 50 + s / Math.SQRT2, cy = 50 + s / Math.SQRT2, d = half / Math.SQRT2; o += `<line x1="${(cx - d).toFixed(1)}" y1="${(cy + d).toFixed(1)}" x2="${(cx + d).toFixed(1)}" y2="${(cy - d).toFixed(1)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`; } return o; };
-export const txt = (t, size, fill, y, family = 'Arial, Helvetica, sans-serif') => `<text x="50" y="${y}" text-anchor="middle" font-family="${family}" font-weight="700" font-size="${size}" fill="${fill}">${t}</text>`;
+export const txt = (t, size, fill, y, family = 'Arial, Helvetica, sans-serif', max = 0) => {
+  // un nom trop long pour le panneau est resserré pour tenir dans le cadre (largeur estimée de l'Arial gras : 0,68 × la taille)
+  const fit = max && String(t).length * size * 0.68 > max ? ` textLength="${max}" lengthAdjust="spacingAndGlyphs"` : '';
+  return `<text x="50" y="${y}" text-anchor="middle" font-family="${family}" font-weight="700" font-size="${size}" fill="${fill}"${fit}>${t}</text>`;
+};
 const bang = (c = K.k) => `<rect x="45.5" y="38" width="9" height="25" rx="3" fill="${c}"/><circle cx="50" cy="70.5" r="4.8" fill="${c}"/>`;
 const bike = (c = '#fff') => `<g fill="none" stroke="${c}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="31" cy="60" r="11"/><circle cx="69" cy="60" r="11"/><path d="M31 60 L42 44 L61 44 L69 60 M42 44 L51 60 L61 44 M31 60 L51 60 M37 38 L46 38 M42 44 L41 38 M61 44 L59 36 L66 36"/></g>`;
 const worker = () => `<circle cx="45" cy="45" r="4.4" fill="${K.k}"/><g stroke="${K.k}" stroke-width="5" stroke-linecap="round" fill="none"><path d="M45 51 L41 64 L35 75 M41 64 L48 75 M44 55 L54 60"/><path d="M50 52 L60 70" stroke-width="3"/></g><path d="M57 70 L66 73 L61 77 Z" fill="${K.k}"/><polygon points="62,77 71,69 78,77" fill="${K.k}"/>`;
-const speed = (v, fill) => txt(v, String(v).length > 2 ? 29 : 38, fill, String(v).length > 2 ? 60.5 : 63.5);
+const speed = (v, fill) => txt(v, String(v).length > 2 ? 29 : 38, fill, String(v).length > 2 ? 60.5 : 63.5, undefined, 62);
 const roundabout = () => {
   const cx = 50, cy = 60, r = 10.5; let o = '';
   for (let k = 0; k < 3; k++) {
@@ -77,8 +81,8 @@ const DRAW = {
   C12: () => square() + `<rect x="44" y="40" width="12" height="40" fill="#fff"/><polygon points="31,44 50,19 69,44" fill="#fff"/>`,
   C20a: () => square() + `<polygon points="50,16 86,80 14,80" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><g fill="${K.k}"><rect x="27" y="75" width="8" height="3"/><rect x="40" y="75" width="8" height="3"/><rect x="53" y="75" width="8" height="3"/><rect x="66" y="75" width="7" height="3"/></g><g stroke="${K.k}" stroke-width="5" stroke-linecap="round" fill="none"><path d="M50 47 L46 61 L40 72 M46 61 L54 71 M49 51 L42 57 M49 51 L57 56"/></g><circle cx="52" cy="40" r="4.6" fill="${K.k}"/>`,
   C1a: () => square() + txt('P', 64, '#fff', 73),
-  EB10: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 13 : 17, K.k, 56),
-  EB20: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 13 : 17, K.k, 56) + `<line x1="14" y1="72" x2="86" y2="28" stroke="${K.r}" stroke-width="6"/>`,
+  EB10: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72),
+  EB20: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72) + `<line x1="14" y1="72" x2="86" y2="28" stroke="${K.r}" stroke-width="6"/>`,
   AB3a: () => triDown(),
   AB4: () => octo() + txt('STOP', 26, '#fff', 59.5),
   AB6: () => losange(),
@@ -108,9 +112,9 @@ export const FAM = {
   interdiction: { n: 'Interdiction', c: '#FF3048', t: 'var(--rouge-t)', rule: 'rond, bord rouge' },
   obligation: { n: 'Obligation', c: '#3D8BFF', t: 'var(--bleu-t)', rule: 'rond bleu' },
   indication: { n: 'Indication', c: '#3D8BFF', t: 'var(--bleu-t)', rule: 'carré bleu' },
-  priorite: { n: 'Priorité', c: '#FFC629', t: '#C77700', rule: 'forme unique' },
+  priorite: { n: 'Priorité', c: '#FFC629', t: '#A35A00', rule: 'forme unique' },
   fin: { n: 'Fin', c: '#DDE3EE', t: '#4A5878', rule: 'panneau barré' },
-  temporaire: { n: 'Temporaire', c: '#FFC629', t: '#C77700', rule: 'fond jaune' },
+  temporaire: { n: 'Temporaire', c: '#FFC629', t: '#A35A00', rule: 'fond jaune' },
   localisation: { n: 'Localisation', c: '#FF3048', t: 'var(--rouge-t)', rule: 'rectangle blanc bordé de rouge' }
 };
 

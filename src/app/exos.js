@@ -112,17 +112,21 @@ function makeX(ex) {
     gap(on) { $('#xGap').hidden = !on; },
     /* bandeau « Observe la situation » avec sa barre de progression (durée T en secondes) */
     obs(on, T = 3) {
-      const el = $('#xObs'), bar = $('#xObsBar');
-      if (!on) { el.classList.remove('on'); return; }
-      el.hidden = false; bar.style.transition = 'none'; bar.style.transform = 'scaleX(0)'; void bar.offsetWidth;
-      bar.style.transition = `transform ${T}s linear`; bar.style.transform = 'scaleX(1)'; requestAnimationFrame(() => el.classList.add('on'));
+      // l'observation s'affiche dans la pastille du titre (rien ne se superpose au compteur ni à la scène)
+      const el = $('#s-exo .xtitle'), bar = $('#xObsBar');
+      if (!on) { el.classList.remove('obs'); return; }
+      bar.style.transition = 'none'; bar.style.transform = 'scaleX(0)'; void bar.offsetWidth;
+      bar.style.transition = `transform ${T}s linear`; bar.style.transform = 'scaleX(1)'; el.classList.add('obs');
     },
     /* loupe : le panneau de la scène, net et lisible, dans un coin de l'image */
     loupe(ids) {
       const el = $('#xZoom'); if (!el) return;
       if (!ids || !ids.length) { el.classList.remove('on'); return; }
       el.innerHTML = ids.slice(0, 3).map(id => `<span>${sign(id)}</span>`).join('') + '<em>Zoom</em>'; el.classList.toggle('n3', ids.length > 2); el.classList.toggle('multi', ids.length > 1); el.style.setProperty('--n', Math.min(3, ids.length));
-      el.hidden = false; requestAnimationFrame(() => el.classList.add('on'));
+      el.hidden = false;
+      // cadrage serré sur le panneau (un panneau d'agglomération n'occupe que le milieu de son carré)
+      $$('svg', el).forEach(sv => { try { const b = sv.getBBox(); if (b.width > 4 && b.height > 4) sv.setAttribute('viewBox', `${(b.x - 2).toFixed(1)} ${(b.y - 2).toFixed(1)} ${(b.width + 4).toFixed(1)} ${(b.height + 4).toFixed(1)}`); } catch (e) {} });
+      requestAnimationFrame(() => el.classList.add('on'));
     }
   };
   return X;
@@ -235,6 +239,8 @@ function stageScene(W, sc, T = 0) {
   if (sc.maisons) W.maisons(-160, 300);
   const sx = env === 'ville' ? 5.9 : env === 'autoroute' ? 7.2 : 4.4;
   const signs = (sc.signaux || []).map(([id, S, x, t]) => W.panneau(id, S, x ?? sx, { taille: t || 1.2 }));
+  // vue du conducteur : le tableau de bord en bas de l'image, comme dans les vidéos de l'examen
+  { const d = $('#v-exo .dash'); if (d) d.hidden = !['vue', 'cockpit'].includes(sc.camera || 'vue'); }
   const actors = (sc.acteurs || []).map(o => {
     const t = TYPES3D.includes(o.type) ? o.type : 'voiture';
     // positions de la fiche = départ d'un court roulage (tR) : on en déduit la place à l'arrêt sur image, puis le départ de la vidéo
@@ -889,7 +895,7 @@ function results(ex, out) {
   $('#xDone').addEventListener('click', () => show(retourX), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
-function stopRun() { if (Engine && Engine.hiRes) Engine.hiRes(false); const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } ['#xObs', '#xZoom'].forEach(k => { const e = $(k); if (e) e.classList.remove('on'); }); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
+function stopRun() { if (Engine && Engine.hiRes) Engine.hiRes(false); { const d = $('#v-exo .dash'); if (d) d.hidden = true; } const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } { const z = $('#xZoom'); if (z) z.classList.remove('on'); const t = $('#s-exo .xtitle'); if (t) t.classList.remove('obs'); } { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
 
 /* ======================= Hub « Exercices » ======================= */
 export function renderExos() {

@@ -232,12 +232,13 @@ export function buildSim(K) {
   for (let i = 0; i < 16; i++) { const r = 30 + (i * 37) % 50, h = new THREE.Mesh(new THREE.ConeGeometry(r, 14 + (i * 13) % 26, 7), hillMat); const a = -1.4 + i * 0.19; h.position.set(Math.sin(a) * 300, 4, -Math.cos(a) * 300); h.scale.y = 0.6; hills.add(h); }
 
   /* textures de chaussée */
-  const noise = (x, w, h, base, amp, n) => { x.fillStyle = base; x.fillRect(0, 0, w, h); for (let i = 0; i < n; i++) { const v = amp[0] + Math.random() * amp[1]; x.fillStyle = `rgba(${v},${v + 2},${v + 5},${0.3 + Math.random() * 0.4})`; x.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5); } };
+  const noise = (x, w, h, base, amp, n) => { x.fillStyle = base; x.fillRect(0, 0, w, h); for (let i = 0; i < n; i++) { const v = amp[0] + Math.random() * amp[1]; x.fillStyle = `rgba(${v},${v + 2},${v + 5},${0.3 + Math.random() * 0.4})`; x.fillRect(Math.random() * w, Math.random() * h, 1.6, 1.6); } };
   const tex = c => { const t = K.canvasTex(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; };
+  // enrobé en double résolution, grain fin : reste net au premier plan, même agrandi sur un écran 3×
   const ROADT = {
-    route: () => canvas(256, 1024, (x, w, h) => { noise(x, w, h, '#5F646C', [72, 50], 9000); x.fillStyle = '#ECECE6'; for (let y = 0; y < h; y += 128) { x.fillRect(8, y, 6, 80); x.fillRect(w - 14, y, 6, 80); } }),
-    ville: () => canvas(256, 1024, (x, w, h) => { noise(x, w, h, '#55595F', [64, 46], 9000); x.fillStyle = 'rgba(255,255,255,.12)'; x.fillRect(0, 0, 6, h); x.fillRect(w - 6, 0, 6, h); x.fillStyle = '#E8E8E2'; for (let y = 0; y < h; y += 170) { x.fillRect(48, y, 3, 90); x.fillRect(205, y, 3, 90); } }),
-    autoroute: () => canvas(256, 1024, (x, w, h) => { noise(x, w, h, '#5A5F66', [70, 48], 9000); x.fillStyle = '#EFEFEA'; x.fillRect(4, 0, 7, h); for (let y = 0; y < h; y += 256) { x.fillRect(94, y, 5, 160); x.fillRect(183, y, 9, 200); } })
+    route: () => canvas(512, 2048, (x, w, h) => { noise(x, w, h, '#5F646C', [72, 50], 52000); x.fillStyle = '#ECECE6'; for (let y = 0; y < h; y += 256) { x.fillRect(16, y, 12, 160); x.fillRect(w - 28, y, 12, 160); } }),
+    ville: () => canvas(512, 2048, (x, w, h) => { noise(x, w, h, '#55595F', [64, 46], 52000); x.fillStyle = 'rgba(255,255,255,.12)'; x.fillRect(0, 0, 12, h); x.fillRect(w - 12, 0, 12, h); x.fillStyle = '#E8E8E2'; for (let y = 0; y < h; y += 340) { x.fillRect(96, y, 6, 180); x.fillRect(410, y, 6, 180); } }),
+    autoroute: () => canvas(512, 2048, (x, w, h) => { noise(x, w, h, '#5A5F66', [70, 48], 52000); x.fillStyle = '#EFEFEA'; x.fillRect(8, 0, 14, h); for (let y = 0; y < h; y += 512) { x.fillRect(188, y, 10, 320); x.fillRect(366, y, 18, 400); } })
   };
   const roadTex = {}; const roadT = k => roadTex[k] || (roadTex[k] = tex(ROADT[k]()));
   const roadMat = new THREE.MeshStandardMaterial({ roughness: 0.82, metalness: 0.02, envMapIntensity: 0.6 });

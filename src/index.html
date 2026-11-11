@@ -111,6 +111,7 @@
   <section class="screen" id="s-cours" aria-label="Cours vidéo">
     <div class="view3d" id="v-cours">
       <div class="fb" id="fb-cours"></div>
+      <div class="dash" aria-hidden="true" hidden><svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="dashG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B3344"/><stop offset=".35" stop-color="#1A202C"/><stop offset="1" stop-color="#0C0F15"/></linearGradient><linearGradient id="wheelG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A303C"/><stop offset="1" stop-color="#11151C"/></linearGradient></defs><path d="M-20 62 C80 40 140 34 200 34 C260 34 320 40 420 62 L420 150 L-20 150 Z" fill="url(#dashG2)"/><path d="M-20 62 C80 40 140 34 200 34 C260 34 320 40 420 62" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/><rect x="150" y="62" width="100" height="30" rx="12" fill="#0A0D13"/><path d="M162 84 a38 38 0 0 1 76 0" fill="none" stroke="rgba(120,170,255,.35)" stroke-width="2"/><circle cx="200" cy="205" r="118" fill="none" stroke="url(#wheelG2)" stroke-width="20"/><circle cx="200" cy="205" r="127" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/></svg></div>
       <div class="ovt" id="ovt"></div>
       <div class="lower3" id="lower3"></div>
       <div class="taphint" id="tapHint" hidden><i></i>Touche le bon panneau</div>
@@ -218,12 +219,12 @@
   </section>
   <!-- ================= EXERCICE (simulateur) ================= -->
   <section class="screen exo" id="s-exo" aria-label="Exercice de conduite">
-    <div class="view3d" id="v-exo"></div>
+    <div class="view3d" id="v-exo"><div class="dash" aria-hidden="true" hidden><svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="dashG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B3344"/><stop offset=".35" stop-color="#1A202C"/><stop offset="1" stop-color="#0C0F15"/></linearGradient><linearGradient id="wheelG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A303C"/><stop offset="1" stop-color="#11151C"/></linearGradient></defs><path d="M-20 62 C80 40 140 34 200 34 C260 34 320 40 420 62 L420 150 L-20 150 Z" fill="url(#dashG)"/><path d="M-20 62 C80 40 140 34 200 34 C260 34 320 40 420 62" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/><rect x="150" y="62" width="100" height="30" rx="12" fill="#0A0D13"/><path d="M162 84 a38 38 0 0 1 76 0" fill="none" stroke="rgba(120,170,255,.35)" stroke-width="2"/><circle cx="200" cy="205" r="118" fill="none" stroke="url(#wheelG)" stroke-width="20"/><circle cx="200" cy="205" r="127" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/></svg></div></div>
     <div class="xvignette" aria-hidden="true"></div>
     <div class="xwet" id="xWet" hidden aria-hidden="true"><i class="wiper"></i></div>
     <header class="xtop">
       <button class="xbtn" id="xQuit" aria-label="Quitter l’exercice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-      <div class="xtitle"><b id="xTitle"></b><span id="xStep"></span></div>
+      <div class="xtitle"><b id="xTitle"></b><span id="xStep"></span><span class="xt-obs" aria-live="polite">Observe la situation</span><i class="xt-bar" aria-hidden="true"><b id="xObsBar"></b></i></div>
       <span class="xsp"></span>
     </header>
     <div class="xspeed" id="xSpeed" hidden><b class="num" id="xKmh">0</b><span>km/h</span><i id="xLimit" hidden></i></div>
@@ -233,7 +234,6 @@
     <div class="xcard" id="xCard" hidden></div>
     <div class="xctl" id="xCtl"></div>
     <div class="xflash" id="xFlash" aria-hidden="true"></div>
-    <div class="xobs" id="xObs" hidden aria-live="polite"><span>Observe la situation</span><i><b id="xObsBar"></b></i></div>
     <div class="xzoom" id="xZoom" hidden aria-hidden="true"></div>
     <div class="xfade" id="xFade" aria-hidden="true"><div class="xfi"><span id="xFiK"></span><b id="xFiN" class="num"></b></div></div>
   </section>

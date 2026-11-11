@@ -8,7 +8,7 @@ import { Labels } from './labels.js';
 import { Sound } from './sound.js';
 
 export const ov = {
-  clear() { $('#ovt').innerHTML = ''; $('#lower3').innerHTML = ''; $('#verdictBox').innerHTML = ''; $('#tapHint').hidden = true; },
+  clear() { $('#ovt').innerHTML = ''; $('#lower3').innerHTML = ''; $('#verdictBox').innerHTML = ''; $('#tapHint').hidden = true; const d = $('#v-cours .dash'); if (d) d.hidden = true; },
   title(html) { $('#ovt').innerHTML = html; },
   lower(html) { $('#lower3').innerHTML = html; }
 };
@@ -120,6 +120,7 @@ export const TYPES = {
       });
       if (sc.etiquettes) { SIM.setAnchors(sc.etiquettes.map(([i]) => ({ id: 'a' + i, obj: actors[i], dy: 2.3 }))); Labels.set(sc.etiquettes.map(([i]) => 'a' + i), sc.etiquettes.map(e => [e[1], e[2]])); }
       else { SIM.setAnchors([]); }
+      { const d = $('#v-cours .dash'); if (d) d.hidden = (sc.camera || 'poursuite') !== 'cockpit'; }
       ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce, couleur: sc.couleurTitre }));
       if (sc.script) runScript(sc.script, actors, ctx);
     }

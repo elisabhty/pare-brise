@@ -1119,3 +1119,24 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 /* pratique : la barre « Observe la situation » en haut, l'image reste libre */
 .xobs{top:calc(env(safe-area-inset-top) + 64px);bottom:auto;transform:translate(-50%,-8px)}
 .xobs.on{transform:translate(-50%,0)}
+/* observation dans la pastille du titre */
+.xtitle{position:relative;overflow:hidden;background:rgba(255,255,255,.94);min-width:180px}
+.xtitle .xt-obs{display:none;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--craie)}
+.xtitle .xt-obs::before{content:"";width:7px;height:7px;border-radius:50%;background:#FF3B30;animation:xrec 1.1s ease-in-out infinite}
+.xtitle.obs .xt-obs{display:flex}
+.xtitle.obs #xStep{display:none}
+.xtitle .xt-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(20,28,48,.06);opacity:0;transition:opacity .2s}
+.xtitle .xt-bar b{display:block;height:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}
+.xtitle.obs .xt-bar{opacity:1}
+.xzoom span{display:grid;place-items:center;min-height:0}
+.xzoom span svg{max-height:72px}
+/* tableau de bord en vue conducteur : remplit le bas de l'écran en portrait, comme une vidéo filmée depuis le siège */
+.dash{position:absolute;left:0;right:0;bottom:0;height:24%;max-height:210px;z-index:1;pointer-events:none}
+.dash[hidden]{display:none}
+.dash svg{display:block;width:100%;height:100%}
+#v-exo[style*="bottom"] .dash{opacity:0;transition:opacity .25s}
+#s-cours .topbar{grid-template-columns:44px minmax(0,1fr) 44px}
+#s-cours .topbar .mid{min-width:0;overflow:hidden}
+#s-cours .topbar .mid div:last-child{max-width:100%}
+.xtop{grid-template-columns:44px minmax(0,1fr) 44px}
+.xtitle{max-width:100%;min-width:0}
