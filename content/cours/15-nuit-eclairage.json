@@ -93,6 +93,24 @@
      "x": -1.75,
      "kmh": -60
     }
+   ],
+   "script": [
+    [
+     0,
+     "feux",
+     {
+      "route": true,
+      "croisement": false
+     }
+    ],
+    [
+     1.6,
+     "feux",
+     {
+      "route": false,
+      "croisement": true
+     }
+    ]
    ]
   },
   {
@@ -174,21 +192,6 @@
      "vu de loin"
     ]
    ]
-  },
-  {
-   "type": "quiz",
-   "ch": 1,
-   "question": "La nuit, une voiture arrive en face. Tes feux :",
-   "choix": [
-    "de route",
-    "de croisement",
-    "de brouillard"
-   ],
-   "bonne": 1,
-   "bien": "Exact : on ne doit pas l’éblouir.",
-   "mal": "Dès qu’un véhicule arrive en face, tu passes en feux de croisement.",
-   "dire": "Question. La nuit, une voiture arrive en face. Quels feux utilises-tu ?",
-   "revoir": 3
   },
   {
    "type": "fin",

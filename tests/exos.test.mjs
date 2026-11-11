@@ -29,11 +29,14 @@ test('les cours utilisent les scènes « liste » et « situation » du simulate
 test('chaque cours a une série d’exercices', () => {
   data.cours.forEach(c => assert.ok((c.series || []).length, c.id));
 });
-test('chaque exercice propose 10 situations', () => {
+test('chaque défi 3D propose 10 situations, chaque pratique entre 5 et 12', () => {
   exos.filter(e => e.meca !== 'reflexe' && e.meca !== 'decodeur').forEach(e => {
     const n = (e.evenements || e.distances || e.zones || e.profil || e.scenarios || e.scenes || e.situations || []).length;
-    assert.equal(n, 10, e.id);
+    if (e.meca === 'examen') assert.ok(n >= 5 && n <= 12, `${e.id} : ${n}`); else assert.equal(n, 10, e.id);
   });
+});
+test('aucun exercice seul : chacun est rattaché à une leçon', () => {
+  exos.forEach(e => assert.ok(data.cours.some(c => c.id === e.cours), `${e.id} sans leçon`));
 });
 test('les situations d’examen ont des réponses A à D cohérentes et assez de matière pour un examen blanc', () => {
   const sit = exos.filter(e => e.meca === 'examen').flatMap(e => e.situations);

@@ -125,6 +125,27 @@
      "x": -1.75,
      "kmh": -20
     }
+   ],
+   "script": [
+    [
+     0.8,
+     "acteur",
+     0,
+     -4,
+     0.6
+    ],
+    [
+     2.4,
+     "acteur",
+     0,
+     0,
+     0
+    ],
+    [
+     2.6,
+     "vitesse",
+     12
+    ]
    ]
   },
   {
@@ -147,20 +168,6 @@
     ]
    ],
    "dire": "En descente, rétrograde pour utiliser le frein moteur, et ne roule jamais au point mort. Freiner en continu fait chauffer les freins, qui perdent leur efficacité."
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Les feux rouges du passage à niveau clignotent, les barrières sont encore levées. Tu :",
-   "choix": [
-    "passes vite",
-    "t’arrêtes"
-   ],
-   "bonne": 1,
-   "bien": "Exact : les feux suffisent.",
-   "mal": "Feux rouges clignotants et sonnerie : arrêt obligatoire, barrières levées ou non.",
-   "dire": "Question. Les feux rouges du passage à niveau clignotent, mais les barrières sont encore levées. Que fais-tu ?",
-   "revoir": 1
   },
   {
    "type": "fin",

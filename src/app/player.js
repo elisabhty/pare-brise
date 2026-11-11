@@ -2,7 +2,7 @@
 import { $, $$, esc, wait, fmt, haptic } from './util.js';
 import { has3D, Engine, R } from './world.js';
 import { sign, FAM } from './signs.js';
-import { course, courseNumber, COURSES, seriesOfCourse } from './content.js';
+import { course, courseNumber, COURSES, EXOS } from './content.js';
 import { saveCourse } from './progress.js';
 import { Voice, splitSentences, estimate, sayTimed } from './voice.js';
 import { Sound } from './sound.js';
@@ -129,14 +129,14 @@ export const Player = {
     R.drive(70); ov.clear(); Labels.clear();
     ov.title(`<div class="eyebrow rise">Cours ${courseNumber(c)} terminé</div><h2 class="d rise" style="--d:.15s">${esc(c.titre)}</h2>`);
     const nxt = COURSES[COURSES.indexOf(c) + 1];
-    const series = seriesOfCourse(c);
+    const pr = EXOS.find(x => x.id === 'p-' + c.id);
     const memo = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span style="color:${m.famille && FAM[m.famille] ? FAM[m.famille].t : 'var(--jaune)'}">${esc(m.tag || (m.famille && FAM[m.famille] ? FAM[m.famille].n : ''))}</span></li>`).join('');
     const e = $('#endcard'); e.hidden = false;
     e.innerHTML = `<div class="plot-hero">${plot({ size: 96, bubble: 'Cours terminé, bravo !' })}<div><span class="eyebrow">Fiche mémo</span><h3 class="d">Cours terminé</h3></div></div>${memo ? `<ul class="memo">${memo}</ul>` : ''}
-      ${series[0] ? `<button class="btn" id="endSerie">Faire la série · ${series[0].questions.length} questions</button>` : ''}
+      ${pr ? `<div class="end-pr"><span class="eyebrow">Deuxième partie</span><b>Passe à la pratique</b><p>${pr.situations.length} situations sur la route, en 3D, pour appliquer tout ce que tu viens de voir.</p><button class="btn" id="endSerie">Lancer la pratique</button></div>` : ''}
       ${nxt ? `<button class="btn ghost sm" id="endNext">Cours suivant →</button>` : ''}
       <button class="btn ghost sm" id="endHome">Retour au parcours</button>`;
-    if (series[0]) $('#endSerie').addEventListener('click', () => onSerie(series[0].id));
+    if (pr) $('#endSerie').addEventListener('click', () => onSerie(pr.id));
     if (nxt) $('#endNext').addEventListener('click', () => { Voice.unlock(); this.load(nxt.id); this.play(); $('#s-cours .sheet').scrollTop = 0; });
     $('#endHome').addEventListener('click', () => onHome());
     e.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -1,38 +1,159 @@
 {
-  "id": "distances",
-  "ordre": 4,
-  "theme": "conducteur",
-  "titre": "Distances d'arrêt et de sécurité",
-  "accroche": "voir les mètres sur la route",
-  "resume": "Temps de réaction, distance de freinage, sol mouillé et distance de sécurité, mesurés directement sur la route.",
-  "affiche": ["B14:50", "B14:90", "A14"],
-  "chapitres": ["Réagir", "S'arrêter", "Garder ses distances"],
-  "series": ["serie-distances"],
-  "memo": [
-    { "texte": "Distance de réaction (1 s)", "tag": "dizaines × 3" },
-    { "texte": "Distance d'arrêt, sol sec", "tag": "dizaines²" },
-    { "texte": "Distance d'arrêt, sol mouillé", "tag": "× 1,5" },
-    { "texte": "Distance de sécurité", "tag": "2 secondes" }
-  ],
-  "scenes": [
-    { "type": "titre", "ch": 0, "eyebrow": "Cours 4 · Le conducteur", "titre": "Distances d'arrêt", "sous": "voir les mètres sur la route", "vitesse": 90,
-      "dire": "Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi." },
-    { "type": "reperes", "ch": 0, "eyebrow": "Temps de réaction · 1 s", "titre": "À 50 : 15 m", "reperes": [[15, "Réaction · 15 m"]], "puce": "Dizaines × 3",
-      "dire": "Entre le moment où tu vois le danger et celui où ton pied appuie sur le frein, il se passe environ une seconde. Pendant ce temps, la voiture avance encore. Calcul rapide : le chiffre des dizaines fois 3. À 50 kilomètres heure, ça fait 15 mètres." },
-    { "type": "reperes", "ch": 1, "eyebrow": "Sol sec · à 50 km/h", "titre": "Arrêt : 25 m", "reperes": [[15, "Réaction · 15 m"], [25, "Arrêt · 25 m"]], "puce": "Dizaines au carré",
-      "dire": "Pour la distance d'arrêt complète sur sol sec, on prend le chiffre des dizaines au carré. À 50 : 5 fois 5, 25 mètres. Réaction comprise." },
-    { "type": "reperes", "ch": 1, "eyebrow": "Sol sec · à 90 km/h", "titre": "Arrêt : 81 m", "reperes": [[27, "Réaction · 27 m"], [81, "Arrêt · 81 m"]], "puce": "9 × 9 = 81",
-      "dire": "À 90 : 9 fois 9, 81 mètres. Presque deux fois plus de vitesse, mais plus de trois fois plus de distance." },
-    { "type": "reperes", "ch": 1, "eyebrow": "Sol mouillé · à 90 km/h", "titre": "Arrêt : 121 m", "reperes": [[81, "Sec · 81 m"], [121.5, "Mouillé · 121 m"]], "puce": "× 1,5",
-      "dire": "Sur sol mouillé, on multiplie par une fois et demie. À 90, on passe de 81 à environ 121 mètres." },
-    { "type": "quiz", "ch": 1, "question": "À 70 km/h sur sol sec, distance d'arrêt ?", "choix": ["21 m", "49 m", "70 m"], "bonne": 1, "revoir": 2,
-      "bien": "Exact : 7 × 7 = 49 mètres.",
-      "mal": "Dizaines au carré : 7 × 7 = 49 mètres. 21 mètres, c'est seulement la distance de réaction.",
-      "dire": "Question. Tu roules à 70 sur sol sec. Quelle est ta distance d'arrêt ?" },
-    { "type": "chiffres", "ch": 2, "eyebrow": "Distance de sécurité", "titre": "Au moins 2 secondes", "vitesse": 90,
-      "items": [["2", "s", "entre toi et le véhicule devant"], ["2", "traits", "de la bande d'arrêt d'urgence sur autoroute"]],
-      "dire": "Avec le véhicule de devant, garde au moins deux secondes d'écart. Sur autoroute, un repère simple : au moins deux traits de la bande d'arrêt d'urgence." },
-    { "type": "fin", "ch": 2, "eyebrow": "Fin du cours 4", "titre": "Distances : OK", "stats": [["× 3", "réaction"], ["²", "arrêt sec"], ["× 1,5", "mouillé"]],
-      "dire": "Cours terminé. Trois calculs à retenir, et la série d'exercices pour t'entraîner." }
-  ]
+ "id": "distances",
+ "ordre": 4,
+ "theme": "conducteur",
+ "titre": "Distances d'arrêt et de sécurité",
+ "accroche": "voir les mètres sur la route",
+ "resume": "Temps de réaction, distance de freinage, sol mouillé et distance de sécurité, mesurés directement sur la route.",
+ "affiche": [
+  "B14:50",
+  "B14:90",
+  "A14"
+ ],
+ "chapitres": [
+  "Réagir",
+  "S'arrêter",
+  "Garder ses distances"
+ ],
+ "series": [
+  "serie-distances"
+ ],
+ "memo": [
+  {
+   "texte": "Distance de réaction (1 s)",
+   "tag": "dizaines × 3"
+  },
+  {
+   "texte": "Distance d'arrêt, sol sec",
+   "tag": "dizaines²"
+  },
+  {
+   "texte": "Distance d'arrêt, sol mouillé",
+   "tag": "× 1,5"
+  },
+  {
+   "texte": "Distance de sécurité",
+   "tag": "2 secondes"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 4 · Le conducteur",
+   "titre": "Distances d'arrêt",
+   "sous": "voir les mètres sur la route",
+   "vitesse": 90,
+   "dire": "Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi."
+  },
+  {
+   "type": "reperes",
+   "ch": 0,
+   "eyebrow": "Temps de réaction · 1 s",
+   "titre": "À 50 : 15 m",
+   "reperes": [
+    [
+     15,
+     "Réaction · 15 m"
+    ]
+   ],
+   "puce": "Dizaines × 3",
+   "dire": "Entre le moment où tu vois le danger et celui où ton pied appuie sur le frein, il se passe environ une seconde. Pendant ce temps, la voiture avance encore. Calcul rapide : le chiffre des dizaines fois 3. À 50 kilomètres heure, ça fait 15 mètres."
+  },
+  {
+   "type": "reperes",
+   "ch": 1,
+   "eyebrow": "Sol sec · à 50 km/h",
+   "titre": "Arrêt : 25 m",
+   "reperes": [
+    [
+     15,
+     "Réaction · 15 m"
+    ],
+    [
+     25,
+     "Arrêt · 25 m"
+    ]
+   ],
+   "puce": "Dizaines au carré",
+   "dire": "Pour la distance d'arrêt complète sur sol sec, on prend le chiffre des dizaines au carré. À 50 : 5 fois 5, 25 mètres. Réaction comprise."
+  },
+  {
+   "type": "reperes",
+   "ch": 1,
+   "eyebrow": "Sol sec · à 90 km/h",
+   "titre": "Arrêt : 81 m",
+   "reperes": [
+    [
+     27,
+     "Réaction · 27 m"
+    ],
+    [
+     81,
+     "Arrêt · 81 m"
+    ]
+   ],
+   "puce": "9 × 9 = 81",
+   "dire": "À 90 : 9 fois 9, 81 mètres. Presque deux fois plus de vitesse, mais plus de trois fois plus de distance."
+  },
+  {
+   "type": "reperes",
+   "ch": 1,
+   "eyebrow": "Sol mouillé · à 90 km/h",
+   "titre": "Arrêt : 121 m",
+   "reperes": [
+    [
+     81,
+     "Sec · 81 m"
+    ],
+    [
+     121.5,
+     "Mouillé · 121 m"
+    ]
+   ],
+   "puce": "× 1,5",
+   "dire": "Sur sol mouillé, on multiplie par une fois et demie. À 90, on passe de 81 à environ 121 mètres."
+  },
+  {
+   "type": "chiffres",
+   "ch": 2,
+   "eyebrow": "Distance de sécurité",
+   "titre": "Au moins 2 secondes",
+   "vitesse": 90,
+   "items": [
+    [
+     "2",
+     "s",
+     "entre toi et le véhicule devant"
+    ],
+    [
+     "2",
+     "traits",
+     "de la bande d'arrêt d'urgence sur autoroute"
+    ]
+   ],
+   "dire": "Avec le véhicule de devant, garde au moins deux secondes d'écart. Sur autoroute, un repère simple : au moins deux traits de la bande d'arrêt d'urgence."
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 4",
+   "titre": "Distances : OK",
+   "stats": [
+    [
+     "× 3",
+     "réaction"
+    ],
+    [
+     "²",
+     "arrêt sec"
+    ],
+    [
+     "× 1,5",
+     "mouillé"
+    ]
+   ],
+   "dire": "Cours terminé. Trois calculs à retenir, et la série d'exercices pour t'entraîner."
+  }
+ ]
 }

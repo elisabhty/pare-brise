@@ -1,7 +1,7 @@
 /* Registre des types de scènes d'un cours.
    Un cours (JSON) est une suite de scènes ; chaque scène a un "type" défini ici.
    Ajouter un type = ajouter une entrée : { enter(scene, ctx) } ou { question: true, enter }. */
-import { $, esc } from './util.js';
+import { $, esc, wait } from './util.js';
 import { R, SIM, Engine, has3D } from './world.js';
 import { FAM } from './signs.js';
 import { Labels } from './labels.js';
@@ -103,7 +103,7 @@ export const TYPES = {
       if (!has3D || !SIM) { useWorld('route'); R.drive(sc.kmh ?? 30); ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce })); return; }
       useWorld('sim');
       SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne: sc.ligne ? [{ de: 0, a: 900, type: sc.ligne }] : undefined, camera: sc.camera || 'poursuite', reserve: (sc.acteurs || []).map(a => a.S || 0), carrefours: sc.carrefour ? [sc.carrefour] : [], voie: sc.voie });
-      SIM.lights(Object.assign({ position: false, croisement: sc.meteo === 'nuit' || sc.meteo === 'brouillard' || sc.meteo === 'pluie', route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false }, sc.feux || {}));
+      SIM.lights(Object.assign({ position: false, croisement: sc.meteo === 'nuit' || sc.meteo === 'brouillard' || sc.meteo === 'pluie', route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false, clignotant: null }, sc.feux || {}));
       if (sc.carrefour) SIM.carrefour(sc.carrefour, { ligne: sc.ligneStop });
       if (sc.passage) SIM.passage(sc.passage);
       if (sc.chevrons) SIM.chevrons(20, 800, 38);
@@ -121,6 +121,7 @@ export const TYPES = {
       if (sc.etiquettes) { SIM.setAnchors(sc.etiquettes.map(([i]) => ({ id: 'a' + i, obj: actors[i], dy: 2.3 }))); Labels.set(sc.etiquettes.map(([i]) => 'a' + i), sc.etiquettes.map(e => [e[1], e[2]])); }
       else { SIM.setAnchors([]); }
       ov.lower(lower3({ eyebrow: sc.eyebrow, titre: sc.titre, puce: sc.puce, couleur: sc.couleurTitre }));
+      if (sc.script) runScript(sc.script, actors, ctx);
     }
   },
   /* Écran de fin du cours */
@@ -131,4 +132,30 @@ export const TYPES = {
     }
   }
 };
+/* Petit scénario d'une mise en situation : [secondes, action, ...paramètres], joué pendant que Plot parle.
+   Actions : vitesse (km/h), voie (x), clignotant ('g' | 'd' | null), feux ({…}), arret (S : s'arrêter avant ce point),
+   acteur (i, km/h, vx), ouvrir (i : portière), feu (i, état), depasser (i, { x, kmh, marge }). */
+async function runScript(steps, actors, ctx) {
+  const t0 = performance.now(), live = () => ctx.live() && Engine.current === 'sim';
+  const until = async f => { while (live() && !f()) await wait(60); };
+  const depasser = async (a, { x = -SIM.LANE, kmh = 65, marge = 9, retour = SIM.LANE } = {}) => {
+    SIM.lights({ clignotant: 'g' }); await wait(700); if (!live()) return;
+    SIM.lane(x, 1400); SIM.auto(kmh, 3.2); await wait(1200); SIM.lights({ clignotant: null });
+    await until(() => SIM.player.s - SIM.FRONT > a.S + (a.len || 4) / 2 + marge); if (!live()) return;
+    SIM.lights({ clignotant: 'd' }); await wait(700); SIM.lane(retour, 1600); await wait(1700); SIM.lights({ clignotant: null });
+  };
+  for (const [t, act, ...p] of steps) {
+    await until(() => performance.now() - t0 >= t * 1000); if (!live()) return;
+    const a = actors[p[0]];
+    if (act === 'vitesse') SIM.auto(p[0], p[1]);
+    else if (act === 'voie') SIM.lane(p[0], p[1] || 1600);
+    else if (act === 'clignotant') SIM.lights({ clignotant: p[0] || null });
+    else if (act === 'feux') SIM.lights(p[0]);
+    else if (act === 'arret') { const d = Math.max(1.5, p[0] - SIM.FRONT - SIM.player.s), v = SIM.player.v; SIM.auto(0, Math.max(0.5, v * v / (2 * d))); }
+    else if (act === 'acteur' && a) a.go((p[1] || 0) / 3.6, p[2] || 0);
+    else if (act === 'ouvrir' && a && a.open) a.open(700);
+    else if (act === 'feu' && a && a.set) a.set(p[1]);
+    else if (act === 'depasser' && a) depasser(a, p[1]);
+  }
+}
 export const isQuestion = sc => !!(TYPES[sc.type] && TYPES[sc.type].question);

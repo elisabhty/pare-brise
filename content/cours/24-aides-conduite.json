@@ -116,20 +116,6 @@
    "dire": "Quelle que soit l’aide, tu gardes les mains sur le volant et les yeux sur la route. Et en cas d’infraction ou d’accident, c’est le conducteur qui est responsable."
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Le régulateur adaptatif est activé. Tu peux regarder ton téléphone ?",
-   "choix": [
-    "Oui, il gère tout",
-    "Non, tu restes responsable"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Une aide n’est pas un pilote automatique : ton attention reste obligatoire.",
-   "dire": "Question. Ton régulateur adaptatif est activé. Peux-tu regarder ton téléphone ?",
-   "revoir": 3
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 24",

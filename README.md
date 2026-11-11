@@ -77,6 +77,16 @@ examen, ou une question répondue). Le profil se modifie d'un appui sur l'avatar
 
 ## Exercices de conduite (simulateur 3D)
 
+**Une leçon, puis sa pratique.** La leçon est une leçon : aucune question pendant la vidéo. Sa deuxième partie est la pratique
+(`p-<id du cours>` dans `content/exercices.json`) : des situations en 3D qui reprennent tout ce que dit la leçon. Chaque
+situation se joue quelques secondes, l'image se fige (rendu à la pleine résolution de l'écran), la caméra zoome sur le
+panneau ou l'usager à observer, puis vient le QCM et sa correction. Les réponses aux questions de la banque (`qid`) alimentent
+les révisions. Les défis 3D (freinage, feux, priorités…) sont rattachés à leur leçon : aucun exercice n'est seul. Les pratiques
+sont générées par `gen/pratique.py` (décor par leçon, mises en scène sur mesure par question).
+
+Les mises en situation des leçons peuvent jouer un petit scénario (`script`) : dépasser, s'arrêter avant un point, changer de
+voie avec le clignotant, faire repartir un bus, ouvrir une portière, changer un feu.
+
 Chaque exercice est décrit dans `content/exercices.json` et joué par une **mécanique** :
 
 | Mécanique | Ce que fait l'élève | Champs |

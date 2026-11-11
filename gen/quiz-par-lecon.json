@@ -1,0 +1,517 @@
+{
+ "panneaux": [
+  {
+   "type": "touche",
+   "ch": 1,
+   "question": "Lequel t'oblige à faire quelque chose ?",
+   "panneaux": [
+    "B14",
+    "B211",
+    "A1a"
+   ],
+   "bonne": 1,
+   "revoir": 3,
+   "bien": "Exact. Rond bleu : obligation. Ici, tu dois tourner à droite.",
+   "mal": "Pas tout à fait. Le rond bleu oblige, le rond bordé de rouge interdit, le triangle prévient.",
+   "dire": "Pause. Lequel de ces trois panneaux t'oblige à faire quelque chose ? Touche-le directement."
+  },
+  {
+   "type": "touche",
+   "ch": 3,
+   "question": "Lequel annonce une route prioritaire ?",
+   "panneaux": [
+    "AK5",
+    "AB6",
+    "AK14"
+   ],
+   "bonne": 1,
+   "revoir": 9,
+   "bien": "Bien vu. Le losange, c'est la priorité : la forme passe avant la couleur.",
+   "mal": "Piège classique. Les trois sont jaunes : c'est la forme qui tranche. Le losange, c'est la route prioritaire.",
+   "dire": "Question piège. Ces trois panneaux sont jaunes. Lequel annonce une route prioritaire ? Touche-le."
+  }
+ ],
+ "vitesses": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Autoroute, il pleut. Ta vitesse maximale ?",
+   "choix": [
+    "130 km/h",
+    "110 km/h",
+    "90 km/h"
+   ],
+   "bonne": 1,
+   "revoir": 4,
+   "bien": "Exact : 110 sous la pluie au lieu de 130.",
+   "mal": "Sous la pluie, l'autoroute passe à 110. C'est 20 de moins que par temps sec.",
+   "dire": "Question. Tu es sur autoroute, il pleut. Quelle est ta vitesse maximale ?"
+  },
+  {
+   "type": "touche",
+   "ch": 2,
+   "question": "Lequel marque l'entrée en agglomération ?",
+   "panneaux": [
+    "B14:50",
+    "EB10",
+    "C12"
+   ],
+   "bonne": 1,
+   "revoir": 2,
+   "bien": "Exact. C'est le panneau d'entrée d'agglomération qui impose les 50, pas seulement le panneau de vitesse.",
+   "mal": "Le panneau rond limite la vitesse, mais l'entrée en agglomération, c'est le rectangle blanc bordé de rouge avec le nom de la ville.",
+   "dire": "Dernière question. Lequel de ces panneaux marque l'entrée en agglomération ? Touche-le."
+  }
+ ],
+ "priorites": [
+  {
+   "type": "touche",
+   "ch": 1,
+   "question": "Lequel te rend prioritaire à la prochaine intersection seulement ?",
+   "panneaux": [
+    "AB1",
+    "AB2",
+    "AB6"
+   ],
+   "bonne": 1,
+   "revoir": 2,
+   "bien": "Exact. Le triangle avec le trait épais : priorité ponctuelle, pour une seule intersection.",
+   "mal": "La priorité ponctuelle, c'est le triangle avec le trait vertical épais. Le losange dure jusqu'à sa fin, et la croix, c'est la priorité à droite.",
+   "dire": "Question. Lequel de ces panneaux te rend prioritaire à la prochaine intersection seulement ? Touche-le."
+  },
+  {
+   "type": "quiz",
+   "ch": 2,
+   "question": "Intersection sans panneau ni feu : tu cèdes le passage…",
+   "choix": [
+    "à droite",
+    "à gauche",
+    "à personne"
+   ],
+   "bonne": 0,
+   "revoir": 1,
+   "bien": "Exact : sans signalisation, c'est la priorité à droite.",
+   "mal": "Sans panneau ni feu, c'est toujours la priorité à droite.",
+   "dire": "Dernière question. Intersection sans panneau ni feu : à qui cèdes-tu le passage ?"
+  }
+ ],
+ "distances": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "À 70 km/h sur sol sec, distance d'arrêt ?",
+   "choix": [
+    "21 m",
+    "49 m",
+    "70 m"
+   ],
+   "bonne": 1,
+   "revoir": 2,
+   "bien": "Exact : 7 × 7 = 49 mètres.",
+   "mal": "Dizaines au carré : 7 × 7 = 49 mètres. 21 mètres, c'est seulement la distance de réaction.",
+   "dire": "Question. Tu roules à 70 sur sol sec. Quelle est ta distance d'arrêt ?"
+  }
+ ],
+ "alcool": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Un café fait baisser l'alcoolémie.",
+   "choix": [
+    "Vrai",
+    "Faux"
+   ],
+   "bonne": 1,
+   "revoir": 1,
+   "bien": "Exact. Seul le temps fait baisser l'alcoolémie. Ni le café, ni l'eau, ni un repas n'y changent rien.",
+   "mal": "Faux. Seul le temps fait baisser l'alcoolémie. Le café ne change rien.",
+   "dire": "Question. Vrai ou faux : un café fait baisser l'alcoolémie."
+  }
+ ],
+ "carrefours-feux": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Un agent te fait signe de passer, mais ton feu est rouge. Que fais-tu ?",
+   "choix": [
+    "Je m’arrête au feu",
+    "Je passe",
+    "Je klaxonne"
+   ],
+   "bonne": 1,
+   "bien": "Exact : l’agent passe avant les feux.",
+   "mal": "Les gestes de l’agent de circulation priment sur les feux. S’il te fait passer, tu passes.",
+   "dire": "Question. Un agent te fait signe de passer, alors que ton feu est rouge. Que fais-tu ?",
+   "revoir": 1
+  }
+ ],
+ "marquages": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Une ligne mixte : continue de ton côté, discontinue de l’autre. Peux-tu dépasser ?",
+   "choix": [
+    "Oui",
+    "Non"
+   ],
+   "bonne": 1,
+   "bien": "Exact : tu lis toujours la ligne de ton côté.",
+   "mal": "Avec une ligne mixte, c’est le trait de ton côté qui compte. S’il est continu, tu ne franchis pas.",
+   "dire": "Question. Une ligne mixte : continue de ton côté, discontinue de l’autre. As-tu le droit de dépasser ?"
+  }
+ ],
+ "depassement": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Un véhicule devant toi tourne à gauche. Par où le dépasses-tu ?",
+   "choix": [
+    "Par la gauche",
+    "Par la droite"
+   ],
+   "bonne": 1,
+   "bien": "Exact : on dépasse par la droite un véhicule qui tourne à gauche.",
+   "mal": "Quand le véhicule de devant a mis son clignotant à gauche et s’est déporté pour tourner, tu le dépasses par la droite.",
+   "dire": "Question. Le véhicule devant toi tourne à gauche. Par quel côté le dépasses-tu ?"
+  }
+ ],
+ "arret-stationnement": [
+  {
+   "type": "quiz",
+   "ch": 2,
+   "question": "Stationnement en descente, le long d’un trottoir. Tes roues avant :",
+   "choix": [
+    "droites",
+    "braquées vers le trottoir",
+    "braquées vers la chaussée"
+   ],
+   "bonne": 1,
+   "bien": "Exact : vers le trottoir, la voiture ne peut pas partir sur la route.",
+   "mal": "En pente, braque tes roues vers le trottoir, serre le frein de parking et engage une vitesse.",
+   "dire": "Question. Tu te gares en descente, le long d’un trottoir. Comment places-tu tes roues avant ?"
+  }
+ ],
+ "autoroute": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Sur la voie d’insertion, qui est prioritaire ?",
+   "choix": [
+    "Toi",
+    "Les véhicules sur l’autoroute"
+   ],
+   "bonne": 1,
+   "bien": "Exact : tu t’insères sans gêner.",
+   "mal": "Sauf signalisation contraire, ce sont les véhicules déjà sur l’autoroute qui sont prioritaires.",
+   "dire": "Question. Sur la voie d’insertion, qui est prioritaire ?",
+   "revoir": 1
+  }
+ ],
+ "usagers-vulnerables": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Un piéton attend au bord du trottoir et regarde la route, prêt à traverser. Tu :",
+   "choix": [
+    "passes, il n’est pas engagé",
+    "t’arrêtes pour le laisser passer"
+   ],
+   "bonne": 1,
+   "bien": "Exact : son intention suffit.",
+   "mal": "Tu dois céder le passage au piéton qui manifeste clairement l’intention de traverser, même s’il n’est pas encore engagé.",
+   "dire": "Question. Un piéton attend au bord du trottoir, prêt à traverser. Que fais-tu ?",
+   "revoir": 1
+  }
+ ],
+ "cyclistes-edpm": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Un enfant de 9 ans circule à vélo. Le casque est :",
+   "choix": [
+    "conseillé",
+    "obligatoire"
+   ],
+   "bonne": 1,
+   "bien": "Exact : obligatoire avant 12 ans.",
+   "mal": "Le casque est obligatoire pour les enfants de moins de 12 ans à vélo, conducteurs comme passagers.",
+   "dire": "Question. Un enfant de 9 ans circule à vélo. Le casque est-il obligatoire ?"
+  }
+ ],
+ "poids-lourds-2rm": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "En ville, un bus met son clignotant pour quitter son arrêt. Tu :",
+   "choix": [
+    "passes, tu es prioritaire",
+    "le laisses repartir"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "En agglomération, tu dois laisser repartir un bus qui signale qu’il quitte son arrêt.",
+   "dire": "Question. En ville, un bus met son clignotant pour quitter son arrêt. Que fais-tu ?",
+   "revoir": 3
+  }
+ ],
+ "vehicules-prioritaires": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Une ambulance, feux bleus et sirène, arrive derrière toi. Tu :",
+   "choix": [
+    "freines d’un coup",
+    "te serres à droite calmement",
+    "accélères"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Facilite son passage en te serrant à droite, sans manœuvre brusque.",
+   "dire": "Question. Une ambulance arrive derrière toi, feux bleus et sirène allumés. Que fais-tu ?",
+   "revoir": 1
+  }
+ ],
+ "nuit-eclairage": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "La nuit, une voiture arrive en face. Tes feux :",
+   "choix": [
+    "de route",
+    "de croisement",
+    "de brouillard"
+   ],
+   "bonne": 1,
+   "bien": "Exact : on ne doit pas l’éblouir.",
+   "mal": "Dès qu’un véhicule arrive en face, tu passes en feux de croisement.",
+   "dire": "Question. La nuit, une voiture arrive en face. Quels feux utilises-tu ?",
+   "revoir": 3
+  }
+ ],
+ "intemperies": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Ta voiture part en aquaplaning. Tu :",
+   "choix": [
+    "freines fort",
+    "lâches doucement l’accélérateur et tiens le volant"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Pas de freinage brusque : lève le pied et garde les roues droites.",
+   "dire": "Question. Ta voiture part en aquaplaning. Que fais-tu ?",
+   "revoir": 2
+  }
+ ],
+ "montagne-tunnels-pn": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Les feux rouges du passage à niveau clignotent, les barrières sont encore levées. Tu :",
+   "choix": [
+    "passes vite",
+    "t’arrêtes"
+   ],
+   "bonne": 1,
+   "bien": "Exact : les feux suffisent.",
+   "mal": "Feux rouges clignotants et sonnerie : arrêt obligatoire, barrières levées ou non.",
+   "dire": "Question. Les feux rouges du passage à niveau clignotent, mais les barrières sont encore levées. Que fais-tu ?",
+   "revoir": 1
+  }
+ ],
+ "fatigue-distractions": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Tu téléphones avec des oreillettes, téléphone dans la poche. C’est :",
+   "choix": [
+    "autorisé",
+    "interdit"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Tout dispositif placé dans l’oreille est interdit au volant : écouteurs, oreillettes, casque.",
+   "dire": "Question. Tu téléphones avec des oreillettes, le téléphone dans ta poche. C’est autorisé ?",
+   "revoir": 4
+  }
+ ],
+ "drogues-medicaments": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Le pictogramme est rouge sur ta boîte de médicaments. Tu :",
+   "choix": [
+    "conduis prudemment",
+    "ne conduis pas"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Niveau 3, rouge : attention danger, ne pas conduire.",
+   "dire": "Question. Le pictogramme de ta boîte de médicaments est rouge. Peux-tu conduire ?",
+   "revoir": 3
+  }
+ ],
+ "permis-points": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Jeune conducteur, tu as bu un verre de vin. Tu dépasses probablement :",
+   "choix": [
+    "0,2 g/L",
+    "rien du tout"
+   ],
+   "bonne": 0,
+   "bien": "Exact : un seul verre peut suffire.",
+   "mal": "Le taux maximal en probatoire est de 0,2 g/L : un seul verre peut le dépasser.",
+   "dire": "Question. Jeune conducteur, tu as bu un verre de vin. Risques-tu de dépasser le taux autorisé ?",
+   "revoir": 3
+  }
+ ],
+ "poste-conduite": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "L’appui-tête bien réglé, son haut se trouve :",
+   "choix": [
+    "au niveau de la nuque",
+    "au niveau du haut du crâne"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Trop bas, il ne protège pas du coup du lapin : son haut doit arriver au niveau du haut de ta tête.",
+   "dire": "Question. Un appui-tête bien réglé : où se trouve son bord supérieur ?",
+   "revoir": 1
+  }
+ ],
+ "securite-passagers": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Ton passager de 15 ans n’a pas mis sa ceinture. Qui est sanctionné ?",
+   "choix": [
+    "Lui",
+    "Toi, le conducteur"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Le conducteur est responsable du port de la ceinture des passagers mineurs.",
+   "dire": "Question. Ton passager de 15 ans n’a pas bouclé sa ceinture. Qui est sanctionné ?",
+   "revoir": 1
+  }
+ ],
+ "entretien": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Un voyant rouge s’allume en roulant. Tu :",
+   "choix": [
+    "continues jusqu’au prochain garage",
+    "t’arrêtes dès que possible en sécurité"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Rouge, c’est une alerte : on s’arrête dès que c’est possible sans danger.",
+   "dire": "Question. Un voyant rouge s’allume pendant que tu roules. Que fais-tu ?",
+   "revoir": 3
+  }
+ ],
+ "aides-conduite": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Le régulateur adaptatif est activé. Tu peux regarder ton téléphone ?",
+   "choix": [
+    "Oui, il gère tout",
+    "Non, tu restes responsable"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Une aide n’est pas un pilote automatique : ton attention reste obligatoire.",
+   "dire": "Question. Ton régulateur adaptatif est activé. Peux-tu regarder ton téléphone ?",
+   "revoir": 3
+  }
+ ],
+ "premiers-secours": [
+  {
+   "type": "quiz",
+   "ch": 2,
+   "question": "Un motard blessé est allongé sur la route, casque sur la tête. Tu :",
+   "choix": [
+    "retires son casque pour l’aider à respirer",
+    "laisses le casque en place"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Retirer le casque peut aggraver une blessure à la colonne : on le laisse aux secours.",
+   "dire": "Question. Un motard blessé est allongé, casque sur la tête. Que fais-tu ?",
+   "revoir": 4
+  }
+ ],
+ "papiers-assurance": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Après un accrochage, tu dois envoyer ton constat à ton assureur sous :",
+   "choix": [
+    "5 jours ouvrés",
+    "1 mois"
+   ],
+   "bonne": 0,
+   "bien": "Exact.",
+   "mal": "Le délai est de cinq jours ouvrés.",
+   "dire": "Question. Après un accrochage, sous quel délai envoies-tu ton constat à ton assureur ?",
+   "revoir": 4
+  }
+ ],
+ "infractions": [
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Tu grilles un stop. Combien de points perds-tu ?",
+   "choix": [
+    "2",
+    "4",
+    "6"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Stop ou feu rouge non respecté : 135 € et 4 points.",
+   "dire": "Question. Tu ne respectes pas un stop. Combien de points perds-tu ?",
+   "revoir": 2
+  }
+ ],
+ "ecoconduite": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Pour économiser du carburant, il vaut mieux :",
+   "choix": [
+    "freiner tard et fort",
+    "anticiper et lever le pied tôt"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Anticiper, c’est utiliser l’élan de la voiture au lieu de le gaspiller en freinant.",
+   "dire": "Question. Pour économiser du carburant, vaut-il mieux freiner tard ou anticiper ?",
+   "revoir": 1
+  }
+ ],
+ "vehicules-propres": [
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Une voiture électrique a une vignette Crit’Air :",
+   "choix": [
+    "0",
+    "1",
+    "5"
+   ],
+   "bonne": 0,
+   "bien": "Exact.",
+   "mal": "Les véhicules électriques et à hydrogène ont la vignette Crit’Air 0, verte.",
+   "dire": "Question. Quelle vignette Crit’Air pour une voiture électrique ?",
+   "revoir": 1
+  }
+ ]
+}

@@ -54,21 +54,46 @@
    "titre": "Accélère, puis cède",
    "dire": "Sur la voie d’insertion, accélère pour atteindre la vitesse du trafic, regarde dans ton rétroviseur et ton angle mort, puis insère-toi. Les véhicules déjà sur l’autoroute sont prioritaires.",
    "env": "autoroute",
-   "kmh": 90,
+   "kmh": 75,
    "camera": "poursuite",
    "acteurs": [
     {
      "type": "camion",
-     "S": 30,
+     "S": 34,
      "x": 1.75,
-     "kmh": 85
+     "kmh": 98
     },
     {
      "type": "voiture",
-     "S": 10,
+     "S": 6,
      "x": -1.75,
-     "kmh": 110
+     "kmh": 115
     }
+   ],
+   "voie": 5.0,
+   "script": [
+    [
+     0.4,
+     "vitesse",
+     104,
+     3
+    ],
+    [
+     1.4,
+     "clignotant",
+     "g"
+    ],
+    [
+     3.8,
+     "voie",
+     1.75,
+     2400
+    ],
+    [
+     6.4,
+     "clignotant",
+     null
+    ]
    ]
   },
   {
@@ -183,21 +208,25 @@
      "Corridor",
      "décale-toi ou ralentis"
     ]
-   ]
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Sur la voie d’insertion, qui est prioritaire ?",
-   "choix": [
-    "Toi",
-    "Les véhicules sur l’autoroute"
    ],
-   "bonne": 1,
-   "bien": "Exact : tu t’insères sans gêner.",
-   "mal": "Sauf signalisation contraire, ce sont les véhicules déjà sur l’autoroute qui sont prioritaires.",
-   "dire": "Question. Sur la voie d’insertion, qui est prioritaire ?",
-   "revoir": 1
+   "script": [
+    [
+     0.8,
+     "clignotant",
+     "g"
+    ],
+    [
+     1.6,
+     "voie",
+     -1.75,
+     1900
+    ],
+    [
+     3.8,
+     "clignotant",
+     null
+    ]
+   ]
   },
   {
    "type": "fin",

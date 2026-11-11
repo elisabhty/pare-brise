@@ -1,49 +1,220 @@
 {
-  "id": "vitesses",
-  "ordre": 2,
-  "theme": "circulation",
-  "titre": "Les limitations de vitesse",
-  "accroche": "le bon chiffre au bon endroit",
-  "resume": "Ville, route, voie rapide, autoroute, pluie, brouillard et jeune conducteur : toutes les vitesses maximales à connaître.",
-  "affiche": ["B14:50", "B14:80", "B14:110", "B14:130", "EB10"],
-  "chapitres": ["Les quatre vitesses", "Météo", "Jeune conducteur"],
-  "series": ["serie-vitesses"],
-  "memo": [
-    { "panneau": "EB10", "texte": "Agglomération", "tag": "50 km/h" },
-    { "panneau": "B14:80", "texte": "Route à double sens sans séparateur", "tag": "80 km/h*" },
-    { "panneau": "B14:110", "texte": "Route à chaussées séparées", "tag": "110 km/h" },
-    { "panneau": "B14:130", "texte": "Autoroute", "tag": "130 km/h" },
-    { "panneau": "B14:50", "texte": "Visibilité de moins de 50 m", "tag": "50 km/h" }
-  ],
-  "scenes": [
-    { "type": "titre", "ch": 0, "eyebrow": "Cours 2 · Circulation", "titre": "Les limitations de vitesse", "sous": "le bon chiffre au bon endroit", "vitesse": 80,
-      "dire": "Cours numéro 2 : les limitations de vitesse. Quatre chiffres de base, puis ce qui change avec la météo et quand tu es jeune conducteur." },
-    { "type": "panneaux", "ch": 0, "eyebrow": "Par temps sec", "titre": "50 · 80 · 110 · 130", "panneaux": ["B14:50", "B14:80", "B14:110", "B14:130"],
-      "etiquettes": [["Ville", "Agglomération"], ["Route", "Double sens"], ["Voie rapide", "Chaussées séparées"], ["Autoroute", " "]],
-      "dire": "En agglomération : 50. Sur une route à double sens sans séparateur central : 80. Sur une route à chaussées séparées : 110. Sur autoroute : 130." },
-    { "type": "panneaux", "ch": 0, "eyebrow": "Où commence la ville ?", "titre": "Le panneau d'entrée", "panneaux": ["EB10", "EB20"], "etiquettes": [["EB10", "Entrée d'agglomération"], ["EB20", "Sortie d'agglomération"]], "puce": "50 km/h sauf panneau contraire",
-      "dire": "L'agglomération commence au panneau blanc bordé de rouge qui porte le nom de la ville. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie." },
-    { "type": "chiffres", "ch": 0, "eyebrow": "Le cas des 90", "titre": "80 ou 90 ?", "vitesse": 80,
-      "items": [["80", "km/h", "par défaut sur route à double sens"], ["90", "km/h", "si le département l'a relevée, avec panneaux"]],
-      "dire": "Depuis 2018, ces routes sont à 80 par défaut. Mais beaucoup de départements en ont relevé une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80." },
-    { "type": "chiffres", "ch": 1, "eyebrow": "Par temps de pluie", "titre": "On lève le pied", "vitesse": 70,
-      "items": [["110", "km/h", "autoroute (au lieu de 130)"], ["100", "km/h", "chaussées séparées (au lieu de 110)"], ["80", "km/h", "route à double sens"]],
-      "dire": "Quand il pleut : 110 sur autoroute au lieu de 130, et 100 sur route à chaussées séparées au lieu de 110. Sur les routes à 80, rien ne change. Les routes à 90 descendent à 80." },
-    { "type": "chiffres", "ch": 1, "eyebrow": "Brouillard, neige", "titre": "Visibilité < 50 m", "vitesse": 40,
-      "items": [["50", "km/h", "partout, même sur autoroute"]],
-      "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute." },
-    { "type": "quiz", "ch": 1, "question": "Autoroute, il pleut. Ta vitesse maximale ?", "choix": ["130 km/h", "110 km/h", "90 km/h"], "bonne": 1, "revoir": 4,
-      "bien": "Exact : 110 sous la pluie au lieu de 130.",
-      "mal": "Sous la pluie, l'autoroute passe à 110. C'est 20 de moins que par temps sec.",
-      "dire": "Question. Tu es sur autoroute, il pleut. Quelle est ta vitesse maximale ?" },
-    { "type": "chiffres", "ch": 2, "eyebrow": "Permis probatoire", "titre": "Jeune conducteur", "vitesse": 90,
-      "items": [["110", "km/h", "autoroute"], ["100", "km/h", "chaussées séparées"], ["80", "km/h", "route à double sens"]],
-      "dire": "Pendant le permis probatoire : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90." },
-    { "type": "touche", "ch": 2, "question": "Lequel marque l'entrée en agglomération ?", "panneaux": ["B14:50", "EB10", "C12"], "bonne": 1, "revoir": 2,
-      "bien": "Exact. C'est le panneau d'entrée d'agglomération qui impose les 50, pas seulement le panneau de vitesse.",
-      "mal": "Le panneau rond limite la vitesse, mais l'entrée en agglomération, c'est le rectangle blanc bordé de rouge avec le nom de la ville.",
-      "dire": "Dernière question. Lequel de ces panneaux marque l'entrée en agglomération ? Touche-le." },
-    { "type": "fin", "ch": 2, "eyebrow": "Fin du cours 2", "titre": "Vitesses : OK", "stats": [["4", "vitesses de base"], ["2", "cas météo"], ["3", "règles jeune conducteur"]],
-      "dire": "Cours terminé. Fais la série d'exercices : les vitesses tombent souvent à l'examen." }
-  ]
+ "id": "vitesses",
+ "ordre": 2,
+ "theme": "circulation",
+ "titre": "Les limitations de vitesse",
+ "accroche": "le bon chiffre au bon endroit",
+ "resume": "Ville, route, voie rapide, autoroute, pluie, brouillard et jeune conducteur : toutes les vitesses maximales à connaître.",
+ "affiche": [
+  "B14:50",
+  "B14:80",
+  "B14:110",
+  "B14:130",
+  "EB10"
+ ],
+ "chapitres": [
+  "Les quatre vitesses",
+  "Météo",
+  "Jeune conducteur"
+ ],
+ "series": [
+  "serie-vitesses"
+ ],
+ "memo": [
+  {
+   "panneau": "EB10",
+   "texte": "Agglomération",
+   "tag": "50 km/h"
+  },
+  {
+   "panneau": "B14:80",
+   "texte": "Route à double sens sans séparateur",
+   "tag": "80 km/h*"
+  },
+  {
+   "panneau": "B14:110",
+   "texte": "Route à chaussées séparées",
+   "tag": "110 km/h"
+  },
+  {
+   "panneau": "B14:130",
+   "texte": "Autoroute",
+   "tag": "130 km/h"
+  },
+  {
+   "panneau": "B14:50",
+   "texte": "Visibilité de moins de 50 m",
+   "tag": "50 km/h"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 2 · Circulation",
+   "titre": "Les limitations de vitesse",
+   "sous": "le bon chiffre au bon endroit",
+   "vitesse": 80,
+   "dire": "Cours numéro 2 : les limitations de vitesse. Quatre chiffres de base, puis ce qui change avec la météo et quand tu es jeune conducteur."
+  },
+  {
+   "type": "panneaux",
+   "ch": 0,
+   "eyebrow": "Par temps sec",
+   "titre": "50 · 80 · 110 · 130",
+   "panneaux": [
+    "B14:50",
+    "B14:80",
+    "B14:110",
+    "B14:130"
+   ],
+   "etiquettes": [
+    [
+     "Ville",
+     "Agglomération"
+    ],
+    [
+     "Route",
+     "Double sens"
+    ],
+    [
+     "Voie rapide",
+     "Chaussées séparées"
+    ],
+    [
+     "Autoroute",
+     " "
+    ]
+   ],
+   "dire": "En agglomération : 50. Sur une route à double sens sans séparateur central : 80. Sur une route à chaussées séparées : 110. Sur autoroute : 130."
+  },
+  {
+   "type": "panneaux",
+   "ch": 0,
+   "eyebrow": "Où commence la ville ?",
+   "titre": "Le panneau d'entrée",
+   "panneaux": [
+    "EB10",
+    "EB20"
+   ],
+   "etiquettes": [
+    [
+     "EB10",
+     "Entrée d'agglomération"
+    ],
+    [
+     "EB20",
+     "Sortie d'agglomération"
+    ]
+   ],
+   "puce": "50 km/h sauf panneau contraire",
+   "dire": "L'agglomération commence au panneau blanc bordé de rouge qui porte le nom de la ville. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie."
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Le cas des 90",
+   "titre": "80 ou 90 ?",
+   "vitesse": 80,
+   "items": [
+    [
+     "80",
+     "km/h",
+     "par défaut sur route à double sens"
+    ],
+    [
+     "90",
+     "km/h",
+     "si le département l'a relevée, avec panneaux"
+    ]
+   ],
+   "dire": "Depuis 2018, ces routes sont à 80 par défaut. Mais beaucoup de départements en ont relevé une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80."
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Par temps de pluie",
+   "titre": "On lève le pied",
+   "vitesse": 70,
+   "items": [
+    [
+     "110",
+     "km/h",
+     "autoroute (au lieu de 130)"
+    ],
+    [
+     "100",
+     "km/h",
+     "chaussées séparées (au lieu de 110)"
+    ],
+    [
+     "80",
+     "km/h",
+     "route à double sens"
+    ]
+   ],
+   "dire": "Quand il pleut : 110 sur autoroute au lieu de 130, et 100 sur route à chaussées séparées au lieu de 110. Sur les routes à 80, rien ne change. Les routes à 90 descendent à 80."
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Brouillard, neige",
+   "titre": "Visibilité < 50 m",
+   "vitesse": 40,
+   "items": [
+    [
+     "50",
+     "km/h",
+     "partout, même sur autoroute"
+    ]
+   ],
+   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute."
+  },
+  {
+   "type": "chiffres",
+   "ch": 2,
+   "eyebrow": "Permis probatoire",
+   "titre": "Jeune conducteur",
+   "vitesse": 90,
+   "items": [
+    [
+     "110",
+     "km/h",
+     "autoroute"
+    ],
+    [
+     "100",
+     "km/h",
+     "chaussées séparées"
+    ],
+    [
+     "80",
+     "km/h",
+     "route à double sens"
+    ]
+   ],
+   "dire": "Pendant le permis probatoire : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90."
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 2",
+   "titre": "Vitesses : OK",
+   "stats": [
+    [
+     "4",
+     "vitesses de base"
+    ],
+    [
+     "2",
+     "cas météo"
+    ],
+    [
+     "3",
+     "règles jeune conducteur"
+    ]
+   ],
+   "dire": "Cours terminé. Fais la série d'exercices : les vitesses tombent souvent à l'examen."
+  }
+ ]
 }

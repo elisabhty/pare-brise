@@ -73,6 +73,18 @@
      "Priorité",
      "il veut traverser"
     ]
+   ],
+   "script": [
+    [
+     0.2,
+     "arret",
+     19
+    ],
+    [
+     7.5,
+     "vitesse",
+     20
+    ]
    ]
   },
   {
@@ -137,6 +149,13 @@
      "S": 19,
      "x": 5.2
     }
+   ],
+   "script": [
+    [
+     0.4,
+     "arret",
+     14
+    ]
    ]
   },
   {
@@ -159,20 +178,6 @@
     ]
    ],
    "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : on y roule au pas, seulement si l’accès est autorisé, et les piétons sont toujours prioritaires."
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Un piéton attend au bord du trottoir et regarde la route, prêt à traverser. Tu :",
-   "choix": [
-    "passes, il n’est pas engagé",
-    "t’arrêtes pour le laisser passer"
-   ],
-   "bonne": 1,
-   "bien": "Exact : son intention suffit.",
-   "mal": "Tu dois céder le passage au piéton qui manifeste clairement l’intention de traverser, même s’il n’est pas encore engagé.",
-   "dire": "Question. Un piéton attend au bord du trottoir, prêt à traverser. Que fais-tu ?",
-   "revoir": 1
   },
   {
    "type": "fin",

@@ -116,20 +116,6 @@
    ]
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Le pictogramme est rouge sur ta boîte de médicaments. Tu :",
-   "choix": [
-    "conduis prudemment",
-    "ne conduis pas"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Niveau 3, rouge : attention danger, ne pas conduire.",
-   "dire": "Question. Le pictogramme de ta boîte de médicaments est rouge. Peux-tu conduire ?",
-   "revoir": 3
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 19",

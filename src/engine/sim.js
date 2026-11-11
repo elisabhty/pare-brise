@@ -259,7 +259,8 @@ export function buildSim(K) {
   hood.scale.set(1.0, 0.26, 1.0); s.add(hood);
   const me = carMesh(0xF4F6FA, { ecole: true }); me.visible = false; s.add(me);
   const amber = new THREE.MeshStandardMaterial({ color: 0xffa21a, emissive: 0xff8a00, emissiveIntensity: 0.1 }), fogR = new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1020, emissiveIntensity: 0 });
-  for (const [x, z] of [[-0.86, -2.05], [0.86, -2.05], [-0.86, 2.06], [0.86, 2.06]]) { const b = new THREE.Mesh(geo('blink', () => new RoundedBoxGeometry(0.16, 0.1, 0.06, 2, 0.02)), amber); b.position.set(x, 0.74, z); me.add(b); }
+  const amberR = amber.clone();   // clignotants : gauche (x < 0) et droit séparés
+  for (const [x, z] of [[-0.86, -2.05], [0.86, -2.05], [-0.86, 2.06], [0.86, 2.06]]) { const b = new THREE.Mesh(geo('blink', () => new RoundedBoxGeometry(0.16, 0.1, 0.06, 2, 0.02)), x < 0 ? amber : amberR); b.position.set(x, 0.74, z); me.add(b); }
   const fr = new THREE.Mesh(geo('fogR', () => new RoundedBoxGeometry(0.22, 0.08, 0.05, 2, 0.02)), fogR); fr.position.set(-0.5, 0.42, 2.11); me.add(fr);
 
   /* pluie / neige */
@@ -278,7 +279,7 @@ export function buildSim(K) {
   let shakeK = 0, envLen = 1600, stopAtEnd = true, timeScale = 1;
   const guide = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0x34C759, transparent: true, opacity: 0.32, depthWrite: false })); guide.visible = false; s.add(guide);
   let guideLen = 0;
-  const lightsCfg = { position: false, croisement: false, route: false, brouillardAv: false, brouillardAr: false, detresse: false };
+  const lightsCfg = { position: false, croisement: false, route: false, brouillardAv: false, brouillardAr: false, detresse: false, clignotant: null };
 
   const local = S => -S;                         // z local (dans root) pour une position S
   const ahead = S => S - P.s;                   // distance devant le conducteur
@@ -312,7 +313,7 @@ export function buildSim(K) {
     const wet = meteo === 'pluie';
     roadMat.roughness = wet ? 0.18 : 0.82; roadMat.metalness = wet ? 0.35 : 0.02; roadMat.color.set(wet ? 0x9aa0a8 : night ? 0x8a8f99 : 0xffffff);
     rain.visible = wet; snow.visible = meteo === 'neige';
-    K.setBloom(night ? 0.75 : 0.22);
+    K.setBloom(night ? 0.5 : 0.22);
     P.decel = DECEL[meteo] ?? 6;
     // environnement pour les reflets
     try { const key = meteo === 'sec' ? 'jour' : meteo; if (!envCache[key]) { const pm = new THREE.PMREMGenerator(K.renderer()); const es = new THREE.Scene(); es.add(sky.clone()); envCache[key] = pm.fromScene(es, 0.04).texture; pm.dispose(); } s.environment = envCache[key]; s.environmentIntensity = night ? 0.15 : 0.7; } catch (e) {}
@@ -324,6 +325,7 @@ export function buildSim(K) {
     clearRun();
     cfg = { env: spec.env || 'route', meteo: spec.meteo || 'jour', ...spec };
     envLen = spec.longueur || 1600; stopAtEnd = spec.stopFin !== false;
+    lightsCfg.clignotant = null;
     P.s = spec.depart || 0; P.v = (spec.kmh || 0) / 3.6; P.target = P.v; P.mode = 'auto'; P.gas = P.brake = 0; P.x = spec.voie ?? LANE;
     const env = cfg.env;
     road.scale.x = roadWidth[env]; road.position.set(roadX[env], 0, -200);
@@ -663,7 +665,9 @@ export function buildSim(K) {
       const lit = lightsCfg.croisement || lightsCfg.route || lightsCfg.position;
       me.userData.tail.emissiveIntensity = (P.lastA < -1.5 || P.brake > 0) ? 3.2 : lit ? 1.4 : 0.25;
       me.userData.head.emissiveIntensity = lightsCfg.route || lightsCfg.croisement ? 3 : lightsCfg.position ? 1.2 : 0.25;
-      amber.emissiveIntensity = lightsCfg.detresse && Math.sin(t * 8) > 0 ? 4 : 0.1;
+      const blink = Math.sin(t * 8) > 0;
+      amber.emissiveIntensity = (lightsCfg.detresse || lightsCfg.clignotant === 'g') && blink ? 4 : 0.1;
+      amberR.emissiveIntensity = (lightsCfg.detresse || lightsCfg.clignotant === 'd') && blink ? 4 : 0.1;
       fogR.emissiveIntensity = lightsCfg.brouillardAr ? 4 : 0;
       heads.forEach(l => { l.position.set(P.x + l.userData.dx, 0.72, -2.0); l.target.position.set(P.x + l.userData.dx * 2, 0, l.userData.far || -28); });
       fogLamps.forEach(l => { l.position.set(P.x + l.userData.dx, 0.4, -2.1); l.target.position.set(P.x + l.userData.dx * 4, 0, -12); });

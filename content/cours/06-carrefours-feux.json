@@ -93,6 +93,25 @@
      "x": 6.0,
      "etat": "orange"
     }
+   ],
+   "script": [
+    [
+     1.4,
+     "feu",
+     0,
+     "orange"
+    ],
+    [
+     1.6,
+     "arret",
+     51
+    ],
+    [
+     4.2,
+     "feu",
+     0,
+     "rouge"
+    ]
    ]
   },
   {
@@ -183,21 +202,6 @@
     ]
    ],
    "dire": "Pour une sortie proche, reste sur la voie de droite. Pour une sortie plus lointaine, tu peux utiliser la voie de gauche, puis te rapprocher de la droite. Dans tous les cas, mets ton clignotant à droite avant de sortir."
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Un agent te fait signe de passer, mais ton feu est rouge. Que fais-tu ?",
-   "choix": [
-    "Je m’arrête au feu",
-    "Je passe",
-    "Je klaxonne"
-   ],
-   "bonne": 1,
-   "bien": "Exact : l’agent passe avant les feux.",
-   "mal": "Les gestes de l’agent de circulation priment sur les feux. S’il te fait passer, tu passes.",
-   "dire": "Question. Un agent te fait signe de passer, alors que ton feu est rouge. Que fais-tu ?",
-   "revoir": 1
   },
   {
    "type": "fin",

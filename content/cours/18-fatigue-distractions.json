@@ -131,20 +131,6 @@
    "vitesse": 0
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Tu téléphones avec des oreillettes, téléphone dans la poche. C’est :",
-   "choix": [
-    "autorisé",
-    "interdit"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Tout dispositif placé dans l’oreille est interdit au volant : écouteurs, oreillettes, casque.",
-   "dire": "Question. Tu téléphones avec des oreillettes, le téléphone dans ta poche. C’est autorisé ?",
-   "revoir": 4
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 18",

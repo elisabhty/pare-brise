@@ -111,20 +111,6 @@
    "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Rien sur la plage arrière : en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Et les animaux voyagent attachés ou en cage."
   },
   {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Ton passager de 15 ans n’a pas mis sa ceinture. Qui est sanctionné ?",
-   "choix": [
-    "Lui",
-    "Toi, le conducteur"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Le conducteur est responsable du port de la ceinture des passagers mineurs.",
-   "dire": "Question. Ton passager de 15 ans n’a pas bouclé sa ceinture. Qui est sanctionné ?",
-   "revoir": 1
-  },
-  {
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 22",

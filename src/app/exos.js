@@ -4,11 +4,12 @@
 import { $, $$, esc, wait, store, haptic } from './util.js';
 import { has3D, Engine, SIM } from './world.js';
 import { sign } from './signs.js';
-import { EXOS, course } from './content.js';
+import { EXOS, COURSES, THEMES, course, courseNumber } from './content.js';
 import { Sound } from './sound.js';
 import { Labels } from './labels.js';
 import { register, show, syncRegion, currentScreen } from './nav.js';
 import { markActive } from './streak.js';
+import { answer, courseState } from './progress.js';
 import { plot, react } from './mascot.js';
 
 const LANE = 1.75, FRONT = 1.9;
@@ -41,6 +42,9 @@ export const FAMILLES = [
   { id: 'perception', nom: 'Voir et être vu', sous: 'Dangers et éclairage', meca: ['danger', 'eclairage', 'reflexe'] }
 ];
 export const best = id => (store.get('exoBest', {}) || {})[id] || null;
+/* une leçon = une pratique (situations en 3D) ; les défis 3D sont rattachés à leur leçon */
+export const practiceOf = cid => EXOS.find(e => e.id === 'p-' + cid) || null;
+export const defisOf = cid => EXOS.filter(e => e.cours === cid && e.meca !== 'examen');
 const saveBest = (id, score) => {
   const all = store.get('exoBest', {}) || {}; if (!all[id] || score > all[id].score) all[id] = { score, at: Date.now() }; store.set('exoBest', all);
   const runs = store.get('exoRuns', {}) || {}; runs[id] = (runs[id] || 0) + 1; store.set('exoRuns', runs);   // compte les examens blancs du planning
@@ -117,7 +121,7 @@ function makeX(ex) {
     loupe(ids) {
       const el = $('#xZoom'); if (!el) return;
       if (!ids || !ids.length) { el.classList.remove('on'); return; }
-      el.innerHTML = ids.slice(0, 2).map(id => `<span>${sign(id)}</span>`).join('') + '<em>Zoom</em>';
+      el.innerHTML = ids.slice(0, 3).map(id => `<span>${sign(id)}</span>`).join('') + '<em>Zoom</em>'; el.classList.toggle('n3', ids.length > 2); el.classList.toggle('multi', ids.length > 1); el.style.setProperty('--n', Math.min(3, ids.length));
       el.hidden = false; requestAnimationFrame(() => el.classList.add('on'));
     }
   };
@@ -222,7 +226,7 @@ function stageScene(W, sc, T = 0) {
     zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : []),
     // pas de voiture garée entre nous et un piéton ou un usager au bord de la route : il doit rester bien visible
     reserve: (sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10, (a.S || 0) - 20] : [a.S || 0])).concat(sc.passage ? [sc.passage, sc.passage - 10, sc.passage - 20] : []) });
-  W.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false }, sc.feux || {}));
+  W.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false, clignotant: null }, sc.feux || {}));
   if (sc.carrefour) W.carrefour(sc.carrefour.S, { ligne: sc.carrefour.ligne, forme: sc.carrefour.forme });
   if (sc.giratoire) W.giratoire(sc.giratoire);
   if (sc.passage) W.passage(sc.passage);
@@ -261,6 +265,7 @@ async function playScene(X, sc, head) {
   f.classList.toggle('txt', !!head);
   X.loupe(null);
   await X.fade(true);
+  if (Engine && Engine.hiRes) Engine.hiRes(false);
   const st = stageScene(W, sc, OBS); W.slow(0, 0);
   X.wet(sc.meteo === 'pluie'); X.speedo(!!sc.compteur, sc.limite || null);
   W.setAnchors(sc.etiquettes ? sc.etiquettes.map(([k]) => ({ id: 'q' + k, obj: st.actors[k], dy: 2.3 })) : []);
@@ -273,6 +278,7 @@ async function playScene(X, sc, head) {
   if (v > 0) await X.tick(() => W.player.s >= d - v * 0.25); else await X.sleep((OBS - 0.25) * 1000);
   await W.slow(0, 500);
   X.obs(false);
+  if (Engine && Engine.hiRes) Engine.hiRes(true);   // image figée : rendu à la pleine résolution de l'écran
   // arrêt sur image : la caméra se rapproche du panneau, puis recule pour montrer toute la scène
   // sans panneau : on se rapproche de l'usager à observer (piéton, ballon, cycliste…)
   const cam = sc.camera || 'vue', proche = a => { const e = a.S - W.player.s; return a.kind !== 'feu' && e > 6 && e < 90; };
@@ -318,6 +324,7 @@ MECA.examen = async (ex, X) => {
       await Promise.race([new Promise(r => $('#xOk', c).addEventListener('click', r, { once: true })),
         X.tick(() => { if (!blanc) return false; const k = (performance.now() - tQ) / limit; const bar = $('#xQbar'); if (bar) bar.style.transform = `scaleX(${Math.max(0, 1 - k)})`; return k >= 1; })]);
       const good = new Set(sc.bonnes), ok = good.size === chosen.size && [...good].every(k => chosen.has(k));
+      if (sc.qid) answer(sc.qid, ok);
       const attendu = [...good].sort().map(k => L[k]).join(' et ');
       if (blanc) {
         res.push({ nom: sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${attendu} : ${sc.explication}` });
@@ -720,6 +727,7 @@ MECA.danger = async (ex, X) => {
     const items = sc.elements.map(([t, d]) => ({ t, d }));
     // la rue défile quelques secondes avant l'arrêt sur image : la voiture part un peu plus loin en arrière
     const EXTRA = 2.2;
+    if (Engine && Engine.hiRes) Engine.hiRes(false);
     W.load({ env: sc.env || 'ville', meteo: sc.meteo || 'jour', kmh: 18, longueur: 400, depart: -5 * EXTRA, reserve: items.map(it => it.d + 18), graine: 50 + i });
     W.lights({ croisement: sc.meteo === 'nuit', position: false, route: false, brouillardAv: false, brouillardAr: false });
     (sc.panneaux || []).forEach(([id, d, x]) => W.panneau(id, d, x));
@@ -732,6 +740,7 @@ MECA.danger = async (ex, X) => {
     await X.sleep(1300 + EXTRA * 1000);
     await W.slow(0, 600);
     X.obs(false);
+    if (Engine && Engine.hiRes) Engine.hiRes(true);
     X.speedo(false);
     W.setPick(els.map(e => e.hit));
     W.setAnchors(els.map(e => ({ id: e.nom, obj: e.obj, dy: 2.2 })));
@@ -867,34 +876,41 @@ function results(ex, out) {
   $('#xCtl').innerHTML = ''; $('#xSpeed').hidden = true; $('#xGap').hidden = true; Labels.clear();
   SIM.pose('poursuite', 1400); SIM.auto(0, 2);
   const cr = ex.cours && course(ex.cours);
+  const nextL = ex.id.startsWith('p-') && cr && out.score >= 70 ? COURSES[COURSES.indexOf(cr) + 1] : null;
   const c = $('#xCard'); c.className = 'xcard xresult'; c.hidden = false;
   c.innerHTML = `<div class="xr-head">${plot({ size: 64, mood: out.score >= 70 ? 'cheer' : 'oops' })}<div><span class="xi-k">${esc(ex.titre)}</span><div class="xr-score">${out.total ? `<b class="num">${out.total.split(' / ')[0]}</b><span>/ ${out.total.split(' / ')[1]}</span>` : `<b class="num">${out.score}</b><span>/ 100</span>`}</div>${starsHtml(out.score)}</div></div>
     <ul class="xr-list">${out.lignes.map(l => `<li class="${l.ok === null ? 'n' : l.ok ? 'ok' : 'ko'}"><i></i><div><b>${esc(l.nom)}</b><span>${esc(l.txt)}</span></div></li>`).join('')}</ul>
     <p class="xr-tip">${esc(out.conseil || '')}</p>
     <div class="xr-btns"><button class="btn ghost" id="xAgain">Rejouer</button><button class="btn" id="xDone">Terminer</button></div>
-    ${cr ? `<button class="more" data-go="fiche" data-arg="${cr.id}">Revoir le cours « ${esc(cr.titre)} » →</button>` : ''}`;
+    ${cr ? `<button class="more" data-go="fiche" data-arg="${cr.id}">Revoir le cours « ${esc(cr.titre)} » →</button>` : ''}${nextL ? `<button class="more" data-go="fiche" data-arg="${nextL.id}">Leçon suivante : « ${esc(nextL.titre)} » →</button>` : ''}`;
   requestAnimationFrame(() => c.classList.add('on'));
   react(c, out.score >= 70);
   $('#xAgain').addEventListener('click', () => intro(ex), { once: true });
   $('#xDone').addEventListener('click', () => show(retourX), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
-function stopRun() { const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } ['#xObs', '#xZoom'].forEach(k => { const e = $(k); if (e) e.classList.remove('on'); }); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
+function stopRun() { if (Engine && Engine.hiRes) Engine.hiRes(false); const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } ['#xObs', '#xZoom'].forEach(k => { const e = $(k); if (e) e.classList.remove('on'); }); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
 
 /* ======================= Hub « Exercices » ======================= */
 export function renderExos() {
-  const done = EXOS.filter(e => best(e.id)).length;
-  $('#xHubStats').innerHTML = `<div><b class="num">${EXOS.length}</b><span>exercices</span></div><div><b class="num">${done}</b><span>réussis</span></div><div><b class="num">${EXOS.reduce((a, e) => a + stars((best(e.id) || {}).score || 0), 0)}</b><span>étoiles</span></div>`;
-  const feat = EXOS.find(e => e.vedette) || EXOS[0];
-  $('#xFeat').innerHTML = `<button class="feat" data-exo="${feat.id}"><span class="feat-k">${icon(feat.meca)}${esc(feat.famille || '')}</span><b>${esc(feat.titre)}</b><span>${esc(feat.sous || '')}</span><i>Jouer</i></button>`;
-  $('#xHubList').innerHTML = FAMILLES.map(F => {
-    const list = EXOS.filter(e => F.meca.includes(e.meca)); if (!list.length) return '';
-    return `<h2 class="h-sec">${esc(F.nom)}<small>${esc(F.sous)}</small></h2><ul class="cells">${list.map(e => { const b = best(e.id); return `<li><button class="cell" data-exo="${e.id}"><span class="cell-ic m-${e.meca}">${icon(e.meca)}</span><span class="cell-t"><b>${esc(e.titre)}</b><small>${esc(e.sous || '')}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>`; }).join('')}</ul>`;
+  const P = EXOS.filter(e => e.meca === 'examen'), done = P.filter(e => best(e.id)).length;
+  $('#xHubStats').innerHTML = `<div><b class="num">${done}/${P.length}</b><span>pratiques faites</span></div><div><b class="num">${P.reduce((a, e) => a + e.situations.length, 0)}</b><span>situations</span></div><div><b class="num">${EXOS.reduce((a, e) => a + stars((best(e.id) || {}).score || 0), 0)}</b><span>étoiles</span></div>`;
+  // la pratique de la prochaine leçon à travailler : cours vu, pratique pas encore faite (sinon la première non faite)
+  const nx = COURSES.find(c => courseState(c.id).done && !best('p-' + c.id)) || COURSES.find(c => !best('p-' + c.id)) || COURSES[0];
+  const feat = practiceOf(nx.id) || P[0];
+  $('#xFeat').innerHTML = `<button class="feat" data-exo="${feat.id}"><span class="feat-k">${icon('examen')}Pratique · Cours ${courseNumber(nx)}</span><b>${esc(feat.titre)}</b><span>${esc(feat.sous || '')}</span><i>Jouer</i></button>`;
+  $('#xHubList').innerHTML = THEMES.map(t => {
+    const list = COURSES.filter(c => c.theme === t.id && practiceOf(c.id)); if (!list.length) return '';
+    return `<h2 class="h-sec">${esc(t.nom)}<small>${list.length} leçon${list.length > 1 ? 's' : ''}</small></h2><ul class="cells">${list.map(c => {
+      const e = practiceOf(c.id), b = best(e.id), d = defisOf(c.id);
+      return `<li><button class="cell" data-exo="${e.id}"><span class="cell-ic m-examen"><b class="num">${courseNumber(c)}</b></span><span class="cell-t"><b>${esc(c.titre)}</b><small>${e.situations.length} situations${d.length ? ` · ${d.length} défi${d.length > 1 ? 's' : ''} 3D` : ''}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>${d.map(x => { const bx = best(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${bx ? starsHtml(bx.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('')}`;
+    }).join('')}</ul>`;
   }).join('');
 }
 export function renderHomeExos() {
   const el = $('#homeExos'); if (!el) return;
-  const pickL = ['x-exam-signalisation', 'x-exam-priorites', 'x-priorites', 'x-eclairage', 'x-exam-usagers', 'x-danger-ville'];
+  const nx = COURSES.find(c => !best('p-' + c.id)) || COURSES[0], i0 = Math.max(0, COURSES.indexOf(nx));
+  const pickL = COURSES.slice(i0, i0 + 6).map(c => 'p-' + c.id);
   el.innerHTML = pickL.map(id => EXOS.find(e => e.id === id)).filter(Boolean).map(e => { const b = best(e.id); return `<button class="xcar m-${e.meca}" data-exo="${e.id}"><span class="cell-ic m-${e.meca}">${icon(e.meca)}</span><b>${esc(e.titre)}</b><small>${esc(e.sous || '')}</small><span class="xcar-f">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}</span></button>`; }).join('');
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-exo]'); if (!b) return; haptic(); Sound.ui('tap'); runExo(b.dataset.exo, currentScreen()); });

@@ -13,7 +13,7 @@ import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
 import { roadmap } from './roadmap.js';
-import { renderHomeExos, Exos } from './exos.js';
+import { renderHomeExos, Exos, practiceOf, defisOf, best as exoBest, starsHtml, icon } from './exos.js';
 import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plannedDays, refreshBadge, launch, openSheet } from './planning.js';
 import { getProfil, salut, avatarHTML, openProfil } from './profil.js';
 import { weekHTML, streak, activeToday, FLAME } from './streak.js';
@@ -21,12 +21,12 @@ import { currentScreen } from './nav.js';
 
 /* ---------- utilitaires d'affichage ---------- */
 export const courseMinutes = c => Math.max(1, Math.round(c.scenes.reduce((a, s) => a + splitSentences(s.dire || '').reduce((b, t) => b + estimate(t) + 180, 0) + 450, 0) / 60000));
-const qCount = c => seriesOfCourse(c).reduce((a, s) => a + s.questions.length, 0);
+const qCount = c => (practiceOf(c.id) || { situations: [] }).situations.length;
 const status = c => { const st = courseState(c.id); return st.done ? ['done', 'Vu'] : c === nextCourse() ? ['now', 'À suivre'] : st.scene > 0 ? ['started', 'Commencé'] : ['todo', 'Dispo']; };
 const pct = (s, t) => (t ? Math.round(s / t * 100) : 0);
 const courseRow = (c, compact) => {
   const [st, tag] = status(c);
-  return `<li class="${st}"><button data-go="fiche" data-arg="${c.id}"><span class="node num">${st === 'done' ? '✓' : courseNumber(c)}</span><div><b>${esc(c.titre)}</b><small>${compact ? esc(theme(c.theme).nom) : `${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`}</small></div><span class="tag">${tag}</span></button></li>`;
+  return `<li class="${st}"><button data-go="fiche" data-arg="${c.id}"><span class="node num">${st === 'done' ? '✓' : courseNumber(c)}</span><div><b>${esc(c.titre)}</b><small>${compact ? esc(theme(c.theme).nom) : `${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} situations`}</small></div><span class="tag">${tag}</span></button></li>`;
 };
 
 export function drawPoster(c = nextCourse()) {
@@ -47,7 +47,7 @@ export function drawPoster(c = nextCourse()) {
     lines.push(line);
     lines.slice(0, 3).forEach((l, k) => ctx.fillText(l, 66, 212 + k * 100));
     ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.font = `500 26px ${FONT}`;
-    ctx.fillText(`${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`, 70, 212 + Math.min(3, lines.length) * 100 - 22);
+    ctx.fillText(`${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} situations`, 70, 212 + Math.min(3, lines.length) * 100 - 22);
   });
   const ids = signsOfCourse(c).slice(0, 6); let n = 0; const imgs = [];
   ids.forEach((id, k) => { const im = new Image(); im.onload = () => { imgs[k] = im; if (++n === ids.length) SALLE.setPoster((ctx, w, h) => imgs.forEach((m, j) => m && ctx.drawImage(m, 70 + j * 96, h - 120, 80, 80))); }; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(sign(id, 'width="160" height="160"')); });
@@ -85,7 +85,7 @@ function renderHome() {
 }
 function courseRowData(c) {
   const [st, tag] = status(c);
-  return { type: 'course', id: c.id, num: courseNumber(c), title: c.titre, sub: `${courseMinutes(c)} min · ${qCount(c)} questions`, status: st, tag };
+  return { type: 'course', id: c.id, num: courseNumber(c), title: c.titre, sub: `${courseMinutes(c)} min · ${qCount(c)} situations`, status: st, tag };
 }
 let seating = false;
 async function seatAndPlay(id) {
@@ -128,13 +128,13 @@ function renderFiche(id) {
   $('#fEyebrow').textContent = `Cours ${courseNumber(c)} · ${theme(c.theme).nom}`;
   $('#fTitle').textContent = c.titre;
   $('#fResume').textContent = c.resume || '';
-  $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minutes</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>questions</span></div>`;
+  $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minutes</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>situations en pratique</span></div>`;
   $('#fPlay').textContent = st.done ? 'Revoir le cours' : st.scene > 0 ? 'Reprendre le cours' : 'Lancer le cours';
   $('#fChapters').innerHTML = (c.chapitres || []).map((n, k) => `<li><button data-ch="${k}"><span class="cn">${k + 1}</span><b>${esc(n)}</b><small>${c.scenes.filter(s => (s.ch || 0) === k).length} scènes</small></button></li>`).join('');
   $$('#fChapters button').forEach(b => b.addEventListener('click', () => show('cours', { course: c.id, at: c.scenes.findIndex(s => (s.ch || 0) === +b.dataset.ch), play: true })));
-  const series = seriesOfCourse(c);
-  $('#fSeries').innerHTML = series.length ? series.map(s => { const best = seriesBest(s.id), tot = seriesTotal(s.id); return `<li><button class="srow glass" data-s="${s.id}"><div><b>${esc(s.titre)}</b><small>${s.questions.length} questions · entraînement corrigé</small></div><span class="tag num">${best !== undefined ? `${best}/${tot}` : 'Nouveau'}</span></button></li>`; }).join('') : '<li class="small">Pas encore d’exercices pour ce cours.</li>';
-  $$('#fSeries [data-s]').forEach(b => b.addEventListener('click', () => startSerie(b.dataset.s, { retour: 'fiche', retourArg: c.id })));
+  const pr = practiceOf(c.id), pb = pr && exoBest(pr.id), defis = defisOf(c.id);
+  $('#fSeries').innerHTML = (pr ? `<li><button class="pr-card" data-exo="${pr.id}"><span class="pr-ic">${icon('examen')}</span><div><b>Pratique : ${esc(c.titre)}</b><small>${pr.situations.length} situations en 3D · ${esc(pr.duree)}</small></div><span class="pr-r">${pb ? starsHtml(pb.score) : '<i>Jouer</i>'}</span></button></li>` : '')
+    + defis.map(x => { const b = exoBest(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('');
   $('#fMemo').innerHTML = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span>${esc(m.tag || '')}</span></li>`).join('');
   $('#fMemoT').hidden = !(c.memo || []).length;
 }
@@ -177,7 +177,7 @@ export function setupScreens() {
   register('parebrise', { world: 'route', amb: 'route', enter() { R.reset(); R.setSpeed(40, 20); R.pose('reflex', 1); }, leave() { Reflex.stop(); } });
   register('decodeur', { world: 'studio', amb: null, enter() { Decoder.paint(true); } });
 
-  setPlayerLinks(id => startSerie(id, { retour: 'fiche', retourArg: Player.c && Player.c.id }), () => show('parcours'));
+  setPlayerLinks(id => Exos.run(id, 'fiche'), () => show('parcours'));
   setSerieDone(cfg => show(cfg.retour || 'examen', cfg.retourArg ? { arg: cfg.retourArg } : {}));
   Player.bindUI();
   Reflex.init(() => {});

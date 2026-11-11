@@ -6,10 +6,9 @@ import { iso, fromIso, wd } from '../src/app/dates.js';
 
 const { data } = validate('.');
 const courses = data.cours.slice().sort((a, b) => (a.ordre || 99) - (b.ordre || 99));
-const series = new Map(data.series.map(s => [s.id, s]));
 const order = buildOrder(courses, {
-  seriesOf: c => (c.series || []).map(id => series.get(id)).filter(Boolean),
-  exosOf: c => data.exercices.filter(e => e.cours === c.id && !['reflexe', 'decodeur'].includes(e.meca)),
+  seriesOf: () => [],
+  exosOf: c => data.exercices.filter(e => e.id === 'p-' + c.id),
   minCours: () => 3, minSerie: () => 4, minExo: () => 5
 });
 const MER = fromIso('2026-11-11');   // un mercredi
@@ -21,13 +20,11 @@ test('la série compte les jours d’affilée, et survit jusqu’au soir', () =>
   assert.equal(bestStreak(['2026-10-01', '2026-10-02', '2026-10-03', '2026-11-10']), 3);
 });
 
-test('le parcours contient chaque cours, sa série, ses exercices 3D et 4 examens blancs', () => {
+test('le parcours enchaîne chaque leçon et sa pratique, avec 4 examens blancs', () => {
   const ids = order.map(o => o.id);
-  courses.forEach(c => assert.ok(ids.includes('c:' + c.id), c.id));
+  courses.forEach(c => { const i = ids.indexOf('c:' + c.id); assert.ok(i >= 0, c.id); assert.equal(ids[i + 1], 'x:p-' + c.id, `pratique de ${c.id} juste après la leçon`); });
   assert.equal(new Set(ids).size, ids.length, 'activité en double');
   assert.deepEqual(ids.filter(id => id.startsWith('b:')), ['b:1', 'b:2', 'b:3', 'b:4']);
-  courses.forEach(c => (c.series || []).forEach(s => assert.ok(ids.indexOf('s:' + s) > ids.indexOf('c:' + c.id), `série ${s} avant son cours`)));
-  assert.ok(!ids.some(id => id === 'x:x-reflexe-panneaux'), 'le jeu réflexe reste hors planning');
 });
 
 test('les séances tombent sur les jours choisis et respectent la durée', () => {

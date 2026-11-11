@@ -107,6 +107,32 @@
      "Clignotant",
      "tu le laisses partir"
     ]
+   ],
+   "script": [
+    [
+     0.6,
+     "arret",
+     23
+    ],
+    [
+     2.0,
+     "acteur",
+     0,
+     10,
+     -0.8
+    ],
+    [
+     5.0,
+     "acteur",
+     0,
+     25,
+     0
+    ],
+    [
+     6.0,
+     "vitesse",
+     20
+    ]
    ]
   },
   {
@@ -129,20 +155,6 @@
     ]
    ],
    "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. La circulation inter-files est autorisée sous conditions, entre les deux voies les plus à gauche : ne leur ferme pas la porte."
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "En ville, un bus met son clignotant pour quitter son arrêt. Tu :",
-   "choix": [
-    "passes, tu es prioritaire",
-    "le laisses repartir"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "En agglomération, tu dois laisser repartir un bus qui signale qu’il quitte son arrêt.",
-   "dire": "Question. En ville, un bus met son clignotant pour quitter son arrêt. Que fais-tu ?",
-   "revoir": 3
   },
   {
    "type": "fin",

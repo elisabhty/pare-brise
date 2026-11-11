@@ -106,19 +106,6 @@
    "dire": "Les flèches de rabattement, inclinées, t’obligent à te rabattre : une ligne continue approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Le long du trottoir, une ligne jaune continue interdit l’arrêt et le stationnement, une ligne jaune discontinue interdit seulement le stationnement."
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Une ligne mixte : continue de ton côté, discontinue de l’autre. Peux-tu dépasser ?",
-   "choix": [
-    "Oui",
-    "Non"
-   ],
-   "bonne": 1,
-   "bien": "Exact : tu lis toujours la ligne de ton côté.",
-   "mal": "Avec une ligne mixte, c’est le trait de ton côté qui compte. S’il est continu, tu ne franchis pas.",
-   "dire": "Question. Une ligne mixte : continue de ton côté, discontinue de l’autre. As-tu le droit de dépasser ?"
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 7",

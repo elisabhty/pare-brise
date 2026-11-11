@@ -130,20 +130,6 @@
    "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés."
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Après un accrochage, tu dois envoyer ton constat à ton assureur sous :",
-   "choix": [
-    "5 jours ouvrés",
-    "1 mois"
-   ],
-   "bonne": 0,
-   "bien": "Exact.",
-   "mal": "Le délai est de cinq jours ouvrés.",
-   "dire": "Question. Après un accrochage, sous quel délai envoies-tu ton constat à ton assureur ?",
-   "revoir": 4
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 26",

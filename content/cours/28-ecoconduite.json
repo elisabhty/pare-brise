@@ -94,20 +94,6 @@
    "dire": "Côté voiture : des pneus bien gonflés, un coffre de toit retiré quand il ne sert pas, la climatisation avec mesure, et le moteur coupé lors d’un arrêt prolongé."
   },
   {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Pour économiser du carburant, il vaut mieux :",
-   "choix": [
-    "freiner tard et fort",
-    "anticiper et lever le pied tôt"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Anticiper, c’est utiliser l’élan de la voiture au lieu de le gaspiller en freinant.",
-   "dire": "Question. Pour économiser du carburant, vaut-il mieux freiner tard ou anticiper ?",
-   "revoir": 1
-  },
-  {
    "type": "fin",
    "ch": 0,
    "eyebrow": "Fin du cours 28",

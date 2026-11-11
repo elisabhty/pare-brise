@@ -1,0 +1,1281 @@
+{
+ "vitesses": [
+  {
+   "titre": "Limitation",
+   "q": "À partir de ce panneau, je roule au maximum à :",
+   "choix": [
+    "50 km/h",
+    "70 km/h",
+    "80 km/h"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Le panneau rond à bord rouge fixe la vitesse maximale : 70 km/h, jusqu’au prochain panneau qui la change ou y met fin.",
+   "env": "route",
+   "kmh": 80,
+   "compteur": true,
+   "signaux": [
+    [
+     "B14:70",
+     26
+    ]
+   ]
+  },
+  {
+   "titre": "Entrée d’agglomération",
+   "q": "Je roule à 80 km/h. Je dois :",
+   "choix": [
+    "ralentir à 50 km/h dès le panneau",
+    "garder 80 km/h jusqu’aux premières maisons",
+    "ralentir à 70 km/h"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Le panneau d’entrée d’agglomération impose 50 km/h dès qu’on le franchit, sauf indication contraire.",
+   "env": "route",
+   "kmh": 80,
+   "compteur": true,
+   "signaux": [
+    [
+     "EB10:SAINT-AUBIN",
+     27
+    ]
+   ]
+  },
+  {
+   "titre": "Pluie sur autoroute",
+   "q": "Il pleut. Je roule à 120 km/h :",
+   "choix": [
+    "je respecte la limitation",
+    "je dois descendre à 110 km/h"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Par temps de pluie, la vitesse maximale sur autoroute passe de 130 à 110 km/h, même si le panneau indique 130.",
+   "env": "autoroute",
+   "meteo": "pluie",
+   "kmh": 120,
+   "compteur": true,
+   "signaux": [
+    [
+     "B14:130",
+     28
+    ]
+   ]
+  },
+  {
+   "titre": "Zone 30",
+   "q": "Après ce panneau, je roule au maximum à :",
+   "choix": [
+    "30 km/h",
+    "50 km/h"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Le panneau « Zone 30 » limite la vitesse à 30 km/h dans toute la zone, jusqu’au panneau de sortie.",
+   "env": "ville",
+   "kmh": 40,
+   "compteur": true,
+   "signaux": [
+    [
+     "B30",
+     22
+    ]
+   ]
+  },
+  {
+   "titre": "Jeune conducteur",
+   "q": "J’ai mon permis depuis un an. Ma vitesse maximale ici :",
+   "choix": [
+    "130 km/h",
+    "110 km/h",
+    "90 km/h"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "En période probatoire, la vitesse maximale sur autoroute est de 110 km/h.",
+   "env": "autoroute",
+   "kmh": 110,
+   "compteur": true,
+   "signaux": [
+    [
+     "B14:130",
+     28
+    ]
+   ],
+   "contexte": "Permis probatoire, temps sec."
+  },
+  {
+   "titre": "Pluie sur route",
+   "q": "Il pleut sur cette route limitée à 90. Je roule au maximum à :",
+   "choix": [
+    "90 km/h",
+    "80 km/h",
+    "70 km/h"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Sous la pluie, les routes limitées à 90 km/h passent à 80 km/h.",
+   "env": "route",
+   "meteo": "pluie",
+   "kmh": 80,
+   "compteur": true,
+   "signaux": [
+    [
+     "B14:90",
+     26
+    ]
+   ]
+  }
+ ],
+ "depassement": [
+  {
+   "titre": "Dépasser ?",
+   "q": "Je peux dépasser ce tracteur :",
+   "choix": [
+    "oui, la ligne est discontinue",
+    "non, le panneau l’interdit"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Le panneau rond avec une voiture rouge et une noire interdit de dépasser les véhicules à moteur, sauf les deux-roues sans side-car. Un tracteur est un véhicule à moteur.",
+   "env": "route",
+   "kmh": 28,
+   "camera": "poursuite",
+   "ligne": "discontinue",
+   "signaux": [
+    [
+     "B3",
+     26
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "tracteur",
+     "S": 17,
+     "kmh": 28
+    }
+   ]
+  },
+  {
+   "titre": "Dépasser ?",
+   "q": "Je peux dépasser le tracteur maintenant :",
+   "choix": [
+    "oui, la ligne est discontinue",
+    "non, une voiture arrive en face"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "La ligne autorise le dépassement, mais une voiture arrive en face : tu n’as pas la place de doubler sans danger.",
+   "env": "route",
+   "kmh": 28,
+   "camera": "poursuite",
+   "ligne": "discontinue",
+   "acteurs": [
+    {
+     "type": "tracteur",
+     "S": 17,
+     "kmh": 28
+    },
+    {
+     "type": "voiture",
+     "S": 58,
+     "x": -1.75,
+     "kmh": -80,
+     "couleur": 15223370
+    }
+   ]
+  },
+  {
+   "titre": "On me dépasse",
+   "q": "Une voiture me dépasse. Je :",
+   "choix": [
+    "n’accélère pas",
+    "serre à droite pour lui laisser de la place",
+    "accélère pour qu’elle passe plus vite"
+   ],
+   "bonnes": [
+    0,
+    1
+   ],
+   "explication": "Il est interdit d’accélérer quand on est dépassé. Serre-toi à droite pour faciliter la manœuvre.",
+   "env": "route",
+   "kmh": 70,
+   "camera": "poursuite",
+   "ligne": "discontinue",
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": -3,
+     "x": -1.75,
+     "kmh": 95,
+     "couleur": 15223370
+    }
+   ]
+  }
+ ],
+ "priorites": [
+  {
+   "titre": "Le stop",
+   "q": "Personne ne vient. Je dois :",
+   "choix": [
+    "m’arrêter à la ligne",
+    "ralentir et passer sans m’arrêter"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Au stop, l’arrêt est obligatoire à la ligne, même si la voie est libre. Ensuite, tu laisses passer tous les véhicules.",
+   "env": "ville",
+   "kmh": 25,
+   "carrefour": {
+    "S": 28,
+    "ligne": "stop"
+   },
+   "signaux": [
+    [
+     "AB4",
+     23.3,
+     4.7
+    ]
+   ]
+  },
+  {
+   "titre": "Pas de panneau",
+   "q": "Je dois céder le passage :",
+   "choix": [
+    "à la voiture rouge, à droite",
+    "à la voiture bleue, à gauche",
+    "à personne"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Aucun panneau, aucun feu : c’est la priorité à droite. La voiture rouge, à ta droite, passe avant toi.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 21.75,
+     "x": 12,
+     "vx": -5,
+     "couleur": 15223370
+    },
+    {
+     "type": "voiture",
+     "S": 18.25,
+     "x": -12,
+     "vx": 5,
+     "couleur": 3829232
+    }
+   ]
+  },
+  {
+   "titre": "Cédez-le-passage",
+   "q": "Je dois :",
+   "choix": [
+    "céder le passage à la voiture de gauche",
+    "m’arrêter obligatoirement, même si la voie est libre",
+    "passer : je suis à sa droite"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Au cédez-le-passage, tu laisses passer les véhicules de gauche comme de droite. L’arrêt n’est obligatoire que si quelqu’un arrive.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20,
+    "ligne": "cedez"
+   },
+   "signaux": [
+    [
+     "AB3a",
+     15.3,
+     4.7
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 18.25,
+     "x": -12,
+     "vx": 5,
+     "couleur": 3829232
+    }
+   ]
+  },
+  {
+   "titre": "Route prioritaire",
+   "q": "La voiture de droite :",
+   "choix": [
+    "doit me céder le passage",
+    "est prioritaire car elle est à ma droite"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Le losange jaune indique une route à caractère prioritaire : les usagers des routes qui la croisent te cèdent le passage.",
+   "env": "route",
+   "kmh": 25,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20
+   },
+   "signaux": [
+    [
+     "AB6",
+     12,
+     4.4
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 21.75,
+     "x": 6.8,
+     "cap": 90,
+     "freine": true,
+     "couleur": 15223370
+    }
+   ]
+  },
+  {
+   "titre": "Tourner à gauche",
+   "q": "Je vais tout droit. La voiture d’en face veut tourner à gauche. Qui passe en premier ?",
+   "choix": [
+    "moi",
+    "la voiture d’en face"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Celui qui tourne à gauche doit laisser passer les véhicules qui arrivent en face et vont tout droit.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 25,
+     "x": -1.2,
+     "cap": 200,
+     "freine": true,
+     "couleur": 3122042
+    }
+   ]
+  },
+  {
+   "titre": "Stop et vélo",
+   "q": "Au stop, je dois laisser passer :",
+   "choix": [
+    "le cycliste qui arrive de droite",
+    "personne : un vélo n’est pas prioritaire"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Au stop, tu laisses passer tous les usagers de la route que tu abordes, cyclistes compris.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20,
+    "ligne": "stop"
+   },
+   "signaux": [
+    [
+     "AB4",
+     15.3,
+     4.7
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": 21.75,
+     "x": 9,
+     "vx": -4
+    }
+   ]
+  }
+ ],
+ "arret-stationnement": [
+  {
+   "titre": "Arrêt interdit",
+   "q": "Je peux m’arrêter ici quelques secondes pour déposer un passager :",
+   "choix": [
+    "oui",
+    "non"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Le rond bleu barré d’une croix rouge interdit l’arrêt et le stationnement, même pour quelques secondes.",
+   "env": "ville",
+   "kmh": 25,
+   "signaux": [
+    [
+     "B6d",
+     21
+    ]
+   ]
+  },
+  {
+   "titre": "Portière",
+   "q": "Quelqu’un est assis au volant de cette voiture garée. Je :",
+   "choix": [
+    "m’écarte un peu : la portière peut s’ouvrir",
+    "reste au ras des voitures garées"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Une personne au volant d’une voiture garée peut ouvrir sa portière sans regarder. Garde de la marge.",
+   "env": "ville",
+   "kmh": 25,
+   "acteurs": [
+    {
+     "type": "portiere",
+     "S": 30,
+     "x": 4.6
+    }
+   ]
+  }
+ ],
+ "usagers-vulnerables": [
+  {
+   "titre": "Enfants",
+   "q": "Ce panneau m’invite à :",
+   "choix": [
+    "ralentir",
+    "me préparer à freiner",
+    "klaxonner pour prévenir les enfants"
+   ],
+   "bonnes": [
+    0,
+    1
+   ],
+   "explication": "Le triangle avec deux enfants signale un endroit fréquenté par des enfants : ralentis et prépare-toi à freiner. Le klaxon ne sert pas à ça.",
+   "env": "ville",
+   "kmh": 30,
+   "signaux": [
+    [
+     "A13a",
+     22
+    ]
+   ],
+   "acteurs": [
+    {
+     "type": "enfant",
+     "S": 30,
+     "x": 6.6,
+     "cap": 90
+    }
+   ]
+  },
+  {
+   "titre": "Piéton",
+   "q": "Ce piéton attend au bord du passage. Je :",
+   "choix": [
+    "m’arrête pour le laisser traverser",
+    "passe : il n’est pas encore engagé"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Tu dois céder le passage au piéton qui montre clairement son intention de traverser.",
+   "env": "ville",
+   "kmh": 25,
+   "passage": 32,
+   "acteurs": [
+    {
+     "type": "pieton",
+     "S": 32,
+     "x": 6.0,
+     "cap": 90
+    }
+   ]
+  },
+  {
+   "titre": "Ballon",
+   "q": "Un ballon traverse la rue. Je :",
+   "choix": [
+    "ralentis et me prépare à freiner",
+    "klaxonne et continue"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Un ballon annonce souvent un enfant qui court derrière.",
+   "env": "ville",
+   "kmh": 25,
+   "acteurs": [
+    {
+     "type": "ballon",
+     "S": 27,
+     "x": 3.0,
+     "vx": -2
+    },
+    {
+     "type": "enfant",
+     "S": 29,
+     "x": 6.0,
+     "cap": 90
+    }
+   ]
+  },
+  {
+   "titre": "Bus à l’arrêt",
+   "q": "Ce bus est arrêté. Je :",
+   "choix": [
+    "passe doucement, prêt à freiner",
+    "le dépasse vite pour ne pas être bloqué"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Des piétons peuvent surgir devant un bus arrêté. Passe lentement, prêt à freiner.",
+   "env": "ville",
+   "kmh": 25,
+   "acteurs": [
+    {
+     "type": "bus",
+     "S": 36,
+     "x": 4.4,
+     "freine": true
+    },
+    {
+     "type": "pieton",
+     "S": 29,
+     "x": 3.4,
+     "cap": 90
+    }
+   ]
+  },
+  {
+   "titre": "Hors passage",
+   "q": "Ce piéton traverse en dehors d’un passage piéton. Je :",
+   "choix": [
+    "lui cède le passage",
+    "passe : il est en tort"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Tu dois céder le passage au piéton engagé sur la chaussée, même en dehors d’un passage piéton.",
+   "env": "ville",
+   "kmh": 25,
+   "acteurs": [
+    {
+     "type": "pieton",
+     "S": 30,
+     "x": 3.4,
+     "vx": -1.2
+    }
+   ]
+  }
+ ],
+ "carrefours-feux": [
+  {
+   "titre": "Annonce",
+   "q": "Ce panneau m’annonce :",
+   "choix": [
+    "un carrefour à sens giratoire",
+    "une intersection avec priorité à droite",
+    "un virage dangereux"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Le triangle avec trois flèches en cercle annonce un carrefour à sens giratoire. À l’entrée, tu céderas le passage aux véhicules sur l’anneau.",
+   "env": "route",
+   "kmh": 50,
+   "signaux": [
+    [
+     "AB25",
+     24
+    ]
+   ]
+  },
+  {
+   "titre": "Annonce",
+   "q": "Ce panneau triangulaire m’annonce :",
+   "choix": [
+    "des feux tricolores",
+    "un passage à niveau"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Le triangle avec un feu rouge, orange et vert annonce des feux tricolores, souvent hors agglomération où on ne les attend pas.",
+   "env": "ville",
+   "kmh": 30,
+   "signaux": [
+    [
+     "A17",
+     21
+    ]
+   ],
+   "carrefour": {
+    "S": 58,
+    "ligne": "feu"
+   },
+   "acteurs": [
+    {
+     "type": "feu",
+     "S": 53.5,
+     "x": 5.4,
+     "etat": "vert"
+    }
+   ]
+  },
+  {
+   "titre": "Feu vert",
+   "q": "Mon feu est vert. Je peux passer :",
+   "choix": [
+    "oui, immédiatement",
+    "non, je laisse d’abord le piéton traverser"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Le feu vert ne permet pas de forcer le passage : un piéton déjà engagé termine sa traversée.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20,
+    "ligne": "feu"
+   },
+   "passage": 26,
+   "acteurs": [
+    {
+     "type": "feu",
+     "S": 15.5,
+     "x": 5.2,
+     "etat": "vert"
+    },
+    {
+     "type": "pieton",
+     "S": 26,
+     "x": 1.6,
+     "vx": -1.2
+    }
+   ]
+  },
+  {
+   "titre": "Giratoire",
+   "q": "J’entre dans le giratoire. Je dois :",
+   "choix": [
+    "céder le passage aux véhicules déjà sur l’anneau",
+    "passer : ils arrivent par ma gauche"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "À l’entrée d’un giratoire signalé par un cédez-le-passage, les véhicules qui circulent sur l’anneau sont prioritaires.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "giratoire": 18,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 24.6,
+     "x": -7.4,
+     "cap": -135,
+     "couleur": 15223370
+    }
+   ]
+  },
+  {
+   "titre": "Feu clignotant",
+   "q": "Le feu orange clignote. Qui passe en premier ?",
+   "choix": [
+    "moi",
+    "la voiture de droite"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Un feu orange clignotant n’attribue pas la priorité : il signale un danger. Sans autre panneau, la priorité à droite s’applique.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20
+   },
+   "acteurs": [
+    {
+     "type": "feu",
+     "S": 15.5,
+     "x": 5.2,
+     "etat": "clignotant"
+    },
+    {
+     "type": "voiture",
+     "S": 21.75,
+     "x": 12,
+     "vx": -5,
+     "couleur": 15223370
+    }
+   ]
+  }
+ ],
+ "autoroute": [
+  {
+   "titre": "Autoroute",
+   "q": "Après ce panneau :",
+   "choix": [
+    "les piétons et les vélos sont interdits",
+    "je peux faire demi-tour en cas d’erreur",
+    "la vitesse maximale est de 130 km/h par temps sec"
+   ],
+   "bonnes": [
+    0,
+    2
+   ],
+   "explication": "Le panneau bleu d’entrée d’autoroute : piétons, vélos et cyclomoteurs interdits, demi-tour et marche arrière interdits, 130 km/h par temps sec.",
+   "env": "autoroute",
+   "kmh": 90,
+   "signaux": [
+    [
+     "C107",
+     27
+    ]
+   ]
+  },
+  {
+   "titre": "Chevrons",
+   "q": "Un seul chevron me sépare de la voiture de devant :",
+   "choix": [
+    "je suis trop près",
+    "la distance est correcte"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Sur autoroute : un chevron, danger. Deux chevrons, sécurité.",
+   "env": "autoroute",
+   "kmh": 110,
+   "compteur": true,
+   "chevrons": true,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 52,
+     "x": 1.75,
+     "kmh": 110,
+     "couleur": 3028032
+    }
+   ]
+  },
+  {
+   "titre": "Corridor de sécurité",
+   "q": "Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Je :",
+   "choix": [
+    "change de voie si possible, sinon ralentis fortement",
+    "maintiens ma vitesse : il est sur la bande d’arrêt"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "C’est le corridor de sécurité : on s’écarte d’une voie, ou on ralentit fortement.",
+   "env": "autoroute",
+   "kmh": 110,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "ambulance",
+     "S": 70,
+     "x": 4.9
+    }
+   ]
+  },
+  {
+   "titre": "Bouchon",
+   "q": "La circulation ralentit brutalement devant moi. Je :",
+   "choix": [
+    "allume mes feux de détresse pour prévenir ceux qui suivent",
+    "reste sur la voie de gauche pour aller plus vite"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Sur autoroute, les feux de détresse préviennent les conducteurs qui te suivent d’un ralentissement brutal.",
+   "env": "autoroute",
+   "kmh": 90,
+   "compteur": true,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 72,
+     "x": 1.75,
+     "freine": true,
+     "couleur": 3028032
+    },
+    {
+     "type": "voiture",
+     "S": 78.4,
+     "x": 1.75,
+     "freine": true,
+     "couleur": 15223370
+    },
+    {
+     "type": "voiture",
+     "S": 84.8,
+     "x": 1.75,
+     "freine": true
+    },
+    {
+     "type": "voiture",
+     "S": 74,
+     "x": -1.75,
+     "freine": true,
+     "couleur": 10134447
+    }
+   ]
+  },
+  {
+   "titre": "Panne sur autoroute",
+   "q": "Je suis en panne sur la bande d’arrêt d’urgence. Je :",
+   "choix": [
+    "enfile mon gilet avant de sortir",
+    "attends les secours dans la voiture",
+    "me place derrière la glissière"
+   ],
+   "bonnes": [
+    0,
+    2
+   ],
+   "explication": "Feux de détresse, gilet avant de sortir, sortie côté droit et tout le monde derrière la glissière. Rester dans la voiture est dangereux.",
+   "env": "autoroute",
+   "kmh": 0,
+   "voie": 4.8,
+   "camera": "poursuite",
+   "feux": {
+    "detresse": true
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 30,
+     "x": 1.75,
+     "kmh": 110
+    },
+    {
+     "type": "voiture",
+     "S": 60,
+     "x": -1.75,
+     "kmh": 120,
+     "couleur": 15223370
+    }
+   ]
+  }
+ ],
+ "marquages": [
+  {
+   "titre": "Marquage",
+   "q": "Ces traits longs et rapprochés au milieu de la chaussée :",
+   "choix": [
+    "annoncent une ligne continue",
+    "autorisent à doubler sans restriction",
+    "signalent la fin d’une interdiction"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "C’est une ligne d’annonce : une ligne continue arrive. On ne commence pas de dépassement.",
+   "env": "route",
+   "kmh": 50,
+   "camera": "haut",
+   "ligne": "annonce"
+  }
+ ],
+ "vehicules-prioritaires": [
+  {
+   "titre": "Véhicule d’urgence",
+   "q": "Une ambulance arrive derrière moi, sirène hurlante. Je :",
+   "choix": [
+    "facilite son passage en me serrant à droite",
+    "accélère pour ne pas la gêner",
+    "freine brusquement"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Feux bleus et deux tons : priorité absolue. Facilite son passage en te serrant à droite, sans manœuvre brusque.",
+   "env": "ville",
+   "kmh": 30,
+   "camera": "arriere",
+   "acteurs": [
+    {
+     "type": "ambulance",
+     "S": -16,
+     "x": 1.75,
+     "kmh": 40
+    }
+   ]
+  },
+  {
+   "titre": "Gyrophare orange",
+   "q": "Ce gyrophare orange signale :",
+   "choix": [
+    "un véhicule lent ou un danger",
+    "un véhicule prioritaire en intervention"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Un gyrophare orange signale un véhicule lent ou un danger : prudence, mais pas de priorité.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 30,
+   "acteurs": [
+    {
+     "type": "tracteur",
+     "S": 30,
+     "kmh": 22
+    }
+   ]
+  }
+ ],
+ "poids-lourds-2rm": [
+  {
+   "titre": "Le bus",
+   "q": "En agglomération, ce bus met son clignotant pour quitter son arrêt. Je dois :",
+   "choix": [
+    "le laisser repartir",
+    "le dépasser vite avant qu’il démarre"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "En agglomération, tu dois laisser repartir un bus qui signale qu’il quitte son arrêt.",
+   "env": "ville",
+   "kmh": 25,
+   "acteurs": [
+    {
+     "type": "bus",
+     "S": 34,
+     "x": 4.4
+    }
+   ]
+  },
+  {
+   "titre": "Poids lourd",
+   "q": "Si je ne vois pas le chauffeur dans son rétroviseur :",
+   "choix": [
+    "il ne me voit pas",
+    "il me voit forcément"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Tu es dans son angle mort. Un poids lourd en a de très grands.",
+   "env": "route",
+   "kmh": 50,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 20,
+     "kmh": 50
+    }
+   ]
+  }
+ ],
+ "intemperies": [
+  {
+   "titre": "Brouillard",
+   "q": "Visibilité inférieure à 50 m. Je roule à 70 km/h :",
+   "choix": [
+    "je respecte la loi",
+    "je dois rouler à 50 km/h au maximum"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Quand la visibilité est inférieure à 50 m, la vitesse est limitée à 50 km/h partout, même sur autoroute.",
+   "env": "route",
+   "meteo": "brouillard",
+   "kmh": 70,
+   "compteur": true,
+   "signaux": [
+    [
+     "B14:80",
+     22
+    ]
+   ]
+  },
+  {
+   "titre": "Neige",
+   "q": "Sur route enneigée, ma distance de freinage :",
+   "choix": [
+    "est plus courte",
+    "est la même",
+    "est beaucoup plus longue"
+   ],
+   "bonnes": [
+    2
+   ],
+   "explication": "Sur neige ou verglas, la distance de freinage peut être plusieurs fois plus longue. Douceur et grandes distances.",
+   "env": "route",
+   "meteo": "neige",
+   "kmh": 40
+  },
+  {
+   "titre": "Aquaplaning",
+   "q": "La voiture semble flotter sur l’eau. Je :",
+   "choix": [
+    "freine fort",
+    "lève le pied et tiens le volant droit"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Aquaplaning : les pneus ne touchent plus la route. Pas de freinage brusque : lève le pied et garde les roues droites.",
+   "env": "autoroute",
+   "meteo": "pluie",
+   "kmh": 100,
+   "compteur": true
+  }
+ ],
+ "distances": [
+  {
+   "titre": "Distance de sécurité",
+   "q": "La distance avec la voiture de devant est :",
+   "choix": [
+    "suffisante",
+    "insuffisante"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "À 80 km/h, deux secondes représentent environ 44 m. Ici, à peine 20 m : c’est beaucoup trop près.",
+   "env": "route",
+   "kmh": 80,
+   "compteur": true,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 23,
+     "x": 1.75,
+     "kmh": 80,
+     "couleur": 3028032
+    }
+   ]
+  },
+  {
+   "titre": "Distance d’arrêt",
+   "q": "À 50 km/h sur sol sec, ma distance d’arrêt est d’environ :",
+   "choix": [
+    "15 m",
+    "25 m",
+    "50 m"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Règle du code : la distance d’arrêt sur sol sec vaut environ le chiffre des dizaines au carré. 5 × 5 = 25 m. Sous la pluie, compte une fois et demie plus.",
+   "env": "route",
+   "kmh": 50,
+   "compteur": true
+  }
+ ],
+ "cyclistes-edpm": [
+  {
+   "titre": "Cycliste",
+   "q": "Hors agglomération, pour dépasser ce cycliste, je laisse au minimum :",
+   "choix": [
+    "50 cm",
+    "1 m",
+    "1,50 m"
+   ],
+   "bonnes": [
+    2
+   ],
+   "explication": "1 m en agglomération, 1,50 m hors agglomération.",
+   "env": "route",
+   "kmh": 20,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": 14,
+     "x": 2.7,
+     "kmh": 20
+    }
+   ]
+  },
+  {
+   "titre": "Angle mort",
+   "q": "Je veux tourner à droite au carrefour. Je :",
+   "choix": [
+    "vérifie mon angle mort à droite",
+    "tourne : le cycliste s’arrêtera"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Un cycliste peut remonter le long de ta voiture, invisible dans tes rétroviseurs : tourne la tête avant de tourner.",
+   "env": "ville",
+   "kmh": 15,
+   "camera": "drone",
+   "carrefour": {
+    "S": 20
+   },
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": 5,
+     "x": 3.1,
+     "kmh": 15
+    }
+   ]
+  }
+ ],
+ "nuit-eclairage": [
+  {
+   "titre": "La nuit",
+   "q": "La nuit, un piéton en vêtements sombres marche au bord de la route. Je :",
+   "choix": [
+    "ralentis et m’écarte",
+    "klaxonne fort",
+    "passe en feux de route pour l’éblouir"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Ralentis et laisse-lui de la place. Un piéton sombre n’est visible qu’au dernier moment.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 50,
+   "acteurs": [
+    {
+     "type": "pieton",
+     "S": 34,
+     "x": 4.0,
+     "haut": 2764342
+    }
+   ]
+  },
+  {
+   "titre": "Feux de route",
+   "q": "Une voiture arrive en face. Je :",
+   "choix": [
+    "passe en feux de croisement",
+    "garde mes feux de route"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Dès qu’un véhicule arrive en face, tu passes en feux de croisement pour ne pas l’éblouir.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 60,
+   "feux": {
+    "route": true,
+    "croisement": false
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 120,
+     "x": -1.75,
+     "kmh": -60
+    }
+   ]
+  },
+  {
+   "titre": "Brouillard",
+   "q": "Dans le brouillard, les feux de route :",
+   "choix": [
+    "améliorent la visibilité",
+    "éblouissent par réflexion sur le brouillard"
+   ],
+   "bonnes": [
+    1
+   ],
+   "explication": "Dans le brouillard, la lumière des feux de route se réfléchit et t’éblouit. Feux de croisement et feux de brouillard.",
+   "env": "route",
+   "meteo": "brouillard",
+   "kmh": 50,
+   "feux": {
+    "route": true
+   }
+  },
+  {
+   "titre": "Pluie",
+   "q": "Sous la pluie, le feu de brouillard arrière est :",
+   "choix": [
+    "interdit",
+    "obligatoire",
+    "conseillé"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Le feu de brouillard arrière est réservé au brouillard et à la neige. Sous la pluie, il éblouit celui qui te suit.",
+   "env": "route",
+   "meteo": "pluie",
+   "kmh": 60
+  },
+  {
+   "titre": "Garé la nuit",
+   "q": "Je suis garé la nuit au bord d’une route non éclairée. Je dois allumer :",
+   "choix": [
+    "mes feux de position",
+    "mes feux de route"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Hors agglomération, la nuit, une voiture garée sur une route non éclairée doit être signalée par ses feux de position.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 0,
+   "voie": 4.2,
+   "camera": "poursuite",
+   "feux": {
+    "position": true,
+    "croisement": false
+   }
+  }
+ ],
+ "montagne-tunnels-pn": [
+  {
+   "titre": "Tunnel",
+   "q": "En entrant dans le tunnel :",
+   "choix": [
+    "j’allume mes feux de croisement",
+    "je peux faire demi-tour en cas de bouchon"
+   ],
+   "bonnes": [
+    0
+   ],
+   "explication": "Dans un tunnel, feux de croisement obligatoires. Demi-tour et marche arrière sont interdits.",
+   "env": "route",
+   "kmh": 50,
+   "tunnel": 34
+  }
+ ]
+}

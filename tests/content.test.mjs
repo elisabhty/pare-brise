@@ -26,8 +26,9 @@ test('chaque question appartient à une série', () => {
   for (const q of data.questions) assert.ok(inSeries.has(q.id), `${q.id} n’est dans aucune série`);
 });
 
-test('chaque cours contient au moins une question en pleine vidéo', () => {
-  for (const c of data.cours) assert.ok(c.scenes.some(s => s.type === 'touche' || s.type === 'quiz'), `${c.id} sans question`);
+test('la leçon est une leçon : aucune question dans les cours, elles sont toutes dans la pratique', () => {
+  for (const c of data.cours) assert.ok(!c.scenes.some(s => s.type === 'touche' || s.type === 'quiz'), `${c.id} contient encore une question`);
+  for (const c of data.cours) assert.ok(data.exercices.some(e => e.id === 'p-' + c.id && e.meca === 'examen' && e.cours === c.id), `${c.id} sans pratique`);
 });
 
 test('chaque cours se termine par une scène de fin', () => {

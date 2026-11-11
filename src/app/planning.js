@@ -2,7 +2,7 @@
    Comme dans Requête : la séance du jour, la semaine (6 jours à partir d'aujourd'hui), l'avancement global, « Adapter mon rythme »,
    les retards à replacer et la bulle de l'onglet (activités restantes aujourd'hui). */
 import { $, $$, esc, store, haptic } from './util.js';
-import { COURSES, EXOS, SERIES, course, seriesOfCourse, courseNumber } from './content.js';
+import { COURSES, EXOS, SERIES, course, courseNumber } from './content.js';
 import { courseState, seriesBest } from './progress.js';
 import { iso, fromIso, today, addD, wd, diffD, JL, JC, court, longJour, relJour } from './dates.js';
 import { buildOrder, replan, lateItems, sessionOf, lastDay, preview } from './planning-core.js';
@@ -10,13 +10,13 @@ import { weekHTML } from './streak.js';
 import { Sound } from './sound.js';
 
 /* ---------- les activités ---------- */
-const EXCL = ['reflexe', 'decodeur'];
-const exosOf = c => EXOS.filter(e => e.cours === c.id && !EXCL.includes(e.meca)).sort((a, b) => (a.meca === 'examen' ? 0 : 1) - (b.meca === 'examen' ? 0 : 1));
+/* une leçon, puis sa pratique (les défis 3D restent en accès libre depuis la leçon et l'onglet Exercices) */
+const exosOf = c => EXOS.filter(e => e.id === 'p-' + c.id);
 let cfg = { minutesCours: () => 3, ouvrir: () => {} };
 let ORDER = null;
 export const order = () => ORDER || (ORDER = buildOrder(COURSES, {
-  seriesOf: seriesOfCourse, exosOf,
-  minCours: c => cfg.minutesCours(c), minSerie: s => Math.max(3, Math.round(s.questions.length * 0.45)), minExo: e => (parseInt(e.duree, 10) || 4) + 1
+  seriesOf: () => [], exosOf,
+  minCours: c => cfg.minutesCours(c), minSerie: s => Math.max(3, Math.round(s.questions.length * 0.45)), minExo: e => Math.max(3, Math.round((e.situations || []).length * 0.6) + 1)
 }));
 const minOf = id => (order().find(o => o.id === id) || { min: 0 }).min;
 const exoRuns = () => store.get('exoRuns', {}) || {};
@@ -41,7 +41,7 @@ export function meta(id) {
   const k = id[0], ref = id.slice(2), min = minOf(id);
   if (k === 'c') { const c = course(ref); return { kind: 'cours', titre: c ? c.titre : ref, sous: c ? `Cours ${courseNumber(c)} · ${min} min` : '', min }; }
   if (k === 's') { const s = SERIES.get(ref); return { kind: 'serie', titre: s ? s.titre : ref, sous: `Série · ${s ? s.questions.length : ''} questions`, min }; }
-  if (k === 'x') { const e = EXOS.find(x => x.id === ref); return { kind: 'exo', titre: e ? e.titre : ref, sous: `Exercice 3D · ${e ? e.duree : ''}`, min }; }
+  if (k === 'x') { const e = EXOS.find(x => x.id === ref); const pr = e && e.meca === 'examen'; return { kind: 'exo', titre: e ? (pr ? `Pratique : ${e.titre}` : e.titre) : ref, sous: pr ? `${e.situations.length} situations en 3D · ${min} min` : `Défi 3D · ${e ? e.duree : ''}`, min }; }
   return { kind: 'blanc', titre: `Examen blanc n°${ref}`, sous: '40 questions, comme le jour J', min };
 }
 export function launch(id) {
@@ -51,7 +51,13 @@ export function launch(id) {
 }
 
 /* ---------- le plan ---------- */
-export const getPlan = () => store.get('plan', null);
+/* un ancien planning (séries, anciens exercices) est réparti à nouveau sur le parcours actuel, avec les mêmes réglages */
+export function getPlan() {
+  const p = store.get('plan', null); if (!p) return null;
+  const ids = new Set(order().map(o => o.id));
+  if ((p.sessions || []).some(s => s.items.some(id => !ids.has(id)))) { const n = replan(Object.assign({}, p, { sessions: [] }), order(), isDone, today()); store.set('plan', n); return n; }
+  return p;
+}
 function savePlan(p) { store.set('plan', p); refreshBadge(); }
 export function createPlan({ jours, minutes, examen }) {
   const p = replan({ jours: jours.slice().sort(), minutes, examen: examen || null, cree: Date.now(), sessions: [] }, order(), isDone, today());
@@ -182,7 +188,7 @@ export function renderPlanning() {
   $('#plSub').textContent = p ? 'Ta semaine, organisée rien que pour toi.' : 'Ton parcours réparti sur les jours qui t’arrangent, jusqu’au jour J.';
   if (!p) {
     const d = draftFrom(null);
-    host.innerHTML = `<div class="pl-setup"><div class="pl-intro"><span class="pl-intro-ic">${ico('cours')}</span><div><b>Ton planning personnalisé</b><p>${COURSES.length} cours, leurs séries, les exercices 3D et 4 examens blancs, répartis dans l’ordre. Tu pourras tout ajuster ensuite.</p></div></div>${rythmeHTML(d)}<button class="btn" id="plCreate">Créer mon planning</button></div>`;
+    host.innerHTML = `<div class="pl-setup"><div class="pl-intro"><span class="pl-intro-ic">${ico('cours')}</span><div><b>Ton planning personnalisé</b><p>${COURSES.length} leçons, chacune suivie de sa pratique en 3D, et 4 examens blancs, répartis dans l’ordre. Tu pourras tout ajuster ensuite.</p></div></div>${rythmeHTML(d)}<button class="btn" id="plCreate">Créer mon planning</button></div>`;
     bindRythme(host, d, () => { $('#plCreate').disabled = !d.jours.length; });
     $('#plCreate').addEventListener('click', () => { haptic('ok'); Sound.ui('ok'); createPlan(draftOut(d)); weekOff = 0; daySel = null; renderPlanning(); });
     return;

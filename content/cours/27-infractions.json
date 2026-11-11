@@ -125,21 +125,6 @@
    "vitesse": 50
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Tu grilles un stop. Combien de points perds-tu ?",
-   "choix": [
-    "2",
-    "4",
-    "6"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Stop ou feu rouge non respecté : 135 € et 4 points.",
-   "dire": "Question. Tu ne respectes pas un stop. Combien de points perds-tu ?",
-   "revoir": 2
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 27",

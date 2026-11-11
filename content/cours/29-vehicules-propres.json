@@ -106,6 +106,18 @@
      "x": 4.6,
      "vx": -0.9
     }
+   ],
+   "script": [
+    [
+     0.3,
+     "arret",
+     16
+    ],
+    [
+     8,
+     "vitesse",
+     15
+    ]
    ]
   },
   {
@@ -128,21 +140,6 @@
     ]
    ],
    "dire": "Au volant d’une électrique : lever le pied ralentit nettement la voiture, tout en rechargeant la batterie. L’accélération est immédiate, il faut la doser. Et l’autonomie baisse avec le froid et la vitesse."
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Une voiture électrique a une vignette Crit’Air :",
-   "choix": [
-    "0",
-    "1",
-    "5"
-   ],
-   "bonne": 0,
-   "bien": "Exact.",
-   "mal": "Les véhicules électriques et à hydrogène ont la vignette Crit’Air 0, verte.",
-   "dire": "Question. Quelle vignette Crit’Air pour une voiture électrique ?",
-   "revoir": 1
   },
   {
    "type": "fin",

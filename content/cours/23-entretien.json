@@ -128,20 +128,6 @@
    "dire": "L’ABS empêche les roues de se bloquer au freinage : tu gardes la direction. L’ESP corrige la trajectoire quand la voiture commence à glisser. Mais aucun des deux ne raccourcit miraculeusement la distance d’arrêt."
   },
   {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Un voyant rouge s’allume en roulant. Tu :",
-   "choix": [
-    "continues jusqu’au prochain garage",
-    "t’arrêtes dès que possible en sécurité"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Rouge, c’est une alerte : on s’arrête dès que c’est possible sans danger.",
-   "dire": "Question. Un voyant rouge s’allume pendant que tu roules. Que fais-tu ?",
-   "revoir": 3
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 23",

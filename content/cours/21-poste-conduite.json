@@ -95,6 +95,31 @@
      "Angle mort",
      "regarde avant de partir"
     ]
+   ],
+   "voie": 4.6,
+   "script": [
+    [
+     2.4,
+     "clignotant",
+     "g"
+    ],
+    [
+     3.2,
+     "vitesse",
+     20,
+     2
+    ],
+    [
+     3.4,
+     "voie",
+     1.75,
+     2400
+    ],
+    [
+     6.2,
+     "clignotant",
+     null
+    ]
    ]
   },
   {
@@ -121,20 +146,6 @@
     ]
    ],
    "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. Et avant d’ouvrir, un coup d’œil au rétroviseur : un cycliste peut arriver."
-  },
-  {
-   "type": "quiz",
-   "ch": 0,
-   "question": "L’appui-tête bien réglé, son haut se trouve :",
-   "choix": [
-    "au niveau de la nuque",
-    "au niveau du haut du crâne"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Trop bas, il ne protège pas du coup du lapin : son haut doit arriver au niveau du haut de ta tête.",
-   "dire": "Question. Un appui-tête bien réglé : où se trouve son bord supérieur ?",
-   "revoir": 1
   },
   {
    "type": "fin",

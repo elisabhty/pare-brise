@@ -21,7 +21,7 @@ const texCache = new Map();
 const listeners = {};
 const frameHooks = new Set();
 const tweens = new Set();
-let slowFrames = 0, frameCount = 0, bloomOn = false, paused = false, maxDpr = 1.5, perfAcc = 0, perfN = 0;
+let slowFrames = 0, frameCount = 0, bloomOn = false, paused = false, maxDpr = 2, hiRes = false, perfAcc = 0, perfN = 0;
 const wantBloom = () => bloom && bloom.strength >= 0.45 && maxDpr > 1.1;
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
@@ -91,8 +91,9 @@ let signGeo, poleGeo, poleMat, ringGeo;
 function makeSign(id, size = 1, pole = 1, glow = 0.32) {
   const g = new THREE.Group(); g.userData.id = id;
   const head = new THREE.Group(); head.position.y = pole + size / 2; g.add(head);
-  const front = new THREE.Mesh(signGeo, new THREE.MeshBasicMaterial({ alphaTest: 0.5, color: new THREE.Color(1, 1, 1).multiplyScalar(0.84 + glow * 0.4) }));
-  const back = new THREE.Mesh(signGeo, new THREE.MeshStandardMaterial({ color: 0x6d747e, alphaTest: 0.5, roughness: 0.55, metalness: 0.5 }));
+  // panneau net : couleurs exactes (pas de tone mapping), bords lissés (alpha to coverage) au lieu des escaliers de l'alphaTest
+  const front = new THREE.Mesh(signGeo, new THREE.MeshBasicMaterial({ alphaTest: 0.5, alphaToCoverage: true, toneMapped: false, color: new THREE.Color(1, 1, 1).multiplyScalar(Math.min(1, 0.93 + glow * 0.2)) }));
+  const back = new THREE.Mesh(signGeo, new THREE.MeshStandardMaterial({ color: 0x6d747e, alphaTest: 0.5, alphaToCoverage: true, roughness: 0.55, metalness: 0.5 }));
   front.scale.setScalar(size); back.scale.setScalar(size);
   back.rotation.y = Math.PI; back.position.z = -0.014;
   front.visible = back.visible = false;
@@ -646,7 +647,8 @@ function setFov(fovRegion) {
 function resize() {
   const r = canvas.getBoundingClientRect();
   W = Math.max(1, r.width); H = Math.max(1, r.height);
-  const dpr = Math.min(window.__dpr || maxDpr, window.devicePixelRatio || 1);
+  // image figée (arrêt sur image) : pleine résolution de l'écran, jusqu'à 3× ; en mouvement : 2× au plus, adapté à l'appareil
+  const dpr = Math.min(window.__dpr || (hiRes ? 3 : maxDpr), window.devicePixelRatio || 1);
   renderer.setPixelRatio(dpr); renderer.setSize(W, H, false);
   composer.setPixelRatio(dpr); composer.setSize(W, H);
   bloom.resolution.set(W * dpr / 2, H * dpr / 2);
@@ -665,7 +667,7 @@ function loop(now) {
   // qualité adaptative : si l'appareil peine, on baisse la résolution (jusqu'à 1×) puis on coupe le bloom
   if (!window.__noAutoPerf && frameCount > 20 && raw < 0.25) {
     perfAcc += raw; perfN++;
-    if (perfN >= 60) { const avg = perfAcc / perfN; perfAcc = 0; perfN = 0; if (avg > 0.024 && maxDpr > 1) { maxDpr = Math.max(1, maxDpr - 0.25); resize(); bloomOn = wantBloom(); } }
+    if (perfN >= 60 && !hiRes) { const avg = perfAcc / perfN; perfAcc = 0; perfN = 0; const floor = avg > 0.045 ? 1.25 : 1.5; if (avg > 0.024 && maxDpr > floor) { maxDpr = Math.max(floor, maxDpr - 0.25); resize(); bloomOn = wantBloom(); } }
   }
 }
 
@@ -715,6 +717,7 @@ E.pause = v => { paused = !!v; if (!v) last = 0; };
 E.info = () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.triangles, dpr: renderer.getPixelRatio(), bloom: bloomOn, paused });
 Object.defineProperty(E, 'current', { get: () => worldName });
 E.region = (top, height) => { region = { top, height }; };
+E.hiRes = on => { if (hiRes === !!on) return; hiRes = !!on; resize(); };
 E.regionFromEl = el => { if (!el || !canvas) return; const r = el.getBoundingClientRect(), c = canvas.getBoundingClientRect(); region = { top: (r.top - c.top) / c.height, height: r.height / c.height }; };
 E.pick = (cx, cy) => {
   const w = worlds[worldName]; if (!w) return null;

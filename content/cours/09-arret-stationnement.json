@@ -160,21 +160,14 @@
      "Angle mort",
      "un cycliste arrive"
     ]
-   ]
-  },
-  {
-   "type": "quiz",
-   "ch": 2,
-   "question": "Stationnement en descente, le long d’un trottoir. Tes roues avant :",
-   "choix": [
-    "droites",
-    "braquées vers le trottoir",
-    "braquées vers la chaussée"
    ],
-   "bonne": 1,
-   "bien": "Exact : vers le trottoir, la voiture ne peut pas partir sur la route.",
-   "mal": "En pente, braque tes roues vers le trottoir, serre le frein de parking et engage une vitesse.",
-   "dire": "Question. Tu te gares en descente, le long d’un trottoir. Comment places-tu tes roues avant ?"
+   "script": [
+    [
+     3.6,
+     "ouvrir",
+     0
+    ]
+   ]
   },
   {
    "type": "fin",

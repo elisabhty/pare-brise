@@ -137,7 +137,7 @@ function paint() {
     bindGrid(c, id => { draft.perso = id; const m = $('#obMe .av'); m.outerHTML = avatarHTML(id, 'xl pop'); });
     footer('Continuer', () => goto(4));
   } else if (k === 'rythme') {
-    c.innerHTML = `${dots()}<h1 class="ob-t">Ton <em>rythme</em></h1><p class="ob-p">Je répartis les cours, les exercices 3D et les examens blancs sur tes jours, jusqu’au jour J.</p>${rythmeHTML(rDraft)}`;
+    c.innerHTML = `${dots()}<h1 class="ob-t">Ton <em>rythme</em></h1><p class="ob-p">Je répartis les leçons, leurs pratiques en 3D et les examens blancs sur tes jours, jusqu’au jour J.</p>${rythmeHTML(rDraft)}`;
     bindRythme(c, rDraft, () => { $('#obGo').disabled = !rDraft.jours.length; });
     footer('Créer mon planning', () => { if (!rDraft.jours.length) return; createPlan(draftOut(rDraft)); finish(); }, { second: ['Plus tard', finish] });
   } else if (k === 'pret') {

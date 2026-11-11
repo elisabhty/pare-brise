@@ -86,9 +86,20 @@
    "acteurs": [
     {
      "type": "tracteur",
-     "S": 16,
+     "S": 12,
      "kmh": 28
     }
+   ],
+   "script": [
+    [
+     0.8,
+     "depasser",
+     0,
+     {
+      "kmh": 66,
+      "marge": 7
+     }
+    ]
    ]
   },
   {
@@ -136,6 +147,18 @@
      "1,50 m",
      "minimum hors agglomération"
     ]
+   ],
+   "script": [
+    [
+     1.0,
+     "depasser",
+     0,
+     {
+      "x": 0.15,
+      "kmh": 45,
+      "marge": 5
+     }
+    ]
    ]
   },
   {
@@ -158,19 +181,6 @@
     ]
    ],
    "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt."
-  },
-  {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Un véhicule devant toi tourne à gauche. Par où le dépasses-tu ?",
-   "choix": [
-    "Par la gauche",
-    "Par la droite"
-   ],
-   "bonne": 1,
-   "bien": "Exact : on dépasse par la droite un véhicule qui tourne à gauche.",
-   "mal": "Quand le véhicule de devant a mis son clignotant à gauche et s’est déporté pour tourner, tu le dépasses par la droite.",
-   "dire": "Question. Le véhicule devant toi tourne à gauche. Par quel côté le dépasses-tu ?"
   },
   {
    "type": "fin",

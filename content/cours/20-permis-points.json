@@ -127,20 +127,6 @@
    "dire": "Un point perdu pour une petite infraction revient après six mois sans nouvelle infraction. Sinon, ton capital revient en entier après deux ou trois ans sans infraction, selon la gravité. Et un stage de sensibilisation rend 4 points, au maximum une fois par an."
   },
   {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Jeune conducteur, tu as bu un verre de vin. Tu dépasses probablement :",
-   "choix": [
-    "0,2 g/L",
-    "rien du tout"
-   ],
-   "bonne": 0,
-   "bien": "Exact : un seul verre peut suffire.",
-   "mal": "Le taux maximal en probatoire est de 0,2 g/L : un seul verre peut le dépasser.",
-   "dire": "Question. Jeune conducteur, tu as bu un verre de vin. Risques-tu de dépasser le taux autorisé ?",
-   "revoir": 3
-  },
-  {
    "type": "fin",
    "ch": 1,
    "eyebrow": "Fin du cours 20",

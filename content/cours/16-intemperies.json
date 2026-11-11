@@ -158,20 +158,6 @@
    "dire": "Dans les communes de montagne concernées, du premier novembre au 31 mars, ta voiture doit avoir des pneus hiver ou quatre saisons, ou des chaînes ou chaussettes à neige dans le coffre."
   },
   {
-   "type": "quiz",
-   "ch": 0,
-   "question": "Ta voiture part en aquaplaning. Tu :",
-   "choix": [
-    "freines fort",
-    "lâches doucement l’accélérateur et tiens le volant"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Pas de freinage brusque : lève le pied et garde les roues droites.",
-   "dire": "Question. Ta voiture part en aquaplaning. Que fais-tu ?",
-   "revoir": 2
-  },
-  {
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 16",

@@ -177,20 +177,6 @@
    "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Une victime inconsciente qui respire : position latérale de sécurité. Si elle ne respire plus : massage cardiaque et défibrillateur."
   },
   {
-   "type": "quiz",
-   "ch": 2,
-   "question": "Un motard blessé est allongé sur la route, casque sur la tête. Tu :",
-   "choix": [
-    "retires son casque pour l’aider à respirer",
-    "laisses le casque en place"
-   ],
-   "bonne": 1,
-   "bien": "Exact.",
-   "mal": "Retirer le casque peut aggraver une blessure à la colonne : on le laisse aux secours.",
-   "dire": "Question. Un motard blessé est allongé, casque sur la tête. Que fais-tu ?",
-   "revoir": 4
-  },
-  {
    "type": "fin",
    "ch": 2,
    "eyebrow": "Fin du cours 25",

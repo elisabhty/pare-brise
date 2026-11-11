@@ -70,6 +70,18 @@
      "1,50 m",
      "hors agglomération"
     ]
+   ],
+   "script": [
+    [
+     1.6,
+     "depasser",
+     0,
+     {
+      "x": 0.1,
+      "kmh": 40,
+      "marge": 6
+     }
+    ]
    ]
   },
   {
@@ -143,19 +155,6 @@
     ]
    ],
    "dire": "Les trottinettes électriques sont des engins de déplacement personnel motorisés. Il faut avoir au moins 14 ans, elles ne dépassent pas 25 kilomètres heure, on y monte seul, et le trottoir est interdit sauf autorisation, à l’allure du pas."
-  },
-  {
-   "type": "quiz",
-   "ch": 1,
-   "question": "Un enfant de 9 ans circule à vélo. Le casque est :",
-   "choix": [
-    "conseillé",
-    "obligatoire"
-   ],
-   "bonne": 1,
-   "bien": "Exact : obligatoire avant 12 ans.",
-   "mal": "Le casque est obligatoire pour les enfants de moins de 12 ans à vélo, conducteurs comme passagers.",
-   "dire": "Question. Un enfant de 9 ans circule à vélo. Le casque est-il obligatoire ?"
   },
   {
    "type": "fin",
