@@ -1,0 +1,91 @@
+[
+ {
+  "id": "a10-1",
+  "cours": "autoroute",
+  "type": "qcm",
+  "q": "Sur autoroute, ta voie normale de circulation est :",
+  "choix": [
+   "celle de gauche",
+   "celle du milieu",
+   "celle de droite"
+  ],
+  "bonnes": [
+   2
+  ],
+  "explication": "On circule à droite, on double à gauche."
+ },
+ {
+  "id": "a10-2",
+  "cours": "autoroute",
+  "type": "qcm",
+  "q": "En cas de panne sur autoroute, tu attends les secours :",
+  "choix": [
+   "dans la voiture",
+   "derrière la glissière"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Gilet enfilé, tout le monde derrière la glissière de sécurité."
+ },
+ {
+  "id": "a10-3",
+  "cours": "autoroute",
+  "type": "qcm",
+  "q": "Un chevron d’écart avec la voiture de devant, c’est :",
+  "choix": [
+   "la sécurité",
+   "le danger"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Un trait : danger. Deux traits : sécurité."
+ },
+ {
+  "id": "a10-4",
+  "cours": "autoroute",
+  "type": "qcm",
+  "q": "Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Tu :",
+  "choix": [
+   "changes de voie ou ralentis",
+   "klaxonnes"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "C’est le corridor de sécurité."
+ },
+ {
+  "id": "a10-5",
+  "cours": "autoroute",
+  "type": "qcm",
+  "q": "Ce panneau indique :",
+  "choix": [
+   "le début d’une autoroute",
+   "la fin d’une autoroute"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "C107 : entrée d’autoroute.",
+  "panneaux": [
+   "C107"
+  ]
+ },
+ {
+  "id": "a10-6",
+  "cours": "autoroute",
+  "type": "qcm",
+  "q": "Il pleut. Sur autoroute, tu roules au maximum à :",
+  "choix": [
+   "130 km/h",
+   "110 km/h",
+   "100 km/h"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Sous la pluie : 110 km/h."
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "id": "dm19-1",
+  "cours": "drogues-medicaments",
+  "type": "qcm",
+  "q": "Pour les stupéfiants, le seuil toléré au volant est :",
+  "choix": [
+   "0,2 g",
+   "aucun"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Tolérance zéro : une trace suffit."
+ },
+ {
+  "id": "dm19-2",
+  "cours": "drogues-medicaments",
+  "type": "qcm",
+  "q": "Pictogramme orange sur un médicament :",
+  "choix": [
+   "aucun risque",
+   "sois très prudent, demande l’avis d’un médecin"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Niveau 2 : très prudent, avis médical."
+ },
+ {
+  "id": "dm19-3",
+  "cours": "drogues-medicaments",
+  "type": "qcm",
+  "q": "Conduire après usage de stupéfiants retire :",
+  "choix": [
+   "3 points",
+   "6 points"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "C’est un délit : 6 points."
+ },
+ {
+  "id": "dm19-4",
+  "cours": "drogues-medicaments",
+  "type": "qcm",
+  "q": "Le dépistage des stupéfiants se fait par :",
+  "choix": [
+   "un test salivaire",
+   "un éthylotest"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Test salivaire, confirmé si besoin par une analyse."
+ }
+]

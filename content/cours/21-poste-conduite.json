@@ -1,0 +1,157 @@
+{
+ "id": "poste-conduite",
+ "ordre": 21,
+ "theme": "vehicule",
+ "titre": "S’installer et quitter son véhicule",
+ "accroche": "avant même de démarrer",
+ "resume": "Réglages du siège, de l’appui-tête et des rétroviseurs, démarrage en sécurité et sortie du véhicule.",
+ "affiche": [
+  "C1a"
+ ],
+ "chapitres": [
+  "S’installer",
+  "Partir et quitter"
+ ],
+ "series": [
+  "serie-poste-conduite"
+ ],
+ "memo": [
+  {
+   "texte": "Appui-tête",
+   "tag": "Le haut au niveau du haut du crâne"
+  },
+  {
+   "texte": "Siège",
+   "tag": "Jambes légèrement fléchies"
+  },
+  {
+   "texte": "Avant de partir",
+   "tag": "Rétroviseur, angle mort, clignotant"
+  },
+  {
+   "texte": "En quittant",
+   "tag": "Frein de parking, vitesse engagée"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 21 · Véhicule",
+   "titre": "S’installer et quitter",
+   "sous": "avant même de démarrer",
+   "dire": "Cours numéro 21 : s’installer. Une bonne position, c’est plus de contrôle et moins de blessures en cas de choc."
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les réglages",
+   "titre": "Dans l’ordre",
+   "items": [
+    [
+     "Le siège",
+     "Jambes légèrement fléchies, pédale au plancher"
+    ],
+    [
+     "Le dossier",
+     "Bras légèrement pliés, poignets sur le haut du volant"
+    ],
+    [
+     "L’appui-tête",
+     "Son haut au niveau du haut du crâne"
+    ],
+    [
+     "Les rétroviseurs",
+     "Le minimum de carrosserie visible"
+    ],
+    [
+     "La ceinture",
+     "À plat, sur l’épaule et le bassin"
+    ]
+   ],
+   "dire": "D’abord le siège : jambes légèrement fléchies quand la pédale est au plancher. Puis le dossier : poignets posés sur le haut du volant, bras légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs. Et la ceinture, bien à plat.",
+   "vitesse": 0
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Avant de partir",
+   "titre": "Regarder autour",
+   "dire": "Avant de démarrer : rétroviseurs, coup d’œil dans l’angle mort, clignotant, puis tu t’insères sans gêner ceux qui arrivent.",
+   "env": "ville",
+   "kmh": 0,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": -6,
+     "x": 2.6,
+     "kmh": 16
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Angle mort",
+     "regarde avant de partir"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "En quittant",
+   "titre": "Immobiliser",
+   "items": [
+    [
+     "Frein de parking",
+     "Toujours serré"
+    ],
+    [
+     "Une vitesse engagée",
+     "Surtout en pente"
+    ],
+    [
+     "Moteur coupé",
+     "Et clé ou badge avec toi"
+    ],
+    [
+     "Portière",
+     "Rétroviseur avant d’ouvrir"
+    ]
+   ],
+   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. Et avant d’ouvrir, un coup d’œil au rétroviseur : un cycliste peut arriver."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "L’appui-tête bien réglé, son haut se trouve :",
+   "choix": [
+    "au niveau de la nuque",
+    "au niveau du haut du crâne"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Trop bas, il ne protège pas du coup du lapin : son haut doit arriver au niveau du haut de ta tête.",
+   "dire": "Question. Un appui-tête bien réglé : où se trouve son bord supérieur ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 21",
+   "titre": "Installation : OK",
+   "stats": [
+    [
+     "5",
+     "réglages"
+    ],
+    [
+     "4",
+     "gestes en quittant"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

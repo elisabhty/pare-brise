@@ -1,0 +1,73 @@
+[
+ {
+  "id": "ne15-1",
+  "cours": "nuit-eclairage",
+  "type": "qcm",
+  "q": "Les feux de croisement éclairent à environ :",
+  "choix": [
+   "30 m",
+   "60 m",
+   "100 m"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Environ 30 mètres."
+ },
+ {
+  "id": "ne15-2",
+  "cours": "nuit-eclairage",
+  "type": "qcm",
+  "q": "Sous une forte pluie, le feu de brouillard arrière est :",
+  "choix": [
+   "obligatoire",
+   "interdit"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Il est réservé au brouillard et à la neige."
+ },
+ {
+  "id": "ne15-3",
+  "cours": "nuit-eclairage",
+  "type": "qcm",
+  "q": "Tu es ébloui par une voiture en face. Tu :",
+  "choix": [
+   "regardes le bord droit et ralentis",
+   "mets tes feux de route"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Ne réponds pas à l’éblouissement : regarde à droite et ralentis."
+ },
+ {
+  "id": "ne15-4",
+  "cours": "nuit-eclairage",
+  "type": "qcm",
+  "q": "Tu suis une voiture la nuit, de près. Tes feux :",
+  "choix": [
+   "de route",
+   "de croisement"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Les feux de route l’éblouiraient dans ses rétroviseurs."
+ },
+ {
+  "id": "ne15-5",
+  "cours": "nuit-eclairage",
+  "type": "qcm",
+  "q": "Les feux de route sont utilisables :",
+  "choix": [
+   "en ville éclairée",
+   "hors agglomération, si tu n’éblouis personne"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Route non éclairée et personne en vue."
+ }
+]

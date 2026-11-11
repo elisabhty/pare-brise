@@ -1,0 +1,73 @@
+[
+ {
+  "id": "fd18-1",
+  "cours": "fatigue-distractions",
+  "type": "qcm",
+  "q": "Il est conseillé de faire une pause :",
+  "choix": [
+   "toutes les 2 heures",
+   "toutes les 4 heures"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Une pause toutes les deux heures."
+ },
+ {
+  "id": "fd18-2",
+  "cours": "fatigue-distractions",
+  "type": "qcm",
+  "q": "Tu as sommeil au volant. La meilleure solution :",
+  "choix": [
+   "boire un café",
+   "t’arrêter et dormir 15 à 20 minutes"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Seul le sommeil répare la fatigue."
+ },
+ {
+  "id": "fd18-3",
+  "cours": "fatigue-distractions",
+  "type": "qcm",
+  "q": "Téléphone tenu en main au volant :",
+  "choix": [
+   "68 € et 1 point",
+   "135 € et 3 points"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "135 € et 3 points."
+ },
+ {
+  "id": "fd18-4",
+  "cours": "fatigue-distractions",
+  "type": "qcm",
+  "q": "Les oreillettes au volant sont :",
+  "choix": [
+   "autorisées",
+   "interdites"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Tout dispositif dans l’oreille est interdit."
+ },
+ {
+  "id": "fd18-5",
+  "cours": "fatigue-distractions",
+  "type": "qcm",
+  "q": "À 90 km/h, en une seconde, tu parcours environ :",
+  "choix": [
+   "9 m",
+   "25 m",
+   "50 m"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "90 ÷ 3,6 ≈ 25 m par seconde."
+ }
+]

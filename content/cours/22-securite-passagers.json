@@ -1,0 +1,145 @@
+{
+ "id": "securite-passagers",
+ "ordre": 22,
+ "theme": "securite",
+ "titre": "Ceinture, enfants et chargement",
+ "accroche": "protéger chaque passager",
+ "resume": "La ceinture pour tous, les sièges enfants, l’airbag passager et le bon chargement du véhicule.",
+ "affiche": [
+  "A14"
+ ],
+ "chapitres": [
+  "La ceinture",
+  "Les enfants",
+  "Le chargement"
+ ],
+ "series": [
+  "serie-securite-passagers"
+ ],
+ "memo": [
+  {
+   "texte": "Ceinture",
+   "tag": "Obligatoire à toutes les places"
+  },
+  {
+   "texte": "Enfants",
+   "tag": "Siège adapté jusqu’à 10 ans"
+  },
+  {
+   "texte": "Siège dos à la route à l’avant",
+   "tag": "Airbag désactivé"
+  },
+  {
+   "texte": "Ceinture non bouclée",
+   "tag": "135 € et 3 points"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 22 · Sécurité",
+   "titre": "Ceinture, enfants, chargement",
+   "sous": "protéger chaque passager",
+   "dire": "Cours numéro 22 : la sécurité de tes passagers. Tu en es responsable.",
+   "vitesse": 40
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "La ceinture",
+   "titre": "À l’avant comme à l’arrière",
+   "items": [
+    [
+     "135",
+     "€",
+     "d’amende"
+    ],
+    [
+     "3",
+     "points",
+     "retirés au conducteur non attaché"
+    ]
+   ],
+   "dire": "La ceinture est obligatoire à toutes les places. Ne pas la boucler coûte 135 euros et 3 points au conducteur. Et c’est toi qui réponds des passagers mineurs.",
+   "vitesse": 40
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Les enfants",
+   "titre": "Un siège adapté",
+   "items": [
+    [
+     "Jusqu’à 10 ans",
+     "Système de retenue adapté à son poids et sa taille"
+    ],
+    [
+     "Bébé",
+     "Dos à la route, le plus longtemps possible"
+    ],
+    [
+     "À l’avant, dos à la route",
+     "Seulement avec l’airbag passager désactivé"
+    ]
+   ],
+   "dire": "Jusqu’à 10 ans, un enfant voyage dans un système de retenue adapté à sa taille et à son poids. Les bébés voyagent dos à la route. Et si un siège dos à la route est installé à l’avant, l’airbag passager doit être désactivé."
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Le chargement",
+   "titre": "Rien ne vole",
+   "items": [
+    [
+     "Objets lourds",
+     "En bas, dans le coffre, calés"
+    ],
+    [
+     "Plage arrière",
+     "Vide : en cas de choc, tout devient projectile"
+    ],
+    [
+     "Coffre de toit",
+     "Plus de consommation, plus de prise au vent"
+    ],
+    [
+     "Animaux",
+     "Attachés ou en cage"
+    ]
+   ],
+   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Rien sur la plage arrière : en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Et les animaux voyagent attachés ou en cage."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Ton passager de 15 ans n’a pas mis sa ceinture. Qui est sanctionné ?",
+   "choix": [
+    "Lui",
+    "Toi, le conducteur"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Le conducteur est responsable du port de la ceinture des passagers mineurs.",
+   "dire": "Question. Ton passager de 15 ans n’a pas bouclé sa ceinture. Qui est sanctionné ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 22",
+   "titre": "Passagers : OK",
+   "stats": [
+    [
+     "10",
+     "ans : siège adapté"
+    ],
+    [
+     "3",
+     "points pour la ceinture"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

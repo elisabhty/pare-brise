@@ -1,0 +1,197 @@
+{
+ "id": "depassement",
+ "ordre": 8,
+ "theme": "circulation",
+ "titre": "Dépasser et croiser",
+ "accroche": "seulement si tout est vert",
+ "resume": "Les conditions pour dépasser, les interdictions, les distances avec les cyclistes et l’attitude quand on se fait dépasser.",
+ "affiche": [
+  "B3",
+  "A21",
+  "AB1"
+ ],
+ "chapitres": [
+  "Avant de doubler",
+  "Les interdictions",
+  "Les usagers vulnérables"
+ ],
+ "series": [
+  "serie-depassement"
+ ],
+ "memo": [
+  {
+   "texte": "Visibilité, place, ligne discontinue",
+   "tag": "Avant de doubler"
+  },
+  {
+   "texte": "Panneau B3",
+   "tag": "Dépassement interdit",
+   "panneau": "B3"
+  },
+  {
+   "texte": "Cycliste",
+   "tag": "1 m en ville, 1,50 m hors ville",
+   "panneau": "A21"
+  },
+  {
+   "texte": "On te double",
+   "tag": "Ne pas accélérer, serrer à droite"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 8 · Circulation",
+   "titre": "Dépasser et croiser",
+   "sous": "seulement si tout est vert",
+   "dire": "Cours numéro 8 : le dépassement. C’est la manœuvre la plus risquée sur route. On ne la commence que si tout est réuni.",
+   "vitesse": 60
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Avant de doubler",
+   "titre": "La check-list",
+   "items": [
+    [
+     "La ligne est discontinue",
+     "Et aucun panneau ne l’interdit"
+    ],
+    [
+     "Personne en face",
+     "Et assez de visibilité"
+    ],
+    [
+     "Rétroviseurs et angle mort",
+     "Personne ne te double déjà"
+    ],
+    [
+     "Clignotant",
+     "Puis on se rabat sans gêner"
+    ]
+   ],
+   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Un coup d’œil aux rétroviseurs et dans l’angle mort. Clignotant, puis dépassement franc, et on se rabat sans couper la route."
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "En pratique",
+   "titre": "Doubler un tracteur",
+   "dire": "Ligne discontinue, route dégagée : tu peux doubler ce tracteur. Clignotant à gauche, dépassement rapide, puis rabattement quand tu le vois dans ton rétroviseur intérieur.",
+   "env": "route",
+   "kmh": 30,
+   "camera": "poursuite",
+   "ligne": "discontinue",
+   "acteurs": [
+    {
+     "type": "tracteur",
+     "S": 16,
+     "kmh": 28
+    }
+   ]
+  },
+  {
+   "type": "panneaux",
+   "ch": 1,
+   "eyebrow": "Interdit de dépasser",
+   "titre": "Le panneau B3",
+   "panneaux": [
+    "B3",
+    "AB1"
+   ],
+   "dire": "Le panneau B3 interdit de dépasser les véhicules à moteur, sauf les deux-roues sans side-car. Le dépassement est aussi interdit à l’approche d’une intersection où tu n’as pas la priorité, dans un virage ou en haut d’une côte sans visibilité.",
+   "etiquettes": [
+    [
+     "B3",
+     "Interdiction de dépasser"
+    ],
+    [
+     "AB1",
+     "Intersection, priorité à droite"
+    ]
+   ]
+  },
+  {
+   "type": "situation",
+   "ch": 2,
+   "eyebrow": "Usagers vulnérables",
+   "titre": "Un cycliste devant toi",
+   "dire": "Pour dépasser un cycliste, laisse au moins un mètre en agglomération, et un mètre cinquante hors agglomération. Et c’est la seule exception : tu peux chevaucher une ligne continue pour le faire, si c’est sans danger.",
+   "env": "route",
+   "kmh": 20,
+   "camera": "poursuite",
+   "ligne": "continue",
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": 12,
+     "x": 2.7,
+     "kmh": 20
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "1,50 m",
+     "minimum hors agglomération"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Quand on te double",
+   "titre": "Facilite la manœuvre",
+   "items": [
+    [
+     "Ne pas accélérer",
+     "C’est interdit"
+    ],
+    [
+     "Serrer à droite",
+     "Pour lui laisser de la place"
+    ],
+    [
+     "Rester attentif",
+     "Il peut se rabattre court"
+    ]
+   ],
+   "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt."
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Un véhicule devant toi tourne à gauche. Par où le dépasses-tu ?",
+   "choix": [
+    "Par la gauche",
+    "Par la droite"
+   ],
+   "bonne": 1,
+   "bien": "Exact : on dépasse par la droite un véhicule qui tourne à gauche.",
+   "mal": "Quand le véhicule de devant a mis son clignotant à gauche et s’est déporté pour tourner, tu le dépasses par la droite.",
+   "dire": "Question. Le véhicule devant toi tourne à gauche. Par quel côté le dépasses-tu ?"
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 8",
+   "titre": "Dépassement : OK",
+   "stats": [
+    [
+     "4",
+     "conditions avant de doubler"
+    ],
+    [
+     "1,5",
+     "m pour un cycliste hors ville"
+    ],
+    [
+     "1",
+     "exception : le cycliste"
+    ]
+   ],
+   "dire": "Cours terminé. Fais l’exercice « Doubler ou pas ? » : six situations, à toi de décider."
+  }
+ ]
+}

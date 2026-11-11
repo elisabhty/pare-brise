@@ -1,10 +1,11 @@
 /* Tout le contenu (thèmes, cours, questions, séries) arrive en JSON.
    Aujourd'hui il est intégré au build ; demain il peut venir d'une API (Supabase…) avec le même format. */
 
-let raw = { themes: [], cours: [], questions: [], series: [] };
+let raw = { themes: [], cours: [], questions: [], series: [], exercices: [] };
 try { raw = JSON.parse(document.getElementById('content').textContent); } catch (e) { console.error('Contenu illisible', e); }
 
 export const THEMES = raw.themes;
+export const EXOS = raw.exercices || [];
 export const COURSES = raw.cours.slice().sort((a, b) => (a.ordre || 99) - (b.ordre || 99));
 export const QUESTIONS = new Map(raw.questions.map(q => [q.id, q]));
 export const SERIES = new Map(raw.series.map(s => [s.id, s]));

@@ -1,0 +1,143 @@
+{
+ "id": "marquages",
+ "ordre": 7,
+ "theme": "circulation",
+ "titre": "Les marquages au sol",
+ "accroche": "les lignes parlent",
+ "resume": "Lignes continues, discontinues, d’annonce, flèches de rabattement, lignes jaunes et zébras : ce que dit chaque marquage.",
+ "affiche": [
+  "B6d",
+  "B6a1",
+  "C20a"
+ ],
+ "chapitres": [
+  "Les lignes",
+  "Les autres marquages"
+ ],
+ "series": [
+  "serie-marquages"
+ ],
+ "memo": [
+  {
+   "texte": "Ligne continue",
+   "tag": "Ne jamais franchir ni chevaucher"
+  },
+  {
+   "texte": "Ligne d’annonce",
+   "tag": "Une ligne continue arrive"
+  },
+  {
+   "texte": "Ligne jaune continue",
+   "tag": "Arrêt et stationnement interdits",
+   "panneau": "B6d"
+  },
+  {
+   "texte": "Ligne jaune discontinue",
+   "tag": "Stationnement interdit",
+   "panneau": "B6a1"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 7 · Circulation",
+   "titre": "Les marquages au sol",
+   "sous": "les lignes parlent",
+   "dire": "Cours numéro 7 : les marquages au sol. Une ligne blanche, ce n’est pas de la décoration : c’est une règle.",
+   "vitesse": 50
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Ligne continue",
+   "titre": "On ne la franchit pas",
+   "dire": "Une ligne continue ne se franchit pas, et ne se chevauche pas non plus. Elle signale souvent une zone sans visibilité : virage, sommet de côte.",
+   "env": "route",
+   "kmh": 50,
+   "camera": "poursuite",
+   "ligne": "continue"
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Ligne discontinue",
+   "titre": "On peut la franchir",
+   "dire": "La ligne discontinue, avec des traits courts et des intervalles longs, peut être franchie : pour dépasser, ou pour tourner à gauche, si c’est sans danger.",
+   "env": "route",
+   "kmh": 50,
+   "camera": "poursuite",
+   "ligne": "discontinue"
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Ligne d’annonce",
+   "titre": "Attention, ça va changer",
+   "dire": "Quand les traits s’allongent et que les intervalles raccourcissent, c’est une ligne d’annonce. Elle prévient qu’une ligne continue arrive : ne commence pas de dépassement.",
+   "env": "route",
+   "kmh": 50,
+   "camera": "haut",
+   "ligne": "annonce"
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Les autres marquages",
+   "titre": "À lire au sol",
+   "items": [
+    [
+     "Flèches de rabattement",
+     "Elles t’obligent à te rabattre"
+    ],
+    [
+     "Zébras",
+     "Zone interdite à la circulation et au stationnement"
+    ],
+    [
+     "Ligne jaune continue",
+     "Arrêt et stationnement interdits"
+    ],
+    [
+     "Ligne jaune discontinue",
+     "Stationnement interdit"
+    ]
+   ],
+   "dire": "Les flèches de rabattement, inclinées, t’obligent à te rabattre : une ligne continue approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Le long du trottoir, une ligne jaune continue interdit l’arrêt et le stationnement, une ligne jaune discontinue interdit seulement le stationnement."
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Une ligne mixte : continue de ton côté, discontinue de l’autre. Peux-tu dépasser ?",
+   "choix": [
+    "Oui",
+    "Non"
+   ],
+   "bonne": 1,
+   "bien": "Exact : tu lis toujours la ligne de ton côté.",
+   "mal": "Avec une ligne mixte, c’est le trait de ton côté qui compte. S’il est continu, tu ne franchis pas.",
+   "dire": "Question. Une ligne mixte : continue de ton côté, discontinue de l’autre. As-tu le droit de dépasser ?"
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 7",
+   "titre": "Marquages : OK",
+   "stats": [
+    [
+     "3",
+     "types de lignes"
+    ],
+    [
+     "2",
+     "lignes jaunes"
+    ],
+    [
+     "1",
+     "règle : on lit son côté"
+    ]
+   ],
+   "dire": "Cours terminé. Les lignes, c’est la base des dépassements : enchaîne avec le cours suivant."
+  }
+ ]
+}

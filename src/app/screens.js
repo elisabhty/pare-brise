@@ -13,6 +13,7 @@ import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
 import { roadmap } from './roadmap.js';
+import { renderHomeExos } from './exos.js';
 
 /* ---------- utilitaires d'affichage ---------- */
 export const courseMinutes = c => Math.max(1, Math.round(c.scenes.reduce((a, s) => a + splitSentences(s.dire || '').reduce((b, t) => b + estimate(t) + 180, 0) + 450, 0) / 60000));
@@ -27,21 +28,22 @@ const courseRow = (c, compact) => {
 function drawPoster(c) {
   if (!has3D || !c) return;
   SALLE.setPoster((ctx, w, h) => {
-    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#3D7BFF'); g.addColorStop(1, '#0B2A7A');
+    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#2E7BFF'); g.addColorStop(1, '#0A2E8A');
     ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 1;
     for (let x = 0; x < w; x += 48) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
     for (let y = 0; y < h; y += 48) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-    ctx.fillStyle = '#FFB27A'; ctx.font = '700 expanded 22px Archivo, Arial';
-    ctx.fillText(`COURS ${courseNumber(c)} · ${theme(c.theme).nom.toUpperCase()}`, 70, 110);
+    const FONT = '"Inter Variable", -apple-system, "SF Pro Display", Arial, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,.72)'; ctx.font = `600 26px ${FONT}`;
+    ctx.fillText(`Cours ${courseNumber(c)} · ${theme(c.theme).nom}`, 70, 110);
     ctx.fillStyle = '#FFFFFF';
-    const words = c.titre.toUpperCase().split(' '); const lines = []; let line = '';
-    ctx.font = '900 extra-condensed 118px Archivo, "Arial Narrow", Arial';
+    const words = c.titre.split(' '); const lines = []; let line = '';
+    ctx.font = `800 92px ${FONT}`;
     words.forEach(wd => { const t = line ? line + ' ' + wd : wd; if (ctx.measureText(t).width > w - 140 && line) { lines.push(line); line = wd; } else line = t; });
     lines.push(line);
-    lines.slice(0, 3).forEach((l, k) => ctx.fillText(l, 66, 222 + k * 108));
-    ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.font = '500 26px Archivo, Arial';
-    ctx.fillText(`${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`, 70, 222 + Math.min(3, lines.length) * 108 - 30);
+    lines.slice(0, 3).forEach((l, k) => ctx.fillText(l, 66, 212 + k * 100));
+    ctx.fillStyle = 'rgba(255,255,255,.8)'; ctx.font = `500 26px ${FONT}`;
+    ctx.fillText(`${courseMinutes(c)} min · ${(c.chapitres || []).length} chapitres · ${qCount(c)} questions`, 70, 212 + Math.min(3, lines.length) * 100 - 22);
   });
   const ids = signsOfCourse(c).slice(0, 6); let n = 0; const imgs = [];
   ids.forEach((id, k) => { const im = new Image(); im.onload = () => { imgs[k] = im; if (++n === ids.length) SALLE.setPoster((ctx, w, h) => imgs.forEach((m, j) => m && ctx.drawImage(m, 70 + j * 96, h - 120, 80, 80))); }; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(sign(id, 'width="160" height="160"')); });
@@ -137,7 +139,7 @@ function renderHub() {
 
 /* ---------- Enregistrement des écrans ---------- */
 export function setupScreens() {
-  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); drawPoster(nextCourse()); if (prev) SALLE.reset(1200); $('#seat27').classList.remove('open'); setTimeout(() => $('#seat27').classList.add('open'), 300); } });
+  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); renderHomeExos(); drawPoster(nextCourse()); if (prev) SALLE.reset(1200); $('#seat27').classList.remove('open'); setTimeout(() => $('#seat27').classList.add('open'), 300); } });
   register('parcours', { world: 'salle', amb: 'salle', region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
   register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
   register('cours', { world: 'route', amb: 'route', noTab: true,

@@ -1,0 +1,59 @@
+[
+ {
+  "id": "e23-1",
+  "cours": "entretien",
+  "type": "qcm",
+  "q": "La profondeur minimale des sculptures d’un pneu est :",
+  "choix": [
+   "1 mm",
+   "1,6 mm",
+   "3 mm"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "1,6 mm."
+ },
+ {
+  "id": "e23-2",
+  "cours": "entretien",
+  "type": "qcm",
+  "q": "La pression des pneus se contrôle :",
+  "choix": [
+   "à froid",
+   "après un long trajet"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "À froid, sinon la mesure est faussée."
+ },
+ {
+  "id": "e23-3",
+  "cours": "entretien",
+  "type": "qcm",
+  "q": "Un voyant orange signale :",
+  "choix": [
+   "une alerte grave",
+   "une anomalie à faire vérifier"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Orange : anomalie. Rouge : alerte."
+ },
+ {
+  "id": "e23-4",
+  "cours": "entretien",
+  "type": "qcm",
+  "q": "L’ABS permet :",
+  "choix": [
+   "de garder la direction en freinant fort",
+   "de s’arrêter deux fois plus court"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Il empêche le blocage des roues."
+ }
+]

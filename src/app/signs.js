@@ -34,8 +34,26 @@ const roundabout = () => {
   return o;
 };
 
+const walker = (c, tx, ty, k = 1) => `<g transform="translate(${tx} ${ty}) scale(${k})"><circle cx="1" cy="-17" r="4.6" fill="${c}"/><path d="M0 -11 L-2.5 2 L-8 15 M-2.5 2 L5 15 M-1 -8 L7 -2 M-1 -8 L-8 -3" fill="none" stroke="${c}" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+const carFront = (cx, c) => `<g transform="translate(${cx} 51)"><path d="M-8 -5 L-6 -13 Q-5.5 -15 -3.5 -15 L3.5 -15 Q5.5 -15 6 -13 L8 -5 Z" fill="${c}"/><rect x="-12" y="-6" width="24" height="13" rx="4" fill="${c}"/><rect x="-12" y="6" width="6" height="7" rx="1.5" fill="${c}"/><rect x="6" y="6" width="6" height="7" rx="1.5" fill="${c}"/><circle cx="-7" cy="0" r="2.2" fill="#fff"/><circle cx="7" cy="0" r="2.2" fill="#fff"/></g>`;
+const zone = (fill = K.k, ringC = K.r, strike = false) => `<rect x="6" y="10" width="88" height="80" rx="7" fill="#fff" stroke="${K.k}" stroke-width="1.6"/>` + `<text x="50" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="15" fill="${fill}">ZONE</text><circle cx="50" cy="60" r="23" fill="#fff" stroke="${ringC}" stroke-width="5.5"/><text x="50" y="69" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="25" fill="${fill}">30</text>` + (strike ? `<g stroke="${K.k}" stroke-width="1.7">${[-6, -2, 2, 6].map(d => `<line x1="${18 + d}" y1="${84 + d}" x2="${82 + d}" y2="${20 + d}"/>`).join('')}</g>` : '');
+const motorway = () => `<path d="M30 86 L44 44 L56 44 L70 86 Z" fill="#fff"/><path d="M50 50v6M50 62v8M50 76v9" stroke="${K.b}" stroke-width="3"/><rect x="18" y="26" width="64" height="9" rx="1" fill="#fff"/><rect x="23" y="35" width="6" height="12" fill="#fff"/><rect x="71" y="35" width="6" height="12" fill="#fff"/>`;
+
 const DRAW = {
   A14: () => triUp() + bang(),
+  A13a: () => triUp() + walker(K.k, 42, 66, 0.95) + walker(K.k, 60, 70, 0.72) + `<rect x="56" y="56" width="6" height="7" rx="1.5" fill="${K.k}"/>`,
+  A13b: () => triUp() + walker(K.k, 50, 64, 0.95) + `<g fill="${K.k}"><rect x="27" y="77" width="9" height="3"/><rect x="40" y="77" width="9" height="3"/><rect x="53" y="77" width="9" height="3"/><rect x="66" y="77" width="8" height="3"/></g>`,
+  A15b: () => triUp() + `<path d="M31 76 L35 63 L33 56 Q35 51 42 51 L56 52 L62 45 L60 38 L65 37 L69 41 L68 46 L72 47 L70 51 L65 51 L61 60 L66 76 L62 76 L57 63 L45 63 L40 76 L36 76 L38 64 Z" fill="${K.k}"/><path d="M64 37 L61 30 M61 33 L57 30 M67 37 L70 30 M69 33 L73 31" stroke="${K.k}" stroke-width="2" stroke-linecap="round"/>`,
+  A17: () => triUp() + `<rect x="42" y="36" width="16" height="42" rx="5" fill="${K.k}"/><circle cx="50" cy="45" r="4.6" fill="${K.r}"/><circle cx="50" cy="57" r="4.6" fill="${K.y}"/><circle cx="50" cy="69" r="4.6" fill="#1FB25A"/>`,
+  A21: () => triUp() + `<g transform="translate(50 64) scale(0.5) translate(-50 -52)">${bike(K.k)}<circle cx="44" cy="27" r="6" fill="${K.k}"/></g>`,
+  A4: () => triUp() + `<g fill="${K.k}"><rect x="38" y="40" width="24" height="15" rx="4"/><rect x="36" y="53" width="6" height="6" rx="1.5"/><rect x="58" y="53" width="6" height="6" rx="1.5"/></g><path d="M39 78 Q35 72 40 67 T39 60 M61 78 Q65 72 60 67 T61 60" fill="none" stroke="${K.k}" stroke-width="2.6" stroke-linecap="round"/>`,
+  A7: () => triUp() + `<g fill="${K.k}"><rect x="30" y="52" width="40" height="6" rx="1"/><rect x="30" y="64" width="40" height="6" rx="1"/><rect x="33" y="46" width="5" height="32" rx="1"/><rect x="62" y="46" width="5" height="32" rx="1"/></g>`,
+  B3: () => ring() + carFront(37, K.r) + carFront(63, K.k),
+  B30: () => zone(),
+  B51: () => zone(K.g, K.g, true),
+  C107: () => square() + motorway(),
+  C108: () => square() + motorway() + `<line x1="16" y1="84" x2="84" y2="16" stroke="${K.r}" stroke-width="7" stroke-linecap="round"/>`,
+
   A1a: () => triUp() + `<path d="M41 78 L41 62 Q41 48 57 46" fill="none" stroke="${K.k}" stroke-width="7" stroke-linecap="round"/>`,
   A3: () => triUp() + `<g fill="none" stroke="${K.k}" stroke-width="4.5" stroke-linecap="round"><path d="M37 77 L37 67 Q37 61 44 57 L44 40"/><path d="M63 77 L63 67 Q63 61 56 57 L56 40"/></g>`,
   A2b: () => triUp() + `<path d="M23 74 L35 74 Q50 50 65 74 L77 74 L77 78 L23 78 Z" fill="${K.k}"/>`,
@@ -70,6 +88,8 @@ const DRAW = {
 };
 
 const META = {
+  A13a: ['Endroit fréquenté par les enfants', 'danger'], A13b: ['Passage pour piétons', 'danger'], A15b: ['Passage d’animaux sauvages', 'danger'], A17: ['Feux tricolores', 'danger'], A21: ['Débouché de cyclistes', 'danger'], A4: ['Chaussée glissante', 'danger'], A7: ['Passage à niveau avec barrières', 'danger'],
+  B3: ['Interdiction de dépasser', 'interdiction'], B30: ['Zone 30', 'interdiction'], B51: ['Fin de zone 30', 'fin'], C107: ['Autoroute', 'indication'], C108: ['Fin d’autoroute', 'indication'],
   A14: ['Autres dangers', 'danger'], A1a: ['Virage à droite', 'danger'], A3: ['Chaussée rétrécie', 'danger'], A2b: ['Dos-d’âne', 'danger'],
   AK14: ['Danger temporaire', 'temporaire', 'danger'], AK5: ['Travaux', 'temporaire', 'danger'],
   AB1: ['Priorité à droite', 'danger'], AB2: ['Priorité ponctuelle', 'priorite'], AB25: ['Carrefour giratoire', 'danger'],

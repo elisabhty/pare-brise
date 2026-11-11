@@ -1,0 +1,95 @@
+[
+ {
+  "id": "cf06-1",
+  "cours": "carrefours-feux",
+  "type": "qcm",
+  "q": "Le feu passe à l’orange, tu es très près de la ligne. Tu…",
+  "choix": [
+   "t’arrêtes brutalement",
+   "continues prudemment",
+   "accélères fort"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Si l’arrêt ne peut pas se faire sans danger, on continue, prudemment.",
+  "panneaux": [
+   "A17"
+  ]
+ },
+ {
+  "id": "cf06-2",
+  "cours": "carrefours-feux",
+  "type": "qcm",
+  "q": "Un feu orange clignote. Tu as la priorité ?",
+  "choix": [
+   "Oui, toujours",
+   "Non, les règles habituelles s’appliquent"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Le feu orange clignotant signale un danger, il ne donne pas la priorité."
+ },
+ {
+  "id": "cf06-3",
+  "cours": "carrefours-feux",
+  "type": "qcm",
+  "q": "À l’entrée d’un giratoire avec un cédez-le-passage, tu laisses passer :",
+  "choix": [
+   "les véhicules à ta droite",
+   "les véhicules déjà sur l’anneau"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Ceux qui circulent sur l’anneau, arrivant par ta gauche, sont prioritaires.",
+  "panneaux": [
+   "AB25"
+  ]
+ },
+ {
+  "id": "cf06-4",
+  "cours": "carrefours-feux",
+  "type": "qcm",
+  "q": "Qui commande en premier dans un carrefour ?",
+  "choix": [
+   "Les feux",
+   "L’agent de circulation",
+   "Les panneaux"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Les gestes de l’agent passent avant les feux, qui passent avant les panneaux."
+ },
+ {
+  "id": "cf06-5",
+  "cours": "carrefours-feux",
+  "type": "qcm",
+  "q": "Le sas vélo devant un feu rouge est accessible aux voitures.",
+  "choix": [
+   "Oui",
+   "Non"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Le sas est réservé aux cyclistes. Une voiture s’arrête à la première ligne."
+ },
+ {
+  "id": "cf06-6",
+  "cours": "carrefours-feux",
+  "type": "qcm",
+  "q": "Tu franchis un feu rouge. Combien de points perds-tu ?",
+  "choix": [
+   "2",
+   "4",
+   "6"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Feu rouge grillé : 135 € et 4 points."
+ }
+]

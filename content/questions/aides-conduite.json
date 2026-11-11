@@ -1,0 +1,58 @@
+[
+ {
+  "id": "ac24-1",
+  "cours": "aides-conduite",
+  "type": "qcm",
+  "q": "Le limiteur de vitesse :",
+  "choix": [
+   "empêche de dépasser la vitesse choisie",
+   "maintient une vitesse constante"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Le régulateur, lui, maintient la vitesse."
+ },
+ {
+  "id": "ac24-2",
+  "cours": "aides-conduite",
+  "type": "qcm",
+  "q": "Le régulateur adaptatif gère :",
+  "choix": [
+   "la vitesse et la distance",
+   "seulement le volant"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Il ajuste la vitesse pour garder une distance."
+ },
+ {
+  "id": "ac24-3",
+  "cours": "aides-conduite",
+  "type": "qcm",
+  "q": "Par fort brouillard, les aides à la conduite :",
+  "choix": [
+   "fonctionnent parfaitement",
+   "peuvent être moins fiables"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Les capteurs voient mal par mauvais temps."
+ },
+ {
+  "id": "ac24-4",
+  "cours": "aides-conduite",
+  "type": "qcm",
+  "q": "En cas d’accident avec une aide activée, le responsable est :",
+  "choix": [
+   "le constructeur",
+   "le conducteur"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Le conducteur reste responsable."
+ }
+]

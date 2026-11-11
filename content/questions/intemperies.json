@@ -1,0 +1,77 @@
+[
+ {
+  "id": "i16-1",
+  "cours": "intemperies",
+  "type": "qcm",
+  "q": "Sous la pluie, ta distance d’arrêt est environ :",
+  "choix": [
+   "identique",
+   "1,5 fois plus longue",
+   "2 fois plus courte"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Compte environ une fois et demie la distance sur sol sec."
+ },
+ {
+  "id": "i16-2",
+  "cours": "intemperies",
+  "type": "qcm",
+  "q": "Brouillard, visibilité inférieure à 50 m. Vitesse maximale :",
+  "choix": [
+   "50 km/h",
+   "70 km/h",
+   "90 km/h"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "50 km/h partout, autoroute comprise."
+ },
+ {
+  "id": "i16-3",
+  "cours": "intemperies",
+  "type": "qcm",
+  "q": "Aquaplaning : le bon réflexe est de :",
+  "choix": [
+   "freiner fort",
+   "lever le pied et tenir le volant droit"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Les roues ne touchent plus la route : pas de freinage brusque."
+ },
+ {
+  "id": "i16-4",
+  "cours": "intemperies",
+  "type": "qcm",
+  "q": "Le verglas se forme en premier :",
+  "choix": [
+   "sur les ponts et à l’ombre",
+   "en plein soleil"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Ponts et zones ombragées refroidissent plus vite."
+ },
+ {
+  "id": "i16-5",
+  "cours": "intemperies",
+  "type": "qcm",
+  "q": "Ce panneau signale :",
+  "choix": [
+   "une chaussée glissante",
+   "un virage"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "A4 : chaussée particulièrement glissante.",
+  "panneaux": [
+   "A4"
+  ]
+ }
+]

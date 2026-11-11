@@ -1,0 +1,59 @@
+[
+ {
+  "id": "sp22-1",
+  "cours": "securite-passagers",
+  "type": "qcm",
+  "q": "La ceinture est obligatoire :",
+  "choix": [
+   "à l’avant seulement",
+   "à toutes les places"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Avant et arrière."
+ },
+ {
+  "id": "sp22-2",
+  "cours": "securite-passagers",
+  "type": "qcm",
+  "q": "Un siège bébé dos à la route est installé à l’avant. L’airbag passager doit être :",
+  "choix": [
+   "activé",
+   "désactivé"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "L’airbag pourrait blesser gravement le bébé."
+ },
+ {
+  "id": "sp22-3",
+  "cours": "securite-passagers",
+  "type": "qcm",
+  "q": "Jusqu’à quel âge un système de retenue adapté est-il obligatoire ?",
+  "choix": [
+   "8 ans",
+   "10 ans",
+   "14 ans"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Jusqu’à 10 ans."
+ },
+ {
+  "id": "sp22-4",
+  "cours": "securite-passagers",
+  "type": "qcm",
+  "q": "Sur la plage arrière, on peut poser :",
+  "choix": [
+   "des objets légers",
+   "rien"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "En cas de choc, tout objet devient un projectile."
+ }
+]

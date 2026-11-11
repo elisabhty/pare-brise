@@ -1,0 +1,169 @@
+{
+ "id": "poids-lourds-2rm",
+ "ordre": 13,
+ "theme": "usagers",
+ "titre": "Poids lourds, bus et motos",
+ "accroche": "les gabarits à part",
+ "resume": "Angles morts des camions, bus qui quittent leur arrêt, tramways et motos.",
+ "affiche": [
+  "B3",
+  "C12"
+ ],
+ "chapitres": [
+  "Les gros véhicules",
+  "Les deux-roues motorisés"
+ ],
+ "series": [
+  "serie-poids-lourds-2rm"
+ ],
+ "memo": [
+  {
+   "texte": "Camion",
+   "tag": "Si tu ne vois pas le chauffeur, il ne te voit pas"
+  },
+  {
+   "texte": "Bus qui quitte son arrêt (en ville)",
+   "tag": "Tu le laisses partir"
+  },
+  {
+   "texte": "Moto",
+   "tag": "Difficile à voir, vitesse difficile à estimer"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 13 · Usagers",
+   "titre": "Poids lourds, bus et motos",
+   "sous": "les gabarits à part",
+   "dire": "Cours numéro 13 : les gros véhicules et les deux-roues motorisés.",
+   "vitesse": 60
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Les angles morts",
+   "titre": "Le camion ne te voit pas",
+   "dire": "Un camion a de grands angles morts, devant, sur les côtés et derrière. La règle : si tu ne vois pas le chauffeur dans son rétroviseur, il ne te voit pas.",
+   "env": "route",
+   "kmh": 40,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 18,
+     "kmh": 40
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Angles morts",
+     "devant, côtés, arrière"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les gros véhicules",
+   "titre": "À savoir",
+   "items": [
+    [
+     "Virages",
+     "Ils se déportent : ne te glisse pas à côté"
+    ],
+    [
+     "Freinage",
+     "Ils mettent plus longtemps à s’arrêter"
+    ],
+    [
+     "Dépasser",
+     "Plus long : il faut beaucoup de place"
+    ]
+   ],
+   "dire": "Dans un virage, un camion se déporte : ne te glisse pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place."
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Le bus",
+   "titre": "Il quitte son arrêt",
+   "dire": "En agglomération, quand un bus met son clignotant pour quitter son arrêt, tu dois le laisser repartir.",
+   "env": "ville",
+   "kmh": 25,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "bus",
+     "S": 30,
+     "x": 4.4
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Clignotant",
+     "tu le laisses partir"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Les motos",
+   "titre": "Petites et rapides",
+   "items": [
+    [
+     "Difficiles à voir",
+     "Surtout dans l’angle mort"
+    ],
+    [
+     "Vitesse trompeuse",
+     "Elles arrivent plus vite qu’on ne croit"
+    ],
+    [
+     "Inter-files",
+     "Autorisée sous conditions : laisse-leur la place"
+    ]
+   ],
+   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. La circulation inter-files est autorisée sous conditions, entre les deux voies les plus à gauche : ne leur ferme pas la porte."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "En ville, un bus met son clignotant pour quitter son arrêt. Tu :",
+   "choix": [
+    "passes, tu es prioritaire",
+    "le laisses repartir"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "En agglomération, tu dois laisser repartir un bus qui signale qu’il quitte son arrêt.",
+   "dire": "Question. En ville, un bus met son clignotant pour quitter son arrêt. Que fais-tu ?",
+   "revoir": 3
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 13",
+   "titre": "Gabarits : OK",
+   "stats": [
+    [
+     "4",
+     "angles morts d’un camion"
+    ],
+    [
+     "1",
+     "règle pour le bus"
+    ],
+    [
+     "1",
+     "réflexe : chercher les motos"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

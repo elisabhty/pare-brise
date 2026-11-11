@@ -1,0 +1,160 @@
+{
+ "id": "infractions",
+ "ordre": 27,
+ "theme": "notions",
+ "titre": "Infractions et sanctions",
+ "accroche": "ce que coûte chaque écart",
+ "resume": "Les classes d’amendes, les retraits de points les plus courants et les délits.",
+ "affiche": [
+  "B14:50",
+  "AB4"
+ ],
+ "chapitres": [
+  "Les amendes",
+  "Les points"
+ ],
+ "series": [
+  "serie-infractions"
+ ],
+ "memo": [
+  {
+   "texte": "Amende de 4e classe",
+   "tag": "135 €"
+  },
+  {
+   "texte": "Feu rouge, stop",
+   "tag": "4 points"
+  },
+  {
+   "texte": "Refus de priorité à un piéton",
+   "tag": "6 points"
+  },
+  {
+   "texte": "Alcool 0,8 g/L ou plus",
+   "tag": "Délit"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 27 · Notions",
+   "titre": "Infractions et sanctions",
+   "sous": "ce que coûte chaque écart",
+   "dire": "Cours numéro 27 : les sanctions. Pas pour faire peur : pour comprendre ce qui est grave.",
+   "vitesse": 50
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Les amendes forfaitaires",
+   "titre": "Les plus courantes",
+   "items": [
+    [
+     "35",
+     "€",
+     "2e classe"
+    ],
+    [
+     "68",
+     "€",
+     "3e classe"
+    ],
+    [
+     "135",
+     "€",
+     "4e classe"
+    ]
+   ],
+   "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Elles sont minorées si tu paies vite, majorées si tu tardes.",
+   "vitesse": 50
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Les retraits de points",
+   "titre": "Les plus fréquents",
+   "items": [
+    [
+     "Ceinture, téléphone en main",
+     "3 points"
+    ],
+    [
+     "Feu rouge, stop",
+     "4 points"
+    ],
+    [
+     "Refus de priorité à un piéton",
+     "6 points"
+    ],
+    [
+     "Excès de vitesse de 50 km/h ou plus",
+     "6 points"
+    ]
+   ],
+   "dire": "Les retraits les plus fréquents : 3 points pour la ceinture ou le téléphone tenu en main, 4 points pour un feu rouge ou un stop, 6 points pour un refus de priorité à un piéton ou un excès de vitesse de 50 kilomètres heure ou plus."
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Les excès de vitesse",
+   "titre": "Selon l’écart",
+   "items": [
+    [
+     "1",
+     "point",
+     "moins de 20 km/h au-dessus"
+    ],
+    [
+     "2",
+     "points",
+     "de 20 à 29"
+    ],
+    [
+     "3",
+     "points",
+     "de 30 à 39"
+    ],
+    [
+     "4",
+     "points",
+     "de 40 à 49"
+    ]
+   ],
+   "dire": "Pour la vitesse : 1 point pour moins de 20 kilomètres heure de trop, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. Au-delà, c’est 6 points et une suspension possible.",
+   "vitesse": 50
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Tu grilles un stop. Combien de points perds-tu ?",
+   "choix": [
+    "2",
+    "4",
+    "6"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Stop ou feu rouge non respecté : 135 € et 4 points.",
+   "dire": "Question. Tu ne respectes pas un stop. Combien de points perds-tu ?",
+   "revoir": 2
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 27",
+   "titre": "Sanctions : OK",
+   "stats": [
+    [
+     "135",
+     "€ : 4e classe"
+    ],
+    [
+     "6",
+     "points au maximum par infraction"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

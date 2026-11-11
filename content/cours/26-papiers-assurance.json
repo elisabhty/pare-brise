@@ -1,0 +1,164 @@
+{
+ "id": "papiers-assurance",
+ "ordre": 26,
+ "theme": "notions",
+ "titre": "Papiers, assurance et constat",
+ "accroche": "être en règle",
+ "resume": "Documents à présenter, assurance obligatoire, contrôle technique et constat amiable.",
+ "affiche": [
+  "A14"
+ ],
+ "chapitres": [
+  "Les papiers",
+  "En cas d’accident"
+ ],
+ "series": [
+  "serie-papiers-assurance"
+ ],
+ "memo": [
+  {
+   "texte": "Assurance",
+   "tag": "Responsabilité civile obligatoire"
+  },
+  {
+   "texte": "Contrôle technique",
+   "tag": "Avant 4 ans, puis tous les 2 ans"
+  },
+  {
+   "texte": "Constat amiable",
+   "tag": "À envoyer sous 5 jours ouvrés"
+  },
+  {
+   "texte": "Changement d’adresse",
+   "tag": "Carte grise à mettre à jour sous 1 mois"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 26 · Notions",
+   "titre": "Papiers et assurance",
+   "sous": "être en règle",
+   "dire": "Cours numéro 26 : les papiers. Ce que tu dois avoir, et ce que tu fais après un accrochage.",
+   "vitesse": 30
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "À présenter",
+   "titre": "Lors d’un contrôle",
+   "items": [
+    [
+     "Permis de conduire",
+     "Papier, ou dématérialisé via France Identité"
+    ],
+    [
+     "Certificat d’immatriculation",
+     "La « carte grise »"
+    ],
+    [
+     "Assurance",
+     "Vérifiée dans le fichier des véhicules assurés"
+    ]
+   ],
+   "dire": "Lors d’un contrôle : ton permis, papier ou dématérialisé dans l’application France Identité, et le certificat d’immatriculation, la carte grise. L’assurance se vérifie désormais dans le fichier des véhicules assurés : la carte verte n’est plus à apposer sur le pare-brise."
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "L’assurance",
+   "titre": "Obligatoire",
+   "items": [
+    [
+     "1",
+     "minimum",
+     "la responsabilité civile, dite « au tiers »"
+    ],
+    [
+     "3 750",
+     "€",
+     "d’amende au maximum sans assurance"
+    ]
+   ],
+   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, pour les dommages causés aux autres. Rouler sans assurance est un délit.",
+   "vitesse": 0
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Contrôle technique",
+   "titre": "Les échéances",
+   "items": [
+    [
+     "4",
+     "ans",
+     "premier contrôle, dans les 6 mois avant"
+    ],
+    [
+     "2",
+     "ans",
+     "ensuite, tous les deux ans"
+    ]
+   ],
+   "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans.",
+   "vitesse": 0
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Le constat amiable",
+   "titre": "Après un accrochage",
+   "items": [
+    [
+     "Sur place, à deux",
+     "Chacun remplit sa colonne"
+    ],
+    [
+     "Croquis et cases",
+     "Vérifie avant de signer"
+    ],
+    [
+     "Signé par les deux",
+     "Un exemplaire chacun"
+    ],
+    [
+     "À l’assureur",
+     "Sous 5 jours ouvrés"
+    ]
+   ],
+   "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés."
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Après un accrochage, tu dois envoyer ton constat à ton assureur sous :",
+   "choix": [
+    "5 jours ouvrés",
+    "1 mois"
+   ],
+   "bonne": 0,
+   "bien": "Exact.",
+   "mal": "Le délai est de cinq jours ouvrés.",
+   "dire": "Question. Après un accrochage, sous quel délai envoies-tu ton constat à ton assureur ?",
+   "revoir": 4
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 26",
+   "titre": "Papiers : OK",
+   "stats": [
+    [
+     "4",
+     "ans : premier contrôle technique"
+    ],
+    [
+     "5",
+     "jours pour le constat"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

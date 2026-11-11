@@ -1,0 +1,74 @@
+[
+ {
+  "id": "ps25-1",
+  "cours": "premiers-secours",
+  "type": "qcm",
+  "q": "Dans quel ordre agir sur un accident ?",
+  "choix": [
+   "Alerter, protéger, secourir",
+   "Protéger, alerter, secourir"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "D’abord éviter le suraccident."
+ },
+ {
+  "id": "ps25-2",
+  "cours": "premiers-secours",
+  "type": "qcm",
+  "q": "Le triangle de présignalisation se place à au moins :",
+  "choix": [
+   "10 m",
+   "30 m",
+   "100 m"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Au moins 30 m, si on peut le poser sans danger."
+ },
+ {
+  "id": "ps25-3",
+  "cours": "premiers-secours",
+  "type": "qcm",
+  "q": "Le numéro d’urgence européen est :",
+  "choix": [
+   "15",
+   "18",
+   "112"
+  ],
+  "bonnes": [
+   2
+  ],
+  "explication": "Le 112 fonctionne dans toute l’Union européenne."
+ },
+ {
+  "id": "ps25-4",
+  "cours": "premiers-secours",
+  "type": "qcm",
+  "q": "Un motard blessé : son casque doit être :",
+  "choix": [
+   "retiré",
+   "laissé en place"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Seuls les secours le retirent."
+ },
+ {
+  "id": "ps25-5",
+  "cours": "premiers-secours",
+  "type": "qcm",
+  "q": "Une victime inconsciente qui respire est placée :",
+  "choix": [
+   "sur le dos",
+   "en position latérale de sécurité"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "La PLS libère les voies respiratoires."
+ }
+]

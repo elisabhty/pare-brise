@@ -9,7 +9,7 @@ const E = window.Engine;
 export const has3D = !!(E && E.init(document.getElementById('gl')));
 if (!has3D) document.getElementById('app').classList.add('no3d');
 export const Engine = E;
-export let R, SALLE, STUDIO;
+export let R, SALLE, STUDIO, SIM;
 
 export function roadPhoto(ids) {
   const posts = ids.length === 1 ? [{ x: 258, s: 74 }] : [{ x: 210, s: 60 }, { x: 274, s: 60 }];
@@ -20,7 +20,7 @@ export function roadPhoto(ids) {
 
 if (has3D) {
   E.setSignFactory(factory);
-  R = E.get('route'); SALLE = E.get('salle'); STUDIO = E.get('studio');
+  R = E.get('route'); SALLE = E.get('salle'); STUDIO = E.get('studio'); SIM = E.get('sim');
   E.on('rise', () => Sound.ui('rise'));
   E.on('neon', () => Sound.ui('neon'));
   E.on('sit', () => { Sound.ui('sit'); haptic('heavy'); });

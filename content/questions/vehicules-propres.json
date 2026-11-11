@@ -1,0 +1,73 @@
+[
+ {
+  "id": "vp29-1",
+  "cours": "vehicules-propres",
+  "type": "qcm",
+  "q": "La vignette Crit’Air d’une voiture électrique est :",
+  "choix": [
+   "0",
+   "1",
+   "2"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Crit’Air 0, verte."
+ },
+ {
+  "id": "vp29-2",
+  "cours": "vehicules-propres",
+  "type": "qcm",
+  "q": "Pour circuler dans une ZFE, il faut :",
+  "choix": [
+   "une vignette Crit’Air",
+   "un badge de péage"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "L’accès dépend de la vignette."
+ },
+ {
+  "id": "vp29-3",
+  "cours": "vehicules-propres",
+  "type": "qcm",
+  "q": "Le freinage régénératif :",
+  "choix": [
+   "recharge la batterie en ralentissant",
+   "bloque les roues"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Il récupère de l’énergie en décélération."
+ },
+ {
+  "id": "vp29-4",
+  "cours": "vehicules-propres",
+  "type": "qcm",
+  "q": "À basse vitesse, une voiture électrique est :",
+  "choix": [
+   "très bruyante",
+   "presque silencieuse"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Les piétons peuvent ne pas l’entendre."
+ },
+ {
+  "id": "vp29-5",
+  "cours": "vehicules-propres",
+  "type": "qcm",
+  "q": "L’autonomie d’une électrique diminue :",
+  "choix": [
+   "par temps froid et à vitesse élevée",
+   "uniquement en ville"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Le froid et la vitesse augmentent la consommation."
+ }
+]

@@ -1,0 +1,165 @@
+{
+ "id": "permis-points",
+ "ordre": 20,
+ "theme": "conducteur",
+ "titre": "Le permis à points",
+ "accroche": "un capital à protéger",
+ "resume": "Permis à 17 ans, période probatoire, capital de points, récupération et stages.",
+ "affiche": [
+  "A14"
+ ],
+ "chapitres": [
+  "Le permis probatoire",
+  "Perdre et récupérer des points"
+ ],
+ "series": [
+  "serie-permis-points"
+ ],
+ "memo": [
+  {
+   "texte": "Permis B",
+   "tag": "Dès 17 ans"
+  },
+  {
+   "texte": "Probatoire",
+   "tag": "6 points au départ, 3 ans (2 ans en conduite accompagnée)"
+  },
+  {
+   "texte": "Capital complet",
+   "tag": "12 points"
+  },
+  {
+   "texte": "Stage volontaire",
+   "tag": "+4 points, une fois par an"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 20 · Conducteur",
+   "titre": "Le permis à points",
+   "sous": "un capital à protéger",
+   "dire": "Cours numéro 20 : le permis à points. Tu commences avec six points. À toi de les garder.",
+   "vitesse": 50
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Le permis probatoire",
+   "titre": "Les chiffres",
+   "items": [
+    [
+     "17",
+     "ans",
+     "âge minimum pour le permis B"
+    ],
+    [
+     "6",
+     "points",
+     "au départ"
+    ],
+    [
+     "12",
+     "points",
+     "au bout de la période probatoire"
+    ]
+   ],
+   "dire": "Depuis 2024, on peut passer le permis B dès 17 ans. Tu démarres avec un capital de 6 points, qui monte à 12 au bout de la période probatoire, si tu ne commets pas d’infraction."
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Monter à 12",
+   "titre": "Sans infraction",
+   "items": [
+    [
+     "Conduite accompagnée",
+     "+3 points par an pendant 2 ans"
+    ],
+    [
+     "Formation classique",
+     "+2 points par an pendant 3 ans"
+    ]
+   ],
+   "dire": "Si tu as fait la conduite accompagnée : plus 3 points par an, pendant deux ans. Sinon : plus 2 points par an, pendant trois ans. Toujours à condition de ne commettre aucune infraction qui retire des points."
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Pendant la probatoire",
+   "titre": "Règles en plus",
+   "items": [
+    [
+     "Alcool",
+     "0,2 g/L de sang, autant dire zéro verre"
+    ],
+    [
+     "Vitesses réduites",
+     "110, 100 et 80 km/h"
+    ],
+    [
+     "Disque « A »",
+     "À l’arrière de la voiture"
+    ]
+   ],
+   "dire": "Pendant la période probatoire : alcool limité à 0,2 gramme par litre de sang, autant dire aucun verre. Vitesses réduites : 110 sur autoroute, 100 sur les routes à chaussées séparées, 80 ailleurs. Et le disque « A » à l’arrière."
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Récupérer des points",
+   "titre": "Trois façons",
+   "items": [
+    [
+     "6 mois sans infraction",
+     "Pour une infraction à 1 point"
+    ],
+    [
+     "2 ou 3 ans sans infraction",
+     "Récupération du capital complet"
+    ],
+    [
+     "Stage de sensibilisation",
+     "+4 points, une fois par an maximum"
+    ]
+   ],
+   "dire": "Un point perdu pour une petite infraction revient après six mois sans nouvelle infraction. Sinon, ton capital revient en entier après deux ou trois ans sans infraction, selon la gravité. Et un stage de sensibilisation rend 4 points, au maximum une fois par an."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Jeune conducteur, tu as bu un verre de vin. Tu dépasses probablement :",
+   "choix": [
+    "0,2 g/L",
+    "rien du tout"
+   ],
+   "bonne": 0,
+   "bien": "Exact : un seul verre peut suffire.",
+   "mal": "Le taux maximal en probatoire est de 0,2 g/L : un seul verre peut le dépasser.",
+   "dire": "Question. Jeune conducteur, tu as bu un verre de vin. Risques-tu de dépasser le taux autorisé ?",
+   "revoir": 3
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 20",
+   "titre": "Permis : OK",
+   "stats": [
+    [
+     "6",
+     "points au départ"
+    ],
+    [
+     "12",
+     "points à terme"
+    ],
+    [
+     "4",
+     "points avec un stage"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

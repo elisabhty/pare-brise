@@ -1,0 +1,58 @@
+[
+ {
+  "id": "vp14-1",
+  "cours": "vehicules-prioritaires",
+  "type": "qcm",
+  "q": "Un véhicule de pompiers en intervention a la priorité :",
+  "choix": [
+   "seulement aux intersections",
+   "sur tous les usagers"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Feux bleus et deux tons : priorité absolue."
+ },
+ {
+  "id": "vp14-2",
+  "cours": "vehicules-prioritaires",
+  "type": "qcm",
+  "q": "Un gyrophare orange signale :",
+  "choix": [
+   "un véhicule prioritaire",
+   "un véhicule lent ou un danger"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Orange : prudence, pas de priorité."
+ },
+ {
+  "id": "vp14-3",
+  "cours": "vehicules-prioritaires",
+  "type": "qcm",
+  "q": "Pour laisser passer un véhicule d’urgence, tu :",
+  "choix": [
+   "te serres à droite",
+   "t’arrêtes au milieu de la voie"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "On libère la voie, sans manœuvre brusque."
+ },
+ {
+  "id": "vp14-4",
+  "cours": "vehicules-prioritaires",
+  "type": "qcm",
+  "q": "Au feu rouge, une ambulance arrive derrière toi. Tu peux :",
+  "choix": [
+   "avancer légèrement si c’est sans danger",
+   "griller le feu"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Uniquement pour lui faire de la place, et sans danger."
+ }
+]

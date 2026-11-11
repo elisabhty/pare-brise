@@ -1,0 +1,78 @@
+[
+ {
+  "id": "ce12-1",
+  "cours": "cyclistes-edpm",
+  "type": "qcm",
+  "q": "En agglomération, l’écart minimal pour dépasser un cycliste est :",
+  "choix": [
+   "50 cm",
+   "1 m",
+   "1,50 m"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "1 m en agglomération, 1,50 m hors agglomération."
+ },
+ {
+  "id": "ce12-2",
+  "cours": "cyclistes-edpm",
+  "type": "qcm",
+  "q": "L’âge minimum pour conduire une trottinette électrique est :",
+  "choix": [
+   "12 ans",
+   "14 ans",
+   "16 ans"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "14 ans depuis 2023."
+ },
+ {
+  "id": "ce12-3",
+  "cours": "cyclistes-edpm",
+  "type": "qcm",
+  "q": "La vitesse maximale d’une trottinette électrique est :",
+  "choix": [
+   "20 km/h",
+   "25 km/h",
+   "30 km/h"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Elles sont limitées à 25 km/h."
+ },
+ {
+  "id": "ce12-4",
+  "cours": "cyclistes-edpm",
+  "type": "qcm",
+  "q": "Avant de tourner à droite, tu vérifies :",
+  "choix": [
+   "l’angle mort à droite",
+   "seulement le rétroviseur intérieur"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Un cycliste peut se trouver dans ton angle mort."
+ },
+ {
+  "id": "ce12-5",
+  "cours": "cyclistes-edpm",
+  "type": "qcm",
+  "q": "Ce panneau signale :",
+  "choix": [
+   "une piste cyclable obligatoire",
+   "une interdiction aux vélos"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Rond bleu avec un vélo : piste obligatoire pour les cycles.",
+  "panneaux": [
+   "B22a"
+  ]
+ }
+]

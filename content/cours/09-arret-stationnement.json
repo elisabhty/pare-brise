@@ -1,0 +1,201 @@
+{
+ "id": "arret-stationnement",
+ "ordre": 9,
+ "theme": "circulation",
+ "titre": "Arrêt et stationnement",
+ "accroche": "s’immobiliser au bon endroit",
+ "resume": "La différence entre arrêt et stationnement, les interdictions, les panneaux, le stationnement en pente et la sortie de voiture.",
+ "affiche": [
+  "B6a1",
+  "B6d",
+  "C1a"
+ ],
+ "chapitres": [
+  "Arrêt ou stationnement ?",
+  "Où c’est interdit",
+  "Bien sortir"
+ ],
+ "series": [
+  "serie-arret-stationnement"
+ ],
+ "memo": [
+  {
+   "texte": "Arrêt",
+   "tag": "Conducteur à proximité, courte durée"
+  },
+  {
+   "texte": "Stationnement interdit",
+   "tag": "Arrêt possible",
+   "panneau": "B6a1"
+  },
+  {
+   "texte": "Arrêt et stationnement interdits",
+   "tag": "Ni l’un ni l’autre",
+   "panneau": "B6d"
+  },
+  {
+   "texte": "Avant d’ouvrir",
+   "tag": "Rétroviseur et angle mort"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 9 · Circulation",
+   "titre": "Arrêt et stationnement",
+   "sous": "s’immobiliser au bon endroit",
+   "dire": "Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
+   "vitesse": 30
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Définitions",
+   "titre": "Arrêt ou stationnement ?",
+   "items": [
+    [
+     "Arrêt",
+     "Immobilisation courte, conducteur à bord ou tout près, prêt à repartir"
+    ],
+    [
+     "Stationnement",
+     "Tout le reste : tu quittes ta voiture ou tu restes longtemps"
+    ]
+   ],
+   "dire": "L’arrêt, c’est une immobilisation courte, pour déposer quelqu’un ou charger un objet, avec le conducteur à bord ou tout près. Le stationnement, c’est tout le reste."
+  },
+  {
+   "type": "panneaux",
+   "ch": 1,
+   "eyebrow": "Les panneaux",
+   "titre": "Deux ronds bleus",
+   "panneaux": [
+    "B6a1",
+    "B6d"
+   ],
+   "dire": "Un rond bleu barré une fois : stationnement interdit, mais tu peux t’arrêter. Barré d’une croix : arrêt et stationnement interdits.",
+   "etiquettes": [
+    [
+     "B6a1",
+     "Stationnement interdit"
+    ],
+    [
+     "B6d",
+     "Arrêt et stationnement interdits"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Interdit partout",
+   "titre": "Même sans panneau",
+   "items": [
+    [
+     "Passages piétons et trottoirs",
+     "Stationnement très gênant"
+    ],
+    [
+     "Places réservées aux personnes handicapées",
+     "Sans carte : très gênant"
+    ],
+    [
+     "Voies de bus et pistes cyclables",
+     "Interdits"
+    ],
+    [
+     "Autoroute, tunnel, passage à niveau",
+     "Interdits, sauf urgence"
+    ]
+   ],
+   "dire": "Même sans panneau, tu ne t’arrêtes pas sur un passage piéton ni sur un trottoir, ni sur une place réservée aux personnes handicapées sans la carte, ni sur une voie de bus ou une piste cyclable. Sur autoroute, dans un tunnel ou sur un passage à niveau, c’est interdit, sauf urgence."
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Stationnement très gênant",
+   "titre": "Le tarif",
+   "items": [
+    [
+     "135",
+     "€",
+     "amende forfaitaire"
+    ],
+    [
+     "+",
+     "",
+     "mise en fourrière possible"
+    ]
+   ],
+   "dire": "Le stationnement très gênant, sur un passage piéton ou une place handicapée par exemple, coûte 135 euros, avec possible mise en fourrière.",
+   "vitesse": 0
+  },
+  {
+   "type": "situation",
+   "ch": 2,
+   "eyebrow": "Bien sortir",
+   "titre": "La portière",
+   "dire": "Avant d’ouvrir ta portière, regarde dans le rétroviseur et dans l’angle mort : un cycliste peut arriver. Astuce : ouvre avec la main opposée, tu te retournes naturellement.",
+   "env": "ville",
+   "kmh": 0,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "portiere",
+     "S": 14,
+     "x": 4.6,
+     "ouverte": true
+    },
+    {
+     "type": "velo",
+     "S": 2,
+     "x": 2.6,
+     "kmh": 15
+    }
+   ],
+   "etiquettes": [
+    [
+     1,
+     "Angle mort",
+     "un cycliste arrive"
+    ]
+   ]
+  },
+  {
+   "type": "quiz",
+   "ch": 2,
+   "question": "Stationnement en descente, le long d’un trottoir. Tes roues avant :",
+   "choix": [
+    "droites",
+    "braquées vers le trottoir",
+    "braquées vers la chaussée"
+   ],
+   "bonne": 1,
+   "bien": "Exact : vers le trottoir, la voiture ne peut pas partir sur la route.",
+   "mal": "En pente, braque tes roues vers le trottoir, serre le frein de parking et engage une vitesse.",
+   "dire": "Question. Tu te gares en descente, le long d’un trottoir. Comment places-tu tes roues avant ?"
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 9",
+   "titre": "Stationnement : OK",
+   "stats": [
+    [
+     "2",
+     "panneaux"
+    ],
+    [
+     "4",
+     "lieux interdits partout"
+    ],
+    [
+     "1",
+     "réflexe avant d’ouvrir"
+    ]
+   ],
+   "dire": "Cours terminé. Retiens surtout le réflexe rétroviseur avant d’ouvrir ta portière."
+  }
+ ]
+}

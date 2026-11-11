@@ -3,6 +3,7 @@ import { $ } from './util.js';
 import { has3D, Engine } from './world.js';
 import { Sound } from './sound.js';
 import { setupScreens } from './screens.js';
+import { setupExos } from './exos.js';
 import { show } from './nav.js';
 import { COURSES } from './content.js';
 import { signsOfCourse } from './content.js';
@@ -18,6 +19,7 @@ try { const P = window.Capacitor && window.Capacitor.Plugins; if (P && P.StatusB
 paintSound();
 $('#soundBtn').addEventListener('click', () => { Sound.init(); Sound.setOn(!Sound.on); paintSound(); });
 setupScreens();
+setupExos();
 if (has3D) Engine.preload(COURSES.flatMap(c => signsOfCourse(c)).slice(0, 24));
 const start = location.hash.slice(1);
-show(['salle', 'parcours', 'examen', 'parebrise', 'decodeur'].includes(start) ? start : 'salle');
+show(['salle', 'parcours', 'examen', 'exos', 'parebrise', 'decodeur'].includes(start) ? start : 'salle');

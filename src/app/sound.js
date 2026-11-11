@@ -47,6 +47,11 @@ export const Sound = {
       case 'tick': this.tone(1700, 0.03, 'square', 0.018); break;
       case 'pass': this.noise(0.45, 1800, 400, 0.05, 2); break;
       case 'pair': this.tone(880, 0.1, 'triangle', 0.05); break;
+      case 'brake': this.noise(0.9, 2600, 1500, 0.05, 9); this.noise(0.5, 700, 300, 0.04, 1); break;
+      case 'crash': this.noise(0.7, 900, 90, 0.22, 0.8); this.tone(60, 0.5, 'sine', 0.2, 0.5); this.noise(1.2, 4000, 2500, 0.05, 3); break;
+      case 'horn': [0, 0.38].forEach(d => { this.tone(392, 0.32, 'square', 0.04, 1, d); this.tone(494, 0.32, 'square', 0.035, 1, d); }); break;
+      case 'siren': for (let i = 0; i < 4; i++) { this.tone(435, 0.36, 'triangle', 0.05, 1, i * 0.75); this.tone(580, 0.36, 'triangle', 0.05, 1, i * 0.75 + 0.37); } break;
+      case 'blink': [0, 0.4, 0.8].forEach(d => { this.tone(2100, 0.025, 'square', 0.02, 1, d); this.tone(1500, 0.025, 'square', 0.02, 1, d + 0.2); }); break;
     }
   },
   ambience(kind) {

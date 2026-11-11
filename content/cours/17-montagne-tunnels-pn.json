@@ -1,0 +1,187 @@
+{
+ "id": "montagne-tunnels-pn",
+ "ordre": 17,
+ "theme": "route",
+ "titre": "Tunnels, passages à niveau, montagne",
+ "accroche": "les lieux à part",
+ "resume": "Passer un passage à niveau, réagir dans un tunnel, croiser et descendre en montagne.",
+ "affiche": [
+  "A7",
+  "A1a",
+  "A3"
+ ],
+ "chapitres": [
+  "Passages à niveau",
+  "Tunnels",
+  "Montagne"
+ ],
+ "series": [
+  "serie-montagne-tunnels-pn"
+ ],
+ "memo": [
+  {
+   "texte": "Feux rouges clignotants au passage à niveau",
+   "tag": "Arrêt"
+  },
+  {
+   "texte": "Tunnel",
+   "tag": "Feux de croisement, pas de demi-tour"
+  },
+  {
+   "texte": "Route étroite en montagne",
+   "tag": "Celui qui descend cède"
+  },
+  {
+   "texte": "Descente",
+   "tag": "Frein moteur"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 17 · Route",
+   "titre": "Tunnels, passages à niveau, montagne",
+   "sous": "les lieux à part",
+   "dire": "Cours numéro 17 : trois endroits où les règles changent un peu.",
+   "vitesse": 50
+  },
+  {
+   "type": "panneaux",
+   "ch": 0,
+   "eyebrow": "Passage à niveau",
+   "titre": "Un train ne s’arrête pas",
+   "panneaux": [
+    "A7"
+   ],
+   "dire": "Au passage à niveau : quand les feux rouges clignotent et que la sonnerie retentit, tu t’arrêtes, même si les barrières ne sont pas encore baissées. Et ne t’engage jamais si tu n’es pas sûr de pouvoir dégager la voie de l’autre côté.",
+   "etiquettes": [
+    [
+     "A7",
+     "Passage à niveau avec barrières"
+    ]
+   ],
+   "puce": "Ne jamais s’arrêter sur les rails"
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Bloqué sur les voies",
+   "titre": "Dans l’ordre",
+   "items": [
+    [
+     "Faire sortir tout le monde",
+     "Immédiatement"
+    ],
+    [
+     "S’éloigner des voies",
+     "Le plus loin possible"
+    ],
+    [
+     "Prévenir",
+     "Avec le téléphone d’urgence ou le 112"
+    ]
+   ],
+   "dire": "Si ta voiture reste bloquée sur les rails : fais sortir tout le monde, éloignez-vous des voies, et prévenez avec le téléphone d’urgence ou le 112."
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Tunnels",
+   "titre": "Les bons gestes",
+   "items": [
+    [
+     "Feux de croisement",
+     "Toujours allumés"
+    ],
+    [
+     "Distance",
+     "Repérée par des marques bleues"
+    ],
+    [
+     "Interdit",
+     "Demi-tour, marche arrière, dépassement si signalé"
+    ],
+    [
+     "Incendie",
+     "On sort à pied par les issues de secours"
+    ]
+   ],
+   "dire": "Dans un tunnel, feux de croisement allumés et distances respectées, souvent repérées par des marques bleues. Demi-tour et marche arrière sont interdits. En cas d’incendie, on gare la voiture, on coupe le moteur et on rejoint à pied une issue de secours."
+  },
+  {
+   "type": "situation",
+   "ch": 2,
+   "eyebrow": "Montagne",
+   "titre": "Route étroite",
+   "dire": "Sur une route de montagne trop étroite pour se croiser, c’est le véhicule qui descend qui doit céder le passage à celui qui monte, sauf si celui qui monte peut se garer plus facilement.",
+   "env": "route",
+   "kmh": 20,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 40,
+     "x": -1.75,
+     "kmh": -20
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "En descente",
+   "titre": "Ménager les freins",
+   "items": [
+    [
+     "Frein moteur",
+     "Rétrograde avant la descente"
+    ],
+    [
+     "Jamais au point mort",
+     "Tu perdrais le frein moteur"
+    ],
+    [
+     "Freins qui chauffent",
+     "Ils perdent leur efficacité"
+    ]
+   ],
+   "dire": "En descente, rétrograde pour utiliser le frein moteur, et ne roule jamais au point mort. Freiner en continu fait chauffer les freins, qui perdent leur efficacité."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Les feux rouges du passage à niveau clignotent, les barrières sont encore levées. Tu :",
+   "choix": [
+    "passes vite",
+    "t’arrêtes"
+   ],
+   "bonne": 1,
+   "bien": "Exact : les feux suffisent.",
+   "mal": "Feux rouges clignotants et sonnerie : arrêt obligatoire, barrières levées ou non.",
+   "dire": "Question. Les feux rouges du passage à niveau clignotent, mais les barrières sont encore levées. Que fais-tu ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 17",
+   "titre": "Lieux à part : OK",
+   "stats": [
+    [
+     "1",
+     "règle : jamais sur les rails"
+    ],
+    [
+     "4",
+     "réflexes en tunnel"
+    ],
+    [
+     "1",
+     "priorité à celui qui monte"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

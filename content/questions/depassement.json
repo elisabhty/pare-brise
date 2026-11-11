@@ -1,0 +1,93 @@
+[
+ {
+  "id": "d08-1",
+  "cours": "depassement",
+  "type": "qcm",
+  "q": "Hors agglomération, l’écart minimal pour dépasser un cycliste est :",
+  "choix": [
+   "50 cm",
+   "1 m",
+   "1,50 m"
+  ],
+  "bonnes": [
+   2
+  ],
+  "explication": "1 m en agglomération, 1,50 m hors agglomération.",
+  "panneaux": [
+   "A21"
+  ]
+ },
+ {
+  "id": "d08-2",
+  "cours": "depassement",
+  "type": "qcm",
+  "q": "Ce panneau interdit de dépasser :",
+  "choix": [
+   "tous les véhicules",
+   "les véhicules à moteur, sauf les deux-roues sans side-car"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Le B3 interdit de dépasser les véhicules à moteur autres que les deux-roues sans side-car.",
+  "panneaux": [
+   "B3"
+  ]
+ },
+ {
+  "id": "d08-3",
+  "cours": "depassement",
+  "type": "qcm",
+  "q": "Pour dépasser un cycliste, peux-tu chevaucher une ligne continue ?",
+  "choix": [
+   "Oui, si c’est sans danger",
+   "Non, jamais"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "C’est l’exception prévue par le code, si la visibilité le permet et la voie d’en face est libre."
+ },
+ {
+  "id": "d08-4",
+  "cours": "depassement",
+  "type": "qcm",
+  "q": "On te dépasse. Que dois-tu faire ?",
+  "choix": [
+   "Accélérer",
+   "Ne pas accélérer et serrer à droite"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Il est interdit d’accélérer quand on est dépassé."
+ },
+ {
+  "id": "d08-5",
+  "cours": "depassement",
+  "type": "qcm",
+  "q": "À l’approche d’une intersection où tu n’as pas la priorité, dépasser est :",
+  "choix": [
+   "autorisé",
+   "interdit"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Un véhicule peut surgir : le dépassement y est interdit."
+ },
+ {
+  "id": "d08-6",
+  "cours": "depassement",
+  "type": "qcm",
+  "q": "Un véhicule tourne à gauche devant toi, déporté. Tu le dépasses :",
+  "choix": [
+   "par la droite",
+   "par la gauche"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "On dépasse par la droite un véhicule qui tourne à gauche."
+ }
+]

@@ -1,0 +1,169 @@
+{
+ "id": "fatigue-distractions",
+ "ordre": 18,
+ "theme": "conducteur",
+ "titre": "Fatigue et distractions",
+ "accroche": "garder la tête à la route",
+ "resume": "Somnolence, pauses, téléphone et écrans : les pièges de l’attention et leurs sanctions.",
+ "affiche": [
+  "A14"
+ ],
+ "chapitres": [
+  "La fatigue",
+  "Les distractions"
+ ],
+ "series": [
+  "serie-fatigue-distractions"
+ ],
+ "memo": [
+  {
+   "texte": "Pause",
+   "tag": "Toutes les 2 heures"
+  },
+  {
+   "texte": "Somnolence",
+   "tag": "S’arrêter, dormir 15 à 20 min"
+  },
+  {
+   "texte": "Téléphone tenu en main",
+   "tag": "135 € et 3 points"
+  },
+  {
+   "texte": "Kit oreillettes",
+   "tag": "Interdit"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 18 · Conducteur",
+   "titre": "Fatigue et distractions",
+   "sous": "garder la tête à la route",
+   "dire": "Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 25 mètres parcourus les yeux fermés.",
+   "vitesse": 90
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Une seconde",
+   "titre": "Sans regarder la route",
+   "items": [
+    [
+     "14",
+     "m",
+     "à 50 km/h"
+    ],
+    [
+     "25",
+     "m",
+     "à 90 km/h"
+    ],
+    [
+     "36",
+     "m",
+     "à 130 km/h"
+    ]
+   ],
+   "dire": "En une seconde, tu parcours 14 mètres à 50, 25 mètres à 90 et 36 mètres à 130. Lire un message prend bien plus qu’une seconde.",
+   "vitesse": 90
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "La fatigue",
+   "titre": "Les signes",
+   "items": [
+    [
+     "Bâillements, paupières lourdes",
+     "Premier signal"
+    ],
+    [
+     "Raideurs, besoin de bouger",
+     "Tu changes souvent de position"
+    ],
+    [
+     "Trous de mémoire",
+     "Tu ne te souviens plus des derniers kilomètres"
+    ]
+   ],
+   "dire": "Les signes de fatigue : bâillements, paupières lourdes, raideurs dans la nuque, et ces kilomètres dont tu ne te souviens plus. Dès le premier signe, arrête-toi."
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "La solution",
+   "titre": "Une seule vraie",
+   "items": [
+    [
+     "Pause toutes les 2 heures",
+     "Même sans fatigue"
+    ],
+    [
+     "Sieste de 15 à 20 minutes",
+     "Dès les premiers signes"
+    ],
+    [
+     "Café, fenêtre ouverte, musique",
+     "Ça ne suffit pas"
+    ]
+   ],
+   "dire": "Fais une pause toutes les deux heures. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas."
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Le téléphone",
+   "titre": "Tenu en main",
+   "items": [
+    [
+     "135",
+     "€",
+     "d’amende"
+    ],
+    [
+     "3",
+     "points",
+     "retirés"
+    ]
+   ],
+   "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points. Les écouteurs, oreillettes et casques sont interdits aussi. Et si tu commets une autre infraction en même temps, ton permis peut être retenu sur place.",
+   "vitesse": 0
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Tu téléphones avec des oreillettes, téléphone dans la poche. C’est :",
+   "choix": [
+    "autorisé",
+    "interdit"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Tout dispositif placé dans l’oreille est interdit au volant : écouteurs, oreillettes, casque.",
+   "dire": "Question. Tu téléphones avec des oreillettes, le téléphone dans ta poche. C’est autorisé ?",
+   "revoir": 4
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 18",
+   "titre": "Attention : OK",
+   "stats": [
+    [
+     "2",
+     "heures entre deux pauses"
+    ],
+    [
+     "20",
+     "minutes de sieste"
+    ],
+    [
+     "3",
+     "points pour le téléphone"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

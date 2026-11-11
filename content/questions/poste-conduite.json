@@ -1,0 +1,58 @@
+[
+ {
+  "id": "pc21-1",
+  "cours": "poste-conduite",
+  "type": "qcm",
+  "q": "Le haut de l’appui-tête doit être :",
+  "choix": [
+   "au niveau de la nuque",
+   "au niveau du haut du crâne"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Il protège ainsi la nuque en cas de choc arrière."
+ },
+ {
+  "id": "pc21-2",
+  "cours": "poste-conduite",
+  "type": "qcm",
+  "q": "Avant de quitter une place de stationnement, tu dois :",
+  "choix": [
+   "regarder rétroviseur et angle mort",
+   "klaxonner"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Et mettre ton clignotant."
+ },
+ {
+  "id": "pc21-3",
+  "cours": "poste-conduite",
+  "type": "qcm",
+  "q": "Garé en pente, tu laisses :",
+  "choix": [
+   "le point mort",
+   "une vitesse engagée"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Frein de parking serré et vitesse engagée."
+ },
+ {
+  "id": "pc21-4",
+  "cours": "poste-conduite",
+  "type": "qcm",
+  "q": "Le siège est bien réglé quand, pédale au plancher, les jambes sont :",
+  "choix": [
+   "tendues",
+   "légèrement fléchies"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Légèrement fléchies, pour garder de la force et du contrôle."
+ }
+]

@@ -1,0 +1,215 @@
+{
+ "id": "premiers-secours",
+ "ordre": 25,
+ "theme": "secours",
+ "titre": "Protéger, alerter, secourir",
+ "accroche": "les gestes qui sauvent",
+ "resume": "Baliser un accident, donner l’alerte avec les bons numéros et les gestes à faire, ou à ne pas faire.",
+ "affiche": [
+  "A14"
+ ],
+ "chapitres": [
+  "Protéger",
+  "Alerter",
+  "Secourir"
+ ],
+ "series": [
+  "serie-premiers-secours"
+ ],
+ "memo": [
+  {
+   "texte": "Ordre",
+   "tag": "Protéger, alerter, secourir"
+  },
+  {
+   "texte": "Triangle",
+   "tag": "À au moins 30 m"
+  },
+  {
+   "texte": "112",
+   "tag": "Numéro d’urgence européen"
+  },
+  {
+   "texte": "Motard blessé",
+   "tag": "Ne jamais retirer son casque"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 25 · Secours",
+   "titre": "Protéger, alerter, secourir",
+   "sous": "les gestes qui sauvent",
+   "dire": "Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir.",
+   "vitesse": 30
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Protéger",
+   "titre": "Éviter le suraccident",
+   "dire": "D’abord, protéger : feux de détresse, gilet enfilé avant de sortir, et le triangle à au moins 30 mètres, si tu peux le poser sans danger. Fais mettre tout le monde à l’abri.",
+   "env": "route",
+   "kmh": 0,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 34,
+     "x": 1.2,
+     "cap": 28,
+     "couleur": 9876911
+    },
+    {
+     "type": "pieton",
+     "S": 26,
+     "x": 4.2,
+     "gilet": true
+    },
+    {
+     "type": "triangle",
+     "S": 4,
+     "x": 1.75
+    }
+   ],
+   "etiquettes": [
+    [
+     2,
+     "Triangle",
+     "à 30 m au moins"
+    ],
+    [
+     1,
+     "Gilet",
+     "avant de sortir"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Alerter",
+   "titre": "Les numéros",
+   "items": [
+    [
+     "112",
+     "Numéro d’urgence européen"
+    ],
+    [
+     "15",
+     "SAMU"
+    ],
+    [
+     "18",
+     "Pompiers"
+    ],
+    [
+     "17",
+     "Police, gendarmerie"
+    ],
+    [
+     "114",
+     "Par SMS, pour les personnes sourdes ou malentendantes"
+    ]
+   ],
+   "dire": "Ensuite, alerter. Le 112 fonctionne partout en Europe. Le 15 pour le SAMU, le 18 pour les pompiers, le 17 pour la police. Et le 114, par SMS, pour les personnes sourdes ou malentendantes.",
+   "puces": [
+    "112",
+    "15",
+    "18",
+    "17",
+    "114"
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Le message",
+   "titre": "Clair et complet",
+   "items": [
+    [
+     "Où",
+     "Le lieu exact"
+    ],
+    [
+     "Quoi",
+     "Ce qui s’est passé"
+    ],
+    [
+     "Combien",
+     "Le nombre de victimes et leur état"
+    ],
+    [
+     "Dangers",
+     "Fuite, incendie, circulation"
+    ]
+   ],
+   "dire": "Ton message : le lieu exact, ce qui s’est passé, le nombre de victimes et leur état, et les dangers éventuels. Et ne raccroche que lorsqu’on te le dit."
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Secourir",
+   "titre": "Les bons gestes",
+   "items": [
+    [
+     "Ne pas déplacer la victime",
+     "Sauf danger immédiat"
+    ],
+    [
+     "Ne pas retirer le casque",
+     "D’un motard blessé"
+    ],
+    [
+     "Saignement",
+     "Appuyer fort sur la plaie"
+    ],
+    [
+     "Inconscient qui respire",
+     "Position latérale de sécurité"
+    ],
+    [
+     "Ne respire plus",
+     "Massage cardiaque et défibrillateur"
+    ]
+   ],
+   "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Une victime inconsciente qui respire : position latérale de sécurité. Si elle ne respire plus : massage cardiaque et défibrillateur."
+  },
+  {
+   "type": "quiz",
+   "ch": 2,
+   "question": "Un motard blessé est allongé sur la route, casque sur la tête. Tu :",
+   "choix": [
+    "retires son casque pour l’aider à respirer",
+    "laisses le casque en place"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Retirer le casque peut aggraver une blessure à la colonne : on le laisse aux secours.",
+   "dire": "Question. Un motard blessé est allongé, casque sur la tête. Que fais-tu ?",
+   "revoir": 4
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 25",
+   "titre": "Secours : OK",
+   "stats": [
+    [
+     "3",
+     "étapes : P, A, S"
+    ],
+    [
+     "30",
+     "m pour le triangle"
+    ],
+    [
+     "112",
+     "partout en Europe"
+    ]
+   ],
+   "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo."
+  }
+ ]
+}

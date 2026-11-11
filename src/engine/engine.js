@@ -6,6 +6,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { buildSim } from './sim.js';
 
 const E = { ok: false };
 window.Engine = E;
@@ -174,11 +175,11 @@ function buildSalle() {
   s.fog = new THREE.FogExp2(0xE6EEFA, 0.022);
   const ROWS = 8, PER = 6;
   const rowZ = r => -2.4 + r * 1.15, rowY = r => r * 0.3;
-  const floorMat = new THREE.MeshStandardMaterial({ color: 0xC3D1E8, roughness: 0.85 });
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 60), floorMat); floor.rotation.x = -Math.PI / 2; s.add(floor);
+  const floorMat = new THREE.MeshStandardMaterial({ color: 0xE4D5BC, roughness: 0.7 });
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 60), floorMat); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; s.add(floor);
   for (let r = 1; r < ROWS; r++) {
     const h = rowY(r);
-    const step = new THREE.Mesh(new THREE.BoxGeometry(15, h, 1.15), floorMat); step.position.set(0, h / 2, rowZ(r)); s.add(step);
+    const step = new THREE.Mesh(new THREE.BoxGeometry(15, h, 1.15), floorMat); step.position.set(0, h / 2, rowZ(r)); step.receiveShadow = true; step.castShadow = true; s.add(step);
   }
   // sièges (instanciés)
   const seatMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.82 });
@@ -195,6 +196,7 @@ function buildSalle() {
   });
   const tint = new THREE.Color();
   others.forEach((t, i) => { tint.setHSL(0.615, 0.72, 0.45 + ((i * 53) % 7) / 120); imC.setColorAt(i, tint); imB.setColorAt(i, tint); imA.setColorAt(i, tint); });
+  [imC, imB, imA].forEach(m => { m.castShadow = true; m.receiveShadow = true; });
   s.add(imC, imB, imA);
   const me = seats.find(t => t.me);
   const meMat = new THREE.MeshStandardMaterial({ color: 0xFF7A1A, emissive: 0xFF6A00, emissiveIntensity: 0.6, roughness: 0.5 });
@@ -204,11 +206,15 @@ function buildSalle() {
   const meLight = new THREE.PointLight(0xFF8A30, 2, 4, 2); meLight.position.set(me.x, me.y + 1.4, me.z + 0.4); s.add(meLight);
   // élèves (silhouettes)
   const occupied = others.filter((t, i) => ((i * 7919) % 13) < 6 && !(t.r === 2 && Math.abs(t.x - me.x) < 0.7));
-  const head = new THREE.CapsuleGeometry(0.19, 0.3, 4, 10);
-  const stuMat = new THREE.MeshStandardMaterial({ color: 0x8FA4C8, roughness: 0.7 });
-  const imS = new THREE.InstancedMesh(head, stuMat, occupied.length);
-  occupied.forEach((t, i) => { const sc = 0.92 + ((i * 37) % 10) / 60; m4.compose(V(t.x + ((i % 3) - 1) * 0.03, t.y + 1.05, t.z + 0.05), new THREE.Quaternion(), V(sc, sc, sc)); imS.setMatrixAt(i, m4); });
-  s.add(imS);
+  const bodyG = new THREE.CapsuleGeometry(0.2, 0.34, 6, 14), headG = new THREE.SphereGeometry(0.135, 20, 14), hairG = new THREE.SphereGeometry(0.143, 20, 10, 0, Math.PI * 2, 0, Math.PI * 0.55);
+  const stuMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 });
+  const imS = new THREE.InstancedMesh(bodyG, stuMat, occupied.length), imH = new THREE.InstancedMesh(headG, stuMat, occupied.length), imR = new THREE.InstancedMesh(hairG, stuMat, occupied.length);
+  const SHIRT = [0x3D7BFF, 0xFF7A1A, 0x2FA37A, 0xE5484D, 0x8E5CF6, 0xF2B233, 0x0EA5E9, 0xF4F6FA, 0x2E3440], SKIN = [0xF1C9A5, 0xE0AC85, 0xC68863, 0x8D5A3B, 0xF5D6BC], HAIR = [0x2B1D16, 0x4A3222, 0x111111, 0x8A5A2B, 0xC9A06A];
+  occupied.forEach((t, i) => { const sc = 0.92 + ((i * 37) % 10) / 60, x = t.x + ((i % 3) - 1) * 0.03, q = new THREE.Quaternion();
+    m4.compose(V(x, t.y + 0.88 * sc, t.z + 0.06), q, V(sc, sc, sc * 0.85)); imS.setMatrixAt(i, m4); imS.setColorAt(i, tint.set(SHIRT[(i * 7) % SHIRT.length]));
+    m4.compose(V(x, t.y + 0.88 * sc + 0.52 * sc, t.z + 0.04), q, V(sc, sc, sc)); imH.setMatrixAt(i, m4); imH.setColorAt(i, tint.set(SKIN[(i * 5) % SKIN.length]));
+    m4.compose(V(x, t.y + 0.88 * sc + 0.535 * sc, t.z + 0.06), new THREE.Quaternion().setFromEuler(new THREE.Euler(0.25, 0, 0)), V(sc, sc, sc)); imR.setMatrixAt(i, m4); imR.setColorAt(i, tint.set(HAIR[(i * 3) % HAIR.length])); });
+  [imS, imH, imR].forEach(m => { m.castShadow = true; s.add(m); });
   // lumières de marches
   const ledMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(0x3D7BFF).multiplyScalar(1.2), toneMapped: false });
   const led = new THREE.BoxGeometry(0.22, 0.025, 0.04);
@@ -260,7 +266,12 @@ function buildSalle() {
   s.add(dust); dust.visible = false;
   // lumières
   s.add(new THREE.HemisphereLight(0xFFFFFF, 0xB8C8E4, 1.6));
-  const day = new THREE.DirectionalLight(0xFFFFFF, 1.6); day.position.set(-6, 10, 4); s.add(day);
+  const day = new THREE.DirectionalLight(0xFFF6EA, 1.9); day.position.set(-7, 12, 6); day.target.position.set(0, 0, -1); day.castShadow = true;
+  day.shadow.mapSize.set(1024, 1024); day.shadow.bias = -0.0005; day.shadow.normalBias = 0.02; Object.assign(day.shadow.camera, { left: -9, right: 9, top: 9, bottom: -9, near: 1, far: 40 }); s.add(day, day.target);
+  // plafond lumineux
+  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(16, 24), new THREE.MeshStandardMaterial({ color: 0xF4F6FA, roughness: 1 })); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 7.2, -1); s.add(ceil);
+  const panelMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xffffff).multiplyScalar(1.15), toneMapped: false });
+  for (let i = 0; i < 4; i++) for (const sx of [-3.2, 3.2]) { const pnl = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.1), panelMat); pnl.rotation.x = Math.PI / 2; pnl.position.set(sx, 7.18, -6 + i * 3.4); s.add(pnl); }
   const scrL = new THREE.PointLight(0xBCD3FF, 14, 20, 1.5); scrL.position.set(0, 3, SZ + 1.5); s.add(scrL);
 
   // caméra
@@ -641,7 +652,7 @@ function resize() {
 }
 function loop(now) {
   requestAnimationFrame(loop);
-  const dt = Math.min(0.05, (now - (last || now)) / 1000); last = now;
+  const dt = Math.min(window.__dtCap || 0.05, (now - (last || now)) / 1000); last = now;
   runTweens(now);
   const w = worlds[worldName]; if (!w) return;
   w.update(dt, now / 1000);
@@ -659,6 +670,7 @@ E.init = cv => {
   if (!renderer.getContext()) return false;
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFShadowMap;
   camera = new THREE.PerspectiveCamera(50, 1, 0.1, 900);
   RADIAL = canvasTex(radialCanvas([[0, 'rgba(255,255,255,1)'], [0.35, 'rgba(255,255,255,.45)'], [1, 'rgba(255,255,255,0)']]), false);
   signGeo = new THREE.PlaneGeometry(1, 1);
@@ -672,6 +684,10 @@ E.init = cv => {
   worlds.salle = buildSalle();
   worlds.route = buildRoute();
   worlds.studio = buildStudio();
+  worlds.sim = buildSim({
+    renderer: () => renderer, camera: () => camera, tween, ease, sleep, emit, makeSign, signTex, canvasTex, disposeObj, setFov,
+    radial: () => RADIAL, setBloom: v => { if (worldName === 'sim') bloom.strength = v; worlds.sim && (worlds.sim.bloom = v); }
+  });
   resize();
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas); else window.addEventListener('resize', resize);
   E.ok = true;
@@ -681,7 +697,7 @@ E.init = cv => {
 E.world = n => {
   if (!worlds[n]) return;
   worldName = n; renderPass.scene = worlds[n].scene; worlds[n].enter();
-  bloom.strength = n === 'studio' ? 0.2 : n === 'salle' ? 0.3 : 0.35;
+  bloom.strength = worlds[n].bloom ?? (n === 'studio' ? 0.2 : n === 'salle' ? 0.3 : 0.35);
 };
 E.get = n => worlds[n];
 Object.defineProperty(E, 'current', { get: () => worldName });

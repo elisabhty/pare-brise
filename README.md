@@ -6,7 +6,9 @@ Une app iOS (Capacitor 8) de code de la route en 3D.
 
 Dans cette version, **l'app est un moteur** et **le contenu est en JSON**. Tu ajoutes un cours, une série ou des questions en écrivant un fichier dans `content/`, sans toucher au code. Le build vérifie tout le contenu avant de fabriquer l'app.
 
-Contenu fourni pour la démo : 10 thèmes officiels, 5 cours (47 scènes), 37 questions, 5 séries.
+Contenu fourni : les 10 thèmes officiels, **29 cours** (219 scènes), 151 questions, 29 séries et **22 exercices de conduite en 3D**.
+
+L'interface suit les codes d'iOS : police système (SF Pro sur iPhone, Inter en repli ailleurs), grands titres, listes groupées, boutons capsule et barre d'onglets flottante façon Liquid Glass.
 
 ## Structure
 
@@ -16,8 +18,11 @@ content/
   cours/*.json           un fichier par cours
   questions/*.json       la banque de questions (autant de fichiers que tu veux)
   series.json            les séries d'exercices (des listes de questions)
+  exercices.json         les exercices de conduite en 3D
 src/
-  engine/engine.js       moteur 3D : salle, route, studio (Three.js + bloom)
+  engine/engine.js       moteur 3D : salle, route, studio (Three.js + bloom + ombres)
+  engine/sim.js          simulateur de conduite : ville, campagne, autoroute, météo, usagers, pédales
+  app/exos.js            les exercices : 8 mécaniques, écran Exercices, résultats
   app/scenes.js          les types de scènes d'un cours (l'endroit où en ajouter)
   app/player.js          lecteur de cours générique
   app/serie.js           séries : entraînement ou examen, QCM et association
@@ -56,6 +61,36 @@ La scène animée de l'accueil est `src/assets/plot-scene.webp`. Pour changer de
 - **Examen blanc** : 20 questions tirées dans toute la banque, en alternant les thèmes, avec chrono et correction à la fin.
 - **À revoir** : chaque question ratée revient (révision espacée) jusqu'à ce qu'elle soit maîtrisée.
 - **Jauge « jour J »** : calculée à partir des cours vus, des questions maîtrisées et des derniers examens.
+
+## Exercices de conduite (simulateur 3D)
+
+Chaque exercice est décrit dans `content/exercices.json` et joué par une **mécanique** :
+
+| Mécanique | Ce que fait l'élève | Champs |
+|---|---|---|
+| `freinage` | maintient « Freiner » quand un danger surgit ; on mesure réaction, distance de freinage, et ce qui se serait passé 20 km/h plus vite | `env`, `meteo`, `kmh`, `evenements` |
+| `vitesse` | conduit avec les pédales et respecte chaque limitation dès son panneau | `zones` : `{ d, lim, panneau, maisons, msg }` |
+| `distance` | garde au moins `cible` secondes derrière une voiture qui ralentit et accélère | `kmh`, `cible`, `profil` |
+| `feu` | feu orange : freine si l'arrêt est possible, sinon continue | `kmh`, `distances` |
+| `priorite` | l'image se fige au carrefour : « Je passe » ou « Je cède » | `scenarios` |
+| `depassement` | derrière un véhicule lent : « Je double » ou « Je reste derrière » | `scenarios` |
+| `danger` | arrêt sur image : touche tous les dangers, attention aux leurres | `scenes` |
+| `eclairage` | allume les bons feux, effet visible en direct | `situations` |
+
+Événements de freinage : `pieton`, `enfant`, `ballon`, `portiere`, `sortie`, `biche`, `bouchon`, `faux-pieton`.
+Environnements : `ville`, `route`, `autoroute`. Météo : `jour`, `pluie`, `brouillard`, `nuit`, `neige`.
+
+Exemple de scénario de priorité :
+
+```json
+{ "titre": "Pas de panneau", "contexte": "Une voiture arrive par la droite.", "ctrl": "aucun", "kmh": 30,
+  "acteurs": [{ "depuis": "droite", "role": "prioritaire", "kmh": 30 }], "bonne": "ceder",
+  "explication": "Aucun panneau, aucun feu : priorité à droite." }
+```
+
+`ctrl` : `aucun`, `stop`, `cedez`, `prioritaire`, `feu-vert`, `feu-rouge`, `feu-clignotant`, `giratoire`. `depuis` : `droite`, `gauche`, `face`, `pieton`, `derriere` (véhicule d'urgence), `anneau` (giratoire). `role` : `prioritaire` ou `cede`.
+
+Les distances suivent ce qu'on enseigne au code : environ 1 seconde de réaction et un freinage plus long d'environ moitié sur sol mouillé.
 
 ## Ajouter un cours
 
@@ -122,9 +157,23 @@ Puis, dans `content/series.json` :
 
 Toutes les questions alimentent automatiquement l'examen blanc et les révisions.
 
+## Scènes de cours en plus
+
+- `liste` : des étapes ou des règles qui apparaissent une à une (`items` : textes ou `[titre, détail]`).
+- `situation` : une mise en situation dans le simulateur, avec décor, météo, usagers et étiquettes :
+
+```json
+{ "type": "situation", "eyebrow": "Usagers vulnérables", "titre": "Un cycliste devant toi",
+  "env": "route", "kmh": 20, "camera": "poursuite", "ligne": "continue",
+  "acteurs": [{ "type": "velo", "S": 12, "x": 2.7, "kmh": 20 }],
+  "etiquettes": [[0, "1,50 m", "minimum hors agglomération"]], "dire": "…" }
+```
+
+Caméras : `cockpit`, `poursuite`, `drone`, `haut`, `cote`. Acteurs : `voiture`, `velo`, `pieton`, `enfant`, `bus`, `camion`, `tracteur`, `biche`, `ambulance`, `triangle`, `portiere`, `feu`, `ballon`. `S` = mètres devant, `x` = position latérale (notre voie est à 1,75), `kmh` négatif = en sens inverse.
+
 ## Panneaux disponibles
 
-`A14 A1a A3 A2b AK14 AK5 AB1 AB2 AB25 B0 B1 B14 B2a B6a1 B6d B211 B21a1 B22a B40 B33 B31 C12 C20a C1a EB10 EB20 AB3a AB4 AB6 AB7`
+`A14 A1a A3 A2b A4 A7 A13a A13b A15b A17 A21 AK14 AK5 AB1 AB2 AB25 B0 B1 B3 B14 B2a B6a1 B6d B211 B21a1 B22a B30 B40 B33 B31 B51 C12 C20a C1a C107 C108 EB10 EB20 AB3a AB4 AB6 AB7`
 
 Certains panneaux prennent un paramètre :
 

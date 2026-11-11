@@ -1,0 +1,59 @@
+[
+ {
+  "id": "pa26-1",
+  "cours": "papiers-assurance",
+  "type": "qcm",
+  "q": "L’assurance minimale obligatoire couvre :",
+  "choix": [
+   "tes propres dommages",
+   "les dommages causés aux autres"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "La responsabilité civile, dite « au tiers »."
+ },
+ {
+  "id": "pa26-2",
+  "cours": "papiers-assurance",
+  "type": "qcm",
+  "q": "Le premier contrôle technique d’une voiture neuve a lieu :",
+  "choix": [
+   "à 2 ans",
+   "à 4 ans",
+   "à 6 ans"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Dans les 6 mois avant ses 4 ans, puis tous les 2 ans."
+ },
+ {
+  "id": "pa26-3",
+  "cours": "papiers-assurance",
+  "type": "qcm",
+  "q": "Le constat amiable doit être envoyé à l’assureur sous :",
+  "choix": [
+   "5 jours ouvrés",
+   "15 jours"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Cinq jours ouvrés."
+ },
+ {
+  "id": "pa26-4",
+  "cours": "papiers-assurance",
+  "type": "qcm",
+  "q": "Peut-on modifier un constat après l’avoir signé ?",
+  "choix": [
+   "Oui",
+   "Non"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Vérifie tout avant de signer."
+ }
+]

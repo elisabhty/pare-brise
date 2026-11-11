@@ -1,0 +1,78 @@
+[
+ {
+  "id": "as09-1",
+  "cours": "arret-stationnement",
+  "type": "qcm",
+  "q": "Ce panneau interdit :",
+  "choix": [
+   "le stationnement seulement",
+   "l’arrêt et le stationnement"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Barré une fois : stationnement interdit, l’arrêt reste possible.",
+  "panneaux": [
+   "B6a1"
+  ]
+ },
+ {
+  "id": "as09-2",
+  "cours": "arret-stationnement",
+  "type": "qcm",
+  "q": "Ce panneau interdit :",
+  "choix": [
+   "le stationnement seulement",
+   "l’arrêt et le stationnement"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "La croix interdit l’arrêt et le stationnement.",
+  "panneaux": [
+   "B6d"
+  ]
+ },
+ {
+  "id": "as09-3",
+  "cours": "arret-stationnement",
+  "type": "qcm",
+  "q": "Stationner sur un passage piéton est considéré comme :",
+  "choix": [
+   "gênant",
+   "très gênant"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "C’est un stationnement très gênant : 135 €."
+ },
+ {
+  "id": "as09-4",
+  "cours": "arret-stationnement",
+  "type": "qcm",
+  "q": "Avant d’ouvrir ta portière côté rue, tu dois :",
+  "choix": [
+   "regarder le rétroviseur et l’angle mort",
+   "klaxonner"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Un cycliste ou une voiture peut arriver."
+ },
+ {
+  "id": "as09-5",
+  "cours": "arret-stationnement",
+  "type": "qcm",
+  "q": "Déposer un passager quelques secondes, conducteur au volant, c’est :",
+  "choix": [
+   "un arrêt",
+   "un stationnement"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Immobilisation courte, conducteur à bord : c’est un arrêt."
+ }
+]

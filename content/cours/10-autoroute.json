@@ -1,0 +1,224 @@
+{
+ "id": "autoroute",
+ "ordre": 10,
+ "theme": "circulation",
+ "titre": "Autoroute et voies rapides",
+ "accroche": "vitesse et rigueur",
+ "resume": "S’insérer, choisir sa voie, garder ses distances, s’arrêter en urgence et le corridor de sécurité.",
+ "affiche": [
+  "C107",
+  "C108",
+  "B14:130"
+ ],
+ "chapitres": [
+  "S’insérer et rouler",
+  "Les distances",
+  "En cas de panne"
+ ],
+ "series": [
+  "serie-autoroute"
+ ],
+ "memo": [
+  {
+   "texte": "Insertion",
+   "tag": "Accélérer et céder aux véhicules de l’autoroute",
+   "panneau": "C107"
+  },
+  {
+   "texte": "Voie de droite",
+   "tag": "Par défaut"
+  },
+  {
+   "texte": "Distance",
+   "tag": "Deux chevrons au moins"
+  },
+  {
+   "texte": "Panne",
+   "tag": "Feux de détresse, gilet, derrière la glissière"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 10 · Circulation",
+   "titre": "Autoroute",
+   "sous": "vitesse et rigueur",
+   "dire": "Cours numéro 10 : l’autoroute. On y roule vite : chaque règle compte double.",
+   "vitesse": 110
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "L’insertion",
+   "titre": "Accélère, puis cède",
+   "dire": "Sur la voie d’insertion, accélère pour atteindre la vitesse du trafic, regarde dans ton rétroviseur et ton angle mort, puis insère-toi. Les véhicules déjà sur l’autoroute sont prioritaires.",
+   "env": "autoroute",
+   "kmh": 90,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "camion",
+     "S": 30,
+     "x": 1.75,
+     "kmh": 85
+    },
+    {
+     "type": "voiture",
+     "S": 10,
+     "x": -1.75,
+     "kmh": 110
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Rouler",
+   "titre": "Les règles de base",
+   "items": [
+    [
+     "Voie de droite",
+     "C’est ta voie normale"
+    ],
+    [
+     "Doubler",
+     "Par la gauche, puis on revient à droite"
+    ],
+    [
+     "Interdits",
+     "Marche arrière, demi-tour, s’arrêter hors urgence"
+    ]
+   ],
+   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits."
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Les distances",
+   "titre": "Deux chevrons",
+   "dire": "Les chevrons au sol t’aident : un chevron entre toi et la voiture de devant, c’est le danger. Deux chevrons, c’est la sécurité.",
+   "env": "autoroute",
+   "kmh": 120,
+   "camera": "haut",
+   "chevrons": true,
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 80,
+     "x": 1.75,
+     "kmh": 120
+    }
+   ]
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Vitesses",
+   "titre": "Sur autoroute",
+   "items": [
+    [
+     "130",
+     "km/h",
+     "par temps sec"
+    ],
+    [
+     "110",
+     "km/h",
+     "sous la pluie, ou en probatoire"
+    ],
+    [
+     "50",
+     "km/h",
+     "visibilité < 50 m"
+    ]
+   ],
+   "dire": "Rappel : 130 par temps sec, 110 sous la pluie et pour les jeunes conducteurs, 50 si la visibilité tombe sous 50 mètres.",
+   "vitesse": 110
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Panne ou accident",
+   "titre": "Dans l’ordre",
+   "items": [
+    [
+     "Bande d’arrêt d’urgence",
+     "Le plus à droite possible"
+    ],
+    [
+     "Feux de détresse",
+     "Puis gilet, avant de sortir"
+    ],
+    [
+     "Sortir côté droit",
+     "Tous derrière la glissière"
+    ],
+    [
+     "Alerter",
+     "Borne d’appel ou 112"
+    ]
+   ],
+   "dire": "En cas de panne : bande d’arrêt d’urgence, le plus à droite possible. Feux de détresse, gilet enfilé avant de sortir, et tout le monde sort côté droit pour se mettre derrière la glissière. Puis tu appelles avec une borne d’appel d’urgence ou le 112."
+  },
+  {
+   "type": "situation",
+   "ch": 2,
+   "eyebrow": "Corridor de sécurité",
+   "titre": "Écarte-toi",
+   "dire": "Quand un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence, gyrophares allumés, change de voie si tu peux, sinon ralentis fortement : c’est le corridor de sécurité.",
+   "env": "autoroute",
+   "kmh": 90,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "ambulance",
+     "S": 50,
+     "x": 4.9
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Corridor",
+     "décale-toi ou ralentis"
+    ]
+   ]
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Sur la voie d’insertion, qui est prioritaire ?",
+   "choix": [
+    "Toi",
+    "Les véhicules sur l’autoroute"
+   ],
+   "bonne": 1,
+   "bien": "Exact : tu t’insères sans gêner.",
+   "mal": "Sauf signalisation contraire, ce sont les véhicules déjà sur l’autoroute qui sont prioritaires.",
+   "dire": "Question. Sur la voie d’insertion, qui est prioritaire ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 10",
+   "titre": "Autoroute : OK",
+   "stats": [
+    [
+     "2",
+     "chevrons d’écart"
+    ],
+    [
+     "130",
+     "km/h maximum"
+    ],
+    [
+     "4",
+     "gestes en cas de panne"
+    ]
+   ],
+   "dire": "Cours terminé. Essaie l’exercice « Les chevrons » pour garder tes distances à grande vitesse."
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+{
+ "id": "vehicules-propres",
+ "ordre": 29,
+ "theme": "environnement",
+ "titre": "Électrique, Crit’Air et ZFE",
+ "accroche": "les nouvelles règles de la ville",
+ "resume": "Les vignettes Crit’Air, les zones à faibles émissions et les particularités d’une voiture électrique.",
+ "affiche": [
+  "EB10"
+ ],
+ "chapitres": [
+  "Crit’Air et ZFE",
+  "La voiture électrique"
+ ],
+ "series": [
+  "serie-vehicules-propres"
+ ],
+ "memo": [
+  {
+   "texte": "Crit’Air",
+   "tag": "De 0 (électrique) à 5 (plus polluant)"
+  },
+  {
+   "texte": "ZFE",
+   "tag": "Vignette obligatoire pour y circuler"
+  },
+  {
+   "texte": "Voiture électrique",
+   "tag": "Silencieuse à basse vitesse"
+  },
+  {
+   "texte": "Freinage régénératif",
+   "tag": "Ralentit en rechargeant"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 29 · Environnement",
+   "titre": "Électrique, Crit’Air, ZFE",
+   "sous": "les nouvelles règles de la ville",
+   "dire": "Cours numéro 29 : la voiture électrique et les zones à faibles émissions.",
+   "vitesse": 40
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "La vignette Crit’Air",
+   "titre": "Six classes",
+   "items": [
+    [
+     "Crit’Air 0, verte",
+     "Électrique, hydrogène"
+    ],
+    [
+     "Crit’Air 1",
+     "Hybrides rechargeables, essence récents, gaz"
+    ],
+    [
+     "Crit’Air 2 à 5",
+     "Des plus récents aux plus polluants"
+    ]
+   ],
+   "dire": "La vignette Crit’Air classe les véhicules selon leurs émissions : zéro pour l’électrique, puis de un à cinq, du moins au plus polluant.",
+   "puces": [
+    "0",
+    "1",
+    "2-5"
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les ZFE",
+   "titre": "Zones à faibles émissions",
+   "items": [
+    [
+     "Dans certaines grandes agglomérations",
+     "Accès limité selon la vignette"
+    ],
+    [
+     "Vignette obligatoire",
+     "Pour y circuler"
+    ],
+    [
+     "Règles locales",
+     "Elles changent d’une ville à l’autre"
+    ]
+   ],
+   "dire": "Les zones à faibles émissions limitent l’accès des véhicules les plus polluants, selon leur vignette Crit’Air. Leur avenir fait débat au Parlement, mais à ce jour elles restent en vigueur là où elles existent. Vérifie toujours les règles de ta ville."
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "La voiture électrique",
+   "titre": "Silencieuse",
+   "dire": "À basse vitesse, une voiture électrique fait très peu de bruit : les piétons ne l’entendent pas arriver. Un son d’alerte est émis à faible vitesse, mais reste vigilant.",
+   "env": "ville",
+   "kmh": 15,
+   "camera": "poursuite",
+   "acteurs": [
+    {
+     "type": "pieton",
+     "S": 20,
+     "x": 4.6,
+     "vx": -0.9
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Au volant d’une électrique",
+   "titre": "Ce qui change",
+   "items": [
+    [
+     "Freinage régénératif",
+     "Lever le pied ralentit et recharge la batterie"
+    ],
+    [
+     "Accélération immédiate",
+     "Doser l’accélérateur"
+    ],
+    [
+     "Autonomie",
+     "Elle baisse avec le froid et la vitesse"
+    ]
+   ],
+   "dire": "Au volant d’une électrique : lever le pied ralentit nettement la voiture, tout en rechargeant la batterie. L’accélération est immédiate, il faut la doser. Et l’autonomie baisse avec le froid et la vitesse."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Une voiture électrique a une vignette Crit’Air :",
+   "choix": [
+    "0",
+    "1",
+    "5"
+   ],
+   "bonne": 0,
+   "bien": "Exact.",
+   "mal": "Les véhicules électriques et à hydrogène ont la vignette Crit’Air 0, verte.",
+   "dire": "Question. Quelle vignette Crit’Air pour une voiture électrique ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 29",
+   "titre": "Nouvelles mobilités : OK",
+   "stats": [
+    [
+     "6",
+     "classes Crit’Air"
+    ],
+    [
+     "1",
+     "réflexe : penser aux piétons"
+    ]
+   ],
+   "dire": "Cours terminé. Tu as vu tout le programme : place aux examens blancs."
+  }
+ ]
+}

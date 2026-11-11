@@ -1,0 +1,72 @@
+[
+ {
+  "id": "pl213-1",
+  "cours": "poids-lourds-2rm",
+  "type": "qcm",
+  "q": "Tu ne vois pas le chauffeur du camion dans son rétroviseur. Cela signifie :",
+  "choix": [
+   "qu’il ne te voit pas",
+   "rien de particulier"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Tu es dans son angle mort."
+ },
+ {
+  "id": "pl213-2",
+  "cours": "poids-lourds-2rm",
+  "type": "qcm",
+  "q": "En agglomération, un bus quitte son arrêt avec son clignotant. Tu dois :",
+  "choix": [
+   "le laisser partir",
+   "accélérer pour passer avant"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Le bus qui quitte son arrêt en agglomération est prioritaire."
+ },
+ {
+  "id": "pl213-3",
+  "cours": "poids-lourds-2rm",
+  "type": "qcm",
+  "q": "Dans un virage serré, un camion :",
+  "choix": [
+   "reste au centre de sa voie",
+   "peut se déporter sur le côté"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Ne te mets pas à côté de lui dans un virage."
+ },
+ {
+  "id": "pl213-4",
+  "cours": "poids-lourds-2rm",
+  "type": "qcm",
+  "q": "La vitesse d’une moto qui arrive est :",
+  "choix": [
+   "facile à estimer",
+   "souvent sous-estimée"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Une moto arrive plus vite qu’on ne le pense."
+ },
+ {
+  "id": "pl213-5",
+  "cours": "poids-lourds-2rm",
+  "type": "qcm",
+  "q": "Pour dépasser un poids lourd, il faut :",
+  "choix": [
+   "la même distance que pour une voiture",
+   "beaucoup plus de place"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Il est long : le dépassement dure plus longtemps."
+ }
+]

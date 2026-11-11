@@ -1,0 +1,72 @@
+[
+ {
+  "id": "m07-1",
+  "cours": "marquages",
+  "type": "qcm",
+  "q": "Peut-on chevaucher une ligne continue pour dépasser une voiture ?",
+  "choix": [
+   "Oui, brièvement",
+   "Non"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Une ligne continue ne se franchit pas et ne se chevauche pas (sauf pour dépasser un cycliste, sans danger)."
+ },
+ {
+  "id": "m07-2",
+  "cours": "marquages",
+  "type": "qcm",
+  "q": "Des traits longs et rapprochés annoncent :",
+  "choix": [
+   "la fin d’une interdiction",
+   "une ligne continue"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "C’est la ligne d’annonce : une ligne continue arrive."
+ },
+ {
+  "id": "m07-3",
+  "cours": "marquages",
+  "type": "qcm",
+  "q": "Une ligne jaune continue le long du trottoir interdit :",
+  "choix": [
+   "le stationnement seulement",
+   "l’arrêt et le stationnement"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Ligne jaune continue : arrêt et stationnement interdits."
+ },
+ {
+  "id": "m07-4",
+  "cours": "marquages",
+  "type": "qcm",
+  "q": "Des flèches inclinées au milieu de la voie indiquent :",
+  "choix": [
+   "de se rabattre",
+   "une sortie"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Ce sont des flèches de rabattement : une ligne continue approche."
+ },
+ {
+  "id": "m07-5",
+  "cours": "marquages",
+  "type": "qcm",
+  "q": "Sur une ligne mixte, quelle ligne compte pour toi ?",
+  "choix": [
+   "Celle de ton côté",
+   "Celle de l’autre côté"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "On lit toujours la ligne la plus proche de soi."
+ }
+]

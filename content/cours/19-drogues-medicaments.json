@@ -1,0 +1,150 @@
+{
+ "id": "drogues-medicaments",
+ "ordre": 19,
+ "theme": "conducteur",
+ "titre": "Drogues et médicaments",
+ "accroche": "ce qui altère sans prévenir",
+ "resume": "Stupéfiants, dépistage, sanctions et pictogrammes des médicaments.",
+ "affiche": [
+  "A14"
+ ],
+ "chapitres": [
+  "Les stupéfiants",
+  "Les médicaments"
+ ],
+ "series": [
+  "serie-drogues-medicaments"
+ ],
+ "memo": [
+  {
+   "texte": "Stupéfiants",
+   "tag": "Tolérance zéro"
+  },
+  {
+   "texte": "Conduite après usage de stupéfiants",
+   "tag": "Jusqu’à 2 ans de prison, 6 points"
+  },
+  {
+   "texte": "Pictogramme rouge",
+   "tag": "Ne pas conduire"
+  },
+  {
+   "texte": "Pictogramme orange",
+   "tag": "Avis d’un médecin"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 19 · Conducteur",
+   "titre": "Drogues et médicaments",
+   "sous": "ce qui altère sans prévenir",
+   "dire": "Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
+   "vitesse": 50
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les stupéfiants",
+   "titre": "Tolérance zéro",
+   "items": [
+    [
+     "Aucun seuil",
+     "Une trace suffit"
+    ],
+    [
+     "Test salivaire",
+     "Possible lors d’un contrôle"
+    ],
+    [
+     "Effets",
+     "Réflexes, vision, jugement altérés"
+    ]
+   ],
+   "dire": "Pour les stupéfiants, il n’y a aucun seuil toléré : une trace suffit. Le dépistage se fait par un test salivaire. Le cannabis, par exemple, ralentit les réflexes et perturbe la perception des distances."
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Les sanctions",
+   "titre": "Après usage de stupéfiants",
+   "items": [
+    [
+     "2",
+     "ans",
+     "de prison au maximum"
+    ],
+    [
+     "4 500",
+     "€",
+     "d’amende au maximum"
+    ],
+    [
+     "6",
+     "points",
+     "retirés"
+    ]
+   ],
+   "dire": "Conduire après avoir consommé des stupéfiants : jusqu’à deux ans de prison, 4 500 euros d’amende et 6 points. Avec de l’alcool en plus : jusqu’à trois ans et 9 000 euros.",
+   "vitesse": 0
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Les médicaments",
+   "titre": "Regarde la boîte",
+   "items": [
+    [
+     "Niveau 1, jaune",
+     "Soyez prudent"
+    ],
+    [
+     "Niveau 2, orange",
+     "Soyez très prudent, demande l’avis d’un médecin"
+    ],
+    [
+     "Niveau 3, rouge",
+     "Attention danger : ne conduis pas"
+    ]
+   ],
+   "dire": "Sur la boîte de certains médicaments, un pictogramme en forme de voiture dans un triangle. Jaune : sois prudent. Orange : sois très prudent et demande l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas.",
+   "puces": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Le pictogramme est rouge sur ta boîte de médicaments. Tu :",
+   "choix": [
+    "conduis prudemment",
+    "ne conduis pas"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Niveau 3, rouge : attention danger, ne pas conduire.",
+   "dire": "Question. Le pictogramme de ta boîte de médicaments est rouge. Peux-tu conduire ?",
+   "revoir": 3
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 19",
+   "titre": "Substances : OK",
+   "stats": [
+    [
+     "0",
+     "trace tolérée de stupéfiant"
+    ],
+    [
+     "3",
+     "niveaux de pictogramme"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

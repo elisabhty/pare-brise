@@ -1,0 +1,199 @@
+{
+ "id": "usagers-vulnerables",
+ "ordre": 11,
+ "theme": "usagers",
+ "titre": "Piétons et enfants",
+ "accroche": "les plus fragiles d’abord",
+ "resume": "Céder le passage aux piétons, anticiper les enfants, zones 30, zones de rencontre et aires piétonnes.",
+ "affiche": [
+  "C20a",
+  "A13a",
+  "A13b",
+  "B30"
+ ],
+ "chapitres": [
+  "Les piétons",
+  "Les enfants",
+  "Les zones apaisées"
+ ],
+ "series": [
+  "serie-usagers-vulnerables"
+ ],
+ "memo": [
+  {
+   "texte": "Piéton engagé ou qui veut traverser",
+   "tag": "Tu cèdes",
+   "panneau": "C20a"
+  },
+  {
+   "texte": "Refus de priorité à un piéton",
+   "tag": "6 points"
+  },
+  {
+   "texte": "Zone de rencontre",
+   "tag": "20 km/h, piétons prioritaires"
+  },
+  {
+   "texte": "Zone 30",
+   "tag": "30 km/h",
+   "panneau": "B30"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 11 · Usagers",
+   "titre": "Piétons et enfants",
+   "sous": "les plus fragiles d’abord",
+   "dire": "Cours numéro 11 : les piétons et les enfants. Face à une voiture, ils n’ont aucune protection.",
+   "vitesse": 30
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "La règle",
+   "titre": "Le piéton passe",
+   "dire": "Tu dois céder le passage au piéton engagé sur la chaussée, ou qui montre clairement son intention de traverser. Pas seulement sur le passage piéton.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "poursuite",
+   "passage": 22,
+   "acteurs": [
+    {
+     "type": "pieton",
+     "S": 22,
+     "x": 4.8,
+     "vx": -1.2
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Priorité",
+     "il veut traverser"
+    ]
+   ]
+  },
+  {
+   "type": "chiffres",
+   "ch": 0,
+   "eyebrow": "Refus de priorité",
+   "titre": "Le tarif",
+   "items": [
+    [
+     "6",
+     "points",
+     "retirés"
+    ],
+    [
+     "135",
+     "€",
+     "d’amende"
+    ]
+   ],
+   "dire": "Ne pas céder le passage à un piéton coûte 135 euros et 6 points. C’est autant qu’un excès de vitesse de 50 kilomètres heure.",
+   "vitesse": 20
+  },
+  {
+   "type": "panneaux",
+   "ch": 1,
+   "eyebrow": "Les enfants",
+   "titre": "Imprévisibles",
+   "panneaux": [
+    "A13a",
+    "A13b"
+   ],
+   "dire": "Un enfant ne sait pas évaluer la vitesse d’une voiture, et il peut surgir entre deux véhicules. Près d’une école ou d’un parc, ralentis et prépare ton pied au-dessus du frein.",
+   "etiquettes": [
+    [
+     "A13a",
+     "Enfants"
+    ],
+    [
+     "A13b",
+     "Passage piétons"
+    ]
+   ]
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Anticiper",
+   "titre": "Un ballon, un enfant",
+   "dire": "Un ballon qui roule sur la chaussée ? Un enfant risque de courir derrière. Freine tout de suite.",
+   "env": "ville",
+   "kmh": 20,
+   "camera": "cockpit",
+   "acteurs": [
+    {
+     "type": "ballon",
+     "S": 18,
+     "x": 3.2,
+     "vx": -2.5
+    },
+    {
+     "type": "enfant",
+     "S": 19,
+     "x": 5.2
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Zones apaisées",
+   "titre": "Trois vitesses",
+   "items": [
+    [
+     "Zone 30",
+     "30 km/h maximum"
+    ],
+    [
+     "Zone de rencontre",
+     "20 km/h, les piétons sont prioritaires et peuvent marcher sur la chaussée"
+    ],
+    [
+     "Aire piétonne",
+     "À l’allure du pas, seulement si l’accès est autorisé"
+    ]
+   ],
+   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : on y roule au pas, seulement si l’accès est autorisé, et les piétons sont toujours prioritaires."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Un piéton attend au bord du trottoir et regarde la route, prêt à traverser. Tu :",
+   "choix": [
+    "passes, il n’est pas engagé",
+    "t’arrêtes pour le laisser passer"
+   ],
+   "bonne": 1,
+   "bien": "Exact : son intention suffit.",
+   "mal": "Tu dois céder le passage au piéton qui manifeste clairement l’intention de traverser, même s’il n’est pas encore engagé.",
+   "dire": "Question. Un piéton attend au bord du trottoir, prêt à traverser. Que fais-tu ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 11",
+   "titre": "Piétons : OK",
+   "stats": [
+    [
+     "6",
+     "points pour un refus"
+    ],
+    [
+     "20",
+     "km/h en zone de rencontre"
+    ],
+    [
+     "30",
+     "km/h en zone 30"
+    ]
+   ],
+   "dire": "Cours terminé. Fais l’exercice « Sortie d’école » pour t’entraîner à freiner à temps."
+  }
+ ]
+}

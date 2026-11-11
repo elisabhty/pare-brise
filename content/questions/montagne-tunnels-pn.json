@@ -1,0 +1,75 @@
+[
+ {
+  "id": "mtp17-1",
+  "cours": "montagne-tunnels-pn",
+  "type": "qcm",
+  "q": "Feux rouges clignotants au passage à niveau, barrières levées. Tu :",
+  "choix": [
+   "passes rapidement",
+   "t’arrêtes"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Les feux imposent l’arrêt.",
+  "panneaux": [
+   "A7"
+  ]
+ },
+ {
+  "id": "mtp17-2",
+  "cours": "montagne-tunnels-pn",
+  "type": "qcm",
+  "q": "En montagne, sur une route étroite, qui recule ?",
+  "choix": [
+   "Celui qui monte",
+   "Celui qui descend"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Celui qui descend cède, sauf si celui qui monte peut se ranger plus facilement."
+ },
+ {
+  "id": "mtp17-3",
+  "cours": "montagne-tunnels-pn",
+  "type": "qcm",
+  "q": "Dans un tunnel, les feux de croisement sont :",
+  "choix": [
+   "obligatoires",
+   "interdits"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Toujours allumés dans un tunnel."
+ },
+ {
+  "id": "mtp17-4",
+  "cours": "montagne-tunnels-pn",
+  "type": "qcm",
+  "q": "En descente, pour ménager les freins, tu :",
+  "choix": [
+   "passes au point mort",
+   "utilises le frein moteur"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "On rétrograde, jamais de point mort."
+ },
+ {
+  "id": "mtp17-5",
+  "cours": "montagne-tunnels-pn",
+  "type": "qcm",
+  "q": "Incendie dans un tunnel. Tu :",
+  "choix": [
+   "fais demi-tour",
+   "arrêtes ta voiture et sors à pied par une issue de secours"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Demi-tour interdit : on évacue à pied."
+ }
+]

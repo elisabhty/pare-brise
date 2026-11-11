@@ -1,0 +1,224 @@
+{
+ "id": "carrefours-feux",
+ "ordre": 6,
+ "theme": "circulation",
+ "titre": "Carrefours, giratoires et feux",
+ "accroche": "qui commande à l’intersection",
+ "resume": "L’ordre de priorité entre agent, feux et panneaux, le feu orange, le feu clignotant, les giratoires et les sas vélos.",
+ "affiche": [
+  "A17",
+  "AB25",
+  "AB3a",
+  "AB4",
+  "C12"
+ ],
+ "chapitres": [
+  "Qui commande ?",
+  "Les feux",
+  "Le giratoire"
+ ],
+ "series": [
+  "serie-carrefours-feux"
+ ],
+ "memo": [
+  {
+   "texte": "Agent > feux > panneaux > priorité à droite",
+   "tag": "Ordre"
+  },
+  {
+   "texte": "Feu orange fixe",
+   "tag": "Arrêt si possible",
+   "panneau": "A17"
+  },
+  {
+   "texte": "Giratoire + cédez-le-passage",
+   "tag": "Priorité à l’anneau",
+   "panneau": "AB25"
+  },
+  {
+   "texte": "Sas vélo",
+   "tag": "Interdit aux voitures"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 6 · Circulation",
+   "titre": "Carrefours et feux",
+   "sous": "qui commande à l’intersection",
+   "dire": "Cours numéro 6 : les carrefours. Qui commande, comment lire un feu, et comment entrer dans un giratoire sans hésiter.",
+   "vitesse": 45
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Qui commande ?",
+   "titre": "Du plus fort au plus faible",
+   "items": [
+    [
+     "L’agent de circulation",
+     "Ses gestes passent avant tout"
+    ],
+    [
+     "Les feux",
+     "Ils priment sur les panneaux"
+    ],
+    [
+     "Les panneaux et marquages",
+     "Stop, cédez-le-passage, route prioritaire"
+    ],
+    [
+     "La règle générale",
+     "Sans rien : priorité à droite"
+    ]
+   ],
+   "dire": "Retiens cet ordre. L’agent de circulation commande en premier, même s’il contredit un feu. Ensuite viennent les feux, puis les panneaux et le marquage. Et quand il n’y a rien du tout, c’est la priorité à droite."
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Le feu orange fixe",
+   "titre": "Je m’arrête… si je peux",
+   "dire": "Le feu orange fixe impose l’arrêt. La seule exception : quand tu es trop près pour t’arrêter sans danger. Dans ce cas, tu continues.",
+   "env": "ville",
+   "kmh": 30,
+   "camera": "cockpit",
+   "carrefour": 60,
+   "ligneStop": "feu",
+   "acteurs": [
+    {
+     "type": "feu",
+     "S": 55,
+     "x": 6.0,
+     "etat": "orange"
+    }
+   ]
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "Le feu rouge",
+   "titre": "Arrêt absolu",
+   "items": [
+    [
+     "0",
+     "",
+     "tolérance : on s’arrête à la ligne"
+    ],
+    [
+     "4",
+     "points",
+     "retirés si on le franchit"
+    ],
+    [
+     "135",
+     "€",
+     "d’amende forfaitaire"
+    ]
+   ],
+   "dire": "Au feu rouge, l’arrêt est absolu, à la ligne d’effet du feu. Le franchir coûte 135 euros et 4 points.",
+   "vitesse": 0
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Feux particuliers",
+   "titre": "À connaître",
+   "items": [
+    [
+     "Orange clignotant",
+     "Prudence : les règles de priorité habituelles s’appliquent"
+    ],
+    [
+     "Flèche verte",
+     "Tu peux aller dans la direction indiquée"
+    ],
+    [
+     "Panonceau cycliste au feu",
+     "Les vélos peuvent passer au rouge en cédant le passage"
+    ]
+   ],
+   "dire": "Un feu orange clignotant ne donne aucune priorité : il signale un danger, et ce sont les règles habituelles qui s’appliquent. Une flèche verte t’autorise à aller dans sa direction. Et le petit panonceau vélo, sous un feu, permet aux cyclistes de franchir le rouge pour aller dans la direction indiquée, en cédant le passage."
+  },
+  {
+   "type": "panneaux",
+   "ch": 2,
+   "eyebrow": "Le giratoire",
+   "titre": "Priorité à l’anneau",
+   "panneaux": [
+    "AB25",
+    "AB3a"
+   ],
+   "dire": "Le panneau triangulaire avec trois flèches annonce un carrefour à sens giratoire. À l’entrée, le cédez-le-passage : tu laisses passer les véhicules déjà engagés sur l’anneau, qui arrivent par ta gauche.",
+   "etiquettes": [
+    [
+     "AB25",
+     "Carrefour giratoire"
+    ],
+    [
+     "AB3a",
+     "Cédez-le-passage"
+    ]
+   ],
+   "puce": "Les véhicules de l’anneau passent"
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Dans le giratoire",
+   "titre": "Bien se placer",
+   "items": [
+    [
+     "Sortie proche",
+     "Reste à droite, clignotant à droite"
+    ],
+    [
+     "Sortie lointaine",
+     "Voie de gauche, puis clignotant à droite avant de sortir"
+    ],
+    [
+     "Toujours",
+     "Regarde ton rétroviseur droit avant de sortir"
+    ]
+   ],
+   "dire": "Pour une sortie proche, reste sur la voie de droite. Pour une sortie plus lointaine, tu peux utiliser la voie de gauche, puis te rapprocher de la droite. Dans tous les cas, mets ton clignotant à droite avant de sortir."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Un agent te fait signe de passer, mais ton feu est rouge. Que fais-tu ?",
+   "choix": [
+    "Je m’arrête au feu",
+    "Je passe",
+    "Je klaxonne"
+   ],
+   "bonne": 1,
+   "bien": "Exact : l’agent passe avant les feux.",
+   "mal": "Les gestes de l’agent de circulation priment sur les feux. S’il te fait passer, tu passes.",
+   "dire": "Question. Un agent te fait signe de passer, alors que ton feu est rouge. Que fais-tu ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 6",
+   "titre": "Carrefours : OK",
+   "stats": [
+    [
+     "4",
+     "niveaux de priorité"
+    ],
+    [
+     "3",
+     "couleurs de feu"
+    ],
+    [
+     "1",
+     "règle au giratoire"
+    ]
+   ],
+   "dire": "Cours terminé. Passe à l’exercice « Feu orange » pour t’entraîner à décider en une seconde."
+  }
+ ]
+}

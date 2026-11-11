@@ -1,0 +1,128 @@
+{
+ "id": "ecoconduite",
+ "ordre": 28,
+ "theme": "environnement",
+ "titre": "Écoconduite",
+ "accroche": "moins consommer, plus de sécurité",
+ "resume": "Anticiper, passer les rapports tôt, surveiller les pneus et le chargement : les gestes qui économisent.",
+ "affiche": [
+  "B14:110"
+ ],
+ "chapitres": [
+  "Les bons gestes"
+ ],
+ "series": [
+  "serie-ecoconduite"
+ ],
+ "memo": [
+  {
+   "texte": "Anticiper",
+   "tag": "Moins de freinages, moins de consommation"
+  },
+  {
+   "texte": "Rapports",
+   "tag": "Les passer tôt"
+  },
+  {
+   "texte": "Pneus sous-gonflés",
+   "tag": "Plus de consommation"
+  },
+  {
+   "texte": "Arrêt prolongé",
+   "tag": "Couper le moteur"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 28 · Environnement",
+   "titre": "Écoconduite",
+   "sous": "moins consommer, plus de sécurité",
+   "dire": "Cours numéro 28 : l’écoconduite. Bonne nouvelle : conduire économique, c’est aussi conduire plus sûr.",
+   "vitesse": 70
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les bons gestes",
+   "titre": "En roulant",
+   "items": [
+    [
+     "Anticiper",
+     "Lever le pied tôt plutôt que freiner tard"
+    ],
+    [
+     "Passer les rapports tôt",
+     "Le moteur tourne moins vite"
+    ],
+    [
+     "Vitesse stable",
+     "Les à-coups consomment"
+    ],
+    [
+     "Rouler un peu moins vite",
+     "La consommation grimpe vite avec la vitesse"
+    ]
+   ],
+   "dire": "Anticipe : lève le pied tôt plutôt que de freiner tard. Passe les rapports tôt. Garde une vitesse stable. Et rouler un peu moins vite fait baisser nettement la consommation, surtout sur autoroute.",
+   "vitesse": 70
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Avant de partir",
+   "titre": "La voiture",
+   "items": [
+    [
+     "Pneus bien gonflés",
+     "Sous-gonflés, ils consomment plus"
+    ],
+    [
+     "Coffre de toit retiré",
+     "Il freine la voiture"
+    ],
+    [
+     "Climatisation avec mesure",
+     "Elle augmente la consommation"
+    ],
+    [
+     "Moteur coupé",
+     "Lors d’un arrêt prolongé"
+    ]
+   ],
+   "dire": "Côté voiture : des pneus bien gonflés, un coffre de toit retiré quand il ne sert pas, la climatisation avec mesure, et le moteur coupé lors d’un arrêt prolongé."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Pour économiser du carburant, il vaut mieux :",
+   "choix": [
+    "freiner tard et fort",
+    "anticiper et lever le pied tôt"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Anticiper, c’est utiliser l’élan de la voiture au lieu de le gaspiller en freinant.",
+   "dire": "Question. Pour économiser du carburant, vaut-il mieux freiner tard ou anticiper ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 0,
+   "eyebrow": "Fin du cours 28",
+   "titre": "Écoconduite : OK",
+   "stats": [
+    [
+     "4",
+     "gestes en roulant"
+    ],
+    [
+     "4",
+     "réglages avant de partir"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

@@ -1,0 +1,138 @@
+{
+ "id": "vehicules-prioritaires",
+ "ordre": 14,
+ "theme": "usagers",
+ "titre": "Véhicules prioritaires",
+ "accroche": "laisser passer l’urgence",
+ "resume": "Police, pompiers, SAMU : comment les reconnaître et leur faciliter le passage, et les véhicules à feu orange.",
+ "affiche": [
+  "AB4",
+  "A14"
+ ],
+ "chapitres": [
+  "Les prioritaires",
+  "Les autres signaux"
+ ],
+ "series": [
+  "serie-vehicules-prioritaires"
+ ],
+ "memo": [
+  {
+   "texte": "Feux bleus + sirène deux tons",
+   "tag": "Priorité absolue"
+  },
+  {
+   "texte": "Faciliter le passage",
+   "tag": "Serrer à droite, sans freiner brusquement"
+  },
+  {
+   "texte": "Feu orange tournant",
+   "tag": "Prudence, pas de priorité"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 14 · Usagers",
+   "titre": "Véhicules prioritaires",
+   "sous": "laisser passer l’urgence",
+   "dire": "Cours numéro 14 : les véhicules d’urgence. Quand ils sont en intervention, chaque seconde compte.",
+   "vitesse": 40
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Ils arrivent",
+   "titre": "Feux bleus et deux tons",
+   "dire": "Police, gendarmerie, pompiers, SAMU : en intervention, avec feux bleus et avertisseur deux tons, ils ont la priorité sur tous les usagers, quels que soient les feux et panneaux.",
+   "env": "ville",
+   "kmh": 25,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "ambulance",
+     "S": -12,
+     "kmh": 40
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Prioritaire",
+     "feux bleus et sirène"
+    ]
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Leur faciliter le passage",
+   "titre": "Calmement",
+   "items": [
+    [
+     "Ne pas paniquer",
+     "Pas de freinage brusque"
+    ],
+    [
+     "Serrer à droite",
+     "Pour libérer la voie"
+    ],
+    [
+     "Au feu rouge",
+     "Tu peux avancer un peu si c’est sans danger"
+    ]
+   ],
+   "dire": "Garde ton calme : pas de freinage brusque. Serre-toi à droite pour libérer le passage. À un feu rouge, tu peux avancer légèrement pour lui laisser la place, uniquement si c’est sans danger."
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Les feux orange",
+   "titre": "Prudence",
+   "items": [
+    [
+     "Feu orange tournant",
+     "Dépanneuse, travaux, convoi exceptionnel"
+    ],
+    [
+     "Ce n’est pas une priorité",
+     "Mais un danger : ralentis"
+    ]
+   ],
+   "dire": "Un gyrophare orange signale un véhicule lent ou un danger : dépanneuse, engin de chantier, convoi exceptionnel. Ce n’est pas une priorité de passage, mais ralentis et sois prudent."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Une ambulance, feux bleus et sirène, arrive derrière toi. Tu :",
+   "choix": [
+    "freines d’un coup",
+    "te serres à droite calmement",
+    "accélères"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Facilite son passage en te serrant à droite, sans manœuvre brusque.",
+   "dire": "Question. Une ambulance arrive derrière toi, feux bleus et sirène allumés. Que fais-tu ?",
+   "revoir": 1
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 14",
+   "titre": "Urgences : OK",
+   "stats": [
+    [
+     "2",
+     "signaux : bleus et deux tons"
+    ],
+    [
+     "1",
+     "réflexe : serrer à droite"
+    ]
+   ],
+   "dire": "Cours terminé. Rejoue l’exercice « Giratoires, feux et urgences » : une ambulance t’attend."
+  }
+ ]
+}

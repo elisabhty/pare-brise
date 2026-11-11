@@ -1,0 +1,58 @@
+[
+ {
+  "id": "e28-1",
+  "cours": "ecoconduite",
+  "type": "qcm",
+  "q": "Des pneus sous-gonflés :",
+  "choix": [
+   "font économiser du carburant",
+   "augmentent la consommation"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Ils augmentent la résistance au roulement."
+ },
+ {
+  "id": "e28-2",
+  "cours": "ecoconduite",
+  "type": "qcm",
+  "q": "Pour une conduite économe, on passe les rapports :",
+  "choix": [
+   "tôt",
+   "le plus tard possible"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Un moteur qui tourne moins vite consomme moins."
+ },
+ {
+  "id": "e28-3",
+  "cours": "ecoconduite",
+  "type": "qcm",
+  "q": "Un coffre de toit vide laissé en place :",
+  "choix": [
+   "n’a aucun effet",
+   "augmente la consommation"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Il augmente la prise au vent."
+ },
+ {
+  "id": "e28-4",
+  "cours": "ecoconduite",
+  "type": "qcm",
+  "q": "Lors d’un arrêt prolongé, il est conseillé de :",
+  "choix": [
+   "laisser tourner le moteur",
+   "couper le moteur"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Un moteur au ralenti consomme pour rien."
+ }
+]

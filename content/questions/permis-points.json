@@ -1,0 +1,75 @@
+[
+ {
+  "id": "pp20-1",
+  "cours": "permis-points",
+  "type": "qcm",
+  "q": "En période probatoire, ton capital de départ est de :",
+  "choix": [
+   "6 points",
+   "8 points",
+   "12 points"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "6 points, qui montent progressivement à 12."
+ },
+ {
+  "id": "pp20-2",
+  "cours": "permis-points",
+  "type": "qcm",
+  "q": "Après une conduite accompagnée, la période probatoire dure :",
+  "choix": [
+   "2 ans",
+   "3 ans"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "2 ans, avec +3 points par an sans infraction."
+ },
+ {
+  "id": "pp20-3",
+  "cours": "permis-points",
+  "type": "qcm",
+  "q": "Le taux d’alcool maximal pour un jeune conducteur est de :",
+  "choix": [
+   "0,2 g/L",
+   "0,5 g/L"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "0,2 g/L de sang, soit pratiquement zéro verre."
+ },
+ {
+  "id": "pp20-4",
+  "cours": "permis-points",
+  "type": "qcm",
+  "q": "Un stage de sensibilisation volontaire rend :",
+  "choix": [
+   "2 points",
+   "4 points",
+   "6 points"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "4 points, au maximum une fois par an."
+ },
+ {
+  "id": "pp20-5",
+  "cours": "permis-points",
+  "type": "qcm",
+  "q": "L’âge minimum pour obtenir le permis B est :",
+  "choix": [
+   "16 ans",
+   "17 ans",
+   "18 ans"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "17 ans depuis le 1er janvier 2024."
+ }
+]

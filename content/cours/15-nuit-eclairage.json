@@ -1,0 +1,215 @@
+{
+ "id": "nuit-eclairage",
+ "ordre": 15,
+ "theme": "route",
+ "titre": "La nuit et l’éclairage",
+ "accroche": "voir et être vu",
+ "resume": "Feux de position, de croisement, de route et de brouillard : lesquels, quand, et comment ne pas éblouir.",
+ "affiche": [
+  "A14",
+  "B14:80"
+ ],
+ "chapitres": [
+  "Les feux",
+  "Conduire de nuit"
+ ],
+ "series": [
+  "serie-nuit-eclairage"
+ ],
+ "memo": [
+  {
+   "texte": "Croisement",
+   "tag": "Éclairent environ 30 m"
+  },
+  {
+   "texte": "Route",
+   "tag": "Environ 100 m, si personne n’est ébloui"
+  },
+  {
+   "texte": "Brouillard arrière",
+   "tag": "Brouillard ou neige seulement"
+  },
+  {
+   "texte": "Ébloui",
+   "tag": "Regarde le bord droit, ralentis"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 15 · Route",
+   "titre": "La nuit et l’éclairage",
+   "sous": "voir et être vu",
+   "dire": "Cours numéro 15 : la nuit. Tu ne vois que ce que tes phares éclairent, et les autres te voient grâce à eux.",
+   "vitesse": 60
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Feux de croisement",
+   "titre": "Environ 30 mètres",
+   "dire": "Les feux de croisement éclairent à environ 30 mètres. Ce sont tes feux de base la nuit, et de jour quand la visibilité baisse.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 50,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true
+   }
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Feux de route",
+   "titre": "Environ 100 mètres",
+   "dire": "Les feux de route portent à environ 100 mètres. Utilise-les hors agglomération, sur route non éclairée, quand tu n’éblouis personne.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 60,
+   "camera": "cockpit",
+   "feux": {
+    "route": true,
+    "croisement": false
+   }
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Ne pas éblouir",
+   "titre": "Une voiture en face",
+   "dire": "Dès qu’une voiture arrive en face, ou que tu en suis une, repasse en feux de croisement. Et si c’est toi qui es ébloui : regarde le bord droit de la route et ralentis.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 50,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 120,
+     "x": -1.75,
+     "kmh": -60
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les feux de brouillard",
+   "titre": "Quand les allumer",
+   "items": [
+    [
+     "Brouillard avant",
+     "Brouillard, neige ou forte pluie"
+    ],
+    [
+     "Brouillard arrière",
+     "Brouillard ou neige uniquement"
+    ],
+    [
+     "Sous la pluie",
+     "Pas de brouillard arrière : il éblouit"
+    ]
+   ],
+   "dire": "Les feux de brouillard avant s’utilisent par brouillard, neige ou forte pluie. Le feu de brouillard arrière, uniquement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit."
+  },
+  {
+   "type": "chiffres",
+   "ch": 1,
+   "eyebrow": "La nuit",
+   "titre": "Tout est plus long",
+   "items": [
+    [
+     "30",
+     "m",
+     "vus en feux de croisement"
+    ],
+    [
+     "49",
+     "m",
+     "pour s’arrêter à 70 km/h (règle du code)"
+    ]
+   ],
+   "dire": "À 70 kilomètres heure, ta distance d’arrêt approche 50 mètres, alors que tes feux de croisement n’éclairent qu’à 30. La nuit, adapte ta vitesse à ce que tu vois.",
+   "vitesse": 70
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Les piétons la nuit",
+   "titre": "Presque invisibles",
+   "dire": "Un piéton habillé en sombre n’apparaît qu’au dernier moment. Hors agglomération, un gilet réfléchissant change tout.",
+   "env": "route",
+   "meteo": "nuit",
+   "kmh": 40,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true
+   },
+   "acteurs": [
+    {
+     "type": "pieton",
+     "S": 28,
+     "x": 4.2
+    },
+    {
+     "type": "pieton",
+     "S": 50,
+     "x": 4.6,
+     "gilet": true
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Sans gilet",
+     "vu tard"
+    ],
+    [
+     1,
+     "Avec gilet",
+     "vu de loin"
+    ]
+   ]
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "La nuit, une voiture arrive en face. Tes feux :",
+   "choix": [
+    "de route",
+    "de croisement",
+    "de brouillard"
+   ],
+   "bonne": 1,
+   "bien": "Exact : on ne doit pas l’éblouir.",
+   "mal": "Dès qu’un véhicule arrive en face, tu passes en feux de croisement.",
+   "dire": "Question. La nuit, une voiture arrive en face. Quels feux utilises-tu ?",
+   "revoir": 3
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 15",
+   "titre": "Éclairage : OK",
+   "stats": [
+    [
+     "30",
+     "m en croisement"
+    ],
+    [
+     "100",
+     "m en route"
+    ],
+    [
+     "2",
+     "feux de brouillard"
+    ]
+   ],
+   "dire": "Cours terminé. L’exercice « Les bons feux » te met dans six situations."
+  }
+ ]
+}

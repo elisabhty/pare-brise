@@ -1,0 +1,77 @@
+[
+ {
+  "id": "uv11-1",
+  "cours": "usagers-vulnerables",
+  "type": "qcm",
+  "q": "Un piéton manifeste clairement son intention de traverser. Tu dois :",
+  "choix": [
+   "lui céder le passage",
+   "passer si tu es prioritaire"
+  ],
+  "bonnes": [
+   0
+  ],
+  "explication": "Le piéton engagé ou qui veut traverser est prioritaire."
+ },
+ {
+  "id": "uv11-2",
+  "cours": "usagers-vulnerables",
+  "type": "qcm",
+  "q": "Refuser la priorité à un piéton retire :",
+  "choix": [
+   "3 points",
+   "4 points",
+   "6 points"
+  ],
+  "bonnes": [
+   2
+  ],
+  "explication": "135 € et 6 points."
+ },
+ {
+  "id": "uv11-3",
+  "cours": "usagers-vulnerables",
+  "type": "qcm",
+  "q": "Dans une zone de rencontre, la vitesse est limitée à :",
+  "choix": [
+   "10 km/h",
+   "20 km/h",
+   "30 km/h"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "20 km/h, et les piétons sont prioritaires."
+ },
+ {
+  "id": "uv11-4",
+  "cours": "usagers-vulnerables",
+  "type": "qcm",
+  "q": "Ce panneau annonce :",
+  "choix": [
+   "un passage piéton",
+   "un endroit fréquenté par des enfants"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "A13a : endroit fréquenté par les enfants.",
+  "panneaux": [
+   "A13a"
+  ]
+ },
+ {
+  "id": "uv11-5",
+  "cours": "usagers-vulnerables",
+  "type": "qcm",
+  "q": "Un ballon traverse la rue devant toi. Tu :",
+  "choix": [
+   "klaxonnes",
+   "freines : un enfant peut suivre"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "Anticipe : un enfant court souvent derrière son ballon."
+ }
+]

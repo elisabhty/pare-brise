@@ -1,0 +1,150 @@
+{
+ "id": "aides-conduite",
+ "ordre": 24,
+ "theme": "mecanique",
+ "titre": "Les aides à la conduite",
+ "accroche": "utiles, mais tu restes le pilote",
+ "resume": "Régulateur, limiteur, freinage d’urgence automatique, alerte de franchissement de ligne, angle mort : ce qu’elles font et leurs limites.",
+ "affiche": [
+  "B14:90"
+ ],
+ "chapitres": [
+  "Les aides",
+  "Leurs limites"
+ ],
+ "series": [
+  "serie-aides-conduite"
+ ],
+ "memo": [
+  {
+   "texte": "Limiteur",
+   "tag": "Empêche de dépasser une vitesse"
+  },
+  {
+   "texte": "Régulateur",
+   "tag": "Maintient une vitesse"
+  },
+  {
+   "texte": "Freinage d’urgence automatique",
+   "tag": "Peut freiner à ta place"
+  },
+  {
+   "texte": "Toujours",
+   "tag": "Le conducteur reste responsable"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 24 · Mécanique",
+   "titre": "Les aides à la conduite",
+   "sous": "utiles, mais tu restes le pilote",
+   "dire": "Cours numéro 24 : les aides à la conduite. Les voitures récentes en sont pleines. Elles aident… elles ne conduisent pas à ta place.",
+   "vitesse": 80
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Les aides",
+   "titre": "Qui fait quoi",
+   "items": [
+    [
+     "Limiteur de vitesse",
+     "Tu ne peux pas dépasser la vitesse choisie"
+    ],
+    [
+     "Régulateur",
+     "La voiture garde la vitesse choisie"
+    ],
+    [
+     "Régulateur adaptatif",
+     "Il garde aussi la distance avec la voiture de devant"
+    ],
+    [
+     "Freinage d’urgence automatique",
+     "Il freine si tu ne réagis pas"
+    ],
+    [
+     "Alerte de franchissement de ligne",
+     "Elle te prévient si tu dérives"
+    ]
+   ],
+   "dire": "Le limiteur t’empêche de dépasser une vitesse. Le régulateur la maintient. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives.",
+   "vitesse": 80
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Leurs limites",
+   "titre": "Pluie, brouillard, capteurs sales",
+   "dire": "Les caméras et radars voient mal par forte pluie, brouillard, neige, ou si les capteurs sont sales. Ils peuvent aussi ne pas détecter un piéton, un cycliste ou un obstacle inhabituel.",
+   "env": "route",
+   "meteo": "pluie",
+   "kmh": 60,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 50,
+     "kmh": 60
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "La règle",
+   "titre": "Tu restes responsable",
+   "items": [
+    [
+     "Les mains sur le volant",
+     "Toujours"
+    ],
+    [
+     "Les yeux sur la route",
+     "Toujours"
+    ],
+    [
+     "En cas d’infraction ou d’accident",
+     "C’est toi qui réponds"
+    ]
+   ],
+   "dire": "Quelle que soit l’aide, tu gardes les mains sur le volant et les yeux sur la route. Et en cas d’infraction ou d’accident, c’est le conducteur qui est responsable."
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Le régulateur adaptatif est activé. Tu peux regarder ton téléphone ?",
+   "choix": [
+    "Oui, il gère tout",
+    "Non, tu restes responsable"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Une aide n’est pas un pilote automatique : ton attention reste obligatoire.",
+   "dire": "Question. Ton régulateur adaptatif est activé. Peux-tu regarder ton téléphone ?",
+   "revoir": 3
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 24",
+   "titre": "Aides : OK",
+   "stats": [
+    [
+     "5",
+     "aides à connaître"
+    ],
+    [
+     "1",
+     "règle : tu restes responsable"
+    ]
+   ],
+   "dire": "Cours terminé."
+  }
+ ]
+}

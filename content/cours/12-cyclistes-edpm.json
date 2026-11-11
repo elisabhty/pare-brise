@@ -1,0 +1,182 @@
+{
+ "id": "cyclistes-edpm",
+ "ordre": 12,
+ "theme": "usagers",
+ "titre": "Vélos et trottinettes",
+ "accroche": "partager la route",
+ "resume": "Distances de dépassement, angle mort, sas vélo, double sens cyclable et règles des trottinettes électriques.",
+ "affiche": [
+  "B22a",
+  "A21",
+  "B40"
+ ],
+ "chapitres": [
+  "Les cyclistes",
+  "Les trottinettes"
+ ],
+ "series": [
+  "serie-cyclistes-edpm"
+ ],
+ "memo": [
+  {
+   "texte": "Dépasser un vélo",
+   "tag": "1 m en ville, 1,50 m hors ville",
+   "panneau": "A21"
+  },
+  {
+   "texte": "Piste cyclable obligatoire",
+   "tag": "Réservée aux cycles",
+   "panneau": "B22a"
+  },
+  {
+   "texte": "Trottinette électrique",
+   "tag": "14 ans minimum, 25 km/h"
+  },
+  {
+   "texte": "Avant de tourner à droite",
+   "tag": "Angle mort"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 12 · Usagers",
+   "titre": "Vélos et trottinettes",
+   "sous": "partager la route",
+   "dire": "Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
+   "vitesse": 30
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "Dépasser un vélo",
+   "titre": "Laisse de la place",
+   "dire": "Pour dépasser un cycliste : au moins un mètre en agglomération, un mètre cinquante hors agglomération. Si la route est trop étroite, tu attends.",
+   "env": "route",
+   "kmh": 20,
+   "camera": "haut",
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": 14,
+     "x": 2.7,
+     "kmh": 20
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "1,50 m",
+     "hors agglomération"
+    ]
+   ]
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "L’angle mort",
+   "titre": "Avant de tourner à droite",
+   "dire": "Avant de tourner à droite, regarde ton rétroviseur et tourne la tête : un cycliste peut remonter le long de ta voiture, dans ton angle mort.",
+   "env": "ville",
+   "kmh": 15,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "velo",
+     "S": 2,
+     "x": 3.0,
+     "kmh": 22
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Angle mort",
+     "invisible dans le rétroviseur"
+    ]
+   ]
+  },
+  {
+   "type": "panneaux",
+   "ch": 0,
+   "eyebrow": "Les aménagements",
+   "titre": "Pistes et sas",
+   "panneaux": [
+    "B22a",
+    "B40"
+   ],
+   "dire": "La piste cyclable est réservée aux cycles. Le sas vélo, devant les feux, aussi : tu t’arrêtes à la première ligne. Et dans une rue à sens unique avec double sens cyclable, des vélos peuvent arriver en face.",
+   "etiquettes": [
+    [
+     "B22a",
+     "Piste cyclable obligatoire"
+    ],
+    [
+     "B40",
+     "Fin de piste"
+    ]
+   ],
+   "puce": "Interdit aux voitures"
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Trottinettes électriques",
+   "titre": "Les règles",
+   "items": [
+    [
+     "14 ans minimum",
+     "Pour la conduire"
+    ],
+    [
+     "25 km/h maximum",
+     "Bridée par construction"
+    ],
+    [
+     "Une seule personne",
+     "Pas de passager"
+    ],
+    [
+     "Pas sur le trottoir",
+     "Sauf autorisation, au pas"
+    ]
+   ],
+   "dire": "Les trottinettes électriques sont des engins de déplacement personnel motorisés. Il faut avoir au moins 14 ans, elles ne dépassent pas 25 kilomètres heure, on y monte seul, et le trottoir est interdit sauf autorisation, à l’allure du pas."
+  },
+  {
+   "type": "quiz",
+   "ch": 1,
+   "question": "Un enfant de 9 ans circule à vélo. Le casque est :",
+   "choix": [
+    "conseillé",
+    "obligatoire"
+   ],
+   "bonne": 1,
+   "bien": "Exact : obligatoire avant 12 ans.",
+   "mal": "Le casque est obligatoire pour les enfants de moins de 12 ans à vélo, conducteurs comme passagers.",
+   "dire": "Question. Un enfant de 9 ans circule à vélo. Le casque est-il obligatoire ?"
+  },
+  {
+   "type": "fin",
+   "ch": 1,
+   "eyebrow": "Fin du cours 12",
+   "titre": "Vélos : OK",
+   "stats": [
+    [
+     "1,5",
+     "m hors agglomération"
+    ],
+    [
+     "14",
+     "ans pour une trottinette"
+    ],
+    [
+     "25",
+     "km/h maximum"
+    ]
+   ],
+   "dire": "Cours terminé. Retiens le réflexe angle mort avant chaque virage à droite."
+  }
+ ]
+}

@@ -1,0 +1,196 @@
+{
+ "id": "intemperies",
+ "ordre": 16,
+ "theme": "route",
+ "titre": "Pluie, brouillard, neige",
+ "accroche": "adapter sa conduite",
+ "resume": "Aquaplaning, distances qui s’allongent, brouillard, verglas, vent et équipements d’hiver.",
+ "affiche": [
+  "A4",
+  "B14:50",
+  "B14:110"
+ ],
+ "chapitres": [
+  "La pluie",
+  "Brouillard et vent",
+  "L’hiver"
+ ],
+ "series": [
+  "serie-intemperies"
+ ],
+ "memo": [
+  {
+   "texte": "Sol mouillé",
+   "tag": "Distance d’arrêt × 1,5"
+  },
+  {
+   "texte": "Aquaplaning",
+   "tag": "Lâche l’accélérateur, ne freine pas fort"
+  },
+  {
+   "texte": "Visibilité < 50 m",
+   "tag": "50 km/h",
+   "panneau": "B14:50"
+  },
+  {
+   "texte": "Chaussée glissante",
+   "tag": "Danger",
+   "panneau": "A4"
+  }
+ ],
+ "scenes": [
+  {
+   "type": "titre",
+   "ch": 0,
+   "eyebrow": "Cours 16 · Route",
+   "titre": "Pluie, brouillard, neige",
+   "sous": "adapter sa conduite",
+   "dire": "Cours numéro 16 : la météo. Elle ne change pas les règles… elle change les distances.",
+   "vitesse": 50
+  },
+  {
+   "type": "situation",
+   "ch": 0,
+   "eyebrow": "La pluie",
+   "titre": "Ça glisse",
+   "dire": "Sous la pluie, la distance de freinage s’allonge : compte environ une fois et demie la distance sur sol sec. Les premières gouttes, après une période sèche, sont les plus dangereuses.",
+   "env": "route",
+   "meteo": "pluie",
+   "kmh": 60,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true
+   },
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": 60,
+     "kmh": 60
+    }
+   ]
+  },
+  {
+   "type": "liste",
+   "ch": 0,
+   "eyebrow": "Aquaplaning",
+   "titre": "La voiture flotte",
+   "items": [
+    [
+     "Ne freine pas fort",
+     "Les roues ne touchent plus la route"
+    ],
+    [
+     "Lâche l’accélérateur",
+     "Doucement"
+    ],
+    [
+     "Tiens le volant droit",
+     "Jusqu’à retrouver l’adhérence"
+    ]
+   ],
+   "dire": "Aquaplaning : une couche d’eau sépare les pneus de la route. La direction devient légère. Ne freine pas fort, lève le pied doucement et tiens le volant droit jusqu’à retrouver l’adhérence."
+  },
+  {
+   "type": "situation",
+   "ch": 1,
+   "eyebrow": "Brouillard",
+   "titre": "Moins de 50 mètres",
+   "dire": "Quand la visibilité tombe sous 50 mètres, la vitesse est limitée à 50, même sur autoroute. Feux de croisement, feux de brouillard, et grandes distances.",
+   "env": "route",
+   "meteo": "brouillard",
+   "kmh": 45,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true,
+    "brouillardAv": true
+   }
+  },
+  {
+   "type": "liste",
+   "ch": 1,
+   "eyebrow": "Le vent",
+   "titre": "Rafales latérales",
+   "items": [
+    [
+     "Tiens le volant",
+     "À deux mains"
+    ],
+    [
+     "Attention",
+     "En sortie de forêt, de tunnel, sur un pont"
+    ],
+    [
+     "Camions et deux-roues",
+     "Ils peuvent être déportés"
+    ]
+   ],
+   "dire": "Par vent fort, tiens ton volant à deux mains. Les rafales surprennent en sortie de forêt, de tunnel ou sur un pont. Et laisse de la marge aux camions et aux deux-roues : ils peuvent être déportés."
+  },
+  {
+   "type": "situation",
+   "ch": 2,
+   "eyebrow": "L’hiver",
+   "titre": "Neige et verglas",
+   "dire": "Sur neige ou verglas, la distance de freinage peut être plusieurs fois plus longue. Douceur sur l’accélérateur, le volant et le frein. Le verglas se forme d’abord sur les ponts et dans les zones à l’ombre.",
+   "env": "route",
+   "meteo": "neige",
+   "kmh": 40,
+   "camera": "cockpit",
+   "feux": {
+    "croisement": true
+   }
+  },
+  {
+   "type": "liste",
+   "ch": 2,
+   "eyebrow": "Loi montagne",
+   "titre": "Équiper sa voiture",
+   "items": [
+    [
+     "Du 1er novembre au 31 mars",
+     "Dans les communes concernées"
+    ],
+    [
+     "Pneus hiver ou quatre saisons",
+     "Ou chaînes ou chaussettes dans le coffre"
+    ]
+   ],
+   "dire": "Dans les communes de montagne concernées, du premier novembre au 31 mars, ta voiture doit avoir des pneus hiver ou quatre saisons, ou des chaînes ou chaussettes à neige dans le coffre."
+  },
+  {
+   "type": "quiz",
+   "ch": 0,
+   "question": "Ta voiture part en aquaplaning. Tu :",
+   "choix": [
+    "freines fort",
+    "lâches doucement l’accélérateur et tiens le volant"
+   ],
+   "bonne": 1,
+   "bien": "Exact.",
+   "mal": "Pas de freinage brusque : lève le pied et garde les roues droites.",
+   "dire": "Question. Ta voiture part en aquaplaning. Que fais-tu ?",
+   "revoir": 2
+  },
+  {
+   "type": "fin",
+   "ch": 2,
+   "eyebrow": "Fin du cours 16",
+   "titre": "Météo : OK",
+   "stats": [
+    [
+     "1,5",
+     "× la distance sous la pluie"
+    ],
+    [
+     "50",
+     "km/h si on voit à moins de 50 m"
+    ],
+    [
+     "5",
+     "mois d’équipement hiver"
+    ]
+   ],
+   "dire": "Cours terminé. L’exercice « Freinage sous la pluie » te fera sentir la différence."
+  }
+ ]
+}

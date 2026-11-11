@@ -1,0 +1,60 @@
+[
+ {
+  "id": "i27-1",
+  "cours": "infractions",
+  "type": "qcm",
+  "q": "Une amende de 4e classe coûte, en forfaitaire :",
+  "choix": [
+   "68 €",
+   "135 €",
+   "375 €"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "135 €."
+ },
+ {
+  "id": "i27-2",
+  "cours": "infractions",
+  "type": "qcm",
+  "q": "Ne pas respecter un feu rouge retire :",
+  "choix": [
+   "2 points",
+   "4 points"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "135 € et 4 points."
+ },
+ {
+  "id": "i27-3",
+  "cours": "infractions",
+  "type": "qcm",
+  "q": "Un excès de vitesse de 25 km/h retire :",
+  "choix": [
+   "1 point",
+   "2 points",
+   "3 points"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "De 20 à 29 km/h au-dessus : 2 points."
+ },
+ {
+  "id": "i27-4",
+  "cours": "infractions",
+  "type": "qcm",
+  "q": "Ne pas boucler sa ceinture retire :",
+  "choix": [
+   "1 point",
+   "3 points"
+  ],
+  "bonnes": [
+   1
+  ],
+  "explication": "135 € et 3 points."
+ }
+]
