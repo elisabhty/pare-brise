@@ -22,7 +22,7 @@ import { currentScreen } from './nav.js';
 /* ---------- utilitaires d'affichage ---------- */
 export const courseMinutes = c => Math.max(1, Math.round(c.scenes.reduce((a, s) => a + splitSentences(s.dire || '').reduce((b, t) => b + estimate(t) + 180, 0) + 450, 0) / 60000));
 const qCount = c => (practiceOf(c.id) || { situations: [] }).situations.length;
-const status = c => { const st = courseState(c.id); return st.done ? ['done', 'Vu'] : c === nextCourse() ? ['now', 'À suivre'] : st.scene > 0 ? ['started', 'Commencé'] : ['todo', 'Dispo']; };
+const status = c => { const st = courseState(c.id); return st.done ? ['done', 'Vu'] : c === nextCourse() ? ['now', st.scene > 0 ? 'En cours' : 'À suivre'] : st.scene > 0 ? ['started', 'En cours'] : ['todo', '']; };
 const pct = (s, t) => (t ? Math.round(s / t * 100) : 0);
 const courseRow = (c, compact) => {
   const [st, tag] = status(c);
@@ -71,13 +71,22 @@ function renderHome() {
   $('#nextC').hidden = !!plan;
   $('#homeStreak').innerHTML = weekHTML(plannedDays());
   refreshBadge();
-  $('#heroEyebrow').textContent = `Ton prochain cours · Cours ${courseNumber(c)} · ${courseMinutes(c)} min`;
-  $('#heroLead').textContent = `« ${c.titre} ». ${c.resume}`;
-  $('#takeSeat').textContent = st.scene > 0 && !st.done ? 'Reprendre le cours' : 'Lancer le cours';
+  // le prochain cours, en carte : numéro, titre, où l'on en est, ce qui suit
+  const enCours = st.scene > 0 && !st.done, nSc = c.scenes.length, ch = enCours ? ((c.scenes[Math.min(st.scene, nSc - 1)] || {}).ch || 0) : 0, nCh = (c.chapitres || []).length || 1;
+  $('#ncNum').textContent = courseNumber(c);
+  $('#heroEyebrow').textContent = `${enCours ? 'Tu en es là' : 'Ton prochain cours'} · Cours ${courseNumber(c)} · ${courseMinutes(c)} min`;
+  $('#ncTitle').textContent = c.titre;
+  $('#heroLead').textContent = c.resume;
+  $('#ncProg').hidden = !enCours; $('#ncBar').style.width = Math.round(st.scene / nSc * 100) + '%';
+  $('#ncMeta').textContent = enCours ? `Chapitre ${ch + 1} sur ${nCh} · puis ${qCount(c)} situations en pratique` : `${nCh} chapitre${nCh > 1 ? 's' : ''}, puis ${qCount(c)} situations en pratique`;
+  $('#takeSeat').textContent = enCours ? 'Reprendre le cours' : 'Lancer le cours';
   const r = readiness();
   $('#readyPct').textContent = r + ' %'; $('#readyBar').style.width = r + '%';
   const rev = toReview().length;
-  $('#readyTxt').textContent = `${doneCount()}/${COURSES.length} cours vus · ${mastered()} questions maîtrisées${exams().length ? ` · dernier examen ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}` : ''}`;
+  const prDone = COURSES.filter(x => { const p = practiceOf(x.id); return p && exoBest(p.id); }).length;
+  const blancs = exams().length + ((store.get('exoRuns', {}) || {})['x-exam-blanc'] || 0);
+  $('#readyM').innerHTML = `<div><b class="num">${doneCount()}<small>/${COURSES.length}</small></b><span>cours vus</span></div><div><b class="num">${prDone}<small>/${COURSES.length}</small></b><span>pratiques faites</span></div><div><b class="num">${blancs}</b><span>examen${blancs > 1 ? 's' : ''} blanc${blancs > 1 ? 's' : ''}</span></div>`;
+  $('#readyTxt').textContent = `Le jour J : 35 bonnes réponses sur 40.${mastered() ? ` ${mastered()} question${mastered() > 1 ? 's' : ''} maîtrisée${mastered() > 1 ? 's' : ''}.` : ''}${exams().length ? ` Dernier examen rapide : ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}.` : ''}`;
   $('#reviewCard').hidden = !rev;
   $('#reviewN').textContent = rev;
   const i0 = Math.max(0, Math.min(COURSES.indexOf(c) - 1, COURSES.length - 4));
@@ -128,7 +137,7 @@ function renderFiche(id) {
   $('#fEyebrow').textContent = `Cours ${courseNumber(c)} · ${theme(c.theme).nom}`;
   $('#fTitle').textContent = c.titre;
   $('#fResume').textContent = c.resume || '';
-  $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minutes</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>situations en pratique</span></div>`;
+  $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minute${courseMinutes(c) > 1 ? 's' : ''}</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>situations en pratique</span></div>`;
   $('#fPlay').textContent = st.done ? 'Revoir le cours' : st.scene > 0 ? 'Reprendre le cours' : 'Lancer le cours';
   $('#fChapters').innerHTML = (c.chapitres || []).map((n, k) => `<li><button data-ch="${k}"><span class="cn">${k + 1}</span><b>${esc(n)}</b><small>${c.scenes.filter(s => (s.ch || 0) === k).length} scènes</small></button></li>`).join('');
   $$('#fChapters button').forEach(b => b.addEventListener('click', () => show('cours', { course: c.id, at: c.scenes.findIndex(s => (s.ch || 0) === +b.dataset.ch), play: true })));
@@ -154,8 +163,12 @@ function renderHub() {
   $('#hubExamN').textContent = n;
   $('#hubReview').hidden = !rev.length; $('#hubReviewN').textContent = rev.length;
   const last = exams().slice(-1)[0];
-  $('#hubLast').textContent = last ? `Dernier examen blanc : ${last.score}/${last.total}` : 'Pas encore d’examen blanc.';
-  $('#hubSeries').innerHTML = [...SERIES.values()].map(s => { const c = course(s.cours); const best = seriesBest(s.id), tot = seriesTotal(s.id); return `<li><button class="srow glass" data-s="${s.id}"><div><b>${esc(s.titre)}</b><small>${c ? `Cours ${courseNumber(c)} · ` : ''}${s.questions.length} questions</small></div><span class="tag num">${best !== undefined ? `${best}/${tot}` : 'Nouveau'}</span></button></li>`; }).join('');
+  $('#hubLast').textContent = last ? `Dernier examen rapide : ${last.score}/${last.total}` : '';
+  // les séries : les six premières, le reste sur demande ; le score seulement quand il existe
+  const all = [...SERIES.values()], open = !!renderHub.open;
+  $('#hubSeriesN').textContent = `${all.length} séries`;
+  $('#hubSeries').innerHTML = all.map((s, k) => { const c = course(s.cours); const best = seriesBest(s.id), tot = seriesTotal(s.id); return `<li${!open && k >= 6 ? ' hidden' : ''}><button class="srow glass" data-s="${s.id}"><div><b>${esc(s.titre)}</b><small>${c ? `Cours ${courseNumber(c)} · ` : ''}${s.questions.length} questions</small></div>${best !== undefined ? `<span class="tag num">${best}/${tot}</span>` : '<span class="srow-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>'}</button></li>`; }).join('');
+  $('#hubSeriesMore').hidden = open || all.length <= 6;
   $$('#hubSeries [data-s]').forEach(b => b.addEventListener('click', () => startSerie(b.dataset.s, { retour: 'examen' })));
 }
 
@@ -191,7 +204,11 @@ export function setupScreens() {
   $('#takeSeat').addEventListener('click', () => seatAndPlay(nextCourse().id));
   $('#fPlay').addEventListener('click', () => { Voice.unlock(); Sound.init(); const st = courseState(ficheId); show('cours', { course: ficheId, at: st.done ? 0 : undefined, play: true }); });
   $('#reviewCard').addEventListener('click', () => Serie.start({ titre: 'À revoir', ids: toReview().slice(0, 15), mode: 'entrainement', retour: 'salle' }));
-  $('#hubExam').addEventListener('click', () => Serie.start({ titre: 'Examen blanc', ids: drawExam(20), mode: 'examen', examen: true, retour: 'examen' }));
+  $('#hubSeriesMore').addEventListener('click', () => { haptic(); renderHub.open = true; renderHub(); });
+  // la salle : le conseil « glisse » disparaît dès qu'on a regardé autour
+  if (store.get('salleVue', false)) $('#sallHint') && $('#sallHint').remove();
+  else $('#v-salle').addEventListener('pointermove', e => { if (e.buttons || e.pointerType === 'touch') { store.set('salleVue', true); const h = $('#sallHint'); if (h) h.remove(); } });
+  $('#hubExam').addEventListener('click', () => Serie.start({ titre: 'Examen rapide', ids: drawExam(20), mode: 'examen', examen: true, retour: 'examen' }));
   $('#hubReview').addEventListener('click', () => Serie.start({ titre: 'À revoir', ids: toReview().slice(0, 15), mode: 'entrainement', retour: 'examen' }));
   $('#sQuit').addEventListener('click', () => { Serie.stop(); show(Serie.cfg && Serie.cfg.retour ? Serie.cfg.retour : 'examen', Serie.cfg && Serie.cfg.retourArg ? { arg: Serie.cfg.retourArg } : {}); });
 

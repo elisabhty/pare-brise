@@ -23,7 +23,7 @@
     </div>
     <div class="view3d" id="v-salle">
       <div class="fb" id="fb-salle"></div>
-      <div class="drag-hint small"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12 h16 M7 9 l-3 3 3 3 M17 9 l3 3 -3 3"/></svg>Glisse pour regarder la salle</div>
+      <div class="drag-hint small" id="sallHint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12 h16 M7 9 l-3 3 3 3 M17 9 l3 3 -3 3"/></svg>Glisse pour regarder la salle</div>
     </div>
     <div class="hero">
       <div class="hello">
@@ -33,9 +33,13 @@
       </div>
       <div id="homeToday"></div>
       <div class="next-c" id="nextC">
-        <div class="eyebrow"><span class="dot"></span><span id="heroEyebrow">Séance ouverte</span></div>
-        <p class="lead" id="heroLead"></p>
-        <button class="btn" id="takeSeat">Lancer le cours</button>
+        <div class="nc-card">
+          <div class="nc-top"><span class="nc-num num" id="ncNum">1</span><div class="nc-t"><span class="nc-k" id="heroEyebrow">Ton prochain cours</span><b id="ncTitle"></b></div></div>
+          <p class="nc-lead" id="heroLead"></p>
+          <div class="nc-prog" id="ncProg" hidden><i id="ncBar"></i></div>
+          <span class="nc-meta" id="ncMeta"></span>
+          <button class="btn" id="takeSeat">Lancer le cours</button>
+        </div>
         <button class="more" data-go="planning">Créer mon planning pour le jour J →</button>
       </div>
     </div>
@@ -43,8 +47,9 @@
       <div id="homeStreak"></div>
       <button class="review" id="reviewCard" hidden><b class="num" id="reviewN">0</b><div><strong>Questions à revoir</strong><span>Tes erreurs reviennent jusqu’à ce que tu les maîtrises.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
       <div class="glass ready">
-        <div class="ready-top"><span class="eyebrow">Objectif jour J · 35/40</span><b class="num" id="readyPct">0 %</b></div>
+        <div class="ready-top"><span class="eyebrow">Prêt pour l’examen</span><b class="num" id="readyPct">0 %</b></div>
         <div class="bar"><i id="readyBar"></i></div>
+        <div class="ready-m" id="readyM"></div>
         <span class="small" id="readyTxt"></span>
       </div>
       <h2 class="h-sec">Ton parcours</h2>
@@ -57,7 +62,7 @@
         <li><button class="cell" data-go="parebrise"><span class="cell-ic m-reflexe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5"/></svg></span><span class="cell-t"><b>Pare-brise</b><small>Reconnais chaque panneau avant de le croiser</small></span><span class="cell-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>
         <li><button class="cell" data-go="decodeur"><span class="cell-ic m-decodeur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="5.5"/><path d="M13 13l7.5 7.5"/></svg></span><span class="cell-t"><b>Décodeur</b><small>Forme + couleur = sens, même pour un panneau inconnu</small></span><span class="cell-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>
       </ul>
-      <p class="small">Prototype. Voix : synthèse vocale de l'appareil. Les autres élèves de la salle sont simulés.</p>
+      <p class="small">Voix : synthèse vocale de ton appareil. Les autres élèves de la salle sont simulés.</p>
     </div>
   </section>
 
@@ -185,18 +190,19 @@
   <!-- ================= EXAMEN (hub) ================= -->
   <section class="screen dimbg" id="s-examen" aria-label="Examen et exercices">
     <div class="page-head"><div class="eyebrow">Salle d'examen</div><h1 class="d">Examen</h1></div>
+    <button class="feat feat-exam" data-exo="x-exam-blanc"><span class="feat-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h5"/><path d="m14 16.5 1.6 1.6 3-3.2"/></svg>Comme le jour J · en 3D</span><b>Examen blanc</b><span>40 situations filmées, 20 secondes chacune, correction à la fin. Il faut 35 bonnes réponses pour réussir.</span><i>Commencer</i></button>
     <div class="glass hubcard">
-      <div class="eyebrow">Examen blanc</div>
-      <h2 class="d">Conditions réelles</h2>
-      <p class="lead">Questions tirées de toute la banque, en alternant les thèmes. Lues au casque, 20 secondes chacune, correction à la fin.</p>
+      <div class="eyebrow">Entraînement</div>
+      <h2 class="d">Examen rapide</h2>
+      <p class="lead">Des questions tirées de toute la banque, en alternant les thèmes, lues à voix haute. 20 secondes chacune, correction à la fin.</p>
       <div class="facts"><div><b class="num" id="hubExamN">20</b><span>questions</span></div><div><b class="num">20 s</b><span>par question</span></div><div><b class="num">87,5 %</b><span>pour réussir</span></div></div>
       <p class="small" id="hubLast"></p>
-      <button class="btn" id="hubExam">Entrer en salle</button>
+      <button class="btn ghost" id="hubExam">Commencer l’examen rapide</button>
     </div>
-    <button class="feat feat-exam" data-exo="x-exam-blanc"><span class="feat-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h5"/><path d="m14 16.5 1.6 1.6 3-3.2"/></svg>Nouveau · en 3D</span><b>Examen blanc en situation</b><span>40 situations filmées en 3D, 20 secondes chacune, correction à la fin. Comme le jour J.</span><i>Commencer</i></button>
     <button class="review" id="hubReview" hidden><b class="num" id="hubReviewN">0</b><div><strong>Questions à revoir</strong><span>Révision espacée : elles reviennent jusqu’à être maîtrisées.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
-    <h2 class="h-sec">Séries d'entraînement</h2>
+    <h2 class="h-sec">Séries par cours<small id="hubSeriesN"></small></h2>
     <ul class="srows" id="hubSeries"></ul>
+    <button class="more" id="hubSeriesMore" hidden>Voir toutes les séries</button>
     <p class="small">Le jour J : 40 questions, 35 bonnes réponses minimum.</p>
   </section>
 
@@ -246,6 +252,7 @@
       <button class="xbtn" id="xQuit" aria-label="Quitter l’exercice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       <div class="xtitle"><b id="xTitle"></b><span id="xStep"></span><span class="xt-obs" aria-live="polite">Observe la situation</span><i class="xt-bar" aria-hidden="true"><b id="xObsBar"></b></i></div>
       <span class="xsp"></span>
+      <div class="xprog" id="xProg" hidden aria-hidden="true"></div>
     </header>
     <div class="xspeed" id="xSpeed" hidden><b class="num" id="xKmh">0</b><span>km/h</span><i id="xLimit" hidden></i></div>
     <div class="xgap" id="xGap" hidden><b class="num" id="xGapV">—</b><span>d’écart</span></div>

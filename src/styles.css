@@ -1244,3 +1244,49 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .fnotes b,.end-notes b{display:block;font-size:14.5px;font-weight:650;letter-spacing:-.015em}
 .fnotes span,.end-notes span{display:block;margin-top:2px;font-size:13px;line-height:1.35;color:var(--label2)}
 .end-notes{display:grid;gap:8px}
+
+/* ===================== Passe UI/UX (novembre 2026) ===================== */
+/* accueil : le prochain cours en carte */
+.nc-card{display:grid;gap:9px;padding:16px;border-radius:22px;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05),0 18px 40px -24px rgba(16,24,40,.35)}
+.nc-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center}
+.nc-num{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:20px;font-weight:700;color:#fff;background:linear-gradient(150deg,#3C8BFF,#0A66FF 55%,#0047C2);box-shadow:0 8px 18px -10px rgba(10,102,255,.8)}
+.nc-t{display:grid;gap:2px;min-width:0}
+.nc-k{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:-.005em}
+.nc-t b{font-size:19px;font-weight:700;letter-spacing:-.025em;line-height:1.15}
+.nc-lead{margin:0;font-size:14px;line-height:1.4;color:var(--label2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nc-prog{height:6px;border-radius:999px;background:rgba(16,24,40,.08);overflow:hidden}
+.nc-prog[hidden]{display:none}
+.nc-prog i{display:block;height:100%;border-radius:inherit;background:var(--accent);transition:width .6s cubic-bezier(.2,.9,.25,1)}
+.nc-meta{font-size:12.5px;color:var(--label2)}
+.nc-card .btn{margin-top:4px}
+#s-salle .next-c{gap:10px}
+/* le conseil « glisse pour regarder » : une pastille discrète en haut de la salle, jusqu'au premier geste */
+#v-salle .drag-hint{top:calc(env(safe-area-inset-top) + 62px);bottom:auto;padding:6px 12px 7px;border-radius:999px;background:rgba(255,255,255,.82);color:var(--label2);font-weight:600;box-shadow:0 6px 16px -10px rgba(16,24,40,.45)}
+/* prêt pour l'examen : trois chiffres lisibles */
+.ready-m{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ready-m div{display:grid;gap:1px;padding:10px 10px 9px;border-radius:14px;background:rgba(16,24,40,.035)}
+.ready-m b{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.ready-m b small{font-size:12px;font-weight:600;color:var(--label3)}
+.ready-m span{font-size:11.5px;color:var(--label2)}
+/* parcours : pas d'étiquette vide */
+.rm-tag:empty,.tag:empty{display:none}
+/* fiche du cours : le dégradé du titre prend toute la largeur, titre à taille humaine */
+.fhead{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}
+.fhead h1{font-size:clamp(32px,9.6vw,42px);line-height:1.04;letter-spacing:-.035em}
+/* examen : séries repliées, flèche discrète */
+.srow-go{margin-left:auto;color:var(--label3);display:grid;place-items:center}
+.srow-go svg{width:18px;height:18px}
+.srows li[hidden]{display:none}
+#s-examen .feat-exam{margin-top:0}
+#s-examen .hubcard .btn.ghost{background:#fff}
+/* exercices : progression en segments sous le titre */
+.xprog{grid-column:1/-1;display:flex;gap:3px;height:4px;margin:2px 4px 0}
+.xprog[hidden]{display:none}
+.xprog i{flex:1;border-radius:999px;background:rgba(255,255,255,.55);box-shadow:0 1px 2px rgba(16,24,40,.18);transition:background .3s}
+.xprog i.cur{background:#fff}
+.xprog i.ok{background:#22C55E}
+.xprog i.ko{background:#FF3B30}
+.xprog i.vu{background:rgba(10,102,255,.85)}
+#v-salle .drag-hint{white-space:nowrap}
+/* sous le titre de la fiche, le fond est plein : la salle 3D ne transparaît plus derrière les cartes */
+.fhead{box-shadow:0 calc(400vh + 46px) 0 400vh var(--nuit)}

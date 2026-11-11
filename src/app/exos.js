@@ -85,7 +85,15 @@ function makeX(ex) {
       const u = e => { if (!on) return; on = false; el.classList.remove('down'); up && up(); };
       el.addEventListener('pointerdown', d); el.addEventListener('pointerup', u); el.addEventListener('pointercancel', u); el.addEventListener('pointerleave', u);
     },
-    step(i, n) { $('#xStep').textContent = n > 1 ? `${i} sur ${n}` : ''; },
+    step(i, n) {
+      $('#xStep').textContent = n > 1 ? `${i} sur ${n}` : '';
+      // barre de progression en segments : une case par situation, colorée après la réponse
+      const pg = $('#xProg'); if (!pg) return;
+      if (n < 2) { pg.hidden = true; pg.innerHTML = ''; return; }
+      if (pg.childElementCount !== n) pg.innerHTML = Array.from({ length: n }, () => '<i></i>').join('');
+      pg.hidden = false; [...pg.children].forEach((e, k) => e.classList.toggle('cur', k === i - 1));
+    },
+    mark(i, etat) { const e = $('#xProg') && $('#xProg').children[i]; if (e) { e.classList.remove('cur'); e.classList.add(etat); } },
     speedo(on, limit) { $('#xSpeed').hidden = !on; X.limit(limit); },
     limit(v) { const el = $('#xLimit'); if (!v) { el.innerHTML = ''; el.hidden = true; return; } el.hidden = false; el.innerHTML = sign('B14:' + v); el.dataset.v = v; },
     flash(kind = 'ko') { const f = $('#xFlash'); f.className = 'xflash ' + kind; void f.offsetWidth; f.classList.add('on'); },
@@ -373,6 +381,7 @@ MECA.examen = async (ex, X) => {
       const attendu = [...good].sort().map(k => L[k]).join(' et ');
       if (blanc) {
         res.push({ nom: sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${attendu} : ${sc.explication}` });
+        X.mark(i, 'vu');
         Sound.ui('tap'); X.hideCard(); X.loupe(null); Labels.clear(); v3.style.bottom = ''; syncRegion();
         continue;
       }
@@ -385,6 +394,7 @@ MECA.examen = async (ex, X) => {
       $('.xbtns', c).insertAdjacentHTML('beforeend', `<button class="btn" id="xNext">${i + 1 < n ? 'Situation suivante' : 'Voir le résultat'}</button>`);
       requestAnimationFrame(frame);
       res.push({ nom: sc.titre || sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `Réponse attendue : ${[...good].sort().map(k => L[k]).join(', ')}` });
+      X.mark(i, ok ? 'ok' : 'ko');
       await Promise.race([new Promise(r => $('#xNext', c).addEventListener('click', () => { if (busy) return; haptic(); Sound.ui('tap'); r(); })), X.tick(() => false)]);
       X.hideCard(); X.loupe(null); Labels.clear(); W.setAnchors([]);
       v3.style.bottom = ''; syncRegion();
@@ -936,7 +946,7 @@ function results(ex, out) {
   $('#xDone').addEventListener('click', () => show(retourX), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
-function stopRun() { if (Engine && Engine.hiRes) Engine.hiRes(false); { const d = $('#v-exo .dash'); if (d) d.hidden = true; } const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } { const z = $('#xZoom'); if (z) z.classList.remove('on'); const t = $('#s-exo .xtitle'); if (t) t.classList.remove('obs'); } { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
+function stopRun() { { const pg = $('#xProg'); if (pg) { pg.hidden = true; pg.innerHTML = ''; } } if (Engine && Engine.hiRes) Engine.hiRes(false); { const d = $('#v-exo .dash'); if (d) d.hidden = true; } const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } { const z = $('#xZoom'); if (z) z.classList.remove('on'); const t = $('#s-exo .xtitle'); if (t) t.classList.remove('obs'); } { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
 
 /* ======================= Hub « Exercices » ======================= */
 export function renderExos() {
