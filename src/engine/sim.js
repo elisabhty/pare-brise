@@ -537,7 +537,9 @@ export function buildSim(K) {
     drone: () => ({ pos: V(P.x * 0.4, 19, 10), target: V(0.6, 0, -13), fov: 72 }),
     haut: () => ({ pos: V(0.6, 34, -4), target: V(0.4, 0, -22), fov: 46 }),
     cote: () => ({ pos: V(-9, 2.2, -6), target: V(2, 1, -16), fov: 50 }),
-    bilan: () => ({ pos: V(P.x + 7.5, 12, 21), target: V(P.x, 0, -5), fov: 50 })
+    bilan: () => ({ pos: V(P.x + 7.5, 12, 21), target: V(P.x, 0, -5), fov: 50 }),
+    vue: () => ({ pos: V(P.x - 0.36, 1.25, 0.25), target: V(P.x + 0.4, 0.4, -30), fov: 68 }),
+    arriere: () => ({ pos: V(P.x + 2.6, 4.2, -9), target: V(P.x - 0.4, 0.8, 9), fov: 56 })
   };
   function pose(name, ms = 1100) {
     const to = typeof name === 'string' ? POSES[name] : () => name;
@@ -649,7 +651,7 @@ export function buildSim(K) {
       sun.target.position.set(0, 0, -24); sun.position.copy(sun.target.position).add(V(-38, 70, 30));
       // nous
       hood.position.set(P.x - 0.02, 0.3, -2.0); hood.visible = false;
-      me.position.set(P.x, 0, 0.1); me.visible = camMode !== 'cockpit' && camMode !== 'free-cockpit';
+      me.position.set(P.x, 0, 0.1); me.visible = camMode !== 'cockpit' && camMode !== 'vue';
       me.userData.wheels.forEach(w => { w.rotation.x -= P.v * dt / 0.35; });
       const lit = lightsCfg.croisement || lightsCfg.route || lightsCfg.position;
       me.userData.tail.emissiveIntensity = (P.lastA < -1.5 || P.brake > 0) ? 3.2 : lit ? 1.4 : 0.25;
@@ -663,7 +665,7 @@ export function buildSim(K) {
       if (camBlend < 1 && camFrom) { camT.pos.copy(camFrom.pos).lerp(p.pos, camBlend); camT.target.copy(camFrom.target).lerp(p.target, camBlend); camT.fov = lerp(camFrom.fov, p.fov, camBlend); }
       else { camT.pos.copy(p.pos); camT.target.copy(p.target); camT.fov = p.fov; }
       const cam = K.camera();
-      const sway = camMode === 'cockpit' ? Math.min(1, P.v / 20) : 0;
+      const sway = camMode === 'cockpit' || camMode === 'vue' ? Math.min(1, P.v / 20) : 0;
       shakeK *= Math.pow(0.02, dt);
       tmpA.set((Math.random() - 0.5) * shakeK * 0.12, Math.sin(t * 7.1) * 0.006 * sway + (Math.random() - 0.5) * shakeK * 0.1, 0);
       cam.position.copy(camT.pos).add(tmpA);

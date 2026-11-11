@@ -6,7 +6,7 @@ Une app iOS (Capacitor 8) de code de la route en 3D.
 
 Dans cette version, **l'app est un moteur** et **le contenu est en JSON**. Tu ajoutes un cours, une série ou des questions en écrivant un fichier dans `content/`, sans toucher au code. Le build vérifie tout le contenu avant de fabriquer l'app.
 
-Contenu fourni : les 10 thèmes officiels, **29 cours** (219 scènes), 151 questions, 29 séries et **20 exercices de conduite en 3D**, de 10 situations chacun.
+Contenu fourni : les 10 thèmes officiels, **29 cours** (219 scènes), 151 questions, 29 séries et **19 exercices en 3D** de 10 situations chacun, dont **50 situations d’examen** (scène 3D, question, réponses A à D) et un **examen blanc de 40 situations**.
 
 L'interface suit les codes d'iOS : police système (SF Pro sur iPhone, Inter en repli ailleurs), grands titres, listes groupées, boutons capsule et barre d'onglets flottante façon Liquid Glass.
 
@@ -68,6 +68,7 @@ Chaque exercice est décrit dans `content/exercices.json` et joué par une **mé
 
 | Mécanique | Ce que fait l'élève | Champs |
 |---|---|---|
+| `examen` | une scène 3D se fige, une question façon examen, une ou plusieurs bonnes réponses parmi A à D, puis l’explication | `situations` : `{ q, choix, bonnes, explication, env, meteo, kmh, camera, compteur, signaux, acteurs, carrefour, giratoire, passage, chevrons, tunnel, feux }` |
 | `freinage` | maintient « Freiner » quand un danger surgit ; on mesure réaction, distance de freinage, et ce qui se serait passé 20 km/h plus vite | `env`, `meteo`, `kmh`, `evenements` |
 | `vitesse` | conduit avec les pédales et respecte chaque limitation dès son panneau | `zones` : `{ d, lim, panneau, maisons, msg }` |
 | `distance` | garde au moins `cible` secondes derrière une voiture qui ralentit et accélère | `kmh`, `cible`, `profil` |
@@ -76,6 +77,8 @@ Chaque exercice est décrit dans `content/exercices.json` et joué par une **mé
 | `depassement` | derrière un véhicule lent : « Je double » ou « Je reste derrière » | `scenarios` |
 | `danger` | arrêt sur image : touche tous les dangers, attention aux leurres | `scenes` |
 | `eclairage` | allume les bons feux, effet visible en direct | `situations` |
+
+L’examen blanc en situation (onglet Examen) tire 40 situations au hasard parmi toutes les situations d’examen : 20 secondes chacune, correction à la fin, réussite à 35 sur 40.
 
 Chaque exercice compte 10 situations (10 événements, 10 feux, 10 zones, 10 scénarios…).
 

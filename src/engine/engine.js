@@ -646,7 +646,7 @@ function setFov(fovRegion) {
 function resize() {
   const r = canvas.getBoundingClientRect();
   W = Math.max(1, r.width); H = Math.max(1, r.height);
-  const dpr = Math.min(maxDpr, window.devicePixelRatio || 1);
+  const dpr = Math.min(window.__dpr || maxDpr, window.devicePixelRatio || 1);
   renderer.setPixelRatio(dpr); renderer.setSize(W, H, false);
   composer.setPixelRatio(dpr); composer.setSize(W, H);
   bloom.resolution.set(W * dpr / 2, H * dpr / 2);

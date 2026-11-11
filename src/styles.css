@@ -741,3 +741,28 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .xlight{background:rgba(255,255,255,.92)}
 .lab{background:rgba(255,255,255,.94)}
 .olist li{background:rgba(255,255,255,.93)}
+
+/* Situations d'examen : réponses A à D */
+.xans{display:grid;gap:8px}
+.xan{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;min-height:52px;padding:8px 14px 8px 8px;border-radius:16px;background:#fff;text-align:left;box-shadow:inset 0 0 0 1px rgba(20,28,48,.1);transition:background .15s,box-shadow .15s,opacity .2s}
+.xan i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-size:15px;font-weight:700;color:var(--accent);background:rgba(10,102,255,.1)}
+.xan span{font-size:15.5px;font-weight:500;line-height:1.3;letter-spacing:-.012em;color:var(--craie)}
+.xan[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--accent);background:#F0F6FF}
+.xan[aria-pressed="true"] i{background:var(--accent);color:#fff}
+.xan.good{box-shadow:inset 0 0 0 2px #1A9E54;background:#EAF7EF}
+.xan.good i{background:#1A9E54;color:#fff}
+.xan.bad{box-shadow:inset 0 0 0 2px #E5263F;background:#FDECEF}
+.xan.bad i{background:#E5263F;color:#fff}
+.xan.dim{opacity:.55}
+.xan:disabled{cursor:default}
+.btn:disabled{opacity:.4;box-shadow:none}
+.xexp{padding:12px 14px;border-radius:16px;background:rgba(26,158,84,.08)}
+.xexp.ko{background:rgba(229,38,63,.07)}
+.xexp b{font-size:15px;font-weight:700;color:#12884A}
+.xexp.ko b{color:#D11F36}
+.xexp p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:var(--craie)}
+.m-examen{background:linear-gradient(145deg,#4C8DFF,#1F3FD8)}
+
+.feat-exam{margin-top:12px;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,#1A9E54 0%,#0F7A3E 60%,#0A5A2D 100%);box-shadow:0 22px 44px -22px rgba(15,122,62,.7)}
+.feat-exam i{color:#0F7A3E}
+.xcard .xtimer{flex:none;height:6px;background:rgba(20,28,48,.08)}

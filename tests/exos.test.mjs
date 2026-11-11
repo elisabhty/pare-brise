@@ -35,3 +35,8 @@ test('chaque exercice propose 10 situations', () => {
     assert.equal(n, 10, e.id);
   });
 });
+test('les situations d’examen ont des réponses A à D cohérentes et assez de matière pour un examen blanc', () => {
+  const sit = exos.filter(e => e.meca === 'examen').flatMap(e => e.situations);
+  assert.ok(sit.length >= 40, `seulement ${sit.length} situations`);
+  sit.forEach(s => { assert.ok(s.choix.length >= 2 && s.choix.length <= 4, s.q); assert.ok(s.bonnes.length >= 1 && s.bonnes.every(k => k < s.choix.length), s.q); assert.ok(s.explication.length > 20, s.q); });
+});

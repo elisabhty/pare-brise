@@ -7,7 +7,7 @@ import { sign } from './signs.js';
 import { EXOS, course } from './content.js';
 import { Sound } from './sound.js';
 import { Labels } from './labels.js';
-import { register, show } from './nav.js';
+import { register, show, syncRegion } from './nav.js';
 import { plot, react } from './mascot.js';
 
 const LANE = 1.75, FRONT = 1.9;
@@ -27,16 +27,17 @@ export const ICON = {
   depassement: '<path d="M8 20V8l-3 3M8 8l3 3"/><path d="M16 4v16"/><rect x="13.5" y="12" width="5" height="6" rx="1.4"/>',
   danger: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/>',
   eclairage: '<path d="M9 6c-3 0-5 2.7-5 6s2 6 5 6h1V6H9Z"/><path d="M14 8h7M14 12h7M14 16h7"/>',
+  examen: '<rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h5"/><path d="m14 16.5 1.6 1.6 3-3.2"/>',
   reflexe: '<path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5"/><circle cx="12" cy="17" r=".6" fill="currentColor"/>',
   decodeur: '<circle cx="9" cy="9" r="5.5"/><path d="M13 13l7.5 7.5"/>'
 };
 export const icon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[k] || ICON.danger}</svg>`;
 
 export const FAMILLES = [
-  { id: 'reflexes', nom: 'Réflexes', sous: 'Réagir au bon moment', meca: ['freinage', 'feu', 'reflexe'] },
-  { id: 'maitrise', nom: 'Maîtrise', sous: 'Vitesse et distances', meca: ['vitesse', 'distance'] },
+  { id: 'examen', nom: 'Situations d’examen', sous: 'Comme le jour du code', meca: ['examen'] },
   { id: 'decisions', nom: 'Décisions', sous: 'Qui passe, quand doubler', meca: ['priorite', 'depassement'] },
-  { id: 'perception', nom: 'Perception', sous: 'Voir et être vu', meca: ['danger', 'eclairage'] }
+  { id: 'regles', nom: 'Vitesses et distances', sous: 'Appliquer les chiffres', meca: ['vitesse', 'distance', 'feu', 'freinage'] },
+  { id: 'perception', nom: 'Voir et être vu', sous: 'Dangers et éclairage', meca: ['danger', 'eclairage', 'reflexe'] }
 ];
 export const best = id => (store.get('exoBest', {}) || {})[id] || null;
 const saveBest = (id, score) => { const all = store.get('exoBest', {}) || {}; if (!all[id] || score > all[id].score) all[id] = { score, at: Date.now() }; store.set('exoBest', all); };
@@ -185,6 +186,85 @@ async function showBands(X, bands, dR, dB) {
 
 /* ======================= Mécaniques ======================= */
 const MECA = {};
+
+/* ---------- Situations d'examen : une scène 3D figée, une question, des réponses A à D ---------- */
+const TYPES3D = ['voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+function stageScene(W, sc) {
+  const env = sc.env || 'ville', cars = sc.carrefour ? [sc.carrefour.S] : [];
+  W.load({ env, meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, depart: 0, graine: sc.graine || 9, camera: sc.camera || 'vue', voie: sc.voie,
+    ligne: typeof sc.ligne === 'string' ? [{ de: 0, a: 900, type: sc.ligne }] : sc.ligne, carrefours: cars,
+    zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : []),
+    reserve: (sc.acteurs || []).map(a => a.S || 0).concat(sc.passage ? [sc.passage] : []) });
+  W.lights(Object.assign({ position: false, croisement: ['nuit', 'brouillard', 'pluie', 'neige'].includes(sc.meteo), route: false, brouillardAv: sc.meteo === 'brouillard', brouillardAr: false, detresse: false }, sc.feux || {}));
+  if (sc.carrefour) W.carrefour(sc.carrefour.S, { ligne: sc.carrefour.ligne, forme: sc.carrefour.forme });
+  if (sc.giratoire) W.giratoire(sc.giratoire);
+  if (sc.passage) W.passage(sc.passage);
+  if (sc.chevrons) W.chevrons(10, 800, 38);
+  if (sc.tunnel) W.tunnel(sc.tunnel, 900);
+  if (sc.maisons) W.maisons(0, 300);
+  const sx = env === 'ville' ? 5.9 : env === 'autoroute' ? 7.2 : 4.4;
+  (sc.signaux || []).forEach(([id, S, x, t]) => W.panneau(id, S, x ?? sx, { taille: t || 1.2 }));
+  const list = (sc.acteurs || []).map(o => {
+    const t = TYPES3D.includes(o.type) ? o.type : 'voiture';
+    const a = t === 'feu' ? W.feu({ S: o.S, x: o.x ?? 5.4, etat: o.etat || 'vert' })
+      : W[t]({ S: o.S ?? 20, x: o.x ?? LANE, couleur: o.couleur, gilet: o.gilet, haut: o.haut, sens: (o.kmh || 0) < 0 ? -1 : 1 });
+    if (o.kmh) a.vS = o.kmh / 3.6;
+    if (o.vx) a.vx = o.vx;
+    if (o.cap !== undefined) { a.g.rotation.y = o.cap * Math.PI / 180; a.fixedHeading = true; }
+    if (o.freine) a.brake = true;
+    if (t === 'portiere' && o.ouverte) a.open(10);
+    if (t === 'feu' && o.etat === 'clignotant') { let on = true; a.tick = (dt, tt) => { const k = Math.sin(tt * 6) > 0; if (k !== on) { on = k; a.set(k ? 'clignotant' : 'eteint'); } }; }
+    return a;
+  });
+  return list;
+}
+MECA.examen = async (ex, X) => {
+  const W = X.W, res = [], L = 'ABCD';
+  for (let i = 0; i < ex.situations.length; i++) {
+    const sc = ex.situations[i]; X.step(i + 1, ex.situations.length);
+    if (i) await X.fade(true);
+    const actors = stageScene(W, sc); W.slow(0, 0);
+    X.wet(sc.meteo === 'pluie'); X.speedo(!!sc.compteur, sc.limite || null);
+    if (sc.etiquettes) { W.setAnchors(sc.etiquettes.map(([k]) => ({ id: 'q' + k, obj: actors[k], dy: 2.3 }))); }
+    if (i) { await wait(120); X.fade(false); }
+    // la scène s'anime quelques mètres, puis se fige comme une photo d'examen
+    W.slow(1, 0); const s0 = W.player.s, kmhS = sc.kmh ?? 30, dRoll = Math.min(8, kmhS / 3.6 * 0.6);
+    if (kmhS > 0) await X.tick(() => W.player.s - s0 >= dRoll); else await X.sleep(600);
+    await W.slow(0, 160);
+    if (sc.etiquettes) Labels.set(sc.etiquettes.map(([k]) => 'q' + k), sc.etiquettes.map(e => [e[1], e[2]]), 'exo');
+    const offL = W.onTick(() => Labels.frame());
+    // question façon examen : une ou plusieurs bonnes réponses
+    const chosen = new Set();
+    const c = X.card(`<div class="xq"><b>${esc(sc.q)}</b>${sc.contexte ? `<p>${esc(sc.contexte)}</p>` : ''}</div>
+      <div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${esc(t)}</span></button>`).join('')}</div>
+      ${ex.mode === 'blanc' ? '<div class="xtimer"><i id="xQbar"></i></div>' : ''}<button class="btn" id="xOk" disabled>Valider</button>`, 'xask');
+    $$('.xan', c).forEach(b => b.addEventListener('click', () => { const k = +b.dataset.k; chosen.has(k) ? chosen.delete(k) : chosen.add(k); b.setAttribute('aria-pressed', chosen.has(k)); $('#xOk', c).disabled = !chosen.size; haptic(); Sound.ui('tick'); }));
+    const v3 = $('#v-exo'), frame = () => { v3.style.bottom = Math.round(c.getBoundingClientRect().height + 20) + 'px'; syncRegion(); };
+    requestAnimationFrame(() => requestAnimationFrame(frame));
+    const tQ = performance.now(), limit = 20000;
+    await Promise.race([new Promise(r => $('#xOk', c).addEventListener('click', r, { once: true })),
+      X.tick(() => { if (ex.mode !== 'blanc') return false; const k = (performance.now() - tQ) / limit; const bar = $('#xQbar'); if (bar) bar.style.transform = `scaleX(${Math.max(0, 1 - k)})`; return k >= 1; })]);
+    const good = new Set(sc.bonnes), ok = good.size === chosen.size && [...good].every(k => chosen.has(k));
+    if (ex.mode === 'blanc') {
+      res.push({ nom: sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${[...good].sort().map(k => L[k]).join(' et ')} : ${sc.explication}` });
+      Sound.ui('tap'); X.hideCard(); offL(); Labels.clear(); W.setAnchors([]); v3.style.bottom = ''; syncRegion(); await W.slow(1, 1);
+      continue;
+    }
+    $$('.xan', c).forEach(b => { const k = +b.dataset.k; b.classList.add(good.has(k) ? 'good' : chosen.has(k) ? 'bad' : 'dim'); b.disabled = true; });
+    $('#xOk', c).remove();
+    requestAnimationFrame(frame);
+    if (ok) { Sound.ui('ok'); haptic('ok'); } else { Sound.ui('ko'); haptic('ko'); }
+    c.insertAdjacentHTML('beforeend', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? 'Bonne réponse' : `Réponse : ${[...good].sort().map(k => L[k]).join(' et ')}`}</b><p>${esc(sc.explication)}</p></div><button class="btn" id="xNext">Continuer</button>`);
+    res.push({ nom: sc.titre || sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `Réponse attendue : ${[...good].sort().map(k => L[k]).join(', ')}` });
+    await Promise.race([new Promise(r => $('#xNext', c).addEventListener('click', () => { haptic(); Sound.ui('tap'); r(); }, { once: true })), X.tick(() => false)]);
+    X.hideCard(); offL(); Labels.clear(); W.setAnchors([]);
+    v3.style.bottom = ''; syncRegion();
+    await W.slow(1, 1);
+  }
+  const nOk = res.filter(r => r.ok).length, score = Math.round(nOk / res.length * 100);
+  if (ex.mode === 'blanc') { const pass = nOk >= Math.ceil(res.length * 0.875); return { score, total: `${nOk} / ${res.length}`, lignes: res, conseil: pass ? `Reçu : ${nOk} bonnes réponses sur ${res.length}. Il en faut 35 sur 40 le jour J.` : `Pas encore : ${nOk} sur ${res.length}. Il faut 35 bonnes réponses sur 40. Relis les corrections ci-dessus.` }; }
+  return { score, lignes: res, conseil: score >= 90 ? 'Niveau examen : 35 bonnes réponses sur 40 suffisent le jour J.' : 'Relis chaque explication, puis rejoue : à l’examen, il faut 35 bonnes réponses sur 40.' };
+};
 
 /* ---------- 1. Freinage d'urgence ---------- */
 MECA.freinage = async (ex, X) => {
@@ -649,8 +729,15 @@ MECA.eclairage = async (ex, X) => {
 
 /* ======================= Écran d'exercice ======================= */
 let X = null, curEx = null;
+function examBlanc() {
+  const all = EXOS.filter(e => e.meca === 'examen').flatMap(e => e.situations);
+  const pool = all.slice().sort(() => Math.random() - 0.5).slice(0, Math.min(40, all.length));
+  return { id: 'x-exam-blanc', meca: 'examen', mode: 'blanc', famille: 'Examen blanc', niveau: 3, duree: '15 min', titre: 'Examen blanc en situation', sous: `${pool.length} situations, correction à la fin`,
+    consigne: `${pool.length} situations comme le jour du code : 20 secondes pour répondre, pas de correction avant la fin. Il faut 35 bonnes réponses sur 40 pour réussir.`,
+    astuce: 'Une ou plusieurs réponses peuvent être justes : coche-les toutes.', env: pool[0].env || 'ville', situations: pool };
+}
 async function runExo(id) {
-  const ex = EXOS.find(e => e.id === id); if (!ex) return;
+  const ex = id === 'x-exam-blanc' ? examBlanc() : EXOS.find(e => e.id === id); if (!ex) return;
   if (ex.meca === 'reflexe') { show('parebrise'); return; }
   if (ex.meca === 'decodeur') { show('decodeur'); return; }
   curEx = ex;
@@ -660,7 +747,7 @@ async function runExo(id) {
 function intro(ex) {
   stopRun();
   const W = SIM;
-  if (W) { W.load({ env: ex.env || (ex.scenes ? ex.scenes[0].env : null) || 'route', meteo: ex.meteo || 'jour', kmh: 22, longueur: 1600, graine: 3 }); W.pose('poursuite', 0); W.lights({ croisement: ex.meteo === 'nuit', position: false, route: false, brouillardAv: false, brouillardAr: false }); }
+  if (W) { W.load({ env: ex.env || (ex.scenes ? ex.scenes[0].env : null) || (ex.situations && ex.situations[0].env) || 'route', meteo: ex.meteo || 'jour', kmh: 22, longueur: 1600, graine: 3 }); W.pose('poursuite', 0); W.lights({ croisement: ex.meteo === 'nuit', position: false, route: false, brouillardAv: false, brouillardAr: false }); }
   $('#xTitle').textContent = ex.titre; $('#xStep').textContent = ''; X && X.ctl('');
   $('#xCtl').innerHTML = ''; $('#xSpeed').hidden = true; $('#xGap').hidden = true; $('#xWet').hidden = ex.meteo !== 'pluie'; $('#xMsg').classList.remove('on');
   const b = best(ex.id);
@@ -700,7 +787,7 @@ function results(ex, out) {
   SIM.pose('poursuite', 1400); SIM.auto(0, 2);
   const cr = ex.cours && course(ex.cours);
   const c = $('#xCard'); c.className = 'xcard xresult'; c.hidden = false;
-  c.innerHTML = `<div class="xr-head">${plot({ size: 64, mood: out.score >= 70 ? 'cheer' : 'oops' })}<div><span class="xi-k">${esc(ex.titre)}</span><div class="xr-score"><b class="num">${out.score}</b><span>/ 100</span></div>${starsHtml(out.score)}</div></div>
+  c.innerHTML = `<div class="xr-head">${plot({ size: 64, mood: out.score >= 70 ? 'cheer' : 'oops' })}<div><span class="xi-k">${esc(ex.titre)}</span><div class="xr-score">${out.total ? `<b class="num">${out.total.split(' / ')[0]}</b><span>/ ${out.total.split(' / ')[1]}</span>` : `<b class="num">${out.score}</b><span>/ 100</span>`}</div>${starsHtml(out.score)}</div></div>
     <ul class="xr-list">${out.lignes.map(l => `<li class="${l.ok === null ? 'n' : l.ok ? 'ok' : 'ko'}"><i></i><div><b>${esc(l.nom)}</b><span>${esc(l.txt)}</span></div></li>`).join('')}</ul>
     <p class="xr-tip">${esc(out.conseil || '')}</p>
     <div class="xr-btns"><button class="btn ghost" id="xAgain">Rejouer</button><button class="btn" id="xDone">Terminer</button></div>
@@ -711,7 +798,7 @@ function results(ex, out) {
   $('#xDone').addEventListener('click', () => show('exos'), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
-function stopRun() { if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
+function stopRun() { const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
 
 /* ======================= Hub « Exercices » ======================= */
 export function renderExos() {
@@ -726,7 +813,7 @@ export function renderExos() {
 }
 export function renderHomeExos() {
   const el = $('#homeExos'); if (!el) return;
-  const pickL = ['x-freinage-ville', 'x-priorites', 'x-danger-ville', 'x-vitesse-village', 'x-eclairage', 'x-depassement'];
+  const pickL = ['x-exam-signalisation', 'x-exam-priorites', 'x-priorites', 'x-eclairage', 'x-exam-usagers', 'x-danger-ville'];
   el.innerHTML = pickL.map(id => EXOS.find(e => e.id === id)).filter(Boolean).map(e => { const b = best(e.id); return `<button class="xcar m-${e.meca}" data-exo="${e.id}"><span class="cell-ic m-${e.meca}">${icon(e.meca)}</span><b>${esc(e.titre)}</b><small>${esc(e.sous || '')}</small><span class="xcar-f">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}</span></button>`; }).join('');
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-exo]'); if (!b) return; haptic(); Sound.ui('tap'); runExo(b.dataset.exo); });
