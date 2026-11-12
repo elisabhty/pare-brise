@@ -1,0 +1,152 @@
+{
+ "cours": "placement-chaussee",
+ "resume": "Rouler à droite, lire les flèches, entrer et sortir de l’autoroute, et céder quand ta voie se termine.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu roules sur une grande route à plusieurs voies.",
+    "La chaussée, c’est la partie de la route où roulent les voitures : elle peut avoir plusieurs voies.",
+    "Bien placé, tu roules sans gêner les autres, et tu prépares déjà ta prochaine direction.",
+    "D’abord, la règle générale : en France, on roule à droite."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu dépasses un camion par la gauche.",
+    "Sur route et sur autoroute, roule sur la voie la plus à droite : c’est ta voie normale.",
+    "La voie de gauche sert à dépasser : ensuite, tu reviens à droite.",
+    "En ville, avec plusieurs voies dans ton sens, choisis plutôt ta voie selon ta direction."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu roules dans une rue à sens unique, et un carrefour approche : regarde les flèches peintes au sol.",
+    "Ici, la voie de gauche, c’est pour tourner à gauche.",
+    "La voie de droite, c’est pour aller tout droit ou à droite.",
+    "Place-toi tôt, sans traverser plusieurs voies au dernier moment : ça surprend les autres."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde la voie de droite : le mot BUS est peint au sol.",
+    "Une voie de bus est réservée aux bus : même vide, tu n’as pas le droit d’y rouler.",
+    "Pareil pour une piste cyclable.",
+    "Elles restent libres, pour que bus et vélos passent vite.",
+    "Lis toujours les panneaux et les marquages au sol."
+   ],
+   "titre": "Voie de bus : réservée, même vide"
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Tu entres sur l’autoroute par la voie d’insertion, qu’on appelle aussi voie d’accélération.",
+    "Accélère pour rouler à la vitesse des autres.",
+    "Rétros, clignotant, angle mort : cède le passage à ceux qui sont déjà sur l’autoroute.",
+    "Puis glisse-toi dans un espace libre.",
+    "Ne force jamais ton insertion : ceux qui arrivent roulent vite.",
+    "Pas d’espace libre ?",
+    "Adapte ta vitesse : accélère ou ralentis un peu pour en trouver un, avant la fin de la voie."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Tu veux prendre la prochaine sortie : repère ses panneaux assez tôt.",
+    "Mets-toi sur la voie de droite : rétros, clignotant, angle mort.",
+    "Puis prends la voie de sortie : c’est là que tu ralentis, pas avant, car derrière toi, on roule vite.",
+    "Sortie ratée : continue jusqu’à la suivante, sans reculer ni couper les voies."
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Tu es sur la voie de gauche : ce triangle annonce que la chaussée se rétrécit par la gauche.",
+    "La voie de gauche va donc s’arrêter.",
+    "Les flèches de rabattement au sol te disent de te rabattre.",
+    "Elles veulent dire : ta voie va finir, ou une ligne continue arrive.",
+    "Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place.",
+    "C’est toi qui changes de voie : tu cèdes le passage à ceux qui roulent déjà sur l’autre voie.",
+    "Chacun son tour, la fermeture éclair, c’est de la politesse, pas une priorité."
+   ],
+   "titre": "Quand ta voie se termine"
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Trois réflexes.",
+    "Un : je roule à droite.",
+    "Deux : je lis les flèches et les panneaux tôt.",
+    "Trois : avant de changer de voie, rétros, clignotant, angle mort.",
+    "Le piège de l’examen : en fin de voie, tu cèdes le passage.",
+    "Place à la pratique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Je roule à droite",
+   "tag": "Sur route et autoroute : la voie la plus à droite"
+  },
+  {
+   "texte": "Je lis les flèches et les panneaux tôt",
+   "tag": "En ville : ta voie selon ta direction",
+   "panneau": "C12"
+  },
+  {
+   "texte": "Avant de changer de voie",
+   "tag": "Rétros, clignotant, angle mort"
+  },
+  {
+   "texte": "Voie de bus, piste cyclable",
+   "tag": "Réservées, même vides"
+  },
+  {
+   "texte": "Ta voie se termine",
+   "tag": "Tu cèdes le passage, puis tu te rabats",
+   "panneau": "A3b"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quelle position habituelle ?",
+   "explication": "À droite : sur route et sur autoroute, roule sur la voie la plus à droite. Tu la quittes pour dépasser, ou quand c’est nécessaire."
+  },
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu adaptes ta vitesse : accélère ou ralentis un peu pour trouver un espace libre, sans forcer. Ceux qui sont déjà sur l’autoroute passent d’abord."
+  },
+  {
+   "q": "Ta voie se termine et l’autre voie est chargée. Tu :",
+   "explication": "Tu cèdes le passage : c’est toi qui changes de voie. Chacun son tour, c’est de la politesse, pas une priorité."
+  },
+  {
+   "q": "Je vais tout droit au prochain carrefour. D’après les flèches, je me place :",
+   "explication": "Dans la voie de droite : sa flèche montre tout droit ou à droite. La voie de gauche, c’est pour tourner à gauche."
+  },
+  {
+   "q": "La voie de droite est réservée aux bus et elle est vide. Je peux l’emprunter :",
+   "explication": "Non : une voie de bus est réservée aux bus, même vide. Les panneaux et les marquages au sol disent qui a le droit d’y rouler."
+  },
+  {
+   "q": "Sur la voie d’insertion, je dois :",
+   "explication": "Tu adaptes ta vitesse à celle des autres en accélérant, et tu cèdes le passage à ceux déjà sur l’autoroute. Tu t’arrêtes seulement si c’est vraiment nécessaire."
+  },
+  {
+   "q": "J’ai manqué ma sortie sur une voie rapide. Je :",
+   "explication": "Tu continues jusqu’à la sortie suivante. Reculer ou couper les voies au dernier moment, c’est dangereux."
+  },
+  {
+   "q": "Des flèches de rabattement apparaissent dans ma voie. Je :",
+   "explication": "Tu te rabats : ta voie va finir, ou une ligne continue arrive. Rétros, clignotant, angle mort, puis tu te rabats quand il y a la place."
+  },
+  {
+   "q": "Ce panneau m’annonce :",
+   "explication": "Une chaussée rétrécie par la gauche : la voie de gauche va s’arrêter. Prépare-toi à te rabattre sur la droite."
+  }
+ ],
+ "notes": "Chaque écran part d’une situation (tu dépasses un camion, rue à sens unique, entrée d’autoroute), avec un pourquoi court. La voix dit les mots des bonnes réponses (« adapte ta vitesse », « voie normale ») et nomme le sens unique dessiné à l’écran 2. Fin : « Le piège de l’examen : en fin de voie, tu cèdes le passage » (choix d’Elisa, Q3). Aucune règle ni aucun chiffre changé."
+}

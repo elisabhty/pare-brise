@@ -4,7 +4,7 @@
  "theme": "circulation",
  "titre": "Les priorités aux intersections",
  "accroche": "qui passe en premier ?",
- "resume": "Priorité à droite, priorité ponctuelle, route prioritaire, stop, cédez le passage et giratoire.",
+ "resume": "Priorité à droite, prioritaire une seule fois, route prioritaire, stop, cédez le passage et rond-point.",
  "affiche": [
   "AB1",
   "AB2",
@@ -23,28 +23,28 @@
  ],
  "memo": [
   {
-   "panneau": "AB1",
    "texte": "Priorité à droite à la prochaine intersection",
+   "panneau": "AB1",
    "famille": "danger"
   },
   {
-   "panneau": "AB2",
    "texte": "Prioritaire à la prochaine intersection seulement",
+   "panneau": "AB2",
    "famille": "priorite"
   },
   {
+   "texte": "Prioritaire jusqu’au panneau de fin",
    "panneau": "AB6",
-   "texte": "Prioritaire jusqu'au panneau de fin",
    "famille": "priorite"
   },
   {
+   "texte": "Laisser passer tout le monde, arrêt si besoin",
    "panneau": "AB3a",
-   "texte": "Céder le passage, arrêt si besoin",
    "famille": "priorite"
   },
   {
+   "texte": "Arrêt à la ligne, puis laisser passer",
    "panneau": "AB4",
-   "texte": "Arrêt obligatoire puis céder",
    "famille": "priorite"
   },
   {
@@ -65,7 +65,7 @@
    "titre": "Les priorités",
    "sous": "qui passe en premier ?",
    "vitesse": 50,
-   "dire": "Tu approches d’une intersection. Plusieurs véhicules arrivent de directions différentes. Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ?",
+   "dire": "Tu approches d’une intersection. Des voitures et un vélo arrivent de plusieurs côtés. Cours numéro 3 : les priorités. À chaque intersection, une seule question : qui passe en premier ? Ce cours te donne la réponse, cas par cas.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -147,8 +147,8 @@
    "panneaux": [
     "AB1"
    ],
-   "puce": "La règle par défaut",
-   "dire": "Sans panneau ni feu, la règle est simple : tu cèdes le passage aux véhicules qui arrivent de ta droite. Ce panneau, avec sa croix, te rappelle la règle avant l'intersection. Ceux qui arrivent de ta gauche, eux, doivent te laisser passer. Et si tu tournes à gauche, laisse d’abord passer ceux d’en face qui vont tout droit."
+   "puce": "La règle de base",
+   "dire": "Tu arrives à une intersection sans panneau ni feu. Qui passe en premier ? Celui qui arrive de ta droite : tu lui cèdes le passage. C’est la règle de base, la priorité à droite. Ce triangle avec une croix te prévient : priorité à droite à la prochaine intersection. Ceux de ta gauche, eux, doivent te laisser passer. Et si tu tournes à gauche, laisse d’abord passer ceux d’en face qui vont tout droit."
   },
   {
    "type": "panneaux",
@@ -159,7 +159,7 @@
     "AB2"
    ],
    "puce": "Uniquement la prochaine",
-   "dire": "Ce triangle avec un gros trait noir te donne la priorité, mais seulement à la prochaine intersection. Juste après, la priorité à droite reprend."
+   "dire": "Sur ta route, ce triangle avec un gros trait noir te donne la priorité. Mais seulement à la prochaine intersection : prioritaire une seule fois. Juste après, la priorité à droite reprend."
   },
   {
    "type": "famille",
@@ -172,10 +172,10 @@
     "AB7"
    ],
    "puce": "Jusqu'au panneau de fin",
-   "dire": "Le losange jaune, lui, te rend prioritaire à toutes les intersections, jusqu'au panneau de fin barré de noir.",
+   "dire": "Le losange jaune, lui, te rend prioritaire à toutes les intersections. Ça dure jusqu’au panneau de fin : le même losange, barré de noir.",
    "sync": [
-    0.0,
-    0.84
+    0.01,
+    1.75
    ]
   },
   {
@@ -197,10 +197,10 @@
      "Arrêt obligatoire"
     ]
    ],
-   "dire": "Au cédez le passage, tu laisses passer tout le monde, à gauche comme à droite : tu t’arrêtes seulement si quelqu’un arrive. Au stop, tu t’arrêtes à la ligne blanche, roues immobiles, même si la route est vide.",
+   "dire": "Un triangle pointe en bas : c’est le cédez le passage. Tu laisses passer tout le monde, à gauche comme à droite. Tu t’arrêtes seulement si quelqu’un arrive. Au stop, tu t’arrêtes à la ligne blanche, roues immobiles, même si la route est vide. Puis tu laisses passer tout le monde.",
    "sync": [
-    0.0,
-    1.01
+    0.66,
+    3.01
    ]
   },
   {
@@ -222,10 +222,10 @@
      "À l'entrée"
     ]
    ],
-   "dire": "Ce panneau annonce un carrefour giratoire : un rond-point. À l’entrée, il y a presque toujours un cédez le passage : sans lui, c’est la priorité à droite, mais c’est très rare. Tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche.",
+   "dire": "Ce triangle avec trois flèches en cercle annonce un carrefour giratoire : un rond-point. À l’entrée, il y a presque toujours un cédez le passage. Sans lui, c’est la priorité à droite, mais c’est très rare. Avec lui, tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche. Ton réflexe à l’entrée ? Un regard à gauche.",
    "sync": [
-    0.35,
-    1.3
+    0.56,
+    1.67
    ]
   },
   {
@@ -236,7 +236,7 @@
    "stats": [
     [
      "1",
-     "règle par défaut"
+     "règle de base"
     ],
     [
      "7",
@@ -247,7 +247,7 @@
      "question : qui passe ?"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de dire qui passe en premier.",
+   "dire": "Cours terminé. Sans panneau ni feu, celui de droite passe en premier : c’est la règle de base. Passe à la pratique.",
    "decor": {
     "env": "ville",
     "kmh": 25,

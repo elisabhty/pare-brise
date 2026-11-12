@@ -4,7 +4,7 @@
  "theme": "circulation",
  "titre": "Carrefours, giratoires et feux",
  "accroche": "qui commande à l’intersection",
- "resume": "L’ordre de priorité entre agent, feux et panneaux, le feu orange, le feu clignotant, les giratoires et les sas vélos.",
+ "resume": "L’ordre de priorité entre agent, feux et panneaux, le feu orange, le feu clignotant, les ronds-points et les sas vélo.",
  "affiche": [
   "A17",
   "AB25",
@@ -47,7 +47,7 @@
    "eyebrow": "Cours 6 · Circulation",
    "titre": "Carrefours et feux",
    "sous": "qui commande à l’intersection",
-   "dire": "Tu arrives dans un quartier animé où se croisent voitures, cyclistes et piétons. Cours numéro 6 : les carrefours. Qui commande, comment lire un feu, et comment entrer dans un giratoire sans hésiter.",
+   "dire": "Tu arrives dans un quartier animé : voitures, vélos et piétons se croisent. Cours numéro 6 : les carrefours. Qui commande, comment lire un feu, et comment entrer dans un rond-point sans hésiter.",
    "vitesse": 45,
    "decor": {
     "env": "ville",
@@ -115,7 +115,7 @@
      "Sans rien : priorité à droite"
     ]
    ],
-   "dire": "Retiens cet ordre. L’agent de circulation commande en premier, même s’il contredit un feu. Bras levé : tout le monde s’arrête. De face ou de dos : tu t’arrêtes. De profil : tu passes. Ensuite viennent les feux, puis les panneaux et le marquage. Et quand il n’y a rien du tout, c’est la priorité à droite.",
+   "dire": "Au carrefour, qui commande ? Retiens cet ordre, du plus fort au plus faible. D’abord l’agent de circulation : il commande en premier, même s’il contredit un feu. Bras levé : tout le monde s’arrête. De face ou de dos : tu t’arrêtes. De profil : tu passes. Ensuite viennent les feux, puis les panneaux et le marquage au sol. Et sans rien du tout, c’est la règle générale : la priorité à droite.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -196,10 +196,10 @@
     ]
    },
    "sync": [
-    1.0,
-    5.32,
-    5.82,
-    6.28
+    2.09,
+    6.28,
+    6.73,
+    7.42
    ]
   },
   {
@@ -207,7 +207,7 @@
    "ch": 1,
    "eyebrow": "Le feu orange fixe",
    "titre": "Je m’arrête, sauf si c’est dangereux",
-   "dire": "Ce triangle avec trois feux annonce des feux, souvent là où tu ne les attends pas. Ici, le feu passe à l’orange : l’orange fixe impose l’arrêt. La seule exception : tu es si près qu’il faudrait freiner très fort. Dans ce cas, tu continues.",
+   "dire": "Ce triangle avec trois feux t’annonce des feux, souvent là où tu ne les attends pas. Regarde : le feu passe à l’orange, le rouge arrive. L’orange fixe impose l’arrêt : tu lâches l’accélérateur et tu freines. La seule exception : tu es si près qu’il faudrait freiner très fort. Dans ce cas, tu continues, prudemment.",
    "env": "ville",
    "kmh": 22,
    "camera": "cockpit",
@@ -257,20 +257,20 @@
     [
      "0",
      "",
-     "tolérance : on s’arrête avant la ligne blanche"
+     "tolérance : tu t’arrêtes avant la ligne blanche"
     ],
     [
      "4",
      "points",
-     "retirés si on le franchit"
+     "retirés si tu passes au rouge"
     ],
     [
      "135",
      "€",
-     "d’amende forfaitaire"
+     "d’amende"
     ]
    ],
-   "dire": "Au feu rouge, tu t’arrêtes toujours, avant la ligne blanche au sol. Le franchir coûte 135 euros et 4 points. Avec un permis définitif, tu as 12 points : il t’en resterait 8. Au début du permis probatoire, tu as seulement 6 points : il t’en resterait 2.",
+   "dire": "Le feu est rouge : tu t’arrêtes toujours, avant la ligne blanche au sol. Passer au rouge coûte 4 points et 135 euros d’amende. Avec un permis définitif, tu as 12 points : il t’en resterait 8. Au début du permis probatoire, tu as seulement 6 points : il t’en resterait 2. Pourquoi ? Les autres ont le vert : ils passent devant toi.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -324,9 +324,9 @@
     ]
    },
    "sync": [
-    0.25,
-    1.75,
-    1.42
+    0.3,
+    1.39,
+    1.61
    ],
    "illu": {
     "type": "points",
@@ -372,7 +372,7 @@
      "Tu t’arrêtes à la première ligne"
     ]
    ],
-   "dire": "Un feu orange clignotant ne donne aucune priorité : suis le panneau placé sous le feu ; sans panneau, c’est la priorité à droite. Une flèche verte t’autorise à aller dans la direction indiquée. Au vert, un piéton déjà sur le passage finit de traverser avant toi. Un petit panneau avec un vélo et une flèche, sous le feu ? Les cyclistes peuvent passer au rouge dans le sens de la flèche. Toi, tu restes arrêté. Devant certains feux, une case avec un vélo peint au sol est réservée aux cyclistes : le sas vélo. Toi, tu t’arrêtes à la première ligne, avant cette case.",
+   "dire": "Un feu orange qui clignote ne donne aucune priorité : suis le panneau placé sous le feu. Sans panneau, c’est la priorité à droite. Une flèche verte t’autorise à aller dans la direction de la flèche. Feu rouge, et sous le feu, un petit panneau avec un vélo et une flèche ? Les cyclistes peuvent passer au rouge dans le sens de la flèche. Toi, tu restes arrêté. Devant certains feux, une case avec un vélo peint au sol est réservée aux cyclistes : le sas vélo. Toi, tu t’arrêtes à la première ligne, avant cette case. Et au vert, un piéton déjà sur le passage finit de traverser avant toi.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -441,9 +441,9 @@
     ]
    },
    "sync": [
-    0.02,
-    1.14,
-    4.86,
+    0.05,
+    2.13,
+    3.69,
     7.15
    ]
   },
@@ -456,7 +456,7 @@
     "AB25",
     "AB3a"
    ],
-   "dire": "Ce triangle avec trois flèches en cercle annonce un carrefour giratoire : un rond-point. À l’entrée, le cédez-le-passage : tu laisses passer ceux qui sont déjà dans le rond-point, qui arrivent de ta gauche.",
+   "dire": "Ce triangle avec trois flèches en cercle annonce un carrefour giratoire : un rond-point. À l’entrée, tu trouves un cédez-le-passage. Tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche. Ton réflexe à l’entrée ? Un regard à gauche.",
    "etiquettes": [
     [
      "AB25",
@@ -470,7 +470,7 @@
    "puce": "Ils arrivent de ta gauche",
    "sync": [
     0.56,
-    1.1
+    1.57
    ]
   },
   {
@@ -492,7 +492,7 @@
      "Clignotant à droite avant de sortir"
     ]
    ],
-   "dire": "Pour une sortie proche, la première ou tout droit, reste sur la voie de droite. Pour une sortie plus lointaine, tu peux utiliser la voie de gauche, puis te rapprocher de la droite. Dans tous les cas, mets ton clignotant à droite juste après la sortie qui précède la tienne.",
+   "dire": "Pour une sortie proche, la première ou tout droit, reste sur la voie de droite. Pour une sortie plus lointaine, tu peux prendre la voie de gauche, puis te rapprocher de la droite. Dans tous les cas, mets ton clignotant à droite juste après la sortie qui précède la tienne. Pourquoi ? Ceux qui attendent à ta sortie savent alors que tu sors, et peuvent entrer.",
    "decor": {
     "env": "route",
     "kmh": 30,
@@ -667,7 +667,7 @@
      "règles au rond-point"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de décider quand le feu change.",
+   "dire": "Cours terminé. Le piège de l’examen : les gestes de l’agent passent avant les feux. Passe à la pratique.",
    "decor": {
     "env": "ville",
     "kmh": 30,

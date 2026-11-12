@@ -1,0 +1,90 @@
+{
+ "cours": "aides-conduite",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Regarde ces ondes bleues devant ta voiture : son radar surveille la route.",
+    "Cours numéro 24 : les aides à la conduite.",
+    "Les voitures récentes en sont pleines.",
+    "Elles t’aident, mais c’est toi qui conduis."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Sur l’autoroute, ton limiteur t’empêche d’accélérer au-delà de la vitesse choisie.",
+    "Mais en descente, il ne freine pas : surveille ton compteur.",
+    "Le régulateur, lui, maintient ta vitesse, et le régulateur adaptatif garde en plus la distance avec la voiture de devant.",
+    "Regarde : elle freine fort, et le freinage d’urgence automatique peut freiner si tu ne réagis pas.",
+    "Ta voiture dérive doucement vers la ligne : l’alerte de franchissement de ligne te prévient.",
+    "Enfin, l’alerte d’angle mort allume un voyant dans le rétroviseur quand quelqu’un est caché à côté de toi."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Regarde : sous cette pluie, tes capteurs, caméras et radars, sont gênés.",
+    "Ils voient mal par forte pluie, brouillard, neige, ou quand ils sont sales.",
+    "Ils peuvent aussi rater un piéton, un cycliste, un animal ou un objet tombé sur la route.",
+    "Sur route mouillée ou enneigée, coupe le régulateur : en aquaplaning, quand tes pneus flottent sur l’eau, il continuerait d’accélérer."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Tu actives le régulateur adaptatif sur une longue ligne droite.",
+    "Avec n’importe quelle aide : mains sur le volant, yeux sur la route.",
+    "Et en cas d’infraction ou d’accident, c’est toi, le conducteur, qui réponds."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "6 aides à connaître, et 1 règle : tu restes responsable."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Limiteur",
+   "tag": "Empêche d’accélérer au-delà de la vitesse choisie, mais ne freine pas en descente"
+  },
+  {
+   "texte": "Régulateur",
+   "tag": "Maintient la vitesse que tu as choisie"
+  },
+  {
+   "texte": "Freinage d’urgence automatique",
+   "tag": "Peut freiner si tu ne réagis pas, sans garantie"
+  },
+  {
+   "texte": "Toujours",
+   "tag": "Mains sur le volant, yeux sur la route : tu restes responsable"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Dois-tu encore surveiller la route ?",
+   "explication": "Oui, en permanence : avec n’importe quelle aide, mains sur le volant, yeux sur la route. Elle t’aide, mais c’est toi qui conduis."
+  },
+  {
+   "q": "Peux-tu changer de voie sans regarder ?",
+   "explication": "Non : l’alerte d’angle mort peut rater quelqu’un. Rétros, clignotant, angle mort : tourne quand même la tête avant de changer de voie."
+  },
+  {
+   "q": "Le régulateur adaptatif gère :",
+   "explication": "La vitesse et la distance : il maintient ta vitesse, et garde en plus la distance avec la voiture de devant."
+  },
+  {
+   "q": "Par fort brouillard, les aides à la conduite :",
+   "explication": "Elles peuvent être moins fiables : par brouillard, les caméras et les radars voient mal."
+  },
+  {
+   "q": "Pour le code de la route, qui répond d’un accident avec une aide activée ?",
+   "explication": "Le conducteur : c’est toi qui conduis, tu réponds des infractions et de l’accident, même avec une aide activée."
+  }
+ ],
+ "notes": "Situation d’abord, calée sur l’image (ondes du radar, voiture devant qui ralentit puis freine fort, voiture qui dérive, pluie sur les capteurs) ; phrases ancrées 2, 3 et 4 gardées ; le régulateur simple rejoint la phrase 2 pour que le limiteur et sa limite en descente restent ensemble ; « Elles aident… » (points de suspension interdits) devient « Elles t’aident, mais c’est toi qui conduis » ; « capteurs » et « aquaplaning » expliqués ; fiche et pratique reprennent ces mots. Doute : Bernard dépasse la vitesse du limiteur en enfonçant la pédale à fond, après un point dur ; le cours n’en parle pas (à vérifier si on veut le dire)."
+}

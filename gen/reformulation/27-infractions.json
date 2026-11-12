@@ -1,0 +1,146 @@
+{
+ "cours": "infractions",
+ "resume": "Les amendes et leurs classes, les retraits de points, les délits, la suspension et l’annulation.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Regarde, au bord de la route : un radar.",
+    "Cours numéro 27 : les sanctions.",
+    "Pas pour faire peur : pour comprendre ce qui est grave."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu reçois une amende forfaitaire, c’est-à-dire à prix fixe.",
+    "Les amendes sont rangées en classes : plus la classe est haute, plus c’est cher.",
+    "Les plus courantes : 35 euros en deuxième classe, 68 en troisième, 135 en quatrième.",
+    "Tu paies vite, elle baisse ; tu tardes, elle monte.",
+    "Exemple, une amende de 135 euros.",
+    "Payée dans les 15 jours, elle baisse à 90.",
+    "Payée après 45 jours, elle monte à 375."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Feu rouge devant toi : tu t’arrêtes.",
+    "Voici les retraits de points les plus fréquents.",
+    "3 points : rouler sans ceinture, ou le téléphone tenu en main.",
+    "4 points : un feu rouge ou un stop grillé, c’est-à-dire passé sans t’arrêter.",
+    "6 points : refuser la priorité à un piéton, ou 50 kilomètres heure de trop, ou plus.",
+    "Plusieurs infractions en même temps ?",
+    "Tu perds 8 points au maximum."
+   ]
+  },
+  {
+   "i": 3,
+   "eyebrow": "Vitesse, alcool et délits",
+   "dire": [
+    "Tu passes devant le radar, un peu trop vite.",
+    "Pour la vitesse : moins de 5 kilomètres heure de trop, une amende, mais aucun point.",
+    "1 point de 5 à 19, 2 points de 20 à 29.",
+    "3 points de 30 à 39, 4 points de 40 à 49.",
+    "À partir de 40 de trop, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures.",
+    "Puis le préfet, qui représente l’État, peut le suspendre : jusqu’à 6 mois sans conduire.",
+    "À 50 de trop ou plus : 6 points, et c’est maintenant un délit.",
+    "C’est plus grave qu’une amende : tribunal, et prison possible.",
+    "Et l’alcool ?",
+    "Entre 0,5 et 0,8 gramme par litre de sang : 135 euros et 6 points.",
+    "Avec un permis probatoire, celui des premières années, c’est la même sanction dès 0,2 gramme.",
+    "À 0,8 gramme ou plus, c’est un délit.",
+    "Autres délits à connaître : les stupéfiants, c’est-à-dire les drogues, et rouler sans assurance."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "Retiens deux mots.",
+    "Une suspension : ton permis t’est retiré pour un temps, puis on te le rend.",
+    "Une annulation : tu dois le repasser, et le nouveau est un permis probatoire, avec 6 points.",
+    "Passe à la pratique pour connaître le prix de chaque infraction."
+   ],
+   "stats": [
+    [
+     "135",
+     "€ : amende de 4e classe"
+    ],
+    [
+     "6",
+     "points au maximum par infraction"
+    ],
+    [
+     "8",
+     "points au maximum pour des infractions en même temps"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Amende de 4e classe",
+   "tag": "135 €"
+  },
+  {
+   "texte": "Feu rouge, stop grillé",
+   "tag": "4 points"
+  },
+  {
+   "texte": "Refus de priorité à un piéton",
+   "tag": "6 points"
+  },
+  {
+   "texte": "Alcool 0,8 g/L ou plus",
+   "tag": "Délit"
+  },
+  {
+   "texte": "Alcool de 0,5 à 0,8 g/L",
+   "tag": "135 € et 6 points · dès 0,2 g/L en permis probatoire"
+  },
+  {
+   "texte": "50 km/h de trop ou plus",
+   "tag": "Délit, 6 points"
+  },
+  {
+   "texte": "Plusieurs infractions en même temps",
+   "tag": "8 points au maximum"
+  },
+  {
+   "texte": "Suspension",
+   "tag": "Ton permis t’est retiré pour un temps, puis rendu"
+  },
+  {
+   "texte": "Annulation",
+   "tag": "À repasser : le nouveau est un permis probatoire, 6 points"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que représente-t-elle ?",
+   "explication": "Une vitesse maximale : tu peux rouler moins vite, et parfois tu le dois."
+  },
+  {
+   "q": "Tu grilles un stop. Combien de points perds-tu ?",
+   "explication": "4 points, et 135 € d’amende : c’est la sanction pour un stop ou un feu rouge grillé, c’est-à-dire passé sans t’arrêter."
+  },
+  {
+   "q": "Une amende de 4e classe coûte, en forfaitaire :",
+   "explication": "135 € pour une amende de 4e classe. Elle baisse à 90 € si tu paies dans les 15 jours, et monte à 375 € après 45 jours."
+  },
+  {
+   "q": "Tu commets trois infractions en même temps. Tu perds au maximum :",
+   "explication": "8 points au maximum, même si tu commets plusieurs infractions en même temps."
+  },
+  {
+   "q": "Un excès de vitesse de 25 km/h retire :",
+   "explication": "2 points. Un excès retenu de 25 km/h est dans la tranche de 20 à 29 : 2 points et 135 € d’amende."
+  },
+  {
+   "q": "Ne pas boucler sa ceinture retire :",
+   "explication": "3 points, et 135 € d’amende. Boucle ta ceinture avant de démarrer, à chaque trajet."
+  }
+ ],
+ "notes": "Situation d’abord (radar, amende reçue, feu rouge). Écran 3 rangé en montée (vitesse, 50 et plus, « Et l’alcool ? »), petit titre « Vitesse, alcool et délits » ; forfaitaire, grillé, préfet, permis probatoire, stupéfiants expliqués. Doutes : « prison possible » vaut pour 50 de trop, pas pour rouler sans assurance (amende seule, cours 26) ; 15 et 45 jours deviennent, il me semble, 30 et 60 en paiement en ligne. Cadran : e=[0,1,1,1,1,3] suit les lignes de carte, le segment ≥ 50 s’allume avec « 4 points »."
+}

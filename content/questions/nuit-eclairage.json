@@ -26,7 +26,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Le feu de brouillard arrière est interdit sous la pluie : il sert seulement par brouillard ou quand la neige tombe."
+  "explication": "Interdit, même sous une forte pluie : il éblouit celui qui te suit. Il sert seulement par brouillard ou chute de neige."
  },
  {
   "id": "ne15-3",
@@ -40,7 +40,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ne réponds pas à l’éblouissement : regarde à droite et ralentis."
+  "explication": "Tu regardes le bord droit de la route et tu ralentis. En feux de route, tu l’éblouirais à ton tour."
  },
  {
   "id": "ne15-4",
@@ -54,7 +54,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Les feux de route l’éblouiraient dans ses rétroviseurs."
+  "explication": "De croisement : tes feux de route l’éblouiraient dans ses rétroviseurs."
  },
  {
   "id": "ne15-5",

@@ -3,7 +3,7 @@
   "id": "dm19-1",
   "cours": "drogues-medicaments",
   "type": "qcm",
-  "q": "Pour les stupéfiants, le seuil toléré au volant est :",
+  "q": "Pour les stupéfiants, le taux toléré au volant est :",
   "choix": [
    "0,2 g/L",
    "aucun"
@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Aucun : contrairement à l’alcool, il n’y a pas de taux toléré. Une simple trace suffit."
+  "explication": "Aucun : c’est tolérance zéro. Contrairement à l’alcool, aucun taux n’est toléré : une simple trace suffit."
  },
  {
   "id": "dm19-2",
@@ -20,12 +20,12 @@
   "q": "Pictogramme orange sur un médicament :",
   "choix": [
    "aucun risque",
-   "sois très prudent : ne conduis pas sans l’avis d’un médecin ou d’un pharmacien"
+   "sois très prudent : conduis seulement après l’avis d’un médecin ou d’un pharmacien"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Pictogramme orange, niveau 2 : sois très prudent, et ne conduis pas sans l’avis d’un médecin ou d’un pharmacien."
+  "explication": "Niveau 2, orange : sois très prudent, et conduis seulement après l’avis d’un médecin ou d’un pharmacien. Sans cet avis, pas de volant."
  },
  {
   "id": "dm19-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Conduire après des stupéfiants est un délit, une infraction grave jugée au tribunal : 6 points en moins, en plus de l’amende."
+  "explication": "6 points : c’est un délit, une infraction grave jugée au tribunal. En plus, jusqu’à 2 ans de prison et 4 500 € d’amende."
  },
  {
   "id": "dm19-4",
@@ -53,6 +53,6 @@
   "bonnes": [
    0
   ],
-  "explication": "Un test salivaire ; s’il est positif, une analyse en laboratoire le confirme."
+  "explication": "Un test salivaire ; s’il est positif, une analyse en laboratoire le confirme. L’éthylotest, lui, mesure l’alcool."
  }
 ]

@@ -1,0 +1,131 @@
+{
+ "cours": "intersections-complexes",
+ "accroche": "qui commande, et qui croise ta route",
+ "resume": "Qui commande au carrefour, comment tourner à gauche, et comment passer avec un tramway.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu approches d’un carrefour où des voitures, un vélo et un tramway peuvent se croiser.",
+    "Regarde ces flèches : chacune montre une trajectoire, c’est-à-dire le chemin que va suivre un véhicule.",
+    "Avant de décider, observe aussi les feux, les panneaux et les marquages au sol."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu arrives à un carrefour : quatre niveaux décident qui passe, du plus fort au plus faible.",
+    "Un : l’agent qui dirige la circulation.",
+    "Deux : les feux.",
+    "Trois : les panneaux.",
+    "Quatre : pas d’agent, pas de feu, pas de panneau ?",
+    "Priorité à droite.",
+    "Ici, le feu clignote orange : il ne donne pas la priorité, et sans panneau, c’est la priorité à droite."
+   ],
+   "titre": "Agent, feux, panneaux, priorité à droite",
+   "puce": "Feu orange clignotant : pas de priorité"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu veux tourner à gauche : ton clignotant fait tic-tac.",
+    "Une voiture arrive en face et continue tout droit.",
+    "Elle passe avant toi : laisse-la passer avant de lui couper la route.",
+    "Laisse aussi passer les vélos d’en face, et les piétons qui traversent la rue où tu vas."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Toi et la voiture d’en face, vous tournez tous les deux à gauche.",
+    "S’il y a des marquages au sol, suis-les : ils montrent par où passer.",
+    "Sans marquage, regarde les flèches : vous vous croisez d’abord, comme sur une route normale.",
+    "Puis chacun tourne derrière l’autre voiture."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Des rails traversent le carrefour : repère les feux, les panneaux, et ce tramway qui arrive.",
+    "Le tramway est prioritaire : il ne peut pas t’éviter, et il met longtemps à s’arrêter.",
+    "Laisse-le passer.",
+    "Au carrefour à feux, il a ses propres feux.",
+    "Ton feu est vert ?",
+    "Tu peux passer, en restant attentif.",
+    "Mais s’il traverse déjà, ne t’engage jamais devant lui.",
+    "Et si tu risques de rester bloqué sur les rails, attends avant."
+   ],
+   "titre": "Le tramway est prioritaire"
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Feu vert, mais après le carrefour, la file est arrêtée.",
+    "Même au vert, n’avance pas si tu risques de bloquer le carrefour.",
+    "Et si tu tournes, laisse passer les piétons qui traversent au feu vert."
+   ],
+   "titre": "Feu vert, carrefour bouché : tu attends"
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Devant toi, un camion garé cache une rue sur ta droite.",
+    "Pas de panneau : priorité à droite, une voiture peut sortir de cette rue.",
+    "Ralentis pour pouvoir t’arrêter, et avance doucement jusqu’à bien voir la rue."
+   ],
+   "titre": "Une rue cachée sur ta droite"
+  },
+  {
+   "i": 7,
+   "dire": [
+    "À chaque carrefour : qui commande ?",
+    "L’agent, le feu, le panneau, sinon la priorité à droite.",
+    "Puis : qui croise ta route ?",
+    "Laisse passer ceux à qui tu coupes la route.",
+    "Et sur les rails, ne t’arrête jamais.",
+    "Place à la pratique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Agent, puis feux, puis panneaux",
+   "tag": "qui commande, dans cet ordre"
+  },
+  {
+   "texte": "Pas d’agent, de feu ni de panneau",
+   "tag": "priorité à droite"
+  },
+  {
+   "texte": "Tourner à gauche",
+   "tag": "laisse passer la voiture d’en face qui va tout droit"
+  },
+  {
+   "texte": "Rails de tramway",
+   "tag": "ne jamais s’y arrêter"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu le laisses passer : il va tout droit, et toi, tu vas lui couper la route."
+  },
+  {
+   "q": "Un agent règle la circulation, mais mon feu est vert. J’obéis :",
+   "explication": "À l’agent : ce qu’il te montre passe avant les feux, les panneaux et les marquages."
+  },
+  {
+   "q": "Feu orange clignotant, aucun panneau. Je cède le passage :",
+   "explication": "Aux véhicules venant de droite : le feu orange clignotant ne donne pas la priorité. Sans panneau, c’est la priorité à droite."
+  },
+  {
+   "q": "Un camion garé masque la rue à droite. Pas de panneau. Je :",
+   "explication": "Tu ralentis pour pouvoir t’arrêter, et tu cèdes le passage à droite : sans panneau, une voiture peut sortir de la rue masquée."
+  },
+  {
+   "q": "La voiture d’en face tourne aussi à gauche. Je :",
+   "explication": "Tu suis le marquage, sans lui couper la route. Sans marquage, vous vous croisez d’abord, puis chacun tourne derrière l’autre voiture."
+  }
+ ],
+ "notes": "« Trajectoire » est expliqué dans la phrase même, au moment où les flèches apparaissent ; l’accroche ne l’emploie plus. Une phrase de situation ouvre l’écran 1, et la liste validée par Maya reste mot pour mot. « Ton feu est vert ? » et « qui croise ta route ? » ont maintenant leur réponse juste après. Aucune règle ni aucun chiffre changé. L’alerte « anneau » de l’écran 4 est un faux positif : c’est le mot « panneaux »."
+}

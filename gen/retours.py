@@ -1572,3 +1572,66 @@ t('securite-passagers', 3, items_3=['Animaux', 'Le plus sûr : attachés · s’
 p2('securite-passagers', 'Quel équipement ?', {'contexte': 'Ton chien se déplace librement dans la voiture et t’empêche de bien conduire.', 'q': 'Tu risques :',
    'choix': ['rien : il n’est pas obligatoire de l’attacher', 'une amende de 35 €', 'un retrait de 3 points'], 'bonnes': [1],
    'explication': 'S’il gêne tes mouvements ou ta vue, c’est une infraction : 35 €, sans retrait de points. Le plus sûr : un animal attaché ou en cage.'})
+
+# ############################################################################################################
+# Reformulation pédagogique (experts, novembre 2026) : la voix, les cartes, la fiche et les explications de la
+# pratique, réécrites pour être immersives, sans changer de règle (gen/reformulation/*.json, contrôlés par
+# /tmp/reform/valider.py avant intégration). Ce sont les textes finaux : ils passent après toutes les retouches.
+# Le cours 1 n'y figure que sous forme de propositions de voix (« proposition_dire ») : Elisa choisit.
+# ############################################################################################################
+import json as _json, glob as _glob, os as _os
+REFORM = {}
+# REFORM_PRAT[cours] = retouches de la pratique, reconnues à l'énoncé EXACT de la question, dans l'ordre des questions
+# (deux questions « Que fais-tu ? » du même cours reçoivent chacune la leur) ; gen/pratique.py les applique en dernier.
+REFORM_PRAT = {}
+def prat(cid, q, n=0, **champs):
+    """retouche la n-ième question d'énoncé q (explication, choix, contexte ; « enonce » = nouvel énoncé)"""
+    memes = [p for p in REFORM_PRAT.setdefault(cid, []) if p['q'] == q]
+    if n < len(memes): memes[n].update(champs)
+    else: REFORM_PRAT[cid].append(dict(q=q, **champs))
+for _f in sorted(_glob.glob(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'reformulation', '*.json'))):
+    _r = _json.load(open(_f, encoding='utf-8')); _c = _r['cours']; REFORM[_c] = _r
+    for _s in _r.get('scenes', []):
+        _cur = T.setdefault((_c, _s['i']), {})
+        if 'dire' in _s: _cur['dire'] = ' '.join(_s['dire'])
+        if 'items' in _s:
+            for _k in [k for k in _cur if k.startswith('items_')]: del _cur[_k]
+        for _k in ('eyebrow', 'titre', 'puce', 'items', 'stats'):
+            if _k in _s: _cur[_k] = _s[_k]
+    for _k in ('accroche', 'resume'):
+        if _r.get(_k): COURS.setdefault(_c, {})[_k] = _r[_k]
+    if _r.get('memo'):                                   # la fiche complète (panneaux compris) remplace les retouches ligne à ligne
+        _m = COURS.setdefault(_c, {}); _m.pop('memo', None); _m.pop('memo+', None); _m['memo_tout'] = _r['memo']
+    for _p in _r.get('pratique', []):
+        REFORM_PRAT.setdefault(_c, []).append({'q': _p['q'], 'explication': _p['explication']})
+
+# ---- Après la reformulation : ce que les experts ne pouvaient pas toucher (énoncés, choix, images) ----
+# Les mots retirés après les tests (« lève le pied », « seuil », « anomalie »…) restaient dans des énoncés et des choix.
+prat('panneaux', 'Que t’indique d’abord sa forme ?', explication='Le triangle bordé de rouge annonce le plus souvent un danger.')
+prat('intemperies', 'La voiture semble flotter sur l’eau. Je :', choix=['freine fort', 'lâche l’accélérateur et tiens le volant droit'])
+prat('drogues-medicaments', 'Sur une boîte de médicaments, avec quels pictogrammes tu ne prends pas le volant sans l’avis d’un médecin ?',
+     enonce='Sur une boîte de médicaments, avec quels pictogrammes tu conduis seulement après l’avis d’un médecin ?')
+prat('drogues-medicaments', 'Pour les stupéfiants, le seuil toléré au volant est :', enonce='Pour les stupéfiants, le taux toléré au volant est :')
+prat('drogues-medicaments', 'Pictogramme orange sur un médicament :',
+     choix=['aucun risque', 'sois très prudent : conduis seulement après l’avis d’un médecin ou d’un pharmacien'])
+prat('entretien', 'Un voyant orange signale :', choix=['une alerte grave', 'un défaut à faire vérifier'],
+     explication='Un défaut à faire vérifier rapidement. Parfois, c’est juste un témoin : un équipement allumé. Le rouge d’alerte, lui, demande de t’arrêter.')
+prat('ecoconduite', 'Quel geste réduit consommation et risque ?', choix=['Rester en forte accélération', 'Lâcher l’accélérateur progressivement', 'Accélérer puis freiner fort'])
+# Cours 18 : deux questions s'appellent « Que fais-tu ? » ; chacune reçoit son explication, dans l'ordre.
+prat('fatigue-distractions', 'Que fais-tu ?', 0, explication='T’arrêter dans un endroit sûr pour te reposer : tu bâilles, tes paupières sont lourdes, c’est la fatigue. La fenêtre ou la musique ne remplacent pas le sommeil.')
+prat('fatigue-distractions', 'Que fais-tu ?', 1, explication='Tu restes concentré : téléphone en main interdit au volant. Laisse sonner, et si l’appel est urgent, arrête-toi d’abord en sécurité.')
+
+# Chiffres de fin : « 1,50 m », comme la fiche et la pratique (« 1,5 » se lisait comme une autre valeur).
+def _stat(cid, i, k, v):
+    st = T.get((cid, i), {}).get('stats')
+    if st: st[k] = [v] + list(st[k][1:])
+_stat('depassement', 6, 1, '1,50'); _stat('cyclistes-edpm', 5, 0, '1,50')
+# Cours 27 : le compteur s'allume tranche par tranche, avec la voix (« ≥ 50 : −6 » quand elle dit 50 de trop), et non
+# plus avec les lignes de la carte (le segment des 50 s'allumait pendant « 4 points de 40 à 49 »).
+dec('infractions', 3, lambda d: (d['illu'].pop('suit', None), d['illu'].pop('e', None), d['illu'].update(etapes=[1.0, 2.0, 2.5, 3.0, 3.5, 6.0])))
+# Cours 35 : la frise suit la carte (mise en circulation et 4 ans avec le premier contrôle, puis les « +2 » avec « tous
+# les 2 ans ») ; la carte grise de l'achat s'allume avec « un mois pour l'immatriculer » (elle visait une ligne absente).
+dec('demarches-conducteur', 3, lambda d: d['illu'].update(lignes=[{'noeuds': [['0', '1re mise en circ.', 0], ['4 ans', '1er contrôle', 0], ['+2', '', 1], ['+2', '', 1]]}]))
+dec('demarches-conducteur', 4, lambda d: d['illu'].update(e=[1, 2]))
+# Cours 28 : l'étiquette du feu reprend le mot fixé de la voix.
+dec('ecoconduite', 1, lambda d: [a.update(texte=['Feu rouge au loin', 'lâche l’accélérateur']) for a in d.get('aides') or [] if 'lève le pied tôt' in (a.get('texte') or [])])

@@ -1,0 +1,117 @@
+{
+ "cours": "vehicules-propres",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "En voiture électrique, tu traverses la ville : regarde, une borne de recharge.",
+    "Cours numéro 29 : la vignette Crit’Air, les zones à faibles émissions et la voiture électrique."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Sur ton pare-brise, la vignette Crit’Air dit combien ta voiture pollue.",
+    "Six vignettes en tout, de 0 à 5.",
+    "Le 0, la verte : l’électrique et l’hydrogène.",
+    "Le 1 : hybrides rechargeables, essence récentes, gaz.",
+    "Puis 2, 3, 4 et 5 : plus le chiffre est grand, plus la voiture pollue.",
+    "Commande-la sur le seul site officiel, certificat-air point gouv point fr, et colle-la sur ton pare-brise."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu roules vers le centre d’une grande ville.",
+    "À l’entrée, regarde ce panneau blanc bordé de rouge, avec le mot « zone ».",
+    "Il annonce une ZFE, une zone à faibles émissions.",
+    "Pour un air plus propre, les voitures qui polluent trop n’ont pas le droit d’y rouler.",
+    "Pour y circuler, la vignette Crit’Air est obligatoire, et les voitures les plus polluantes sont interdites.",
+    "Les vignettes autorisées sont indiquées sous le panneau.",
+    "Il y a des ZFE dans certaines grandes villes.",
+    "Leurs règles changent d’une ville à l’autre, et elles peuvent évoluer : vérifie celles de ta ville."
+   ],
+   "items": [
+    [
+     "Dans certaines grandes villes",
+     "Accès limité selon la vignette"
+    ],
+    [
+     "Vignette obligatoire",
+     "Les plus polluantes sont interdites"
+    ],
+    [
+     "Règles de ta ville",
+     "Elles changent d’une ville à l’autre"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde : un piéton traverse devant toi, sans t’avoir entendu arriver.",
+    "Pourquoi ?",
+    "À basse vitesse, ta voiture électrique fait très peu de bruit.",
+    "Jusqu’à 20 kilomètres heure environ, elle émet un petit son d’alerte.",
+    "Mais un piéton distrait, avec ses écouteurs, peut ne pas l’entendre : ralentis, et regarde-le."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Tu lâches l’accélérateur, et ta voiture électrique ralentit nettement en rechargeant sa batterie : c’est le freinage régénératif.",
+    "Tu accélères de nouveau : l’accélération est immédiate, alors appuie doucement.",
+    "L’autonomie, c’est le nombre de kilomètres que tu peux faire batterie pleine.",
+    "Elle baisse avec le froid et la vitesse.",
+    "Avant un long trajet, repère où tu pourras recharger."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "À retenir : six vignettes Crit’Air, de 0 à 5.",
+    "Et en électrique, pense aux piétons : ils peuvent ne pas t’entendre arriver.",
+    "Passe à la pratique pour revoir Crit’Air, les ZFE et la voiture électrique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Crit’Air",
+   "tag": "Six vignettes : de 0, électrique, à 5, la plus polluante"
+  },
+  {
+   "texte": "ZFE, zone à faibles émissions",
+   "tag": "Vignette Crit’Air obligatoire, les plus polluantes interdites",
+   "panneau": "B56"
+  },
+  {
+   "texte": "Voiture électrique",
+   "tag": "Silencieuse à basse vitesse : ralentis pour les piétons"
+  },
+  {
+   "texte": "Freinage régénératif",
+   "tag": "Lâcher l’accélérateur ralentit et recharge"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que dois-tu anticiper ?",
+   "explication": "L’autonomie et la recharge : avant un long trajet, repère où tu pourras recharger. L’autonomie baisse avec le froid et la vitesse."
+  },
+  {
+   "q": "Une voiture électrique a une vignette Crit’Air :",
+   "explication": "0, la verte : c’est la vignette des voitures électriques et à hydrogène."
+  },
+  {
+   "q": "À basse vitesse, une voiture électrique est :",
+   "explication": "Presque silencieuse : les piétons risquent de ne pas l’entendre arriver. Ralentis, et regarde-les."
+  },
+  {
+   "q": "L’autonomie d’une électrique diminue :",
+   "explication": "Par temps froid et à vitesse élevée : le froid et la vitesse font baisser le nombre de kilomètres possibles, batterie pleine."
+  }
+ ],
+ "notes": "Écran 1 : l’adresse du site était coupée en trois sous-titres ; elle est dite « certificat-air point gouv point fr ». La voix suit la carte ligne par ligne (0, 1, puis 2 à 5) et dit ce qu’il y a dans le 1. Carte des ZFE : « grandes villes » et « règles de ta ville », comme la voix. Situation d’abord et pourquoi ajoutés (un air plus propre ; « Pourquoi ? » suivi de sa réponse). Pas de doute sur une règle."
+}

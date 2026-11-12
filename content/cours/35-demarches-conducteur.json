@@ -4,7 +4,7 @@
  "theme": "notions",
  "titre": "Documents et démarches du conducteur",
  "accroche": "les obligations à connaître au quotidien",
- "resume": "Immatriculation, assurance, contrôle technique, achat et vente du véhicule.",
+ "resume": "Permis, carte grise, assurance, contrôle technique, et les démarches pour acheter ou vendre.",
  "chapitres": [
   "Identifier les documents",
   "Suivre les échéances",
@@ -18,24 +18,24 @@
  ],
  "memo": [
   {
-   "texte": "Permis de la bonne catégorie",
-   "tag": "le conducteur"
+   "texte": "Permis de catégorie B",
+   "tag": "pour conduire une voiture"
   },
   {
-   "texte": "Certificat d’immatriculation",
-   "tag": "le véhicule"
+   "texte": "Carte grise",
+   "tag": "son nom officiel : certificat d’immatriculation"
   },
   {
    "texte": "Assurance responsabilité civile",
-   "tag": "obligatoire"
+   "tag": "le minimum obligatoire, dite au tiers"
   },
   {
    "texte": "Vente : déclaration de cession",
-   "tag": "15 jours"
+   "tag": "15 jours, en ligne"
   },
   {
    "texte": "Contrôle technique",
-   "tag": "6 mois avant les 4 ans, puis tous les 2 ans"
+   "tag": "dans les 6 mois avant 4 ans, puis tous les 2 ans"
   }
  ],
  "scenes": [
@@ -46,7 +46,7 @@
    "titre": "Documents et démarches du conducteur",
    "sous": "les obligations à connaître au quotidien",
    "vitesse": 30,
-   "dire": "Tu viens de récupérer une voiture. Avant de prendre la route, tu dois savoir quels documents et quelles démarches concernent le véhicule et son conducteur. Faisons le point avec des exemples simples.",
+   "dire": "Tu viens de récupérer une voiture. Avant de prendre la route, regarde ces documents : certains concernent la voiture, d’autres toi, le conducteur. Chaque document a ses démarches : on fait le point, avec des exemples simples.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -83,7 +83,7 @@
   {
    "type": "liste",
    "eyebrow": "Le conducteur et le véhicule",
-   "titre": "Permis et immatriculation",
+   "titre": "Permis et carte grise",
    "items": [
     [
      "Le permis",
@@ -98,7 +98,7 @@
      "Permis et carte grise ; l’assurance, dans un fichier"
     ]
    ],
-   "dire": "Pour conduire une voiture, il te faut le permis B. Le A, c’est pour les motos, le C pour les camions. Ta voiture doit avoir une carte grise : son nom officiel, certificat d’immatriculation. Lors d’un contrôle, tu montres ton permis et ta carte grise ; l’assurance, la police la vérifie dans un fichier.",
+   "dire": "Un contrôle de police, devant toi : tu t’arrêtes. Pour conduire une voiture, il te faut le permis de catégorie B. Le A, c’est pour les motos, le C pour les camions. Ta voiture doit avoir une carte grise : son nom officiel, certificat d’immatriculation. Lors d’un contrôle, tu montres ton permis et ta carte grise. Ton assurance, la police la vérifie dans un fichier.",
    "ch": 0,
    "decor": {
     "env": "ville",
@@ -144,9 +144,9 @@
     "suit": true
    },
    "sync": [
-    0.79,
-    2.64,
-    3.0
+    1.62,
+    3.64,
+    4.0
    ]
   },
   {
@@ -164,15 +164,15 @@
     ],
     [
      "Sans assurance",
-     "Le véhicule ne doit pas circuler"
+     "La voiture ne doit pas rouler"
     ]
    ],
-   "dire": "Ta voiture doit être assurée. Le minimum s’appelle la responsabilité civile : elle paie les dégâts que tu fais aux autres, par exemple la voiture que tu as abîmée. On l’appelle aussi l’assurance « au tiers ». La tous risques, elle, paie aussi tes propres dégâts. Sans assurance, la voiture ne doit pas rouler.",
+   "dire": "Imagine : tu recules, et tu abîmes une voiture garée. Qui paie les dégâts ? Ton assurance : ta voiture doit être assurée. Le minimum obligatoire s’appelle la responsabilité civile. Elle sert à payer les dégâts que tu fais aux autres, comme cette voiture abîmée. On l’appelle aussi l’assurance « au tiers ». La tous risques, elle, paie aussi tes propres dégâts. Sans assurance, la voiture ne doit pas rouler.",
    "ch": 1,
    "sync": [
-    1.15,
-    1.44,
-    4.08
+    3.59,
+    4.03,
+    7.08
    ],
    "decor": {
     "env": "ville",
@@ -232,20 +232,20 @@
     ],
     [
      "Ce qu’il vérifie",
-     "Des points de sécurité et d’environnement"
+     "Freins, pneus, feux, pollution"
     ],
     [
-     "Ce qu’il ne fait pas",
-     "Remplacer l’entretien courant"
+     "Il ne remplace pas",
+     "La révision chez le garagiste"
     ]
    ],
-   "dire": "Le contrôle technique, c’est un centre qui vérifie ta voiture : freins, pneus, feux, pollution. Le premier contrôle se fait dans les 6 mois avant les 4 ans de la voiture. On compte depuis sa première mise en circulation, écrite sur la carte grise, pas depuis le jour de l’achat. Ensuite, tous les 2 ans. Il ne remplace pas la révision chez le garagiste.",
+   "dire": "Ta voiture a presque 4 ans. Le contrôle technique, c’est un centre qui vérifie ta voiture. Le premier contrôle se fait dans les 6 mois avant les 4 ans de la voiture. On compte depuis sa première mise en circulation, écrite sur la carte grise, pas depuis le jour de l’achat. Ensuite, tous les 2 ans. Il vérifie les freins, les pneus, les feux et la pollution. Il ne remplace pas la révision chez le garagiste.",
    "ch": 1,
    "sync": [
-    1.01,
-    3.0,
-    3.54,
-    4.09
+    2.01,
+    4.0,
+    5.02,
+    6.09
    ],
    "decor": {
     "env": "ville",
@@ -289,17 +289,17 @@
        [
         "4 ans",
         "1er contrôle",
+        0
+       ],
+       [
+        "+2",
+        "",
         1
        ],
        [
         "+2",
         "",
-        3
-       ],
-       [
-        "+2",
-        "",
-        3
+        1
        ]
       ]
      }
@@ -309,11 +309,11 @@
   {
    "type": "liste",
    "eyebrow": "Acheter",
-   "titre": "Acheter un véhicule d’occasion",
+   "titre": "Acheter une voiture d’occasion",
    "items": [
     [
      "Avant",
-     "Vérifie le véhicule et ses documents"
+     "Vérifie la voiture et ses documents"
     ],
     [
      "Plus de 4 ans",
@@ -324,12 +324,12 @@
      "Un mois pour l’immatriculer à ton nom"
     ]
    ],
-   "dire": "Avant un achat, vérifie le véhicule et ses documents. S’il a plus de 4 ans, le vendeur te donne le papier de son dernier contrôle technique. Ce papier doit avoir moins de 6 mois. Après l’achat, tu as un mois pour l’immatriculer à ton nom.",
+   "dire": "Cette voiture d’occasion est à vendre. Avant l’achat, vérifie la voiture et ses documents. Elle a plus de 4 ans ? Le vendeur te donne le papier de son dernier contrôle technique. Ce papier doit avoir moins de 6 mois. Après l’achat, tu as un mois pour l’immatriculer à ton nom, c’est-à-dire mettre la carte grise à ton nom.",
    "ch": 2,
    "sync": [
-    0.0,
-    2.05,
-    3.11
+    1.0,
+    4.05,
+    5.05
    ],
    "decor": {
     "env": "ville",
@@ -368,7 +368,7 @@
     ],
     "e": [
      1,
-     3
+     2
     ],
     "suit": true
    }
@@ -376,7 +376,7 @@
   {
    "type": "liste",
    "eyebrow": "Vendre",
-   "titre": "Vendre ou céder sa voiture",
+   "titre": "Vendre ou donner ta voiture",
    "items": [
     [
      "Cession",
@@ -391,10 +391,10 @@
      "Pour l’acheteur"
     ]
    ],
-   "dire": "Tu vends ou tu donnes ta voiture ? C’est une cession. Tu la déclares en ligne, dans les 15 jours. Tu donnes à l’acheteur la carte grise barrée, datée et signée. Et un papier récent qui prouve que la voiture peut être vendue : le certificat de situation administrative.",
+   "dire": "Tu vends ou tu donnes ta voiture ? C’est une cession. Tu la déclares en ligne, dans les 15 jours : l’État sait alors qu’elle n’est plus à toi. Tu donnes à l’acheteur la carte grise barrée, datée et signée. Et un papier récent qui prouve que la voiture peut être vendue : le certificat de situation administrative.",
    "ch": 2,
    "sync": [
-    2.39,
+    2.17,
     3.39,
     4.61
    ],
@@ -441,26 +441,26 @@
   {
    "type": "liste",
    "eyebrow": "Les démarches",
-   "titre": "Les situations qui demandent une démarche",
+   "titre": "Déménager, acheter, vendre : tes démarches",
    "items": [
     [
-     "Un déménagement",
+     "Tu déménages",
      "Change l’adresse de la carte grise"
     ],
     [
-     "Un achat",
-     "Nouvelle immatriculation à ton nom"
+     "Tu achètes",
+     "La carte grise à ton nom"
     ],
     [
-     "Une vente ou un don",
-     "Déclaration de cession"
+     "Tu vends, tu donnes",
+     "Déclare la cession"
     ],
     [
-     "Où",
-     "En ligne, sur le site officiel de l’État"
+     "En ligne",
+     "Sur le site officiel de l’État"
     ]
    ],
-   "dire": "Tu déménages ? Change l’adresse de ta carte grise dans le mois. Tu achètes ? Mets la carte grise à ton nom, dans le mois aussi. Tu vends ou tu donnes ? Déclare la cession. Ces démarches se font en ligne, sur le site officiel de l’État : les délais peuvent changer, vérifie-les là-bas.",
+   "dire": "Tu déménages ? Change l’adresse de ta carte grise dans le mois. Tu achètes ? Mets la carte grise à ton nom, dans le mois aussi. Tu vends ou tu donnes ? Déclare la cession. Ces démarches se font en ligne, sur le site officiel de l’État. Les délais peuvent changer : vérifie-les là-bas.",
    "ch": 2,
    "decor": {
     "env": "ville",
@@ -525,9 +525,9 @@
    },
    "sync": [
     1.0,
-    3.0,
-    5.0,
-    6.19
+    3.13,
+    4.1,
+    6.37
    ]
   },
   {
@@ -544,7 +544,7 @@
      "jours pour déclarer une vente"
     ]
    ],
-   "dire": "Quatre choses en règle : permis, carte grise, assurance, contrôle technique. Si tu vends : 15 jours pour déclarer la cession. Tu as vu tout le programme : passe à la pratique, puis place aux examens blancs.",
+   "dire": "Quatre documents en règle : permis, carte grise, assurance, contrôle technique. Si tu vends : 15 jours pour déclarer la cession. Tu as vu tout le programme : passe à la pratique, puis place aux examens blancs.",
    "ch": 2,
    "decor": {
     "env": "ville",

@@ -54,7 +54,7 @@
   "bonnes": [
    1
   ],
-  "explication": "À basse vitesse, une voiture électrique fait très peu de bruit : les piétons risquent de ne pas l’entendre arriver."
+  "explication": "Presque silencieuse : les piétons risquent de ne pas l’entendre arriver. Ralentis, et regarde-les."
  },
  {
   "id": "vp29-5",
@@ -68,6 +68,6 @@
   "bonnes": [
    0
   ],
-  "explication": "Le froid et la vitesse augmentent la consommation."
+  "explication": "Par temps froid et à vitesse élevée : le froid et la vitesse font baisser le nombre de kilomètres possibles, batterie pleine."
  }
 ]

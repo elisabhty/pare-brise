@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Barré une fois : stationnement interdit, l’arrêt reste possible.",
+  "explication": "Le stationnement seulement. Une seule barre : stationnement interdit, mais tu peux t’arrêter.",
   "panneaux": [
    "B6a1"
   ]
@@ -45,7 +45,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Se garer sur un passage piéton est un stationnement très gênant : 135 € d’amende, et ta voiture peut partir à la fourrière."
+  "explication": "Très gênant. Sur un passage piéton : 135 € d’amende, et ta voiture peut partir à la fourrière. Gênant, c’est par exemple la double file : 35 €."
  },
  {
   "id": "as09-4",
@@ -59,7 +59,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Avant d’ouvrir, regarde ton rétroviseur et ton angle mort : un vélo ou une voiture peut arriver le long de ta portière."
+  "explication": "Regarder le rétroviseur et l’angle mort. Un vélo ou une voiture peut arriver le long de ta portière."
  },
  {
   "id": "as09-5",
@@ -74,6 +74,6 @@
   "bonnes": [
    0
   ],
-  "explication": "Une place Livraison sert à charger ou décharger, même avec ta voiture, sauf règle locale contraire. T’y garer pour autre chose, c’est gênant : 35 €."
+  "explication": "Oui, le temps de vraiment décharger, même avec ta voiture, sauf si une règle de ta ville dit autre chose. T’y garer pour autre chose, c’est gênant : 35 €."
  }
 ]

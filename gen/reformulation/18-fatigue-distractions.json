@@ -1,0 +1,152 @@
+{
+ "cours": "fatigue-distractions",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu conduis depuis longtemps.",
+    "Tes paupières deviennent lourdes, ton attention baisse.",
+    "Cours numéro 18 : la fatigue et les distractions.",
+    "Regarde : à 90 kilomètres heure, une seconde d’inattention, c’est 27 mètres parcourus sans regarder la route."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Regarde : en une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130.",
+    "C’est ta vitesse sans le zéro, fois 3, comme au cours 4.",
+    "Essaie avec 90 : 9 fois 3, 27 mètres.",
+    "Et lire un message prend bien plus qu’une seconde."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu bâilles, tes paupières sont lourdes, ta nuque est raide : c’est la fatigue.",
+    "Et ces kilomètres dont tu ne te souviens plus : des trous de mémoire.",
+    "Dès le premier signe, arrête-toi, avant de t’endormir."
+   ],
+   "items": [
+    [
+     "Bâillements, paupières lourdes",
+     "Les premiers signes"
+    ],
+    [
+     "Nuque raide",
+     "Raideurs, besoin de bouger"
+    ],
+    [
+     "Trous de mémoire",
+     "Les derniers kilomètres oubliés"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "titre": "Pause et sommeil",
+   "dire": [
+    "Un parking : tu mets ton clignotant, c’est l’heure de la pause.",
+    "Conseil : fais une pause d’au moins un quart d’heure toutes les deux heures, même sans fatigue.",
+    "Et si tu as sommeil, la seule solution : t’arrêter et dormir 15 à 20 minutes.",
+    "Le café, la fenêtre ouverte ou la musique ne remplacent pas le sommeil."
+   ],
+   "items": [
+    [
+     "Pause toutes les 2 heures",
+     "Au moins un quart d’heure"
+    ],
+    [
+     "Dormir 15 à 20 minutes",
+     "Dès les premiers signes"
+    ],
+    [
+     "Café, fenêtre ouverte, musique",
+     "Ne remplacent pas le sommeil"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Ton téléphone vibre sur le siège.",
+    "Téléphone tenu en main au volant : 135 euros et 3 points.",
+    "Même arrêté à un feu rouge ou dans un bouchon : tu restes dans la circulation.",
+    "Écouteurs, oreillettes et casques : interdits aussi, avec la même sanction.",
+    "Le kit mains libres par les haut-parleurs de la voiture reste autorisé, mais il te distrait quand même.",
+    "Et si tu commets une autre infraction en même temps, un excès de vitesse par exemple ?",
+    "Les policiers peuvent garder ton permis tout de suite, jusqu’à 72 heures."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : au feu rouge aussi, téléphone en main interdit.",
+    "Passe à la pratique."
+   ],
+   "stats": [
+    [
+     "2",
+     "heures entre deux pauses"
+    ],
+    [
+     "15 à 20",
+     "minutes pour dormir, si tu as sommeil"
+    ],
+    [
+     "3",
+     "points pour le téléphone tenu en main"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Pause",
+   "tag": "Conseil : au moins 15 min toutes les 2 heures"
+  },
+  {
+   "texte": "Si tu as sommeil",
+   "tag": "Arrête-toi et dors 15 à 20 min"
+  },
+  {
+   "texte": "Téléphone tenu en main",
+   "tag": "135 € et 3 points, même arrêté au feu rouge ou dans un bouchon"
+  },
+  {
+   "texte": "Écouteurs, oreillettes, casques",
+   "tag": "Interdits : 135 € et 3 points"
+  },
+  {
+   "texte": "Kit mains libres",
+   "tag": "Haut-parleurs de la voiture : autorisé, mais il distrait"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Arrêté à un feu rouge, tu peux prendre ton téléphone en main ?",
+   "explication": "Non : même arrêté au feu rouge ou dans un bouchon, tu es encore dans la circulation. Téléphone en main interdit : gare-toi d’abord."
+  },
+  {
+   "q": "Il est conseillé de faire une pause :",
+   "explication": "Toutes les 2 heures de route : une pause d’au moins un quart d’heure, même sans fatigue."
+  },
+  {
+   "q": "Tu as sommeil au volant. La meilleure solution :",
+   "explication": "T’arrêter dans un endroit sûr et dormir 15 à 20 minutes : le café ne remplace pas le sommeil."
+  },
+  {
+   "q": "Téléphone tenu en main au volant :",
+   "explication": "135 € d’amende et 3 points, même arrêté à un feu rouge ou dans un bouchon. Avec une autre infraction, les policiers peuvent garder ton permis jusqu’à 72 heures."
+  },
+  {
+   "q": "Les oreillettes au volant sont :",
+   "explication": "Interdites : écouteurs, oreillettes et casques ont la même sanction que le téléphone tenu en main, 135 € et 3 points. Le kit mains libres reste autorisé."
+  },
+  {
+   "q": "À 90 km/h, en une seconde, tu parcours environ :",
+   "explication": "27 m : ta vitesse sans le zéro, fois 3, donc 9 fois 3. Comme au cours 4."
+  }
+ ],
+ "notes": "Voix : la situation d’abord (paupières lourdes, téléphone qui vibre, parking), mini-défi « 9 fois 3 », pourquoi « même arrêté » (tu restes dans la circulation), « dormir 15 à 20 minutes » au lieu de « sieste » (carte, fin, fiche), « musique » dite dans la voix comme sur la carte, « sur-le-champ » remplacé, question-réponse pour les 72 heures. Explications des Q1 et Q2 laissées telles quelles : les deux questions s’appellent « Que fais-tu ? », et l’intégration, qui repère une question par le début de son texte, leur donnerait la même explication. Pas de doute sur les règles."
+}

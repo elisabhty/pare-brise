@@ -4,7 +4,7 @@
  "theme": "conducteur",
  "titre": "Alcool et conduite",
  "accroche": "les taux, et ce qu'ils changent",
- "resume": "Les taux légaux (permis définitif et probatoire), ce que l'alcool fait à la conduite, et ce qui ne fait pas baisser l'alcoolémie.",
+ "resume": "Les taux légaux en permis définitif et probatoire, ce que l’alcool change à la conduite, et la seule chose qui fait baisser l’alcoolémie : le temps.",
  "affiche": [
   "A14",
   "B14:50",
@@ -27,8 +27,8 @@
    "tag": "0,2 g/L"
   },
   {
-   "texte": "Seul le temps fait baisser l'alcoolémie",
-   "tag": "Ni café, ni eau"
+   "texte": "Seul le temps fait baisser l’alcoolémie",
+   "tag": "Ni café, ni eau, ni douche"
   }
  ],
  "scenes": [
@@ -39,7 +39,7 @@
    "titre": "Alcool et conduite",
    "sous": "les taux, et ce qu'ils changent",
    "vitesse": 50,
-   "dire": "Une soirée se termine. Avant de prendre le volant, un sujet essentiel s’impose : l’alcool. Cours numéro 5 : l'alcool au volant. Les taux à connaître, et pourquoi ils existent.",
+   "dire": "Une soirée se termine, la musique baisse, tes amis cherchent leurs clés. Avant de prendre le volant, un sujet compte plus que tout : l’alcool. Cours numéro 5 : l’alcool au volant. Les taux d’alcool à connaître, et pourquoi ils existent.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -97,7 +97,7 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "Quand ton permis n’est plus probatoire, il est définitif : le taux maximal est de 0,5 gramme d’alcool par litre de sang. Mesurée dans ton souffle, c’est la même limite, écrite autrement : 0,25 milligramme par litre d’air expiré. Un verre fait monter le taux d’environ 0,2 à 0,25 gramme : deux verres peuvent déjà dépasser 0,5.",
+   "dire": "Après le permis probatoire, ton permis devient définitif. Le taux maximal : 0,5 gramme d’alcool par litre de sang. Regarde l’éthylotest : il mesure l’alcool dans ton souffle. C’est la même limite, écrite autrement : 0,25 milligramme par litre d’air expiré. Un verre fait monter le taux d’environ 0,2 à 0,25 gramme. Deux verres peuvent déjà dépasser 0,5.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -137,8 +137,8 @@
     ]
    },
    "sync": [
-    0.65,
-    1.6
+    1.29,
+    3.48
    ],
    "illu": {
     "type": "ethylotest",
@@ -165,7 +165,7 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "En permis probatoire, et déjà en conduite accompagnée, c’est 0,2 gramme par litre de sang, soit 0,1 milligramme par litre d’air expiré. Un seul verre peut suffire à le dépasser : pour toi, c’est zéro verre.",
+   "dire": "En conduite accompagnée, puis pendant ton permis probatoire, la limite est bien plus basse. C’est 0,2 gramme par litre de sang. Dans ton souffle : 0,1 milligramme par litre d’air expiré. Un seul verre peut suffire à la dépasser : pour toi, c’est zéro verre.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -205,8 +205,8 @@
     ]
    },
    "sync": [
-    0.42,
-    0.68
+    1.14,
+    2.3
    ],
    "illu": {
     "type": "ethylotest",
@@ -238,7 +238,7 @@
      "visuel réduit"
     ]
    ],
-   "dire": "L'alcool allonge le temps de réaction et réduit le champ visuel. Tu vois moins, et tu réagis plus tard. Et rien ne fait baisser l’alcoolémie, la quantité d’alcool dans ton sang : ni café, ni eau, ni douche. Seul le temps compte.",
+   "dire": "Regarde : l’alcool allonge ton temps de réaction et réduit ton champ visuel. Tu freines plus tard, et tu vois moins bien les côtés de la route. Pour faire baisser l’alcoolémie, la quantité d’alcool dans ton sang, une seule chose marche : le temps. Ni café, ni eau, ni douche.",
    "decor": {
     "env": "route",
     "kmh": 50,
@@ -284,8 +284,8 @@
     ]
    },
    "sync": [
-    0.28,
-    0.77
+    0.38,
+    0.8
    ]
   },
   {
@@ -307,7 +307,7 @@
      "remède : seul le temps fait baisser"
     ]
    ],
-   "dire": "Cours terminé. Concrètement : celui qui conduit ne boit pas ; sinon, dors sur place ou rentre autrement. Passe à la pratique pour vérifier les chiffres.",
+   "dire": "Cours terminé. Concrètement : celui qui conduit reste à zéro alcool. Tu as bu ? Alors dors sur place, ou rentre autrement. Passe à la pratique pour vérifier les chiffres.",
    "decor": {
     "env": "route",
     "kmh": 50,

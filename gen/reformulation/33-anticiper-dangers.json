@@ -1,0 +1,136 @@
+{
+ "cours": "anticiper-dangers",
+ "resume": "Repérer les indices, adapter ta vitesse, et garder de la marge autour de toi.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu roules dans une rue calme.",
+    "Regarde : un ballon roule près du trottoir.",
+    "Tu ne vois pas d’enfant, mais ce ballon est un indice : un enfant peut courir derrière.",
+    "Anticiper, c’est prévoir ce qui pourrait arriver, avant que ça arrive."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu roules sur une route, derrière une voiture.",
+    "Regarde loin, regarde les côtés de la route, et regarde tes rétros, chacun à son tour.",
+    "Si tu regardes seulement la voiture devant, tu rates cette biche, là-bas.",
+    "Et ce triangle annonce un virage : si tu ne vois pas sa sortie, ralentis avant, pas dedans."
+   ],
+   "titre": "Regarder loin, sur les côtés, dans les rétros"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Un camion garé cache une partie du trottoir.",
+    "Un piéton masqué par le camion peut traverser : tu le verrais au dernier moment.",
+    "Ralentis, et augmente ton attention.",
+    "Regarde sous le camion : tu peux voir des pieds.",
+    "Et garde ton pied prêt à freiner."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Près d’une école, ce triangle te prévient : attention, des enfants.",
+    "Ils peuvent courir sur la chaussée, là où roulent les voitures, sans regarder.",
+    "Ralentis, regarde les trottoirs, et prépare-toi à freiner."
+   ],
+   "titre": "Près d’une école"
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Il pleut, et ce triangle annonce une route glissante.",
+    "Les pneus accrochent moins bien : c’est l’adhérence qui baisse.",
+    "Tu freines plus long.",
+    "Roule moins vite, garde plus de distance et évite les gestes brusques.",
+    "Sous la pluie, certaines limites baissent : 110 au lieu de 130 sur autoroute.",
+    "Et la limite reste un maximum : si ça glisse, roule encore moins vite."
+   ],
+   "puce": "Sous la pluie, tu freines plus long"
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Sur l’autoroute, une voiture roule à ta gauche, juste devant toi.",
+    "Tu es dans son angle mort : la zone rouge, où son conducteur ne te voit pas.",
+    "Évite d’y rester : ralentis, ou dépasse-la franchement.",
+    "Garde de la marge autour de toi : de quoi t’échapper si ça freine devant."
+   ],
+   "titre": "Garder de la marge autour de toi"
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Devant toi, une voiture freine, un vélo arrive en face, et un piéton attend au passage piéton.",
+    "Regarde comment la scène bouge, pas une seule image.",
+    "Le plus urgent ici : la voiture qui freine devant toi.",
+    "Freine aussi.",
+    "Puis surveille le piéton : il va traverser."
+   ]
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Trois étapes : j’observe, je prévois, j’adapte.",
+    "Je vois le ballon, je pense à l’enfant, je ralentis.",
+    "Le piège de l’examen : un enfant sur le trottoir peut quand même traverser.",
+    "Place à la pratique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Ballon, camion garé, voiture qui freine",
+   "tag": "des indices"
+  },
+  {
+   "texte": "Près d’une école",
+   "tag": "ralentir, et regarder les trottoirs",
+   "panneau": "A13a"
+  },
+  {
+   "texte": "Route glissante",
+   "tag": "moins vite, et plus de distance",
+   "panneau": "A4"
+  },
+  {
+   "texte": "L’angle mort des autres",
+   "tag": "ralentir, ou dépasser franchement"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quel danger ?",
+   "explication": "Un piéton peut être masqué par le camion : il peut traverser devant lui, et tu le verrais au dernier moment."
+  },
+  {
+   "q": "Quelle conduite ?",
+   "explication": "Ralentis avant le virage, pas dedans : tu ne vois pas ce qui t’attend à la sortie."
+  },
+  {
+   "q": "Un camion est garé au bord de la rue. Je :",
+   "explication": "Ralentis et augmente ton attention : le camion masque le trottoir, et un piéton peut surgir devant lui."
+  },
+  {
+   "q": "En roulant, je regarde surtout :",
+   "explication": "Loin devant, les côtés de la route et tes rétros, chacun à son tour : tu repères les dangers plus tôt."
+  },
+  {
+   "q": "Il commence à pleuvoir. Je :",
+   "explication": "Roule moins vite et augmente tes distances : les pneus accrochent moins bien, et tu freines plus long. La limite reste un maximum."
+  },
+  {
+   "q": "Près d’une école, des enfants marchent sur le trottoir. Je :",
+   "explication": "Ralentis et regarde les trottoirs : un enfant est imprévisible, il peut traverser sans regarder."
+  },
+  {
+   "q": "La voiture devant moi freine fort sans raison visible. Je pense d’abord :",
+   "explication": "Il y a peut-être un danger que tu ne vois pas encore : un piéton, un obstacle, un animal. Ralentis aussi, et cherche la cause."
+  }
+ ],
+ "notes": "Chaque écran part de ce que tu vois. « Chaussée » et « angle mort » sont expliqués là où ils sont dits, l’angle mort avec la zone rouge de l’image. La voix dit les mots des bonnes réponses (« masqué », « augmente ton attention », « évite d’y rester »). La fiche dit « Route glissante » au lieu de « Chaussée mouillée », car le panneau A4 veut dire chaussée glissante. Aucune règle ni aucun chiffre changé."
+}

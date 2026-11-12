@@ -98,7 +98,7 @@ const ILLU = {
         cg: (x, w) => cgCard(x, 10, w, sp.barre === 'cg'),
         assurance: (x, w) => `<g transform="translate(${x} 10)"><rect width="${w}" height="${w * 0.7}" rx="7" fill="#fff" stroke="#D9DEE6"/>${shield(w / 2, w * 0.27, 1.05)}${T(w / 2, w * 0.53, sp.rc ? 'Responsabilité civile' : 'Véhicule assuré', 8.2, 800)}${T(w / 2, w * 0.64, sp.rc ? 'le minimum obligatoire' : 'fichier des véhicules assurés', 6.8, 600, C.label2)}</g>`,
         ct: (x, w) => docCard(x, 10, w, 'Contrôle technique', sp.ct || 'de moins de 6 mois', '✓', C.vert),
-        csa: (x, w) => docCard(x, 10, w, 'Situation administrative', 'de moins de 15 jours', '✓', '#0F5BB5'),
+        csa: (x, w) => docCard(x, 10, w, 'Situation administrative', 'papier récent', '✓', '#0F5BB5'),
         cession: (x, w) => `<g transform="translate(${x} 8)"><rect width="${w}" height="${w * 0.74}" rx="9" fill="#1C2433"/><rect x="5" y="5" width="${w - 10}" height="${w * 0.74 - 10}" rx="5" fill="#fff"/>${T(w / 2, 22, 'Déclaration', 8.6, 800)}${T(w / 2, 32, 'de cession', 8.6, 800)}<circle cx="${w / 2}" cy="${w * 0.42}" r="11" fill="${C.vert}"/><path d="M${w / 2 - 5} ${w * 0.42} l3.5 4 l7 -8" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>${T(w / 2, w * 0.66, 'en ligne · 15 jours', 7, 700, C.label2)}</g>`
       };
       const list = sp.liste || ['permis', 'cg', 'assurance'], w = list.length > 2 ? 100 : 128, gap = (340 - list.length * w) / (list.length + 1);

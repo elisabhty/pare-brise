@@ -3,7 +3,7 @@
  "ordre": 19,
  "theme": "conducteur",
  "titre": "Drogues et médicaments",
- "accroche": "ce qui altère sans prévenir",
+ "accroche": "des effets que tu ne sens pas",
  "resume": "Stupéfiants, dépistage, sanctions et pictogrammes des médicaments.",
  "affiche": [
   "A14"
@@ -18,19 +18,19 @@
  "memo": [
   {
    "texte": "Stupéfiants",
-   "tag": "Tolérance zéro"
+   "tag": "Tolérance zéro : une simple trace suffit"
   },
   {
-   "texte": "Conduite après usage de stupéfiants",
-   "tag": "Jusqu’à 2 ans de prison, 6 points"
+   "texte": "Conduire après des stupéfiants",
+   "tag": "Délit : jusqu’à 2 ans de prison, 4 500 € d’amende, 6 points"
   },
   {
    "texte": "Pictogramme rouge",
-   "tag": "Ne pas conduire"
+   "tag": "Ne conduis pas : ton médecin dira quand reprendre"
   },
   {
    "texte": "Pictogramme orange",
-   "tag": "Pas de volant sans l’avis d’un médecin ou d’un pharmacien"
+   "tag": "Conduis seulement après l’avis d’un médecin ou d’un pharmacien"
   }
  ],
  "scenes": [
@@ -40,7 +40,7 @@
    "eyebrow": "Cours 19 · Conducteur",
    "titre": "Drogues et médicaments",
    "sous": "ce qui altère sans prévenir",
-   "dire": "Avant de prendre le volant, tu regardes la boîte de ton médicament. Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
+   "dire": "Avant de prendre le volant, tu regardes la boîte de ton médicament. Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour toi : tu te sens bien, et pourtant tes réflexes ralentissent.",
    "vitesse": 50,
    "decor": {
     "env": "ville",
@@ -83,19 +83,19 @@
    "titre": "Tolérance zéro",
    "items": [
     [
-     "Aucun seuil",
-     "Une trace suffit"
+     "Tolérance zéro",
+     "Une simple trace suffit"
     ],
     [
      "Test salivaire",
-     "Possible lors d’un contrôle"
+     "Lors d’un contrôle, confirmé en laboratoire"
     ],
     [
      "Effets",
-     "Réflexes, vision, jugement altérés"
+     "Réflexes plus lents, distances mal jugées"
     ]
    ],
-   "dire": "Pour les stupéfiants, il n’y a aucun seuil toléré : une trace suffit. Le dépistage se fait par un test salivaire ; s’il est positif, une analyse en laboratoire le confirme. Le cannabis, par exemple, ralentit les réflexes et perturbe la perception des distances.",
+   "dire": "Pour les stupéfiants, c’est-à-dire les drogues comme le cannabis, c’est tolérance zéro. Une simple trace suffit pour être en infraction. Lors d’un contrôle, le dépistage se fait par un test salivaire. S’il est positif, une analyse en laboratoire le confirme. Les effets du cannabis, par exemple : des réflexes plus lents, et des distances mal jugées.",
    "decor": {
     "env": "route",
     "kmh": 30,
@@ -140,9 +140,9 @@
     ]
    },
    "sync": [
-    0.42,
-    1.24,
-    2.41
+    0.8,
+    2.73,
+    4.01
    ]
   },
   {
@@ -154,12 +154,12 @@
     [
      "2",
      "ans",
-     "de prison au maximum (3 avec de l’alcool)"
+     "de prison au maximum, 3 avec de l’alcool"
     ],
     [
      "4 500",
      "€",
-     "d’amende au maximum (9 000 avec de l’alcool)"
+     "d’amende au maximum, 9 000 avec de l’alcool"
     ],
     [
      "6",
@@ -167,7 +167,7 @@
      "retirés"
     ]
    ],
-   "dire": "Conduire après avoir consommé des stupéfiants : jusqu’à deux ans de prison, 4 500 euros d’amende et 6 points. Avec de l’alcool en plus : jusqu’à trois ans et 9 000 euros. C’est un délit : une infraction grave, jugée au tribunal.",
+   "dire": "Le test salivaire est positif. Conduire après avoir consommé des stupéfiants, c’est un délit : une infraction grave, jugée au tribunal. Tu risques jusqu’à 2 ans de prison et 4 500 euros d’amende, et on te retire 6 points. Avec de l’alcool en plus : jusqu’à 3 ans de prison et 9 000 euros.",
    "vitesse": 0,
    "decor": {
     "env": "route",
@@ -205,9 +205,9 @@
     ]
    },
    "sync": [
-    0.59,
-    0.67,
-    0.89
+    2.19,
+    2.42,
+    2.86
    ]
   },
   {
@@ -222,14 +222,14 @@
     ],
     [
      "Niveau 2, orange",
-     "« Soyez très prudent » : pas sans l’avis d’un médecin ou d’un pharmacien"
+     "« Soyez très prudent » : d’abord l’avis d’un médecin ou d’un pharmacien"
     ],
     [
      "Niveau 3, rouge",
      "« Attention, danger » : ne conduis pas"
     ]
    ],
-   "dire": "Sur la boîte de certains médicaments, un pictogramme en forme de voiture dans un triangle. Jaune : sois prudent, lis la notice avant de conduire. Orange : sois très prudent, et ne conduis pas sans l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas. Ton médecin te dira quand reprendre le volant.",
+   "dire": "Regarde la boîte : sur certains médicaments, un pictogramme, un petit dessin, montre une voiture dans un triangle. Trois couleurs, trois niveaux de danger. Jaune : sois prudent, et lis la notice, le papier dans la boîte, avant de conduire. Orange : sois très prudent, et conduis seulement après l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas. Ton médecin te dira quand reprendre le volant.",
    "puces": [
     "1",
     "2",
@@ -264,9 +264,9 @@
     ]
    },
    "sync": [
-    1.0,
     2.0,
-    3.0
+    3.0,
+    4.0
    ],
    "illu": {
     "type": "pictos",
@@ -285,10 +285,10 @@
     ],
     [
      "3",
-     "niveaux de pictogramme"
+     "couleurs de pictogramme : jaune, orange, rouge"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier ce que tu as retenu.",
+   "dire": "Cours terminé. Le piège de l’examen : même si tu te sens bien, une trace suffit. Passe à la pratique.",
    "decor": {
     "env": "ville",
     "kmh": 30,

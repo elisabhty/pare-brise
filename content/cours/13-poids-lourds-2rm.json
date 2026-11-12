@@ -4,7 +4,7 @@
  "theme": "usagers",
  "titre": "Poids lourds, bus et motos",
  "accroche": "les très grands et les très petits",
- "resume": "Angles morts des camions, bus qui quittent leur arrêt, motos et inter-files.",
+ "resume": "Les angles morts des camions, le bus qui quitte son arrêt, les motos et l’inter-files.",
  "affiche": [
   "B3",
   "C12"
@@ -19,19 +19,19 @@
  "memo": [
   {
    "texte": "Camion",
-   "tag": "Pour qu’il te voie : vois son visage dans son rétro"
+   "tag": "Pour qu’il te voie : vois son visage dans son rétroviseur"
   },
   {
    "texte": "Bus qui quitte son arrêt (en agglomération)",
-   "tag": "Tu le laisses partir"
+   "tag": "Tu dois le laisser repartir"
   },
   {
    "texte": "Moto",
-   "tag": "Difficile à voir, vitesse difficile à estimer"
+   "tag": "Difficile à voir · arrive plus vite que tu le penses"
   },
   {
    "texte": "Inter-files",
-   "tag": "Motos et scooters de plus de 50, entre les deux voies de gauche, 50 km/h au maximum"
+   "tag": "Motos et scooters de plus de 50 cm³ · 50 km/h maximum"
   }
  ],
  "scenes": [
@@ -41,7 +41,7 @@
    "eyebrow": "Cours 13 · Usagers",
    "titre": "Poids lourds, bus et motos",
    "sous": "les très grands et les très petits",
-   "dire": "Un camion, un bus et une moto circulent autour de toi. Cours numéro 13 : les gros véhicules et les deux-roues motorisés.",
+   "dire": "Regarde : un camion, un bus et une moto roulent autour de toi. Cours numéro 13 : les gros véhicules et les deux-roues motorisés, motos et scooters.",
    "vitesse": 60,
    "decor": {
     "env": "autoroute",
@@ -93,8 +93,8 @@
    "type": "situation",
    "ch": 0,
    "eyebrow": "Les angles morts",
-   "titre": "Le camion ne te voit pas",
-   "dire": "Un camion a 4 grands angles morts : devant, à gauche, à droite et derrière. Le plus grand est à droite : ne reste pas là. La règle : pour que le chauffeur te voie, tu dois voir son visage dans son rétroviseur.",
+   "titre": "Caché au chauffeur",
+   "dire": "Regarde ce camion : il a 4 grands angles morts, des zones cachées au chauffeur. Devant, à gauche, à droite et derrière. Le plus grand est à droite : évite d’y rester. La règle : pour que le chauffeur te voie, tu dois voir son visage dans son rétroviseur.",
    "env": "route",
    "kmh": 40,
    "camera": "drone",
@@ -157,18 +157,18 @@
    "items": [
     [
      "Virages",
-     "Il prend plus de place : ne reste pas à côté"
+     "Plus de place : évite d’être à côté"
     ],
     [
      "Freinage",
-     "Ils mettent plus longtemps à s’arrêter"
+     "Il met plus de temps à s’arrêter"
     ],
     [
      "Dépasser",
      "Plus long : il faut beaucoup de place"
     ]
    ],
-   "dire": "Dans un virage, un camion a besoin de plus de place : il peut venir sur ta voie. Ne reste pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place. Au carrefour, un camion qui tourne à droite s’écarte souvent d’abord à gauche : ne te mets jamais à sa droite.",
+   "dire": "Dans un virage, un camion a besoin de plus de place : il peut venir sur ta voie. Évite d’être à côté de lui. Il met aussi plus de temps à freiner et à s’arrêter. Et pour le dépasser, il faut beaucoup plus de place : il est long. Au carrefour, un camion qui tourne à droite s’écarte souvent d’abord à gauche. Ne te mets jamais à sa droite : c’est son plus grand angle mort.",
    "decor": {
     "env": "route",
     "kmh": 45,
@@ -254,8 +254,8 @@
    },
    "sync": [
     0.07,
-    2.18,
-    2.52
+    2.53,
+    3.14
    ]
   },
   {
@@ -263,7 +263,7 @@
    "ch": 0,
    "eyebrow": "Le bus",
    "titre": "Il quitte son arrêt",
-   "dire": "En agglomération, quand un bus met son clignotant pour quitter son arrêt, tu dois le laisser repartir.",
+   "dire": "Ce bus quitte son arrêt, clignotant allumé. En agglomération, c’est-à-dire la ville ou le village, tu dois le laisser repartir.",
    "env": "ville",
    "kmh": 25,
    "camera": "poursuite",
@@ -344,7 +344,7 @@
      "Surtout dans l’angle mort"
     ],
     [
-     "Vitesse trompeuse",
+     "Vitesse mal estimée",
      "Elles arrivent plus vite que tu le penses"
     ],
     [
@@ -352,7 +352,7 @@
      "Dans les bouchons : reste bien dans ta voie"
     ]
    ],
-   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. Dans les bouchons, sur autoroute ou voie rapide, les motos peuvent rouler entre les deux voies de gauche : c’est l’inter-files. Seules les motos et les scooters de plus de 50 y ont droit : 50 kilomètres heure au maximum, 30 si une file est arrêtée. Quand une moto arrive derrière toi, reste bien dans ta voie, sans te décaler vers elle.",
+   "dire": "Regarde cette moto : petite, difficile à voir, elle disparaît vite dans un angle mort. Et tu estimes mal sa vitesse : elle arrive plus vite que tu le penses. Dans les bouchons, sur autoroute ou voie rapide, les motos peuvent rouler entre les deux voies de gauche. C’est l’inter-files. Seules les motos et les scooters de plus de 50 centimètres cubes y ont droit. Leur vitesse : 50 kilomètres heure au maximum, et 30 si une file est arrêtée. Une moto arrive derrière toi ? Reste bien dans ta voie, sans te décaler vers elle : tu lui laisses la place.",
    "decor": {
     "env": "autoroute",
     "kmh": 45,
@@ -422,9 +422,9 @@
     ]
    },
    "sync": [
-    0.53,
-    0.88,
-    1.88
+    0.31,
+    1.06,
+    3.37
    ]
   },
   {
@@ -439,14 +439,14 @@
     ],
     [
      "1",
-     "règle pour le bus"
+     "règle pour le bus : le laisser repartir"
     ],
     [
      "1",
      "réflexe : chercher les motos"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de repérer les angles morts et les deux-roues.",
+   "dire": "Cours terminé. Repère les angles morts, et cherche les motos. Le piège de l’examen : fermer le passage à une moto.",
    "decor": {
     "env": "route",
     "kmh": 45,

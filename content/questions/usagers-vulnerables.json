@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Le piéton qui traverse, ou qui montre qu’il veut traverser, passe avant toi."
+  "explication": "Lui céder le passage. Le piéton qui traverse, ou qui montre qu’il veut traverser, passe avant toi."
  },
  {
   "id": "uv11-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    2
   ],
-  "explication": "Ne pas laisser passer un piéton qui traverse, ou qui montre clairement qu’il va traverser : 135 € et 6 points."
+  "explication": "6 points, et 135 € d’amende. C’est autant de points qu’en roulant 50 kilomètres heure au-dessus de la limite."
  },
  {
   "id": "uv11-3",
@@ -41,7 +41,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Zone de rencontre : 20 km/h au maximum, et les piétons sont prioritaires, même au milieu de la rue."
+  "explication": "20 km/h. En zone de rencontre, c’est 20 au maximum, et les piétons sont prioritaires, même au milieu de la rue. Le 30, c’est la zone 30."
  },
  {
   "id": "uv11-4",
@@ -55,7 +55,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Ce triangle avec deux enfants annonce un endroit fréquenté par des enfants, souvent une école : ralentis.",
+  "explication": "Un endroit fréquenté par des enfants, comme une école ou un parc. Le passage piéton, c’est le triangle avec un piéton.",
   "panneaux": [
    "A13a"
   ]
@@ -72,6 +72,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Un ballon qui roule annonce souvent un enfant qui court derrière : freine tout de suite."
+  "explication": "Tu freines tout de suite. Un ballon qui roule annonce souvent un enfant qui court derrière."
  }
 ]

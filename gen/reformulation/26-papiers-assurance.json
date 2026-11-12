@@ -1,0 +1,137 @@
+{
+ "cours": "papiers-assurance",
+ "resume": "Les papiers à présenter, l’assurance obligatoire, le contrôle technique et le constat amiable.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Sur la route, un policier peut te demander tes papiers.",
+    "Cours numéro 26 : les papiers et l’assurance.",
+    "Et que faire après un accrochage, un petit accident."
+   ]
+  },
+  {
+   "i": 1,
+   "eyebrow": "Tes papiers",
+   "dire": [
+    "Contrôle de police : tu t’arrêtes sur le côté.",
+    "Les policiers vérifient trois choses : ton permis, ta carte grise et ton assurance.",
+    "Ton permis peut être en papier, ou sur ton téléphone avec France Identité, l’appli officielle de l’État.",
+    "Ta carte grise s’appelle aussi certificat d’immatriculation.",
+    "Ton assurance, la police la vérifie dans un fichier national : plus besoin de carte verte sur le pare-brise.",
+    "Pas tes papiers sur toi ?",
+    "Une amende de 11 euros, et 5 jours pour les présenter à la police ou à la gendarmerie.",
+    "Sinon, c’est une amende de 135 euros.",
+    "Tu déménages ?",
+    "Tu as un mois pour mettre à jour l’adresse de ta carte grise."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "En te garant, tu abîmes une autre voiture.",
+    "Qui paie ?",
+    "Ton assurance.",
+    "Assurer ta voiture est obligatoire, au minimum en responsabilité civile, dite au tiers.",
+    "Elle paie les dommages que tu causes aux autres.",
+    "Rouler sans assurance est un délit, une infraction grave.",
+    "Jusqu’à 3 750 euros d’amende, et le juge peut aussi suspendre ton permis ou confisquer ta voiture."
+   ],
+   "items": [
+    [
+     "RC",
+     "minimum",
+     "la responsabilité civile : les dommages que tu causes aux autres"
+    ],
+    [
+     "3 750",
+     "€",
+     "d’amende au maximum sans assurance"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "titre": "Quand le passer",
+   "dire": [
+    "Ta voiture a un rendez-vous obligatoire : le contrôle technique, qui vérifie sa sécurité.",
+    "Le premier a lieu dans les six mois qui précèdent ses quatre ans, puis tous les deux ans.",
+    "Le compte démarre à sa première mise en circulation, quand elle était neuve, pas à ton achat.",
+    "Cette date est en case B de ta carte grise.",
+    "En retard ?",
+    "Une amende, et la police peut t’obliger à laisser ta voiture sur place."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Petit accrochage en ville, sans blessé : tes feux de détresse clignotent.",
+    "Avec l’autre conducteur, remplissez un constat amiable sur place : le formulaire qui décrit l’accident.",
+    "Vérifie bien les cases et le croquis, le petit dessin de l’accident, avant de signer.",
+    "Signé par vous deux, il ne se modifie plus, et chacun en garde un exemplaire.",
+    "Envoie le tien à ton assureur sous cinq jours ouvrés, c’est-à-dire cinq jours de semaine.",
+    "Les week-ends et les jours fériés ne comptent pas.",
+    "S’il y a un blessé : protège, alerte, et attends la police ou la gendarmerie.",
+    "Si l’autre refuse le constat, note sa plaque, prends des photos et des témoins."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : le contrôle technique se compte dès la première mise en circulation, pas l’achat."
+   ],
+   "stats": [
+    [
+     "4",
+     "ans : premier contrôle, dans les 6 mois avant"
+    ],
+    [
+     "5",
+     "jours ouvrés pour le constat"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Assurance",
+   "tag": "Au minimum la responsabilité civile : les dommages aux autres"
+  },
+  {
+   "texte": "Contrôle technique",
+   "tag": "Dans les 6 mois avant ses 4 ans, puis tous les 2 ans"
+  },
+  {
+   "texte": "Constat amiable",
+   "tag": "À ton assureur sous 5 jours ouvrés, les jours de semaine"
+  },
+  {
+   "texte": "Changement d’adresse",
+   "tag": "Carte grise à mettre à jour sous 1 mois"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que faut-il pouvoir justifier ?",
+   "explication": "Une assurance valide. Ta voiture doit être assurée, et la police le vérifie dans un fichier national : plus besoin de carte verte sur le pare-brise."
+  },
+  {
+   "q": "Quel outil peut aider à décrire les faits ?",
+   "explication": "Le constat amiable : vous le remplissez ensemble, sur place, avec les cases et le croquis. Puis chacun l’envoie à son assureur."
+  },
+  {
+   "q": "L’assurance minimale obligatoire couvre :",
+   "explication": "Les dommages causés aux autres : c’est la responsabilité civile, dite au tiers, le minimum obligatoire."
+  },
+  {
+   "q": "Tu achètes une voiture de 3 ans. Son premier contrôle technique a lieu :",
+   "explication": "Avant ses 4 ans, dans les 6 mois qui précèdent, puis tous les 2 ans : le compte démarre à sa première mise en circulation, pas à ton achat."
+  },
+  {
+   "q": "Peut-on modifier un constat après l’avoir signé ?",
+   "explication": "Non. Une fois signé, le constat ne se modifie plus : vérifie bien les cases et le croquis avant de signer."
+  }
+ ],
+ "notes": "Situation d’abord à chaque écran ; crochets : « trois choses », « Qui paie ? Ton assurance. », piège de l’examen en fin. Expliqués dans la phrase : accrochage, délit, constat amiable, croquis, mise en circulation (« quand elle était neuve »), jours ouvrés. Mot retiré « échéances » ôté du titre, « immobilisée » dit en clair. Carte : « dommages », comme la voix et la Q4. Pas de doute sur une règle."
+}

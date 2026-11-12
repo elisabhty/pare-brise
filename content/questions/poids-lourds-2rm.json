@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Dans un virage serré, un camion a besoin de plus de place : il peut venir sur le côté. Ne reste pas à côté de lui."
+  "explication": "Il peut prendre de la place sur le côté, jusque sur ta voie. Évite d’être à côté de lui dans un virage."
  },
  {
   "id": "pl213-4",
@@ -53,7 +53,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Une moto est étroite : elle paraît plus loin et plus lente qu’en vrai. Elle arrive plus vite que tu le penses."
+  "explication": "Souvent plus rapide qu’on le pense. Une moto est étroite : elle paraît plus loin et plus lente qu’en vrai."
  },
  {
   "id": "pl213-5",
@@ -67,6 +67,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Il est long : le dépassement dure plus longtemps."
+  "explication": "Beaucoup plus de place. Un poids lourd est long : tu restes plus longtemps à côté de lui, sur l’autre voie."
  }
 ]

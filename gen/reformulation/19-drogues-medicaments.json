@@ -1,0 +1,156 @@
+{
+ "cours": "drogues-medicaments",
+ "accroche": "des effets que tu ne sens pas",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Avant de prendre le volant, tu regardes la boîte de ton médicament.",
+    "Cours numéro 19 : les drogues et les médicaments.",
+    "Certains effets sont invisibles pour toi : tu te sens bien, et pourtant tes réflexes ralentissent."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Pour les stupéfiants, c’est-à-dire les drogues comme le cannabis, c’est tolérance zéro.",
+    "Une simple trace suffit pour être en infraction.",
+    "Lors d’un contrôle, le dépistage se fait par un test salivaire.",
+    "S’il est positif, une analyse en laboratoire le confirme.",
+    "Les effets du cannabis, par exemple : des réflexes plus lents, et des distances mal jugées."
+   ],
+   "items": [
+    [
+     "Tolérance zéro",
+     "Une simple trace suffit"
+    ],
+    [
+     "Test salivaire",
+     "Lors d’un contrôle, confirmé en laboratoire"
+    ],
+    [
+     "Effets",
+     "Réflexes plus lents, distances mal jugées"
+    ]
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Le test salivaire est positif.",
+    "Conduire après avoir consommé des stupéfiants, c’est un délit : une infraction grave, jugée au tribunal.",
+    "Tu risques jusqu’à 2 ans de prison et 4 500 euros d’amende, et on te retire 6 points.",
+    "Avec de l’alcool en plus : jusqu’à 3 ans de prison et 9 000 euros."
+   ],
+   "items": [
+    [
+     "2",
+     "ans",
+     "de prison au maximum, 3 avec de l’alcool"
+    ],
+    [
+     "4 500",
+     "€",
+     "d’amende au maximum, 9 000 avec de l’alcool"
+    ],
+    [
+     "6",
+     "points",
+     "retirés"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde la boîte : sur certains médicaments, un pictogramme, un petit dessin, montre une voiture dans un triangle.",
+    "Trois couleurs, trois niveaux de danger.",
+    "Jaune : sois prudent, et lis la notice, le papier dans la boîte, avant de conduire.",
+    "Orange : sois très prudent, et conduis seulement après l’avis d’un médecin ou d’un pharmacien.",
+    "Rouge : ne conduis pas.",
+    "Ton médecin te dira quand reprendre le volant."
+   ],
+   "items": [
+    [
+     "Niveau 1, jaune",
+     "« Soyez prudent » : lis la notice"
+    ],
+    [
+     "Niveau 2, orange",
+     "« Soyez très prudent » : d’abord l’avis d’un médecin ou d’un pharmacien"
+    ],
+    [
+     "Niveau 3, rouge",
+     "« Attention, danger » : ne conduis pas"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : même si tu te sens bien, une trace suffit.",
+    "Passe à la pratique."
+   ],
+   "stats": [
+    [
+     "0",
+     "trace tolérée de stupéfiant"
+    ],
+    [
+     "3",
+     "couleurs de pictogramme : jaune, orange, rouge"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Stupéfiants",
+   "tag": "Tolérance zéro : une simple trace suffit"
+  },
+  {
+   "texte": "Conduire après des stupéfiants",
+   "tag": "Délit : jusqu’à 2 ans de prison, 4 500 € d’amende, 6 points"
+  },
+  {
+   "texte": "Pictogramme rouge",
+   "tag": "Ne conduis pas : ton médecin dira quand reprendre"
+  },
+  {
+   "texte": "Pictogramme orange",
+   "tag": "Conduis seulement après l’avis d’un médecin ou d’un pharmacien"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Peux-tu conduire ?",
+   "explication": "Non : pour les stupéfiants, c’est tolérance zéro, une simple trace suffit. Même si tu te sens bien, et même après un café."
+  },
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu lis les précautions et tu demandes conseil : la couleur du pictogramme te dit si tu peux conduire, et à quelles conditions."
+  },
+  {
+   "q": "Sur une boîte de médicaments, avec quels pictogrammes tu ne prends pas le volant sans l’avis d’un médecin ?",
+   "explication": "Le rouge et l’orange. Rouge : ne conduis pas, ton médecin te dira quand reprendre. Orange : conduis seulement après l’avis d’un médecin ou d’un pharmacien. Jaune : lis la notice."
+  },
+  {
+   "q": "Pour les stupéfiants, le seuil toléré au volant est :",
+   "explication": "Aucun : c’est tolérance zéro. Contrairement à l’alcool, aucun taux n’est toléré : une simple trace suffit."
+  },
+  {
+   "q": "Pictogramme orange sur un médicament :",
+   "explication": "Niveau 2, orange : sois très prudent, et conduis seulement après l’avis d’un médecin ou d’un pharmacien. Sans cet avis, pas de volant."
+  },
+  {
+   "q": "Conduire après usage de stupéfiants retire :",
+   "explication": "6 points : c’est un délit, une infraction grave jugée au tribunal. En plus, jusqu’à 2 ans de prison et 4 500 € d’amende."
+  },
+  {
+   "q": "Le dépistage des stupéfiants se fait par :",
+   "explication": "Un test salivaire ; s’il est positif, une analyse en laboratoire le confirme. L’éthylotest, lui, mesure l’alcool."
+  }
+ ],
+ "notes": "Voix : « seuil » (mot retiré) remplacé par « tolérance zéro » (titre, carte, fiche, Q1, Q4) ; la double négation « ne conduis pas sans l’avis » devient « conduis seulement après l’avis » (voix, carte, fiche, Q3, Q5), même règle ; « stupéfiants », « pictogramme » et « notice » expliqués ; trois couleurs annoncées, trois données ; piège de l’examen : se sentir bien ne change rien. Doutes : l’énoncé de la Q4 dit encore « seuil » (proposer « la quantité tolérée ») et celui de la Q3 garde « ne prends pas le volant sans l’avis » ; ni l’un ni l’autre ne se modifie ici."
+}

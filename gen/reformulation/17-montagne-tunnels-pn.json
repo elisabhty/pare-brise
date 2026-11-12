@@ -1,0 +1,192 @@
+{
+ "cours": "montagne-tunnels-pn",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Devant toi, un passage à niveau : l’endroit où la route croise les rails du train.",
+    "Plus loin, un tunnel, puis une route de montagne.",
+    "Cours numéro 17 : trois endroits où les règles changent un peu."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Le feu rouge du passage à niveau se met à clignoter : tu t’arrêtes.",
+    "Même sans sonnerie, même si les barrières sont encore levées.",
+    "Un train lancé met très longtemps à s’arrêter.",
+    "Engage-toi seulement si tu es sûr de dégager les rails de l’autre côté : jamais d’arrêt sur les rails.",
+    "Sans barrières, c’est ce panneau avec une locomotive qui te prévient.",
+    "Le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages."
+   ]
+  },
+  {
+   "i": 2,
+   "eyebrow": "Bloqué sur les rails",
+   "dire": [
+    "Ta voiture reste bloquée sur les rails : fais sortir tout le monde, tout de suite.",
+    "Éloignez-vous tous des rails, le plus loin possible : le train peut arriver à tout moment.",
+    "Puis préviens : le téléphone d’urgence du passage à niveau s’il y en a un, sinon le 112."
+   ],
+   "items": [
+    [
+     "Fais sortir tout le monde",
+     "Tout de suite"
+    ],
+    [
+     "Éloignez-vous des rails",
+     "Le plus loin possible"
+    ],
+    [
+     "Préviens",
+     "Téléphone d’urgence du passage à niveau, ou 112"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Tu entres dans un tunnel : allume tes feux de croisement, même de jour.",
+    "Des balises bleues sur la paroi, le mur du tunnel ?",
+    "Garde au moins deux balises entre toi et le véhicule devant.",
+    "Demi-tour et marche arrière sont toujours interdits.",
+    "Dépasser est interdit quand un panneau ou une ligne continue le dit.",
+    "Sinon, tu peux dépasser, avec prudence.",
+    "Incendie devant toi : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche."
+   ],
+   "items": [
+    [
+     "Feux de croisement",
+     "Allumés, même de jour"
+    ],
+    [
+     "Balises bleues",
+     "Au moins deux balises d’écart"
+    ],
+    [
+     "Toujours interdits",
+     "Demi-tour, marche arrière"
+    ],
+    [
+     "Dépasser",
+     "Interdit si panneau ou ligne continue"
+    ],
+    [
+     "Incendie",
+     "À pied, vers l’issue de secours la plus proche"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Route de montagne trop étroite : une voiture arrive en face.",
+    "Qui recule ?",
+    "Entre deux véhicules du même type, deux voitures par exemple, celui qui descend.",
+    "Sauf si c’est bien plus facile pour celui qui monte.",
+    "La raison : celui qui monte aurait du mal à redémarrer dans la pente.",
+    "Mais entre une voiture et un camion, c’est la voiture qui recule, même si elle monte."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Le triangle au bord de la route annonce une descente dangereuse.",
+    "Avant la descente, passe une vitesse plus basse : le moteur retient la voiture, c’est le frein moteur.",
+    "Repère : prends la vitesse que tu prendrais pour monter cette pente.",
+    "Ne roule jamais au point mort, sans vitesse : le moteur ne retiendrait plus rien.",
+    "Et freiner sans arrêt fait chauffer les freins : ils freinent de moins en moins bien."
+   ],
+   "items": [
+    [
+     "Frein moteur",
+     "Une vitesse plus basse avant la descente"
+    ],
+    [
+     "Jamais au point mort",
+     "Sans vitesse, le moteur ne retient plus rien"
+    ],
+    [
+     "Freins qui chauffent",
+     "Ils freinent de moins en moins bien"
+    ]
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : voiture contre camion, c’est la voiture qui recule.",
+    "Passe à la pratique."
+   ],
+   "stats": [
+    [
+     "1",
+     "règle : jamais d’arrêt sur les rails"
+    ],
+    [
+     "5",
+     "règles dans un tunnel"
+    ],
+    [
+     "1",
+     "règle en montagne : même type, celui qui descend recule"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Passage à niveau, feu rouge clignotant",
+   "tag": "Arrêt, même sans sonnerie, même barrières levées"
+  },
+  {
+   "texte": "Tunnel",
+   "tag": "Feux de croisement, deux balises bleues, demi-tour et marche arrière interdits"
+  },
+  {
+   "texte": "Route étroite en montagne",
+   "tag": "Même type : celui qui descend recule · voiture contre camion : la voiture"
+  },
+  {
+   "texte": "Descente",
+   "tag": "Avant : une vitesse plus basse, le frein moteur"
+  },
+  {
+   "texte": "Passage à niveau sans barrières",
+   "tag": "Le train passe en premier : ralentis, regarde des deux côtés",
+   "panneau": "A8"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu t’arrêtes avant les barrières : elles se ferment parce qu’un train arrive, et un train lancé met très longtemps à s’arrêter."
+  },
+  {
+   "q": "Quel réflexe de sécurité ?",
+   "explication": "Tu allumes tes feux de croisement et tu gardes tes distances : au moins deux balises bleues, s’il y en a. Demi-tour interdit."
+  },
+  {
+   "q": "Un bouchon commence juste après les rails, les barrières sont levées. Tu :",
+   "explication": "Tu attends avant les rails : engage-toi seulement si tu es sûr de dégager les rails de l’autre côté. Jamais d’arrêt sur les rails."
+  },
+  {
+   "q": "En montagne, sur une route étroite, qui recule ?",
+   "explication": "Celui qui descend, entre deux véhicules du même type, sauf si c’est bien plus facile pour celui qui monte : redémarrer en montée est plus difficile."
+  },
+  {
+   "q": "Dans ce tunnel, ni panneau ni ligne continue n’interdit de dépasser. Tu peux doubler ?",
+   "explication": "Oui : dans un tunnel, dépasser est interdit seulement quand un panneau ou une ligne continue le dit. Demi-tour et marche arrière, eux, sont toujours interdits."
+  },
+  {
+   "q": "En descente, pour ménager les freins, tu :",
+   "explication": "Le frein moteur : avant la descente, passe une vitesse plus basse. Au point mort, tu freinerais sans arrêt, et tes freins chaufferaient."
+  },
+  {
+   "q": "Incendie dans un tunnel. Tu :",
+   "explication": "Tu arrêtes ta voiture : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche. Jamais de demi-tour."
+  }
+ ],
+ "notes": "Voix : la situation d’abord, « passage à niveau » expliqué, « ne t’engage jamais si tu n’es pas sûr » devenu « engage-toi seulement si tu es sûr », pourquoi s’arrêter (un train lancé met très longtemps à s’arrêter), montagne en question-réponse (qui recule ?) avec la règle voiture contre camion en dernier, « sinon, tu peux dépasser » dit en clair (comme la réponse de la Q7), carte « Préviens » alignée sur la voix. Pas de doute sur les règles ; questions d’élève sans réponse dans le cours : barrières qui se baissent quand on est déjà sur les rails, tunnel sans balises bleues, frein moteur en boîte automatique."
+}

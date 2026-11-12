@@ -4,7 +4,7 @@
  "theme": "usagers",
  "titre": "Vélos et trottinettes",
  "accroche": "partager la route",
- "resume": "Distances de dépassement, angle mort, sas vélo, double sens cyclable et règles des trottinettes électriques.",
+ "resume": "La place à laisser aux vélos, l’angle mort quand tu tournes à droite, le sas vélo, les rues à double sens pour les vélos, et les règles des trottinettes électriques.",
  "affiche": [
   "B22a",
   "A21",
@@ -24,20 +24,20 @@
   },
   {
    "texte": "Piste cyclable obligatoire",
-   "tag": "Réservée aux vélos",
+   "tag": "Réservée aux vélos · interdite à ta voiture",
    "panneau": "B22a"
   },
   {
    "texte": "Trottinette électrique",
-   "tag": "14 ans minimum, 25 km/h"
+   "tag": "14 ans minimum · une seule personne · 25 km/h maximum"
   },
   {
    "texte": "Avant de tourner à droite",
-   "tag": "Angle mort"
+   "tag": "Rétroviseur, puis tourne la tête : angle mort"
   },
   {
    "texte": "Casque à vélo",
-   "tag": "Obligatoire avant 12 ans"
+   "tag": "Obligatoire pour un enfant de moins de 12 ans"
   }
  ],
  "scenes": [
@@ -47,7 +47,7 @@
    "eyebrow": "Cours 12 · Usagers",
    "titre": "Vélos et trottinettes",
    "sous": "partager la route",
-   "dire": "Une piste cyclable longe la route. Voitures, vélos, trottinettes et piétons se partagent la rue. Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
+   "dire": "Regarde : une piste cyclable longe la route, juste à côté de toi. Voitures, vélos, trottinettes et piétons se partagent la rue. Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
    "vitesse": 30,
    "decor": {
     "env": "ville",
@@ -128,7 +128,7 @@
    "ch": 0,
    "eyebrow": "Dépasser un vélo",
    "titre": "Laisse de la place",
-   "dire": "Pour dépasser un cycliste : au moins un mètre en agglomération, un mètre cinquante hors agglomération. Si la route est trop étroite, tu attends. Une trottinette électrique se dépasse de la même façon. Et à vélo, un enfant de moins de 12 ans doit porter un casque.",
+   "dire": "Devant toi, un cycliste. Pour le dépasser, laisse au moins un mètre dans une agglomération, c’est-à-dire la ville ou le village. Hors agglomération, un mètre cinquante. Si la route est trop étroite, tu attends. Une trottinette électrique se dépasse de la même façon. Et à vélo, un enfant de moins de 12 ans doit porter un casque.",
    "env": "route",
    "kmh": 20,
    "camera": "haut",
@@ -175,7 +175,7 @@
    "ch": 0,
    "eyebrow": "L’angle mort",
    "titre": "Avant de tourner à droite",
-   "dire": "Avant de tourner à droite, regarde ton rétroviseur et tourne la tête. Un cycliste peut remonter le long de ta voiture, dans ton angle mort.",
+   "dire": "Tu vas tourner à droite. Un cycliste peut remonter le long de ta voiture, dans ton angle mort, que tes rétroviseurs ne montrent pas. Regarde ton rétroviseur, puis tourne la tête.",
    "env": "ville",
    "kmh": 15,
    "camera": "drone",
@@ -209,13 +209,13 @@
   {
    "type": "panneaux",
    "ch": 0,
-   "eyebrow": "Les aménagements",
-   "titre": "Pistes et sas",
+   "eyebrow": "Les espaces vélo",
+   "titre": "Piste, sas, double sens",
    "panneaux": [
     "B22a",
     "C24a"
    ],
-   "dire": "La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. Au feu, le sas vélo, c’est une case avec un vélo peint au sol. Arrête-toi à la première ligne, avant la case. Le sas est pour les vélos, et parfois pour les scooters de 50 si un panneau le permet : ta voiture, jamais. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos. Ce panneau carré bleu te prévient à l’entrée : des vélos peuvent arriver en face, sur ta gauche.",
+   "dire": "Regarde ce rond bleu avec un vélo : piste cyclable obligatoire. Elle est réservée aux vélos : y rouler ou t’y arrêter, c’est interdit pour toi. Au feu, le sas vélo, c’est une case avec un vélo peint au sol. Arrête-toi à la première ligne, avant la case. Les vélos attendent devant toi, bien visibles. Le sas est pour les vélos, parfois aussi pour les scooters de 50, si un panneau le permet. Ta voiture, jamais. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos. Ce panneau carré bleu te prévient à l’entrée : des vélos peuvent arriver en face, sur ta gauche.",
    "etiquettes": [
     [
      "B22a",
@@ -228,8 +228,8 @@
    ],
    "puce": "Interdit aux voitures",
    "sync": [
-    0.0,
-    4.22
+    0.54,
+    7.22
    ]
   },
   {
@@ -255,7 +255,7 @@
      "Sauf panneau, et alors au pas"
     ]
    ],
-   "dire": "Le code appelle les trottinettes électriques des « EDPM » : engins de déplacement personnel motorisés. Il faut avoir 14 ans au moins, monter seul, et rouler à 25 kilomètres heure au maximum. Le trottoir est interdit. Seule exception : un panneau l’autorise, et alors on roule au pas. Toi, en voiture, tu dépasses une trottinette comme un vélo.",
+   "dire": "Regarde ces trottinettes électriques : pour le code, ce sont des « EDPM », engins de déplacement personnel motorisés. Pour en conduire une : 14 ans au moins, et une seule personne, sans passager. Maximum 25 kilomètres heure : elle ne peut pas aller plus vite. Le trottoir est interdit. Exception : un panneau l’autorise, et alors on roule au pas, à la vitesse d’un piéton. Toi, en voiture, tu dépasses une trottinette comme un vélo.",
    "decor": {
     "env": "ville",
     "kmh": 22,
@@ -337,10 +337,10 @@
     ]
    },
    "sync": [
-    1.13,
-    1.61,
-    3.07,
-    4.53
+    1.27,
+    2.0,
+    3.77,
+    5.53
    ]
   },
   {
@@ -350,7 +350,7 @@
    "titre": "Ce qu’il faut retenir",
    "stats": [
     [
-     "1,5",
+     "1,50",
      "m hors agglomération"
     ],
     [
@@ -359,10 +359,10 @@
     ],
     [
      "25",
-     "km/h maximum"
+     "km/h maximum pour une trottinette"
     ]
    ],
-   "dire": "Cours terminé. Retiens le réflexe angle mort chaque fois que tu tournes à droite. Place à la pratique.",
+   "dire": "Cours terminé. Retiens le réflexe angle mort chaque fois que tu tournes à droite. Le piège de l’examen : regarder seulement le rétroviseur.",
    "decor": {
     "env": "ville",
     "kmh": 25,

@@ -98,3 +98,25 @@ test('deuxième passage : les panneaux décrits par la voix sont dessinés et mo
   assert.match(montres('cyclistes-edpm'), /"C24a"/, 'double sens cyclable');
   assert.match(montres('intemperies'), /"B58"/, 'entrée de zone loi montagne');
 });
+
+// Reformulation (gen/reformulation/) : des cours immersifs, sans les mots que les élèves ne comprenaient pas.
+const RETIRES = /\banneau|\babords\b|\ballure\b|à froid|\bl[eè]v\w* le pied|\bseuil|échéance|anomalie|indemnis|procès-verbal|\bbridée?\b|véhicules? d’intervention|sauf signalisation contraire|par défaut|immobilis|\bmanifest|gabarit|vulnérable|créneau|porte de sortie|\bpriment\b|en vigueur|applicable|généralement|notamment/i;
+test('reformulation : les mots retirés ne reviennent ni dans les cours ni dans la pratique', () => {
+  for (const c of data.cours) if (c.ordre > 1) {
+    const t = tout(c.id) + JSON.stringify(c.memo || []) + JSON.stringify(c.scenes.map(s => [s.puce, s.stats]));
+    assert.ok(!RETIRES.test(t), `${c.id} : « ${(t.match(RETIRES) || [])[0]} »`);
+  }
+  for (const e of data.exercices.filter(e => e.id.startsWith('p-'))) for (const s of e.situations) {
+    const t = [s.q, s.contexte, ...(s.choix || []), s.explication].join(' ');
+    assert.ok(!RETIRES.test(t), `${e.id} « ${s.q} » : « ${(t.match(RETIRES) || [])[0]} »`);
+  }
+});
+test('reformulation : chaque question garde son explication, la voix du cours 1 reste celle d’Elisa', () => {
+  const [a, b] = pratique('fatigue-distractions').filter(s => s.q === 'Que fais-tu ?');
+  assert.match(a.explication, /^T’arrêter/); assert.match(b.explication, /^Tu restes concentré/);
+  const corridor = pratique('autoroute').filter(s => /^Un véhicule est arrêté sur la bande d’arrêt d’urgence/.test(s.q));
+  assert.equal(corridor.length, 2); corridor.forEach(s => assert.match(s.explication, /^Ralentis toujours/));
+  assert.match(dire('panneaux', 0), /^Bienvenue dans ton premier cours de Code de la route ! Aujourd’hui, tu vas apprendre/);
+  // une règle exacte : 3 ans si l'une des infractions (pas seulement la dernière) est un délit ou une 4e ou 5e classe
+  assert.match(dire('permis-points', 4), /l’une de tes infractions/);
+});

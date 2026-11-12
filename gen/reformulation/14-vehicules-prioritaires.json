@@ -1,0 +1,143 @@
+{
+ "cours": "vehicules-prioritaires",
+ "accroche": "leur ouvrir la route, calmement",
+ "resume": "Feux bleus et sirène : reconnaître un véhicule prioritaire, lui faciliter le passage, et réagir au gyrophare orange.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Au loin, tu entends une sirène.",
+    "Regarde : un véhicule prioritaire approche, et tu lui fais de la place.",
+    "Cours numéro 14 : les véhicules prioritaires.",
+    "En intervention, quelqu’un attend leur aide : chaque seconde compte."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Des feux bleus, et une sirène à deux tons : deux notes qui alternent.",
+    "Police, gendarmerie, pompiers et SAMU : avec ces deux signaux, ils passent avant tout le monde.",
+    "Le SAMU, ce sont les médecins d’urgence.",
+    "Même si ton feu est vert, même si tu as la priorité : tu les laisses passer.",
+    "Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer.",
+    "Un véhicule avec des feux bleus, mais sans sirène : sa priorité n’est pas garantie.",
+    "Facilite quand même son passage, sans te mettre en danger."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "La sirène approche : garde ton calme, car un freinage brusque surprendrait la voiture derrière toi.",
+    "Serre-toi à droite pour libérer le passage au véhicule prioritaire.",
+    "Au feu rouge, tu peux avancer un peu pour lui laisser la place, seulement si c’est sans danger."
+   ],
+   "items": [
+    [
+     "Garder son calme",
+     "Pas de freinage brusque"
+    ],
+    [
+     "Serrer à droite",
+     "Pour libérer le passage"
+    ],
+    [
+     "Au feu rouge",
+     "Avancer un peu, seulement si sans danger"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Sur le toit d’un véhicule, une lumière orange tourne : c’est un gyrophare.",
+    "Orange, il signale un véhicule lent ou un danger : une dépanneuse, un engin de chantier.",
+    "Ou un convoi exceptionnel, c’est-à-dire un camion très large ou très long.",
+    "Pas une priorité de passage : un signal de danger.",
+    "Alors ralentis, et sois prudent."
+   ],
+   "items": [
+    [
+     "Gyrophare orange",
+     "Dépanneuse, engin de chantier, convoi exceptionnel"
+    ],
+    [
+     "Pas une priorité",
+     "Un signal de danger : ralentis"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : orange, c’est un danger, pas une priorité.",
+    "Passe à la pratique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Feux bleus et sirène",
+   "tag": "Ils passent avant tout le monde, même si ton feu est vert"
+  },
+  {
+   "texte": "Faciliter le passage",
+   "tag": "Calme, serre-toi à droite, pas de freinage brusque"
+  },
+  {
+   "texte": "Gyrophare orange",
+   "tag": "Un danger, pas une priorité : ralentis"
+  },
+  {
+   "texte": "Au feu rouge",
+   "tag": "Avance un peu, seulement si c’est sans danger"
+  },
+  {
+   "texte": "Ambulance privée",
+   "tag": "Pas prioritaire, mais aide-la à passer"
+  },
+  {
+   "texte": "Feux bleus sans sirène",
+   "tag": "Priorité pas garantie : facilite quand même son passage"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu facilites son passage, sans te mettre en danger : garde ton calme et serre-toi à droite. Un freinage brusque surprendrait la voiture derrière toi."
+  },
+  {
+   "q": "Que fais-tu d’abord ?",
+   "explication": "Tu cherches d’abord d’où vient la sirène, sans geste brusque : dans tes rétroviseurs, puis autour de toi. Tu dois savoir d’où arrive le véhicule pour lui faire de la place."
+  },
+  {
+   "q": "Une voiture de pompiers arrive derrière moi, feux bleus et sirène. Je :",
+   "explication": "Tu te serres à droite pour faciliter son passage, sans geste brusque : avec feux bleus et sirène à deux tons, les pompiers passent avant tout le monde."
+  },
+  {
+   "q": "Ce gyrophare orange signale :",
+   "explication": "Un véhicule lent ou un danger : dépanneuse, engin de chantier, convoi exceptionnel. C’est un signal de danger, pas une priorité : ralentis et sois prudent."
+  },
+  {
+   "q": "Une voiture de police, feux bleus et sirène, arrive derrière toi. Tu :",
+   "explication": "Tu te serres à droite, calmement, pour libérer le passage. Freiner d’un coup surprendrait la voiture derrière toi."
+  },
+  {
+   "q": "Un véhicule de pompiers en intervention a la priorité :",
+   "explication": "Sur tous les usagers, c’est-à-dire tout le monde : avec feux bleus et sirène à deux tons, les pompiers passent en premier, même si ton feu est vert."
+  },
+  {
+   "q": "Un gyrophare orange signale :",
+   "explication": "Un véhicule lent ou un danger. Ce sont les feux bleus et la sirène qui annoncent un véhicule prioritaire. Orange : ralentis et sois prudent."
+  },
+  {
+   "q": "Pour laisser passer un véhicule prioritaire, tu :",
+   "explication": "Tu te serres à droite, et tu ralentis ou t’arrêtes si besoin, sans geste brusque. Arrêté au milieu de la voie, tu lui bloquerais le passage."
+  },
+  {
+   "q": "Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :",
+   "explication": "Avancer un peu pour lui laisser la place, seulement si c’est sans danger. Mais tu ne passes pas le feu rouge."
+  }
+ ],
+ "notes": "Voix : la situation d’abord, « en intervention » expliqué, « sirène à deux tons » expliquée (deux notes) et jamais « deux tons » seul (explication Q3 corrigée), contraste orange = danger, pas priorité ; « feux bleus sans sirène : priorité pas garantie » remplace la double négation ; cartes et fiche alignées sur la voix. Doutes, sans rien changer : jusqu’où « avancer un peu » au feu rouge (ligne d’arrêt ?) n’est dit nulle part ; « feux bleus sans sirène : pas toujours prioritaire » reste flou ; le cours ne dit pas comment reconnaître une ambulance privée."
+}

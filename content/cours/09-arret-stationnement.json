@@ -4,7 +4,7 @@
  "theme": "circulation",
  "titre": "Arrêt et stationnement",
  "accroche": "s’arrêter au bon endroit",
- "resume": "La différence entre arrêt et stationnement, les endroits toujours interdits, les panneaux et la sortie de voiture.",
+ "resume": "La différence entre arrêt et stationnement, les deux panneaux, les endroits toujours interdits, ce que ça coûte, et comment bien sortir de ta voiture.",
  "affiche": [
   "B6a1",
   "B6d",
@@ -21,25 +21,25 @@
  "memo": [
   {
    "texte": "Arrêt",
-   "tag": "Un court moment, au volant ou juste à côté"
+   "tag": "Un court moment, au volant ou juste à côté, prêt à repartir"
   },
   {
    "texte": "Stationnement interdit",
-   "tag": "Arrêt possible",
+   "tag": "Une barre : tu peux t’arrêter",
    "panneau": "B6a1"
   },
   {
    "texte": "Arrêt et stationnement interdits",
-   "tag": "Ni l’un ni l’autre",
+   "tag": "Une croix : les deux sont interdits",
    "panneau": "B6d"
   },
   {
    "texte": "Avant d’ouvrir",
-   "tag": "Rétroviseur et angle mort"
+   "tag": "Rétroviseur et angle mort · ouvre avec la main droite"
   },
   {
    "texte": "Stationnement",
-   "tag": "Tu t’éloignes, ou tu attends longtemps"
+   "tag": "Tout le reste : tu t’éloignes, ou tu attends longtemps"
   },
   {
    "texte": "Toujours interdit, même 10 secondes",
@@ -51,7 +51,7 @@
   },
   {
    "texte": "Place « Livraison »",
-   "tag": "Arrêt pour charger ou décharger : oui · t’y garer : 35 €"
+   "tag": "Arrêt pour vraiment charger ou décharger : oui · t’y garer : 35 €"
   }
  ],
  "scenes": [
@@ -61,7 +61,7 @@
    "eyebrow": "Cours 9 · Circulation",
    "titre": "Arrêt et stationnement",
    "sous": "s’immobiliser au bon endroit",
-   "dire": "Tu cherches un endroit où arrêter ta voiture, dans une rue pleine de monde. Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
+   "dire": "Tu cherches un endroit où arrêter ta voiture, dans une rue pleine de monde. Cours numéro 9 : l’arrêt et le stationnement. Deux mots, deux règles différentes. Le bon choix protège les piétons, les bus et les vélos.",
    "vitesse": 30,
    "decor": {
     "env": "ville",
@@ -121,7 +121,7 @@
      "Tout le reste : tu t’éloignes, ou tu attends longtemps"
     ]
    ],
-   "dire": "L’arrêt, c’est un court moment pour déposer quelqu’un ou charger un objet : tu restes au volant, ou juste à côté, prêt à repartir. Le stationnement, c’est tout le reste : tu t’éloignes, par exemple pour monter un colis, ou tu attends longtemps, même assis dedans.",
+   "dire": "L’arrêt, c’est un court moment pour déposer quelqu’un ou charger un objet : tu restes au volant, ou juste à côté, prêt à repartir. Le stationnement, c’est tout le reste : tu t’éloignes, par exemple pour monter un colis, ou tu attends longtemps, même assis dedans. Pourquoi c’est important ? Parce que certains panneaux interdisent seulement le stationnement.",
    "decor": {
     "env": "ville",
     "kmh": 20,
@@ -255,7 +255,7 @@
     "B6a1",
     "B6d"
    ],
-   "dire": "Fond bleu, bord rouge, une seule barre : stationnement interdit, mais tu peux t’arrêter. Barré d’une croix : arrêt et stationnement interdits.",
+   "dire": "Fond bleu, bord rouge, une barre : stationnement interdit, mais tu peux t’arrêter. Une croix : arrêt et stationnement interdits. Une barre, une interdiction ; une croix, deux.",
    "etiquettes": [
     [
      "B6a1",
@@ -267,8 +267,8 @@
     ]
    ],
    "sync": [
-    0.34,
-    1.2
+    0.3,
+    1.06
    ]
   },
   {
@@ -294,7 +294,7 @@
      "Interdits, sauf urgence"
     ]
    ],
-   "dire": "Même sans panneau, certains endroits sont toujours interdits, même pour dix secondes. Le passage piéton, le trottoir, la voie de bus et la piste cyclable. La place handicapé aussi, sauf avec la carte de stationnement pour personnes handicapées. Et sur autoroute, dans un tunnel ou sur un passage à niveau, là où la route croise une voie ferrée : interdit, sauf urgence. Tes feux de détresse n’y changent rien : l’arrêt reste interdit.",
+   "dire": "Tu veux t’arrêter dix secondes, juste pour déposer quelqu’un. Même sans panneau, certains endroits sont toujours interdits. Le passage piéton, le trottoir, la voie de bus et la piste cyclable. La place handicapé aussi, sauf avec la carte de stationnement pour personnes handicapées. Là, t’arrêter ou te garer est très gênant : tu prends la place des autres. Tes feux de détresse n’y changent rien : l’arrêt reste interdit. Sur autoroute ou dans un tunnel : interdit, sauf urgence. Pareil sur un passage à niveau, là où la route croise une voie ferrée.",
    "decor": {
     "env": "ville",
     "kmh": 15,
@@ -368,22 +368,22 @@
     ]
    },
    "sync": [
-    1.13,
-    2.0,
-    3.67,
-    3.67
+    2.13,
+    3.0,
+    4.05,
+    6.04
    ]
   },
   {
    "type": "chiffres",
    "ch": 1,
-   "eyebrow": "Stationnement très gênant",
-   "titre": "Le tarif",
+   "eyebrow": "Très gênant ou gênant",
+   "titre": "Ce que ça coûte",
    "items": [
     [
      "135",
      "€",
-     "d’amende"
+     "d’amende : très gênant"
     ],
     [
      "+",
@@ -391,7 +391,7 @@
      "fourrière possible"
     ]
    ],
-   "dire": "Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé : t’y arrêter ou t’y garer coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer. En double file, c’est « gênant » : 35 euros. Une place « Livraison » ? Tu peux t’y arrêter pour vraiment charger ou décharger, même avec ta voiture. T’y garer pour autre chose : 35 euros.",
+   "dire": "Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé : ces endroits sont très gênants. T’y arrêter ou t’y garer coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer. En double file, à côté des voitures garées, c’est seulement gênant : 35 euros. Retiens : très gênant, 135 euros ; gênant, 35 euros. Une place « Livraison » ? Tu peux t’y arrêter pour vraiment charger ou décharger, même avec ta voiture. T’y garer pour autre chose, c’est gênant : 35 euros.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -435,8 +435,8 @@
     ]
    },
    "sync": [
-    0.88,
-    1.28
+    4.41,
+    2.28
    ]
   },
   {
@@ -444,7 +444,7 @@
    "ch": 2,
    "eyebrow": "Bien sortir",
    "titre": "La portière",
-   "dire": "Avant d’ouvrir ta portière, regarde dans le rétroviseur et dans l’angle mort : un cycliste peut arriver. Astuce : ouvre ta portière avec la main droite. Ton corps tourne, et tu vois derrière toi. Et quand tu passes à côté d’une voiture garée avec quelqu’un dedans, écarte-toi : sa portière peut s’ouvrir.",
+   "dire": "Te voilà garé. Avant d’ouvrir ta portière : rétroviseur, puis angle mort, la zone que tes rétroviseurs ne montrent pas. Regarde : un cycliste arrive le long de ta portière. Astuce : ouvre ta portière avec la main droite. Ton corps tourne, et tu vois derrière toi. Et quand tu passes à côté d’une voiture garée avec quelqu’un dedans, écarte-toi : sa portière peut s’ouvrir.",
    "env": "ville",
    "kmh": 0,
    "camera": "poursuite",
@@ -496,7 +496,7 @@
    "stats": [
     [
      "2",
-     "panneaux"
+     "panneaux : une barre, ou une croix"
     ],
     [
      "8",
@@ -507,7 +507,7 @@
      "réflexe avant d’ouvrir"
     ]
    ],
-   "dire": "Cours terminé. Retiens surtout : rétroviseur et angle mort avant d’ouvrir ta portière. Place à la pratique.",
+   "dire": "Cours terminé. Retiens : rétroviseur et angle mort avant d’ouvrir ta portière. Le piège de l’examen : feux de détresse allumés, l’arrêt interdit reste interdit.",
    "decor": {
     "env": "ville",
     "kmh": 25,

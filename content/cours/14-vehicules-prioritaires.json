@@ -3,8 +3,8 @@
  "ordre": 14,
  "theme": "usagers",
  "titre": "Véhicules prioritaires",
- "accroche": "laisser passer l’urgence",
- "resume": "Police, pompiers, SAMU : comment les reconnaître et leur faciliter le passage, et les véhicules à feu orange.",
+ "accroche": "leur ouvrir la route, calmement",
+ "resume": "Feux bleus et sirène : reconnaître un véhicule prioritaire, lui faciliter le passage, et réagir au gyrophare orange.",
  "affiche": [
   "AB4",
   "A14"
@@ -18,20 +18,20 @@
  ],
  "memo": [
   {
-   "texte": "Feux bleus + sirène deux tons",
-   "tag": "Priorité absolue"
+   "texte": "Feux bleus et sirène",
+   "tag": "Ils passent avant tout le monde, même si ton feu est vert"
   },
   {
    "texte": "Faciliter le passage",
-   "tag": "Serrer à droite, sans freiner brusquement"
+   "tag": "Calme, serre-toi à droite, pas de freinage brusque"
   },
   {
    "texte": "Gyrophare orange",
-   "tag": "Prudence, pas de priorité"
+   "tag": "Un danger, pas une priorité : ralentis"
   },
   {
    "texte": "Au feu rouge",
-   "tag": "Tu peux avancer un peu, si c’est sans danger"
+   "tag": "Avance un peu, seulement si c’est sans danger"
   },
   {
    "texte": "Ambulance privée",
@@ -39,7 +39,7 @@
   },
   {
    "texte": "Feux bleus sans sirène",
-   "tag": "Pas toujours prioritaire : facilite son passage quand même"
+   "tag": "Priorité pas garantie : facilite quand même son passage"
   }
  ],
  "scenes": [
@@ -49,7 +49,7 @@
    "eyebrow": "Cours 14 · Usagers",
    "titre": "Véhicules prioritaires",
    "sous": "laisser passer l’urgence",
-   "dire": "Une sirène se fait entendre au loin. Un véhicule prioritaire approche. Cours numéro 14 : les véhicules prioritaires. Quand ils sont en intervention, chaque seconde compte.",
+   "dire": "Au loin, tu entends une sirène. Regarde : un véhicule prioritaire approche, et tu lui fais de la place. Cours numéro 14 : les véhicules prioritaires. En intervention, quelqu’un attend leur aide : chaque seconde compte.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -102,7 +102,7 @@
    "ch": 0,
    "eyebrow": "Ils arrivent",
    "titre": "Feux bleus et sirène",
-   "dire": "Police, gendarmerie, pompiers et SAMU : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Le SAMU, ce sont les médecins d’urgence. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer. Des feux bleus sans sirène ne suffisent pas toujours à le rendre prioritaire : facilite quand même son passage, sans te mettre en danger.",
+   "dire": "Des feux bleus, et une sirène à deux tons : deux notes qui alternent. Police, gendarmerie, pompiers et SAMU : avec ces deux signaux, ils passent avant tout le monde. Le SAMU, ce sont les médecins d’urgence. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer. Un véhicule avec des feux bleus, mais sans sirène : sa priorité n’est pas garantie. Facilite quand même son passage, sans te mettre en danger.",
    "env": "ville",
    "kmh": 25,
    "camera": "drone",
@@ -153,19 +153,19 @@
    "titre": "Calmement",
    "items": [
     [
-     "Ne pas paniquer",
+     "Garder son calme",
      "Pas de freinage brusque"
     ],
     [
      "Serrer à droite",
-     "Pour libérer la voie"
+     "Pour libérer le passage"
     ],
     [
      "Au feu rouge",
-     "Tu peux avancer un peu si c’est sans danger"
+     "Avancer un peu, seulement si sans danger"
     ]
    ],
-   "dire": "Garde ton calme : pas de freinage brusque. Serre-toi à droite pour libérer le passage. À un feu rouge, tu peux avancer légèrement pour lui laisser la place, uniquement si c’est sans danger.",
+   "dire": "La sirène approche : garde ton calme, car un freinage brusque surprendrait la voiture derrière toi. Serre-toi à droite pour libérer le passage au véhicule prioritaire. Au feu rouge, tu peux avancer un peu pour lui laisser la place, seulement si c’est sans danger.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -228,9 +228,9 @@
     ]
    },
    "sync": [
-    0.57,
+    0.18,
     1.0,
-    2.06
+    2.04
    ]
   },
   {
@@ -241,14 +241,14 @@
    "items": [
     [
      "Gyrophare orange",
-     "Dépanneuse, travaux, convoi très large"
+     "Dépanneuse, engin de chantier, convoi exceptionnel"
     ],
     [
-     "Ce n’est pas une priorité",
-     "Mais un danger : ralentis"
+     "Pas une priorité",
+     "Un signal de danger : ralentis"
     ]
    ],
-   "dire": "Un gyrophare, c’est une lumière qui tourne sur le toit. Orange, il signale un véhicule lent ou un danger : dépanneuse, engin de chantier, ou convoi exceptionnel, c’est-à-dire un camion très large ou très long. Ce n’est pas une priorité de passage, mais ralentis et sois prudent.",
+   "dire": "Sur le toit d’un véhicule, une lumière orange tourne : c’est un gyrophare. Orange, il signale un véhicule lent ou un danger : une dépanneuse, un engin de chantier. Ou un convoi exceptionnel, c’est-à-dire un camion très large ou très long. Pas une priorité de passage : un signal de danger. Alors ralentis, et sois prudent.",
    "decor": {
     "env": "route",
     "kmh": 35,
@@ -296,7 +296,7 @@
    },
    "sync": [
     1.0,
-    2.22
+    3.13
    ]
   },
   {
@@ -314,7 +314,7 @@
      "réflexe : serrer à droite"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : les pompiers t’attendent.",
+   "dire": "Cours terminé. Le piège de l’examen : orange, c’est un danger, pas une priorité. Passe à la pratique.",
    "decor": {
     "env": "ville",
     "kmh": 25,

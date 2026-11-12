@@ -4,7 +4,7 @@
  "theme": "conducteur",
  "titre": "Anticiper les dangers",
  "accroche": "voir le risque avant qu’il apparaisse",
- "resume": "Observation, indices de danger, adaptation de la vitesse et marges de sécurité.",
+ "resume": "Repérer les indices, adapter ta vitesse, et garder de la marge autour de toi.",
  "chapitres": [
   "Chercher les indices",
   "Adapter sa conduite",
@@ -25,17 +25,17 @@
   },
   {
    "texte": "Près d’une école",
-   "tag": "ralentir",
+   "tag": "ralentir, et regarder les trottoirs",
    "panneau": "A13a"
   },
   {
-   "panneau": "A4",
-   "texte": "Chaussée mouillée",
-   "tag": "plus de distance"
+   "texte": "Route glissante",
+   "tag": "moins vite, et plus de distance",
+   "panneau": "A4"
   },
   {
    "texte": "L’angle mort des autres",
-   "tag": "ne pas y rester"
+   "tag": "ralentir, ou dépasser franchement"
   }
  ],
  "scenes": [
@@ -46,7 +46,7 @@
    "titre": "Anticiper les dangers",
    "sous": "voir le risque avant qu’il apparaisse",
    "vitesse": 30,
-   "dire": "Tu roules dans une rue calme. Un ballon roule près du trottoir. Tu ne vois pas d’enfant, mais ce ballon est un indice : un enfant peut courir derrière. Anticiper, c’est comprendre ce qui pourrait se produire.",
+   "dire": "Tu roules dans une rue calme. Regarde : un ballon roule près du trottoir. Tu ne vois pas d’enfant, mais ce ballon est un indice : un enfant peut courir derrière. Anticiper, c’est prévoir ce qui pourrait arriver, avant que ça arrive.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -124,7 +124,7 @@
   {
    "type": "situation",
    "eyebrow": "Le regard",
-   "titre": "Regarder loin, puis près",
+   "titre": "Regarder loin, sur les côtés, dans les rétros",
    "env": "route",
    "kmh": 70,
    "camera": "cockpit",
@@ -158,7 +158,7 @@
      1.5
     ]
    ],
-   "dire": "Regarde loin, regarde les côtés de la route, et regarde tes rétros, chacun à son tour. Si tu regardes seulement la voiture devant, tu rates cette biche, là-bas. Et ce panneau annonce un virage : si tu ne vois pas sa sortie, ralentis avant, pas dedans.",
+   "dire": "Tu roules sur une route, derrière une voiture. Regarde loin, regarde les côtés de la route, et regarde tes rétros, chacun à son tour. Si tu regardes seulement la voiture devant, tu rates cette biche, là-bas. Et ce triangle annonce un virage : si tu ne vois pas sa sortie, ralentis avant, pas dedans.",
    "ch": 0,
    "signaux": [
     [
@@ -202,13 +202,13 @@
      2
     ]
    ],
-   "dire": "Un camion garé cache une partie du trottoir. Un piéton pourrait traverser devant lui. Ralentis. Regarde sous le camion : tu peux voir des pieds. Et garde ton pied prêt à freiner.",
+   "dire": "Un camion garé cache une partie du trottoir. Un piéton masqué par le camion peut traverser : tu le verrais au dernier moment. Ralentis, et augmente ton attention. Regarde sous le camion : tu peux voir des pieds. Et garde ton pied prêt à freiner.",
    "ch": 1
   },
   {
    "type": "situation",
    "eyebrow": "L’école",
-   "titre": "À proximité d’une école",
+   "titre": "Près d’une école",
    "env": "ville",
    "kmh": 30,
    "camera": "poursuite",
@@ -253,14 +253,14 @@
      1.6
     ]
    ],
-   "dire": "Des enfants marchent près de la route. Ils peuvent courir sur la chaussée sans regarder. Ralentis, regarde les trottoirs, et prépare-toi à freiner.",
+   "dire": "Près d’une école, ce triangle te prévient : attention, des enfants. Ils peuvent courir sur la chaussée, là où roulent les voitures, sans regarder. Ralentis, regarde les trottoirs, et prépare-toi à freiner.",
    "ch": 1
   },
   {
    "type": "situation",
    "eyebrow": "Quand ça glisse",
    "titre": "Quand la route glisse",
-   "puce": "Pluie : distance d’arrêt plus longue",
+   "puce": "Sous la pluie, tu freines plus long",
    "env": "route",
    "meteo": "pluie",
    "kmh": 80,
@@ -288,13 +288,13 @@
      1.4
     ]
    ],
-   "dire": "La pluie rend la route glissante : les pneus accrochent moins bien, c’est l’adhérence qui baisse. Tu freines plus long. Roule moins vite, garde plus de distance et évite les gestes brusques. Sous la pluie, certaines limites baissent : 110 au lieu de 130 sur autoroute. Et la limite reste un maximum : si ça glisse, roule encore moins vite.",
+   "dire": "Il pleut, et ce triangle annonce une route glissante. Les pneus accrochent moins bien : c’est l’adhérence qui baisse. Tu freines plus long. Roule moins vite, garde plus de distance et évite les gestes brusques. Sous la pluie, certaines limites baissent : 110 au lieu de 130 sur autoroute. Et la limite reste un maximum : si ça glisse, roule encore moins vite.",
    "ch": 1
   },
   {
    "type": "situation",
    "eyebrow": "Ta marge",
-   "titre": "Garder de l’espace autour de toi",
+   "titre": "Garder de la marge autour de toi",
    "env": "autoroute",
    "kmh": 110,
    "camera": "drone",
@@ -330,7 +330,7 @@
      1
     ]
    ],
-   "dire": "Garde un espace libre autour de toi : de quoi t’échapper si ça freine devant. Tu es dans l’angle mort d’une voiture ? Ralentis, ou dépasse-la franchement. Plus tu gardes de marge, plus tu peux réagir sans te précipiter.",
+   "dire": "Sur l’autoroute, une voiture roule à ta gauche, juste devant toi. Tu es dans son angle mort : la zone rouge, où son conducteur ne te voit pas. Évite d’y rester : ralentis, ou dépasse-la franchement. Garde de la marge autour de toi : de quoi t’échapper si ça freine devant.",
    "ch": 2,
    "aides": [
     {
@@ -401,7 +401,7 @@
      -1.25
     ]
    ],
-   "dire": "Une voiture devant freine, un vélo approche et un piéton attend au passage piéton. Regarde comment la scène évolue, pas une seule image. Le plus urgent ici : la voiture qui freine devant toi. Freine aussi.",
+   "dire": "Devant toi, une voiture freine, un vélo arrive en face, et un piéton attend au passage piéton. Regarde comment la scène bouge, pas une seule image. Le plus urgent ici : la voiture qui freine devant toi. Freine aussi. Puis surveille le piéton : il va traverser.",
    "ch": 2
   },
   {
@@ -414,7 +414,7 @@
      "étapes : observer, prévoir, adapter"
     ]
    ],
-   "dire": "Trois étapes : j’observe, je prévois, j’adapte. Je vois le ballon, je pense à l’enfant, je ralentis. Passe à la pratique pour t’entraîner à repérer les risques.",
+   "dire": "Trois étapes : j’observe, je prévois, j’adapte. Je vois le ballon, je pense à l’enfant, je ralentis. Le piège de l’examen : un enfant sur le trottoir peut quand même traverser. Place à la pratique.",
    "ch": 2,
    "decor": {
     "env": "ville",

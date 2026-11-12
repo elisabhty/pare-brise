@@ -1,7 +1,7 @@
 /* Registre des types de scènes d'un cours.
    Un cours (JSON) est une suite de scènes ; chaque scène a un "type" défini ici.
    Ajouter un type = ajouter une entrée : { enter(scene, ctx) } ou { question: true, enter }. */
-import { $, esc, wait } from './util.js';
+import { $, esc, fr, wait } from './util.js';
 import { R, SIM, Engine, has3D } from './world.js';
 import { FAM } from './signs.js';
 import { Labels } from './labels.js';
@@ -14,7 +14,7 @@ export const ov = {
   lower(html) { $('#lower3').innerHTML = html; }
 };
 const lower3 = ({ eyebrow, titre, couleur, puce, q }) =>
-  `${eyebrow ? `<div class="eyebrow rise">${esc(eyebrow)}</div>` : ''}<div class="d ${q ? 'q' : 'fam'} rise" style="--d:.1s${couleur ? ';color:' + couleur : ''}">${esc(titre)}</div>${puce ? `<span class="chip rise" style="--d:.25s">${esc(puce)}</span>` : ''}`;
+  `${eyebrow ? `<div class="eyebrow rise">${fr(eyebrow)}</div>` : ''}<div class="d ${q ? 'q' : 'fam'} rise" style="--d:.1s${couleur ? ';color:' + couleur : ''}">${fr(titre)}</div>${puce ? `<span class="chip rise" style="--d:.25s">${fr(puce)}</span>` : ''}`;
 const stats = list => `<div class="stats rise" style="--d:.35s">${list.map(([v, l]) => `<div><b class="num">${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>`;
 
 /* Cadrage : une carte de texte (titre, liste, chiffres) couvre le haut de l'écran. Pour un décor, la caméra vise
@@ -188,7 +188,7 @@ export const TYPES = {
   titre: {
     enter(sc, ctx) {
       backdrop(sc, ctx, sc.vitesse || 55);
-      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise" style="--d:.15s">${esc(sc.titre)}</h2>${sc.sous ? `<p class="rise" style="--d:.35s">${esc(sc.sous)}</p>` : ''}`);
+      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise" style="--d:.15s">${fr(sc.titre)}</h2>${sc.sous ? `<p class="rise" style="--d:.35s">${esc(sc.sous)}</p>` : ''}`);
     }
   },
   /* Des panneaux défilent à grande vitesse, puis un grand chiffre apparaît */
@@ -228,7 +228,7 @@ export const TYPES = {
     enter(sc, ctx) {
       backdrop(sc, ctx, sc.vitesse ?? 50);
       const sy = !!sc.sync;
-      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise sm" style="--d:.1s">${esc(sc.titre || '')}</h2>
+      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise sm" style="--d:.1s">${fr(sc.titre || '')}</h2>
         <div class="nums${sy ? ' sync' : ''}">${(sc.items || []).map(([v, u, l], k) => `<div class="${sy ? '' : 'rise'}" style="--d:${0.3 + k * 0.25}s"><b class="num">${esc(v)}<small>${esc(u || '')}</small></b><span>${esc(l || '')}</span></div>`).join('')}</div>`);
     },
     beat(sc, k, ctx, dur) { if (sc.sync) revealAt(sc, k, ctx, dur, (sh, cur) => { revealList('#ovt .nums > div')(sh, cur); onItems(sc.decor, sh, cur); }); }
@@ -262,7 +262,7 @@ export const TYPES = {
   liste: {
     enter(sc, ctx) {
       backdrop(sc, ctx, sc.vitesse ?? 40); const sy = !!sc.sync;
-      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise sm" style="--d:.1s">${esc(sc.titre || '')}</h2>
+      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || '')}</div><h2 class="d rise sm" style="--d:.1s">${fr(sc.titre || '')}</h2>
         <ol class="olist${sy ? ' sync' : ''}${sy && (sc.items || []).length >= 5 ? ' long' : ''}">${(sc.items || []).map((it, k) => { const [a, b] = Array.isArray(it) ? it : [it, '']; return `<li class="${sy ? '' : 'rise'}" style="--d:${0.35 + k * 0.4}s"><i class="num">${sc.puces ? esc(sc.puces[k] || '') : k + 1}</i><div><b>${esc(a)}</b>${b ? `<span>${esc(b)}</span>` : ''}</div></li>`; }).join('')}</ol>`);
     },
     beat(sc, k, ctx, dur) { if (sc.sync) revealAt(sc, k, ctx, dur, (sh, cur) => { revealList('#ovt .olist > li')(sh, cur); onItems(sc.decor, sh, cur); }); }
@@ -279,7 +279,7 @@ export const TYPES = {
   fin: {
     enter(sc, ctx) {
       backdrop(sc, ctx, sc.vitesse || 90);
-      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || 'Fin du cours')}</div><h2 class="d rise" style="--d:.15s">${esc(sc.titre || 'Cours terminé')}</h2>${sc.stats ? stats(sc.stats) : ''}`);
+      ov.title(`<div class="eyebrow rise">${esc(sc.eyebrow || 'Fin du cours')}</div><h2 class="d rise" style="--d:.15s">${fr(sc.titre || 'Cours terminé')}</h2>${sc.stats ? stats(sc.stats) : ''}`);
     }
   }
 };

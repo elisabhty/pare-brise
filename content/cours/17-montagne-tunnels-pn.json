@@ -20,12 +20,12 @@
  ],
  "memo": [
   {
-   "texte": "Feux rouges clignotants au passage à niveau",
-   "tag": "Arrêt, même barrières levées"
+   "texte": "Passage à niveau, feu rouge clignotant",
+   "tag": "Arrêt, même sans sonnerie, même barrières levées"
   },
   {
    "texte": "Tunnel",
-   "tag": "Feux de croisement, deux balises bleues d’écart, ni demi-tour ni marche arrière"
+   "tag": "Feux de croisement, deux balises bleues, demi-tour et marche arrière interdits"
   },
   {
    "texte": "Route étroite en montagne",
@@ -33,7 +33,7 @@
   },
   {
    "texte": "Descente",
-   "tag": "Frein moteur"
+   "tag": "Avant : une vitesse plus basse, le frein moteur"
   },
   {
    "texte": "Passage à niveau sans barrières",
@@ -48,7 +48,7 @@
    "eyebrow": "Cours 17 · Route",
    "titre": "Tunnels, passages à niveau, montagne",
    "sous": "les lieux à part",
-   "dire": "Tu arrives devant un passage à niveau, puis un tunnel et une route de montagne. Cours numéro 17 : trois endroits où les règles changent un peu.",
+   "dire": "Devant toi, un passage à niveau : l’endroit où la route croise les rails du train. Plus loin, un tunnel, puis une route de montagne. Cours numéro 17 : trois endroits où les règles changent un peu.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -101,7 +101,7 @@
     "A7",
     "A8"
    ],
-   "dire": "Au passage à niveau, dès que le feu rouge clignote, tu t’arrêtes : même sans sonnerie, même si les barrières sont encore levées. Et ne t’engage jamais si tu n’es pas sûr de pouvoir dégager la voie de l’autre côté. Sans barrières, c’est ce panneau avec une locomotive qui te prévient. Le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.",
+   "dire": "Le feu rouge du passage à niveau se met à clignoter : tu t’arrêtes. Même sans sonnerie, même si les barrières sont encore levées. Un train lancé met très longtemps à s’arrêter. Engage-toi seulement si tu es sûr de dégager les rails de l’autre côté : jamais d’arrêt sur les rails. Sans barrières, c’est ce panneau avec une locomotive qui te prévient. Le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.",
    "etiquettes": [
     [
      "A7",
@@ -114,30 +114,30 @@
    ],
    "puce": "Ne jamais s’arrêter sur les rails",
    "sync": [
-    0.0,
-    0.0
+    0.21,
+    0.21
    ]
   },
   {
    "type": "liste",
    "ch": 0,
-   "eyebrow": "Bloqué sur les voies",
+   "eyebrow": "Bloqué sur les rails",
    "titre": "Dans l’ordre",
    "items": [
     [
-     "Faire sortir tout le monde",
-     "Immédiatement"
+     "Fais sortir tout le monde",
+     "Tout de suite"
     ],
     [
-     "S’éloigner des voies",
+     "Éloignez-vous des rails",
      "Le plus loin possible"
     ],
     [
-     "Prévenir",
+     "Préviens",
      "Téléphone d’urgence du passage à niveau, ou 112"
     ]
    ],
-   "dire": "Si ta voiture reste bloquée sur les rails : fais sortir tout le monde, et éloignez-vous tous des voies. Puis préviens : le téléphone d’urgence du passage à niveau s’il y en a un, sinon le 112.",
+   "dire": "Ta voiture reste bloquée sur les rails : fais sortir tout le monde, tout de suite. Éloignez-vous tous des rails, le plus loin possible : le train peut arriver à tout moment. Puis préviens : le téléphone d’urgence du passage à niveau s’il y en a un, sinon le 112.",
    "decor": {
     "env": "route",
     "kmh": 0,
@@ -255,9 +255,9 @@
     ]
    },
    "sync": [
-    0.45,
-    0.69,
-    1.19
+    0.47,
+    1.0,
+    2.03
    ]
   },
   {
@@ -268,11 +268,11 @@
    "items": [
     [
      "Feux de croisement",
-     "Toujours allumés"
+     "Allumés, même de jour"
     ],
     [
-     "Distance",
-     "Au moins deux balises bleues"
+     "Balises bleues",
+     "Au moins deux balises d’écart"
     ],
     [
      "Toujours interdits",
@@ -280,14 +280,14 @@
     ],
     [
      "Dépasser",
-     "Interdit si un panneau ou une ligne continue le dit"
+     "Interdit si panneau ou ligne continue"
     ],
     [
      "Incendie",
-     "On sort à pied par les issues de secours"
+     "À pied, vers l’issue de secours la plus proche"
     ]
    ],
-   "dire": "Dans un tunnel, allume tes feux de croisement. S’il y a des balises bleues sur la paroi, garde au moins deux balises entre toi et le véhicule devant. Demi-tour et marche arrière sont toujours interdits ; le dépassement, quand un panneau ou une ligne continue l’interdit. Incendie devant toi : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche.",
+   "dire": "Tu entres dans un tunnel : allume tes feux de croisement, même de jour. Des balises bleues sur la paroi, le mur du tunnel ? Garde au moins deux balises entre toi et le véhicule devant. Demi-tour et marche arrière sont toujours interdits. Dépasser est interdit quand un panneau ou une ligne continue le dit. Sinon, tu peux dépasser, avec prudence. Incendie devant toi : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche.",
    "decor": {
     "env": "route",
     "kmh": 50,
@@ -337,11 +337,11 @@
     ]
    },
    "sync": [
-    0.56,
-    1.1,
-    2.32,
-    2.44,
-    3.0
+    0.51,
+    2.3,
+    3.78,
+    4.0,
+    6.0
    ]
   },
   {
@@ -349,7 +349,7 @@
    "ch": 2,
    "eyebrow": "Montagne",
    "titre": "Route étroite",
-   "dire": "Sur une route de montagne trop étroite, entre deux véhicules du même type, celui qui descend recule. Sauf si c’est bien plus facile pour celui qui monte. Pourquoi ? Redémarrer en montée est plus difficile. Entre une voiture et un camion, c’est la voiture qui recule, même si elle monte.",
+   "dire": "Route de montagne trop étroite : une voiture arrive en face. Qui recule ? Entre deux véhicules du même type, deux voitures par exemple, celui qui descend. Sauf si c’est bien plus facile pour celui qui monte. La raison : celui qui monte aurait du mal à redémarrer dans la pente. Mais entre une voiture et un camion, c’est la voiture qui recule, même si elle monte.",
    "env": "route",
    "kmh": 20,
    "camera": "drone",
@@ -399,10 +399,10 @@
     ],
     [
      "Freins qui chauffent",
-     "Ils perdent leur efficacité"
+     "Ils freinent de moins en moins bien"
     ]
    ],
-   "dire": "Avant la descente, passe une vitesse plus basse : le moteur retient la voiture, c’est le frein moteur. Repère : prends la vitesse que tu prendrais pour monter cette pente. Ne roule jamais au point mort, sans vitesse : le moteur ne retiendrait plus rien. Et freiner sans arrêt fait chauffer les freins, qui perdent leur efficacité.",
+   "dire": "Le triangle au bord de la route annonce une descente dangereuse. Avant la descente, passe une vitesse plus basse : le moteur retient la voiture, c’est le frein moteur. Repère : prends la vitesse que tu prendrais pour monter cette pente. Ne roule jamais au point mort, sans vitesse : le moteur ne retiendrait plus rien. Et freiner sans arrêt fait chauffer les freins : ils freinent de moins en moins bien.",
    "decor": {
     "env": "route",
     "kmh": 35,
@@ -430,9 +430,9 @@
     ]
    },
    "sync": [
-    0.49,
-    2.2,
-    3.33
+    1.49,
+    3.2,
+    4.29
    ],
    "illu": {
     "type": "icones",
@@ -465,18 +465,18 @@
    "stats": [
     [
      "1",
-     "règle : jamais sur les rails"
+     "règle : jamais d’arrêt sur les rails"
     ],
     [
      "5",
-     "règles en tunnel"
+     "règles dans un tunnel"
     ],
     [
      "1",
-     "même type : celui qui descend recule"
+     "règle en montagne : même type, celui qui descend recule"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour revoir ces lieux à part.",
+   "dire": "Cours terminé. Le piège de l’examen : voiture contre camion, c’est la voiture qui recule. Passe à la pratique.",
    "decor": {
     "env": "route",
     "kmh": 50,

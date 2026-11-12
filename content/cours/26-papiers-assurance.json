@@ -4,7 +4,7 @@
  "theme": "notions",
  "titre": "Papiers, assurance et constat",
  "accroche": "être en règle",
- "resume": "Documents à présenter, assurance obligatoire, contrôle technique et constat amiable.",
+ "resume": "Les papiers à présenter, l’assurance obligatoire, le contrôle technique et le constat amiable.",
  "affiche": [
   "A14"
  ],
@@ -18,7 +18,7 @@
  "memo": [
   {
    "texte": "Assurance",
-   "tag": "Responsabilité civile obligatoire"
+   "tag": "Au minimum la responsabilité civile : les dommages aux autres"
   },
   {
    "texte": "Contrôle technique",
@@ -26,7 +26,7 @@
   },
   {
    "texte": "Constat amiable",
-   "tag": "À l’assureur sous 5 jours ouvrés (jours de semaine)"
+   "tag": "À ton assureur sous 5 jours ouvrés, les jours de semaine"
   },
   {
    "texte": "Changement d’adresse",
@@ -40,7 +40,7 @@
    "eyebrow": "Cours 26 · Notions",
    "titre": "Papiers et assurance",
    "sous": "être en règle",
-   "dire": "Cours numéro 26 : les papiers. Ce que tu dois avoir, et ce que tu fais après un accrochage.",
+   "dire": "Sur la route, un policier peut te demander tes papiers. Cours numéro 26 : les papiers et l’assurance. Et que faire après un accrochage, un petit accident.",
    "vitesse": 30,
    "decor": {
     "env": "ville",
@@ -84,7 +84,7 @@
   {
    "type": "liste",
    "ch": 0,
-   "eyebrow": "À présenter",
+   "eyebrow": "Tes papiers",
    "titre": "Lors d’un contrôle",
    "items": [
     [
@@ -100,7 +100,7 @@
      "Vérifiée par la police dans un fichier national"
     ]
    ],
-   "dire": "Lors d’un contrôle, montre ton permis : en papier, ou sur ton téléphone avec France Identité, l’appli officielle de l’État. Et ta carte grise, qu’on appelle certificat d’immatriculation. La police vérifie ton assurance dans un fichier national : plus de carte verte sur le pare-brise. Pas tes papiers sur toi ? Une amende de 11 euros, et 5 jours pour les présenter à la police ou à la gendarmerie ; sinon, 135 euros. Tu déménages ? Tu as un mois pour mettre à jour l’adresse de ta carte grise.",
+   "dire": "Contrôle de police : tu t’arrêtes sur le côté. Les policiers vérifient trois choses : ton permis, ta carte grise et ton assurance. Ton permis peut être en papier, ou sur ton téléphone avec France Identité, l’appli officielle de l’État. Ta carte grise s’appelle aussi certificat d’immatriculation. Ton assurance, la police la vérifie dans un fichier national : plus besoin de carte verte sur le pare-brise. Pas tes papiers sur toi ? Une amende de 11 euros, et 5 jours pour les présenter à la police ou à la gendarmerie. Sinon, c’est une amende de 135 euros. Tu déménages ? Tu as un mois pour mettre à jour l’adresse de ta carte grise.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -137,9 +137,9 @@
     ]
    },
    "sync": [
-    0.22,
-    1.5,
-    2.2
+    2.01,
+    3.49,
+    4.01
    ],
    "illu": {
     "type": "documents",
@@ -155,7 +155,7 @@
     [
      "RC",
      "minimum",
-     "la responsabilité civile : les dégâts que tu causes aux autres"
+     "la responsabilité civile : les dommages que tu causes aux autres"
     ],
     [
      "3 750",
@@ -163,7 +163,7 @@
      "d’amende au maximum sans assurance"
     ]
    ],
-   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, dite « au tiers » : elle paie les dommages que tu causes aux autres. Rouler sans assurance est un délit : jusqu’à 3 750 euros d’amende, et le juge peut aussi suspendre ton permis ou confisquer ta voiture.",
+   "dire": "En te garant, tu abîmes une autre voiture. Qui paie ? Ton assurance. Assurer ta voiture est obligatoire, au minimum en responsabilité civile, dite au tiers. Elle paie les dommages que tu causes aux autres. Rouler sans assurance est un délit, une infraction grave. Jusqu’à 3 750 euros d’amende, et le juge peut aussi suspendre ton permis ou confisquer ta voiture.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -200,8 +200,8 @@
     ]
    },
    "sync": [
-    0.25,
-    1.3
+    3.42,
+    6.05
    ],
    "illu": {
     "type": "documents",
@@ -216,7 +216,7 @@
    "type": "chiffres",
    "ch": 0,
    "eyebrow": "Contrôle technique",
-   "titre": "Les échéances",
+   "titre": "Quand le passer",
    "items": [
     [
      "4",
@@ -229,7 +229,7 @@
      "ensuite, tous les deux ans"
     ]
    ],
-   "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans. Le compte démarre à sa première mise en circulation, écrite sur la carte grise en case B, pas au jour de l’achat. En retard ? Amende, et ta voiture peut être immobilisée.",
+   "dire": "Ta voiture a un rendez-vous obligatoire : le contrôle technique, qui vérifie sa sécurité. Le premier a lieu dans les six mois qui précèdent ses quatre ans, puis tous les deux ans. Le compte démarre à sa première mise en circulation, quand elle était neuve, pas à ton achat. Cette date est en case B de ta carte grise. En retard ? Une amende, et la police peut t’obliger à laisser ta voiture sur place.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -266,8 +266,8 @@
     ]
    },
    "sync": [
-    0.0,
-    0.9
+    1.0,
+    1.87
    ],
    "illu": {
     "type": "frise",
@@ -323,7 +323,7 @@
      "Sous 5 jours ouvrés"
     ]
    ],
-   "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés, c’est-à-dire cinq jours de semaine, sans les week-ends ni les jours fériés. S’il y a un blessé : protège, alerte, et attends la police ou la gendarmerie. Si l’autre refuse le constat, note sa plaque, prends des photos et des témoins.",
+   "dire": "Petit accrochage en ville, sans blessé : tes feux de détresse clignotent. Avec l’autre conducteur, remplissez un constat amiable sur place : le formulaire qui décrit l’accident. Vérifie bien les cases et le croquis, le petit dessin de l’accident, avant de signer. Signé par vous deux, il ne se modifie plus, et chacun en garde un exemplaire. Envoie le tien à ton assureur sous cinq jours ouvrés, c’est-à-dire cinq jours de semaine. Les week-ends et les jours fériés ne comptent pas. S’il y a un blessé : protège, alerte, et attends la police ou la gendarmerie. Si l’autre refuse le constat, note sa plaque, prends des photos et des témoins.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -361,10 +361,10 @@
     ]
    },
    "sync": [
-    0.9,
-    1.18,
-    2.0,
-    2.26
+    1.54,
+    2.17,
+    3.0,
+    4.21
    ],
    "illu": {
     "type": "constat",
@@ -379,14 +379,14 @@
    "stats": [
     [
      "4",
-     "ans : premier contrôle technique"
+     "ans : premier contrôle, dans les 6 mois avant"
     ],
     [
      "5",
      "jours ouvrés pour le constat"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour revoir les papiers et le constat.",
+   "dire": "Cours terminé. Le piège de l’examen : le contrôle technique se compte dès la première mise en circulation, pas l’achat.",
    "decor": {
     "env": "ville",
     "kmh": 25,

@@ -1,0 +1,158 @@
+{
+ "cours": "cyclistes-edpm",
+ "accroche": "partager la route",
+ "resume": "La place à laisser aux vélos, l’angle mort quand tu tournes à droite, le sas vélo, les rues à double sens pour les vélos, et les règles des trottinettes électriques.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Regarde : une piste cyclable longe la route, juste à côté de toi.",
+    "Voitures, vélos, trottinettes et piétons se partagent la rue.",
+    "Cours numéro 12 : les vélos et les trottinettes.",
+    "Ils vont moins vite que toi, et ils sont beaucoup plus fragiles."
+   ],
+   "eyebrow": "Cours 12 · Usagers"
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Devant toi, un cycliste.",
+    "Pour le dépasser, laisse au moins un mètre dans une agglomération, c’est-à-dire la ville ou le village.",
+    "Hors agglomération, un mètre cinquante.",
+    "Si la route est trop étroite, tu attends.",
+    "Une trottinette électrique se dépasse de la même façon.",
+    "Et à vélo, un enfant de moins de 12 ans doit porter un casque."
+   ],
+   "eyebrow": "Dépasser un vélo",
+   "titre": "Laisse de la place"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu vas tourner à droite.",
+    "Un cycliste peut remonter le long de ta voiture, dans ton angle mort, que tes rétroviseurs ne montrent pas.",
+    "Regarde ton rétroviseur, puis tourne la tête."
+   ],
+   "eyebrow": "L’angle mort",
+   "titre": "Avant de tourner à droite"
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde ce rond bleu avec un vélo : piste cyclable obligatoire.",
+    "Elle est réservée aux vélos : y rouler ou t’y arrêter, c’est interdit pour toi.",
+    "Au feu, le sas vélo, c’est une case avec un vélo peint au sol.",
+    "Arrête-toi à la première ligne, avant la case.",
+    "Les vélos attendent devant toi, bien visibles.",
+    "Le sas est pour les vélos, parfois aussi pour les scooters de 50, si un panneau le permet.",
+    "Ta voiture, jamais.",
+    "Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos.",
+    "Ce panneau carré bleu te prévient à l’entrée : des vélos peuvent arriver en face, sur ta gauche."
+   ],
+   "eyebrow": "Les espaces vélo",
+   "titre": "Piste, sas, double sens"
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Regarde ces trottinettes électriques : pour le code, ce sont des « EDPM », engins de déplacement personnel motorisés.",
+    "Pour en conduire une : 14 ans au moins, et une seule personne, sans passager.",
+    "Maximum 25 kilomètres heure : elle ne peut pas aller plus vite.",
+    "Le trottoir est interdit.",
+    "Exception : un panneau l’autorise, et alors on roule au pas, à la vitesse d’un piéton.",
+    "Toi, en voiture, tu dépasses une trottinette comme un vélo."
+   ],
+   "eyebrow": "Trottinettes électriques",
+   "titre": "Les règles"
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "Retiens le réflexe angle mort chaque fois que tu tournes à droite.",
+    "Le piège de l’examen : regarder seulement le rétroviseur."
+   ],
+   "eyebrow": "Fin du cours 12",
+   "stats": [
+    [
+     "1,5",
+     "m hors agglomération"
+    ],
+    [
+     "14",
+     "ans pour une trottinette"
+    ],
+    [
+     "25",
+     "km/h maximum pour une trottinette"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Dépasser un vélo ou une trottinette",
+   "tag": "1 m en agglomération · 1,50 m hors agglomération"
+  },
+  {
+   "texte": "Piste cyclable obligatoire",
+   "tag": "Réservée aux vélos · interdite à ta voiture",
+   "panneau": "B22a"
+  },
+  {
+   "texte": "Trottinette électrique",
+   "tag": "14 ans minimum · une seule personne · 25 km/h maximum"
+  },
+  {
+   "texte": "Avant de tourner à droite",
+   "tag": "Rétroviseur, puis tourne la tête : angle mort"
+  },
+  {
+   "texte": "Casque à vélo",
+   "tag": "Obligatoire pour un enfant de moins de 12 ans"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quel risque ?",
+   "explication": "Ouverture de portière. Elle peut s’ouvrir juste devant le cycliste, sur son chemin."
+  },
+  {
+   "q": "Quel réflexe ?",
+   "explication": "Rester prêt à freiner. Une trottinette peut changer de direction d’un coup, surtout près d’un passage piéton."
+  },
+  {
+   "q": "Hors agglomération, pour dépasser ce cycliste, je laisse au minimum :",
+   "explication": "1,50 m. Hors agglomération, laisse au moins 1,50 m. En agglomération, c’est 1 m."
+  },
+  {
+   "q": "Je veux tourner à droite au carrefour. Je :",
+   "explication": "Tu vérifies ton angle mort à droite. Un cycliste peut remonter le long de ta voiture, invisible dans tes rétroviseurs : tourne la tête."
+  },
+  {
+   "q": "Un enfant de 9 ans circule à vélo. Le casque est :",
+   "explication": "Obligatoire. À vélo, un enfant de moins de 12 ans doit porter un casque, qu’il conduise le vélo ou qu’il soit passager."
+  },
+  {
+   "q": "En agglomération, l’écart minimal pour dépasser un cycliste est :",
+   "explication": "1 m. En agglomération, laisse au moins 1 m. Hors agglomération, c’est 1,50 m."
+  },
+  {
+   "q": "L’âge minimum pour conduire une trottinette électrique est :",
+   "explication": "14 ans. Depuis 2023, il faut avoir au moins 14 ans pour conduire une trottinette électrique."
+  },
+  {
+   "q": "La vitesse maximale d’une trottinette électrique est :",
+   "explication": "25 km/h. Une trottinette électrique ne peut pas aller plus vite."
+  },
+  {
+   "q": "Avant de tourner à droite, tu vérifies :",
+   "explication": "L’angle mort à droite. Le rétroviseur intérieur, celui du milieu, ne le montre pas : tourne la tête, un cycliste peut s’y trouver."
+  },
+  {
+   "q": "Ce panneau signale :",
+   "explication": "Une piste cyclable obligatoire. Rond bleu avec un vélo : les vélos doivent la prendre. Pour ta voiture, elle est interdite."
+  }
+ ],
+ "notes": "Voix : situation d’abord, « agglomération », « angle mort » et « au pas » expliqués à leur première apparition, double négation de la piste cyclable remplacée par « y rouler ou t’y arrêter, c’est interdit », un pourquoi pour le sas (les vélos attendent devant toi, bien visibles), « Seule exception » devient « Exception », la voix dit « une seule personne » pour que la ligne de carte s’affiche. Petit titre « Les aménagements » remplacé ; Q9 explique « rétroviseur intérieur » ; Q1 sans « trajectoire » ; piège de l’examen tiré de la Q9.\nDoute : « le sas est parfois pour les scooters de 50 si un panneau le permet » est une règle récente, à vérifier dans le code."
+}

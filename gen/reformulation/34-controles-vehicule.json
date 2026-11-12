@@ -1,0 +1,184 @@
+{
+ "cours": "controles-vehicule",
+ "resume": "Pneus, feux, vitres, niveaux et voyants : ce que tu vérifies, et quand.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Ta voiture est garée, et tu t’apprêtes à partir.",
+    "Avant de démarrer, quelques vérifications simples peuvent éviter une panne ou un danger.",
+    "Fais le tour de la voiture, en commençant par ses pneus."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tes pneus sont ton seul contact avec la route : regarde-les de près.",
+    "Cherche les coupures et les bosses : un pneu abîmé se remplace, il peut éclater.",
+    "Au fond des creux, il y a des petits blocs de gomme : les témoins d’usure.",
+    "Usé jusqu’à eux ?",
+    "Il reste seulement 1,6 millimètre : change-le.",
+    "Un pneu qui paraît écrasé manque d’air : il est sous-gonflé.",
+    "Vérifie la pression une fois par mois, pneus froids, c’est-à-dire avant de rouler.",
+    "La bonne pression est écrite sur une étiquette, souvent dans l’encadrement de la portière."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Il fait nuit : tu testes tes feux.",
+    "Allume-les, puis fais le tour de la voiture : avant, arrière, clignotants.",
+    "Pour les feux stop, demande à quelqu’un de regarder pendant que tu freines.",
+    "Tes feux servent à voir et à être vu.",
+    "Un feu en panne : tu vois moins bien, et les autres comprennent mal ce que tu fais."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Il pleut, et une voiture arrive en face.",
+    "Un pare-brise sale ou des essuie-glaces usés peuvent te cacher un danger.",
+    "Les balais, c’est le caoutchouc des essuie-glaces : s’ils laissent des traces, change-les.",
+    "En hiver, prends un lave-glace qui ne gèle pas."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Capot ouvert, tu vois plusieurs réservoirs, chacun avec deux traits : mini et maxi.",
+    "Le niveau doit être entre les deux.",
+    "Le manuel te montre où ils sont.",
+    "Liquide de refroidissement : contrôle-le moteur froid.",
+    "Lave-glace : en hiver, un produit qui ne gèle pas.",
+    "Liquide de frein : entre mini et maxi.",
+    "L’huile se regarde avec la jauge : une tige que tu tires pour voir le niveau."
+   ],
+   "items": [
+    [
+     "Liquide de refroidissement",
+     "À contrôler moteur froid"
+    ],
+    [
+     "Lave-glace",
+     "En hiver, un produit qui ne gèle pas"
+    ],
+    [
+     "Liquide de frein",
+     "Entre les traits mini et maxi"
+    ],
+    [
+     "Huile moteur",
+     "À la jauge : une tige à tirer"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Un voyant s’allume sur ton tableau de bord : regarde d’abord sa couleur.",
+    "Voyant rouge : c’est grave, par exemple l’huile, la température du moteur ou les freins.",
+    "Arrête-toi dès que possible, dans un endroit sûr.",
+    "Voyant orange : ce n’est pas urgent, mais fais vérifier rapidement.",
+    "Vert ou bleu : c’est une simple information.",
+    "Le manuel donne le sens exact de chaque voyant."
+   ],
+   "titre": "Lire la couleur des voyants",
+   "items": [
+    [
+     "Rouge",
+     "Grave : arrête-toi dès que possible"
+    ],
+    [
+     "Orange",
+     "Pas urgent : fais vérifier rapidement"
+    ],
+    [
+     "Vert ou bleu",
+     "Simple information"
+    ]
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Ta voiture roule bien, sans bruit et sans voyant.",
+    "Fais quand même la révision aux dates du carnet d’entretien.",
+    "Un bruit bizarre ou un voyant ?",
+    "Fais vérifier sans attendre la prochaine révision.",
+    "Moteur chaud : n’ouvre jamais le bouchon du liquide de refroidissement.",
+    "Il est sous pression : il peut jaillir et te brûler."
+   ],
+   "titre": "La révision, même si tout va bien"
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Quatre choses avant de partir : pneus, feux, vitres, voyants.",
+    "Rouge, tu t’arrêtes ; orange, tu fais vérifier.",
+    "Et une fois par mois, et avant un long trajet, les niveaux sous le capot.",
+    "Place à la pratique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Pneus : coupures, usure, pression",
+   "tag": "avant de partir, pression pneus froids"
+  },
+  {
+   "texte": "Feux, clignotants, feux stop",
+   "tag": "voir et être vu"
+  },
+  {
+   "texte": "Voyant rouge, voyant orange",
+   "tag": "rouge, je m’arrête dès que possible ; orange, je fais vérifier"
+  },
+  {
+   "texte": "Vitres et essuie-glaces",
+   "tag": "bien voir"
+  },
+  {
+   "texte": "Niveaux sous le capot",
+   "tag": "une fois par mois, et avant un long trajet"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que contrôles-tu ?",
+   "explication": "L’état et la pression : coupures, bosses, usure, et pression pneus froids. Tes pneus sont ton seul contact avec la route."
+  },
+  {
+   "q": "Quand effectuer une vérification ?",
+   "explication": "Moteur froid. Moteur chaud, le liquide est sous pression : n’ouvre pas le bouchon, attends que le moteur refroidisse."
+  },
+  {
+   "q": "Je contrôle la pression des pneus de préférence :",
+   "explication": "Pneus froids, avant de rouler : un pneu chaud donne une fausse mesure. La bonne pression est sur l’étiquette de la portière."
+  },
+  {
+   "q": "Un pneu présente une coupure sur le flanc. Je :",
+   "explication": "Tu le fais remplacer : une coupure ou une bosse abîme le pneu, et il peut éclater."
+  },
+  {
+   "q": "Un voyant rouge s’allume en roulant. Je :",
+   "explication": "Tu t’arrêtes dès que possible, dans un endroit sûr : rouge, c’est grave, par exemple l’huile, la température du moteur ou les freins."
+  },
+  {
+   "q": "Mes essuie-glaces laissent des traces sur le pare-brise. Je :",
+   "explication": "Tu changes les balais, le caoutchouc des essuie-glaces : usés, ils laissent des traces qui cachent la route, surtout la nuit et sous la pluie."
+  },
+  {
+   "q": "Le moteur est chaud. Je peux ouvrir le bouchon du liquide de refroidissement :",
+   "explication": "Non : moteur chaud, le liquide est sous pression, il peut jaillir et te brûler. Ouvre le bouchon seulement moteur froid."
+  },
+  {
+   "q": "Avant de partir, je vérifie que fonctionnent :",
+   "explication": "Les feux, les clignotants et les feux stop : ils servent à voir et à être vu. Pour les feux stop, demande à quelqu’un de regarder."
+  },
+  {
+   "q": "Un voyant orange s’allume. Je :",
+   "explication": "Tu fais vérifier rapidement : orange, ce n’est pas urgent, mais ta voiture a un problème."
+  }
+ ],
+ "notes": "« On dit aussi à froid » est retiré : c’est un mot retiré par la charte, que rien d’autre n’emploie. « Pneus froids » est expliqué dans sa phrase, et « il ne reste que 1,6 » devient « il reste seulement 1,6 ». Cartes et fiche reprennent les mots de la voix, et la voix des niveaux suit l’ordre de la carte. « Sans attendre la prochaine révision » évite de contredire « orange : pas urgent ». Aucun chiffre changé."
+}

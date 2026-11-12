@@ -1,0 +1,118 @@
+{
+ "cours": "distances",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu roules à 50 kilomètres heure, toujours à la même vitesse.",
+    "Un obstacle apparaît au loin : il te faut de la place pour t’arrêter.",
+    "Cours numéro 4 : les distances d’arrêt.",
+    "Combien de mètres ?",
+    "Ça dépend de ta vitesse : on les mesure sur la route, devant toi."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu vois le danger : ton pied lâche l’accélérateur et va sur le frein.",
+    "Entre voir et freiner, il se passe environ une seconde : c’est ton temps de réaction.",
+    "Le temps de dire : un crocodile.",
+    "Pendant ce temps, la voiture avance encore.",
+    "Calcul rapide : prends ta vitesse sans le zéro, et fais fois 3.",
+    "À 50 kilomètres heure : 5 fois 3, 15 mètres, ta distance de réaction.",
+    "Une seconde, c’est quand tu es en forme : fatigue, alcool ou téléphone l’allongent beaucoup."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "L’obstacle approche : tu freines jusqu’à l’arrêt complet.",
+    "Pour la distance d’arrêt sur sol sec, prends ta vitesse sans le zéro, au carré, c’est-à-dire multipliée par elle-même.",
+    "À 50 : 5 fois 5, 25 mètres.",
+    "Dans ces 25 mètres : 15 mètres pour réagir, et 10 pour freiner.",
+    "La distance d’arrêt, c’est la distance de réaction plus la distance de freinage."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Sur route, à 90 : 9 fois 9, 81 mètres.",
+    "Presque deux fois plus vite qu’à 50, mais plus de trois fois plus de distance.",
+    "Un peu plus vite, beaucoup plus loin."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Il pleut : la route mouillée glisse, tes pneus accrochent moins.",
+    "Sur sol mouillé, multiplie la distance d’arrêt par 1,5.",
+    "À 80, 8 fois 8 font 64 mètres.",
+    "Sous la pluie, environ 96 mètres."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Sur l’autoroute, tu suis une voiture.",
+    "Garde au moins 2 secondes d’écart avec la voiture de devant.",
+    "Si elle freine fort, il te faut déjà une seconde rien que pour réagir.",
+    "Quand elle passe un poteau, compte avec moi.",
+    "Un crocodile, deux crocodiles.",
+    "Tu dois atteindre le poteau après.",
+    "À 110, 2 secondes, c’est environ 60 mètres.",
+    "Autre repère : les traits blancs au bord de la bande d’arrêt d’urgence, la voie des pannes.",
+    "Entre toi et la voiture de devant : au moins 2 traits.",
+    "Ces 2 traits font environ 100 mètres : plus que 2 secondes, même à 130.",
+    "Parfois, des flèches en forme de V sont peintes au milieu de ta voie : ce sont des chevrons.",
+    "Garde au moins 2 chevrons entre toi et la voiture de devant."
+   ],
+   "items": [
+    [
+     "2",
+     "s",
+     "d’écart avec la voiture de devant"
+    ],
+    [
+     "2",
+     "traits",
+     "ou 2 chevrons au sol, sur autoroute"
+    ]
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Cours terminé.",
+    "Trois calculs à retenir : fois 3, au carré, puis fois 1,5.",
+    "Passe à la pratique pour les appliquer sur la route."
+   ]
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Pendant ton temps de réaction, la voiture…",
+   "explication": "Elle continue à avancer : pendant environ une seconde, ton pied va de l’accélérateur au frein, et la voiture roule encore."
+  },
+  {
+   "q": "À 50 km/h sur sol sec, ma distance d’arrêt est d’environ :",
+   "explication": "25 m : ta vitesse sans le zéro, au carré, donc 5 × 5. C’est 15 m pour réagir, plus 10 m pour freiner."
+  },
+  {
+   "q": "À 70 km/h sur sol sec, distance d'arrêt ?",
+   "explication": "49 m : ta vitesse sans le zéro, au carré, donc 7 × 7. Attention, 21 m, c’est seulement la distance de réaction."
+  },
+  {
+   "q": "La distance d'arrêt, c'est :",
+   "explication": "Réaction plus freinage : la distance d’arrêt, c’est la distance parcourue pendant ton temps de réaction, plus la distance de freinage."
+  },
+  {
+   "q": "À 110 km/h sur sol sec, ma distance d’arrêt est d’environ :",
+   "explication": "121 m : ta vitesse sans le zéro, au carré, donc 11 × 11. Attention, 33 m, c’est seulement la distance de réaction."
+  },
+  {
+   "q": "À 90 km/h, pendant mon temps de réaction (1 s), je parcours environ :",
+   "explication": "27 m : ta vitesse sans le zéro, fois 3, donc 9 × 3. Tu les parcours avant même de commencer à freiner."
+  }
+ ],
+ "notes": "Voix : situation d’abord (l’obstacle, le pied qui lâche l’accélérateur), les mots de la fiche et de la pratique dits dans la voix (temps de réaction, distance de réaction, distance de freinage), le crocodile pour sentir une seconde puis deux, et le pourquoi des deux secondes et du sol mouillé. Carte de l’écran 5 : « la voiture de devant », comme la voix. Explications : la réponse d’abord, puis le calcul. Doute à vérifier (repris d’Inès) : deux traits font environ 100 mètres, bien plus que deux secondes ; le cours ne dit pas lequel des deux repères est le minimum légal, j’ai gardé les deux tels quels."
+}

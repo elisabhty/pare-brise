@@ -1,0 +1,187 @@
+{
+ "cours": "intemperies",
+ "resume": "Pluie, brouillard, vent, neige et verglas : vitesses, distances, aquaplaning et équipements d’hiver.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Le ciel se couvre pendant ton trajet.",
+    "Des nuages sombres, puis la pluie sur le pare-brise.",
+    "Cours numéro 16 : la météo.",
+    "Elle change tes vitesses maximales, et surtout tes distances."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "La pluie tombe, la route brille : ta distance d’arrêt s’allonge.",
+    "Les pneus accrochent moins : compte environ une fois et demie la distance sur sol sec.",
+    "Les premières gouttes après une période sèche sont les pires.",
+    "Mêlées à la poussière et à l’huile, elles rendent la route savonneuse.",
+    "Et tes vitesses baissent : 110 sur autoroute, 100 sur chaussées séparées, 80 sur les routes à 90.",
+    "Chaussées séparées : un muret ou une glissière entre les deux sens."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Regarde : une couche d’eau sépare tes pneus de la route, c’est l’aquaplaning.",
+    "Tes roues ne touchent plus la route : le volant devient léger.",
+    "Ne freine pas, ne donne pas de coup de volant : lâche doucement l’accélérateur.",
+    "Tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Le brouillard s’épaissit : la visibilité tombe sous 50 mètres.",
+    "Alors c’est 50 kilomètres heure maximum, même sur autoroute, même si un panneau indique plus.",
+    "Ton repère sur autoroute : la ligne au bord de la bande d’arrêt d’urgence, la voie des pannes.",
+    "Un trait et un espace de cette ligne font environ 50 mètres.",
+    "Sur route : quatre traits et quatre espaces de la ligne du milieu.",
+    "Dans le brouillard : feux de croisement, feux de brouillard, et grandes distances."
+   ]
+  },
+  {
+   "i": 4,
+   "titre": "Rafales de côté",
+   "dire": [
+    "Le vent pousse ta voiture : tiens ton volant à deux mains.",
+    "Les rafales, ces coups de vent soudains, surprennent en sortie de forêt, de tunnel, ou sur un pont.",
+    "Et laisse de la marge aux camions et aux deux-roues : le vent peut les pousser sur le côté."
+   ],
+   "items": [
+    [
+     "Tiens le volant",
+     "À deux mains"
+    ],
+    [
+     "Les rafales",
+     "Sortie de forêt ou de tunnel, pont"
+    ],
+    [
+     "Camions et deux-roues",
+     "Le vent peut les pousser"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Neige sur la route : ta distance de freinage devient plusieurs fois plus longue.",
+    "Sur le verglas, une glace presque invisible : jusqu’à 10 fois plus longue.",
+    "Alors douceur sur l’accélérateur, le volant et le frein.",
+    "Le verglas se forme d’abord sur les ponts et à l’ombre, là où la route refroidit plus vite."
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Tu montes en montagne.",
+    "C’est la loi montagne : du 1er novembre au 31 mars, certaines communes imposent des équipements d’hiver.",
+    "Elles l’annoncent à l’entrée par ce panneau blanc bordé de rouge.",
+    "Ta voiture doit alors avoir des pneus hiver ou quatre saisons, marqués d’une montagne avec un flocon.",
+    "Sinon, des chaînes ou des chaussettes à neige, des housses en tissu pour les pneus, dans le coffre."
+   ],
+   "items": [
+    [
+     "Du 1er novembre au 31 mars",
+     "Dans les communes avec ce panneau"
+    ],
+    [
+     "Pneus hiver ou quatre saisons",
+     "Sinon, chaînes ou chaussettes dans le coffre"
+    ]
+   ]
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : en aquaplaning, ne freine pas.",
+    "Passe à la pratique."
+   ],
+   "stats": [
+    [
+     "1,5",
+     "fois plus de distance d’arrêt sous la pluie"
+    ],
+    [
+     "50",
+     "km/h si la visibilité tombe sous 50 m"
+    ],
+    [
+     "5",
+     "mois d’équipement d’hiver en montagne"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Sous la pluie",
+   "tag": "Distance d’arrêt × 1,5"
+  },
+  {
+   "texte": "Aquaplaning",
+   "tag": "Ne freine pas : lâche l’accélérateur, volant droit"
+  },
+  {
+   "texte": "Visibilité de moins de 50 m",
+   "tag": "50 km/h partout, même si un panneau indique plus"
+  },
+  {
+   "texte": "Chaussée glissante",
+   "tag": "Danger : la route glisse, ralentis",
+   "panneau": "A4"
+  },
+  {
+   "texte": "Loi montagne",
+   "tag": "1er nov. → 31 mars : pneus hiver ou 4 saisons montagne-flocon, sinon chaînes ou chaussettes",
+   "panneau": "B58"
+  },
+  {
+   "texte": "Pluie : 110 · 100 · 80",
+   "tag": "Autoroute · chaussées séparées · routes à 90"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quelle adaptation ?",
+   "explication": "Tu gardes plus d’écart : sous la pluie, ta distance d’arrêt est environ une fois et demie plus longue que sur sol sec."
+  },
+  {
+   "q": "Quel réflexe ?",
+   "explication": "Tu adaptes ta vitesse et ton éclairage : dans le brouillard, feux de croisement, feux de brouillard, et grandes distances."
+  },
+  {
+   "q": "Visibilité inférieure à 50 m. Je roule à 70 km/h :",
+   "explication": "50 km/h au maximum : quand la visibilité tombe sous 50 m, c’est partout, même sur autoroute, même si un panneau indique plus."
+  },
+  {
+   "q": "Sur route enneigée, ma distance de freinage :",
+   "explication": "Beaucoup plus longue : sur neige, plusieurs fois plus longue, et sur verglas, jusqu’à 10 fois. Douceur sur l’accélérateur, le volant et le frein."
+  },
+  {
+   "q": "La voiture semble flotter sur l’eau. Je :",
+   "explication": "C’est l’aquaplaning : tes roues ne touchent plus la route. Ne freine pas : lâche doucement l’accélérateur et tiens le volant droit."
+  },
+  {
+   "q": "Vent fort, tu dépasses un camion. Tu :",
+   "explication": "Volant à deux mains, et de la marge : une rafale peut pousser le camion sur le côté, ou te pousser toi quand tu sors de son abri."
+  },
+  {
+   "q": "Il se met à pleuvoir après plusieurs semaines sans pluie. La route est :",
+   "explication": "Plus glissante : les premières gouttes, mêlées à la poussière et à l’huile, rendent la route savonneuse. Ralentis et garde plus d’écart."
+  },
+  {
+   "q": "Le 15 décembre, dans une commune de montagne signalée, avec des pneus d’été. Il te faut :",
+   "explication": "Des chaînes ou des chaussettes à neige dans le coffre : avec des pneus d’été, c’est obligatoire du 1er novembre au 31 mars dans les communes signalées."
+  },
+  {
+   "q": "Le verglas se forme en premier :",
+   "explication": "Sur les ponts et à l’ombre : là, la route refroidit plus vite, et le verglas se forme d’abord."
+  }
+ ],
+ "notes": "Voix : la situation d’abord, « lève le pied » remplacé par « lâche l’accélérateur » (voix, fiche, Q5), « allure » retiré (Q2), « déportés » remplacé par « pousser sur le côté », « chaussées séparées » expliqué comme au cours 2, « la bande d’arrêt d’urgence » rétabli, « loi montagne » dit dans la voix, « visibilité » partout. Doutes : le choix B de la Q5 dit encore « lève le pied » (mot retiré) ; pluie à 80 « sur les routes à 90 » ici, mais « double sens » dans la fiche du cours 2 ; le cours ne dit pas si les vitesses de pluie valent dès les premières gouttes."
+}

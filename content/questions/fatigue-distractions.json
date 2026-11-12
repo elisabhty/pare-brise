@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Fais une pause d’au moins un quart d’heure toutes les 2 heures de route, même sans fatigue."
+  "explication": "Toutes les 2 heures de route : une pause d’au moins un quart d’heure, même sans fatigue."
  },
  {
   "id": "fd18-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Le café ne remplace pas le sommeil : arrête-toi dans un endroit sûr et dors 15 à 20 minutes."
+  "explication": "T’arrêter dans un endroit sûr et dormir 15 à 20 minutes : le café ne remplace pas le sommeil."
  },
  {
   "id": "fd18-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Téléphone tenu en main au volant : 135 € d’amende et 3 points, même arrêté dans un bouchon."
+  "explication": "135 € d’amende et 3 points, même arrêté à un feu rouge ou dans un bouchon. Avec une autre infraction, les policiers peuvent garder ton permis jusqu’à 72 heures."
  },
  {
   "id": "fd18-4",
@@ -53,7 +53,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Écouteurs, oreillettes, casque : tout ce qui se met sur ou dans l’oreille est interdit au volant (135 € et 3 points)."
+  "explication": "Interdites : écouteurs, oreillettes et casques ont la même sanction que le téléphone tenu en main, 135 € et 3 points. Le kit mains libres reste autorisé."
  },
  {
   "id": "fd18-5",
@@ -68,6 +68,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Ta vitesse sans le zéro, fois 3 : 9 × 3 = 27 m en une seconde, comme au cours 4."
+  "explication": "27 m : ta vitesse sans le zéro, fois 3, donc 9 fois 3. Comme au cours 4."
  }
 ]

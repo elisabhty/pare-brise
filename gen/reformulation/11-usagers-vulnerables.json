@@ -1,0 +1,215 @@
+{
+ "cours": "usagers-vulnerables",
+ "accroche": "les plus fragiles d’abord",
+ "resume": "Céder le passage aux piétons, prévoir les gestes des enfants, et les trois zones lentes : zone 30, zone de rencontre, aire piétonne.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu roules dans une rue commerçante pleine de piétons.",
+    "Cours numéro 11 : les piétons et les enfants.",
+    "Regarde-les : face à une voiture, ils sont sans protection.",
+    "Leur protection, c’est ton attention."
+   ],
+   "eyebrow": "Cours 11 · Usagers"
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Ce piéton est au bord, il regarde vers toi, ou il te fait un signe : il veut traverser.",
+    "Cède-lui le passage, c’est-à-dire laisse-le traverser.",
+    "Pareil pour le piéton qui a déjà commencé à traverser.",
+    "Sur le passage piéton, et aussi en dehors."
+   ],
+   "eyebrow": "La règle",
+   "titre": "Le piéton passe"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu passes devant un piéton qui voulait traverser.",
+    "C’est un refus de priorité : 135 euros, et 6 points retirés.",
+    "Tu perds autant de points qu’en roulant 50 kilomètres heure au-dessus de la limite.",
+    "Au début de ton permis probatoire, tu as seulement 6 points.",
+    "Un seul refus, et tu perds ton permis."
+   ],
+   "eyebrow": "Refus de priorité",
+   "titre": "Le tarif",
+   "items": [
+    [
+     "6",
+     "points",
+     "retirés"
+    ],
+    [
+     "135",
+     "€",
+     "d’amende"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde ces deux triangles.",
+    "Le triangle avec deux enfants annonce une école ou un parc.",
+    "Celui avec un piéton annonce un passage piéton.",
+    "Pourquoi ralentir près des enfants ?",
+    "Un enfant juge mal la vitesse d’une voiture, et il peut surgir, sortir d’un coup, entre deux voitures garées.",
+    "Près d’une école ou d’un parc, ralentis et prépare ton pied au-dessus du frein."
+   ],
+   "eyebrow": "Les enfants",
+   "titre": "Ils peuvent surgir"
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Regarde : un ballon roule sur la route.",
+    "Un enfant risque de courir derrière.",
+    "Lui, il regarde seulement le ballon.",
+    "Freine tout de suite.",
+    "Plus loin, un bus est arrêté.",
+    "Des piétons peuvent surgir devant lui.",
+    "Passe à côté doucement, prêt à freiner."
+   ],
+   "eyebrow": "Anticiper",
+   "titre": "Un ballon, un enfant"
+  },
+  {
+   "i": 5,
+   "dire": [
+    "En ville, trois zones lentes à connaître.",
+    "La zone 30 : 30 kilomètres heure au maximum.",
+    "La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher au milieu de la rue.",
+    "L’aire piétonne : tu y entres seulement si le panneau t’autorise, par exemple « sauf livraisons », parfois à certaines heures.",
+    "Tu roules au pas, à la vitesse d’une personne qui marche.",
+    "Les piétons y sont toujours prioritaires.",
+    "30, 20, puis au pas : plus la rue est aux piétons, plus tu ralentis.",
+    "Regarde : à l’entrée de chaque zone, un panneau te dit où tu entres."
+   ],
+   "eyebrow": "Les zones lentes",
+   "titre": "Trois vitesses",
+   "items": [
+    [
+     "Zone 30",
+     "30 km/h maximum"
+    ],
+    [
+     "Zone de rencontre",
+     "20 km/h, piétons prioritaires, même au milieu"
+    ],
+    [
+     "Aire piétonne",
+     "Au pas, seulement si un panneau t’y autorise"
+    ]
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : le piéton attend au bord, prêt à traverser ?",
+    "Tu t’arrêtes."
+   ],
+   "eyebrow": "Fin du cours 11",
+   "stats": [
+    [
+     "6",
+     "points pour un refus de priorité"
+    ],
+    [
+     "20",
+     "km/h en zone de rencontre"
+    ],
+    [
+     "30",
+     "km/h en zone 30"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Piéton qui traverse ou veut traverser",
+   "tag": "Tu lui cèdes le passage, sur le passage piéton ou en dehors"
+  },
+  {
+   "texte": "Refus de priorité à un piéton",
+   "tag": "135 € et 6 points retirés"
+  },
+  {
+   "texte": "Zone de rencontre",
+   "tag": "20 km/h, piétons prioritaires, même au milieu de la rue",
+   "panneau": "B52"
+  },
+  {
+   "texte": "Zone 30",
+   "tag": "30 km/h maximum",
+   "panneau": "B30"
+  },
+  {
+   "texte": "Permis probatoire",
+   "tag": "6 points au début : un seul refus, et tu perds ton permis"
+  },
+  {
+   "texte": "Aire piétonne",
+   "tag": "Au pas, seulement si le panneau t’autorise",
+   "panneau": "B54"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu lui cèdes le passage. Il est au bord et te fait signe : il veut traverser, donc il passe avant toi."
+  },
+  {
+   "q": "Quel danger anticiper ?",
+   "explication": "Un enfant peut surgir, c’est-à-dire sortir d’un coup. Il court derrière son ballon et regarde seulement le ballon."
+  },
+  {
+   "q": "Ce panneau m’invite à :",
+   "explication": "Deux bonnes réponses : ralentir et te préparer à freiner. Ce triangle avec deux enfants annonce une école ou un parc. Le klaxon ne sert pas à ça."
+  },
+  {
+   "q": "Ce piéton attend au bord du passage. Je :",
+   "explication": "Tu t’arrêtes. Il attend au bord du passage : il veut traverser, alors tu lui cèdes le passage."
+  },
+  {
+   "q": "Un ballon traverse la rue. Je :",
+   "explication": "Tu freines tout de suite. Un ballon annonce souvent un enfant qui court derrière, en regardant seulement son ballon."
+  },
+  {
+   "q": "Ce bus est arrêté. Je :",
+   "explication": "Tu passes doucement, prêt à freiner. Des piétons peuvent surgir devant un bus arrêté."
+  },
+  {
+   "q": "Ce piéton traverse en dehors d’un passage piéton. Je :",
+   "explication": "Tu lui cèdes le passage. Le piéton qui traverse passe avant toi, sur le passage piéton et aussi en dehors."
+  },
+  {
+   "q": "Un piéton attend au bord du trottoir et regarde la route, prêt à traverser. Tu :",
+   "explication": "Tu t’arrêtes. Il est au bord et regarde la route : il veut traverser. Il passe avant toi, même avant d’avoir posé le pied sur la route."
+  },
+  {
+   "q": "Un piéton montre clairement qu’il veut traverser. Tu dois :",
+   "explication": "Lui céder le passage. Le piéton qui traverse, ou qui montre qu’il veut traverser, passe avant toi."
+  },
+  {
+   "q": "Refuser la priorité à un piéton retire :",
+   "explication": "6 points, et 135 € d’amende. C’est autant de points qu’en roulant 50 kilomètres heure au-dessus de la limite."
+  },
+  {
+   "q": "Ce panneau annonce une zone de rencontre. La vitesse y est limitée à :",
+   "explication": "20 km/h. En zone de rencontre, c’est 20 au maximum, et les piétons sont prioritaires, même au milieu de la rue. Le 30, c’est la zone 30."
+  },
+  {
+   "q": "Ce panneau annonce :",
+   "explication": "Un endroit fréquenté par des enfants, comme une école ou un parc. Le passage piéton, c’est le triangle avec un piéton."
+  },
+  {
+   "q": "Un ballon traverse la rue devant toi. Tu :",
+   "explication": "Tu freines tout de suite. Un ballon qui roule annonce souvent un enfant qui court derrière."
+  }
+ ],
+ "notes": "Voix : situation d’abord (le piéton au bord, le ballon, les panneaux), « céder le passage » et « surgir » dits et expliqués car ce sont les mots des réponses de la pratique, « Pas seulement sur le passage piéton » devient « Sur le passage piéton, et aussi en dehors », « Ne pas laisser passer » devient « refus de priorité », un pourquoi pour le ballon (il regarde seulement le ballon), un crochet 30, 20, au pas. Carte de l’écran 5 raccourcie à 8 mots, fiche sans le signe =, piège de l’examen tiré des Q4 et Q8.\nDoutes : aucun sur les règles ; à noter hors règle, le dessin des points part toujours de 12 alors que la voix dit 6 au début du permis probatoire (remarque de Karim)."
+}

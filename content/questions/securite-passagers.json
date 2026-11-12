@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "La ceinture est obligatoire à toutes les places, à l’avant comme à l’arrière."
+  "explication": "À toutes les places, à l’avant comme à l’arrière : en cas de choc, elle retient chacun à sa place."
  },
  {
   "id": "sp22-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Siège bébé dos à la route à l’avant : désactive l’airbag passager, il pourrait blesser gravement le bébé."
+  "explication": "Désactivé : sinon, en se gonflant, l’airbag passager pourrait blesser gravement le bébé."
  },
  {
   "id": "sp22-3",
@@ -40,7 +40,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Moins de 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc."
+  "explication": "10 ans. Sans siège adapté, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc."
  },
  {
   "id": "sp22-4",
@@ -54,6 +54,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Le plus sûr, c’est rien : en cas de choc, tout objet devient un projectile."
+  "explication": "Rien : en cas de choc, tout est projeté, même un objet léger."
  }
 ]

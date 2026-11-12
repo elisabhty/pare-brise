@@ -18,7 +18,7 @@
  "memo": [
   {
    "texte": "Crit’Air",
-   "tag": "De 0 (électrique) à 5 (plus polluant)"
+   "tag": "Six vignettes : de 0, électrique, à 5, la plus polluante"
   },
   {
    "texte": "ZFE, zone à faibles émissions",
@@ -27,7 +27,7 @@
   },
   {
    "texte": "Voiture électrique",
-   "tag": "Silencieuse à basse vitesse"
+   "tag": "Silencieuse à basse vitesse : ralentis pour les piétons"
   },
   {
    "texte": "Freinage régénératif",
@@ -41,7 +41,7 @@
    "eyebrow": "Cours 29 · Environnement",
    "titre": "Électrique, Crit’Air, ZFE",
    "sous": "les nouvelles règles de la ville",
-   "dire": "Une voiture électrique traverse une zone urbaine. Cours numéro 29 : la voiture électrique et les zones à faibles émissions.",
+   "dire": "En voiture électrique, tu traverses la ville : regarde, une borne de recharge. Cours numéro 29 : la vignette Crit’Air, les zones à faibles émissions et la voiture électrique.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -110,7 +110,7 @@
      "Plus le chiffre est grand, plus elle pollue"
     ]
    ],
-   "dire": "Il y a six vignettes Crit’Air, de 0 à 5. 0, la verte, c’est l’électrique. Puis de 1 à 5 : plus le chiffre est grand, plus la voiture pollue. Tu commandes la vignette sur le seul site officiel, certificat-air.gouv.fr, puis tu la colles sur ton pare-brise.",
+   "dire": "Sur ton pare-brise, la vignette Crit’Air dit combien ta voiture pollue. Six vignettes en tout, de 0 à 5. Le 0, la verte : l’électrique et l’hydrogène. Le 1 : hybrides rechargeables, essence récentes, gaz. Puis 2, 3, 4 et 5 : plus le chiffre est grand, plus la voiture pollue. Commande-la sur le seul site officiel, certificat-air point gouv point fr, et colle-la sur ton pare-brise.",
    "puces": [
     "0",
     "1",
@@ -151,9 +151,9 @@
     ]
    },
    "sync": [
-    1.0,
-    2.09,
-    2.15
+    2.04,
+    3.03,
+    4.04
    ],
    "illu": {
     "type": "critair",
@@ -167,7 +167,7 @@
    "titre": "Zones à faibles émissions",
    "items": [
     [
-     "Dans certaines grandes agglomérations",
+     "Dans certaines grandes villes",
      "Accès limité selon la vignette"
     ],
     [
@@ -175,11 +175,11 @@
      "Les plus polluantes sont interdites"
     ],
     [
-     "Règles locales",
+     "Règles de ta ville",
      "Elles changent d’une ville à l’autre"
     ]
    ],
-   "dire": "ZFE, ça veut dire zone à faibles émissions : une zone où les voitures qui polluent trop n’ont pas le droit de rouler. Pour y circuler, ta voiture doit avoir sa vignette Crit’Air, et les plus polluantes sont interdites. Les ZFE existent dans certaines grandes villes, et leurs règles peuvent changer : vérifie celles de ta ville. À l’entrée, ce panneau blanc bordé de rouge, avec le mot « zone », te prévient : les vignettes autorisées sont dessous.",
+   "dire": "Tu roules vers le centre d’une grande ville. À l’entrée, regarde ce panneau blanc bordé de rouge, avec le mot « zone ». Il annonce une ZFE, une zone à faibles émissions. Pour un air plus propre, les voitures qui polluent trop n’ont pas le droit d’y rouler. Pour y circuler, la vignette Crit’Air est obligatoire, et les voitures les plus polluantes sont interdites. Les vignettes autorisées sont indiquées sous le panneau. Il y a des ZFE dans certaines grandes villes. Leurs règles changent d’une ville à l’autre, et elles peuvent évoluer : vérifie celles de ta ville.",
    "decor": {
     "env": "ville",
     "kmh": 28,
@@ -215,9 +215,9 @@
     ]
    },
    "sync": [
-    1.39,
-    1.39,
-    2.49
+    0.67,
+    4.16,
+    7.03
    ],
    "illu": {
     "type": "critair",
@@ -231,7 +231,7 @@
    "ch": 1,
    "eyebrow": "La voiture électrique",
    "titre": "Silencieuse",
-   "dire": "À basse vitesse, une voiture électrique fait très peu de bruit : les piétons ne l’entendent pas arriver. Jusqu’à 20 kilomètres heure environ, elle émet un petit son d’alerte, mais un piéton distrait peut ne pas l’entendre : ralentis et regarde-le.",
+   "dire": "Regarde : un piéton traverse devant toi, sans t’avoir entendu arriver. Pourquoi ? À basse vitesse, ta voiture électrique fait très peu de bruit. Jusqu’à 20 kilomètres heure environ, elle émet un petit son d’alerte. Mais un piéton distrait, avec ses écouteurs, peut ne pas l’entendre : ralentis, et regarde-le.",
    "env": "ville",
    "kmh": 15,
    "camera": "poursuite",
@@ -275,7 +275,7 @@
      "Les km possibles, batterie pleine : moins avec le froid et la vitesse"
     ]
    ],
-   "dire": "Au volant d’une électrique, quand tu lâches l’accélérateur, la voiture ralentit nettement et recharge sa batterie : c’est le freinage régénératif. L’accélération est immédiate : appuie doucement. L’autonomie, c’est le nombre de kilomètres que tu peux faire batterie pleine : elle baisse avec le froid et la vitesse. Avant un long trajet, repère où tu pourras recharger.",
+   "dire": "Tu lâches l’accélérateur, et ta voiture électrique ralentit nettement en rechargeant sa batterie : c’est le freinage régénératif. Tu accélères de nouveau : l’accélération est immédiate, alors appuie doucement. L’autonomie, c’est le nombre de kilomètres que tu peux faire batterie pleine. Elle baisse avec le froid et la vitesse. Avant un long trajet, repère où tu pourras recharger.",
    "decor": {
     "env": "ville",
     "kmh": 40,
@@ -325,7 +325,7 @@
     ]
    },
    "sync": [
-    0.83,
+    0.81,
     1.01,
     2.0
    ],
@@ -367,7 +367,7 @@
      "réflexe : penser aux piétons"
     ]
    ],
-   "dire": "Cours terminé. À retenir : six vignettes, de 0 à 5. Et en électrique, pense aux piétons : ils ne t’entendent pas arriver. Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions.",
+   "dire": "Cours terminé. À retenir : six vignettes Crit’Air, de 0 à 5. Et en électrique, pense aux piétons : ils peuvent ne pas t’entendre arriver. Passe à la pratique pour revoir Crit’Air, les ZFE et la voiture électrique.",
    "decor": {
     "env": "ville",
     "kmh": 30,

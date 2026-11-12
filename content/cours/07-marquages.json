@@ -60,7 +60,7 @@
    "eyebrow": "Cours 7 · Circulation",
    "titre": "Les marquages au sol",
    "sous": "les lignes parlent",
-   "dire": "Cours numéro 7 : les marquages au sol. Une ligne blanche, ce n’est pas de la décoration : c’est une règle.",
+   "dire": "Devant toi, des lignes peintes sur la route. Regarde cette ligne blanche : pas une décoration, une règle. Cours numéro 7 : les marquages au sol.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -123,7 +123,7 @@
    "ch": 0,
    "eyebrow": "Ligne continue",
    "titre": "On ne la franchit pas",
-   "dire": "Une ligne continue, tu ne passes pas dessus : ni avec toute la voiture, ni avec une seule roue. Elle est souvent là où tu ne vois pas loin : un virage, le haut d’une montée. Seule exception : tu peux rouler dessus avec les roues de gauche pour dépasser un vélo ou une trottinette, si c’est sans danger.",
+   "dire": "Une ligne continue : tu ne passes pas dessus, ni avec toute la voiture, ni avec une seule roue. Elle est souvent là où tu vois mal devant : un virage, le haut d’une montée. Une voiture peut arriver en face, cachée par le virage. Seule exception : un vélo ou une trottinette devant toi. Pour le dépasser, tu peux rouler dessus avec les roues de gauche, si c’est sans danger.",
    "env": "route",
    "kmh": 50,
    "camera": "poursuite",
@@ -148,7 +148,7 @@
    "ch": 0,
    "eyebrow": "Ligne discontinue",
    "titre": "On peut la franchir",
-   "dire": "La ligne discontinue a des traits courts et de grands espaces. Tu peux la franchir pour dépasser ou tourner à gauche, si c’est sans danger. Parfois, une continue et une discontinue sont collées : c’est une ligne mixte. Regarde celle de ton côté : discontinue, tu peux passer ; continue, c’est interdit.",
+   "dire": "Regarde : cette ligne discontinue a des traits courts et de grands espaces. Tu peux la franchir pour dépasser ou tourner à gauche, si c’est sans danger. Parfois, une continue et une discontinue sont collées : c’est une ligne mixte. Regarde celle de ton côté, la plus proche de toi. Discontinue : tu peux passer. Continue : c’est interdit. Retiens : c’est ton côté qui décide.",
    "env": "route",
    "kmh": 50,
    "camera": "poursuite",
@@ -173,7 +173,7 @@
    "ch": 0,
    "eyebrow": "Ligne d’annonce",
    "titre": "Attention, ça va changer",
-   "dire": "Quand les traits s’allongent et que les intervalles raccourcissent, c’est une ligne d’annonce. Elle prévient qu’une ligne continue arrive : ne commence pas de dépassement. Tu as déjà commencé à doubler ? Termine vite si tu as la place, sinon reviens derrière.",
+   "dire": "Regarde : les traits s’allongent et les espaces raccourcissent, c’est une ligne d’annonce. Elle te prévient : une ligne continue arrive. Pas de nouveau dépassement : tu restes derrière. Tu as déjà commencé à dépasser ? Termine vite si tu as la place, sinon reviens derrière.",
    "env": "route",
    "kmh": 50,
    "camera": "haut",
@@ -205,7 +205,7 @@
     ],
     [
      "Zébras",
-     "Zone interdite à la circulation et au stationnement"
+     "Interdit d’y rouler et de s’y garer"
     ],
     [
      "Ligne jaune continue",
@@ -216,7 +216,7 @@
      "Stationnement interdit"
     ]
    ],
-   "dire": "Des flèches penchées au sol ? Ce sont des flèches de rabattement : reviens à droite. Une ligne continue arrive, ou la voie où tu roules va s’arrêter. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Ligne jaune continue au bord du trottoir : ni arrêt, ni stationnement. Ligne jaune en pointillés : tu peux t’arrêter un instant, mais pas te garer.",
+   "dire": "Devant toi, des flèches penchées au sol ? Ce sont des flèches de rabattement : reviens à droite. Une ligne continue arrive, ou la voie où tu roules va s’arrêter. Les zébras, ces hachures blanches, protègent une zone : interdit d’y rouler et de s’y garer. Ligne jaune continue au bord du trottoir : ni arrêt, ni stationnement. Ligne jaune discontinue, en pointillés : tu peux t’arrêter un instant, mais pas te garer.",
    "decor": {
     "env": "route",
     "kmh": 20,
@@ -320,9 +320,9 @@
    },
    "sync": [
     1.19,
-    3.03,
+    3.01,
     4.14,
-    4.77
+    5.1
    ]
   },
   {
@@ -344,7 +344,7 @@
      "règle : on lit son côté"
     ]
    ],
-   "dire": "Cours terminé. Les lignes, c’est la base des dépassements : passe à la pratique, puis enchaîne avec le cours suivant.",
+   "dire": "Cours terminé. Le piège de l’examen : sur une ligne mixte, lis ton côté. Les lignes préparent les dépassements : passe à la pratique, puis au cours suivant.",
    "decor": {
     "env": "route",
     "kmh": 50,

@@ -4,7 +4,7 @@
  "theme": "vehicule",
  "titre": "S’installer et quitter son véhicule",
  "accroche": "avant même de démarrer",
- "resume": "Réglages du siège, de l’appui-tête et des rétroviseurs, démarrage en sécurité et sortie du véhicule.",
+ "resume": "Régler ton siège, ton appui-tête, tes rétroviseurs et ta ceinture, puis partir et quitter ta voiture en sécurité.",
  "affiche": [
   "C1a"
  ],
@@ -18,19 +18,19 @@
  "memo": [
   {
    "texte": "Appui-tête",
-   "tag": "Le haut au niveau du haut du crâne"
+   "tag": "Son haut au niveau du haut du crâne"
   },
   {
    "texte": "Siège",
-   "tag": "Pédale de gauche au fond, jambe légèrement fléchie"
+   "tag": "Pédale de gauche à fond, jambe légèrement fléchie"
   },
   {
    "texte": "Avant de partir",
-   "tag": "Rétroviseur, clignotant, angle mort"
+   "tag": "Rétros, clignotant, angle mort"
   },
   {
    "texte": "En quittant",
-   "tag": "Frein de parking, vitesse engagée, rétro et angle mort avant d’ouvrir"
+   "tag": "Frein serré, vitesse engagée, moteur coupé, rétroviseur et angle mort avant d’ouvrir"
   }
  ],
  "scenes": [
@@ -40,7 +40,7 @@
    "eyebrow": "Cours 21 · Véhicule",
    "titre": "S’installer et quitter",
    "sous": "avant même de démarrer",
-   "dire": "Tu t’installes dans une voiture pour la première fois. Cours numéro 21 : s’installer. Une bonne position, c’est plus de contrôle et moins de blessures en cas de choc.",
+   "dire": "Au volant, tout est réglé pour quelqu’un d’autre. Cours numéro 21 : s’installer, et quitter ta voiture. Regarde ce siège : une bonne position, c’est plus de contrôle et moins de blessures en cas de choc.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -82,7 +82,7 @@
    "items": [
     [
      "Le siège",
-     "Pédale de gauche au fond, jambe un peu pliée"
+     "Pédale de gauche à fond, jambe légèrement fléchie"
     ],
     [
      "Le dossier",
@@ -101,7 +101,7 @@
      "À plat, sur l’épaule et le bassin"
     ]
    ],
-   "dire": "D’abord le siège : pédale de gauche enfoncée à fond, ou le frein en boîte automatique, ta jambe reste légèrement fléchie. Puis le dossier : dos collé, bras tendus, tes poignets touchent le haut du volant. Mains sur le volant, tes bras sont alors légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs : sur les côtés, un petit bout de ta carrosserie ; au milieu, toute la lunette arrière. Et la ceinture, bien à plat, sur l’épaule et le bassin.",
+   "dire": "Tu règles cinq choses, dans l’ordre. D’abord le siège : enfonce la pédale de gauche à fond, ou le frein en boîte automatique. Ta jambe reste légèrement fléchie, pour garder de la force sur la pédale. Puis le dossier : dos collé, bras tendus, tes poignets touchent le haut du volant. Mains sur le volant, tes bras sont alors légèrement pliés. L’appui-tête : son haut au niveau du haut de ton crâne, pour protéger ta nuque. Puis les rétroviseurs, une fois ta position réglée : sur les côtés, un petit bout de ta carrosserie. Au milieu, toute la vitre arrière. Et la ceinture, bien à plat, sur l’épaule et le bassin.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -132,11 +132,11 @@
     ]
    },
    "sync": [
-    0.06,
-    1.07,
-    3.01,
-    4.01,
-    5.08
+    1.09,
+    3.07,
+    5.0,
+    6.06,
+    8.08
    ],
    "illu": {
     "type": "siege",
@@ -147,8 +147,8 @@
    "type": "situation",
    "ch": 1,
    "eyebrow": "Avant de partir",
-   "titre": "Regarder autour",
-   "dire": "Avant de démarrer : rétroviseurs, clignotant, coup d’œil dans l’angle mort, puis tu t’insères sans gêner ceux qui arrivent.",
+   "titre": "Rétros, clignotant, angle mort",
+   "dire": "Tu quittes ta place : rétros, clignotant, puis tourne la tête vers l’angle mort, invisible dans tes rétros. Insère-toi sans gêner ceux qui arrivent.",
    "env": "ville",
    "kmh": 0,
    "camera": "drone",
@@ -208,7 +208,7 @@
    "type": "liste",
    "ch": 1,
    "eyebrow": "En quittant",
-   "titre": "Immobiliser",
+   "titre": "Bien quitter ta voiture",
    "items": [
     [
      "Frein de parking",
@@ -227,7 +227,7 @@
      "Rétroviseur et angle mort avant d’ouvrir"
     ]
    ],
-   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. En pente : la première en montée, la marche arrière en descente ; en boîte automatique, le levier sur P. Et avant d’ouvrir : rétroviseur, puis coup d’œil dans l’angle mort. Un cycliste peut arriver.",
+   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé et clé ou badge avec toi. En pente, pour retenir la voiture : première en montée, marche arrière en descente, ou P en boîte automatique. Avant d’ouvrir ta portière : rétroviseur, puis coup d’œil dans l’angle mort. Regarde : un cycliste arrive. Si tu ouvres sans regarder, il tombe.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -264,10 +264,10 @@
     ]
    },
    "sync": [
-    0.27,
-    0.61,
-    0.81,
-    2.01
+    0.2,
+    0.46,
+    0.62,
+    2.21
    ],
    "illu": {
     "type": "icones",
@@ -305,14 +305,14 @@
    "stats": [
     [
      "5",
-     "réglages"
+     "réglages pour t’installer"
     ],
     [
      "4",
-     "gestes en quittant"
+     "gestes pour quitter ta voiture"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier tes réglages.",
+   "dire": "Cours terminé. Retiens : 5 réglages pour t’installer, 4 gestes pour quitter ta voiture.",
    "decor": {
     "env": "ville",
     "kmh": 25,

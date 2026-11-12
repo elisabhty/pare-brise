@@ -4,7 +4,7 @@
  "theme": "circulation",
  "titre": "Changer de direction et de voie",
  "accroche": "préparer chaque manœuvre sans surprise",
- "resume": "Contrôles, clignotants, angles morts, changements de file et virages.",
+ "resume": "Les 4 étapes, toujours dans le même ordre, pour tourner et changer de voie : rétros, clignotant, angle mort, puis y aller.",
  "chapitres": [
   "Les 4 étapes",
   "Tourner en sécurité"
@@ -19,7 +19,7 @@
  ],
  "memo": [
   {
-   "texte": "Rétroviseur du milieu, puis du côté où tu vas",
+   "texte": "Rétro du milieu, puis côté où tu vas",
    "tag": "1 · les rétros"
   },
   {
@@ -43,7 +43,7 @@
    "titre": "Changer de direction et de voie",
    "sous": "préparer chaque manœuvre sans surprise",
    "vitesse": 40,
-   "dire": "Tu roules en ville. À la prochaine intersection, tu dois tourner. Avant de tourner, il y a 4 étapes, toujours dans le même ordre. Les rétros, le clignotant, l’angle mort, puis tu y vas si c’est libre.",
+   "dire": "Tu roules en ville. Au prochain carrefour, tu vas tourner à droite. Avant de tourner, il y a 4 étapes, toujours dans le même ordre. Les rétros, le clignotant, l’angle mort, puis tu y vas seulement si c’est libre. C’est pareil pour changer de voie.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -143,7 +143,7 @@
      "d"
     ]
    ],
-   "dire": "Étape 1, les rétros : regarde le rétroviseur du milieu, qu’on appelle le rétroviseur intérieur. Puis celui du côté où tu vas. Tu vas à droite ? Le rétro du milieu, puis le rétro droit. Un deux-roues peut se rapprocher sans être encore à ta hauteur.",
+   "dire": "Étape 1, les rétros : regarde le rétroviseur du milieu, qu’on appelle le rétroviseur intérieur. Puis celui du côté où tu vas. Tu vas à droite ? Le rétro du milieu, puis le rétro droit. Regarde : un deux-roues arrive derrière toi, à ta droite, plus vite que toi. Les rétros te le montrent avant qu’il soit à ta hauteur.",
    "ch": 0
   },
   {
@@ -203,13 +203,13 @@
      null
     ]
    ],
-   "dire": "Étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer. Il prévient les autres, mais ne les oblige jamais à te laisser passer. Attends un espace suffisant avant de te décaler.",
+   "dire": "Étape 3, l’angle mort : la zone en rouge, à côté de toi, que tes rétros ne montrent pas. Ton rétro semble libre, mais une voiture est là. Ton geste : tourne vite la tête vers ton épaule, du côté où tu vas. Un coup d’œil, puis regarde de nouveau devant toi.",
    "ch": 0
   },
   {
    "type": "situation",
    "eyebrow": "Étape 3 · l’angle mort",
-   "titre": "L’angle mort : la zone invisible",
+   "titre": "Une information, pas une priorité",
    "env": "autoroute",
    "kmh": 90,
    "camera": "drone",
@@ -257,7 +257,7 @@
      null
     ]
    ],
-   "dire": "Étape 3, l’angle mort : même si le rétroviseur semble libre, un véhicule peut se trouver à côté de toi. Tourne vite la tête vers ton épaule, du côté où tu vas, puis regarde de nouveau devant toi.",
+   "dire": "Étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer. Regarde : la voiture de gauche garde sa voie. Ton clignotant la prévient : c’est une information, pas une priorité. Attends un espace suffisant avant de te décaler.",
    "ch": 0,
    "aides": [
     {
@@ -274,7 +274,7 @@
   {
    "type": "situation",
    "eyebrow": "Étape 4 · y aller",
-   "titre": "Changer de file en douceur",
+   "titre": "Changer de voie en douceur",
    "env": "autoroute",
    "kmh": 100,
    "camera": "drone",
@@ -305,7 +305,7 @@
      null
     ]
    ],
-   "dire": "Étape 4 : quand c’est libre, décale-toi doucement : on dit aussi te déporter. Changer de file, c’est la même chose que changer de voie. Garde tes distances devant et derrière. Une fois dans ta nouvelle voie, éteins le clignotant.",
+   "dire": "Étape 4 : seulement si c’est libre, tu y vas. Décale-toi doucement, pour que les autres te voient venir. Garde tes distances, devant et derrière. Une fois dans ta nouvelle voie, éteins le clignotant. Changer de file, c’est la même chose que changer de voie.",
    "ch": 0
   },
   {
@@ -352,7 +352,7 @@
      30
     ]
    ],
-   "dire": "Avant de tourner à droite, fais tes 4 étapes, et regarde aussi le trottoir et la piste cyclable. Un cycliste ou un piéton peut poursuivre tout droit pendant que tu tournes. Il va tout droit : il passe avant toi. Attends qu’il soit passé pour tourner.",
+   "dire": "Tu vas tourner à droite : fais tes 4 étapes, et regarde aussi le trottoir et la piste cyclable. Ce cycliste, à ta droite, va tout droit pendant que tu tournes. Toi, tu coupes sa route : il passe avant toi. Attends qu’il soit passé pour tourner. Pareil pour un piéton qui va tout droit.",
    "ch": 1,
    "aides": [
     {
@@ -369,7 +369,7 @@
   {
    "type": "situation",
    "eyebrow": "Tourner à gauche",
-   "titre": "Tourner à gauche : surveiller la circulation opposée",
+   "titre": "Tourner à gauche : ceux d’en face d’abord",
    "env": "route",
    "kmh": 40,
    "camera": "drone",
@@ -412,7 +412,7 @@
      43
     ]
    ],
-   "dire": "Pour tourner à gauche, ralentis et serre à gauche de ta voie, près du milieu de la route. Ceux d’en face qui vont tout droit passent avant toi : attends qu’ils soient passés, puis tourne.",
+   "dire": "Tu vas tourner à gauche : ralentis, et serre à gauche de ta voie, près du milieu de la route. Regarde en face : ces voitures vont tout droit, et toi, tu vas couper leur route. Elles passent avant toi : attends qu’elles soient passées, puis tourne.",
    "ch": 1,
    "aides": [
     {
@@ -472,7 +472,7 @@
      "coup d’œil à l’angle mort"
     ]
    ],
-   "dire": "Avant chaque changement de direction ou de voie : les rétros, le clignotant, l’angle mort, puis tu y vas seulement si c’est libre. Passe à la pratique pour t’entraîner en situation.",
+   "dire": "Tourner ou changer de voie : les rétros, le clignotant, l’angle mort, puis tu y vas seulement si c’est libre. Passe à la pratique pour t’entraîner en situation. Le piège de l’examen : ton clignotant est une information, pas une priorité.",
    "ch": 1,
    "decor": {
     "env": "autoroute",

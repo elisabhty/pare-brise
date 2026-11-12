@@ -1,0 +1,140 @@
+{
+ "cours": "securite-passagers",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Regarde : un enfant et un adulte vont monter dans ta voiture.",
+    "Cours numéro 22 : la sécurité de tes passagers.",
+    "Leur sécurité dépend de toi."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tes passagers s’installent : la ceinture est obligatoire à toutes les places.",
+    "En cas de choc, elle retient chacun à sa place.",
+    "Si toi, tu ne la boucles pas : 135 euros et 3 points.",
+    "Un passager adulte non attaché paie lui-même son amende.",
+    "Un passager de moins de 18 ans n’est pas attaché ?",
+    "C’est toi qui paies les 135 euros, sans perte de points."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu installes un enfant à bord.",
+    "Tant qu’il a moins de 10 ans : siège auto ou rehausseur, adapté à sa taille et à son poids.",
+    "Sans ce siège, la ceinture adulte lui passerait sur le cou et le ventre.",
+    "Un bébé voyage dos à la route : c’est obligatoire jusqu’à 15 mois avec un siège récent i-Size.",
+    "Et c’est conseillé le plus longtemps possible.",
+    "Avec un siège plus ancien, suis la limite de poids de sa notice.",
+    "Tout enfant de moins de 10 ans voyage à l’arrière, sauf exceptions.",
+    "Les exceptions : pas de places arrière, ou elles sont déjà prises par d’autres enfants de moins de 10 ans.",
+    "Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé.",
+    "En se gonflant, il pourrait blesser gravement le bébé."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Ton coffre est plein : les objets lourds en bas, bien calés.",
+    "Le plus sûr : rien sur la plage arrière, sous la vitre, car en cas de choc, tout est projeté.",
+    "Regarde : un coffre de toit fait consommer plus, et le vent a plus de prise sur ta voiture.",
+    "Un animal voyage avec toi ?",
+    "Le plus sûr : attaché ou en cage.",
+    "S’il te gêne pour conduire, c’est une infraction : 35 euros.",
+    "Et garde ta vue, tes feux et ta plaque bien dégagés."
+   ],
+   "items": [
+    [
+     "Objets lourds",
+     "En bas, dans le coffre, calés"
+    ],
+    [
+     "Plage arrière",
+     "Le plus sûr : vide"
+    ],
+    [
+     "Coffre de toit",
+     "Plus de consommation, plus de prise au vent"
+    ],
+    [
+     "Animaux",
+     "Le plus sûr : attachés · s’ils gênent : 35 €"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "Moins de 10 ans : siège adapté.",
+    "3 points si toi, tu n’es pas attaché."
+   ],
+   "stats": [
+    [
+     "10",
+     "ans : en dessous, siège adapté"
+    ],
+    [
+     "3",
+     "points si toi, tu n’es pas attaché"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Ceinture",
+   "tag": "Obligatoire à toutes les places"
+  },
+  {
+   "texte": "Enfant de moins de 10 ans",
+   "tag": "Siège auto ou rehausseur, à l’arrière sauf exceptions"
+  },
+  {
+   "texte": "Siège bébé à l’avant",
+   "tag": "Dos à la route, airbag passager désactivé"
+  },
+  {
+   "texte": "Ceinture non bouclée",
+   "tag": "Toi : 135 € et 3 points · moins de 18 ans : 135 € pour toi, sans points"
+  },
+  {
+   "texte": "Bébé dos à la route",
+   "tag": "Obligatoire jusqu’à 15 mois en siège i-Size, conseillé ensuite"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Tu risques :",
+   "explication": "Une amende de 35 €, sans retrait de points : un animal qui te gêne pour conduire, c’est une infraction. Le plus sûr : attaché ou en cage."
+  },
+  {
+   "q": "Que vérifier ?",
+   "explication": "Bien arrimées, c’est-à-dire bien calées, et sans gêner ta vue. Garde aussi tes feux et ta plaque bien dégagés."
+  },
+  {
+   "q": "Ton passager de 15 ans n’a pas mis sa ceinture. Qui est sanctionné ?",
+   "explication": "Toi, le conducteur : pour un passager de moins de 18 ans, c’est toi qui paies les 135 €, sans perte de points."
+  },
+  {
+   "q": "La ceinture est obligatoire :",
+   "explication": "À toutes les places, à l’avant comme à l’arrière : en cas de choc, elle retient chacun à sa place."
+  },
+  {
+   "q": "Un siège bébé dos à la route est installé à l’avant. L’airbag passager doit être :",
+   "explication": "Désactivé : sinon, en se gonflant, l’airbag passager pourrait blesser gravement le bébé."
+  },
+  {
+   "q": "Un siège auto ou un rehausseur adapté est obligatoire tant que l’enfant a moins de :",
+   "explication": "10 ans. Sans siège adapté, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc."
+  },
+  {
+   "q": "Sur la plage arrière, le plus sûr est de poser :",
+   "explication": "Rien : en cas de choc, tout est projeté, même un objet léger."
+  }
+ ],
+ "notes": "Situation d’abord (passagers qui s’installent, enfant à bord, coffre plein, « Un animal voyage avec toi ? ») et un « pourquoi » par règle (la ceinture retient, ceinture adulte sur le cou et le ventre, airbag qui se gonfle, tout est projeté) ; les trois exceptions de la place arrière sont regroupées après « sauf exceptions » ; « plage arrière » et « prise au vent » expliquées ; chargement dit à la forme positive ; la Q6 ne dit plus « avant, la ceinture ». Doute : il me semble que la loi parle de places arrière prises par d’autres enfants de moins de 10 ans, ou inutilisables ; le cours dit seulement « d’autres enfants » (à vérifier)."
+}

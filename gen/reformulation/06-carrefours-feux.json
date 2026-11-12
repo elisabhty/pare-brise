@@ -1,0 +1,130 @@
+{
+ "cours": "carrefours-feux",
+ "resume": "L’ordre de priorité entre agent, feux et panneaux, le feu orange, le feu clignotant, les ronds-points et les sas vélo.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu arrives dans un quartier animé : voitures, vélos et piétons se croisent.",
+    "Cours numéro 6 : les carrefours.",
+    "Qui commande, comment lire un feu, et comment entrer dans un rond-point sans hésiter."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Au carrefour, qui commande ?",
+    "Retiens cet ordre, du plus fort au plus faible.",
+    "D’abord l’agent de circulation : il commande en premier, même s’il contredit un feu.",
+    "Bras levé : tout le monde s’arrête.",
+    "De face ou de dos : tu t’arrêtes.",
+    "De profil : tu passes.",
+    "Ensuite viennent les feux, puis les panneaux et le marquage au sol.",
+    "Et sans rien du tout, c’est la règle générale : la priorité à droite."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Ce triangle avec trois feux t’annonce des feux, souvent là où tu ne les attends pas.",
+    "Regarde : le feu passe à l’orange, le rouge arrive.",
+    "L’orange fixe impose l’arrêt : tu lâches l’accélérateur et tu freines.",
+    "La seule exception : tu es si près qu’il faudrait freiner très fort.",
+    "Dans ce cas, tu continues, prudemment."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Le feu est rouge : tu t’arrêtes toujours, avant la ligne blanche au sol.",
+    "Passer au rouge coûte 4 points et 135 euros d’amende.",
+    "Avec un permis définitif, tu as 12 points : il t’en resterait 8.",
+    "Au début du permis probatoire, tu as seulement 6 points : il t’en resterait 2.",
+    "Pourquoi ?",
+    "Les autres ont le vert : ils passent devant toi."
+   ],
+   "items": [
+    [
+     "0",
+     "",
+     "tolérance : tu t’arrêtes avant la ligne blanche"
+    ],
+    [
+     "4",
+     "points",
+     "retirés si tu passes au rouge"
+    ],
+    [
+     "135",
+     "€",
+     "d’amende"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Un feu orange qui clignote ne donne aucune priorité : suis le panneau placé sous le feu.",
+    "Sans panneau, c’est la priorité à droite.",
+    "Une flèche verte t’autorise à aller dans la direction de la flèche.",
+    "Feu rouge, et sous le feu, un petit panneau avec un vélo et une flèche ?",
+    "Les cyclistes peuvent passer au rouge dans le sens de la flèche.",
+    "Toi, tu restes arrêté.",
+    "Devant certains feux, une case avec un vélo peint au sol est réservée aux cyclistes : le sas vélo.",
+    "Toi, tu t’arrêtes à la première ligne, avant cette case.",
+    "Et au vert, un piéton déjà sur le passage finit de traverser avant toi."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Ce triangle avec trois flèches en cercle annonce un carrefour giratoire : un rond-point.",
+    "À l’entrée, tu trouves un cédez-le-passage.",
+    "Tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche.",
+    "Ton réflexe à l’entrée ?",
+    "Un regard à gauche."
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Pour une sortie proche, la première ou tout droit, reste sur la voie de droite.",
+    "Pour une sortie plus lointaine, tu peux prendre la voie de gauche, puis te rapprocher de la droite.",
+    "Dans tous les cas, mets ton clignotant à droite juste après la sortie qui précède la tienne.",
+    "Pourquoi ?",
+    "Ceux qui attendent à ta sortie savent alors que tu sors, et peuvent entrer."
+   ]
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : les gestes de l’agent passent avant les feux.",
+    "Passe à la pratique."
+   ]
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Que fais-tu ?",
+   "explication": "T’arrêter : l’orange fixe impose l’arrêt. La seule exception : tu es si près qu’il faudrait freiner très fort."
+  },
+  {
+   "q": "Ce panneau triangulaire m’annonce :",
+   "explication": "Des feux tricolores : ce triangle avec trois feux les annonce, souvent hors des villes, là où tu ne les attends pas."
+  },
+  {
+   "q": "Le feu orange clignote. Qui passe en premier ?",
+   "explication": "La voiture de droite : l’orange clignotant signale un danger, sans donner de priorité. Sans panneau, c’est la priorité à droite."
+  },
+  {
+   "q": "Le feu passe à l’orange, tu es très près de la ligne. Tu…",
+   "explication": "Tu continues prudemment : tu es si près qu’il faudrait freiner très fort. C’est la seule exception à l’arrêt à l’orange."
+  },
+  {
+   "q": "Un feu orange clignote. Tu as la priorité ?",
+   "explication": "Non : l’orange clignotant signale un danger. Suis le panneau placé sous le feu ; sans panneau, c’est la priorité à droite."
+  }
+ ],
+ "notes": "Voix : rond-point partout au lieu de giratoire (sauf l’annonce « carrefour giratoire : un rond-point », reprise par la Q3), situation d’abord, « Regarde » quand le feu change à l’image, un geste concret à l’orange, le pourquoi du feu rouge et du clignotant de sortie. Écran 4 : l’orange clignotant coupé en deux phrases et le piéton au vert placé en dernier, pour que la phrase 3 parle toujours du petit panneau vélo calé sur l’image. Carte du feu rouge : « forfaitaire » retiré, tutoiement ; alerte acceptée sur sa ligne « 0 » (la voix ne dit pas zéro, mais la ligne s’affiche bien sur « tu t’arrêtes… avant la ligne blanche », comme avec l’ancienne voix). Doute à vérifier : « bras levé, tout le monde s’arrête » ; le code prévoit, je crois, la même exception qu’à l’orange pour qui ne peut plus s’arrêter sans danger. Et « au rouge, tu t’arrêtes toujours » côtoie « l’agent passe avant les feux » : les deux sont vrais, mais l’élève piégée par les QCM peut buter sur « toujours »."
+}

@@ -12,7 +12,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Une amende de 4e classe : 135 € en forfaitaire, 90 € si tu paies dans les 15 jours, 375 € si tu paies trop tard."
+  "explication": "135 € pour une amende de 4e classe. Elle baisse à 90 € si tu paies dans les 15 jours, et monte à 375 € après 45 jours."
  },
  {
   "id": "i27-2",
@@ -27,7 +27,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Pour plusieurs infractions commises en même temps, tu perds 8 points au maximum."
+  "explication": "8 points au maximum, même si tu commets plusieurs infractions en même temps."
  },
  {
   "id": "i27-3",
@@ -42,7 +42,7 @@
   "bonnes": [
    1
   ],
-  "explication": "25 km/h d’excès retenu : c’est la tranche de 20 à 29 km/h, soit 2 points et 135 € d’amende."
+  "explication": "2 points. Un excès retenu de 25 km/h est dans la tranche de 20 à 29 : 2 points et 135 € d’amende."
  },
  {
   "id": "i27-4",
@@ -56,6 +56,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Ne pas boucler ta ceinture quand tu conduis : 135 € et 3 points."
+  "explication": "3 points, et 135 € d’amende. Boucle ta ceinture avant de démarrer, à chaque trajet."
  }
 ]

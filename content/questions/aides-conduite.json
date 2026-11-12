@@ -25,7 +25,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Il ajuste la vitesse pour garder une distance."
+  "explication": "La vitesse et la distance : il maintient ta vitesse, et garde en plus la distance avec la voiture de devant."
  },
  {
   "id": "ac24-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Par brouillard, les caméras et les capteurs voient mal : les aides peuvent être moins fiables, voire se couper."
+  "explication": "Elles peuvent être moins fiables : par brouillard, les caméras et les radars voient mal."
  },
  {
   "id": "ac24-4",
@@ -53,6 +53,6 @@
   "bonnes": [
    1
   ],
-  "explication": "C’est toi qui conduis : tu réponds des infractions et de l’accident, même avec une aide activée."
+  "explication": "Le conducteur : c’est toi qui conduis, tu réponds des infractions et de l’accident, même avec une aide activée."
  }
 ]

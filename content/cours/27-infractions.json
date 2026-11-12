@@ -4,7 +4,7 @@
  "theme": "notions",
  "titre": "Infractions et sanctions",
  "accroche": "ce que coûte chaque écart",
- "resume": "Les classes d’amendes, les retraits de points les plus courants et les délits.",
+ "resume": "Les amendes et leurs classes, les retraits de points, les délits, la suspension et l’annulation.",
  "affiche": [
   "B14:50",
   "AB4"
@@ -22,7 +22,7 @@
    "tag": "135 €"
   },
   {
-   "texte": "Feu rouge, stop",
+   "texte": "Feu rouge, stop grillé",
    "tag": "4 points"
   },
   {
@@ -35,23 +35,23 @@
   },
   {
    "texte": "Alcool de 0,5 à 0,8 g/L",
-   "tag": "135 € et 6 points · dès 0,2 g/L en probatoire"
+   "tag": "135 € et 6 points · dès 0,2 g/L en permis probatoire"
   },
   {
    "texte": "50 km/h de trop ou plus",
    "tag": "Délit, 6 points"
   },
   {
-   "texte": "Plusieurs infractions d’un coup",
+   "texte": "Plusieurs infractions en même temps",
    "tag": "8 points au maximum"
   },
   {
    "texte": "Suspension",
-   "tag": "Ton permis t’est retiré pour un temps"
+   "tag": "Ton permis t’est retiré pour un temps, puis rendu"
   },
   {
    "texte": "Annulation",
-   "tag": "À repasser : le nouveau est probatoire, 6 points"
+   "tag": "À repasser : le nouveau est un permis probatoire, 6 points"
   }
  ],
  "scenes": [
@@ -61,7 +61,7 @@
    "eyebrow": "Cours 27 · Notions",
    "titre": "Infractions et sanctions",
    "sous": "ce que coûte chaque écart",
-   "dire": "Cours numéro 27 : les sanctions. Pas pour faire peur : pour comprendre ce qui est grave.",
+   "dire": "Regarde, au bord de la route : un radar. Cours numéro 27 : les sanctions. Pas pour faire peur : pour comprendre ce qui est grave.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -115,7 +115,7 @@
      "4e classe"
     ]
    ],
-   "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Tu paies vite, elle baisse ; tu tardes, elle monte. Exemple, une amende à 135 euros : 90 si tu paies dans les 15 jours, 375 si tu paies après 45 jours.",
+   "dire": "Tu reçois une amende forfaitaire, c’est-à-dire à prix fixe. Les amendes sont rangées en classes : plus la classe est haute, plus c’est cher. Les plus courantes : 35 euros en deuxième classe, 68 en troisième, 135 en quatrième. Tu paies vite, elle baisse ; tu tardes, elle monte. Exemple, une amende de 135 euros. Payée dans les 15 jours, elle baisse à 90. Payée après 45 jours, elle monte à 375.",
    "vitesse": 50,
    "decor": {
     "env": "ville",
@@ -152,9 +152,9 @@
     ]
    },
    "sync": [
-    0.34,
-    0.62,
-    0.79
+    2.22,
+    2.57,
+    2.77
    ]
   },
   {
@@ -180,7 +180,7 @@
      "6 points"
     ]
    ],
-   "dire": "Les retraits les plus fréquents. 3 points : la ceinture, ou le téléphone tenu en main. 4 points : un feu rouge ou un stop grillé. 6 points : refuser le passage à un piéton, ou 50 kilomètres heure de trop. Plusieurs infractions en même temps ? Tu perds 8 points au maximum.",
+   "dire": "Feu rouge devant toi : tu t’arrêtes. Voici les retraits de points les plus fréquents. 3 points : rouler sans ceinture, ou le téléphone tenu en main. 4 points : un feu rouge ou un stop grillé, c’est-à-dire passé sans t’arrêter. 6 points : refuser la priorité à un piéton, ou 50 kilomètres heure de trop, ou plus. Plusieurs infractions en même temps ? Tu perds 8 points au maximum.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -220,10 +220,10 @@
     ]
    },
    "sync": [
-    1.23,
-    2.4,
-    3.44,
-    3.59
+    2.34,
+    3.2,
+    4.23,
+    4.53
    ],
    "illu": {
     "type": "bareme",
@@ -255,7 +255,7 @@
   {
    "type": "chiffres",
    "ch": 1,
-   "eyebrow": "Les excès de vitesse",
+   "eyebrow": "Vitesse, alcool et délits",
    "titre": "Selon l’écart",
    "items": [
     [
@@ -279,7 +279,7 @@
      "de 40 à 49"
     ]
    ],
-   "dire": "Pour la vitesse : moins de 5 kilomètres heure de trop, une amende, mais aucun point. 1 point de 5 à 19, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. À partir de 40 de trop, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures. Puis le préfet peut le suspendre jusqu’à 6 mois. À 50 de trop ou plus : 6 points, et c’est désormais un délit, plus grave qu’une amende : tribunal, et prison possible. Les autres délits à connaître : l’alcool à 0,8 gramme ou plus, les stupéfiants, rouler sans assurance. Entre 0,5 et 0,8 gramme par litre de sang, ou dès 0,2 en probatoire : 135 euros et 6 points.",
+   "dire": "Tu passes devant le radar, un peu trop vite. Pour la vitesse : moins de 5 kilomètres heure de trop, une amende, mais aucun point. 1 point de 5 à 19, 2 points de 20 à 29. 3 points de 30 à 39, 4 points de 40 à 49. À partir de 40 de trop, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures. Puis le préfet, qui représente l’État, peut le suspendre : jusqu’à 6 mois sans conduire. À 50 de trop ou plus : 6 points, et c’est maintenant un délit. C’est plus grave qu’une amende : tribunal, et prison possible. Et l’alcool ? Entre 0,5 et 0,8 gramme par litre de sang : 135 euros et 6 points. Avec un permis probatoire, celui des premières années, c’est la même sanction dès 0,2 gramme. À 0,8 gramme ou plus, c’est un délit. Autres délits à connaître : les stupéfiants, c’est-à-dire les drogues, et rouler sans assurance.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -315,22 +315,13 @@
     ]
    },
    "sync": [
-    1.0,
-    1.2,
-    1.46,
-    1.72
+    2.0,
+    2.46,
+    3.0,
+    3.48
    ],
    "illu": {
     "type": "compteur",
-    "suit": true,
-    "e": [
-     0,
-     1,
-     1,
-     1,
-     1,
-     3
-    ],
     "segments": [
      [
       "< 5",
@@ -362,6 +353,14 @@
       "−6",
       "#E5141F"
      ]
+    ],
+    "etapes": [
+     1.0,
+     2.0,
+     2.5,
+     3.0,
+     3.5,
+     6.0
     ]
    }
   },
@@ -373,7 +372,7 @@
    "stats": [
     [
      "135",
-     "€ : 4e classe"
+     "€ : amende de 4e classe"
     ],
     [
      "6",
@@ -381,10 +380,10 @@
     ],
     [
      "8",
-     "points au maximum d’un coup"
+     "points au maximum pour des infractions en même temps"
     ]
    ],
-   "dire": "Cours terminé. Retiens deux mots. Une suspension : ton permis t’est retiré pour un temps. Une annulation : tu dois le repasser, et le nouveau est probatoire, avec 6 points. Passe à la pratique pour connaître le prix de chaque infraction.",
+   "dire": "Cours terminé. Retiens deux mots. Une suspension : ton permis t’est retiré pour un temps, puis on te le rend. Une annulation : tu dois le repasser, et le nouveau est un permis probatoire, avec 6 points. Passe à la pratique pour connaître le prix de chaque infraction.",
    "decor": {
     "env": "route",
     "kmh": 80,

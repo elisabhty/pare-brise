@@ -3,8 +3,8 @@
  "ordre": 20,
  "theme": "conducteur",
  "titre": "Le permis à points",
- "accroche": "un capital à protéger",
- "resume": "Permis à 17 ans, période probatoire, capital de points, récupération et stages.",
+ "accroche": "tes points, à garder et à gagner",
+ "resume": "Le permis dès 17 ans, la période probatoire, et tes points : comment ils montent, se perdent et reviennent.",
  "affiche": [
   "A14"
  ],
@@ -18,23 +18,23 @@
  "memo": [
   {
    "texte": "Permis B",
-   "tag": "Dès 17 ans"
+   "tag": "Dès 17 ans, depuis 2024"
   },
   {
-   "texte": "Probatoire",
-   "tag": "6 points au départ, 3 ans (2 ans en conduite accompagnée)"
+   "texte": "Période probatoire",
+   "tag": "6 points au départ · 3 ans, ou 2 après la conduite accompagnée"
   },
   {
-   "texte": "Capital complet",
-   "tag": "12 points"
+   "texte": "Après la probatoire",
+   "tag": "12 points, si tu roules sans perdre de point"
   },
   {
    "texte": "Stage de sensibilisation",
-   "tag": "Jusqu’à +4 points, sans dépasser ton maximum, un par an · obligatoire si −3 en probatoire"
+   "tag": "Jusqu’à 4 points, obligatoire en probatoire dès 3 points perdus d’un coup"
   },
   {
    "texte": "Zéro point",
-   "tag": "Permis plus valable : à repasser"
+   "tag": "Pour tout conducteur, permis plus valable : à repasser"
   },
   {
    "texte": "Mes points permis",
@@ -42,7 +42,7 @@
   },
   {
    "texte": "Bonus probatoire",
-   "tag": "Une seule infraction avec retrait de points les arrête jusqu’à la fin"
+   "tag": "Une seule infraction qui retire des points les arrête jusqu’à la fin"
   }
  ],
  "scenes": [
@@ -52,7 +52,7 @@
    "eyebrow": "Cours 20 · Conducteur",
    "titre": "Le permis à points",
    "sous": "un capital à protéger",
-   "dire": "Tu viens d’obtenir ton permis. Cours numéro 20 : le permis à points. Tu commences avec six points. À toi de les garder.",
+   "dire": "Tu viens d’obtenir ton permis et tu roules en ville. Cours numéro 20 : le permis à points. Tu commences avec six points. Ton défi : les garder.",
    "vitesse": 50,
    "decor": {
     "env": "ville",
@@ -111,7 +111,7 @@
     [
      "17",
      "ans",
-     "âge minimum pour le permis B"
+     "âge minimum pour le permis B, depuis 2024"
     ],
     [
      "6",
@@ -124,7 +124,7 @@
      "au bout de la période probatoire"
     ]
    ],
-   "dire": "Depuis 2024, on peut passer le permis B dès 17 ans. Tu démarres avec un capital de 6 points, qui monte à 12 au bout de la période probatoire, si tu ne perds aucun point.",
+   "dire": "Ton nouveau permis est en poche. Depuis 2024, le permis B se passe dès 17 ans. Au départ, tu as 6 points. Ils montent à 12 au bout de ta période probatoire, tes années de permis à l’essai. Condition : rouler sans perdre de point.",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -148,9 +148,9 @@
     ]
    },
    "sync": [
-    0.83,
-    1.23,
-    1.42
+    1.81,
+    2.62,
+    3.14
    ],
    "illu": {
     "type": "points",
@@ -190,7 +190,7 @@
      "Probatoire de 3 ans : +2 points par an"
     ]
    ],
-   "dire": "Si tu as fait la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an. Sinon, elle dure 3 ans : plus 2 points par an. Toujours à condition de ne commettre aucune infraction qui retire des points. Une seule infraction qui en retire, et les bonus s’arrêtent jusqu’à la fin de la période probatoire. Une infraction sans retrait de points, elle, ne les bloque pas.",
+   "dire": "Chaque anniversaire de ton permis peut t’apporter des points. Après la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an. Après une formation classique, elle dure 3 ans : plus 2 points par an. Dans les deux cas, tes points arrivent à 12. Tu reçois ces bonus seulement si tu roules sans perdre de point. Une seule infraction qui retire des points, et les bonus s’arrêtent jusqu’à la fin de la période probatoire. Une infraction sans retrait de points ? Les bonus continuent.",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -214,8 +214,8 @@
     ]
    },
    "sync": [
-    0.15,
-    0.5
+    1.07,
+    2.11
    ],
    "illu": {
     "type": "frise",
@@ -274,7 +274,7 @@
    "items": [
     [
      "Alcool",
-     "0,2 g/L de sang, autant dire zéro verre"
+     "0,2 g/L de sang : zéro verre"
     ],
     [
      "Vitesses réduites",
@@ -285,7 +285,7 @@
      "Obligatoire, à l’arrière"
     ]
    ],
-   "dire": "Pendant la période probatoire : alcool limité à 0,2 gramme par litre de sang, autant dire aucun verre. Vitesses réduites : 110 sur autoroute, 100 sur les routes à chaussées séparées, et 80 sur les routes à double sens, même celles à 90. Et le disque « A » à l’arrière, obligatoire pendant toute la période probatoire. À zéro point, ton permis n’est plus valable : tu dois le repasser. Avec 6 points, une seule infraction qui en retire 6, comme un refus de priorité à un piéton, suffit.",
+   "dire": "Ta période probatoire ajoute des règles. L’alcool est limité à 0,2 gramme par litre de sang. Un seul verre peut suffire à dépasser cette limite : pour toi, c’est zéro verre. Les vitesses sont réduites : 110 sur autoroute. 100 sur les routes à chaussées séparées, avec un muret ou une glissière au milieu. 80 sur les routes à double sens, même celles à 90. Regarde : le disque « A » à l’arrière, obligatoire pendant toute ta période probatoire. Pour tout conducteur, à zéro point, le permis n’est plus valable : il faut le repasser. Avec 6 points, une seule infraction qui en retire 6 suffit, comme un refus de priorité à un piéton.",
    "decor": {
     "env": "route",
     "kmh": 80,
@@ -325,9 +325,9 @@
     ]
    },
    "sync": [
-    0.28,
-    1.0,
-    2.04
+    1.01,
+    3.06,
+    6.12
    ]
   },
   {
@@ -346,10 +346,10 @@
     ],
     [
      "Stage de sensibilisation",
-     "+4 points, une fois par an au maximum"
+     "Jusqu’à 4 points, un par an au plus"
     ]
    ],
-   "dire": "Un seul point perdu revient après six mois sans perdre de point. Sinon, tout ton capital revient après 2 ans sans perdre de point. Il faut 3 ans si ta dernière infraction était un délit, ou punie d’une amende de 135 euros ou plus. Un stage de sensibilisation rend jusqu’à 4 points, sans dépasser ton maximum : un par an au plus. En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. Et ton solde de points se consulte sur le site officiel « Mes points permis ».",
+   "dire": "Tu as perdu un seul point ? Il revient après six mois sans perdre de point. Sinon, ton maximum de points revient après 2 ans sans perdre de point. Il faut 3 ans si l’une de tes infractions était un délit, une infraction grave jugée au tribunal. Pareil si elle était punie d’une amende de 135 euros ou plus. Un stage de sensibilisation, une formation à la sécurité routière, rend jusqu’à 4 points, sans dépasser ton maximum. Tu peux en faire un par an, au plus. En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. Ton solde de points se consulte sur le site officiel « Mes points permis ».",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -366,9 +366,9 @@
     ]
    },
    "sync": [
-    0.56,
-    1.55,
-    3.0
+    1.42,
+    2.58,
+    5.0
    ],
    "illu": {
     "type": "bareme",
@@ -407,14 +407,14 @@
     ],
     [
      "12",
-     "points à terme"
+     "points ensuite, sans perdre de point"
     ],
     [
      "4",
-     "points avec un stage"
+     "points au plus avec un stage"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour compter les points.",
+   "dire": "Cours terminé. Retiens : 6 points au départ, 12 ensuite, et jusqu’à 4 avec un stage.",
    "decor": {
     "env": "route",
     "kmh": 70,

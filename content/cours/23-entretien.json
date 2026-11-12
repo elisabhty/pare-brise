@@ -22,15 +22,15 @@
   },
   {
    "texte": "Pression",
-   "tag": "Pneus froids, chaque mois"
+   "tag": "Une fois par mois, pneus froids, avant de rouler"
   },
   {
-   "texte": "Voyant rouge",
-   "tag": "Arrêt dès que possible, en sécurité"
+   "texte": "Voyant rouge d’alerte",
+   "tag": "Huile, température, freins : arrêt dès que possible, en sécurité"
   },
   {
    "texte": "Voyant orange",
-   "tag": "Faire vérifier rapidement"
+   "tag": "Faire vérifier rapidement, sauf simple témoin"
   }
  ],
  "scenes": [
@@ -40,7 +40,7 @@
    "eyebrow": "Cours 23 · Mécanique",
    "titre": "Entretien et voyants",
    "sous": "une voiture en bon état",
-   "dire": "Avant de partir, tu fais le tour de ta voiture. Cours numéro 23 : l’entretien. Tes pneus sont le seul contact entre la voiture et la route.",
+   "dire": "Avant de partir, tu fais le tour de ta voiture. Cours numéro 23 : l’entretien. Regarde ce pneu : tes pneus sont le seul contact entre ta voiture et la route.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -91,7 +91,7 @@
      "la pression, pneus froids : un conseil"
     ]
    ],
-   "dire": "Les pneus doivent avoir au moins 1,6 millimètre de sculpture. Pour le voir, regarde les témoins d’usure, des petits bourrelets au fond des rainures : s’ils arrivent au niveau du pneu, change-le. Sous 1,6 mm, c’est une infraction : 135 euros, et ta voiture peut être immobilisée. Conseil : vérifie la pression une fois par mois, pneus froids. Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien.",
+   "dire": "Regarde ta roue : ce pneu semble dégonflé. Les sculptures, les creux dessinés dans un pneu, doivent avoir au moins 1,6 millimètre de profondeur. Pour le voir, cherche les témoins d’usure, des petits bourrelets au fond des sculptures. S’ils arrivent au niveau du pneu, change-le. Sous 1,6 millimètre, c’est une infraction : 135 euros, et ta voiture peut être interdite de rouler. Conseil : vérifie la pression une fois par mois, pneus froids, avant de rouler. Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -125,8 +125,8 @@
     }
    },
    "sync": [
-    0.51,
-    3.52
+    1.68,
+    5.4
    ],
    "illu": {
     "type": "pneu",
@@ -153,11 +153,11 @@
      "Toutes les ampoules"
     ],
     [
-     "Balais d’essuie-glace",
-     "Ils ne doivent pas laisser de traces"
+     "Essuie-glaces",
+     "Ils doivent laisser la vitre propre"
     ]
    ],
-   "dire": "Une fois par mois et avant un long trajet : les niveaux d’huile, de liquide de refroidissement, de liquide de frein et de lave-glace. Toutes les ampoules. Et les essuie-glaces. Et si la pédale de frein devient molle, ou si la voiture tire d’un côté en freinant, fais contrôler tes freins sans attendre.",
+   "dire": "Une fois par mois et avant un long trajet, les niveaux : huile, liquide de refroidissement, liquide de frein, lave-glace. Regarde ton éclairage s’allumer : toutes les ampoules doivent marcher, pour voir et être vu. Et les essuie-glaces : ils doivent laisser la vitre propre. Ta pédale de frein devient molle, ou ta voiture tire d’un côté en freinant ? Fais contrôler tes freins sans attendre.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -219,9 +219,9 @@
     ]
    },
    "sync": [
-    0.33,
-    1.52,
-    2.3
+    0.36,
+    1.1,
+    2.09
    ],
    "illu": {
     "type": "niveaux",
@@ -254,7 +254,7 @@
    "type": "liste",
    "ch": 1,
    "eyebrow": "Les voyants",
-   "titre": "Trois couleurs",
+   "titre": "Rouge, orange, vert ou bleu",
    "items": [
     [
      "Rouge",
@@ -262,14 +262,14 @@
     ],
     [
      "Orange",
-     "À faire vérifier vite, sauf simple témoin"
+     "Défaut à faire vérifier vite, sauf simple témoin"
     ],
     [
      "Vert ou bleu",
      "Information : un équipement fonctionne"
     ]
    ],
-   "dire": "Au tableau de bord, trois couleurs. Rouge : une alerte, comme l’huile, la température ou les freins. Arrête-toi dès que possible, en sécurité. Certains rouges sont de simples rappels : ceinture, frein à main, porte ouverte. Orange : une anomalie, à faire vérifier rapidement. Parfois, c’est juste un témoin, comme le feu de brouillard arrière allumé. Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu.",
+   "dire": "Sur ton tableau de bord, un voyant s’allume. Sa couleur te dit quoi faire, comme un feu tricolore. Rouge : une alerte, comme l’huile, la température ou les freins. Arrête-toi dès que possible, en sécurité. Certains rouges sont de simples rappels : ceinture, frein de parking, portière ouverte. Orange : un défaut à faire vérifier rapidement. Parfois, c’est juste un témoin : il te dit qu’un équipement est allumé, comme le feu de brouillard arrière. Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu.",
    "puces": [
     "●",
     "●",
@@ -291,9 +291,9 @@
     ]
    },
    "sync": [
-    1.0,
-    4.0,
-    6.0
+    2.0,
+    5.0,
+    7.0
    ],
    "illu": {
     "type": "voyants",
@@ -312,10 +312,10 @@
     ],
     [
      "ESP",
-     "Corrige une perte de trajectoire"
+     "Remet la voiture dans sa ligne"
     ]
    ],
-   "dire": "L’ABS empêche les roues de se bloquer au freinage : tu gardes la direction. L’ESP corrige la trajectoire quand la voiture commence à glisser. Mais ni l’un ni l’autre ne raccourcit ta distance d’arrêt : garde tes distances.",
+   "dire": "La voiture devant freine : tu freines fort, et l’ABS empêche tes roues de se bloquer. Tu peux encore braquer, c’est-à-dire tourner le volant. L’ESP remet la voiture dans sa ligne quand elle commence à glisser. Mais aucun des deux ne raccourcit ta distance d’arrêt : garde tes distances.",
    "decor": {
     "env": "route",
     "kmh": 60,
@@ -368,8 +368,8 @@
     ]
    },
    "sync": [
-    0.05,
-    1.06
+    0.18,
+    2.06
    ]
   },
   {
@@ -380,14 +380,14 @@
    "stats": [
     [
      "1,6",
-     "mm de sculpture minimum"
+     "mm de sculptures au minimum"
     ],
     [
      "3",
-     "couleurs de voyant"
+     "réflexes selon la couleur du voyant"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier ta voiture.",
+   "dire": "Cours terminé. Le piège de l’examen : l’ABS ne raccourcit pas ta distance d’arrêt.",
    "decor": {
     "env": "ville",
     "kmh": 0,

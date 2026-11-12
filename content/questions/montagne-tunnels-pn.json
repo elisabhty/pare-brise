@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ne t’engage jamais si tu n’es pas sûr de dégager les rails de l’autre côté : tu attends avant.",
+  "explication": "Tu attends avant les rails : engage-toi seulement si tu es sûr de dégager les rails de l’autre côté. Jamais d’arrêt sur les rails.",
   "panneaux": [
    "A7"
   ]
@@ -28,7 +28,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Celui qui descend s’arrête et recule si besoin, sauf si celui qui monte peut se ranger plus facilement : redémarrer en montée est plus difficile."
+  "explication": "Celui qui descend, entre deux véhicules du même type, sauf si c’est bien plus facile pour celui qui monte : redémarrer en montée est plus difficile."
  },
  {
   "id": "mtp17-3",
@@ -42,7 +42,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Dans un tunnel, demi-tour et marche arrière sont toujours interdits ; le dépassement, seulement quand un panneau ou une ligne continue l’interdit."
+  "explication": "Oui : dans un tunnel, dépasser est interdit seulement quand un panneau ou une ligne continue le dit. Demi-tour et marche arrière, eux, sont toujours interdits."
  },
  {
   "id": "mtp17-4",
@@ -56,7 +56,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Avant la descente, passe une vitesse plus basse : le frein moteur retient la voiture. Jamais au point mort : tes freins chaufferaient."
+  "explication": "Le frein moteur : avant la descente, passe une vitesse plus basse. Au point mort, tu freinerais sans arrêt, et tes freins chaufferaient."
  },
  {
   "id": "mtp17-5",
@@ -70,6 +70,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Incendie dans un tunnel : arrête-toi, coupe le moteur et sors à pied par l’issue de secours la plus proche. Jamais de demi-tour."
+  "explication": "Tu arrêtes ta voiture : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche. Jamais de demi-tour."
  }
 ]

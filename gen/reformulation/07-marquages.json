@@ -1,0 +1,105 @@
+{
+ "cours": "marquages",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Devant toi, des lignes peintes sur la route.",
+    "Regarde cette ligne blanche : pas une décoration, une règle.",
+    "Cours numéro 7 : les marquages au sol."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Une ligne continue : tu ne passes pas dessus, ni avec toute la voiture, ni avec une seule roue.",
+    "Elle est souvent là où tu vois mal devant : un virage, le haut d’une montée.",
+    "Une voiture peut arriver en face, cachée par le virage.",
+    "Seule exception : un vélo ou une trottinette devant toi.",
+    "Pour le dépasser, tu peux rouler dessus avec les roues de gauche, si c’est sans danger."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Regarde : cette ligne discontinue a des traits courts et de grands espaces.",
+    "Tu peux la franchir pour dépasser ou tourner à gauche, si c’est sans danger.",
+    "Parfois, une continue et une discontinue sont collées : c’est une ligne mixte.",
+    "Regarde celle de ton côté, la plus proche de toi.",
+    "Discontinue : tu peux passer.",
+    "Continue : c’est interdit.",
+    "Retiens : c’est ton côté qui décide."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde : les traits s’allongent et les espaces raccourcissent, c’est une ligne d’annonce.",
+    "Elle te prévient : une ligne continue arrive.",
+    "Pas de nouveau dépassement : tu restes derrière.",
+    "Tu as déjà commencé à dépasser ?",
+    "Termine vite si tu as la place, sinon reviens derrière."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Devant toi, des flèches penchées au sol ?",
+    "Ce sont des flèches de rabattement : reviens à droite.",
+    "Une ligne continue arrive, ou la voie où tu roules va s’arrêter.",
+    "Les zébras, ces hachures blanches, protègent une zone : interdit d’y rouler et de s’y garer.",
+    "Ligne jaune continue au bord du trottoir : ni arrêt, ni stationnement.",
+    "Ligne jaune discontinue, en pointillés : tu peux t’arrêter un instant, mais pas te garer."
+   ],
+   "items": [
+    [
+     "Flèches de rabattement",
+     "Reviens à droite"
+    ],
+    [
+     "Zébras",
+     "Interdit d’y rouler et de s’y garer"
+    ],
+    [
+     "Ligne jaune continue",
+     "Arrêt et stationnement interdits"
+    ],
+    [
+     "Ligne jaune discontinue",
+     "Stationnement interdit"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : sur une ligne mixte, lis ton côté.",
+    "Les lignes préparent les dépassements : passe à la pratique, puis au cours suivant."
+   ]
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Peux-tu la franchir pour dépasser une voiture ?",
+   "explication": "Non : tu ne passes pas sur une ligne continue pour dépasser une voiture. Attends une ligne discontinue."
+  },
+  {
+   "q": "Qu’annoncent-ils ?",
+   "explication": "Une ligne continue proche : des traits longs et de petits espaces, c’est la ligne d’annonce."
+  },
+  {
+   "q": "Ces hachures blanches au sol, les zébras : je peux rouler dessus ?",
+   "explication": "Non : les zébras interdisent d’y rouler et de s’y garer. Ils protègent une zone, souvent avant une séparation de voies."
+  },
+  {
+   "q": "Des flèches inclinées au milieu de la voie indiquent :",
+   "explication": "De se rabattre : ce sont des flèches de rabattement. Reviens à droite : une ligne continue arrive, ou ta voie va s’arrêter."
+  },
+  {
+   "q": "Sur une ligne mixte, quelle ligne compte pour toi ?",
+   "explication": "Celle de ton côté : sur une ligne mixte, tu lis toujours la ligne la plus proche de toi."
+  }
+ ],
+ "notes": "Voix : la situation d’abord (« Devant toi, des lignes peintes »), « Regarde » quand chaque ligne apparaît à l’image, le pourquoi de la ligne continue (la voiture cachée par le virage), une seule façon de dire dépasser (plus de « doubler »), « ligne jaune discontinue, en pointillés » pour relier la carte et la Q3, et la phrase validée par Inès sur arrêt et stationnement gardée telle quelle. Carte des zébras : les mots de la voix. Explications : la réponse d’abord ; Q8 ne dit plus « reviens dans ta voie ». Doute à vérifier : l’exception de la ligne continue (vélo ou trottinette, roues de gauche, sans danger) ; le texte officiel parle, je crois, de visibilité suffisante, et la liste exacte des engins concernés est à confirmer."
+}

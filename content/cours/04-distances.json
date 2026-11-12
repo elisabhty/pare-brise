@@ -44,7 +44,7 @@
    "titre": "Distances d'arrêt",
    "sous": "voir les mètres sur la route",
    "vitesse": 90,
-   "dire": "Tu roules à vitesse constante. Un obstacle apparaît au loin : il faut comprendre l’espace nécessaire pour s’arrêter. Cours numéro 4 : les distances d'arrêt. Cette fois, on les mesure directement sur la route, devant toi.",
+   "dire": "Tu roules à 50 kilomètres heure, toujours à la même vitesse. Un obstacle apparaît au loin : il te faut de la place pour t’arrêter. Cours numéro 4 : les distances d’arrêt. Combien de mètres ? Ça dépend de ta vitesse : on les mesure sur la route, devant toi.",
    "decor": {
     "env": "route",
     "kmh": 50,
@@ -107,7 +107,7 @@
     ]
    ],
    "puce": "Vitesse sans le zéro × 3",
-   "dire": "Entre le moment où tu vois le danger et celui où ton pied appuie sur le frein, il se passe environ une seconde. Pendant ce temps, la voiture avance encore. Calcul rapide : prends ta vitesse sans le zéro, et fais fois 3. À 50 kilomètres heure, ça fait 15 mètres. Une seconde, c’est quand tu es en forme : fatigue, alcool ou téléphone l’allongent beaucoup."
+   "dire": "Tu vois le danger : ton pied lâche l’accélérateur et va sur le frein. Entre voir et freiner, il se passe environ une seconde : c’est ton temps de réaction. Le temps de dire : un crocodile. Pendant ce temps, la voiture avance encore. Calcul rapide : prends ta vitesse sans le zéro, et fais fois 3. À 50 kilomètres heure : 5 fois 3, 15 mètres, ta distance de réaction. Une seconde, c’est quand tu es en forme : fatigue, alcool ou téléphone l’allongent beaucoup."
   },
   {
    "type": "reperes",
@@ -125,7 +125,7 @@
     ]
    ],
    "puce": "Vitesse sans le zéro, au carré",
-   "dire": "Pour la distance d'arrêt complète sur sol sec, on prend ta vitesse sans le zéro, au carré. À 50 : 5 fois 5, 25 mètres. Ces 25 mètres, c’est 15 mètres pour réagir et 10 pour freiner : la distance d’arrêt, c’est réaction plus freinage."
+   "dire": "L’obstacle approche : tu freines jusqu’à l’arrêt complet. Pour la distance d’arrêt sur sol sec, prends ta vitesse sans le zéro, au carré, c’est-à-dire multipliée par elle-même. À 50 : 5 fois 5, 25 mètres. Dans ces 25 mètres : 15 mètres pour réagir, et 10 pour freiner. La distance d’arrêt, c’est la distance de réaction plus la distance de freinage."
   },
   {
    "type": "reperes",
@@ -143,7 +143,7 @@
     ]
    ],
    "puce": "9 × 9 = 81",
-   "dire": "À 90 : 9 fois 9, 81 mètres. Presque deux fois plus de vitesse, mais plus de trois fois plus de distance."
+   "dire": "Sur route, à 90 : 9 fois 9, 81 mètres. Presque deux fois plus vite qu’à 50, mais plus de trois fois plus de distance. Un peu plus vite, beaucoup plus loin."
   },
   {
    "type": "reperes",
@@ -161,7 +161,7 @@
     ]
    ],
    "puce": "× 1,5",
-   "dire": "Sur sol mouillé, on multiplie la distance d’arrêt par 1,5. À 80, 8 fois 8 font 64 mètres : sous la pluie, environ 96."
+   "dire": "Il pleut : la route mouillée glisse, tes pneus accrochent moins. Sur sol mouillé, multiplie la distance d’arrêt par 1,5. À 80, 8 fois 8 font 64 mètres. Sous la pluie, environ 96 mètres."
   },
   {
    "type": "chiffres",
@@ -173,7 +173,7 @@
     [
      "2",
      "s",
-     "entre toi et le véhicule devant"
+     "d’écart avec la voiture de devant"
     ],
     [
      "2",
@@ -181,7 +181,7 @@
      "ou 2 chevrons au sol, sur autoroute"
     ]
    ],
-   "dire": "Avec le véhicule de devant, garde au moins deux secondes d’écart. Pour compter : quand il passe un poteau, dis « un crocodile, deux crocodiles » : tu dois l’atteindre après. À 110, deux secondes, c’est environ 60 mètres. Sur autoroute, regarde les traits blancs au bord de la bande d’arrêt d’urgence, la voie des pannes. Entre toi et la voiture de devant : au moins deux traits. Deux traits, c’est environ 100 mètres : plus que deux secondes, même à 130. Parfois, des flèches en forme de V sont peintes au milieu de ta voie : ce sont des chevrons. Garde au moins deux chevrons entre toi et la voiture de devant.",
+   "dire": "Sur l’autoroute, tu suis une voiture. Garde au moins 2 secondes d’écart avec la voiture de devant. Si elle freine fort, il te faut déjà une seconde rien que pour réagir. Quand elle passe un poteau, compte avec moi. Un crocodile, deux crocodiles. Tu dois atteindre le poteau après. À 110, 2 secondes, c’est environ 60 mètres. Autre repère : les traits blancs au bord de la bande d’arrêt d’urgence, la voie des pannes. Entre toi et la voiture de devant : au moins 2 traits. Ces 2 traits font environ 100 mètres : plus que 2 secondes, même à 130. Parfois, des flèches en forme de V sont peintes au milieu de ta voie : ce sont des chevrons. Garde au moins 2 chevrons entre toi et la voiture de devant.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -221,8 +221,8 @@
     ]
    },
    "sync": [
-    0.09,
-    3.24
+    1.22,
+    7.18
    ]
   },
   {
@@ -244,7 +244,7 @@
      "sol mouillé"
     ]
    ],
-   "dire": "Cours terminé. Trois calculs à retenir. Passe à la pratique pour les appliquer sur la route.",
+   "dire": "Cours terminé. Trois calculs à retenir : fois 3, au carré, puis fois 1,5. Passe à la pratique pour les appliquer sur la route.",
    "decor": {
     "env": "autoroute",
     "kmh": 90,

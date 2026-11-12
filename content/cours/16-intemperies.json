@@ -4,7 +4,7 @@
  "theme": "route",
  "titre": "Pluie, brouillard, neige",
  "accroche": "adapter sa conduite",
- "resume": "Aquaplaning, distances qui s’allongent, brouillard, verglas, vent et équipements d’hiver.",
+ "resume": "Pluie, brouillard, vent, neige et verglas : vitesses, distances, aquaplaning et équipements d’hiver.",
  "affiche": [
   "A4",
   "B14:50",
@@ -20,25 +20,25 @@
  ],
  "memo": [
   {
-   "texte": "Sol mouillé",
+   "texte": "Sous la pluie",
    "tag": "Distance d’arrêt × 1,5"
   },
   {
    "texte": "Aquaplaning",
-   "tag": "Ne freine pas : lève le pied, volant droit"
+   "tag": "Ne freine pas : lâche l’accélérateur, volant droit"
   },
   {
-   "texte": "Visibilité < 50 m",
-   "tag": "50 km/h, même sans panneau"
+   "texte": "Visibilité de moins de 50 m",
+   "tag": "50 km/h partout, même si un panneau indique plus"
   },
   {
    "texte": "Chaussée glissante",
-   "tag": "Danger",
+   "tag": "Danger : la route glisse, ralentis",
    "panneau": "A4"
   },
   {
    "texte": "Loi montagne",
-   "tag": "1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre",
+   "tag": "1er nov. → 31 mars : pneus hiver ou 4 saisons montagne-flocon, sinon chaînes ou chaussettes",
    "panneau": "B58"
   },
   {
@@ -53,7 +53,7 @@
    "eyebrow": "Cours 16 · Route",
    "titre": "Pluie, brouillard, neige",
    "sous": "adapter sa conduite",
-   "dire": "Le temps change pendant le trajet. Des nuages sombres apparaissent. Cours numéro 16 : la météo. Elle change les vitesses maximales… et surtout les distances.",
+   "dire": "Le ciel se couvre pendant ton trajet. Des nuages sombres, puis la pluie sur le pare-brise. Cours numéro 16 : la météo. Elle change tes vitesses maximales, et surtout tes distances.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -90,7 +90,7 @@
    "ch": 0,
    "eyebrow": "La pluie",
    "titre": "Ça glisse",
-   "dire": "Sous la pluie, ta distance d’arrêt s’allonge : compte environ une fois et demie celle sur sol sec. Les premières gouttes après une période sèche sont les pires : mêlées à la poussière et à l’huile, elles rendent la route savonneuse. Et les vitesses baissent : 110 sur autoroute, 100 sur chaussées séparées, et 80 sur les routes à 90.",
+   "dire": "La pluie tombe, la route brille : ta distance d’arrêt s’allonge. Les pneus accrochent moins : compte environ une fois et demie la distance sur sol sec. Les premières gouttes après une période sèche sont les pires. Mêlées à la poussière et à l’huile, elles rendent la route savonneuse. Et tes vitesses baissent : 110 sur autoroute, 100 sur chaussées séparées, 80 sur les routes à 90. Chaussées séparées : un muret ou une glissière entre les deux sens.",
    "env": "route",
    "meteo": "pluie",
    "kmh": 60,
@@ -142,7 +142,7 @@
      "Jusqu’à ce que les pneus accrochent"
     ]
    ],
-   "dire": "Aquaplaning : une couche d’eau sépare les pneus de la route. La direction devient légère. Ne freine pas, ne donne pas de coup de volant. Lève le pied doucement et tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau.",
+   "dire": "Regarde : une couche d’eau sépare tes pneus de la route, c’est l’aquaplaning. Tes roues ne touchent plus la route : le volant devient léger. Ne freine pas, ne donne pas de coup de volant : lâche doucement l’accélérateur. Tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau.",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -185,9 +185,9 @@
     ]
    },
    "sync": [
-    2.04,
-    3.11,
-    3.24
+    1.03,
+    2.58,
+    3.0
    ]
   },
   {
@@ -195,7 +195,7 @@
    "ch": 1,
    "eyebrow": "Brouillard",
    "titre": "Moins de 50 mètres",
-   "dire": "Quand la visibilité tombe sous 50 mètres, c’est 50 maximum, même sur autoroute, même si un panneau indique plus. Repère sur autoroute : un trait et un espace, au bord de la voie des pannes, font environ 50 mètres. Sur route : quatre traits et quatre espaces de la ligne du milieu. Feux de croisement, feux de brouillard, et grandes distances.",
+   "dire": "Le brouillard s’épaissit : la visibilité tombe sous 50 mètres. Alors c’est 50 kilomètres heure maximum, même sur autoroute, même si un panneau indique plus. Ton repère sur autoroute : la ligne au bord de la bande d’arrêt d’urgence, la voie des pannes. Un trait et un espace de cette ligne font environ 50 mètres. Sur route : quatre traits et quatre espaces de la ligne du milieu. Dans le brouillard : feux de croisement, feux de brouillard, et grandes distances.",
    "env": "route",
    "meteo": "brouillard",
    "kmh": 45,
@@ -209,22 +209,22 @@
    "type": "liste",
    "ch": 1,
    "eyebrow": "Le vent",
-   "titre": "Rafales latérales",
+   "titre": "Rafales de côté",
    "items": [
     [
      "Tiens le volant",
      "À deux mains"
     ],
     [
-     "Attention",
-     "En sortie de forêt, de tunnel, sur un pont"
+     "Les rafales",
+     "Sortie de forêt ou de tunnel, pont"
     ],
     [
      "Camions et deux-roues",
-     "Ils peuvent être déportés"
+     "Le vent peut les pousser"
     ]
    ],
-   "dire": "Par vent fort, tiens ton volant à deux mains. Les rafales surprennent en sortie de forêt, de tunnel ou sur un pont. Et laisse de la marge aux camions et aux deux-roues : ils peuvent être déportés.",
+   "dire": "Le vent pousse ta voiture : tiens ton volant à deux mains. Les rafales, ces coups de vent soudains, surprennent en sortie de forêt, de tunnel, ou sur un pont. Et laisse de la marge aux camions et aux deux-roues : le vent peut les pousser sur le côté.",
    "decor": {
     "env": "route",
     "kmh": 45,
@@ -283,9 +283,9 @@
     ]
    },
    "sync": [
-    0.3,
-    1.36,
-    2.29
+    0.45,
+    1.01,
+    2.26
    ]
   },
   {
@@ -293,7 +293,7 @@
    "ch": 2,
    "eyebrow": "L’hiver",
    "titre": "Neige et verglas",
-   "dire": "Sur neige, la distance de freinage est plusieurs fois plus longue ; sur verglas, jusqu’à 10 fois. Douceur sur l’accélérateur, le volant et le frein. Le verglas se forme d’abord sur les ponts et dans les zones à l’ombre.",
+   "dire": "Neige sur la route : ta distance de freinage devient plusieurs fois plus longue. Sur le verglas, une glace presque invisible : jusqu’à 10 fois plus longue. Alors douceur sur l’accélérateur, le volant et le frein. Le verglas se forme d’abord sur les ponts et à l’ombre, là où la route refroidit plus vite.",
    "env": "route",
    "meteo": "neige",
    "kmh": 40,
@@ -327,14 +327,14 @@
    "items": [
     [
      "Du 1er novembre au 31 mars",
-     "Dans les communes concernées"
+     "Dans les communes avec ce panneau"
     ],
     [
      "Pneus hiver ou quatre saisons",
-     "Ou chaînes ou chaussettes dans le coffre"
+     "Sinon, chaînes ou chaussettes dans le coffre"
     ]
    ],
-   "dire": "Du 1er novembre au 31 mars, certaines communes de montagne imposent des équipements d’hiver. Elles l’annoncent à l’entrée par ce panneau blanc bordé de rouge : ta voiture doit être équipée. Soit des pneus hiver ou quatre saisons, marqués d’une montagne avec un flocon. Soit des chaînes ou des chaussettes à neige dans le coffre.",
+   "dire": "Tu montes en montagne. C’est la loi montagne : du 1er novembre au 31 mars, certaines communes imposent des équipements d’hiver. Elles l’annoncent à l’entrée par ce panneau blanc bordé de rouge. Ta voiture doit alors avoir des pneus hiver ou quatre saisons, marqués d’une montagne avec un flocon. Sinon, des chaînes ou des chaussettes à neige, des housses en tissu pour les pneus, dans le coffre.",
    "decor": {
     "env": "route",
     "kmh": 40,
@@ -360,8 +360,8 @@
     ]
    },
    "sync": [
-    0.05,
-    2.09
+    1.27,
+    3.29
    ],
    "illu": {
     "type": "icones",
@@ -398,18 +398,18 @@
    "stats": [
     [
      "1,5",
-     "× la distance d’arrêt sous la pluie"
+     "fois plus de distance d’arrêt sous la pluie"
     ],
     [
      "50",
-     "km/h si on voit à moins de 50 m"
+     "km/h si la visibilité tombe sous 50 m"
     ],
     [
      "5",
-     "mois d’équipement hiver"
+     "mois d’équipement d’hiver en montagne"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : pluie, brouillard et neige t’attendent.",
+   "dire": "Cours terminé. Le piège de l’examen : en aquaplaning, ne freine pas. Passe à la pratique.",
    "decor": {
     "env": "route",
     "kmh": 60,

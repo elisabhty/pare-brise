@@ -1,0 +1,127 @@
+{
+ "cours": "ecoconduite",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu roules sur une route dégagée, sans bouchon.",
+    "Cours numéro 28 : l’écoconduite, c’est-à-dire conduire en consommant moins.",
+    "La clé : anticiper, prévoir ce qui arrive devant toi.",
+    "Bonne nouvelle : conduire économique, c’est aussi conduire plus sûr."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Feu rouge au loin : anticipe, lâche l’accélérateur tôt plutôt que de freiner tard.",
+    "Garde ta vitesse passée, qu’on appelle un rapport : le moteur retient la voiture et ne consomme presque rien.",
+    "Passe les rapports tôt : vers 2 000 tours en diesel et 2 500 en essence.",
+    "Ton tableau de bord peut aussi te l’indiquer.",
+    "Le feu passe au vert : tu repars sans t’être arrêté, en consommant moins.",
+    "Puis garde une vitesse stable : accélérer puis freiner, ces à-coups consomment.",
+    "Dernier geste : rouler un peu moins vite.",
+    "À 110 au lieu de 130, environ 20 pour cent de carburant en moins."
+   ],
+   "items": [
+    [
+     "Anticiper",
+     "Lâcher l’accélérateur tôt, plutôt que freiner tard"
+    ],
+    [
+     "Passer les rapports tôt",
+     "Vers 2 000 tours en diesel, 2 500 en essence"
+    ],
+    [
+     "Vitesse stable",
+     "Les à-coups consomment"
+    ],
+    [
+     "Rouler un peu moins vite",
+     "La consommation grimpe vite avec la vitesse"
+    ]
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Côté voiture : pneus bien gonflés, et coffre de toit retiré s’il ne sert pas.",
+    "Sous-gonflés, ils te font consommer plus.",
+    "Le coffre de toit aussi : il prend le vent.",
+    "La climatisation fait consommer plus : allume-la quand il fait très chaud, ou pour désembuer les vitres.",
+    "Garé, couper le moteur est obligatoire : sinon, 135 euros d’amende.",
+    "Dans un bouchon qui dure, c’est conseillé : coupe-le aussi."
+   ],
+   "items": [
+    [
+     "Pneus bien gonflés",
+     "Sous-gonflés, ils te font consommer plus"
+    ],
+    [
+     "Coffre de toit retiré",
+     "Il prend le vent : tu consommes plus"
+    ],
+    [
+     "Climatisation",
+     "Quand il fait très chaud, ou pour désembuer"
+    ],
+    [
+     "Moteur coupé",
+     "Garé : obligatoire · bouchon qui dure : conseillé"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Cours terminé.",
+    "4 gestes en roulant, 4 réflexes côté voiture.",
+    "Passe à la pratique."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Anticiper",
+   "tag": "Lâcher l’accélérateur tôt : moins de freinages, moins de consommation"
+  },
+  {
+   "texte": "Rapports",
+   "tag": "Les passer tôt : vers 2 000 tours en diesel, 2 500 en essence"
+  },
+  {
+   "texte": "Pneus sous-gonflés",
+   "tag": "Plus de consommation"
+  },
+  {
+   "texte": "Moteur coupé",
+   "tag": "Garé : obligatoire, sinon 135 € · bouchon qui dure : conseillé"
+  },
+  {
+   "texte": "Rouler un peu moins vite",
+   "tag": "110 au lieu de 130 : environ 20 % de carburant en moins"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quel geste réduit consommation et risque ?",
+   "explication": "Lâcher l’accélérateur tôt, progressivement : tu évites les coups de frein et les accélérations inutiles. Tu consommes moins, et tu risques moins."
+  },
+  {
+   "q": "Quel bénéfice d’une bonne pression ?",
+   "explication": "Sécurité et consommation : des pneus bien gonflés sont plus sûrs, et sous-gonflés, ils te font consommer plus."
+  },
+  {
+   "q": "La climatisation :",
+   "explication": "Elle fait consommer plus : allume-la quand il fait très chaud, ou pour désembuer les vitres, pas en permanence."
+  },
+  {
+   "q": "Pour une conduite économe, on passe les rapports :",
+   "explication": "Tôt, vers 2 000 tours en diesel et 2 500 en essence : un moteur qui tourne moins vite consomme moins."
+  },
+  {
+   "q": "Tu es garé et tu attends quelqu’un. Ton moteur :",
+   "explication": "Il doit être coupé : garé, couper le moteur est obligatoire, sinon 135 euros d’amende."
+  }
+ ],
+ "notes": "« Lève le pied » (mot retiré) devient « lâche l’accélérateur » dans la voix, la carte et la fiche ; à corriger hors de mon champ : le texte dessiné sur le feu et la bonne réponse de la Q1. Vitesse de boîte nommée « rapport », comme la carte et la Q5. Écran 1 : la phrase 4, calée sur le feu vert, dit ce que montre l’image, et « vitesse stable » vient quand la voiture repart. Moteur garé : « obligatoire », « conseillé », comme la carte. Pas de doute sur une règle."
+}

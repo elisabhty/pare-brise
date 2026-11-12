@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Le minimum obligatoire est la responsabilité civile, dite « au tiers » : elle paie les dommages que tu causes aux autres."
+  "explication": "Les dommages causés aux autres : c’est la responsabilité civile, dite au tiers, le minimum obligatoire."
  },
  {
   "id": "pa26-2",
@@ -40,7 +40,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Le compte démarre à la première mise en circulation, écrite sur la carte grise : dans les 6 mois avant ses 4 ans, puis tous les 2 ans."
+  "explication": "Avant ses 4 ans, dans les 6 mois qui précèdent, puis tous les 2 ans : le compte démarre à sa première mise en circulation, pas à ton achat."
  },
  {
   "id": "pa26-4",
@@ -54,6 +54,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Une fois signé, le constat ne se modifie plus : relis tout avant de signer."
+  "explication": "Non. Une fois signé, le constat ne se modifie plus : vérifie bien les cases et le croquis avant de signer."
  }
 ]

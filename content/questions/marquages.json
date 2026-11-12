@@ -25,7 +25,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Les zébras interdisent d’y rouler et de s’y garer : ils protègent une zone, souvent avant une séparation de voies."
+  "explication": "Non : les zébras interdisent d’y rouler et de s’y garer. Ils protègent une zone, souvent avant une séparation de voies."
  },
  {
   "id": "m07-3",
@@ -53,7 +53,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ce sont des flèches de rabattement : reviens dans ta voie, à droite, une ligne continue approche."
+  "explication": "De se rabattre : ce sont des flèches de rabattement. Reviens à droite : une ligne continue arrive, ou ta voie va s’arrêter."
  },
  {
   "id": "m07-5",
@@ -67,6 +67,6 @@
   "bonnes": [
    0
   ],
-  "explication": "On lit toujours la ligne la plus proche de soi."
+  "explication": "Celle de ton côté : sur une ligne mixte, tu lis toujours la ligne la plus proche de toi."
  }
 ]

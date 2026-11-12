@@ -23,19 +23,19 @@
   },
   {
    "texte": "Enfant de moins de 10 ans",
-   "tag": "Siège adapté, à l’arrière sauf exceptions"
+   "tag": "Siège auto ou rehausseur, à l’arrière sauf exceptions"
   },
   {
-   "texte": "Siège dos à la route à l’avant",
-   "tag": "Airbag désactivé"
+   "texte": "Siège bébé à l’avant",
+   "tag": "Dos à la route, airbag passager désactivé"
   },
   {
    "texte": "Ceinture non bouclée",
-   "tag": "Toi : 135 € et 3 points · passager mineur : 135 € pour toi, sans points"
+   "tag": "Toi : 135 € et 3 points · moins de 18 ans : 135 € pour toi, sans points"
   },
   {
    "texte": "Bébé dos à la route",
-   "tag": "Obligatoire jusqu’à 15 mois (siège i-Size)"
+   "tag": "Obligatoire jusqu’à 15 mois en siège i-Size, conseillé ensuite"
   }
  ],
  "scenes": [
@@ -45,7 +45,7 @@
    "eyebrow": "Cours 22 · Sécurité",
    "titre": "Ceinture, enfants, chargement",
    "sous": "protéger chaque passager",
-   "dire": "Des passagers montent à bord, dont un enfant. Cours numéro 22 : la sécurité de tes passagers. Tu en es responsable.",
+   "dire": "Regarde : un enfant et un adulte vont monter dans ta voiture. Cours numéro 22 : la sécurité de tes passagers. Leur sécurité dépend de toi.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -91,7 +91,7 @@
      "si toi, tu n’es pas attaché"
     ]
    ],
-   "dire": "La ceinture est obligatoire à toutes les places. Si toi, tu ne la boucles pas : 135 euros et 3 points. Un passager adulte non attaché paie lui-même son amende. Un passager de moins de 18 ans n’est pas attaché ? C’est toi qui paies les 135 euros, sans perte de points.",
+   "dire": "Tes passagers s’installent : la ceinture est obligatoire à toutes les places. En cas de choc, elle retient chacun à sa place. Si toi, tu ne la boucles pas : 135 euros et 3 points. Un passager adulte non attaché paie lui-même son amende. Un passager de moins de 18 ans n’est pas attaché ? C’est toi qui paies les 135 euros, sans perte de points.",
    "vitesse": 40,
    "decor": {
     "env": "route",
@@ -116,8 +116,8 @@
     ]
    },
    "sync": [
-    1.55,
-    1.8
+    2.55,
+    2.8
    ],
    "illu": {
     "type": "points",
@@ -157,7 +157,7 @@
      "Seulement avec l’airbag passager désactivé"
     ]
    ],
-   "dire": "Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids. Et à l’arrière, sauf exceptions. Un bébé voyage dos à la route : c’est obligatoire jusqu’à 15 mois avec un siège i-Size, et conseillé le plus longtemps possible. Avec un siège plus ancien, suis la limite de poids de sa notice. Les exceptions : la voiture n’a pas de places arrière, ou elles sont déjà prises par d’autres enfants. Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé.",
+   "dire": "Tu installes un enfant à bord. Tant qu’il a moins de 10 ans : siège auto ou rehausseur, adapté à sa taille et à son poids. Sans ce siège, la ceinture adulte lui passerait sur le cou et le ventre. Un bébé voyage dos à la route : c’est obligatoire jusqu’à 15 mois avec un siège récent i-Size. Et c’est conseillé le plus longtemps possible. Avec un siège plus ancien, suis la limite de poids de sa notice. Tout enfant de moins de 10 ans voyage à l’arrière, sauf exceptions. Les exceptions : pas de places arrière, ou elles sont déjà prises par d’autres enfants de moins de 10 ans. Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé. En se gonflant, il pourrait blesser gravement le bébé.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -166,9 +166,9 @@
     "acteurs": []
    },
    "sync": [
-    0.08,
-    2.0,
-    5.27
+    1.11,
+    3.0,
+    8.27
    ],
    "illu": {
     "type": "sieges",
@@ -198,7 +198,7 @@
      "Le plus sûr : attachés · s’ils gênent : 35 €"
     ]
    ],
-   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Le plus sûr : rien sur la plage arrière, car en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Le plus sûr : un animal attaché ou en cage. S’il te gêne pour conduire, c’est une infraction : 35 euros. Et ton chargement ne doit cacher ni ta vue, ni tes feux, ni ta plaque.",
+   "dire": "Ton coffre est plein : les objets lourds en bas, bien calés. Le plus sûr : rien sur la plage arrière, sous la vitre, car en cas de choc, tout est projeté. Regarde : un coffre de toit fait consommer plus, et le vent a plus de prise sur ta voiture. Un animal voyage avec toi ? Le plus sûr : attaché ou en cage. S’il te gêne pour conduire, c’est une infraction : 35 euros. Et garde ta vue, tes feux et ta plaque bien dégagés.",
    "decor": {
     "env": "route",
     "kmh": 60,
@@ -244,10 +244,10 @@
     ]
    },
    "sync": [
-    0.26,
-    1.24,
-    2.02,
-    3.37
+    0.42,
+    1.25,
+    2.11,
+    3.08
    ]
   },
   {
@@ -258,14 +258,14 @@
    "stats": [
     [
      "10",
-     "ans : siège adapté"
+     "ans : en dessous, siège adapté"
     ],
     [
      "3",
      "points si toi, tu n’es pas attaché"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour protéger chaque passager.",
+   "dire": "Cours terminé. Moins de 10 ans : siège adapté. 3 points si toi, tu n’es pas attaché.",
    "decor": {
     "env": "route",
     "kmh": 50,

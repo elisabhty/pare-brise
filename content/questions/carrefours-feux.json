@@ -12,7 +12,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Si l’arrêt ne peut pas se faire sans danger, on continue, prudemment.",
+  "explication": "Tu continues prudemment : tu es si près qu’il faudrait freiner très fort. C’est la seule exception à l’arrêt à l’orange.",
   "panneaux": [
    "A17"
   ]
@@ -29,7 +29,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Le feu orange clignotant signale un danger, il ne donne pas la priorité."
+  "explication": "Non : l’orange clignotant signale un danger. Suis le panneau placé sous le feu ; sans panneau, c’est la priorité à droite."
  },
  {
   "id": "cf06-3",

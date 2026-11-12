@@ -1,0 +1,209 @@
+{
+ "cours": "demarches-conducteur",
+ "resume": "Permis, carte grise, assurance, contrôle technique, et les démarches pour acheter ou vendre.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu viens de récupérer une voiture.",
+    "Avant de prendre la route, regarde ces documents : certains concernent la voiture, d’autres toi, le conducteur.",
+    "Chaque document a ses démarches : on fait le point, avec des exemples simples."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Un contrôle de police, devant toi : tu t’arrêtes.",
+    "Pour conduire une voiture, il te faut le permis de catégorie B.",
+    "Le A, c’est pour les motos, le C pour les camions.",
+    "Ta voiture doit avoir une carte grise : son nom officiel, certificat d’immatriculation.",
+    "Lors d’un contrôle, tu montres ton permis et ta carte grise.",
+    "Ton assurance, la police la vérifie dans un fichier."
+   ],
+   "titre": "Permis et carte grise"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Imagine : tu recules, et tu abîmes une voiture garée.",
+    "Qui paie les dégâts ?",
+    "Ton assurance : ta voiture doit être assurée.",
+    "Le minimum obligatoire s’appelle la responsabilité civile.",
+    "Elle sert à payer les dégâts que tu fais aux autres, comme cette voiture abîmée.",
+    "On l’appelle aussi l’assurance « au tiers ».",
+    "La tous risques, elle, paie aussi tes propres dégâts.",
+    "Sans assurance, la voiture ne doit pas rouler."
+   ],
+   "items": [
+    [
+     "Responsabilité civile",
+     "Le minimum obligatoire"
+    ],
+    [
+     "À quoi elle sert",
+     "Payer les dégâts que tu fais aux autres"
+    ],
+    [
+     "Sans assurance",
+     "La voiture ne doit pas rouler"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Ta voiture a presque 4 ans.",
+    "Le contrôle technique, c’est un centre qui vérifie ta voiture.",
+    "Le premier contrôle se fait dans les 6 mois avant les 4 ans de la voiture.",
+    "On compte depuis sa première mise en circulation, écrite sur la carte grise, pas depuis le jour de l’achat.",
+    "Ensuite, tous les 2 ans.",
+    "Il vérifie les freins, les pneus, les feux et la pollution.",
+    "Il ne remplace pas la révision chez le garagiste."
+   ],
+   "items": [
+    [
+     "Premier contrôle",
+     "Dans les 6 mois avant ses 4 ans"
+    ],
+    [
+     "Ensuite",
+     "Tous les 2 ans"
+    ],
+    [
+     "Ce qu’il vérifie",
+     "Freins, pneus, feux, pollution"
+    ],
+    [
+     "Il ne remplace pas",
+     "La révision chez le garagiste"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cette voiture d’occasion est à vendre.",
+    "Avant l’achat, vérifie la voiture et ses documents.",
+    "Elle a plus de 4 ans ?",
+    "Le vendeur te donne le papier de son dernier contrôle technique.",
+    "Ce papier doit avoir moins de 6 mois.",
+    "Après l’achat, tu as un mois pour l’immatriculer à ton nom, c’est-à-dire mettre la carte grise à ton nom."
+   ],
+   "titre": "Acheter une voiture d’occasion",
+   "items": [
+    [
+     "Avant",
+     "Vérifie la voiture et ses documents"
+    ],
+    [
+     "Plus de 4 ans",
+     "Le papier du contrôle : moins de 6 mois"
+    ],
+    [
+     "Après l’achat",
+     "Un mois pour l’immatriculer à ton nom"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Tu vends ou tu donnes ta voiture ?",
+    "C’est une cession.",
+    "Tu la déclares en ligne, dans les 15 jours : l’État sait alors qu’elle n’est plus à toi.",
+    "Tu donnes à l’acheteur la carte grise barrée, datée et signée.",
+    "Et un papier récent qui prouve que la voiture peut être vendue : le certificat de situation administrative."
+   ],
+   "titre": "Vendre ou donner ta voiture"
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Tu déménages ?",
+    "Change l’adresse de ta carte grise dans le mois.",
+    "Tu achètes ?",
+    "Mets la carte grise à ton nom, dans le mois aussi.",
+    "Tu vends ou tu donnes ?",
+    "Déclare la cession.",
+    "Ces démarches se font en ligne, sur le site officiel de l’État.",
+    "Les délais peuvent changer : vérifie-les là-bas."
+   ],
+   "titre": "Déménager, acheter, vendre : tes démarches",
+   "items": [
+    [
+     "Tu déménages",
+     "Change l’adresse de la carte grise"
+    ],
+    [
+     "Tu achètes",
+     "La carte grise à ton nom"
+    ],
+    [
+     "Tu vends, tu donnes",
+     "Déclare la cession"
+    ],
+    [
+     "En ligne",
+     "Sur le site officiel de l’État"
+    ]
+   ]
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Quatre documents en règle : permis, carte grise, assurance, contrôle technique.",
+    "Si tu vends : 15 jours pour déclarer la cession.",
+    "Tu as vu tout le programme : passe à la pratique, puis place aux examens blancs."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Permis de catégorie B",
+   "tag": "pour conduire une voiture"
+  },
+  {
+   "texte": "Carte grise",
+   "tag": "son nom officiel : certificat d’immatriculation"
+  },
+  {
+   "texte": "Assurance responsabilité civile",
+   "tag": "le minimum obligatoire, dite au tiers"
+  },
+  {
+   "texte": "Vente : déclaration de cession",
+   "tag": "15 jours, en ligne"
+  },
+  {
+   "texte": "Contrôle technique",
+   "tag": "dans les 6 mois avant 4 ans, puis tous les 2 ans"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quelle démarche importante ?",
+   "explication": "Vérifie les documents, puis mets la carte grise à ton nom : tu as un mois pour le faire."
+  },
+  {
+   "q": "Pour conduire une voiture, il faut le permis de catégorie :",
+   "explication": "Le B, pour une voiture. Le A, c’est pour les motos, le C pour les camions."
+  },
+  {
+   "q": "Le premier contrôle technique d’une voiture a lieu :",
+   "explication": "Dans les 6 mois avant ses 4 ans, comptés depuis sa première mise en circulation, écrite sur la carte grise. Ensuite, tous les 2 ans."
+  },
+  {
+   "q": "Je vends ma voiture de 7 ans à un particulier. Le contrôle technique doit dater de moins de :",
+   "explication": "6 mois : c’est l’âge maximum du papier du contrôle technique, pour vendre à un particulier une voiture de plus de 4 ans."
+  },
+  {
+   "q": "J’achète une voiture d’occasion. Pour l’immatriculer à mon nom, j’ai :",
+   "explication": "Un mois pour mettre la carte grise à ton nom, c’est-à-dire le certificat d’immatriculation."
+  },
+  {
+   "q": "Je déménage. Ma carte grise :",
+   "explication": "Elle doit être mise à jour : change l’adresse de ta carte grise dans le mois qui suit ton déménagement."
+  }
+ ],
+ "notes": "Écran 3 : la voix suit l’ordre de la carte. Écran 6 : les intitulés reprennent les mots de la voix (« Tu déménages », « Tu achètes »). Les phrases à deux idées sont coupées, « Imagine : » annonce l’accrochage que l’image ne montre pas, et « immatriculer » est relié à « mettre la carte grise à ton nom ». La Q6 précise que les 6 mois, c’est l’âge du papier. Aucune règle ni aucun chiffre changé."
+}

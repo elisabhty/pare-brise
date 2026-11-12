@@ -4,7 +4,7 @@
  "theme": "secours",
  "titre": "Protéger, alerter, secourir",
  "accroche": "les gestes qui sauvent",
- "resume": "Baliser un accident, donner l’alerte avec les bons numéros et les gestes à faire, ou à ne pas faire.",
+ "resume": "Protéger les lieux d’un accident, alerter avec les bons numéros, et faire les bons gestes de secours.",
  "affiche": [
   "A14"
  ],
@@ -23,7 +23,7 @@
   },
   {
    "texte": "Triangle",
-   "tag": "À au moins 30 m"
+   "tag": "À au moins 30 m, avant le virage ou la côte"
   },
   {
    "texte": "112",
@@ -31,7 +31,7 @@
   },
   {
    "texte": "Motard blessé",
-   "tag": "Ne jamais retirer son casque"
+   "tag": "Laisser toujours son casque en place"
   },
   {
    "texte": "Gilet et triangle",
@@ -49,7 +49,7 @@
    "eyebrow": "Cours 25 · Secours",
    "titre": "Protéger, alerter, secourir",
    "sous": "les gestes qui sauvent",
-   "dire": "Un accident vient de se produire sur une route. La priorité est d’éviter un second accident. Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir. La loi t’oblige à agir, au minimum en alertant les secours : ne rien faire est un délit, la non-assistance à personne en danger.",
+   "dire": "Devant toi, un accident : deux voitures viennent de se percuter. Ta priorité : éviter un second accident, avec les feux de détresse, puis le triangle. Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir. La loi t’oblige à agir, au minimum en alertant les secours. Ne rien faire est un délit, une infraction grave jugée au tribunal : la non-assistance à personne en danger.",
    "vitesse": 30,
    "decor": {
     "env": "route",
@@ -108,8 +108,8 @@
    "type": "situation",
    "ch": 0,
    "eyebrow": "Protéger",
-   "titre": "Éviter le suraccident",
-   "dire": "D’abord, protéger : feux de détresse, et gilet enfilé avant de sortir. Puis le triangle, à au moins 30 mètres, avant le virage ou le haut de la côte. Seulement si tu peux le poser sans danger. Gilet et triangle sont obligatoires à bord : garde le gilet à portée de main. Fais mettre tout le monde à l’abri, loin des voitures, derrière la glissière s’il y en a une. Coupe le contact des voitures accidentées, et pas de cigarette.",
+   "titre": "Éviter un second accident",
+   "dire": "Première étape, protéger : allume tes feux de détresse, et enfile ton gilet avant de sortir. Puis le triangle, à au moins 30 mètres, avant le virage ou le haut de la côte. Ainsi, les autres le voient de loin. Seulement si tu peux le poser sans danger. Gilet et triangle sont obligatoires à bord : garde le gilet à portée de main. Fais mettre tout le monde à l’abri, loin des voitures. Derrière la glissière, la barrière en métal, s’il y en a une. Coupe le contact des voitures accidentées, et pas de cigarette : risque d’incendie.",
    "env": "route",
    "kmh": 0,
    "camera": "drone",
@@ -173,7 +173,7 @@
      "Par SMS, pour les personnes sourdes ou malentendantes"
     ]
    ],
-   "dire": "Ensuite, alerter. Le 112 fonctionne dans toute l’Union européenne, en France aussi : si tu hésites, fais le 112. Le 15 pour le SAMU, le 18 pour les pompiers, le 17 pour la police. Et le 114, par SMS, pour les personnes sourdes ou malentendantes.",
+   "dire": "Deuxième étape, alerter : tu prends ton téléphone. Le 112 fonctionne dans toute l’Union européenne, en France aussi : si tu hésites, fais le 112. Le 15 pour le SAMU, les médecins d’urgence. Le 18 pour les pompiers, le 17 pour la police ou la gendarmerie. Et le 114, par SMS, pour les personnes sourdes ou malentendantes.",
    "puces": [
     "112",
     "15",
@@ -219,10 +219,10 @@
    },
    "sync": [
     1.0,
-    2.02,
-    2.32,
-    2.7,
-    3.06
+    2.04,
+    3.02,
+    3.41,
+    4.06
    ],
    "illu": {
     "type": "telephone",
@@ -274,7 +274,7 @@
      "Fuite, incendie, circulation"
     ]
    ],
-   "dire": "Ton message : le lieu exact, ce qui s’est passé, le nombre de victimes et leur état, et les dangers éventuels. Et ne raccroche que lorsqu’on te le dit.",
+   "dire": "Au téléphone, d’abord où : le lieu exact. Quoi : ce qui s’est passé. Combien : le nombre de victimes et leur état. Les dangers possibles : fuite, incendie, circulation. Raccroche seulement quand on te le dit.",
    "decor": {
     "env": "route",
     "kmh": 0,
@@ -312,10 +312,10 @@
     ]
    },
    "sync": [
-    0.12,
-    0.35,
-    0.44,
-    0.81
+    0.7,
+    1.0,
+    2.0,
+    3.05
    ],
    "illu": {
     "type": "telephone",
@@ -347,11 +347,11 @@
    "titre": "Les bons gestes",
    "items": [
     [
-     "Ne pas déplacer la victime",
+     "Victime laissée en place",
      "Sauf danger immédiat"
     ],
     [
-     "Ne pas retirer le casque",
+     "Casque laissé en place",
      "D’un motard blessé"
     ],
     [
@@ -363,11 +363,11 @@
      "Position latérale de sécurité"
     ],
     [
-     "Ne respire plus",
+     "Respiration arrêtée",
      "Massage cardiaque et défibrillateur"
     ]
    ],
-   "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat : un incendie, ou un risque d’être percutée. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Pour savoir si une victime inconsciente respire, regarde son ventre et sa poitrine se soulever pendant 10 secondes. Si elle respire : position latérale de sécurité, sur le côté, pour qu’elle ne s’étouffe pas. Si elle ne respire plus : appuie fort et vite au centre de sa poitrine, et fais chercher un défibrillateur.",
+   "dire": "Troisième étape, secourir. Laisse une victime où elle est, sauf danger immédiat : un incendie, ou un risque d’être percutée. La bouger peut aggraver ses blessures. Ce motard au sol : laisse toujours son casque en place. Un saignement : appuie fort sur la plaie. Une victime inconsciente, qui ne te répond pas : respire-t-elle ? Regarde son ventre et sa poitrine se soulever, pendant 10 secondes. Si elle respire : position latérale de sécurité, sur le côté, pour éviter qu’elle s’étouffe. Si elle a arrêté de respirer : massage cardiaque, appuie fort et vite au centre de sa poitrine. Et fais chercher un défibrillateur, l’appareil qui peut relancer le cœur.",
    "decor": {
     "env": "route",
     "kmh": 0,
@@ -434,11 +434,11 @@
     ]
    },
    "sync": [
-    1.0,
-    2.05,
-    3.04,
-    5.17,
-    6.07
+    1.08,
+    3.68,
+    4.04,
+    7.17,
+    8.08
    ]
   },
   {
@@ -449,18 +449,18 @@
    "stats": [
     [
      "3",
-     "étapes : P, A, S"
+     "étapes : protéger, alerter, secourir"
     ],
     [
      "30",
-     "m pour le triangle"
+     "m au moins pour le triangle"
     ],
     [
      "112",
      "dans toute l’Union européenne"
     ]
    ],
-   "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo, puis passe à la pratique.",
+   "dire": "Cours terminé : ces gestes peuvent sauver une vie. Protéger, alerter, secourir, le triangle à au moins 30 mètres, et le 112.",
    "decor": {
     "env": "route",
     "kmh": 0,

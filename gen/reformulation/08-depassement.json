@@ -1,0 +1,220 @@
+{
+ "cours": "depassement",
+ "accroche": "Trois vérifications, puis tu doubles",
+ "resume": "Les trois vérifications avant de doubler, les cas interdits, la place à laisser à un vélo, et ce que tu fais quand on te double ou quand tu croises.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Sur cette route à double sens, un véhicule lent roule devant toi.",
+    "Cours numéro 8 : dépasser et croiser.",
+    "Dépasser est la manœuvre la plus risquée : tu roules un moment dans la voie d’en face.",
+    "Tu la commences seulement si toutes les vérifications sont bonnes."
+   ],
+   "eyebrow": "Cours 8 · Circulation"
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Pour doubler ce tracteur, regarde d’abord la route : une ligne discontinue, et aucun panneau d’interdiction.",
+    "Puis en face : personne, et assez de visibilité pour aller au bout.",
+    "Puis derrière : rétros, clignotant, angle mort, la zone que tes rétroviseurs ne montrent pas.",
+    "Tourne la tête pour la voir : personne ne doit déjà te doubler.",
+    "Si les trois vérifications sont bonnes, double rapidement, en restant sous la limite de vitesse.",
+    "Moins tu restes à gauche, moins tu risques.",
+    "Puis reviens à droite sans gêner celui que tu as doublé."
+   ],
+   "eyebrow": "Avant de doubler",
+   "titre": "Trois vérifications, puis tu doubles",
+   "items": [
+    [
+     "La ligne est discontinue",
+     "Et aucun panneau ne l’interdit"
+    ],
+    [
+     "Personne en face",
+     "Et assez de visibilité"
+    ],
+    [
+     "Rétros, clignotant, angle mort",
+     "Personne ne te double déjà"
+    ],
+    [
+     "Puis : doubler rapidement",
+     "Sous la limite, et revenir à droite sans gêner"
+    ]
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Regarde : ligne discontinue et route dégagée, tu peux doubler ce tracteur.",
+    "Mets ton clignotant à gauche, et double rapidement.",
+    "Reviens à droite quand tu vois le tracteur dans le rétroviseur du milieu, en haut du pare-brise.",
+    "Là, tu es assez loin devant lui pour revenir sans le gêner.",
+    "La règle : on dépasse par la gauche.",
+    "Exception : la voiture devant met son clignotant à gauche pour tourner ?",
+    "Tu la dépasses par la droite.",
+    "Le tramway au milieu de la rue se dépasse aussi par la droite."
+   ],
+   "eyebrow": "En pratique",
+   "titre": "Doubler un tracteur"
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde ce panneau rond, avec une voiture rouge et une noire.",
+    "Il interdit de dépasser tous les véhicules à moteur : voitures, camions, bus, tracteurs.",
+    "Tu peux quand même dépasser un vélo, une moto ou un scooter : ils ont seulement deux roues.",
+    "Dépasser est aussi interdit avant un carrefour où tu dois céder le passage.",
+    "Une voiture peut arriver par le côté.",
+    "Et c’est interdit quand tu ne vois pas assez loin : dans un virage ou en haut d’une montée.",
+    "Une voiture cachée peut arriver en face."
+   ],
+   "eyebrow": "Interdit de dépasser",
+   "titre": "Les cas interdits"
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Devant toi, un cycliste roule au bord de la route.",
+    "Dans une agglomération, c’est-à-dire la ville ou le village, laisse-lui au moins un mètre sur le côté.",
+    "Hors agglomération, au moins un mètre cinquante, car tu roules plus vite.",
+    "Rappel du cours 7 : une ligne continue, tu ne roules pas dessus.",
+    "Exception : pour dépasser un vélo ou une trottinette, tes roues de gauche peuvent rouler sur la ligne.",
+    "Seulement si tu vois loin et que personne n’arrive.",
+    "Regarde le triangle au bord de la route, avec un vélo : des cyclistes peuvent arriver par le côté."
+   ],
+   "eyebrow": "Dépasser un vélo",
+   "titre": "Un cycliste devant toi"
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Une voiture te double : interdit d’accélérer.",
+    "Serre-toi à droite pour lui laisser de la place.",
+    "Elle doit pouvoir se rabattre, c’est-à-dire revenir devant toi.",
+    "Reste prêt à ralentir : elle peut revenir devant toi trop tôt.",
+    "Croiser, c’est passer à côté d’une voiture qui vient en face.",
+    "Sur une route étroite, serre-toi à droite et ralentis, pour passer tous les deux."
+   ],
+   "eyebrow": "On te double, tu croises",
+   "titre": "Laisse de la place",
+   "items": [
+    [
+     "Ne pas accélérer",
+     "C’est interdit"
+    ],
+    [
+     "Serrer à droite",
+     "Pour lui laisser de la place"
+    ],
+    [
+     "Rester prêt à ralentir",
+     "Elle peut revenir devant toi trop tôt"
+    ],
+    [
+     "Croiser sur route étroite",
+     "Serre-toi à droite et ralentis"
+    ]
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : la ligne est discontinue, mais le panneau rond interdit de dépasser."
+   ],
+   "eyebrow": "Fin du cours 8",
+   "stats": [
+    [
+     "3",
+     "vérifications, puis doubler rapidement"
+    ],
+    [
+     "1,5",
+     "m pour un vélo hors agglomération"
+    ],
+    [
+     "2",
+     "exceptions : par la droite, roues sur la ligne continue"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Avant de doubler",
+   "tag": "Ligne discontinue · personne en face · personne qui te double déjà"
+  },
+  {
+   "texte": "Interdit de dépasser",
+   "tag": "Voitures, camions, bus, tracteurs · tu peux dépasser vélo, moto, scooter",
+   "panneau": "B3"
+  },
+  {
+   "texte": "Dépasser un vélo",
+   "tag": "1 m en agglomération · 1,50 m hors agglomération"
+  },
+  {
+   "texte": "On te double",
+   "tag": "Interdit d’accélérer · serre-toi à droite"
+  },
+  {
+   "texte": "Triangle avec un vélo",
+   "tag": "Des cyclistes peuvent arriver par le côté",
+   "panneau": "A21"
+  },
+  {
+   "texte": "Croiser",
+   "tag": "Route étroite : serre-toi à droite et ralentis"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quelle décision ?",
+   "explication": "Attendre une zone sûre. Pour doubler, il te faut assez de visibilité pour aller au bout. Ici, tu ne vois pas assez loin."
+  },
+  {
+   "q": "Quel écart latéral minimal respecter ?",
+   "explication": "1,50 m. Hors agglomération, laisse au moins 1,50 m sur le côté, entre le cycliste et ta voiture."
+  },
+  {
+   "q": "Je peux dépasser ce tracteur :",
+   "explication": "Non. Le panneau rond interdit de dépasser les voitures, les camions, les bus et les tracteurs, même avec une ligne discontinue."
+  },
+  {
+   "q": "Je peux dépasser le tracteur maintenant :",
+   "explication": "Non. La ligne est discontinue, mais une voiture arrive en face. Pour doubler, la voie d’en face doit être libre."
+  },
+  {
+   "q": "Une voiture me dépasse. Je :",
+   "explication": "Deux bonnes réponses. Tu n’accélères pas : c’est interdit. Et tu serres à droite pour lui laisser de la place."
+  },
+  {
+   "q": "Un véhicule devant toi tourne à gauche. Par où le dépasses-tu ?",
+   "explication": "Par la droite. Il a mis son clignotant à gauche et s’est décalé pour tourner : c’est l’exception. Le tramway au milieu de la rue se dépasse aussi par la droite."
+  },
+  {
+   "q": "Hors agglomération, l’écart minimal pour dépasser un cycliste est :",
+   "explication": "1,50 m. Hors agglomération, laisse au moins 1,50 m. En agglomération, c’est 1 m."
+  },
+  {
+   "q": "Ce panneau interdit de dépasser :",
+   "explication": "Les voitures, les camions, les bus et les tracteurs. Tu peux quand même dépasser un vélo, une moto ou un scooter : ils ont seulement deux roues."
+  },
+  {
+   "q": "Pour dépasser un cycliste, tes roues peuvent-elles rouler sur une ligne continue ?",
+   "explication": "Oui, tes roues de gauche, si tu vois loin et que personne n’arrive en face. C’est l’exception de la ligne continue, pour un vélo ou une trottinette."
+  },
+  {
+   "q": "On te dépasse. Que dois-tu faire ?",
+   "explication": "Ne pas accélérer et serrer à droite. Accélérer est interdit. En serrant à droite, tu lui laisses de la place pour revenir devant toi."
+  },
+  {
+   "q": "À l’approche d’une intersection où tu n’as pas la priorité, dépasser est :",
+   "explication": "Interdit. Avant un carrefour où tu dois céder le passage, une voiture peut arriver par le côté pendant que tu doubles."
+  }
+ ],
+ "notes": "Voix : la situation d’abord, trois vérifications rythmées (la route, en face, derrière) qui collent au 3 de la fin, un pourquoi par règle (voie d’en face, rétroviseur du milieu, voiture cachée), « se rabattre » expliqué, « toujours » retiré de « on dépasse par la gauche » puisqu’il y a des exceptions, « n’ont que » remplacé par « seulement ». Fiche : « Débouché de cyclistes » devient « Triangle avec un vélo », la négation « pas les vélos ni les motos » devient une phrase positive ; piège de l’examen tiré de la question sur le panneau rond.\nDoutes : la liste du panneau rond (voitures, camions, bus, tracteurs) simplifie « tous les véhicules à moteur sauf les deux-roues » (camping-car, trois-roues ?) ; l’écran de fin affiche 1,5 m quand tout le reste dit 1,50 m (valeur verrouillée)."
+}

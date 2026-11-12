@@ -12,7 +12,7 @@
   "bonnes": [
    2
   ],
-  "explication": "Sur autoroute, tu roules sur la voie de droite. Les voies de gauche servent à dépasser."
+  "explication": "Celle de droite. Les voies de gauche servent à doubler, puis tu reviens à droite."
  },
  {
   "id": "a10-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Gilet enfilé, tout le monde attend derrière la glissière. Le triangle, tu le poses seulement si tu peux le faire sans danger."
+  "explication": "Derrière la glissière, gilet enfilé, avec tout le monde. Le triangle : pose-le seulement si tu peux le faire sans danger."
  },
  {
   "id": "a10-3",
@@ -40,7 +40,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Un seul chevron d’écart, c’est trop près : danger. Garde au moins deux chevrons : c’est la sécurité."
+  "explication": "Le danger. Un seul chevron d’écart, c’est trop près. Garde au moins deux chevrons : c’est la sécurité."
  },
  {
   "id": "a10-4",
@@ -54,7 +54,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ralentis toujours. Change de voie si tu peux, sinon écarte-toi dans ta voie : c’est le corridor de sécurité."
+  "explication": "Ralentis toujours. Puis change de voie si tu peux. Pas de place à côté ? Décale-toi dans ta voie : c’est le corridor de sécurité."
  },
  {
   "id": "a10-5",
@@ -68,7 +68,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.",
+  "explication": "Le début d’une autoroute : le panneau bleu avec une route qui passe sous un pont. Par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.",
   "panneaux": [
    "C107"
   ]
@@ -86,6 +86,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Sous la pluie, l’autoroute passe de 130 à 110 km/h."
+  "explication": "110 km/h. Sous la pluie, l’autoroute passe de 130 à 110 km/h. Le 100, c’est pour la voie rapide sous la pluie."
  }
 ]

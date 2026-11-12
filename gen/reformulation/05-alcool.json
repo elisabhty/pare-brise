@@ -1,0 +1,79 @@
+{
+ "cours": "alcool",
+ "resume": "Les taux légaux en permis définitif et probatoire, ce que l’alcool change à la conduite, et la seule chose qui fait baisser l’alcoolémie : le temps.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Une soirée se termine, la musique baisse, tes amis cherchent leurs clés.",
+    "Avant de prendre le volant, un sujet compte plus que tout : l’alcool.",
+    "Cours numéro 5 : l’alcool au volant.",
+    "Les taux d’alcool à connaître, et pourquoi ils existent."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Après le permis probatoire, ton permis devient définitif.",
+    "Le taux maximal : 0,5 gramme d’alcool par litre de sang.",
+    "Regarde l’éthylotest : il mesure l’alcool dans ton souffle.",
+    "C’est la même limite, écrite autrement : 0,25 milligramme par litre d’air expiré.",
+    "Un verre fait monter le taux d’environ 0,2 à 0,25 gramme.",
+    "Deux verres peuvent déjà dépasser 0,5."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "En conduite accompagnée, puis pendant ton permis probatoire, la limite est bien plus basse.",
+    "C’est 0,2 gramme par litre de sang.",
+    "Dans ton souffle : 0,1 milligramme par litre d’air expiré.",
+    "Un seul verre peut suffire à la dépasser : pour toi, c’est zéro verre."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Regarde : l’alcool allonge ton temps de réaction et réduit ton champ visuel.",
+    "Tu freines plus tard, et tu vois moins bien les côtés de la route.",
+    "Pour faire baisser l’alcoolémie, la quantité d’alcool dans ton sang, une seule chose marche : le temps.",
+    "Ni café, ni eau, ni douche."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "Concrètement : celui qui conduit reste à zéro alcool.",
+    "Tu as bu ?",
+    "Alors dors sur place, ou rentre autrement.",
+    "Passe à la pratique pour vérifier les chiffres."
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Permis définitif",
+   "tag": "0,5 g/L"
+  },
+  {
+   "texte": "Permis probatoire",
+   "tag": "0,2 g/L"
+  },
+  {
+   "texte": "Seul le temps fait baisser l’alcoolémie",
+   "tag": "Ni café, ni eau, ni douche"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Le café réduit-il l’alcoolémie ?",
+   "explication": "Non : seul le temps fait baisser l’alcoolémie, la quantité d’alcool dans ton sang. Ni café, ni eau, ni douche."
+  },
+  {
+   "q": "L'alcool :",
+   "explication": "Deux réponses : l’alcool allonge ton temps de réaction et réduit ton champ visuel. Tu freines plus tard, et tu vois moins bien sur les côtés."
+  }
+ ],
+ "notes": "Voix : la soirée en images, l’éthylotest montré au moment où il apparaît, le champ visuel expliqué par « les côtés de la route », et la règle du temps dite en positif (« une seule chose marche : le temps ») pour l’élève qui lit les négations à l’envers. Fin : une question suivie de sa réponse (« Tu as bu ? Alors dors sur place, ou rentre autrement »). Fiche : « ni douche » ajouté, comme dans la voix. Aucun doute sur les taux ; le cours ne dit pas la limite de l’accompagnateur ni le délai pour éliminer un verre (questions d’Inès), je n’ai rien inventé."
+}

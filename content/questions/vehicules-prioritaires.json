@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Feux bleus et sirène à deux tons : les pompiers en intervention passent avant tout le monde. Facilite leur passage."
+  "explication": "Sur tous les usagers, c’est-à-dire tout le monde : avec feux bleus et sirène à deux tons, les pompiers passent en premier, même si ton feu est vert."
  },
  {
   "id": "vp14-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Un gyrophare orange signale un véhicule lent ou un danger : sois prudent, mais il n’a pas de priorité."
+  "explication": "Un véhicule lent ou un danger. Ce sont les feux bleus et la sirène qui annoncent un véhicule prioritaire. Orange : ralentis et sois prudent."
  },
  {
   "id": "vp14-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Serre-toi à droite, ralentis ou arrête-toi si besoin, sans geste brusque, pour lui libérer le passage."
+  "explication": "Tu te serres à droite, et tu ralentis ou t’arrêtes si besoin, sans geste brusque. Arrêté au milieu de la voie, tu lui bloquerais le passage."
  },
  {
   "id": "vp14-4",
@@ -53,6 +53,6 @@
   "bonnes": [
    0
   ],
-  "explication": "Tu peux avancer un peu, seulement pour lui faire de la place et si c’est sans danger. Tu ne passes pas le feu rouge."
+  "explication": "Avancer un peu pour lui laisser la place, seulement si c’est sans danger. Mais tu ne passes pas le feu rouge."
  }
 ]

@@ -1,0 +1,146 @@
+{
+ "cours": "poste-conduite",
+ "accroche": "avant même de démarrer",
+ "resume": "Régler ton siège, ton appui-tête, tes rétroviseurs et ta ceinture, puis partir et quitter ta voiture en sécurité.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Au volant, tout est réglé pour quelqu’un d’autre.",
+    "Cours numéro 21 : s’installer, et quitter ta voiture.",
+    "Regarde ce siège : une bonne position, c’est plus de contrôle et moins de blessures en cas de choc."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu règles cinq choses, dans l’ordre.",
+    "D’abord le siège : enfonce la pédale de gauche à fond, ou le frein en boîte automatique.",
+    "Ta jambe reste légèrement fléchie, pour garder de la force sur la pédale.",
+    "Puis le dossier : dos collé, bras tendus, tes poignets touchent le haut du volant.",
+    "Mains sur le volant, tes bras sont alors légèrement pliés.",
+    "L’appui-tête : son haut au niveau du haut de ton crâne, pour protéger ta nuque.",
+    "Puis les rétroviseurs, une fois ta position réglée : sur les côtés, un petit bout de ta carrosserie.",
+    "Au milieu, toute la vitre arrière.",
+    "Et la ceinture, bien à plat, sur l’épaule et le bassin."
+   ],
+   "items": [
+    [
+     "Le siège",
+     "Pédale de gauche à fond, jambe légèrement fléchie"
+    ],
+    [
+     "Le dossier",
+     "Poignets au haut du volant, bras tendus ; en roulant, bras pliés"
+    ],
+    [
+     "L’appui-tête",
+     "Son haut au niveau du haut du crâne"
+    ],
+    [
+     "Les rétroviseurs",
+     "Un petit bout de carrosserie sur les côtés"
+    ],
+    [
+     "La ceinture",
+     "À plat, sur l’épaule et le bassin"
+    ]
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu quittes ta place : rétros, clignotant, puis tourne la tête vers l’angle mort, invisible dans tes rétros.",
+    "Insère-toi sans gêner ceux qui arrivent."
+   ],
+   "titre": "Rétros, clignotant, angle mort"
+  },
+  {
+   "i": 3,
+   "dire": [
+    "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé et clé ou badge avec toi.",
+    "En pente, pour retenir la voiture : première en montée, marche arrière en descente, ou P en boîte automatique.",
+    "Avant d’ouvrir ta portière : rétroviseur, puis coup d’œil dans l’angle mort.",
+    "Regarde : un cycliste arrive.",
+    "Si tu ouvres sans regarder, il tombe."
+   ],
+   "titre": "Bien quitter ta voiture",
+   "items": [
+    [
+     "Frein de parking",
+     "Toujours serré"
+    ],
+    [
+     "Une vitesse engagée",
+     "1re en montée, marche arrière en descente"
+    ],
+    [
+     "Moteur coupé",
+     "Et clé ou badge avec toi"
+    ],
+    [
+     "Portière",
+     "Rétroviseur et angle mort avant d’ouvrir"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Cours terminé.",
+    "Retiens : 5 réglages pour t’installer, 4 gestes pour quitter ta voiture."
+   ],
+   "stats": [
+    [
+     "5",
+     "réglages pour t’installer"
+    ],
+    [
+     "4",
+     "gestes pour quitter ta voiture"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Appui-tête",
+   "tag": "Son haut au niveau du haut du crâne"
+  },
+  {
+   "texte": "Siège",
+   "tag": "Pédale de gauche à fond, jambe légèrement fléchie"
+  },
+  {
+   "texte": "Avant de partir",
+   "tag": "Rétros, clignotant, angle mort"
+  },
+  {
+   "texte": "En quittant",
+   "tag": "Frein serré, vitesse engagée, moteur coupé, rétroviseur et angle mort avant d’ouvrir"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quel réglage faire avant de partir ?",
+   "explication": "Siège, rétroviseurs et ceinture, avant de démarrer : une bonne position, c’est plus de contrôle et moins de blessures en cas de choc."
+  },
+  {
+   "q": "Quel contrôle ?",
+   "explication": "Rétroviseur, puis coup d’œil dans l’angle mort : un cycliste peut arriver, et si tu ouvres sans regarder, il tombe."
+  },
+  {
+   "q": "L’appui-tête bien réglé, son haut se trouve :",
+   "explication": "Au niveau du haut de ton crâne. Trop bas, il ne protège plus ta nuque en cas de choc : c’est le coup du lapin."
+  },
+  {
+   "q": "Avant de quitter une place de stationnement, tu dois :",
+   "explication": "Regarder rétroviseur et angle mort. Rétros, clignotant, angle mort, puis tu t’insères sans gêner ceux qui arrivent."
+  },
+  {
+   "q": "Garé en pente, tu laisses :",
+   "explication": "Une vitesse engagée : si le frein lâche, elle retient la voiture. La première en montée, la marche arrière en descente."
+  }
+ ],
+ "notes": "Situation d’abord (siège réglé pour quelqu’un d’autre, cycliste qui arrive) et un « pourquoi » par geste (force sur la pédale, nuque, rétroviseurs après la position, vitesse qui retient la voiture, portière qui fait tomber le cycliste) ; « angle mort » expliqué ; « rétros, clignotant, angle mort » devient le titre de l’écran 2 et la fiche ; carte du siège alignée sur « légèrement fléchie » ; « clé ou badge » enfin dit par la voix ; titre « Immobiliser » remplacé ; la phrase ancrée 2 de l’écran 3 parle toujours de la portière quand le vélo part. Doute : aucun sur les règles ; le réglage du volant (question de Lucie) n’est pas dans le cours."
+}

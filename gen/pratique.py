@@ -369,6 +369,15 @@ for cid in ORDER:
             for k, v in fix.items():
                 if v is None: sit.pop(k, None)
                 else: sit[k] = v
+        # reformulation : explications (et énoncés, choix) définitifs, reconnus à l'énoncé exact, dans l'ordre des questions
+        for p in R.REFORM_PRAT.get(cid, []):
+            if not p.get('_pris') and sit['q'] in (p['q'], p.get('enonce')):
+                p['_pris'] = True
+                maj = {k: v for k, v in p.items() if k in ('explication', 'choix', 'contexte')}
+                if p.get('enonce'): maj['q'] = p['enonce']
+                sit.update(maj)
+                if kind == 'bank' and not sit.get('panneauxChoix'): BANQUE.setdefault(it['id'], {}).update(maj)
+                break
         for a in sit.get('acteurs') or []:                # usager remplacé dans tout le cours (retours des élèves)
             if a.get('type') in R.ACTEURS.get(cid, {}): a['type'] = R.ACTEURS[cid][a['type']]
         # question de cours : aucun décor (rien à observer)
@@ -409,6 +418,9 @@ for f in sorted(glob.glob(f'{ROOT}/questions/*.json')):
         else: open(f, 'w', encoding='utf-8').write('[\n' + ',\n'.join(ligne(q) for q in lst) + '\n]\n')
 for k in R.P:
     if k not in UTILISES and not any(R.P[u] is R.P[k] for u in UTILISES): print('  ⚠ retour sans question :', k)
+for cid, lst in R.REFORM_PRAT.items():
+    for p in lst:
+        if not p.get('_pris'): print('  ⚠ reformulation sans question :', cid, '«', p['q'][:70], '»')
 
 others = [e for e in EXOS if not (e['meca'] == 'examen')]
 for e in others:

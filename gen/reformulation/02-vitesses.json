@@ -1,0 +1,191 @@
+{
+ "cours": "vitesses",
+ "resume": "Ville, route, chaussées séparées, autoroute, pluie, brouillard et jeune conducteur : toutes les vitesses maximales à connaître.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu quittes un parking et tu entres dans la circulation, en ville.",
+    "Ici, c’est 50 au maximum, mais la vitesse change selon la route.",
+    "Cours numéro 2 : les limitations de vitesse.",
+    "Quatre vitesses de base, puis la météo, puis le jeune conducteur."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Par temps sec, chaque route a sa vitesse maximale.",
+    "Dans l’agglomération, c’est-à-dire la ville ou le village : 50.",
+    "Sur une route avec une voie dans chaque sens, rien au milieu : 80.",
+    "Les deux sens séparés par un muret ou une glissière, c’est une route à chaussées séparées : 110.",
+    "Sur autoroute, après le panneau bleu où une route passe sous un pont : 130."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Tu arrives dans un village : à l’entrée, un panneau blanc bordé de rouge porte son nom.",
+    "Il marque le début de l’agglomération, c’est-à-dire la ville ou le village.",
+    "Ce panneau est à part : retiens-le tel quel, hors des règles du cours 1.",
+    "Dès ce panneau : 50 maximum, sauf si un autre panneau dit autre chose.",
+    "Ton geste : freine avant, pour être déjà à 50 en passant le panneau.",
+    "Le même panneau, barré de rouge, marque la sortie : tu reprends la vitesse de la route, souvent 80.",
+    "Certains quartiers sont en zone 30 : un panneau l’annonce.",
+    "C’est 30 jusqu’au panneau de sortie de la zone."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Tu roules sur une route à double sens, rien au milieu : depuis 2018, c’est 80.",
+    "Mais certains départements en ont remonté une partie à 90.",
+    "Dans ce cas, un panneau 90 te le dit toujours.",
+    "Sans panneau 90, c’est 80."
+   ],
+   "items": [
+    [
+     "80",
+     "km/h",
+     "route à double sens, sans panneau 90"
+    ],
+    [
+     "90",
+     "km/h",
+     "seulement si un panneau le dit"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "La pluie tombe sur ton pare-brise : il te faut plus de mètres pour t’arrêter.",
+    "Sur autoroute : 110 au lieu de 130.",
+    "Sur route à chaussées séparées : 100 au lieu de 110.",
+    "Sur les routes à 80, tu restes à 80.",
+    "Et les routes à 90 descendent à 80."
+   ],
+   "titre": "Moins vite sous la pluie"
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Brouillard ou neige : tu vois de moins en moins loin.",
+    "Visibilité de moins de 50 mètres : 50 kilomètres heure au maximum, partout.",
+    "Même sur autoroute.",
+    "Sur autoroute, regarde la bande d’arrêt d’urgence, la voie des pannes à droite.",
+    "Un trait et un espace, sur son bord, font environ 50 mètres.",
+    "Sur route, un trait et un espace de la ligne du milieu font environ 13 mètres.",
+    "Quatre traits et quatre espaces : environ 50 mètres.",
+    "Le brouillard les cache ?",
+    "Alors, 50 kilomètres heure au maximum."
+   ],
+   "titre": "Visibilité de moins de 50 m"
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Tu viens d’avoir ton permis : il est probatoire, c’est-à-dire à l’essai, même si tu as 40 ans.",
+    "Il dure trois ans, ou deux ans après la conduite accompagnée.",
+    "Regarde : tu poses le disque « A » à l’arrière de ta voiture, pour prévenir les autres.",
+    "Tes vitesses maximales : 110 sur autoroute, 100 sur chaussées séparées.",
+    "Et 80 sur les routes à double sens, même celles remontées à 90.",
+    "Facile à retenir : ce sont les chiffres de la pluie."
+   ]
+  },
+  {
+   "i": 7,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : jeune conducteur, 110 sur autoroute, même par temps sec.",
+    "Passe à la pratique."
+   ],
+   "stats": [
+    [
+     "4",
+     "vitesses de base"
+    ],
+    [
+     "2",
+     "cas météo : pluie, brouillard ou neige"
+    ],
+    [
+     "3",
+     "vitesses jeune conducteur"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Agglomération, ville ou village",
+   "tag": "50 km/h",
+   "panneau": "EB10"
+  },
+  {
+   "texte": "Route à double sens, rien au milieu",
+   "tag": "80 km/h · 90 si un panneau le dit",
+   "panneau": "B14:80"
+  },
+  {
+   "texte": "Chaussées séparées : un muret au milieu",
+   "tag": "110 km/h",
+   "panneau": "B14:110"
+  },
+  {
+   "texte": "Autoroute",
+   "tag": "130 km/h",
+   "panneau": "B14:130"
+  },
+  {
+   "texte": "Visibilité de moins de 50 m",
+   "tag": "50 km/h partout, même sans panneau"
+  },
+  {
+   "texte": "Pluie : 110 · 100 · 80",
+   "tag": "Autoroute · chaussées séparées · double sens"
+  },
+  {
+   "texte": "Permis probatoire : 110 · 100 · 80",
+   "tag": "3 ans, 2 après la conduite accompagnée"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quelle vitesse maximale générale s’applique ?",
+   "explication": "50 km/h : c’est la vitesse maximale en agglomération, c’est-à-dire la ville ou le village, sauf si un panneau dit autre chose."
+  },
+  {
+   "q": "Quelle limite générale s’applique ?",
+   "explication": "110 km/h : sous la pluie, l’autoroute passe de 130 à 110."
+  },
+  {
+   "q": "À partir de ce panneau, je roule au maximum à :",
+   "explication": "70 km/h : le rond bordé de rouge fixe la vitesse maximale, jusqu’au prochain panneau qui la change ou y met fin."
+  },
+  {
+   "q": "Je roule à 80 km/h. Je dois :",
+   "explication": "Ralentir à 50 dès le panneau : à l’entrée de l’agglomération, tu dois déjà rouler à 50. Donc tu freines avant."
+  },
+  {
+   "q": "Il pleut. Je roule à 120 km/h :",
+   "explication": "Tu dois descendre à 110 : sous la pluie, l’autoroute passe de 130 à 110 km/h, même si le panneau indique 130."
+  },
+  {
+   "q": "Après ce panneau, je roule au maximum à :",
+   "explication": "30 km/h : le panneau Zone 30 limite la vitesse dans toute la zone, jusqu’au panneau de sortie de la zone."
+  },
+  {
+   "q": "J’ai mon permis depuis un an. Ma vitesse maximale ici :",
+   "explication": "110 km/h : après un an, ton permis est encore probatoire. Sur autoroute, ta vitesse maximale est donc 110."
+  },
+  {
+   "q": "Lequel marque l'entrée en agglomération ?",
+   "explication": "Panneau B : l’entrée en agglomération, c’est le rectangle blanc bordé de rouge, avec le nom de la ville. Le panneau rond, lui, limite la vitesse."
+  },
+  {
+   "q": "Il pleut, sur une route à chaussées séparées limitée à 110. Je roule au maximum à :",
+   "explication": "100 km/h : sous la pluie, les routes à chaussées séparées passent de 110 à 100."
+  }
+ ],
+ "notes": "Voix : la situation d’abord (parking, village, pluie sur le pare-brise, brouillard), un geste concret (freiner avant le panneau d’entrée), un repère sur route pour les 50 mètres, et le pourquoi du disque A. Retirés : par défaut (voix et carte de l’écran 3), lève le pied (titre de l’écran 4), le symbole < (titre de l’écran 5) ; « la bande d’arrêt d’urgence » est expliquée à sa première apparition. Le chiffre 50 de l’écran 5 dit toujours son unité (mètres ou kilomètres heure). Doute à vérifier : le cours ne dit pas si un jeune conducteur descend plus bas sous la pluie (question d’Inès) ; je n’ai rien ajouté, seulement « ce sont les chiffres de la pluie »."
+}

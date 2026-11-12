@@ -22,15 +22,15 @@
   },
   {
    "texte": "Régulateur",
-   "tag": "Maintient une vitesse"
+   "tag": "Maintient la vitesse que tu as choisie"
   },
   {
    "texte": "Freinage d’urgence automatique",
-   "tag": "Peut freiner, sans garantie"
+   "tag": "Peut freiner si tu ne réagis pas, sans garantie"
   },
   {
    "texte": "Toujours",
-   "tag": "Le conducteur reste responsable"
+   "tag": "Mains sur le volant, yeux sur la route : tu restes responsable"
   }
  ],
  "scenes": [
@@ -40,7 +40,7 @@
    "eyebrow": "Cours 24 · Mécanique",
    "titre": "Les aides à la conduite",
    "sous": "utiles, mais tu restes le pilote",
-   "dire": "Tu montes dans une voiture équipée d’aides électroniques. Cours numéro 24 : les aides à la conduite. Les voitures récentes en sont pleines. Elles aident… elles ne conduisent pas à ta place.",
+   "dire": "Regarde ces ondes bleues devant ta voiture : son radar surveille la route. Cours numéro 24 : les aides à la conduite. Les voitures récentes en sont pleines. Elles t’aident, mais c’est toi qui conduis.",
    "vitesse": 80,
    "decor": {
     "env": "autoroute",
@@ -95,7 +95,7 @@
      "Un voyant s’allume dans le rétro si quelqu’un est caché à côté"
     ]
    ],
-   "dire": "Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais en descente, il ne freine pas : surveille ton compteur. Le régulateur, lui, maintient la vitesse que tu as choisie. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives. Enfin, l’alerte d’angle mort allume un voyant dans le rétroviseur quand quelqu’un est caché à côté de toi.",
+   "dire": "Sur l’autoroute, ton limiteur t’empêche d’accélérer au-delà de la vitesse choisie. Mais en descente, il ne freine pas : surveille ton compteur. Le régulateur, lui, maintient ta vitesse, et le régulateur adaptatif garde en plus la distance avec la voiture de devant. Regarde : elle freine fort, et le freinage d’urgence automatique peut freiner si tu ne réagis pas. Ta voiture dérive doucement vers la ligne : l’alerte de franchissement de ligne te prévient. Enfin, l’alerte d’angle mort allume un voyant dans le rétroviseur quand quelqu’un est caché à côté de toi.",
    "vitesse": 80,
    "decor": {
     "env": "autoroute",
@@ -194,11 +194,11 @@
     ]
    },
    "sync": [
-    0.0,
-    1.02,
-    2.15,
-    3.01,
-    4.2,
+    0.23,
+    2.0,
+    2.46,
+    3.12,
+    4.36,
     5.14
    ]
   },
@@ -207,7 +207,7 @@
    "ch": 1,
    "eyebrow": "Leurs limites",
    "titre": "Pluie, brouillard, capteurs sales",
-   "dire": "Les caméras et radars voient mal par forte pluie, brouillard, neige, ou si les capteurs sont sales. Ils peuvent aussi rater un piéton, un cycliste, un animal ou un objet tombé sur la route. Sur route mouillée ou enneigée, coupe le régulateur : en aquaplaning, il continuerait d’accélérer.",
+   "dire": "Regarde : sous cette pluie, tes capteurs, caméras et radars, sont gênés. Ils voient mal par forte pluie, brouillard, neige, ou quand ils sont sales. Ils peuvent aussi rater un piéton, un cycliste, un animal ou un objet tombé sur la route. Sur route mouillée ou enneigée, coupe le régulateur : en aquaplaning, quand tes pneus flottent sur l’eau, il continuerait d’accélérer.",
    "env": "route",
    "meteo": "pluie",
    "kmh": 60,
@@ -253,7 +253,7 @@
      "C’est toi qui réponds"
     ]
    ],
-   "dire": "Quelle que soit l’aide, tu gardes les mains sur le volant et les yeux sur la route. Et en cas d’infraction ou d’accident, c’est le conducteur qui est responsable.",
+   "dire": "Tu actives le régulateur adaptatif sur une longue ligne droite. Avec n’importe quelle aide : mains sur le volant, yeux sur la route. Et en cas d’infraction ou d’accident, c’est toi, le conducteur, qui réponds.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -269,9 +269,9 @@
     ]
    },
    "sync": [
-    0.43,
-    0.75,
-    1.12
+    1.4,
+    1.71,
+    2.13
    ],
    "illu": {
     "type": "icones",
@@ -311,7 +311,7 @@
      "règle : tu restes responsable"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : les aides t’aident, mais c’est toi qui conduis.",
+   "dire": "Cours terminé. 6 aides à connaître, et 1 règle : tu restes responsable.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,

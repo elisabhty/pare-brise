@@ -3,8 +3,8 @@
  "ordre": 10,
  "theme": "circulation",
  "titre": "Autoroute et voies rapides",
- "accroche": "vitesse et rigueur",
- "resume": "S’insérer, choisir sa voie, garder ses distances, s’arrêter en urgence et le corridor de sécurité.",
+ "accroche": "Rouler vite, en sécurité",
+ "resume": "Entrer sur l’autoroute, choisir ta voie, garder tes distances, réagir en cas de panne, et le corridor de sécurité.",
  "affiche": [
   "C107",
   "C108",
@@ -20,13 +20,13 @@
  ],
  "memo": [
   {
-   "texte": "Insertion",
-   "tag": "Accélérer et céder aux véhicules de l’autoroute",
+   "texte": "Entrer sur l’autoroute",
+   "tag": "Accélère, puis cède à ceux déjà sur l’autoroute",
    "panneau": "C107"
   },
   {
    "texte": "Voie de droite",
-   "tag": "Ta voie normale"
+   "tag": "Ta voie normale · la gauche sert à doubler"
   },
   {
    "texte": "Distance",
@@ -34,11 +34,11 @@
   },
   {
    "texte": "Panne",
-   "tag": "Feux de détresse, gilet, derrière la glissière"
+   "tag": "Bande d’arrêt d’urgence · feux et gilet · derrière la glissière · 112"
   },
   {
    "texte": "Corridor de sécurité",
-   "tag": "Ralentis et change de voie ; sinon écarte-toi"
+   "tag": "Ralentis · change de voie, ou décale-toi dans ta voie"
   }
  ],
  "scenes": [
@@ -48,7 +48,7 @@
    "eyebrow": "Cours 10 · Circulation",
    "titre": "Autoroute",
    "sous": "vitesse et rigueur",
-   "dire": "Tu arrives à l’entrée d’une autoroute. La circulation accélère progressivement. Cours numéro 10 : l’autoroute. On y roule vite : la moindre erreur devient très grave.",
+   "dire": "Tu arrives à l’entrée d’une autoroute. Autour de toi, camions et voitures accélèrent. Cours numéro 10 : l’autoroute et les voies rapides. On y roule vite : la moindre erreur devient très grave.",
    "vitesse": 110,
    "decor": {
     "env": "autoroute",
@@ -126,7 +126,7 @@
    "ch": 0,
    "eyebrow": "L’insertion",
    "titre": "Accélère, puis cède",
-   "dire": "Sur la voie d’insertion, accélère jusqu’à la vitesse des autres. Rétroviseur, clignotant à gauche, coup d’œil dans l’angle mort, puis glisse-toi dans un espace libre. Ceux qui sont déjà sur l’autoroute sont prioritaires. Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.",
+   "dire": "Sur la voie d’insertion, la voie d’entrée, accélère jusqu’à la vitesse des autres. Puis rétros, clignotant à gauche, angle mort, la zone que tes rétroviseurs ne montrent pas. Et glisse-toi dans un espace libre. Ceux qui sont déjà sur l’autoroute sont prioritaires : c’est toi qui t’adaptes. Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.",
    "env": "autoroute",
    "kmh": 75,
    "camera": "poursuite",
@@ -214,7 +214,7 @@
      "Marche arrière, demi-tour, s’arrêter hors urgence"
     ]
    ],
-   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits. Sortie ratée ? Continue jusqu’à la suivante. L’autoroute commence au panneau bleu avec une route qui passe sous un pont : piétons, vélos et petits scooters de 50 y sont interdits. Une voie rapide, c’est la route à chaussées séparées du cours 2 : 110 au maximum. Sous la pluie ou en permis probatoire : 100.",
+   "dire": "Te voilà sur l’autoroute : ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits : derrière toi, tout le monde arrive vite. Sortie ratée ? Continue jusqu’à la suivante. L’autoroute commence à ce panneau bleu, avec une route qui passe sous un pont. Piétons, vélos et petits scooters de 50 centimètres cubes y sont interdits. La voie rapide, c’est la route à chaussées séparées du cours 2 : les deux sens sont séparés au milieu. Là, c’est 110 au maximum. Sous la pluie ou en permis probatoire : 100.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -302,9 +302,9 @@
     ]
    },
    "sync": [
-    0.3,
+    0.42,
     1.03,
-    2.81
+    2.47
    ]
   },
   {
@@ -312,7 +312,7 @@
    "ch": 1,
    "eyebrow": "Les distances",
    "titre": "Deux chevrons",
-   "dire": "Sur certaines autoroutes, de grandes flèches en V sont peintes sur ta voie : ce sont les chevrons. Garde au moins deux chevrons entre toi et la voiture de devant : un seul, c’est trop près. Sans chevrons, garde deux traits de la bande d’arrêt d’urgence, comme au cours 4. Bouchon soudain devant toi ? Allume tes feux de détresse pour prévenir ceux qui te suivent.",
+   "dire": "Tu roules vite, derrière une autre voiture. Sur certaines autoroutes, de grandes flèches en V sont peintes sur ta voie : ce sont les chevrons. Garde au moins deux chevrons entre toi et la voiture de devant. Un chevron, danger ; deux chevrons, sécurité. À cette vitesse, il te faut de la place pour freiner. Sans chevrons, garde deux traits de la bande d’arrêt d’urgence, comme au cours 4. Bouchon soudain devant toi ? Allume tes feux de détresse pour prévenir ceux qui te suivent.",
    "env": "autoroute",
    "kmh": 120,
    "camera": "haut",
@@ -345,10 +345,10 @@
     [
      "50",
      "km/h",
-     "visibilité < 50 m"
+     "si tu vois à moins de 50 m"
     ]
    ],
-   "dire": "Rappel : 130 par temps sec, 110 sous la pluie. Pendant ton permis probatoire, c’est 110 aussi, à tout âge. Et 50 si tu vois à moins de 50 mètres.",
+   "dire": "Regarde le panneau : 130 par temps sec. Sous la pluie, 110. Pendant ton permis probatoire, c’est 110 aussi, à tout âge, même par temps sec. Si tu vois à moins de 50 mètres : 50 kilomètres heure maximum.",
    "vitesse": 110,
    "decor": {
     "env": "autoroute",
@@ -382,16 +382,16 @@
     ]
    },
    "sync": [
-    0.17,
-    1.6,
-    2.05
+    0.51,
+    2.44,
+    3.32
    ]
   },
   {
    "type": "liste",
    "ch": 2,
    "eyebrow": "Panne ou accident",
-   "titre": "Dans l’ordre",
+   "titre": "Quatre gestes, dans l’ordre",
    "items": [
     [
      "Bande d’arrêt d’urgence",
@@ -410,7 +410,7 @@
      "Borne orange ou 112"
     ]
    ],
-   "dire": "En cas de panne, va sur la bande d’arrêt d’urgence, la petite voie tout à droite, le plus à droite possible. Allume tes feux de détresse et enfile ton gilet jaune avant de sortir. Tout le monde sort côté droit et passe derrière la glissière, la barrière de métal au bord. Puis appelle avec une borne orange d’appel d’urgence, ou le 112. Le triangle, pose-le seulement si tu peux le faire sans danger.",
+   "dire": "Panne : va sur la bande d’arrêt d’urgence, la petite voie tout à droite, le plus à droite possible. Allume tes feux de détresse et enfile ton gilet jaune avant de sortir. Tout le monde sort côté droit, loin des voitures qui passent. Puis tous derrière la glissière, la barrière de métal au bord : elle vous protège. Enfin, alerte les secours avec une borne orange d’appel d’urgence, ou le 112. Le triangle ? Pose-le seulement si tu peux le faire sans danger.",
    "decor": {
     "env": "autoroute",
     "kmh": 0,
@@ -511,18 +511,18 @@
     ]
    },
    "sync": [
-    0.22,
+    0.15,
     1.13,
-    2.18,
-    3.31
+    2.28,
+    4.06
    ]
   },
   {
    "type": "situation",
    "ch": 2,
    "eyebrow": "Corridor de sécurité",
-   "titre": "Écarte-toi",
-   "dire": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue ou orange qui tourne, ou ses feux de détresse ? Ralentis, et change de voie si tu peux. Sinon, écarte-toi le plus possible dans ta voie. C’est le corridor de sécurité.",
+   "titre": "Ralentis et décale-toi",
+   "dire": "Là-bas, sur la bande d’arrêt d’urgence : un véhicule arrêté. Lumière bleue ou orange qui tourne, ou feux de détresse. Premier geste : ralentis, puis change de voie si tu peux. Pas de place à côté ? Décale-toi le plus possible dans ta voie. Ce couloir protège les gens à pied : c’est le corridor de sécurité.",
    "env": "autoroute",
    "kmh": 90,
    "camera": "poursuite",
@@ -571,14 +571,14 @@
     ],
     [
      "130",
-     "km/h maximum, 110 en probatoire"
+     "km/h maximum, 110 en permis probatoire"
     ],
     [
      "4",
      "gestes en cas de panne"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour garder tes distances à grande vitesse.",
+   "dire": "Cours terminé. Le piège de l’examen : au corridor de sécurité, tu ralentis toujours.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,

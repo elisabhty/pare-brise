@@ -12,7 +12,7 @@
   "bonnes": [
    2
   ],
-  "explication": "1 m en agglomération, 1,50 m hors agglomération.",
+  "explication": "1,50 m. Hors agglomération, laisse au moins 1,50 m. En agglomération, c’est 1 m.",
   "panneaux": [
    "A21"
   ]
@@ -29,7 +29,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Ce panneau interdit de dépasser les voitures, les camions, les bus et les tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter : ils n’ont que deux roues.",
+  "explication": "Les voitures, les camions, les bus et les tracteurs. Tu peux quand même dépasser un vélo, une moto ou un scooter : ils ont seulement deux roues.",
   "panneaux": [
    "B3"
   ]
@@ -46,7 +46,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Oui : c’est l’exception de la ligne continue, pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face."
+  "explication": "Oui, tes roues de gauche, si tu vois loin et que personne n’arrive en face. C’est l’exception de la ligne continue, pour un vélo ou une trottinette."
  },
  {
   "id": "d08-4",
@@ -60,7 +60,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Il est interdit d’accélérer quand on est dépassé."
+  "explication": "Ne pas accélérer et serrer à droite. Accélérer est interdit. En serrant à droite, tu lui laisses de la place pour revenir devant toi."
  },
  {
   "id": "d08-5",
@@ -74,7 +74,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Un véhicule peut surgir : le dépassement y est interdit."
+  "explication": "Interdit. Avant un carrefour où tu dois céder le passage, une voiture peut arriver par le côté pendant que tu doubles."
  },
  {
   "id": "d08-6",

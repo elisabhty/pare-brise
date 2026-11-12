@@ -1,0 +1,154 @@
+{
+ "cours": "priorites",
+ "resume": "Priorité à droite, prioritaire une seule fois, route prioritaire, stop, cédez le passage et rond-point.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu approches d’une intersection.",
+    "Des voitures et un vélo arrivent de plusieurs côtés.",
+    "Cours numéro 3 : les priorités.",
+    "À chaque intersection, une seule question : qui passe en premier ?",
+    "Ce cours te donne la réponse, cas par cas."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Tu arrives à une intersection sans panneau ni feu.",
+    "Qui passe en premier ?",
+    "Celui qui arrive de ta droite : tu lui cèdes le passage.",
+    "C’est la règle de base, la priorité à droite.",
+    "Ce triangle avec une croix te prévient : priorité à droite à la prochaine intersection.",
+    "Ceux de ta gauche, eux, doivent te laisser passer.",
+    "Et si tu tournes à gauche, laisse d’abord passer ceux d’en face qui vont tout droit."
+   ],
+   "puce": "La règle de base"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Sur ta route, ce triangle avec un gros trait noir te donne la priorité.",
+    "Mais seulement à la prochaine intersection : prioritaire une seule fois.",
+    "Juste après, la priorité à droite reprend."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Le losange jaune, lui, te rend prioritaire à toutes les intersections.",
+    "Ça dure jusqu’au panneau de fin : le même losange, barré de noir."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Un triangle pointe en bas : c’est le cédez le passage.",
+    "Tu laisses passer tout le monde, à gauche comme à droite.",
+    "Tu t’arrêtes seulement si quelqu’un arrive.",
+    "Au stop, tu t’arrêtes à la ligne blanche, roues immobiles, même si la route est vide.",
+    "Puis tu laisses passer tout le monde."
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Ce triangle avec trois flèches en cercle annonce un carrefour giratoire : un rond-point.",
+    "À l’entrée, il y a presque toujours un cédez le passage.",
+    "Sans lui, c’est la priorité à droite, mais c’est très rare.",
+    "Avec lui, tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche.",
+    "Ton réflexe à l’entrée ?",
+    "Un regard à gauche."
+   ]
+  },
+  {
+   "i": 6,
+   "dire": [
+    "Cours terminé.",
+    "Sans panneau ni feu, celui de droite passe en premier : c’est la règle de base.",
+    "Passe à la pratique."
+   ],
+   "stats": [
+    [
+     "1",
+     "règle de base"
+    ],
+    [
+     "7",
+     "panneaux clés"
+    ],
+    [
+     "1",
+     "question : qui passe ?"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Priorité à droite à la prochaine intersection",
+   "panneau": "AB1",
+   "famille": "danger"
+  },
+  {
+   "texte": "Prioritaire à la prochaine intersection seulement",
+   "panneau": "AB2",
+   "famille": "priorite"
+  },
+  {
+   "texte": "Prioritaire jusqu’au panneau de fin",
+   "panneau": "AB6",
+   "famille": "priorite"
+  },
+  {
+   "texte": "Laisser passer tout le monde, arrêt si besoin",
+   "panneau": "AB3a",
+   "famille": "priorite"
+  },
+  {
+   "texte": "Arrêt à la ligne, puis laisser passer",
+   "panneau": "AB4",
+   "famille": "priorite"
+  },
+  {
+   "texte": "Rond-point",
+   "tag": "Je laisse passer ceux qui y sont déjà, à ma gauche",
+   "panneau": "AB25"
+  },
+  {
+   "texte": "Je tourne à gauche",
+   "tag": "Je laisse passer ceux d’en face qui vont tout droit"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Qui passe d’abord ?",
+   "explication": "La voiture à droite : sans panneau ni feu, c’est la priorité à droite. Tu la laisses passer."
+  },
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Tu cèdes : au cédez-le-passage, tu laisses passer tout le monde, à gauche comme à droite. Tu t’arrêtes seulement si quelqu’un arrive."
+  },
+  {
+   "q": "Personne ne vient. Je dois :",
+   "explication": "M’arrêter à la ligne : au stop, l’arrêt est obligatoire, même si la route est vide. Ensuite, tu laisses passer tout le monde."
+  },
+  {
+   "q": "Je dois :",
+   "explication": "Céder le passage à la voiture de gauche : au cédez-le-passage, tu laisses passer tout le monde, à gauche comme à droite. Tu t’arrêtes seulement si quelqu’un arrive."
+  },
+  {
+   "q": "Je vais tout droit. La voiture d’en face veut tourner à gauche. Qui passe en premier ?",
+   "explication": "Toi, qui vas tout droit : celui qui tourne à gauche laisse d’abord passer ceux d’en face."
+  },
+  {
+   "q": "Au stop, je dois laisser passer :",
+   "explication": "Le cycliste de droite : au stop, tu laisses passer tout le monde sur la route que tu vas prendre, cyclistes compris."
+  },
+  {
+   "q": "À la prochaine intersection, je cède le passage aux véhicules venant de droite.",
+   "explication": "Oui : ce triangle avec une croix annonce la priorité à droite à la prochaine intersection."
+  }
+ ],
+ "notes": "Voix : la situation d’abord, une question suivie de sa réponse (qui passe en premier ? celui de droite), le réflexe du rond-point (un regard à gauche) en contraste avec la priorité à droite. Retirés : par défaut (puce de l’écran 1 et chiffres de fin, remplacé par « règle de base »), « priorité ponctuelle » et « giratoire » du résumé, « signalisation contraire », « usagers » et « ne… que » des explications. Le cédez-le-passage garde « tout le monde, à gauche comme à droite » partout. Alerte acceptée à l’écran 6 : « anneau » est un faux positif, le validateur le trouve dans « panneau ». Aucun doute sur les règles de ce cours."
+}

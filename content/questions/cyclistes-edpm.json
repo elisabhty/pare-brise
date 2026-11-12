@@ -12,7 +12,7 @@
   "bonnes": [
    1
   ],
-  "explication": "1 m en agglomération, 1,50 m hors agglomération."
+  "explication": "1 m. En agglomération, laisse au moins 1 m. Hors agglomération, c’est 1,50 m."
  },
  {
   "id": "ce12-2",
@@ -27,7 +27,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Il faut avoir au moins 14 ans pour conduire une trottinette électrique, depuis 2023."
+  "explication": "14 ans. Depuis 2023, il faut avoir au moins 14 ans pour conduire une trottinette électrique."
  },
  {
   "id": "ce12-3",
@@ -42,7 +42,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Une trottinette électrique ne peut pas aller plus vite que 25 km/h."
+  "explication": "25 km/h. Une trottinette électrique ne peut pas aller plus vite."
  },
  {
   "id": "ce12-4",
@@ -56,7 +56,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Un cycliste peut se trouver dans ton angle mort."
+  "explication": "L’angle mort à droite. Le rétroviseur intérieur, celui du milieu, ne le montre pas : tourne la tête, un cycliste peut s’y trouver."
  },
  {
   "id": "ce12-5",
@@ -70,7 +70,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Rond bleu avec un vélo : piste obligatoire pour les vélos. Toi, en voiture, tu n’y vas pas.",
+  "explication": "Une piste cyclable obligatoire. Rond bleu avec un vélo : les vélos doivent la prendre. Pour ta voiture, elle est interdite.",
   "panneaux": [
    "B22a"
   ]

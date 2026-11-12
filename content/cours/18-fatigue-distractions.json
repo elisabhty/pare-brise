@@ -18,23 +18,23 @@
  "memo": [
   {
    "texte": "Pause",
-   "tag": "Au moins 15 min toutes les 2 heures"
+   "tag": "Conseil : au moins 15 min toutes les 2 heures"
   },
   {
-   "texte": "Somnolence",
-   "tag": "S’arrêter, dormir 15 à 20 min"
+   "texte": "Si tu as sommeil",
+   "tag": "Arrête-toi et dors 15 à 20 min"
   },
   {
    "texte": "Téléphone tenu en main",
    "tag": "135 € et 3 points, même arrêté au feu rouge ou dans un bouchon"
   },
   {
-   "texte": "Écouteurs, oreillettes",
+   "texte": "Écouteurs, oreillettes, casques",
    "tag": "Interdits : 135 € et 3 points"
   },
   {
-   "texte": "Haut-parleurs de la voiture",
-   "tag": "Autorisés, mais ils distraient quand même"
+   "texte": "Kit mains libres",
+   "tag": "Haut-parleurs de la voiture : autorisé, mais il distrait"
   }
  ],
  "scenes": [
@@ -44,7 +44,7 @@
    "eyebrow": "Cours 18 · Conducteur",
    "titre": "Fatigue et distractions",
    "sous": "garder la tête à la route",
-   "dire": "Tu conduis depuis longtemps. L’attention commence à diminuer. Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 27 mètres parcourus sans regarder la route.",
+   "dire": "Tu conduis depuis longtemps. Tes paupières deviennent lourdes, ton attention baisse. Cours numéro 18 : la fatigue et les distractions. Regarde : à 90 kilomètres heure, une seconde d’inattention, c’est 27 mètres parcourus sans regarder la route.",
    "vitesse": 90,
    "decor": {
     "env": "autoroute",
@@ -95,7 +95,7 @@
      "à 130 km/h"
     ]
    ],
-   "dire": "En une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130. C’est ta vitesse sans le zéro, fois 3, comme au cours 4. Lire un message prend bien plus qu’une seconde.",
+   "dire": "Regarde : en une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130. C’est ta vitesse sans le zéro, fois 3, comme au cours 4. Essaie avec 90 : 9 fois 3, 27 mètres. Et lire un message prend bien plus qu’une seconde.",
    "vitesse": 90,
    "decor": {
     "env": "autoroute",
@@ -147,9 +147,9 @@
     ]
    },
    "sync": [
-    0.41,
-    0.66,
-    0.83
+    0.48,
+    0.7,
+    0.85
    ]
   },
   {
@@ -160,18 +160,18 @@
    "items": [
     [
      "Bâillements, paupières lourdes",
-     "Premier signal"
+     "Les premiers signes"
     ],
     [
-     "Raideurs, besoin de bouger",
-     "Tu changes souvent de position"
+     "Nuque raide",
+     "Raideurs, besoin de bouger"
     ],
     [
      "Trous de mémoire",
-     "Tu ne te souviens plus des derniers kilomètres"
+     "Les derniers kilomètres oubliés"
     ]
    ],
-   "dire": "Les signes de fatigue : bâillements, paupières lourdes, raideurs dans la nuque, et ces kilomètres dont tu ne te souviens plus. Dès le premier signe, arrête-toi.",
+   "dire": "Tu bâilles, tes paupières sont lourdes, ta nuque est raide : c’est la fatigue. Et ces kilomètres dont tu ne te souviens plus : des trous de mémoire. Dès le premier signe, arrête-toi, avant de t’endormir.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -202,9 +202,9 @@
     ]
    },
    "sync": [
-    0.16,
-    0.41,
-    0.66
+    0.01,
+    0.52,
+    1.72
    ],
    "illu": {
     "type": "icones",
@@ -233,22 +233,22 @@
    "type": "liste",
    "ch": 0,
    "eyebrow": "La solution",
-   "titre": "Pause et sieste",
+   "titre": "Pause et sommeil",
    "items": [
     [
      "Pause toutes les 2 heures",
      "Au moins un quart d’heure"
     ],
     [
-     "Sieste de 15 à 20 minutes",
+     "Dormir 15 à 20 minutes",
      "Dès les premiers signes"
     ],
     [
      "Café, fenêtre ouverte, musique",
-     "Ça ne suffit pas"
+     "Ne remplacent pas le sommeil"
     ]
    ],
-   "dire": "Conseil : fais une pause d’au moins un quart d’heure toutes les deux heures, même sans fatigue. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas.",
+   "dire": "Un parking : tu mets ton clignotant, c’est l’heure de la pause. Conseil : fais une pause d’au moins un quart d’heure toutes les deux heures, même sans fatigue. Et si tu as sommeil, la seule solution : t’arrêter et dormir 15 à 20 minutes. Le café, la fenêtre ouverte ou la musique ne remplacent pas le sommeil.",
    "decor": {
     "env": "route",
     "kmh": 45,
@@ -308,9 +308,9 @@
     ]
    },
    "sync": [
-    0.17,
-    1.79,
-    2.03
+    1.17,
+    2.67,
+    3.01
    ],
    "illu": {
     "type": "icones",
@@ -353,7 +353,7 @@
      "retirés"
     ]
    ],
-   "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points, même arrêté à un feu rouge ou dans un bouchon. Les écouteurs, oreillettes et casques sont interdits aussi, avec la même sanction. Le kit mains libres par les haut-parleurs de la voiture reste autorisé, mais il te distrait quand même. Et avec une autre infraction en même temps, un excès de vitesse par exemple, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures.",
+   "dire": "Ton téléphone vibre sur le siège. Téléphone tenu en main au volant : 135 euros et 3 points. Même arrêté à un feu rouge ou dans un bouchon : tu restes dans la circulation. Écouteurs, oreillettes et casques : interdits aussi, avec la même sanction. Le kit mains libres par les haut-parleurs de la voiture reste autorisé, mais il te distrait quand même. Et si tu commets une autre infraction en même temps, un excès de vitesse par exemple ? Les policiers peuvent garder ton permis tout de suite, jusqu’à 72 heures.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -376,8 +376,8 @@
     ]
    },
    "sync": [
-    0.33,
-    0.45
+    1.58,
+    1.81
    ],
    "illu": {
     "type": "points",
@@ -411,14 +411,14 @@
     ],
     [
      "15 à 20",
-     "minutes de sieste"
+     "minutes pour dormir, si tu as sommeil"
     ],
     [
      "3",
-     "points pour le téléphone"
+     "points pour le téléphone tenu en main"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour repérer les pièges de l’inattention.",
+   "dire": "Cours terminé. Le piège de l’examen : au feu rouge aussi, téléphone en main interdit. Passe à la pratique.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,

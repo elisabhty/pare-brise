@@ -4,7 +4,7 @@
  "theme": "circulation",
  "titre": "Se positionner sur la chaussée",
  "accroche": "choisir la bonne voie au bon moment",
- "resume": "Placement, voies multiples, voies réservées, insertion et rabattement.",
+ "resume": "Rouler à droite, lire les flèches, entrer et sortir de l’autoroute, et céder quand ta voie se termine.",
  "chapitres": [
   "Choisir sa voie",
   "S’insérer et sortir",
@@ -21,7 +21,7 @@
  "memo": [
   {
    "texte": "Je roule à droite",
-   "tag": "Sur route et autoroute : la voie de droite"
+   "tag": "Sur route et autoroute : la voie la plus à droite"
   },
   {
    "texte": "Je lis les flèches et les panneaux tôt",
@@ -50,7 +50,7 @@
    "titre": "Se positionner sur la chaussée",
    "sous": "choisir la bonne voie au bon moment",
    "vitesse": 90,
-   "dire": "Tu arrives sur une route à plusieurs voies. La chaussée, c’est la partie de la route où roulent les voitures : elle peut avoir plusieurs voies. Le bon placement te permet de circuler sans gêner et d’anticiper la prochaine direction. Commençons par la règle générale : en France, on circule à droite.",
+   "dire": "Tu roules sur une grande route à plusieurs voies. La chaussée, c’est la partie de la route où roulent les voitures : elle peut avoir plusieurs voies. Bien placé, tu roules sans gêner les autres, et tu prépares déjà ta prochaine direction. D’abord, la règle générale : en France, on roule à droite.",
    "decor": {
     "env": "autoroute",
     "kmh": 100,
@@ -130,7 +130,7 @@
      null
     ]
    ],
-   "dire": "Sur route et sur autoroute, roule sur la voie la plus à droite. La voie de gauche sert à dépasser : ensuite, tu reviens à droite. En ville, avec plusieurs voies dans ton sens, choisis plutôt ta voie selon ta direction.",
+   "dire": "Tu dépasses un camion par la gauche. Sur route et sur autoroute, roule sur la voie la plus à droite : c’est ta voie normale. La voie de gauche sert à dépasser : ensuite, tu reviens à droite. En ville, avec plusieurs voies dans ton sens, choisis plutôt ta voie selon ta direction.",
    "ch": 0
   },
   {
@@ -188,7 +188,7 @@
      2.0
     ]
    ],
-   "dire": "À l’approche d’un carrefour, regarde les flèches peintes au sol. Ici, la voie de gauche, c’est pour tourner à gauche. La voie de droite, c’est pour aller tout droit ou à droite. Place-toi à temps, sans traverser plusieurs voies au dernier moment.",
+   "dire": "Tu roules dans une rue à sens unique, et un carrefour approche : regarde les flèches peintes au sol. Ici, la voie de gauche, c’est pour tourner à gauche. La voie de droite, c’est pour aller tout droit ou à droite. Place-toi tôt, sans traverser plusieurs voies au dernier moment : ça surprend les autres.",
    "ch": 0,
    "aides": [
     {
@@ -219,7 +219,7 @@
   {
    "type": "situation",
    "eyebrow": "Les voies réservées",
-   "titre": "Une voie réservée n’est pas une voie libre",
+   "titre": "Voie de bus : réservée, même vide",
    "env": "ville",
    "kmh": 25,
    "camera": "poursuite",
@@ -262,7 +262,7 @@
      "réservée, même si elle semble libre"
     ]
    ],
-   "dire": "Une voie de bus est réservée aux bus : même vide, tu n’as pas le droit d’y rouler. Pareil pour une piste cyclable. Regarde les panneaux et les marquages au sol, comme ce « BUS » peint sur la voie.",
+   "dire": "Regarde la voie de droite : le mot BUS est peint au sol. Une voie de bus est réservée aux bus : même vide, tu n’as pas le droit d’y rouler. Pareil pour une piste cyclable. Elles restent libres, pour que bus et vélos passent vite. Lis toujours les panneaux et les marquages au sol.",
    "ch": 0
   },
   {
@@ -319,7 +319,7 @@
      null
     ]
    ],
-   "dire": "Sur la voie d’insertion, qu’on appelle aussi voie d’accélération, accélère pour rouler à la vitesse des autres. Rétros, clignotant, angle mort : cède le passage à ceux qui sont déjà sur la voie, puis glisse-toi dans un espace libre. Ne force jamais ton insertion. Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.",
+   "dire": "Tu entres sur l’autoroute par la voie d’insertion, qu’on appelle aussi voie d’accélération. Accélère pour rouler à la vitesse des autres. Rétros, clignotant, angle mort : cède le passage à ceux qui sont déjà sur l’autoroute. Puis glisse-toi dans un espace libre. Ne force jamais ton insertion : ceux qui arrivent roulent vite. Pas d’espace libre ? Adapte ta vitesse : accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.",
    "ch": 1,
    "aides": [
     {
@@ -387,13 +387,13 @@
      1.5
     ]
    ],
-   "dire": "Pour prendre une sortie, repère les panneaux assez tôt. Mets-toi sur la voie de droite : rétros, clignotant, angle mort. Puis prends la voie de sortie : c’est là que tu ralentis. Si tu rates la sortie, continue jusqu’à la suivante.",
+   "dire": "Tu veux prendre la prochaine sortie : repère ses panneaux assez tôt. Mets-toi sur la voie de droite : rétros, clignotant, angle mort. Puis prends la voie de sortie : c’est là que tu ralentis, pas avant, car derrière toi, on roule vite. Sortie ratée : continue jusqu’à la suivante, sans reculer ni couper les voies.",
    "ch": 1
   },
   {
    "type": "situation",
    "eyebrow": "Fin de voie",
-   "titre": "Quand les voies se réduisent",
+   "titre": "Quand ta voie se termine",
    "env": "ville",
    "kmh": 25,
    "camera": "poursuite",
@@ -452,7 +452,7 @@
      null
     ]
    ],
-   "dire": "Ce triangle annonce que la chaussée se rétrécit par la gauche : la voie de gauche va s’arrêter. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. Les flèches de rabattement au sol te disent de te rabattre : ta voie va finir, ou une ligne continue arrive. Ta voie se termine ? C’est toi qui cèdes le passage à ceux qui roulent déjà sur l’autre voie. Chacun son tour, la fermeture éclair, c’est de la politesse, pas une priorité.",
+   "dire": "Tu es sur la voie de gauche : ce triangle annonce que la chaussée se rétrécit par la gauche. La voie de gauche va donc s’arrêter. Les flèches de rabattement au sol te disent de te rabattre. Elles veulent dire : ta voie va finir, ou une ligne continue arrive. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. C’est toi qui changes de voie : tu cèdes le passage à ceux qui roulent déjà sur l’autre voie. Chacun son tour, la fermeture éclair, c’est de la politesse, pas une priorité.",
    "ch": 2
   },
   {
@@ -469,7 +469,7 @@
      "réflexes de placement"
     ]
    ],
-   "dire": "Trois réflexes. Un : je roule à droite. Deux : je lis les flèches et les panneaux tôt. Trois : avant de changer de voie, rétros, clignotant, angle mort. Place à la pratique.",
+   "dire": "Trois réflexes. Un : je roule à droite. Deux : je lis les flèches et les panneaux tôt. Trois : avant de changer de voie, rétros, clignotant, angle mort. Le piège de l’examen : en fin de voie, tu cèdes le passage. Place à la pratique.",
    "ch": 2,
    "decor": {
     "env": "autoroute",

@@ -1,0 +1,162 @@
+{
+ "cours": "entretien",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Avant de partir, tu fais le tour de ta voiture.",
+    "Cours numéro 23 : l’entretien.",
+    "Regarde ce pneu : tes pneus sont le seul contact entre ta voiture et la route."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Regarde ta roue : ce pneu semble dégonflé.",
+    "Les sculptures, les creux dessinés dans un pneu, doivent avoir au moins 1,6 millimètre de profondeur.",
+    "Pour le voir, cherche les témoins d’usure, des petits bourrelets au fond des sculptures.",
+    "S’ils arrivent au niveau du pneu, change-le.",
+    "Sous 1,6 millimètre, c’est une infraction : 135 euros, et ta voiture peut être interdite de rouler.",
+    "Conseil : vérifie la pression une fois par mois, pneus froids, avant de rouler.",
+    "Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien."
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Une fois par mois et avant un long trajet, les niveaux : huile, liquide de refroidissement, liquide de frein, lave-glace.",
+    "Regarde ton éclairage s’allumer : toutes les ampoules doivent marcher, pour voir et être vu.",
+    "Et les essuie-glaces : ils doivent laisser la vitre propre.",
+    "Ta pédale de frein devient molle, ou ta voiture tire d’un côté en freinant ?",
+    "Fais contrôler tes freins sans attendre."
+   ],
+   "items": [
+    [
+     "Niveaux",
+     "Huile, liquide de refroidissement, liquide de frein, lave-glace"
+    ],
+    [
+     "Éclairage",
+     "Toutes les ampoules"
+    ],
+    [
+     "Essuie-glaces",
+     "Ils doivent laisser la vitre propre"
+    ]
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Sur ton tableau de bord, un voyant s’allume.",
+    "Sa couleur te dit quoi faire, comme un feu tricolore.",
+    "Rouge : une alerte, comme l’huile, la température ou les freins.",
+    "Arrête-toi dès que possible, en sécurité.",
+    "Certains rouges sont de simples rappels : ceinture, frein de parking, portière ouverte.",
+    "Orange : un défaut à faire vérifier rapidement.",
+    "Parfois, c’est juste un témoin : il te dit qu’un équipement est allumé, comme le feu de brouillard arrière.",
+    "Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu."
+   ],
+   "titre": "Rouge, orange, vert ou bleu",
+   "items": [
+    [
+     "Rouge",
+     "Alerte (huile, température, freins) : arrête-toi dès que possible"
+    ],
+    [
+     "Orange",
+     "Défaut à faire vérifier vite, sauf simple témoin"
+    ],
+    [
+     "Vert ou bleu",
+     "Information : un équipement fonctionne"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "La voiture devant freine : tu freines fort, et l’ABS empêche tes roues de se bloquer.",
+    "Tu peux encore braquer, c’est-à-dire tourner le volant.",
+    "L’ESP remet la voiture dans sa ligne quand elle commence à glisser.",
+    "Mais aucun des deux ne raccourcit ta distance d’arrêt : garde tes distances."
+   ],
+   "items": [
+    [
+     "ABS",
+     "Empêche les roues de se bloquer : tu peux braquer en freinant"
+    ],
+    [
+     "ESP",
+     "Remet la voiture dans sa ligne"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "Le piège de l’examen : l’ABS ne raccourcit pas ta distance d’arrêt."
+   ],
+   "stats": [
+    [
+     "1,6",
+     "mm de sculptures au minimum"
+    ],
+    [
+     "3",
+     "réflexes selon la couleur du voyant"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Pneus",
+   "tag": "Sculptures : 1,6 mm de profondeur au minimum"
+  },
+  {
+   "texte": "Pression",
+   "tag": "Une fois par mois, pneus froids, avant de rouler"
+  },
+  {
+   "texte": "Voyant rouge d’alerte",
+   "tag": "Huile, température, freins : arrêt dès que possible, en sécurité"
+  },
+  {
+   "texte": "Voyant orange",
+   "tag": "Faire vérifier rapidement, sauf simple témoin"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quel réflexe ?",
+   "explication": "T’arrêter en sécurité et lire la notice. Pression d’huile : arrête-toi dès que possible et coupe le moteur, car sans huile, il peut casser."
+  },
+  {
+   "q": "Que fais-tu ?",
+   "explication": "Contrôler la pression avant de repartir : un pneu sous-gonflé s’use vite, consomme plus et freine moins bien."
+  },
+  {
+   "q": "Le voyant rouge de température du moteur s’allume en roulant. Tu :",
+   "explication": "Tu t’arrêtes dès que possible, en sécurité : la température du moteur, c’est un voyant rouge d’alerte, pas un simple rappel."
+  },
+  {
+   "q": "La profondeur minimale des sculptures d’un pneu est :",
+   "explication": "1,6 mm. Sous 1,6 millimètre, c’est une infraction : change le pneu. Les témoins d’usure t’aident à le voir."
+  },
+  {
+   "q": "La pression des pneus se contrôle :",
+   "explication": "Pneus froids, avant de rouler : un pneu chaud donne une mesure faussée."
+  },
+  {
+   "q": "Un voyant orange signale :",
+   "explication": "Une anomalie, c’est-à-dire un défaut, à faire vérifier rapidement. Parfois, c’est juste un témoin. Le rouge d’alerte, lui, demande de t’arrêter."
+  },
+  {
+   "q": "L’ABS permet :",
+   "explication": "De garder la direction : tes roues ne se bloquent pas, tu peux encore tourner le volant en freinant fort. Mais il ne raccourcit pas ta distance d’arrêt."
+  }
+ ],
+ "notes": "Situation d’abord (tour de la voiture, pneu dégonflé visible à l’image, voyant qui s’allume, voiture devant qui freine) ; « sculptures » expliqué et seul nom gardé, « témoin » et « braquer » expliqués, « trajectoire », « anomalie » et « mm » remplacés ; « frein de parking » et « portière » comme au cours 21 ; titre de l’écran 3 et fin sans « trois couleurs » face à quatre couleurs nommées ; fin : le piège de l’ABS. Doutes : « immobilisée » devient « interdite de rouler », à valider ; la réponse imposée de la Q6 garde « anomalie », mot retiré ; l’amende de 135 euros sous 1,6 millimètre, est-ce par pneu ? Alertes acceptées : « ABS » et « ESP » ont 3 lettres, le repérage les ignore (même alerte avant)."
+}

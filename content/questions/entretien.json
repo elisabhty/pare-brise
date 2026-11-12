@@ -12,7 +12,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Le minimum légal est 1,6 mm de profondeur dans les rainures du pneu. En dessous, il faut le changer."
+  "explication": "1,6 mm. Sous 1,6 millimètre, c’est une infraction : change le pneu. Les témoins d’usure t’aident à le voir."
  },
  {
   "id": "e23-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Contrôle la pression pneus froids, avant de rouler : un pneu chaud donne une mesure faussée."
+  "explication": "Pneus froids, avant de rouler : un pneu chaud donne une mesure faussée."
  },
  {
   "id": "e23-3",
@@ -35,12 +35,12 @@
   "q": "Un voyant orange signale :",
   "choix": [
    "une alerte grave",
-   "une anomalie à faire vérifier"
+   "un défaut à faire vérifier"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Voyant orange : une anomalie, à faire vérifier rapidement. Voyant rouge : arrête-toi dès que tu peux le faire sans danger."
+  "explication": "Un défaut à faire vérifier rapidement. Parfois, c’est juste un témoin : un équipement allumé. Le rouge d’alerte, lui, demande de t’arrêter."
  },
  {
   "id": "e23-4",
@@ -54,6 +54,6 @@
   "bonnes": [
    0
   ],
-  "explication": "L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas ta distance d’arrêt."
+  "explication": "De garder la direction : tes roues ne se bloquent pas, tu peux encore tourner le volant en freinant fort. Mais il ne raccourcit pas ta distance d’arrêt."
  }
 ]

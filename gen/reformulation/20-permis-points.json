@@ -1,0 +1,194 @@
+{
+ "cours": "permis-points",
+ "accroche": "tes points, à garder et à gagner",
+ "resume": "Le permis dès 17 ans, la période probatoire, et tes points : comment ils montent, se perdent et reviennent.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Tu viens d’obtenir ton permis et tu roules en ville.",
+    "Cours numéro 20 : le permis à points.",
+    "Tu commences avec six points.",
+    "Ton défi : les garder."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Ton nouveau permis est en poche.",
+    "Depuis 2024, le permis B se passe dès 17 ans.",
+    "Au départ, tu as 6 points.",
+    "Ils montent à 12 au bout de ta période probatoire, tes années de permis à l’essai.",
+    "Condition : rouler sans perdre de point."
+   ],
+   "items": [
+    [
+     "17",
+     "ans",
+     "âge minimum pour le permis B, depuis 2024"
+    ],
+    [
+     "6",
+     "points",
+     "au départ"
+    ],
+    [
+     "12",
+     "points",
+     "au bout de la période probatoire"
+    ]
+   ]
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Chaque anniversaire de ton permis peut t’apporter des points.",
+    "Après la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an.",
+    "Après une formation classique, elle dure 3 ans : plus 2 points par an.",
+    "Dans les deux cas, tes points arrivent à 12.",
+    "Tu reçois ces bonus seulement si tu roules sans perdre de point.",
+    "Une seule infraction qui retire des points, et les bonus s’arrêtent jusqu’à la fin de la période probatoire.",
+    "Une infraction sans retrait de points ?",
+    "Les bonus continuent."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Ta période probatoire ajoute des règles.",
+    "L’alcool est limité à 0,2 gramme par litre de sang.",
+    "Un seul verre peut suffire à dépasser cette limite : pour toi, c’est zéro verre.",
+    "Les vitesses sont réduites : 110 sur autoroute.",
+    "100 sur les routes à chaussées séparées, avec un muret ou une glissière au milieu.",
+    "80 sur les routes à double sens, même celles à 90.",
+    "Regarde : le disque « A » à l’arrière, obligatoire pendant toute ta période probatoire.",
+    "Pour tout conducteur, à zéro point, le permis n’est plus valable : il faut le repasser.",
+    "Avec 6 points, une seule infraction qui en retire 6 suffit, comme un refus de priorité à un piéton."
+   ],
+   "items": [
+    [
+     "Alcool",
+     "0,2 g/L de sang : zéro verre"
+    ],
+    [
+     "Vitesses réduites",
+     "110 autoroute · 100 chaussées séparées · 80 double sens"
+    ],
+    [
+     "Disque « A »",
+     "Obligatoire, à l’arrière"
+    ]
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Tu as perdu un seul point ?",
+    "Il revient après six mois sans perdre de point.",
+    "Sinon, ton maximum de points revient après 2 ans sans perdre de point.",
+    "Il faut 3 ans si l’une de tes infractions était un délit, une infraction grave jugée au tribunal.",
+    "Pareil si elle était punie d’une amende de 135 euros ou plus.",
+    "Un stage de sensibilisation, une formation à la sécurité routière, rend jusqu’à 4 points, sans dépasser ton maximum.",
+    "Tu peux en faire un par an, au plus.",
+    "En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire.",
+    "Ton solde de points se consulte sur le site officiel « Mes points permis »."
+   ],
+   "items": [
+    [
+     "6 mois",
+     "Pour un seul point perdu"
+    ],
+    [
+     "2 ou 3 ans",
+     "Sans perdre de point : ton maximum revient"
+    ],
+    [
+     "Stage de sensibilisation",
+     "Jusqu’à 4 points, un par an au plus"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé.",
+    "Retiens : 6 points au départ, 12 ensuite, et jusqu’à 4 avec un stage."
+   ],
+   "stats": [
+    [
+     "6",
+     "points au départ"
+    ],
+    [
+     "12",
+     "points ensuite, sans perdre de point"
+    ],
+    [
+     "4",
+     "points au plus avec un stage"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Permis B",
+   "tag": "Dès 17 ans, depuis 2024"
+  },
+  {
+   "texte": "Période probatoire",
+   "tag": "6 points au départ · 3 ans, ou 2 après la conduite accompagnée"
+  },
+  {
+   "texte": "Après la probatoire",
+   "tag": "12 points, si tu roules sans perdre de point"
+  },
+  {
+   "texte": "Stage de sensibilisation",
+   "tag": "Jusqu’à 4 points, obligatoire en probatoire dès 3 points perdus d’un coup"
+  },
+  {
+   "texte": "Zéro point",
+   "tag": "Pour tout conducteur, permis plus valable : à repasser"
+  },
+  {
+   "texte": "Mes points permis",
+   "tag": "Le site officiel de ton solde de points"
+  },
+  {
+   "texte": "Bonus probatoire",
+   "tag": "Une seule infraction qui retire des points les arrête jusqu’à la fin"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "De combien de points dispose-t-il initialement ?",
+   "explication": "6 points. Un permis probatoire démarre avec 6 points, puis ils montent jusqu’à 12 si tu roules sans perdre de point."
+  },
+  {
+   "q": "Jeune conducteur, tu as bu un verre de vin. Tu peux conduire ?",
+   "explication": "Non. En probatoire, l’alcool est limité à 0,2 gramme par litre de sang : un seul verre peut suffire à le dépasser. Pour toi, c’est zéro verre."
+  },
+  {
+   "q": "En probatoire, tu as 6 points. Tu refuses la priorité à un piéton (6 points). Ton permis :",
+   "explication": "Il n’est plus valable : 6 points moins 6, il te reste zéro point. À zéro point, tu dois repasser ton permis."
+  },
+  {
+   "q": "Après une conduite accompagnée, la période probatoire dure :",
+   "explication": "2 ans, avec 3 points de plus par an si tu roules sans perdre de point. Après une formation classique, elle dure 3 ans."
+  },
+  {
+   "q": "En période probatoire :",
+   "explication": "Deux bonnes réponses : 0,2 gramme d’alcool par litre de sang au maximum, et le disque « A » à l’arrière. Sur autoroute, c’est 110, pas 130."
+  },
+  {
+   "q": "Un stage de sensibilisation volontaire rend :",
+   "explication": "Jusqu’à 4 points, sans dépasser ton maximum, un stage par an au plus. En probatoire, ce stage devient obligatoire si tu perds 3 points ou plus d’un coup."
+  },
+  {
+   "q": "L’âge minimum pour obtenir le permis B est :",
+   "explication": "17 ans. Depuis le 1er janvier 2024, tu peux passer le permis B dès 17 ans."
+  }
+ ],
+ "notes": "Chaque écran part d’une situation (permis en poche, anniversaire du permis, « Tu as perdu un seul point ? ») ; « probatoire » (« à l’essai », comme au cours 2), « chaussées séparées » et « délit » sont expliqués ; « tout ton capital » devient « ton maximum de points », comme la carte ; le zéro point est dit « pour tout conducteur » ; carte, fiche et fin disent « jusqu’à 4 points ». Doutes : 1) « ton maximum » n’est jamais chiffré en probatoire (6, ou 6 plus les bonus déjà gagnés ?) ; 2) il me semble que la loi compte 3 ans si l’une des infractions est un délit ou une amende de 135 euros ou plus, pas forcément la dernière ; 3) la carte de l’écran 3 garde 3 lignes : seule la fiche montre le zéro point."
+}

@@ -1,0 +1,158 @@
+{
+ "cours": "premiers-secours",
+ "resume": "Protéger les lieux d’un accident, alerter avec les bons numéros, et faire les bons gestes de secours.",
+ "scenes": [
+  {
+   "i": 0,
+   "dire": [
+    "Devant toi, un accident : deux voitures viennent de se percuter.",
+    "Ta priorité : éviter un second accident, avec les feux de détresse, puis le triangle.",
+    "Cours numéro 25 : les premiers secours.",
+    "Trois mots, dans cet ordre : protéger, alerter, secourir.",
+    "La loi t’oblige à agir, au minimum en alertant les secours.",
+    "Ne rien faire est un délit, une infraction grave jugée au tribunal : la non-assistance à personne en danger."
+   ]
+  },
+  {
+   "i": 1,
+   "dire": [
+    "Première étape, protéger : allume tes feux de détresse, et enfile ton gilet avant de sortir.",
+    "Puis le triangle, à au moins 30 mètres, avant le virage ou le haut de la côte.",
+    "Ainsi, les autres le voient de loin.",
+    "Seulement si tu peux le poser sans danger.",
+    "Gilet et triangle sont obligatoires à bord : garde le gilet à portée de main.",
+    "Fais mettre tout le monde à l’abri, loin des voitures.",
+    "Derrière la glissière, la barrière en métal, s’il y en a une.",
+    "Coupe le contact des voitures accidentées, et pas de cigarette : risque d’incendie."
+   ],
+   "titre": "Éviter un second accident"
+  },
+  {
+   "i": 2,
+   "dire": [
+    "Deuxième étape, alerter : tu prends ton téléphone.",
+    "Le 112 fonctionne dans toute l’Union européenne, en France aussi : si tu hésites, fais le 112.",
+    "Le 15 pour le SAMU, les médecins d’urgence.",
+    "Le 18 pour les pompiers, le 17 pour la police ou la gendarmerie.",
+    "Et le 114, par SMS, pour les personnes sourdes ou malentendantes."
+   ]
+  },
+  {
+   "i": 3,
+   "dire": [
+    "Au téléphone, d’abord où : le lieu exact.",
+    "Quoi : ce qui s’est passé.",
+    "Combien : le nombre de victimes et leur état.",
+    "Les dangers possibles : fuite, incendie, circulation.",
+    "Raccroche seulement quand on te le dit."
+   ]
+  },
+  {
+   "i": 4,
+   "dire": [
+    "Troisième étape, secourir.",
+    "Laisse une victime où elle est, sauf danger immédiat : un incendie, ou un risque d’être percutée.",
+    "La bouger peut aggraver ses blessures.",
+    "Ce motard au sol : laisse toujours son casque en place.",
+    "Un saignement : appuie fort sur la plaie.",
+    "Une victime inconsciente, qui ne te répond pas : respire-t-elle ?",
+    "Regarde son ventre et sa poitrine se soulever, pendant 10 secondes.",
+    "Si elle respire : position latérale de sécurité, sur le côté, pour éviter qu’elle s’étouffe.",
+    "Si elle a arrêté de respirer : massage cardiaque, appuie fort et vite au centre de sa poitrine.",
+    "Et fais chercher un défibrillateur, l’appareil qui peut relancer le cœur."
+   ],
+   "items": [
+    [
+     "Victime laissée en place",
+     "Sauf danger immédiat"
+    ],
+    [
+     "Casque laissé en place",
+     "D’un motard blessé"
+    ],
+    [
+     "Saignement",
+     "Appuyer fort sur la plaie"
+    ],
+    [
+     "Inconscient qui respire",
+     "Position latérale de sécurité"
+    ],
+    [
+     "Respiration arrêtée",
+     "Massage cardiaque et défibrillateur"
+    ]
+   ]
+  },
+  {
+   "i": 5,
+   "dire": [
+    "Cours terminé : ces gestes peuvent sauver une vie.",
+    "Protéger, alerter, secourir, le triangle à au moins 30 mètres, et le 112."
+   ],
+   "stats": [
+    [
+     "3",
+     "étapes : protéger, alerter, secourir"
+    ],
+    [
+     "30",
+     "m au moins pour le triangle"
+    ],
+    [
+     "112",
+     "dans toute l’Union européenne"
+    ]
+   ]
+  }
+ ],
+ "memo": [
+  {
+   "texte": "Ordre",
+   "tag": "Protéger, alerter, secourir"
+  },
+  {
+   "texte": "Triangle",
+   "tag": "À au moins 30 m, avant le virage ou la côte"
+  },
+  {
+   "texte": "112",
+   "tag": "Numéro d’urgence de toute l’Union européenne"
+  },
+  {
+   "texte": "Motard blessé",
+   "tag": "Laisser toujours son casque en place"
+  },
+  {
+   "texte": "Gilet et triangle",
+   "tag": "Obligatoires à bord"
+  },
+  {
+   "texte": "Ne rien faire",
+   "tag": "Non-assistance à personne en danger : un délit"
+  }
+ ],
+ "pratique": [
+  {
+   "q": "Quelle est la première priorité ?",
+   "explication": "Protéger, sans te mettre en danger : feux de détresse, gilet, triangle, pour éviter un second accident. Puis alerter, et enfin secourir."
+  },
+  {
+   "q": "Quel numéro d’urgence européen peux-tu appeler ?",
+   "explication": "Le 112 : il fonctionne dans toute l’Union européenne, en France aussi. Si tu hésites, fais le 112."
+  },
+  {
+   "q": "Un motard blessé est allongé sur la route, casque sur la tête. Tu :",
+   "explication": "Tu laisses le casque en place : le retirer peut aggraver une blessure au cou ou au dos. Ce geste revient aux secours."
+  },
+  {
+   "q": "Dans quel ordre agir sur un accident ?",
+   "explication": "Protéger, alerter, secourir : d’abord éviter un second accident, puis appeler le 15, le 18 ou le 112, enfin aider les victimes."
+  },
+  {
+   "q": "Le triangle de présignalisation se place à au moins :",
+   "explication": "30 m au moins, pour que les autres le voient de loin. Pose-le avant le virage ou le haut de la côte, seulement si c’est sans danger."
+  }
+ ],
+ "notes": "Les trois mots deviennent un fil (« Première étape, protéger », « Deuxième étape », « Troisième étape ») et chaque écran part d’une situation (voitures qui se percutent, téléphone, motard au sol) ; « délit », « SAMU », « glissière », « défibrillateur », « inconsciente » expliqués ; « ne raccroche que » devient « raccroche seulement » ; le message suit les quatre mots de la carte ; les interdits sont dits à la forme positive (« laisse la victime où elle est », « laisse son casque en place ») dans la voix, la carte et la fiche, comme la réponse de la Q3 ; « massage cardiaque » enfin dit par la voix ; « suraccident » devient « second accident ». Doute : aucun sur les règles."
+}

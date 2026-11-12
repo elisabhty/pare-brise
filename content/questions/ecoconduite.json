@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "La clim fait consommer plus : allume-la quand il fait vraiment chaud ou pour désembuer, pas en permanence."
+  "explication": "Elle fait consommer plus : allume-la quand il fait très chaud, ou pour désembuer les vitres, pas en permanence."
  },
  {
   "id": "e28-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Un moteur qui tourne moins vite consomme moins."
+  "explication": "Tôt, vers 2 000 tours en diesel et 2 500 en essence : un moteur qui tourne moins vite consomme moins."
  },
  {
   "id": "e28-3",
@@ -53,6 +53,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Garé, laisser tourner le moteur est interdit : 135 euros. Coupe-le."
+  "explication": "Il doit être coupé : garé, couper le moteur est obligatoire, sinon 135 euros d’amende."
  }
 ]

@@ -18,24 +18,24 @@
  ],
  "memo": [
   {
-   "texte": "Croisement",
-   "tag": "Éclairent environ 30 m"
+   "texte": "Feux de croisement",
+   "tag": "Environ 30 m : la nuit, et quand la visibilité baisse"
   },
   {
    "texte": "Feux de route",
-   "tag": "Route non éclairée, et tu n’éblouis personne"
+   "tag": "Environ 100 m, route non éclairée, et tu n’éblouis personne"
   },
   {
-   "texte": "Brouillard arrière",
-   "tag": "Brouillard ou neige qui tombe, jamais sous la pluie"
+   "texte": "Feu de brouillard arrière",
+   "tag": "Brouillard ou chute de neige, jamais sous la pluie"
   },
   {
-   "texte": "Ébloui",
+   "texte": "Si tu es ébloui",
    "tag": "Regarde le bord droit, ralentis"
   },
   {
    "texte": "Feux de position",
-   "tag": "Garé la nuit sur une route non éclairée"
+   "tag": "Pour être vu : garé la nuit sur une route non éclairée"
   }
  ],
  "scenes": [
@@ -45,7 +45,7 @@
    "eyebrow": "Cours 15 · Route",
    "titre": "La nuit et l’éclairage",
    "sous": "voir et être vu",
-   "dire": "Le soleil se couche. Les premières ombres apparaissent sur la route. Cours numéro 15 : la nuit. Tu ne vois que ce que tes phares éclairent, et les autres te voient grâce à eux.",
+   "dire": "Le soleil se couche. Les ombres s’allongent : tu allumes tes phares. Cours numéro 15 : la nuit et l’éclairage. Regarde : la nuit, tu vois seulement ce que tes phares éclairent. Et les autres te voient grâce à eux : voir, et être vu.",
    "vitesse": 60,
    "decor": {
     "env": "route",
@@ -85,7 +85,7 @@
    "ch": 0,
    "eyebrow": "Position et croisement",
    "titre": "Environ 30 mètres",
-   "dire": "Pour rouler, les feux de croisement éclairent à environ 30 mètres. Ce sont tes feux de base la nuit, et de jour quand la visibilité baisse. Les feux de position sont les plus faibles : ils n’éclairent pas la route, ils servent à ce qu’on te voie. La nuit, garé au bord d’une route non éclairée, tu les laisses allumés.",
+   "dire": "Tu roules de nuit en feux de croisement, tes feux de base : ils éclairent à environ 30 mètres. Tu les allumes aussi de jour, quand la visibilité baisse. Tu t’arrêtes : voici les feux de position, les plus faibles. Ils servent à ce qu’on te voie, pas à éclairer la route. La nuit, garé au bord d’une route non éclairée, tu les laisses allumés, pour rester visible.",
    "env": "route",
    "meteo": "nuit",
    "kmh": 50,
@@ -131,7 +131,7 @@
    "ch": 0,
    "eyebrow": "Feux de route",
    "titre": "Environ 100 mètres",
-   "dire": "Les feux de route portent à environ 100 mètres. Utilise-les seulement sur une route non éclairée, et seulement si tu n’éblouis personne.",
+   "dire": "La route n’a plus de lampadaires : tes feux de route portent à environ 100 mètres. Utilise-les seulement sur une route non éclairée, et seulement si tu n’éblouis personne.",
    "env": "route",
    "meteo": "nuit",
    "kmh": 60,
@@ -156,7 +156,7 @@
    "ch": 0,
    "eyebrow": "Ne pas éblouir",
    "titre": "Une voiture en face",
-   "dire": "Dès qu’un usager arrive en face, ou que tu suis un véhicule de près, repasse en feux de croisement. Et si c’est toi qui es ébloui : regarde le bord droit de la route et ralentis.",
+   "dire": "Quelqu’un arrive en face : repasse tout de suite en feux de croisement. Même chose quand tu suis un véhicule de près. Tes feux de route éblouiraient l’autre conducteur, en face ou dans ses rétroviseurs. Et si c’est toi qui es ébloui : regarde le bord droit, et ralentis.",
    "env": "route",
    "meteo": "nuit",
    "kmh": 50,
@@ -241,14 +241,14 @@
     ],
     [
      "Brouillard arrière",
-     "Brouillard ou neige qui tombe, uniquement"
+     "Brouillard ou chute de neige, seulement"
     ],
     [
      "Sous la pluie",
-     "Pas de brouillard arrière : il éblouit"
+     "Brouillard arrière interdit : il éblouit"
     ]
    ],
-   "dire": "Les feux de brouillard avant s’utilisent par brouillard, chute de neige ou forte pluie : ils remplacent ou complètent les feux de croisement. Le feu de brouillard arrière, uniquement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit. Et dans le brouillard, jamais de feux de route : leur lumière se reflète, et c’est toi qu’elle éblouit.",
+   "dire": "Brouillard, chute de neige, forte pluie : tes feux de brouillard avant remplacent ou complètent les feux de croisement. Le feu de brouillard arrière, lui, sert seulement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit. Et dans le brouillard, jamais de feux de route : leur lumière se reflète, et c’est toi qu’elle éblouit.",
    "decor": {
     "env": "route",
     "kmh": 40,
@@ -324,8 +324,8 @@
     ]
    },
    "sync": [
-    0.13,
-    1.25,
+    0.52,
+    1.22,
     2.1
    ]
   },
@@ -333,7 +333,7 @@
    "type": "chiffres",
    "ch": 1,
    "eyebrow": "La nuit",
-   "titre": "Tout est plus long",
+   "titre": "Voir assez loin pour s’arrêter",
    "items": [
     [
      "30",
@@ -346,7 +346,7 @@
      "pour s’arrêter à 70 km/h"
     ]
    ],
-   "dire": "À 70 kilomètres heure, ta distance d’arrêt est d’environ 49 mètres, alors que tes feux de croisement n’éclairent qu’à 30 mètres. En feux de croisement, au-dessus d’environ 50 kilomètres heure, tu ne peux plus t’arrêter dans la zone éclairée. La nuit, adapte ta vitesse à ce que tu vois.",
+   "dire": "De nuit, en feux de croisement, tu roules à 70 kilomètres heure. Pour t’arrêter, il te faut environ 49 mètres, mais tu vois seulement à 30 mètres. En feux de croisement, au-dessus d’environ 50 kilomètres heure, tu ne peux plus t’arrêter dans la zone éclairée. La nuit, adapte ta vitesse à ce que tu vois.",
    "vitesse": 70,
    "decor": {
     "env": "route",
@@ -390,8 +390,8 @@
     ]
    },
    "sync": [
-    0.89,
-    0.42
+    0.16,
+    1.4
    ]
   },
   {
@@ -399,7 +399,7 @@
    "ch": 1,
    "eyebrow": "Les piétons la nuit",
    "titre": "Presque invisibles",
-   "dire": "Un piéton habillé en sombre n’apparaît qu’au dernier moment. Avec un gilet réfléchissant, tu le vois de bien plus loin. S’il n’a pas de gilet, ralentis et écarte-toi dès que tu le devines.",
+   "dire": "Au bord de la route, un piéton habillé en sombre : tu le vois seulement au dernier moment. Regarde : avec un gilet réfléchissant, tu le vois de bien plus loin. S’il n’a pas de gilet, ralentis et écarte-toi dès que tu le devines.",
    "env": "route",
    "meteo": "nuit",
    "kmh": 40,
@@ -443,18 +443,18 @@
    "stats": [
     [
      "30",
-     "m en croisement"
+     "m en feux de croisement"
     ],
     [
      "100",
-     "m en route"
+     "m en feux de route"
     ],
     [
      "2",
      "feux de brouillard : avant, arrière"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : à toi de choisir les bons feux.",
+   "dire": "Cours terminé. Le piège de l’examen : sous une forte pluie, le feu de brouillard arrière est interdit. Passe à la pratique.",
    "decor": {
     "env": "route",
     "kmh": 60,
