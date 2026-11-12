@@ -128,7 +128,7 @@
    "acteurs": [
     {
      "type": "velo",
-     "S": -14,
+     "S": -42,
      "x": 3.0,
      "kmh": 33
     }
@@ -137,12 +137,13 @@
     [
      0,
      "Deux-roues",
-     "à ta droite"
+     "à ta droite",
+     4
     ]
    ],
    "script": [
     [
-     7.2,
+     "p5",
      "clignotant",
      "d"
     ]
@@ -153,7 +154,7 @@
   {
    "type": "situation",
    "eyebrow": "Étape 2 · le clignotant",
-   "titre": "Signaler, ce n’est pas obtenir la priorité",
+   "titre": "Une information, pas une priorité",
    "env": "autoroute",
    "kmh": 90,
    "camera": "drone",
@@ -162,12 +163,12 @@
      "type": "voiture",
      "S": -14,
      "x": -1.75,
-     "kmh": 112,
+     "kmh": 100,
      "couleur": 3028032
     },
     {
      "type": "voiture",
-     "S": -90,
+     "S": -260,
      "x": -1.75,
      "kmh": 110
     }
@@ -186,34 +187,29 @@
      "g"
     ],
     [
-     4.6,
+     "p1",
      "etiquettes"
     ],
     [
-     5.4,
+     "p3+1",
      "vitesse",
-     108,
-     2.5
+     100,
+     2
     ],
     [
-     6.0,
+     "p3+1.4",
      "voie",
      -1.75,
      2400
-    ],
-    [
-     8.6,
-     "clignotant",
-     null
     ]
    ],
-   "dire": "Étape 3, l’angle mort : la zone en rouge, à côté de toi, que tes rétros ne montrent pas. Ton rétro semble libre, mais une voiture est là. Ton geste : tourne vite la tête vers ton épaule, du côté où tu vas. Un coup d’œil, puis regarde de nouveau devant toi.",
+   "dire": "Étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer. Regarde : la voiture de gauche garde sa voie. Ton clignotant la prévient : c’est une information, pas une priorité. Attends un espace suffisant avant de te décaler.",
    "ch": 0
   },
   {
    "type": "situation",
    "eyebrow": "Étape 3 · l’angle mort",
-   "titre": "Une information, pas une priorité",
+   "titre": "L’angle mort : la zone invisible",
    "env": "autoroute",
    "kmh": 90,
    "camera": "drone",
@@ -240,28 +236,17 @@
      "g"
     ],
     [
-     5.0,
-     "acteur",
-     0,
-     112
-    ],
-    [
-     5.6,
+     "p1",
      "etiquettes"
     ],
     [
-     7.6,
-     "voie",
-     -1.75,
-     2200
-    ],
-    [
-     10.0,
-     "clignotant",
-     null
+     "p3",
+     "acteur",
+     0,
+     112
     ]
    ],
-   "dire": "Étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer. Regarde : la voiture de gauche garde sa voie. Ton clignotant la prévient : c’est une information, pas une priorité. Attends un espace suffisant avant de te décaler.",
+   "dire": "Étape 3, l’angle mort : la zone en rouge, à côté de toi, que tes rétros ne montrent pas. Ton rétro semble libre, mais une voiture est là. Ton geste : tourne vite la tête vers ton épaule, du côté où tu vas. Un coup d’œil, puis regarde de nouveau devant toi.",
    "ch": 0,
    "aides": [
     {
@@ -304,7 +289,7 @@
      3000
     ],
     [
-     7.0,
+     "p3+1",
      "clignotant",
      null
     ]

@@ -88,7 +88,7 @@ export function prewarm(c, at) {
 function build(sc) {
   const car = sc.carrefour ? (typeof sc.carrefour === 'object' ? sc.carrefour : { S: sc.carrefour, ligne: sc.ligneStop }) : null;
   const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
-  SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: camOf(sc), voie: sc.voie, graine: sc.graine,
+  SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: camOf(sc), voie: sc.voie, graine: sc.graine, relief: sc.relief,
     reserve: [0].concat((sc.acteurs || []).flatMap(a => (a.x > 2.4 ? [a.S || 0, (a.S || 0) - 10] : [a.S || 0])), sc.passage ? [sc.passage, sc.passage - 10] : []),
     carrefours: car ? [car.S] : [], zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : [], sc.rails ? [{ de: sc.rails - 8, a: sc.rails + 8 }] : []) });
   SIM.slow(1, 0);

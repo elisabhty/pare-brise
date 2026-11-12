@@ -233,7 +233,7 @@ const rollOf = sc => { const v = (sc.kmh ?? 30) / 3.6; return { v, d: Math.min(8
 function stageScene(W, sc, T = 0) {
   const env = sc.env || 'ville', cars = sc.carrefour ? [sc.carrefour.S] : [], { v, d } = rollOf(sc), tR = v > 0 ? d / v : 0.6;
   const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
-  W.load({ env, meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, depart: v > 0 ? d - v * T : 0, graine: sc.graine || 9, camera: sc.camera || 'vue', voie: sc.voie,
+  W.load({ env, meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, depart: v > 0 ? d - v * T : 0, graine: sc.graine || 9, camera: sc.camera || 'vue', voie: sc.voie, relief: sc.relief,
     ligne, carrefours: cars,
     zones: [].concat(sc.giratoire ? [{ de: sc.giratoire - 4, a: sc.giratoire + 34 }] : [], sc.tunnel ? [{ de: sc.tunnel - 10, a: 900 }] : [], sc.rails ? [{ de: sc.rails - 8, a: sc.rails + 8 }] : []),
     // pas de voiture garée entre nous et un piéton ou un usager au bord de la route : il doit rester bien visible

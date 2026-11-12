@@ -381,7 +381,8 @@
      "vitesse",
      12
     ]
-   ]
+   ],
+   "relief": "montagne"
   },
   {
    "type": "liste",
@@ -427,7 +428,8 @@
       "kmh": -40,
       "couleur": 10134447
      }
-    ]
+    ],
+    "relief": "montagne"
    },
    "sync": [
     1.49,

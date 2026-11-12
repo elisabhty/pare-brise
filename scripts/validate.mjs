@@ -16,7 +16,7 @@ export function validate(root = '.') {
   const TYPES = [...fs.readFileSync(P('src/app/scenes.js'), 'utf8').matchAll(/^  (\w+): \{$/gm)].map(m => m[1]);
   const ACTEURS = ['voiture', 'trottinette', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'train', 'moto', 'biche', 'ambulance', 'police', 'pompiers', 'triangle', 'portiere', 'feu', 'ballon'];
   const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus', 'handicape', 'velo', 'zebras'];
-  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee', 'derriere'];
+  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee', 'derriere', 'enfilade'];
   // aides visuelles du simulateur (engine/sim.js, AIDES) et illustrations d'écran (app/illu.js, ILLU)
   const AIDES = ['zone', 'bandes', 'faisceau', 'radar', 'champ', 'fleche', 'cible', 'repere', 'mesure', 'radarfixe', 'borne', 'pn', 'plots', 'manche', 'eau', 'victime', 'table', 'sos', 'issue', 'balises', 'affichette'];
   const ILLUS = ['critair', 'pictos', 'points', 'ethylotest', 'voyants', 'documents', 'telephone', 'siege', 'sieges', 'constat', 'frise', 'compteur', 'pneu', 'niveaux', 'icones', 'bareme', 'panneaux'];

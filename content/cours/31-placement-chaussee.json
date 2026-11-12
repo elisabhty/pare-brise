@@ -114,18 +114,18 @@
    ],
    "script": [
     [
-     6.4,
+     "p2",
      "clignotant",
      "d"
     ],
     [
-     7.4,
+     "p2+1",
      "voie",
      1.75,
      2400
     ],
     [
-     10.2,
+     "p2+4",
      "clignotant",
      null
     ]
@@ -282,7 +282,7 @@
     },
     {
      "type": "voiture",
-     "S": -46,
+     "S": -100,
      "x": 1.75,
      "kmh": 118,
      "couleur": 3829232
@@ -292,29 +292,30 @@
     [
      1,
      "Déjà sur la voie",
-     "tu lui cèdes le passage"
+     "tu lui cèdes le passage",
+     2
     ]
    ],
    "script": [
     [
-     0.4,
+     "p1",
      "vitesse",
      92,
      2.5
     ],
     [
-     1.2,
+     "p2",
      "clignotant",
      "g"
     ],
     [
-     6.4,
+     "p3",
      "voie",
      1.75,
      2600
     ],
     [
-     9.4,
+     "p4+1",
      "clignotant",
      null
     ]
@@ -365,26 +366,26 @@
    ],
    "script": [
     [
-     1.4,
+     "p1",
      "clignotant",
      "d"
     ],
     [
-     5.6,
+     "p1+2.5",
      "voie",
      1.75,
      2600
     ],
     [
-     8.6,
-     "clignotant",
-     null
-    ],
-    [
-     9.0,
+     "p2+2",
      "vitesse",
      92,
      1.5
+    ],
+    [
+     "p2+3",
+     "clignotant",
+     null
     ]
    ],
    "dire": "Tu veux prendre la prochaine sortie : repère ses panneaux assez tôt. Mets-toi sur la voie de droite : rétros, clignotant, angle mort. Puis prends la voie de sortie : c’est là que tu ralentis, pas avant, car derrière toi, on roule vite. Sortie ratée : continue jusqu’à la suivante, sans reculer ni couper les voies.",
@@ -436,18 +437,18 @@
    ],
    "script": [
     [
-     2.6,
+     "p4",
      "clignotant",
      "d"
     ],
     [
-     5.2,
+     "p4+3",
      "voie",
      1.75,
      2600
     ],
     [
-     8.2,
+     "p5+1",
      "clignotant",
      null
     ]

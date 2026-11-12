@@ -153,18 +153,18 @@
      3
     ],
     [
-     1.4,
+     "p1+1.2",
      "clignotant",
      "g"
     ],
     [
-     3.8,
+     "p2",
      "voie",
      1.75,
      2400
     ],
     [
-     6.4,
+     "p3",
      "clignotant",
      null
     ]
@@ -315,7 +315,7 @@
    "dire": "Tu roules vite, derrière une autre voiture. Sur certaines autoroutes, de grandes flèches en V sont peintes sur ta voie : ce sont les chevrons. Garde au moins deux chevrons entre toi et la voiture de devant. Un chevron, danger ; deux chevrons, sécurité. À cette vitesse, il te faut de la place pour freiner. Sans chevrons, garde deux traits de la bande d’arrêt d’urgence, comme au cours 4. Bouchon soudain devant toi ? Allume tes feux de détresse pour prévenir ceux qui te suivent.",
    "env": "autoroute",
    "kmh": 120,
-   "camera": "haut",
+   "camera": "enfilade",
    "chevrons": true,
    "acteurs": [
     {
@@ -524,12 +524,12 @@
    "titre": "Ralentis et décale-toi",
    "dire": "Là-bas, sur la bande d’arrêt d’urgence : un véhicule arrêté. Lumière bleue ou orange qui tourne, ou feux de détresse. Premier geste : ralentis, puis change de voie si tu peux. Pas de place à côté ? Décale-toi le plus possible dans ta voie. Ce couloir protège les gens à pied : c’est le corridor de sécurité.",
    "env": "autoroute",
-   "kmh": 90,
+   "kmh": 80,
    "camera": "poursuite",
    "acteurs": [
     {
      "type": "ambulance",
-     "S": 50,
+     "S": 300,
      "x": 4.9
     }
    ],
@@ -537,26 +537,42 @@
     [
      0,
      "Corridor",
-     "ralentis et décale-toi"
+     "ralentis et décale-toi",
+     2
     ]
    ],
    "script": [
     [
-     0.8,
+     "p2",
+     "vitesse",
+     55,
+     2
+    ],
+    [
+     "p2+1.4",
      "clignotant",
      "g"
     ],
     [
-     1.6,
+     "p2+2.2",
      "voie",
      -1.75,
      1900
     ],
     [
-     3.8,
+     "p3+1",
      "clignotant",
      null
     ]
+   ],
+   "aides": [
+    {
+     "type": "cible",
+     "acteur": 0,
+     "rayon": 2.2,
+     "p": 0,
+     "fin": 2
+    }
    ]
   },
   {

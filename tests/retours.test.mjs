@@ -168,3 +168,16 @@ test('chaque cours a son piège de l’examen : l’erreur, puis le bon réflexe
 test('lecteur : un sous-titre reste court (au-delà de 108 caractères, le lecteur réduit le texte ; jamais plus de 136)', () => {
   for (const c of data.cours) c.scenes.forEach((s, i) => phrases(s.dire).forEach(p => assert.ok(p.trim().length <= 136, `${c.id} écran ${i} : ${p.trim().length} caractères « ${p.trim().slice(0, 50)}… »`)));
 });
+
+// Scènes 3D : la voix, le titre et l'action vont ensemble.
+test('cours 30 : chaque étape a son titre, sa voix et sa scène (écrans échangés compris)', () => {
+  const sc = C['changer-direction-voie'].scenes;
+  for (let n = 1; n <= 4; n++) { assert.match(sc[n].eyebrow, new RegExp('^Étape ' + n)); assert.match(sc[n].dire, new RegExp('^Étape ' + n)); }
+  assert.match(sc[2].titre, /pas une priorité/); assert.match(sc[3].titre, /angle mort/i);
+});
+test('scènes : l’action part sur la phrase qui en parle, les décors de montagne sont en montagne', () => {
+  const s8 = C.depassement.scenes[4]; assert.equal(s8.script[0][0], 'p4+1');                        // on dépasse le cycliste quand la voix parle de l'exception
+  const s15 = C['nuit-eclairage'].scenes[6]; assert.ok(s15.acteurs[1].S > s15.acteurs[0].S + 30);    // le gilet se voit après le piéton en sombre
+  assert.equal(C['montagne-tunnels-pn'].scenes[4].relief, 'montagne');
+  assert.equal(C.autoroute.scenes[3].camera, 'enfilade');
+});

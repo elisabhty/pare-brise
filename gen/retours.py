@@ -1606,7 +1606,11 @@ def prat(cid, q, n=0, **champs):
 for _f in sorted(_glob.glob(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'reformulation', '*.json'))):
     _r = _json.load(open(_f, encoding='utf-8')); _c = _r['cours']; REFORM[_c] = _r
     for _s in _r.get('scenes', []):
-        _cur = T.setdefault((_c, _s['i']), {})
+        # les experts ont travaillé sur l'ordre final des écrans ; un écran échangé après coup (cours 30) reçoit donc son texte
+        # à sa place d'avant l'échange
+        _i = _s['i']
+        for _a, _b, _d in COURS.get(_c, {}).get('echange', []): _i = _b if _i == _a else _a if _i == _b else _i
+        _cur = T.setdefault((_c, _i), {})
         if 'dire' in _s: _cur['dire'] = ' '.join(_s['dire'])
         if 'items' in _s:
             for _k in [k for k in _cur if k.startswith('items_')]: del _cur[_k]
@@ -1710,3 +1714,54 @@ for _c, (_a, _b) in PIEGES.items(): COURS.setdefault(_c, {})['piege'] = [_a, _b]
 
 # Cours 4, fin : la zone des 2 secondes s'allume quand la voix en parle.
 dec('distances', 6, decale(1))
+
+# ---- Décors 3D (novembre 2026) : la montagne ressemble à la montagne, les chevrons se voient ----
+# « relief » : paroi rocheuse, glissière et sommets (engine/sim.js) pour les écrans qui parlent de montagne.
+for _k in (('montagne-tunnels-pn', 4), ('montagne-tunnels-pn', 5), ('intemperies', 6)): dec(_k[0], _k[1], {'relief': 'montagne'})
+# Cours 10, « Deux chevrons » : vue en enfilade (notre voiture, les deux chevrons, la voiture de devant), au lieu d'une vue
+# du dessus où l'on ne voyait ni l'une ni les autres.
+dec('autoroute', 3, {'camera': 'enfilade'})
+# Cours 15, piétons la nuit : les deux piétons étaient déjà dépassés quand la voix parlait du gilet. La voiture roule moins
+# vite : le piéton en sombre surgit pendant la première phrase, celui au gilet se voit de loin pendant la deuxième.
+dec('nuit-eclairage', 6, {'kmh': 30, 'acteurs': [{'type': 'pieton', 'S': 46, 'x': 4.2}, {'type': 'pieton', 'S': 92, 'x': 4.6, 'gilet': True}]})
+# Cours 10, corridor de sécurité : le véhicule arrêté était dépassé au bout de 2 secondes, et la voix parlait ensuite devant une
+# autoroute vide. Il est maintenant « là-bas » : on le voit approcher, on ralentit, on change de voie quand la voix le dit.
+dec('autoroute', 6, {'kmh': 80, 'acteurs': [{'type': 'ambulance', 'S': 300, 'x': 4.9}], 'etiquettes': [[0, 'Corridor', 'ralentis et décale-toi', 2]],
+                     'script': [['p2', 'vitesse', 55, 2], ['p2+1.4', 'clignotant', 'g'], ['p2+2.2', 'voie', -1.75, 1900], ['p3+1', 'clignotant', None]],
+                     'aides': [{'type': 'cible', 'acteur': 0, 'rayon': 2.2, 'p': 0, 'fin': 2}]})
+
+# ---- L'action au rythme de la voix (novembre 2026) ----
+# Depuis la reformulation, la voix est plus longue : dans ces scènes, l'action (dépasser, changer de voie, ouvrir la portière)
+# était terminée après quelques secondes, et la voix continuait devant une route vide. Chaque geste part maintenant sur la
+# phrase qui en parle (« pN » = début de la phrase N).
+def recale(cid, i, script=None, acteurs=None, etiq=None, **champs):
+    def f(d):
+        if script is not None: d['script'] = script
+        for k, maj in (acteurs or {}).items(): d['acteurs'][k].update(maj)
+        for k, ph in (etiq or {}).items():
+            e = d['etiquettes'][k]; d['etiquettes'][k] = (e + [0])[:3] + [ph]
+        d.update(champs)
+    dec(cid, i, f)
+# 8 · on suit le cycliste, puis on le dépasse quand la voix parle de l'exception ; le triangle « vélos » arrive à la fin
+recale('depassement', 4, script=[['p4+1', 'depasser', 0, {'x': 0.15, 'kmh': 45, 'marge': 5}]], etiq={0: 2}, signaux=[['A21', 270]])
+# 12 · le dépassement commence quand la voix dit « pour le dépasser »
+recale('cyclistes-edpm', 1, script=[['p1+1.5', 'depasser', 0, {'x': 0.1, 'kmh': 40, 'marge': 6}]], etiq={0: 2})
+# 10 · insertion : on accélère, clignotant sur « clignotant à gauche », on se glisse sur « glisse-toi »
+recale('autoroute', 1, script=[[0.4, 'vitesse', 104, 3], ['p1+1.2', 'clignotant', 'g'], ['p2', 'voie', 1.75, 2400], ['p3', 'clignotant', None]])
+# 14 · les pompiers arrivent de plus loin : on se range quand la voix dit qu'ils passent avant tout le monde
+recale('vehicules-prioritaires', 1, script=[['p1', 'clignotant', 'd'], ['p1+0.3', 'voie', 2.7, 1600], ['p1+0.3', 'vitesse', 8, 3], ['p3+4', 'clignotant', None]], acteurs={0: {'S': -110}})
+# 9 · la portière : le cycliste arrive quand la voix l'annonce, et la portière s'ouvre devant lui
+recale('arret-stationnement', 5, script=[['p2+1.2', 'ouvrir', 0]], acteurs={1: {'S': -22}}, etiq={0: 2})
+# 30 · étape 1 : le deux-roues arrive par l'arrière quand la voix le montre
+recale('changer-direction-voie', 1, script=[['p5', 'clignotant', 'd']], acteurs={0: {'S': -42}}, etiq={0: 4})
+# 30 · étape 3 (écran 2 avant l'échange) : la voiture reste dans l'angle mort pendant que la voix l'explique, puis s'en va
+recale('changer-direction-voie', 2, script=[[1.2, 'clignotant', 'g'], ['p1', 'etiquettes'], ['p3', 'acteur', 0, 112]])
+# 30 · étape 2 (écran 3 avant l'échange) : la voiture de gauche garde sa voie ; on attend un espace avant de se décaler
+recale('changer-direction-voie', 3, script=[[0.8, 'clignotant', 'g'], ['p1', 'etiquettes'], ['p3+1', 'vitesse', 100, 2], ['p3+1.4', 'voie', -1.75, 2400]], acteurs={0: {'kmh': 100}, 1: {'S': -260}})
+# 30 · étape 4 : le clignotant s'éteint quand la voix le dit
+recale('changer-direction-voie', 4, script=[[1.4, 'clignotant', 'g'], [3.6, 'voie', -1.75, 3000], ['p3+1', 'clignotant', None]])
+# 31 · revenir à droite, s'insérer, sortir, fin de voie : chaque geste sur sa phrase
+recale('placement-chaussee', 1, script=[['p2', 'clignotant', 'd'], ['p2+1', 'voie', 1.75, 2400], ['p2+4', 'clignotant', None]])
+recale('placement-chaussee', 4, script=[['p1', 'vitesse', 92, 2.5], ['p2', 'clignotant', 'g'], ['p3', 'voie', 1.75, 2600], ['p4+1', 'clignotant', None]], acteurs={1: {'S': -100}}, etiq={0: 2})
+recale('placement-chaussee', 5, script=[['p1', 'clignotant', 'd'], ['p1+2.5', 'voie', 1.75, 2600], ['p2+2', 'vitesse', 92, 1.5], ['p2+3', 'clignotant', None]])
+recale('placement-chaussee', 6, script=[['p4', 'clignotant', 'd'], ['p4+3', 'voie', 1.75, 2600], ['p5+1', 'clignotant', None]])

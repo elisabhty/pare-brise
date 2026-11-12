@@ -402,7 +402,7 @@
    "dire": "Au bord de la route, un piéton habillé en sombre : tu le vois seulement au dernier moment. Regarde : avec un gilet réfléchissant, tu le vois de bien plus loin. S’il n’a pas de gilet, ralentis et écarte-toi dès que tu le devines.",
    "env": "route",
    "meteo": "nuit",
-   "kmh": 40,
+   "kmh": 30,
    "camera": "cockpit",
    "feux": {
     "croisement": true
@@ -410,12 +410,12 @@
    "acteurs": [
     {
      "type": "pieton",
-     "S": 28,
+     "S": 46,
      "x": 4.2
     },
     {
      "type": "pieton",
-     "S": 50,
+     "S": 92,
      "x": 4.6,
      "gilet": true
     }

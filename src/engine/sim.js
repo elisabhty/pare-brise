@@ -27,19 +27,43 @@ const shadowAll = (g, cast = true) => { g.traverse(n => { if (n.isMesh) { n.cast
 function canvas(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); return c; }
 
 /* ======================= Modèles ======================= */
+/* Carrosserie : un profil de citadine (capot, pare-brise incliné, pavillon, hayon) extrudé sur la largeur, arêtes adoucies.
+   L'avant regarde vers -z. Les mêmes géométries servent aux voitures qui roulent et aux voitures garées (instanciées). */
+function profil(pts, larg, b) {
+  const sh = new THREE.Shape(pts.map(([z, y]) => new THREE.Vector2(z, y)));
+  const g = new THREE.ExtrudeGeometry(sh, { depth: larg - 2 * b, bevelEnabled: true, bevelThickness: b, bevelSize: b, bevelOffset: -b, bevelSegments: 2, curveSegments: 4 });
+  g.translate(0, 0, -(larg - 2 * b) / 2); g.rotateY(-Math.PI / 2); return g;
+}
+const carBody = len => geo('cbody' + len, () => { const h = len / 2; return profil([[-h + 0.12, 0.3], [-h, 0.47], [-h + 0.03, 0.7], [-h + 0.85, 0.84], [-h + 1.25, 0.9], [h - 0.4, 0.93], [h - 0.06, 0.86], [h, 0.7], [h, 0.46], [h - 0.12, 0.3]], 1.82, 0.09); });
+const carGlass = len => geo('cglass' + len, () => { const h = len / 2; return profil([[-h + 1.2, 0.86], [-h + 1.95, 1.4], [h - 0.95, 1.4], [h - 0.33, 0.9]], 1.58, 0.05); });
+const carRoof = len => geo('croof' + len, () => new RoundedBoxGeometry(1.5, 0.07, len - 2.8, 2, 0.03).translate(0, 1.42, 0.5));
 function carMesh(color = 0x3A6DF0, o = {}) {
   const g = new THREE.Group();
   const paint = mat('paint' + color, () => new THREE.MeshStandardMaterial({ color, roughness: 0.28, metalness: 0.35 }));
-  const glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x172235, roughness: 0.08, metalness: 0.45 }));
+  const glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x1F3048, roughness: 0.08, metalness: 0.45 }));
   const tire = mat('tire', () => std(0x1c1f25, { roughness: 0.92 }));
   const rim = mat('rim', () => std(0xCDD3DC, { metalness: 0.85, roughness: 0.28 }));
   const trim = mat('trim', () => std(0x2a2f38, { roughness: 0.6 }));
-  const len = o.long || 4.2;
-  const body = new THREE.Mesh(geo('body' + len, () => new RoundedBoxGeometry(1.82, 0.6, len, 3, 0.2)), paint); body.position.y = 0.62;
-  const skirt = new THREE.Mesh(geo('skirt' + len, () => new RoundedBoxGeometry(1.86, 0.18, len - 0.3, 2, 0.06)), trim); skirt.position.y = 0.36;
-  const cab = new THREE.Mesh(geo('cab', () => new RoundedBoxGeometry(1.6, 0.54, 2.2, 3, 0.24)), glass); cab.position.set(0, 1.12, 0.2);
-  const roof = new THREE.Mesh(geo('roof', () => new RoundedBoxGeometry(1.5, 0.09, 1.72, 2, 0.04)), paint); roof.position.set(0, 1.4, 0.26);
+  const len = o.long || 4.2, h = len / 2;
+  const body = new THREE.Mesh(carBody(len), paint);
+  const skirt = new THREE.Mesh(geo('skirt' + len, () => new RoundedBoxGeometry(1.86, 0.16, len - 0.2, 2, 0.06)), trim); skirt.position.y = 0.34;
+  const cab = new THREE.Mesh(carGlass(len), glass);
+  const roof = new THREE.Mesh(carRoof(len), paint);
   g.add(body, skirt, cab, roof);
+  // montants, rétroviseurs, calandre, plaques : ce qui fait lire « une voiture » de loin comme de près
+  const pil = geo('pilier', () => new THREE.BoxGeometry(0.05, 0.5, 0.11)), mir = geo('retro', () => new RoundedBoxGeometry(0.2, 0.12, 0.1, 2, 0.03));
+  // montants de pare-brise et de hayon, dans la pente des vitres : la lunette arrière n'est plus un grand rectangle noir
+  const pa = geo('montA' + len, () => new THREE.BoxGeometry(0.11, 0.05, 0.94)), pc = geo('montC' + len, () => new THREE.BoxGeometry(0.2, 0.05, 0.8)), seuil = geo('seuilH', () => new THREE.BoxGeometry(1.5, 0.05, 0.16));
+  { const sh = new THREE.Mesh(seuil, paint); sh.position.set(0, 0.95, h - 0.4); sh.rotation.x = 0.69; g.add(sh); }
+  for (const sx of [-1, 1]) {
+    const a1 = new THREE.Mesh(pa, paint); a1.position.set(sx * 0.735, 1.165, -h + 1.555); a1.rotation.x = -0.624; g.add(a1);
+    const c1 = new THREE.Mesh(pc, paint); c1.position.set(sx * 0.69, 1.185, h - 0.62); c1.rotation.x = 0.69; g.add(c1);
+    const b = new THREE.Mesh(pil, paint); b.position.set(sx * 0.775, 1.15, 0.42); g.add(b);
+    const m = new THREE.Mesh(mir, paint); m.position.set(sx * 0.98, 0.98, -h + 1.38); g.add(m);
+  }
+  const grille = new THREE.Mesh(geo('calandre', () => new THREE.BoxGeometry(1.0, 0.12, 0.04)), trim); grille.position.set(0, 0.5, -h - 0.005); g.add(grille);
+  const plate = mat('plaque', () => std(0xF4F5F2, { roughness: 0.5 })), pg = geo('plaqueG', () => new THREE.BoxGeometry(0.5, 0.11, 0.02));
+  const pf = new THREE.Mesh(pg, plate); pf.position.set(0, 0.38, -h + 0.06); const pr = new THREE.Mesh(pg, plate); pr.position.set(0, 0.56, h + 0.005); g.add(pf, pr);
   const wg = geo('wheel', () => new THREE.CylinderGeometry(0.35, 0.35, 0.26, 22).rotateZ(Math.PI / 2));
   const rg = geo('rimg', () => new THREE.CylinderGeometry(0.21, 0.21, 0.27, 14).rotateZ(Math.PI / 2));
   const wz = len / 2 - 0.75;
@@ -52,23 +76,23 @@ function carMesh(color = 0x3A6DF0, o = {}) {
   const head = new THREE.MeshStandardMaterial({ color: 0xf4f6fa, emissive: 0xfff3dc, emissiveIntensity: 0.25 });
   const tail = new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1a2a, emissiveIntensity: 0.25 });
   for (const x of [-0.6, 0.6]) {
-    const h = new THREE.Mesh(hlg, head); h.position.set(x, 0.74, -len / 2 + 0.01); g.add(h);
-    const t = new THREE.Mesh(hlg, tail); t.position.set(x, 0.76, len / 2 - 0.01); g.add(t);
+    const hl = new THREE.Mesh(hlg, head); hl.position.set(x, 0.62, -len / 2 + 0.005); g.add(hl);
+    const t = new THREE.Mesh(hlg, tail); t.position.set(x, 0.63, len / 2 - 0.005); g.add(t);
   }
   g.userData.head = head; g.userData.tail = tail; g.userData.own = [head, tail];
   if (o.ecole) {
     const sign = new THREE.Mesh(geo('ecole', () => new RoundedBoxGeometry(0.9, 0.24, 0.3, 2, 0.05)), mat('ecoleM', () => new THREE.MeshStandardMaterial({ color: 0x1E5BFF, roughness: 0.4 })));
-    sign.position.set(0, 1.58, 0.3); g.add(sign);
+    sign.position.set(0, 1.6, 0.45); g.add(sign);
   }
   if (o.gyro) {
-    const bar = new THREE.Group(); bar.position.set(0, 1.5, 0.1);
+    const bar = new THREE.Group(); bar.position.set(0, 1.53, 0.45);
     const orange = o.gyro === 'orange';
     const b1 = new THREE.MeshStandardMaterial({ color: orange ? 0xff8a00 : 0x1238ff, emissive: orange ? 0xff7a00 : 0x2a5bff, emissiveIntensity: 0.2 });
     const b2 = b1.clone();
     const gg = geo('gyro', () => new RoundedBoxGeometry(0.42, 0.14, 0.26, 2, 0.05));
     const l = new THREE.Mesh(gg, b1); l.position.x = -0.24; const r = new THREE.Mesh(gg, b2); r.position.x = 0.24;
     bar.add(l, r); g.add(bar); g.userData.gyro = [b1, b2]; g.userData.own.push(b1, b2);
-    if (!orange) { const band = new THREE.Mesh(geo('band' + len, () => new THREE.BoxGeometry(1.84, 0.12, len - 0.4)), mat('bandR', () => std(0xE32636))); band.position.y = 0.78; g.add(band); }
+    if (!orange) { const band = new THREE.Mesh(geo('band' + len, () => new THREE.BoxGeometry(1.84, 0.12, len - 0.4)), mat('bandR', () => std(0xE32636))); band.position.y = 0.72; band.scale.x = 1.012; g.add(band); }
   }
   return shadowAll(g);
 }
@@ -279,12 +303,18 @@ export function buildSim(K) {
     nuit: [0x030714, 0x0C1838, 0x22325E], neige: [0xAFC0D4, 0xD3DCE7, 0xEEF2F7], couchant: [0x26407E, 0x7C8FC4, 0xF5B47E]
   };
   const sunDir = V(-0.35, 0.42, -1).normalize();
-  const skyU = { top: { value: new THREE.Color() }, mid: { value: new THREE.Color() }, hor: { value: new THREE.Color() }, sunDir: { value: sunDir }, sunK: { value: 1 } };
+  const skyU = { top: { value: new THREE.Color() }, mid: { value: new THREE.Color() }, hor: { value: new THREE.Color() }, sunDir: { value: sunDir }, sunK: { value: 1 }, cloudK: { value: 1 }, cloudC: { value: new THREE.Color(0xffffff) } };
   const sky = new THREE.Mesh(new THREE.SphereGeometry(400, 32, 16), new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, fog: false, uniforms: skyU,
     vertexShader: 'varying vec3 vP; void main(){ vP=normalize(position); vec4 p=projectionMatrix*modelViewMatrix*vec4(position,1.0); gl_Position=p.xyww; }',
-    fragmentShader: `uniform vec3 top; uniform vec3 mid; uniform vec3 hor; uniform vec3 sunDir; uniform float sunK; varying vec3 vP;
+    // quelques nuages de beau temps (bruit procédural, sans texture) : le ciel n'est plus un simple dégradé
+    fragmentShader: `uniform vec3 top; uniform vec3 mid; uniform vec3 hor; uniform vec3 sunDir; uniform float sunK; uniform float cloudK; uniform vec3 cloudC; varying vec3 vP;
+      float hh(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
+      float nn(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f); return mix(mix(hh(i),hh(i+vec2(1.0,0.0)),f.x),mix(hh(i+vec2(0.0,1.0)),hh(i+vec2(1.0,1.0)),f.x),f.y); }
+      float fbm(vec2 p){ float a=0.5, s=0.0; for(int i=0;i<4;i++){ s+=a*nn(p); p=p*2.03+vec2(7.1,3.3); a*=0.5; } return s; }
       void main(){ float h=vP.y; vec3 c=mix(hor,mid,smoothstep(-0.01,0.18,h)); c=mix(c,top,smoothstep(0.18,0.7,h));
+      if(cloudK>0.0 && h>0.03){ vec2 uv=vP.xz/(h+0.16)*0.9; float d=fbm(uv+vec2(2.0,5.0)); float m=smoothstep(0.5,0.68,d)*smoothstep(0.03,0.2,h)*(1.0-smoothstep(0.75,1.0,h))*cloudK;
+        vec3 cc=mix(cloudC*0.86,cloudC,smoothstep(0.5,0.8,d)); c=mix(c,cc,m*0.9); }
       float sd=max(dot(normalize(vP),sunDir),0.0); c+=sunK*(vec3(1.0,0.96,0.88)*pow(sd,32.0)*0.3+vec3(1.0)*pow(sd,1800.0)*2.2);
       gl_FragColor=vec4(c,1.0); }`
   }));
@@ -327,7 +357,7 @@ export function buildSim(K) {
   const me = carMesh(0xF4F6FA, { ecole: true }); me.visible = false; s.add(me);
   const amber = new THREE.MeshStandardMaterial({ color: 0xffa21a, emissive: 0xff8a00, emissiveIntensity: 0.1 }), fogR = new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1020, emissiveIntensity: 0 });
   const amberR = amber.clone();   // clignotants : gauche (x < 0) et droit séparés
-  for (const [x, z] of [[-0.86, -2.05], [0.86, -2.05], [-0.86, 2.06], [0.86, 2.06]]) { const b = new THREE.Mesh(geo('blink', () => new RoundedBoxGeometry(0.16, 0.1, 0.06, 2, 0.02)), x < 0 ? amber : amberR); b.position.set(x, 0.74, z); me.add(b); }
+  for (const [x, z] of [[-0.86, -2.07], [0.86, -2.07], [-0.86, 2.08], [0.86, 2.08]]) { const b = new THREE.Mesh(geo('blink', () => new RoundedBoxGeometry(0.16, 0.1, 0.06, 2, 0.02)), x < 0 ? amber : amberR); b.position.set(x, 0.62, z); me.add(b); }
   const fr = new THREE.Mesh(geo('fogR', () => new RoundedBoxGeometry(0.22, 0.08, 0.05, 2, 0.02)), fogR); fr.position.set(-0.5, 0.42, 2.11); me.add(fr);
 
   /* pluie / neige */
@@ -368,6 +398,7 @@ export function buildSim(K) {
     const k = SKY[meteo === 'sec' ? 'jour' : meteo] || SKY.jour;
     skyU.top.value.set(k[0]); skyU.mid.value.set(k[1]); skyU.hor.value.set(k[2]);
     skyU.sunK.value = meteo === 'jour' || meteo === 'sec' || meteo === 'couchant' ? 1 : 0;
+    skyU.cloudK.value = meteo === 'jour' || meteo === 'sec' ? 1 : meteo === 'couchant' ? 0.85 : 0; skyU.cloudC.value.set(meteo === 'couchant' ? 0xFFD8C0 : 0xffffff);
     const fogC = { pluie: 0xB9C2CD, brouillard: 0xD5DAE0, nuit: 0x0B1430, neige: 0xDCE3EC }[meteo] ?? 0xD6E6F8;
     const fogR = { pluie: [18, 170], brouillard: [4, 62], nuit: [25, 160], neige: [12, 120] }[meteo] ?? [60, 330];
     s.fog = new THREE.Fog(fogC, fogR[0], fogR[1]);
@@ -446,8 +477,55 @@ export function buildSim(K) {
   function buildDecor(env, free, spec) {
     const r = rng(spec.graine || 7), L = envLen + 120;
     const night = cfg.meteo === 'nuit';
-    if (env === 'route') {
+    const montagne = env === 'route' && spec.relief === 'montagne', neige = cfg.meteo === 'neige';
+    if (montagne) {
+      /* Route de montagne : la paroi rocheuse à droite, la glissière et le vide à gauche, des sapins, des sommets enneigés. */
+      const rocks = [], pines = [], peaks = [], caps = [], gposts = [];
+      const GRIS = neige ? [0xE6EAF0, 0xD9DFE7, 0xCFD6E0] : [0x8F8C86, 0x9C968D, 0x7E7C79, 0xA39E96];
+      for (let S = -200; S < L; S += 4.5 + r() * 3) {
+        const w = 4.5 + r() * 3.5, hh = 7 + r() * 9;
+        rocks.push([6.6 + w * 0.55 + r() * 1.2, hh * 0.32, local(S), w, hh, 5 + r() * 3, r() * 3, GRIS[(r() * GRIS.length) | 0]]);
+        if (r() < 0.55) rocks.push([13 + r() * 6, hh * 0.6, local(S + 2), 7 + r() * 4, hh * 1.5, 7 + r() * 4, r() * 3, GRIS[(r() * GRIS.length) | 0]]);
+        if (r() < 0.5) { const ph = 5 + r() * 5; pines.push([17 + r() * 16, hh * 0.9 + ph / 2, local(S), 1.6 + r(), ph, 1.6 + r()]); }
+        if (r() < 0.8) { const ph = 4 + r() * 5; pines.push([-(9 + r() * 30), ph / 2 - 1.2, local(S + r() * 4), 1.4 + r(), ph, 1.4 + r()]); }
+      }
+      for (let S = -200; S < L; S += 4) if (free(S)) gposts.push([-4.35, 0.4, local(S), 1, 1, 1]);
+      for (let S = -150; S < L + 200; S += 90 + r() * 60) for (const sd of [-1, 1]) { const R0 = 55 + r() * 40, H0 = 70 + r() * 60, x = sd * (150 + r() * 90); peaks.push([x, H0 / 2 - 6, local(S), R0, H0, R0, r() * 3]); caps.push([x, H0 - 6 - H0 * 0.16, local(S), R0 * 0.33, H0 * 0.34, R0 * 0.33, r() * 3]); }
+      inst('rock', () => new THREE.DodecahedronGeometry(0.62, 0), mat('rockM', () => std(0xffffff, { flatShading: true, roughness: 1 })), rocks, true);
+      inst('pine', () => new THREE.ConeGeometry(1, 1, 7), mat('pineM', () => std(0x3E8A4C, { flatShading: true, roughness: 1 })), pines);
+      inst('peak', () => new THREE.ConeGeometry(1, 1, 6), mat('peakM', () => std(0x7C8FA6, { flatShading: true, roughness: 1 })), peaks);
+      inst('peak', () => new THREE.ConeGeometry(1, 1, 6), mat('capM', () => std(0xF4F7FB, { flatShading: true, roughness: 1 })), caps);
+      inst('post', () => new THREE.BoxGeometry(0.12, 1, 0.12), mat('postM', () => std(0xF4F4F0)), gposts, false);
+      const rail = new THREE.Mesh(geo('rail', () => new THREE.BoxGeometry(0.08, 0.32, 1)), mat('railM', () => std(0xC6CCD4, { metalness: 0.7, roughness: 0.35 }))); rail.scale.z = L + 240; rail.position.set(-4.35, 0.7, local(L / 2 - 100)); rail.castShadow = true; run.add(rail);
+      // le versant : la vallée en contrebas, plus sombre, derrière la glissière
+      const val = new THREE.Mesh(geo('vallee', () => new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2)), mat('valleeM' + neige, () => std(neige ? 0xDDE4EC : 0x5F9463, { roughness: 1 }))); val.scale.set(160, 1, L + 400); val.position.set(-85.5, 0.005, local(L / 2 - 100)); val.receiveShadow = true; run.add(val);
+    }
+    if (env === 'route' && !montagne) {
       const pines = [], round = [], trunks = [], houses = [], roofs = [], posts = [];
+      /* La campagne : des parcelles (blé, colza, prairie, labour), des haies entre elles, des buissons au bord de la route,
+         une ligne de poteaux, quelques bottes de paille. Vu du dessus comme de la route, le décor n'est plus un aplat vert. */
+      const fields = [], hedges = [], bushes = [], poles = [], bars = [], bales = [];
+      const CHAMP = neige ? [0xF3F6FA, 0xE9EEF4, 0xEEF2F7] : [0xE3D082, 0x9DC873, 0x74AC5C, 0xB58F63, 0xD9D56A, 0x8CBF68];
+      for (const side of [-1, 1]) {
+        let S = -230; while (S < L + 60) {
+          const len = 55 + r() * 70, w = 34 + r() * 44, x0 = side * (11.5 + w / 2), c = CHAMP[(r() * CHAMP.length) | 0];
+          let libre = true; for (let q = 0; q <= len; q += 4) if (!free(S + q)) { libre = false; break; }   // jamais sur une route qui croise la nôtre
+          if (!libre) { S += len; continue; }
+          fields.push([x0, 0.02, local(S + len / 2), w, 0.06, len - 1.2, 0, c]);
+          hedges.push([x0, 0.55, local(S), w, 1.1, 0.9, 0, neige ? 0xDCE5EC : 0x3F7F47]);
+          if (r() < 0.6) hedges.push([side * (11.5 + w), 0.5, local(S + len / 2), 0.9, 1.0, len - 2, 0, neige ? 0xDCE5EC : 0x4A8A4F]);
+          if (!neige && (c === 0xE3D082 || c === 0xD9D56A)) for (let k = 0; k < 3; k++) bales.push([side * (16 + r() * (w - 12)), 0.62, local(S + 8 + r() * (len - 16)), 1, 1, 1, r() * 3]);
+          S += len;
+        }
+      }
+      for (let S = -200; S < L; S += 5 + r() * 9) for (const side of [-1, 1]) if (r() < 0.5 && free(S)) { const k = 0.6 + r() * 0.7; bushes.push([side * (6.6 + r() * 3.6), 0.42 * k, local(S), 1.1 * k, 0.8 * k, 1.1 * k, r() * 3, neige ? 0xE6ECF2 : [0x4E9A52, 0x5BA65A, 0x3F8A4C, 0x6DB267][(r() * 4) | 0]]); }
+      for (let S = -190; S < L; S += 46) if (free(S)) { poles.push([-7.4, 3.6, local(S), 1, 7.2, 1]); bars.push([-7.4, 6.7, local(S), 1.8, 0.12, 0.12]); }
+      inst('field', () => new THREE.BoxGeometry(1, 1, 1), mat('fieldM', () => std(0xffffff, { roughness: 1 })), fields);
+      inst('hedge', () => new THREE.BoxGeometry(1, 1, 1), mat('hedgeM', () => std(0xffffff, { roughness: 1, flatShading: true })), hedges, true);
+      inst('bush', () => new THREE.IcosahedronGeometry(1, 0), mat('crownM', () => std(0xffffff, { flatShading: true, roughness: 1 })), bushes, true);
+      inst('pole', () => new THREE.CylinderGeometry(0.09, 0.12, 1, 6), mat('poleM', () => std(0x7A5E45, { roughness: 0.9 })), poles, true);
+      inst('poleB', () => new THREE.BoxGeometry(1, 1, 1), mat('poleM', () => std(0x7A5E45, { roughness: 0.9 })), bars);
+      inst('bale', () => new THREE.CylinderGeometry(0.62, 0.62, 1.2, 12).rotateZ(Math.PI / 2), mat('baleM', () => std(0xD9BE6A, { roughness: 1 })), bales, true);
       for (let S = -200; S < L; S += 7 + r() * 9) for (const side of [-1, 1]) {
         if (r() < 0.45 || !free(S)) continue;
         const x = side * (9 + r() * 26), h = 5 + r() * 6;
@@ -475,7 +553,24 @@ export function buildSim(K) {
         for (let S2 = -190; S2 < L; S2 += 18) if (free(S2)) { trees.push([sd * 6.4, 3.4, local(S2), 1.5, 1.6, 1.5, 0, [0x5BA65A, 0x4E9A52][Math.abs(S2 | 0) % 2]]); }
         for (let S2 = -208; S2 < L; S2 += 26) if (free(S2)) { lampP.push([sd * 6.0, 3, local(S2), 1, 6, 1]); lampH.push([sd * 5.0, 6.05, local(S2), 1, 1, 1]); pools.push([sd * 4.2, 0.03, local(S2), 9, 1, 9]); }
       }
-      inst('bld', () => new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0), mat('bldM', () => new THREE.MeshStandardMaterial({ map: tex(canvas(256, 512, (x, w, h) => { x.fillStyle = '#fff'; x.fillRect(0, 0, w, h); for (let yy = 30; yy < h - 90; yy += 62) for (let xx = 18; xx < w - 30; xx += 60) { x.fillStyle = '#8FA6C4'; x.fillRect(xx, yy, 36, 40); x.fillStyle = 'rgba(255,255,255,.55)'; x.fillRect(xx, yy, 36, 4); } x.fillStyle = '#6E7F98'; x.fillRect(0, h - 70, w, 70); x.fillStyle = '#B9C8DB'; x.fillRect(16, h - 62, w - 32, 50); })), roughness: 0.9 })), blds.map(b => [b[0] + (b[0] > 0 ? b[3] / 2 - 5 : -b[3] / 2 + 5), b[1], b[2], b[3], b[4], b[5], 0, b[7]]));
+      inst('bld', () => new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0), mat('bldM', () => new THREE.MeshStandardMaterial({ map: tex(canvas(512, 1024, (x, w, h) => {
+        // une façade : fenêtres encadrées avec volets, corniche en haut, rez-de-chaussée avec vitrines et stores
+        x.fillStyle = '#fff'; x.fillRect(0, 0, w, h);
+        x.fillStyle = 'rgba(40,52,72,.16)'; x.fillRect(0, 0, w, 18); x.fillStyle = 'rgba(40,52,72,.08)'; x.fillRect(0, 18, w, 10);
+        for (let yy = 70; yy < h - 210; yy += 124) { x.fillStyle = 'rgba(40,52,72,.07)'; x.fillRect(0, yy + 96, w, 5);
+          for (let xx = 34; xx < w - 70; xx += 120) {
+            x.fillStyle = 'rgba(40,52,72,.22)'; x.fillRect(xx - 16, yy, 14, 84); x.fillRect(xx + 74, yy, 14, 84);          // volets
+            x.fillStyle = '#F3F5F8'; x.fillRect(xx - 4, yy - 4, 80, 92);
+            const gr = x.createLinearGradient(0, yy, 0, yy + 84); gr.addColorStop(0, '#9DB6D6'); gr.addColorStop(1, '#6F8BB0'); x.fillStyle = gr; x.fillRect(xx, yy, 72, 84);
+            x.fillStyle = 'rgba(255,255,255,.5)'; x.fillRect(xx, yy, 72, 6); x.fillStyle = '#F3F5F8'; x.fillRect(xx + 34, yy, 4, 84);
+            x.fillStyle = 'rgba(40,52,72,.3)'; x.fillRect(xx - 8, yy + 86, 88, 7);                                                // appui
+          } }
+        const y0 = h - 170; x.fillStyle = '#5E6E86'; x.fillRect(0, y0, w, 170);
+        for (let k = 0; k < 2; k++) { const xx = 22 + k * 250;
+          x.fillStyle = '#C6D4E6'; x.fillRect(xx, y0 + 46, 150, 108); x.fillStyle = 'rgba(255,255,255,.45)'; x.fillRect(xx, y0 + 46, 150, 10);
+          x.fillStyle = '#39465A'; x.fillRect(xx + 164, y0 + 40, 56, 130); x.fillStyle = '#C6D4E6'; x.fillRect(xx + 172, y0 + 50, 40, 60);
+          for (let i = 0; i < 9; i++) { x.fillStyle = i % 2 ? '#F4F6FA' : (k ? '#D9534F' : '#2F7D5B'); x.fillRect(xx - 8 + i * 19, y0 + 8, 19, 30); } }
+      })), roughness: 0.9 })), blds.map(b => [b[0] + (b[0] > 0 ? b[3] / 2 - 5 : -b[3] / 2 + 5), b[1], b[2], b[3], b[4], b[5], 0, b[7]]));
       inst('swk', () => new THREE.BoxGeometry(1, 1, 1), mat('swkM', () => std(0xD8DCE3, { roughness: 0.95 })), swalk, false);
       inst('crownV', () => new THREE.IcosahedronGeometry(1, 1), mat('crownM', () => std(0xffffff, { flatShading: true, roughness: 1 })), trees);
       inst('trunk', () => new THREE.CylinderGeometry(0.14, 0.2, 1, 6), mat('trunkM', () => std(0x6B4F3A)), trees.map(t => [t[0], 1.3, t[2], 1, 2.6, 1]));
@@ -484,16 +579,17 @@ export function buildSim(K) {
       if (night) { const pm = mat('poolM', () => new THREE.MeshBasicMaterial({ map: K.radial(), color: 0xffc98a, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false })); inst('pool', () => new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), pm, pools, false); }
       if (parked.length) {
         const paint = mat('paintI', () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.28, metalness: 0.35 }));
-        const glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x172235, roughness: 0.08, metalness: 0.45 }));
+        const glass = mat('glass', () => new THREE.MeshStandardMaterial({ color: 0x1F3048, roughness: 0.08, metalness: 0.45 }));
         const P0 = parked.map(p => [p.x, 0, local(p.S)]);
         const put = (k, f, m, dy, dz, sc, col) => inst(k, f, m, P0.map((q, i) => [q[0], q[1] + dy, q[2] + dz, sc[0], sc[1], sc[2], 0, col ? parked[i].c : undefined]));
-        put('body4.2i', () => new RoundedBoxGeometry(1.82, 0.6, 4.2, 2, 0.2), paint, 0.62, 0, [1, 1, 1], true);
-        put('skirt4.2', () => new RoundedBoxGeometry(1.86, 0.18, 3.9, 2, 0.06), mat('trim', () => std(0x2a2f38, { roughness: 0.6 })), 0.36, 0, [1, 1, 1]);
-        put('cabI', () => new RoundedBoxGeometry(1.6, 0.54, 2.2, 2, 0.24), glass, 1.12, 0.2, [1, 1, 1]);
-        put('roof', () => new RoundedBoxGeometry(1.5, 0.09, 1.72, 2, 0.04), paint, 1.4, 0.26, [1, 1, 1], true);
+        put('cbody4.2', () => carBody(4.2), paint, 0, 0, [1, 1, 1], true);
+        put('skirt4.2', () => new RoundedBoxGeometry(1.86, 0.16, 4.0, 2, 0.06), mat('trim', () => std(0x2a2f38, { roughness: 0.6 })), 0.34, 0, [1, 1, 1]);
+        put('cglass4.2', () => carGlass(4.2), glass, 0, 0, [1, 1, 1]);
+        put('croof4.2', () => carRoof(4.2), paint, 0, 0, [1, 1, 1], true);
+        put('plaqueG', () => new THREE.BoxGeometry(0.5, 0.11, 0.02), mat('plaque', () => std(0xF4F5F2, { roughness: 0.5 })), 0.56, 2.105, [1, 1, 1]);
         const wheels = []; P0.forEach(q => [[-0.8, -1.35], [0.8, -1.35], [-0.8, 1.4], [0.8, 1.4]].forEach(([x, z]) => wheels.push([q[0] + x, 0.35, q[2] + z, 1, 1, 1])));
         inst('wheelI', () => new THREE.CylinderGeometry(0.35, 0.35, 0.26, 12).rotateZ(Math.PI / 2), mat('tire', () => std(0x1c1f25, { roughness: 0.92 })), wheels);
-        put('tailI', () => new THREE.BoxGeometry(1.5, 0.12, 0.05), mat('tailM', () => new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1a2a, emissiveIntensity: 0.25 })), 0.76, 2.11, [1, 1, 1]);
+        put('tailI', () => new THREE.BoxGeometry(1.5, 0.12, 0.05), mat('tailM', () => new THREE.MeshStandardMaterial({ color: 0x8a0d18, emissive: 0xff1a2a, emissiveIntensity: 0.25 })), 0.66, 2.095, [1, 1, 1]);
       }
     }
     if (env === 'autoroute') {
@@ -908,11 +1004,11 @@ export function buildSim(K) {
   const extra = {};
   function egoSet(o = {}) {
     if ('disqueA' in o) {
-      if (!extra.A) { const m = new THREE.MeshBasicMaterial({ map: ctex('discA', 128, 128, (x, w, h) => { x.clearRect(0, 0, w, h); x.fillStyle = '#E3262E'; x.beginPath(); x.arc(64, 64, 62, 0, 7); x.fill(); x.fillStyle = '#fff'; x.beginPath(); x.arc(64, 64, 50, 0, 7); x.fill(); x.fillStyle = '#E3262E'; x.font = 'bold 74px Arial, Helvetica, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('A', 64, 70); }), transparent: true }); extra.A = new THREE.Mesh(geo('discAG', () => new THREE.CircleGeometry(0.2, 32)), m); extra.A.position.set(-0.48, 0.98, 2.13); me.add(extra.A); }
+      if (!extra.A) { const m = new THREE.MeshBasicMaterial({ map: ctex('discA', 128, 128, (x, w, h) => { x.clearRect(0, 0, w, h); x.fillStyle = '#E3262E'; x.beginPath(); x.arc(64, 64, 62, 0, 7); x.fill(); x.fillStyle = '#fff'; x.beginPath(); x.arc(64, 64, 50, 0, 7); x.fill(); x.fillStyle = '#E3262E'; x.font = 'bold 74px Arial, Helvetica, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('A', 64, 70); }), transparent: true }); extra.A = new THREE.Mesh(geo('discAG', () => new THREE.CircleGeometry(0.2, 32)), m); extra.A.position.set(-0.4, 1.2, 1.56); extra.A.rotation.x = -0.876; me.add(extra.A); }
       extra.A.visible = !!o.disqueA;
     }
     if ('coffre' in o) {
-      if (!extra.box) { const b = new THREE.Group(); const m = new THREE.Mesh(geo('roofBox', () => new RoundedBoxGeometry(1.05, 0.38, 1.95, 3, 0.16)), mat('roofBoxM', () => std(0x2A2F38, { roughness: 0.35, metalness: 0.3 }))); m.position.y = 1.68; b.add(m); for (const z of [-0.45, 0.65]) { const bar = new THREE.Mesh(geo('roofBar', () => new THREE.BoxGeometry(1.45, 0.05, 0.06)), mat('dark', () => std(0x222730))); bar.position.set(0, 1.47, z); b.add(bar); } b.position.z = 0.25; shadowAll(b); me.add(b); extra.box = b; }
+      if (!extra.box) { const b = new THREE.Group(); const m = new THREE.Mesh(geo('roofBox', () => new RoundedBoxGeometry(1.05, 0.38, 1.95, 3, 0.16)), mat('roofBoxM', () => std(0x2A2F38, { roughness: 0.35, metalness: 0.3 }))); m.position.y = 1.68; b.add(m); for (const z of [-0.45, 0.65]) { const bar = new THREE.Mesh(geo('roofBar', () => new THREE.BoxGeometry(1.45, 0.05, 0.06)), mat('dark', () => std(0x222730))); bar.position.set(0, 1.47, z); b.add(bar); } b.position.z = 0.5; shadowAll(b); me.add(b); extra.box = b; }
       const b = extra.box, on = !!o.coffre;
       if (on) { b.visible = true; K.tween(500, e => { b.scale.setScalar(Math.max(0.01, e)); }, K.ease.out); } else if (b.visible) K.tween(500, e => { b.scale.setScalar(Math.max(0.01, 1 - e)); if (e >= 1) b.visible = false; });
     }
@@ -955,6 +1051,8 @@ export function buildSim(K) {
     derriere: () => ({ pos: V(P.x + 0.9, 2.1, 7.4), target: V(P.x - 0.15, 0.95, -3), fov: 34 }),   // l'arrière de notre voiture : disque « A », feux, coffre de toit
     proche: () => ({ pos: V(P.x * 0.5 + 0.2, 8, 8), target: V(P.x * 0.3 + 0.6, 0.6, -12), fov: 44 }),
     haut: () => ({ pos: V(0.6, 34, -4), target: V(0.4, 0, -22), fov: 46 }),
+    // en enfilade, au-dessus de notre voiture : la voie devant, sur une centaine de mètres (les chevrons, la voiture de devant)
+    enfilade: () => ({ pos: V(P.x + 1.6, 12.5, 15), target: V(P.x, 0, -52), fov: 40 }),
     cote: () => ({ pos: V(-9, 2.2, -6), target: V(2, 1, -16), fov: 50 }),
     bilan: () => ({ pos: V(P.x + 7.5, 12, 21), target: V(P.x, 0, -5), fov: 50 }),
     vue: () => ({ pos: V(P.x - 0.36, 1.25, 0.25), target: V(P.x + 0.4, 0.4, -30), fov: 68 }),

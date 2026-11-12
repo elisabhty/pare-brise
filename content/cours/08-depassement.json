@@ -276,12 +276,13 @@
     [
      0,
      "1,50 m",
-     "minimum hors agglomération"
+     "minimum hors agglomération",
+     2
     ]
    ],
    "script": [
     [
-     1.0,
+     "p4+1",
      "depasser",
      0,
      {
@@ -304,7 +305,7 @@
    "signaux": [
     [
      "A21",
-     44
+     270
     ]
    ]
   },
