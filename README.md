@@ -94,22 +94,40 @@ La leçon reste une leçon (aucune question), mais on peut s'en servir :
 - **Barre** : scènes et chapitres marqués ; en glissant, un aperçu montre la scène visée.
 - **Gestes** : toucher l'image = plein écran ; double toucher à gauche ou à droite = phrase précédente ou suivante ;
   au clavier : espace, flèches, Échap.
+- **Démarrage sans écran vide** : l'app affiche un écran de chargement dès la première image (le moteur 3D se construit
+  après, `build.mjs` reporte le démarrage) ; une séance s'ouvre sur un rideau sombre au titre du cours, qui se lève dès
+  que la scène est dessinée, et la voix ne part qu'une fois l'image à l'écran (`Player.start`, `settled()` dans `nav.js`).
+  Pendant qu'on lit l'accueil ou la fiche, la première scène du cours est préparée en arrière-plan (`prewarm` dans
+  `scenes.js`, `Engine.warm` : les shaders sont compilés avant d'en avoir besoin).
 
 ## Exercices de conduite (simulateur 3D)
 
 **Une leçon, puis sa pratique.** La leçon est une leçon : aucune question pendant la vidéo. Sa deuxième partie est la pratique
-(`p-<id du cours>` dans `content/exercices.json`) : des situations en 3D qui reprennent tout ce que dit la leçon. Chaque
-situation se joue quelques secondes, l'image se fige (rendu à la pleine résolution de l'écran), la caméra zoome sur le
-panneau ou l'usager à observer, puis vient le QCM et sa correction. Les réponses aux questions de la banque (`qid`) alimentent
-les révisions. Les défis 3D (freinage, feux, priorités…) sont rattachés à leur leçon : aucun exercice n'est seul. Les pratiques
-sont générées par `gen/pratique.py` (décor par leçon, mises en scène sur mesure par question).
+(`p-<id du cours>` dans `content/exercices.json`) : des situations qui reprennent tout ce que dit la leçon, posées de
+trois façons selon ce qu'il y a à voir (champ `mode`) :
+
+- `video` : la scène se joue quelques secondes (la mise en situation en sous-titre), l'image se fige (rendu à la pleine
+  résolution de l'écran), la caméra zoome sur le panneau ou l'usager, puis le QCM et sa correction. Seulement quand quelque
+  chose se passe : un usager qui bouge, un feu dont on s'approche, une démonstration de la bonne conduite (`apres`) ;
+- `image` : l'image figée au moment de décider, sans vidéo d'observation (un panneau à lire, une scène à l'arrêt) ;
+- `qcm` : une question de cours posée directement sur un fond uni, sans décor ni vidéo (taux d'alcool, points, démarches…).
+  « Lequel de ces panneaux… » : les panneaux sont les réponses (`panneauxChoix`, tuiles A, B, C).
+
+Les réponses aux questions de la banque (`qid`) alimentent les révisions. Les défis 3D (freinage, feux, priorités…) sont
+rattachés à leur leçon : aucun exercice n'est seul. Les pratiques sont générées par `gen/pratique.py` (décor par leçon, mises
+en scène sur mesure par question, `mode` choisi par la règle ci-dessus, avec `QCM_FORCE` / `IMAGE_FORCE` pour les questions
+de connaissance mises en scène « pour l'ambiance »). L'examen blanc tire surtout des situations (vidéo ou image) et au plus
+8 questions de cours.
 
 Chaque pratique commence par les **deux exercices immersifs** du cours (70 en tout, `exercices_immersifs_3d` dans
 `gen/cours-immersifs-35.json`, mis en scène par `gen/immersifs.py`) : la scène se joue, se fige au moment de décider
 (vue extérieure puis place du conducteur avec `puis`), réponse unique, puis la scène reprend et la voiture fait ce qu'il
 fallait faire pendant que la correction s'affiche (`apres` : `ralentir`, `distance`, `arret`, `freinage`, `voie`, `inserer`,
 `garer`, `depasser`, `feux`, `attendre`, `aucune`, avec `kmh`, `S` du point d'arrêt, `voie`, `feux`, `acteurs` à relancer…).
-Les réponses sont mélangées : dans le fichier source, la bonne était presque toujours la première.
+Les réponses sont mélangées : dans le fichier source, la bonne était presque toujours la première. Chaque exercice immersif
+garde sa mise en situation (`contexte`, le « point de départ » du fichier source : « Un ami propose un café après plusieurs
+verres. »), affichée au-dessus de la question : sans elle, « Que fais-tu ? » ne veut rien dire. Ceux qui n'ont rien à montrer
+en mouvement (`apres: aucune`) deviennent des questions directes.
 
 Les mises en situation des leçons peuvent jouer un petit scénario (`script`, minuté sur le temps du simulateur) : dépasser,
 s'arrêter avant un point, changer de voie avec le clignotant, faire repartir un bus, ouvrir une portière, changer un feu
@@ -249,7 +267,7 @@ Pour ajouter un panneau, ajoute son dessin dans `DRAW` et son nom dans `META`, d
 
 ```bash
 npm install
-npm run check      # build + tests (19 tests)
+npm run check      # build + tests
 ```
 
 `npm run build` reconstruit `docs/index.html`, puis `npm test` lance les tests. Pour mettre en ligne, il suffit de pousser sur la branche `main` : GitHub Pages sert le dossier `/docs`.

@@ -222,9 +222,18 @@ export const Illu = {
     this.apply(sp.suit || sp.etapes ? [] : null, -1);
   },
   clear() { this.el = this.el || $('#illu'); if (!this.el) return; this.el.innerHTML = ''; this.el.hidden = true; this.el.classList.remove('on'); this.sp = null; this.root = null; },
-  place(top, bottom) { if (!this.el) this.el = $('#illu'); if (!this.el) return; this.el.style.top = top + 'px'; this.el.style.height = Math.max(90, bottom - top) + 'px'; this.el.style.setProperty('--ih', Math.max(96, Math.min(150, (bottom - top) * 0.5)) + 'px'); },
+  /* l'illustration se pose entre la carte et les sous-titres, jamais sur la carte : sur un petit écran elle rétrécit,
+     et s'il n'y a vraiment pas la place (longue liste), elle s'efface plutôt que de cacher le texte */
+  place(top, bottom) {
+    if (!this.el) this.el = $('#illu'); if (!this.el) return;
+    const room = bottom - top;
+    this.el.style.top = top + 'px'; this.el.style.height = Math.max(0, room) + 'px';
+    const ih = Math.max(64, Math.min(150, room >= 220 ? room * 0.5 : room - 10));
+    this.el.style.setProperty('--ih', ih + 'px');
+    this.el.classList.toggle('tight', room < 74); this.el.classList.toggle('small', ih < 116);
+  },
   /* hauteur de l'illustration posée (0 si elle n'est pas à l'écran) : le décor 3D se cadre au-dessus */
-  height() { if (!this.el || this.el.hidden || !this.root) return 0; return this.root.getBoundingClientRect().height; },
+  height() { if (!this.el || this.el.hidden || !this.root || this.el.classList.contains('tight')) return 0; return this.root.getBoundingClientRect().height; },
   onShow: null,
   show(on) {
     if (!this.el || !this.sp) return;

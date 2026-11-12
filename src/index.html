@@ -13,6 +13,15 @@
 </head>
 <body>
 <div id="app">
+  <!-- écran de chargement : dessiné dès la première image, pendant que la 3D se construit -->
+  <div class="splash" id="splash" role="status" aria-label="Chargement de Pare-Brise">
+    <div class="sp-in">
+      <span class="sp-ic"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 6 7 26M19.5 6 25 26" stroke-width="2.6"/><path d="M16 8.5v2.6M16 14.5v3.4M16 21.5v4" stroke-width="2.2"/></svg></span>
+      <b>Pare-Brise</b>
+      <span class="sp-sub">Code de la route 2027</span>
+      <i class="sp-bar"><i></i></i>
+    </div>
+  </div>
   <canvas id="gl" aria-hidden="true"></canvas>
 
   <!-- ================= SALLE (accueil) ================= -->
@@ -145,7 +154,7 @@
         <button class="rbtn" id="rNote" aria-label="Retenir ce passage" aria-pressed="false"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.2l2.7 5.5 6 .9-4.35 4.25 1 6L12 17l-5.4 2.85 1-6L3.3 9.6l6-.9Z"/></svg></i><span id="rNoteT">Retenir</span></button>
         <button class="rbtn" id="rText" aria-label="Le texte du cours"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 6h14M5 10.5h14M5 15h9M5 19.5h6"/></svg></i><span>Texte</span></button>
       </nav>
-      <div class="scrub"><div class="tracktip" id="trackTip" hidden></div><div class="track" id="track"><div class="fill" id="trackFill"></div></div><div class="times num"><span id="tCur">0:00</span><span id="tTot">0:00</span></div></div>
+      <div class="scrub"><div class="tracktip" id="trackTip" hidden></div><span class="tm num" id="tCur">0:00</span><div class="track" id="track"><div class="fill" id="trackFill"></div></div><span class="tm num" id="tTot">0:00</span></div>
       <div class="controls">
         <button class="ibtn g rate num" id="cRate" aria-label="Vitesse de lecture">1×</button>
         <button class="ibtn g" id="cPrev" aria-label="Passage précédent"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5 h2.4 v14 H6 Z M20 5 L9.5 12 L20 19 Z"/></svg></button>
@@ -259,6 +268,7 @@
     <div class="xgap" id="xGap" hidden><b class="num" id="xGapV">—</b><span>d’écart</span></div>
     <div class="xmsg" id="xMsg" aria-live="polite"></div>
     <div class="xcount num" id="xCount" hidden></div>
+    <div class="xsub" id="xSub" hidden aria-live="polite"></div>
     <div class="xcard" id="xCard" hidden></div>
     <div class="xctl" id="xCtl"></div>
     <div class="xflash" id="xFlash" aria-hidden="true"></div>
@@ -276,7 +286,7 @@
   </nav>
 
   <div class="sheet-ov" id="sheetOv" hidden><div class="bsheet" id="bsheet" role="dialog" aria-modal="true" aria-label="Réglages"></div></div>
-  <div class="curtain" id="curtain"><span id="curtainTxt"></span></div>
+  <div class="curtain" id="curtain"><span id="curtainTxt"></span><div class="ct-slate" aria-hidden="true"><span id="curtainK"></span><b id="curtainT"></b><i class="ct-bar"><i></i></i></div></div>
 </div>
 <script type="application/json" id="content">/*@CONTENT@*/</script>
 <script>/*@APP@*/</script>

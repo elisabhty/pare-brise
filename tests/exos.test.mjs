@@ -57,3 +57,32 @@ test('chaque pratique commence par les deux exercices immersifs du cours, avec l
   const pos = pr.flatMap(p => p.situations.filter(s => s.immersif).map(s => s.bonnes[0]));
   for (const k of [0, 1, 2]) assert.ok(pos.filter(x => x === k).length >= 12, `position ${'ABC'[k]} trop rare`);
 });
+
+test('pas de vidéo d’observation inutile : une vidéo seulement quand quelque chose se passe', () => {
+  const sit = exos.filter(e => e.meca === 'examen').flatMap(e => e.situations);
+  sit.forEach(s => assert.ok(['video', 'image', 'qcm'].includes(s.mode), `${s.q} : mode ${s.mode}`));
+  // une vidéo montre un usager qui bouge, un feu dont on s'approche, ou la démonstration de la bonne conduite
+  sit.filter(s => s.mode === 'video').forEach(s => {
+    const bouge = (s.acteurs || []).some(a => a.type !== 'feu' && (a.kmh || a.vx)), feu = (s.kmh || 0) > 0 && (s.acteurs || []).some(a => a.type === 'feu');
+    assert.ok(bouge || feu || (s.apres && s.apres.action !== 'aucune'), `vidéo sans rien à observer : ${s.q}`);
+  });
+  // une question de cours se pose sans décor
+  sit.filter(s => s.mode === 'qcm').forEach(s => assert.ok(!s.env && !s.acteurs && !s.signaux, `question de cours avec décor : ${s.q}`));
+  // les trois formes existent, et les questions de cours ne sont pas la majorité des situations
+  const n = m => sit.filter(s => s.mode === m).length;
+  assert.ok(n('video') >= 60 && n('image') >= 40 && n('qcm') >= 40, `${n('video')} / ${n('image')} / ${n('qcm')}`);
+  assert.ok(n('qcm') < sit.length / 2);
+});
+test('« Que fais-tu ? » a toujours sa mise en situation', () => {
+  const imm = exos.filter(e => e.meca === 'examen').flatMap(e => e.situations).filter(s => s.immersif);
+  assert.equal(imm.length, 70);
+  imm.forEach(s => assert.ok(s.contexte && s.contexte.length > 12 && /[.!?…]$/.test(s.contexte), `${s.immersif} sans contexte`));
+});
+test('« Lequel de ces panneaux » : les panneaux sont les réponses, l’explication ne parle plus de gauche ou de droite', () => {
+  const pc = exos.flatMap(e => e.situations || []).filter(s => s.panneauxChoix);
+  assert.ok(pc.length >= 5);
+  pc.forEach(s => { assert.equal(s.panneauxChoix.length, s.choix.length); assert.ok(s.panneauxChoix.every(isSign), s.q); assert.ok(!/\bcelui (de gauche|du milieu|de droite)\b/i.test(s.explication), s.q); });
+});
+test('les explications ne commencent pas par un verdict (elles s’affichent aussi après une bonne réponse)', () => {
+  exos.flatMap(e => e.situations || []).forEach(s => assert.ok(!/^(Pas tout à fait|Piège classique|Faux|Raté)\b/.test(s.explication), s.explication.slice(0, 60)));
+});

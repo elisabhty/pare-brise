@@ -13,3 +13,8 @@ test('le contenu JSON est intégré et lisible', () => {
 });
 test('la mascotte et la police sont intégrées', () => { assert.ok(html.includes('--plot-sprite:url(data:image/webp')); assert.ok(html.includes("font-family:'Inter Variable'")); });
 test('le fichier est autonome (aucune ressource externe)', () => { assert.ok(!/src="https?:\/\//.test(html)); assert.ok(!/href="https?:\/\/(?!github)/.test(html)); });
+test('rien de vide au démarrage : écran de chargement dans la page, moteur lancé après la première image', () => {
+  const body = html.slice(html.indexOf('<body>'));
+  assert.ok(body.indexOf('id="splash"') > 0 && body.indexOf('id="splash"') < body.indexOf('<script'), 'le chargement est dans le HTML, avant les scripts');
+  assert.ok(html.includes('window.__pbBoot=function(){') && html.includes('requestAnimationFrame(function(){setTimeout(go'), 'le moteur démarre après la première image');
+});

@@ -1,7 +1,7 @@
 /* Exercices immersifs en 3D : on conduit, on réagit, on décide.
    Chaque exercice est décrit en JSON (content/exercices.json) et joué par une « mécanique » :
    freinage · vitesse · distance · feu · priorite · depassement · danger · eclairage. */
-import { $, $$, esc, wait, store, haptic } from './util.js';
+import { $, $$, esc, fr, wait, store, haptic } from './util.js';
 import { has3D, Engine, SIM } from './world.js';
 import { sign } from './signs.js';
 import { EXOS, COURSES, THEMES, course, courseNumber } from './content.js';
@@ -273,6 +273,12 @@ function stageScene(W, sc, T = 0) {
   });
   return { actors, signs };
 }
+/* Trois façons de poser une situation (champ « mode », posé par gen/pratique.py) :
+   video : la scène se joue quelques secondes puis se fige (il faut observer) ; image : l'image figée au moment de décider,
+   sans vidéo (un panneau à lire, une scène à l'arrêt) ; qcm : une question de cours, posée directement, sans décor. */
+const modeOf = sc => sc.mode || 'video';
+/* la mise en situation, en sous-titre pendant la vidéo (« Un ami propose un café après plusieurs verres. ») */
+function sub(text) { const el = $('#xSub'); if (!el) return; if (!text) { el.classList.remove('on'); return; } el.textContent = text; el.hidden = false; requestAnimationFrame(() => el.classList.add('on')); }
 /* Joue la situation comme une courte vidéo, puis fige l'image et zoome sur le panneau à lire.
    head : [libellé, numéro] affichés pendant le fondu ; null pour « Revoir la scène ». */
 async function playScene(X, sc, head) {
@@ -281,7 +287,8 @@ async function playScene(X, sc, head) {
   if (head) { $('#xFiK').textContent = head[0]; $('#xFiN').textContent = head[1]; }
   f.classList.toggle('txt', !!head);
   X.loupe(null);
-  await X.fade(true);
+  await X.fade(true); $('#s-exo').classList.remove('qcm');
+  if (Engine.hidden) Engine.hidden(false);
   if (Engine && Engine.hiRes) Engine.hiRes(false);
   const st = stageScene(W, sc, OBS); W.slow(0, 0);
   X.wet(sc.meteo === 'pluie'); X.speedo(!!sc.compteur, sc.limite || null);
@@ -290,7 +297,7 @@ async function playScene(X, sc, head) {
   X.fade(false);
   // la vidéo : quelques secondes à vitesse réelle, avec une barre de progression
   const { v, d } = rollOf(sc);
-  X.obs(true, OBS);
+  X.obs(true, OBS); sub(sc.contexte);
   W.slow(1, 0);
   if (v > 0) await X.tick(() => W.player.s >= d - v * 0.25); else await X.sleep((OBS - 0.25) * 1000);
   await W.slow(0, 500);
@@ -308,9 +315,46 @@ async function playScene(X, sc, head) {
     await X.sleep(800);
     await (sign ? W.regarde(sign, 34, 800, 0.55) : W.regarde(key, 36, 800, 0.55, 0.9));
   } else await X.sleep(400);
+  sub(null);
   if (sc.signaux && sc.signaux.length) X.loupe(sc.signaux.map(g => g[0]));
   if (sc.etiquettes) Labels.set(sc.etiquettes.map(([k]) => 'q' + k), sc.etiquettes.map(e => [e[1], e[2]]), 'exo');
   return st;
+}
+/* Image figée : la scène est posée directement au moment de décider, cadrée sur ce qu'il faut lire. Pas de vidéo. */
+async function showStill(X, sc, head) {
+  const W = X.W, f = $('#xFade');
+  X.demo = (X.demo || 0) + 1;
+  $('#xFiK').textContent = head[0]; $('#xFiN').textContent = head[1]; f.classList.add('txt');
+  X.loupe(null); sub(null);
+  await X.fade(true); $('#s-exo').classList.remove('qcm');
+  if (Engine.hidden) Engine.hidden(false);
+  const st = stageScene(W, sc, 0); W.slow(0, 0);
+  X.wet(sc.meteo === 'pluie'); X.speedo(!!sc.compteur, sc.limite || null);
+  W.setAnchors(sc.etiquettes ? sc.etiquettes.map(([k]) => ({ id: 'q' + k, obj: st.actors[k], dy: 2.3 })) : []);
+  await X.tick(() => true);   // une image du nouveau décor d'abord : la position des panneaux est alors à jour pour cadrer
+  const cam = sc.puis || sc.camera || 'vue';
+  if (sc.puis) { W.pose(sc.puis, 0); const d = $('#v-exo .dash'); if (d) d.hidden = !['vue', 'cockpit'].includes(sc.puis); }
+  const proche = a => { const e = a.S - W.player.s; return a.kind !== 'feu' && e > 6 && e < 90; };
+  const sign = st.signs[sc.cle ?? 0], key = sign || (sc.focus !== undefined ? st.actors[sc.focus] : st.actors.find(proche));
+  if (key && (cam === 'vue' || cam === 'cockpit')) { if (sign) W.regarde(sign, 34, 0, 0.55); else W.regarde(key, 36, 0, 0.55, 0.9); }
+  if (Engine && Engine.hiRes) Engine.hiRes(true);
+  await X.sleep(650);
+  f.classList.remove('txt'); X.fade(false);
+  if (sign) W.eclaire(sign, 0xffc629, 1300);
+  if (sc.signaux && sc.signaux.length) X.loupe(sc.signaux.map(g => g[0]));
+  if (sc.etiquettes) Labels.set(sc.etiquettes.map(([k]) => 'q' + k), sc.etiquettes.map(e => [e[1], e[2]]), 'exo');
+  return st;
+}
+/* Question de cours : un fond uni, la question s'affiche tout de suite (la 3D n'est plus dessinée derrière) */
+async function showSheet(X, head) {
+  const f = $('#xFade');
+  X.demo = (X.demo || 0) + 1;
+  X.loupe(null); sub(null); Labels.clear(); X.W.setAnchors([]); X.speedo(false, null); X.wet(false);
+  { const d = $('#v-exo .dash'); if (d) d.hidden = true; }
+  if (!f.classList.contains('on')) { $('#xFiK').textContent = head[0]; $('#xFiN').textContent = head[1]; f.classList.add('txt'); await X.fade(true); await X.sleep(420); }
+  f.classList.remove('txt'); $('#s-exo').classList.add('qcm');
+  if (Engine.hidden) Engine.hidden(true);
+  return null;
 }
 /* Après la réponse : la scène reprend et la voiture fait ce qu'il fallait faire, pendant que la correction s'affiche.
    apres : { action, kmh, S (point d'arrêt), voie, cote, feux, acteurs: [[i, km/h, vx]], feu: [[i, état, s]], ouvrir: [i, s], camera, duree } */
@@ -351,16 +395,20 @@ MECA.examen = async (ex, X) => {
   const offL = W.onTick(() => Labels.frame());
   try {
     for (let i = 0; i < n; i++) {
-      const sc = ex.situations[i]; X.step(i + 1, n);
-      let st = await playScene(X, sc, [blanc ? 'Question' : 'Situation', `${i + 1} sur ${n}`]);
-      // question façon examen : une ou plusieurs bonnes réponses
-      const chosen = new Set();
-      const c = X.card(`<div class="xq"><b>${esc(sc.q)}</b>${sc.contexte ? `<p>${esc(sc.contexte)}</p>` : ''}</div>
-        <div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${esc(t)}</span></button>`).join('')}</div>
+      const sc = ex.situations[i], mode = modeOf(sc), qcm = mode === 'qcm'; X.step(i + 1, n);
+      const head = [blanc || qcm ? 'Question' : 'Situation', `${i + 1} sur ${n}`];
+      let st = qcm ? await showSheet(X, head) : mode === 'image' ? await showStill(X, sc, head) : await playScene(X, sc, head);
+      // question façon examen : une ou plusieurs bonnes réponses ; « Lequel de ces panneaux » : les panneaux sont les réponses
+      const chosen = new Set(), pc = sc.panneauxChoix;
+      const answers = pc
+        ? `<div class="xans xsigns n${pc.length}">${pc.map((id, k) => `<button class="xan xsg" data-k="${k}" aria-pressed="false" aria-label="Panneau ${L[k]}"><span class="xsg-s">${sign(id)}</span><i>${L[k]}</i></button>`).join('')}</div>`
+        : `<div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${fr(t)}</span></button>`).join('')}</div>`;
+      const c = X.card(`<div class="xq">${qcm ? `<span class="xq-k">${blanc ? `Question ${i + 1}` : 'Question de cours'}</span>` : ''}${sc.contexte ? `<p class="xq-ctx">${fr(sc.contexte)}</p>` : ''}<b>${fr(sc.q)}</b></div>
+        ${answers}
         ${blanc ? '<div class="xtimer"><i id="xQbar"></i></div>' : ''}
-        <div class="xbtns">${blanc ? '' : '<button class="btn ghost" id="xReplay" aria-label="Revoir la scène"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Revoir</span></button>'}<button class="btn" id="xOk" disabled>Valider</button></div>`, 'xask');
+        <div class="xbtns">${blanc || mode !== 'video' ? '' : '<button class="btn ghost" id="xReplay" aria-label="Revoir la scène"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Revoir</span></button>'}<button class="btn" id="xOk" disabled>Valider</button></div>`, 'xask' + (qcm ? ' xqcm' : ''));
       $$('.xan', c).forEach(b => b.addEventListener('click', () => { const k = +b.dataset.k; chosen.has(k) ? chosen.delete(k) : chosen.add(k); b.setAttribute('aria-pressed', chosen.has(k)); $('#xOk', c).disabled = !chosen.size; haptic(); Sound.ui('tick'); }));
-      const frame = () => { if (c.hidden || !c.classList.contains('on')) return; v3.style.bottom = Math.round(c.getBoundingClientRect().height + 20) + 'px'; syncRegion(); };
+      const frame = () => { if (qcm || c.hidden || !c.classList.contains('on')) return; v3.style.bottom = Math.round(c.getBoundingClientRect().height + 20) + 'px'; syncRegion(); };
       requestAnimationFrame(() => requestAnimationFrame(frame));
       // « Revoir la scène » : la carte s'efface, la vidéo est rejouée, puis la carte revient telle quelle
       let busy = false;
@@ -388,10 +436,10 @@ MECA.examen = async (ex, X) => {
       $$('.xan', c).forEach(b => { const k = +b.dataset.k; b.classList.add(good.has(k) ? 'good' : chosen.has(k) ? 'bad' : 'dim'); b.disabled = true; });
       $('#xOk', c).remove();
       if (ok) { Sound.ui('ok'); haptic('ok'); } else { Sound.ui('ko'); haptic('ko'); }
-      const montre = sc.apres && sc.apres.action && sc.apres.action !== 'aucune';
-      $('.xbtns', c).insertAdjacentHTML('beforebegin', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? esc(sc.bien || 'Bonne réponse') : `Réponse : ${attendu}${montre ? ' · regarde la scène' : ''}`}</b><p>${esc(sc.explication)}</p></div>`);
-      if (sc.apres) demonstre(X, sc, st);
-      $('.xbtns', c).insertAdjacentHTML('beforeend', `<button class="btn" id="xNext">${i + 1 < n ? 'Situation suivante' : 'Voir le résultat'}</button>`);
+      const montre = st && sc.apres && sc.apres.action && sc.apres.action !== 'aucune';
+      $('.xbtns', c).insertAdjacentHTML('beforebegin', `<div class="xexp ${ok ? 'ok' : 'ko'}"><b>${ok ? fr(sc.bien || 'Bonne réponse') : `Réponse\u00a0: ${attendu}${montre ? ' · regarde la scène' : ''}`}</b><p>${fr(sc.explication)}</p></div>`);
+      if (st && sc.apres) demonstre(X, sc, st);
+      $('.xbtns', c).insertAdjacentHTML('beforeend', `<button class="btn" id="xNext">${i + 1 < n ? (modeOf(ex.situations[i + 1]) === 'qcm' ? 'Question suivante' : 'Situation suivante') : 'Voir le résultat'}</button>`);
       requestAnimationFrame(frame);
       res.push({ nom: sc.titre || sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `Réponse attendue : ${[...good].sort().map(k => L[k]).join(', ')}` });
       X.mark(i, ok ? 'ok' : 'ko');
@@ -399,7 +447,7 @@ MECA.examen = async (ex, X) => {
       X.hideCard(); X.loupe(null); Labels.clear(); W.setAnchors([]);
       v3.style.bottom = ''; syncRegion();
     }
-  } finally { offL(); }
+  } finally { offL(); sub(null); if (Engine.hidden) Engine.hidden(false); $('#s-exo').classList.remove('qcm'); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } }
   const nOk = res.filter(r => r.ok).length, score = Math.round(nOk / res.length * 100);
   if (blanc) { const pass = nOk >= Math.ceil(res.length * 0.875); return { score, total: `${nOk} / ${res.length}`, lignes: res, conseil: pass ? `Reçu : ${nOk} bonnes réponses sur ${res.length}. Il en faut 35 sur 40 le jour J.` : `Pas encore : ${nOk} sur ${res.length}. Il faut 35 bonnes réponses sur 40. Relis les corrections ci-dessus.` }; }
   return { score, lignes: res, conseil: score >= 90 ? 'Niveau examen : 35 bonnes réponses sur 40 suffisent le jour J.' : 'Relis chaque explication, puis rejoue : à l’examen, il faut 35 bonnes réponses sur 40.' };
@@ -876,8 +924,10 @@ MECA.eclairage = async (ex, X) => {
 /* ======================= Écran d'exercice ======================= */
 let X = null, curEx = null;
 function examBlanc() {
-  const all = EXOS.filter(e => e.meca === 'examen').flatMap(e => e.situations);
-  const pool = all.slice().sort(() => Math.random() - 0.5).slice(0, Math.min(40, all.length));
+  // comme le jour du code : surtout des situations (vidéo ou image), et quelques questions de cours
+  const all = EXOS.filter(e => e.meca === 'examen').flatMap(e => e.situations), mix = a => a.slice().sort(() => Math.random() - 0.5);
+  const s3 = mix(all.filter(s => modeOf(s) !== 'qcm')), sq = mix(all.filter(s => modeOf(s) === 'qcm'));
+  const nq = Math.min(sq.length, 8), pool = mix(s3.slice(0, Math.min(40 - nq, s3.length)).concat(sq.slice(0, nq)));
   return { id: 'x-exam-blanc', meca: 'examen', mode: 'blanc', famille: 'Examen blanc', niveau: 3, duree: '15 min', titre: 'Examen blanc en situation', sous: `${pool.length} situations, correction à la fin`,
     consigne: `${pool.length} situations comme le jour du code : 20 secondes pour répondre, pas de correction avant la fin. Il faut 35 bonnes réponses sur 40 pour réussir.`,
     astuce: 'Une ou plusieurs réponses peuvent être justes : coche-les toutes.', env: pool[0].env || 'ville', situations: pool };
@@ -900,8 +950,8 @@ function intro(ex) {
   const b = best(ex.id);
   const c = $('#xCard'); c.className = 'xcard xintro'; c.hidden = false;
   c.innerHTML = `<div class="xi-top"><span class="xi-ic">${icon(ex.meca)}</span><div><span class="xi-k">${esc(ex.famille || '')}</span><h2>${esc(ex.titre)}</h2></div></div>
-    <p class="xi-p">${esc(ex.consigne || ex.sous || '')}</p>
-    ${ex.astuce ? `<div class="xi-tip">${plot({ size: 54 })}<p>${esc(ex.astuce)}</p></div>` : ''}
+    <p class="xi-p">${fr(ex.consigne || ex.sous || '')}</p>
+    ${ex.astuce ? `<div class="xi-tip">${plot({ size: 54 })}<p>${fr(ex.astuce)}</p></div>` : ''}
     <div class="xi-meta"><span>${esc(ex.duree || '2 min')}</span><span>${'●'.repeat(ex.niveau || 1)}${'○'.repeat(3 - (ex.niveau || 1))} niveau</span>${b ? `<span>Record ${b.score}</span>` : ''}</div>
     <button class="btn" id="xGo">Démarrer</button>`;
   requestAnimationFrame(() => c.classList.add('on'));
@@ -946,7 +996,7 @@ function results(ex, out) {
   $('#xDone').addEventListener('click', () => show(retourX), { once: true });
   Sound.ui(out.score >= 70 ? 'ok' : 'ko');
 }
-function stopRun() { { const pg = $('#xProg'); if (pg) { pg.hidden = true; pg.innerHTML = ''; } } if (Engine && Engine.hiRes) Engine.hiRes(false); { const d = $('#v-exo .dash'); if (d) d.hidden = true; } const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } { const z = $('#xZoom'); if (z) z.classList.remove('on'); const t = $('#s-exo .xtitle'); if (t) t.classList.remove('obs'); } { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
+function stopRun() { sub(null); if (Engine && Engine.hidden) Engine.hidden(false); { const se = $('#s-exo'); if (se) se.classList.remove('qcm'); } { const pg = $('#xProg'); if (pg) { pg.hidden = true; pg.innerHTML = ''; } } if (Engine && Engine.hiRes) Engine.hiRes(false); { const d = $('#v-exo .dash'); if (d) d.hidden = true; } const v3 = $('#v-exo'); if (v3 && v3.style.bottom) { v3.style.bottom = ''; syncRegion(); } { const z = $('#xZoom'); if (z) z.classList.remove('on'); const t = $('#s-exo .xtitle'); if (t) t.classList.remove('obs'); } { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } if (X) X.stop(); X = null; if (SIM) { SIM.slow(1, 0); SIM.guide(0); SIM.setPick([]); SIM.setAnchors([]); } Labels.clear(); }
 
 /* ======================= Hub « Exercices » ======================= */
 export function renderExos() {
@@ -960,7 +1010,7 @@ export function renderExos() {
     const list = COURSES.filter(c => c.theme === t.id && practiceOf(c.id)); if (!list.length) return '';
     return `<h2 class="h-sec">${esc(t.nom)}<small>${list.length} leçon${list.length > 1 ? 's' : ''}</small></h2><ul class="cells">${list.map(c => {
       const e = practiceOf(c.id), b = best(e.id), d = defisOf(c.id);
-      return `<li><button class="cell" data-exo="${e.id}"><span class="cell-ic m-examen"><b class="num">${courseNumber(c)}</b></span><span class="cell-t"><b>${esc(c.titre)}</b><small>${e.situations.length} situations${d.length ? ` · ${d.length} défi${d.length > 1 ? 's' : ''} 3D` : ''}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>${d.map(x => { const bx = best(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${bx ? starsHtml(bx.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('')}`;
+      return `<li><button class="cell" data-exo="${e.id}"><span class="cell-ic m-examen"><b class="num">${courseNumber(c)}</b></span><span class="cell-t"><b>${esc(c.titre)}</b><small>${esc(e.sous || `${e.situations.length} situations`)}${d.length ? ` · ${d.length} défi${d.length > 1 ? 's' : ''}` : ''}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(e.duree || '')}</em>`}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>${d.map(x => { const bx = best(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${bx ? starsHtml(bx.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('')}`;
     }).join('')}</ul>`;
   }).join('');
 }

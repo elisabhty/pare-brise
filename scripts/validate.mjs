@@ -120,6 +120,11 @@ export function validate(root = '.') {
       if (s.apres && !APRES.includes(s.apres.action)) warn(`${v} : démonstration inconnue « ${s.apres.action} » (${APRES.join(', ')})`);
       (s.signaux || []).forEach(p => checkSigns([p[0]], v));
       (s.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${v} : acteur inconnu « ${a.type} »`); });
+      // video : la scène se joue puis se fige · image : image figée, sans vidéo · qcm : question de cours, sans décor
+      if (s.mode !== undefined && !['video', 'image', 'qcm'].includes(s.mode)) warn(`${v} : mode inconnu « ${s.mode} » (video, image, qcm)`);
+      if (s.mode !== 'qcm' && !s.env) warn(`${v} : une situation en 3D a besoin d'un décor (env)`);
+      if (s.mode === 'qcm' && (s.acteurs || s.signaux || s.apres && s.apres.action !== 'aucune')) warn(`${v} : une question de cours (qcm) n'a ni décor ni démonstration`);
+      if (s.panneauxChoix) { checkSigns(s.panneauxChoix, v); if (s.panneauxChoix.length !== (s.choix || []).length) warn(`${v} : autant de panneaux que de réponses`); }
     });
   }
   const strip = o => JSON.parse(JSON.stringify(o, (k, v) => (k === '_file' ? undefined : v)));

@@ -8,6 +8,17 @@ let current = null;
 export const register = (name, def) => { screens[name] = def; };
 export const currentScreen = () => current;
 
+/* n images réellement dessinées (et pas un minuteur : sur un téléphone occupé à compiler la 3D, un setTimeout peut attendre
+   plusieurs secondes alors que l'image est déjà là) */
+export const frames = (n = 2) => new Promise(res => { const step = k => requestAnimationFrame(() => (k <= 1 ? res() : step(k - 1))); step(n); });
+/* le rideau est levé et l'image du nouvel écran est à l'écran : la voix peut partir */
+export const settled = () => new Promise(res => { const step = k => requestAnimationFrame(() => { if ($('#curtain').classList.contains('on')) return step(2); if (k <= 1) res(); else step(k - 1); }); step(2); });
+/* rideau : clair entre deux écrans ; sombre, avec le titre, quand une séance commence (« les lumières s'éteignent ») */
+function slate(s) {
+  const cur = $('#curtain'); cur.classList.toggle('dark', !!s);
+  $('#curtainK').textContent = (s && s.k) || ''; $('#curtainT').textContent = (s && s.t) || ''; $('#curtainTxt').textContent = '';
+}
+
 export function syncRegion() {
   if (!has3D || !current) return;
   const def = screens[current] || {};
@@ -23,7 +34,7 @@ export async function show(name, opts = {}) {
   if (prev && screens[prev].leave) screens[prev].leave(name);
   const worldChange = has3D && def.world && Engine.current !== def.world;
   const cur = $('#curtain');
-  if (worldChange && prev && !opts.noCurtain) { cur.classList.add('on'); await wait(260); }
+  if (worldChange && prev && !opts.noCurtain) { slate(opts.slate); cur.classList.add('on'); await wait(opts.slate ? 380 : 260); }
   current = name;
   $$('.screen').forEach(s => s.classList.toggle('active', s.id === 's-' + name));
   $('#tabbar').classList.toggle('hide', !!def.noTab);
@@ -37,13 +48,14 @@ export async function show(name, opts = {}) {
   Sound.ambience(def.amb === undefined ? null : def.amb);
   requestAnimationFrame(() => { syncRegion(); requestAnimationFrame(syncRegion); });
   try { document.dispatchEvent(new CustomEvent('pb:ecran', { detail: name })); } catch (e) {}
-  if (worldChange && prev && !opts.noCurtain) { await wait(80); cur.classList.remove('on'); }
+  // le rideau se lève dès que le nouveau monde a dessiné ses premières images (les shaders sont compilés)
+  if (worldChange && prev && !opts.noCurtain) { await frames(2); cur.classList.remove('on'); }
 }
 
-export async function curtain(text, fn) {
-  const cur = $('#curtain'); $('#curtainTxt').textContent = text || ''; cur.classList.add('on');
-  await wait(450); await fn(); await wait(250);
-  cur.classList.remove('on'); setTimeout(() => { $('#curtainTxt').textContent = ''; }, 500);
+export async function curtain(text, fn, s) {
+  const cur = $('#curtain'); slate(s); if (!s) $('#curtainTxt').textContent = text || ''; cur.classList.add('on');
+  await wait(450); await fn(); await frames(2);
+  cur.classList.remove('on'); setTimeout(() => { if (!cur.classList.contains('on')) { $('#curtainTxt').textContent = ''; } }, 500);
 }
 
 document.addEventListener('click', e => {

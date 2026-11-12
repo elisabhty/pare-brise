@@ -269,13 +269,53 @@ def phrase(q, choix, bonnes, exp):
     return s + ' ' + e
 def from_bank(q):
     return dict(q=q['q'], choix=q['choix'], bonnes=q['bonnes'], explication=phrase(q['q'], q['choix'], q['bonnes'], q['explication']), qid=q['id'], panneaux=q.get('panneaux'))
+def neutre(exp):
+    """l'explication s'affiche que la réponse soit juste ou non : sans « Pas tout à fait. » ni « Exact. » en tête"""
+    exp = re.sub(r"^(Pas tout à fait|Piège classique|Faux|Raté|Non|Presque|Exact|Bien vu)\s*[.!:]\s*", '', exp.strip())
+    return exp[:1].upper() + exp[1:]
 def from_quiz(s):
     if s['type'] == 'quiz':
         exp = s['mal'] if len(s.get('mal', '')) >= len(s.get('bien', '')) else s['bien']
-        return dict(q=s['question'], choix=s['choix'], bonnes=[s['bonne']], explication=exp)
+        return dict(q=s['question'], choix=s['choix'], bonnes=[s['bonne']], explication=neutre(exp))
     n = len(s['panneaux'])
     ch = ['Celui de gauche', 'Celui du milieu', 'Celui de droite'] if n == 3 else ['Celui de gauche', 'Celui de droite']
-    return dict(q=s['question'], choix=ch, bonnes=[s['bonne']], explication=s['mal'], panneaux=s['panneaux'])
+    return dict(q=s['question'], choix=ch, bonnes=[s['bonne']], explication=neutre(s['mal']), panneaux=s['panneaux'])
+
+"""Trois façons de poser une situation (champ « mode ») :
+  - video : la scène se joue quelques secondes, se fige, puis la question ; il faut observer (qui arrive, l'écart, le feu qui change…) ;
+  - image : l'image figée au moment de décider, sans vidéo (un panneau à lire, une voiture à l'arrêt) ;
+  - qcm   : une question de cours, posée directement (taux d'alcool, points, démarches…) : aucune vidéo, aucun décor inutile.
+Les panneaux à choisir (« Lequel de ces panneaux… ») deviennent des réponses illustrées (panneauxChoix)."""
+MOBILE = lambda s: any((a.get('kmh') or a.get('vx')) for a in s.get('acteurs', []) if a.get('type') != 'feu')
+LIEU = lambda s: any(k in s for k in ('carrefour', 'passage', 'giratoire', 'rails', 'tunnel')) or any(a.get('type') == 'feu' for a in s.get('acteurs', []))
+POSITION = ('Celui de gauche', 'Celui du milieu', 'Celui de droite')
+# questions de cours mises en scène « pour l'ambiance » : rien à voir dans l'image, on les pose directement
+QCM_FORCE = {'a04', 'ac24-3', 'cf06-4', 'cf06-5', 'cf06-6', 'd04', 'e28-4', 'i27-2', 'mtp17-5', 'ne15-2', 'cv34-4', 'mtp17-3'}
+QCM_FORCE |= {'uv11-3'}
+# une question de connaissance posée sur une image : rien à observer en mouvement
+IMAGE_FORCE = {'a10-1', 'a10-2', 'ad33-3', 'ad33-4', 'ce12-1', 'd05', 'd08-3', 'd08-5', 'm07-5', 'mtp17-2', 'ne15-4', 'vp14-2', 'pl213-3'}
+IMAGE_TEXTE = ('Ce gyrophare orange signale', 'Ce panneau triangulaire m’annonce', 'Hors agglomération, pour dépasser ce cycliste', 'Si je ne vois pas le chauffeur',
+               'Un seul chevron me sépare', 'Je suis en panne sur la bande d’arrêt d’urgence')
+FEU_ROULE = lambda s: (s.get('kmh') or 0) > 0 and any(a.get('type') == 'feu' for a in s.get('acteurs', []))
+def mode_of(kind, s, sur_mesure):
+    # exercice immersif sans démonstration : rien ne bouge, la question se pose directement (image figée s'il y a un panneau à lire)
+    if kind == 'imm': return 'video' if s['apres']['action'] != 'aucune' else 'image' if s.get('signaux') else 'qcm'
+    if s.get('qid') in QCM_FORCE: return 'qcm'
+    if s.get('qid') in IMAGE_FORCE or s['q'].startswith(IMAGE_TEXTE): return 'image'
+    # une vidéo seulement si quelque chose se passe : un usager qui bouge, un feu dont on s'approche
+    if kind == 'exam' or sur_mesure: return 'video' if MOBILE(s) or FEU_ROULE(s) else 'image'
+    if kind == 'quiz': return 'qcm'
+    return 'image' if s.get('signaux') else 'qcm'
+def panneaux_choix(sit, src):
+    """« Lequel de ces panneaux… » : les panneaux deviennent les réponses (A, B, C), sans décor"""
+    pn = src.get('panneaux') or []
+    if len(pn) < 2 or not all(c in POSITION for c in sit['choix']) or len(pn) != len(sit['choix']): return False
+    for k in ('signaux', 'cle', 'acteurs', 'carrefour', 'passage', 'compteur', 'limite', 'camera'): sit.pop(k, None)
+    sit['panneauxChoix'] = pn; sit['choix'] = [f'Panneau {"ABC"[i]}' for i in range(len(pn))]
+    sit['explication'] = re.sub(r'\b[Cc]elui (de gauche|du milieu|de droite)\b', lambda m: f'le panneau {"ABC"[POSITION.index("Celui " + m.group(1))]}', sit['explication'])
+    return True
+DECOR_CLES = ('env', 'meteo', 'kmh', 'camera', 'puis', 'voie', 'compteur', 'limite', 'signaux', 'cle', 'acteurs', 'carrefour', 'passage', 'giratoire', 'rails', 'tunnel', 'chevrons', 'maisons', 'marquages', 'ligne', 'feux', 'etiquettes', 'graine', 'focus')
+def point(t): t = t.strip(); return t if t[-1:] in '.!?…' else t + '.'
 
 PRATIQUES = []
 for cid in ORDER:
@@ -290,6 +330,7 @@ for cid in ORDER:
     for q in [q for q in QS if q['cours'] == cid and q['type'] == 'qcm']: items.append(('bank', q))
     seen, sits = set(), []
     for kind, it in items:
+        sur_mesure = False
         if kind == 'imm':
             sit = copy.deepcopy(it); sit['graine'] = 5 + len(sits) * 7
             seen.add(frozenset(w for w in re.findall(r'\w+', it['q'].lower()) if len(w) > 2))
@@ -299,20 +340,34 @@ for cid in ORDER:
             words = set(w for w in re.findall(r'\w+', q['q'].lower()) if len(w) > 2)
             if any(len(words & o) / max(1, len(words | o)) > 0.72 for o in seen): continue
             seen.add(frozenset(words))
+            sur_mesure = kind == 'bank' and QOV.get(q.get('qid')) is not None
             src = dict(q, _ov=QOV.get(q.get('qid'))) if kind == 'bank' else dict(q)
             st = staged(cid, variants[len(sits) % len(variants)], src, len(sits))
             sit = dict(q); sit.pop('panneaux', None); sit.update(st)
+            if panneaux_choix(sit, q): sit['mode'] = 'qcm'
+        if 'mode' not in sit: sit['mode'] = mode_of(kind, sit, sur_mesure)
+        # question de cours : aucun décor (rien à observer)
+        if sit['mode'] == 'qcm':
+            for k in DECOR_CLES: sit.pop(k, None)
         sits.append(sit)
     # 14 situations au plus : les deux exercices immersifs, les mises en scène d'examen, puis le reste dans l'ordre de la leçon
     sits = sits[:14]
-    # on alterne un peu : pas trois situations d'examen d'affilée en tête
+    n3d = sum(1 for s in sits if s['mode'] != 'qcm'); nq = len(sits) - n3d
+    parts = ([f"{n3d} situation{'s' if n3d > 1 else ''} en 3D"] if n3d else []) + ([f"{nq} question{'s' if nq > 1 else ''}"] if nq else [])
+    sous = ' · '.join(parts)
+    consigne = ('Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.' if not nq else
+                'Des questions de cours, posées directement : une ou plusieurs réponses peuvent être justes, comme le jour de l’examen.' if not n3d else
+                'Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.')
+    astuce = (f"Tout ce que tu as vu dans le cours « {c['titre']} », tu le retrouves ici, sur la route." if n3d else
+              f"Tout ce que tu as vu dans le cours « {c['titre']} » revient ici en questions : relis bien chaque explication.")
+    duree = sum({'video': 0.75, 'image': 0.5, 'qcm': 0.3}[s['mode']] for s in sits)
     PRATIQUES.append({
         'id': 'p-' + cid, 'meca': 'examen', 'famille': 'Pratique', 'niveau': 1, 'cours': cid,
-        'titre': c['titre'], 'sous': f"{len(sits)} situations en 3D",
-        'duree': f"{max(3, round(len(sits) * 0.6))} min",
-        'consigne': 'Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.',
-        'astuce': f"Tout ce que tu as vu dans le cours « {c['titre']} », tu le retrouves ici, sur la route.",
-        'env': sits[0].get('env', base.get('env', 'route')), 'situations': sits})
+        'titre': c['titre'], 'sous': sous,
+        'duree': f"{max(3, round(duree))} min",
+        'consigne': consigne,
+        'astuce': astuce,
+        'env': next((s['env'] for s in sits if s.get('env')), base.get('env', 'route')), 'situations': sits})
 
 others = [e for e in EXOS if not (e['meca'] == 'examen')]
 for e in others:

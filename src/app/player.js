@@ -1,5 +1,5 @@
 /* Lecteur de cours générique : lit n'importe quel cours JSON, scène par scène. */
-import { $, $$, esc, wait, fmt, haptic, store } from './util.js';
+import { $, $$, esc, fr, wait, fmt, haptic, store } from './util.js';
 import { has3D, Engine, R, SIM } from './world.js';
 import { sign, FAM } from './signs.js';
 import { course, courseNumber, COURSES, EXOS } from './content.js';
@@ -10,7 +10,7 @@ import { Labels } from './labels.js';
 import { TYPES, ov, isQuestion, View, Live, camOf, paintDash, Frame, sceneBeat } from './scenes.js';
 import { Illu } from './illu.js';
 import { actorInfo, signInfo } from './infos.js';
-import { show, currentScreen } from './nav.js';
+import { show, currentScreen, settled } from './nav.js';
 import { plot, react, line } from './mascot.js';
 
 let onSerie = () => {}, onHome = () => {};
@@ -25,7 +25,8 @@ const inSim = () => has3D && SIM && Engine.current === 'sim' && !!Live.sc;
 export const Player = {
   c: null, scenes: [], i: 0, tok: 0, sceneTok: 0, playing: false, t0: 0, started: false, answered: -1,
   k: 0, kT0: 0, sceneT0: 0, entered: -1, frozen: false, mode: null, info: null,
-  load(id, startAt = 0) {
+  /* quiet : la séance va démarrer tout de suite (start) ; la scène ne se construit qu'une fois */
+  load(id, startAt = 0, quiet = false) {
     const c = course(id); if (!c) return;
     this.tok++; this.sceneTok++; Voice.stop();
     this.c = c; this.scenes = c.scenes.map(s => Object.assign({}, s, { sents: splitSentences(s.dire || '') }));
@@ -34,8 +35,10 @@ export const Player = {
     $('#cTitle').textContent = `Cours ${courseNumber(c)} · ${c.titre}`;
     $('#endcard').hidden = true;
     this.renderChapters(); this.renderText();
-    this.enterScene(this.i); this.setPlaying(false);
+    if (!quiet) { this.enterScene(this.i); this.setPlaying(false); }
   },
+  /* début de séance (fiche, accueil, planning) : la scène se construit sous le rideau, la voix attend que l'image soit à l'écran */
+  start(at, k) { const gate = settled(); if (k > 0) this.goTo(at, k, gate); else this.play(gate); },
   total() { return this.scenes.reduce((a, s) => a + est(s), 0); },
   cum() { let t = 0; for (let k = 0; k < this.i; k++) t += est(this.scenes[k]); return t; },
   renderChapters() {
@@ -79,7 +82,7 @@ export const Player = {
     this.paintRail(); this.paintText();
   },
   /* sous-titres façon vidéo : une seule phrase à la fois, posée sur l'image */
-  caption(sc, k) { const el = $('#caption'), s = sc.sents[Math.max(0, Math.min(k, sc.sents.length - 1))] || ''; el.innerHTML = s ? `<span>${esc(s)}</span>` : ''; el.classList.toggle('wait', k < 0); el.hidden = !s || !this.started; },
+  caption(sc, k) { const el = $('#caption'), s = sc.sents[Math.max(0, Math.min(k, sc.sents.length - 1))] || ''; el.innerHTML = s ? `<span>${fr(s)}</span>` : ''; el.classList.toggle('wait', k < 0); el.hidden = !s || !this.started; },
   setPlaying(p) {
     this.playing = p;
     $('#cPlay').innerHTML = p ? '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="5" height="16" rx="1.2"/><rect x="14" y="4" width="5" height="16" rx="1.2"/></svg>' : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4 L20 12 L7 20 Z"/></svg>';
@@ -88,14 +91,16 @@ export const Player = {
     $('#playOverTxt').textContent = this.started ? 'Reprendre' : 'Lancer la séance';
   },
   /* Lecture : reprend là où l'on s'était arrêté (même scène, même phrase, la 3D repart), sinon démarre la scène */
-  play() {
+  play(gate) {
     this.started = true; $('#endcard').hidden = true; this.closeInfo(false);
     if (this.mode === 'explore') this.explore(false, false);
     const resume = this.frozen && this.entered === this.i && this.mode !== 'ralenti';
     this.mode = null; $('#s-cours').classList.remove('ralenti');
     this.setPlaying(true); const tok = ++this.tok;
     if (resume) this.unfreeze(); else this.enterScene(this.i);
-    this.t0 = performance.now(); this.run(tok, resume ? this.k : 0);
+    this.t0 = performance.now();
+    const go = () => { if (tok !== this.tok) return; if (gate) this.sceneT0 = this.kT0 = performance.now(); this.run(tok, resume ? this.k : 0); };
+    if (gate) gate.then(go); else go();
   },
   pause() { this.tok++; Voice.stop(); Sound.duck(false); this.setPlaying(false); this.freeze(); },
   /* une vraie pause : la scène 3D s'arrête aussi */
@@ -109,13 +114,14 @@ export const Player = {
     if (Engine.current === 'sim' && SIM) SIM.slow(1, 280); else if (R && R.setSpeed && this.kmh0) R.setSpeed(this.kmh0);
   },
   /* aller à une phrase précise d'une scène (texte du cours, double toucher) */
-  goTo(i, k = 0) {
+  goTo(i, k = 0, gate) {
     this.tok++; Voice.stop(); $('#endcard').hidden = true; this.started = true; this.closeInfo(false);
     if (this.mode === 'explore') this.explore(false, false);
     this.mode = null; $('#s-cours').classList.remove('ralenti');
     this.i = Math.max(0, Math.min(this.scenes.length - 1, i));
     if (this.entered !== this.i) this.enterScene(this.i); else this.unfreeze();
-    this.setPlaying(true); const tok = ++this.tok; this.run(tok, Math.max(0, Math.min(k, this.scenes[this.i].sents.length - 1)));
+    this.setPlaying(true); const tok = ++this.tok, kk = Math.max(0, Math.min(k, this.scenes[this.i].sents.length - 1));
+    if (gate) gate.then(() => { if (tok === this.tok) this.run(tok, kk); }); else this.run(tok, kk);
   },
   /* phrase précédente / suivante, en passant d'une scène à l'autre */
   seek(d) {

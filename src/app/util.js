@@ -4,6 +4,8 @@ export const wait = ms => new Promise(r => setTimeout(r, ms));
 export const fmt = ms => { const s = Math.max(0, Math.round(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
 export const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 export const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+/* typographie française : espace insécable avant ? ! : ; et après « (le « ? » ne part plus seul à la ligne) */
+export const fr = t => esc(t).replace(/ ([?!:;»])/g, '\u00a0$1').replace(/« /g, '«\u00a0');
 
 /* Stockage local. En natif, à remplacer par @capacitor/preferences (même interface get/set). */
 export const store = (() => {

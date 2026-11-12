@@ -96,8 +96,11 @@ def situations(cid):
         order = list(range(len(rep)))
         # mélangées, sauf les réponses chiffrées qui restent dans l'ordre (30, 50, 80 km/h…)
         if not all(any(ch.isdigit() for ch in r['texte']) for r in rep): random.Random(zlib.crc32(e['id'].encode())).shuffle(order)
+        ctx = (e.get('scene_3d') or {}).get('point_de_depart', '').strip()
         s = dict(q=e['question'], choix=[rep[k]['texte'] for k in order], bonnes=[order.index(good)],
                  explication=e['explication'], bien='Bien vu !', immersif=e['id'])
+        # la mise en situation (« Un ami propose un café après plusieurs verres. ») : sans elle, « Que fais-tu ? » ne veut rien dire
+        if ctx: s['contexte'] = ctx if ctx[-1] in '.!?…' else ctx + '.'
         s.update(json.loads(json.dumps(STAGE[e['id']])))
         out.append(s)
     return out

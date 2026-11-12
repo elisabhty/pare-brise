@@ -34,13 +34,13 @@ export const Frame = {
     const s = $('#s-cours'), o = $('#ovt'), v = $('#v-cours'), dock = $('#s-cours .dock');
     if (!this.on || !o || !o.innerHTML || !s || s.classList.contains('explore') || s.classList.contains('immersif')) {
       this.cur = null; cancelAnimationFrame(this.raf); if (v) Engine.regionFromEl(v);
-      if (o && o.innerHTML && dock && s) { const bt = illuBottom(s, dock.getBoundingClientRect().top - 96); Illu.place(Math.min(o.getBoundingClientRect().bottom + 6, bt - 150), bt); }
+      if (o && o.innerHTML && dock && s) { const bt = illuBottom(s, dock.getBoundingClientRect().top - 96); Illu.place(o.getBoundingClientRect().bottom + 8, bt); }
       return;
     }
     let bottom = (dock ? dock.getBoundingClientRect().top : innerHeight) - 96;   // au-dessus des sous-titres
     const top = Math.min(o.getBoundingClientRect().bottom + 6, bottom - 150);
     const ib = illuBottom(s, bottom);                                              // l'illustration se pose au-dessus d'un sous-titre de trois lignes
-    Illu.place(top, ib);
+    Illu.place(o.getBoundingClientRect().bottom + 8, ib);                          // jamais sur la carte
     const ih = Illu.height(); const b3 = ih && ib - ih - 8 - top >= 80 ? ib - ih - 8 : bottom;
     this.to = [top, b3]; bottom = b3;
     if (!this.cur) { this.cur = this.to.slice(); Engine.regionPx(top, bottom); return; }
@@ -67,6 +67,25 @@ const ACT = { trottinette: 'trottinette', moto: 'moto', tram: 'tram', voiture: '
    titre, fin) pour que l'image parle de la même chose que la voix. */
 function stage(sc, ctx) {
   useWorld('sim'); Live.sc = sc; Live.actors = [];
+  const actors = build(sc);
+  Live.aides = SIM.aide ? (sc.aides || []).map(sp => { const h = SIM.aide(sp, actors); if (h) { h.spec = sp; h.onChange = () => { labelsFor.key = null; labelsFor(sc, Live.k); }; } return h; }) : [];
+  labelsFor.key = null; Live.actors = actors; Live.shown = null; Live.k = 0;
+  beatStage(sc, 0);
+  Live.actors = actors; paintDash(camOf(sc));
+  if (sc.script) runScript(sc.script, actors, ctx);
+  return actors;
+}
+/* Prépare la 3D d'un cours sans l'afficher (accueil, fiche) : le décor de la scène de reprise est construit dans le simulateur
+   et ses shaders sont compilés en arrière-plan. La séance démarre ensuite sans écran figé. */
+export function prewarm(c, at) {
+  if (!has3D || !SIM || !Engine.warm || !c || Engine.current === 'sim') return;
+  if (!['salle', 'fiche', 'parcours', 'planning', 'examen', 'exos', 'profil'].includes(document.querySelector('.screen.active') ? document.querySelector('.screen.active').id.slice(2) : '')) return;
+  const i = Math.max(0, Math.min(c.scenes.length - 1, at || 0)), sc = c.scenes[i];
+  const spec = sc && (sc.type === 'situation' ? sc : sc.decor); if (!spec) { Engine.warm('route'); return; }
+  try { const acts = build(spec); if (SIM.aide) (spec.aides || []).forEach(sp => SIM.aide(sp, acts)); Engine.warm('sim'); } catch (e) {}
+}
+/* le décor seul (route, météo, feux, usagers, panneaux), sans rien changer à l'écran */
+function build(sc) {
   const car = sc.carrefour ? (typeof sc.carrefour === 'object' ? sc.carrefour : { S: sc.carrefour, ligne: sc.ligneStop }) : null;
   const ligne = typeof sc.ligne === 'string' ? [{ de: -200, a: 900, type: sc.ligne }] : sc.ligne && sc.ligne.map(g => (g.de <= 0 ? { ...g, de: -200 } : g));
   SIM.load({ env: sc.env || 'route', meteo: sc.meteo || 'jour', kmh: sc.kmh ?? 30, longueur: 900, ligne, camera: camOf(sc), voie: sc.voie, graine: sc.graine,
@@ -98,11 +117,6 @@ function stage(sc, ctx) {
     return a;
   });
   if (SIM.egoSet) SIM.egoSet(sc.ego || {});
-  Live.aides = SIM.aide ? (sc.aides || []).map(sp => { const h = SIM.aide(sp, actors); if (h) { h.spec = sp; h.onChange = () => { labelsFor.key = null; labelsFor(sc, Live.k); }; } return h; }) : [];
-  labelsFor.key = null; Live.actors = actors; Live.shown = null; Live.k = 0;
-  beatStage(sc, 0);
-  Live.actors = actors; paintDash(camOf(sc));
-  if (sc.script) runScript(sc.script, actors, ctx);
   return actors;
 }
 /* étiquettes et aides visuelles au rythme de la voix : chacune a sa phrase (« p ») ou l'élément de liste qui l'appelle (« item ») */

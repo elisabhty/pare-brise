@@ -21,7 +21,7 @@ const texCache = new Map();
 const listeners = {};
 const frameHooks = new Set();
 const tweens = new Set();
-let slowFrames = 0, frameCount = 0, bloomOn = false, paused = false, maxDpr = 2, hiRes = false, perfAcc = 0, perfN = 0;
+let slowFrames = 0, frameCount = 0, bloomOn = false, paused = false, hidden = false, maxDpr = 2, hiRes = false, perfAcc = 0, perfN = 0;
 const wantBloom = () => bloom && bloom.strength >= 0.45 && maxDpr > 1.1;
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
@@ -681,6 +681,7 @@ function loop(now) {
   const w = worlds[worldName]; if (!w) return;
   w.update(dt, now / 1000);
   frameHooks.forEach(f => { try { f(dt); } catch (e) {} });
+  if (hidden) return;                       // un écran opaque couvre la 3D (question de cours) : on ne dessine pas
   if (bloomOn) composer.render(); else renderer.render(w.scene, camera);
   frameCount++;
   // qualité adaptative : si l'appareil peine, on baisse la résolution (jusqu'à 1×) puis on coupe le bloom
@@ -731,9 +732,30 @@ E.world = n => {
   renderer.shadowMap.autoUpdate = n === 'sim'; renderer.shadowMap.needsUpdate = true;
 };
 E.get = n => worlds[n];
+/* Prépare un monde sans l'afficher : ses programmes (shaders) sont compilés maintenant, ceux de la lueur (bloom) aussi si ce
+   monde s'en sert. Les ordres de compilation partent vers le GPU sans attendre le résultat : quand le monde s'affiche,
+   rien n'est à recompiler et la première image arrive tout de suite (sinon, plusieurs secondes d'écran figé sur iPhone). */
+let bloomWarm = false, emptyScene = null;
+E.warm = n => {
+  const w = worlds[n]; if (!w || !renderer) return;
+  try {
+    renderer.compile(w.scene, camera);
+    if ((w.bloom ?? 0.35) >= 0.45 && maxDpr > 1.1) {
+      // avec la lueur, la scène est dessinée dans une texture du compositeur : d'autres variantes de shaders
+      const prev = renderer.getRenderTarget(); renderer.setRenderTarget(composer.readBuffer); renderer.compile(w.scene, camera); renderer.setRenderTarget(prev);
+      if (!bloomWarm) {
+        bloomWarm = true; emptyScene = emptyScene || new THREE.Scene();
+        const sc = renderPass.scene; renderPass.scene = emptyScene; composer.renderToScreen = false;
+        try { composer.render(0); } finally { composer.renderToScreen = true; renderPass.scene = sc; }
+      }
+    }
+  } catch (e) {}
+};
 /* Pause du rendu quand l'écran couvre entièrement la 3D (listes, catalogue…) : batterie et fluidité */
 E.pause = v => { paused = !!v; if (!v) last = 0; };
-E.info = () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.triangles, dpr: renderer.getPixelRatio(), bloom: bloomOn, paused });
+/* la 3D continue de vivre (minuteurs, usagers) mais n'est plus dessinée : batterie */
+E.hidden = v => { hidden = !!v; };
+E.info = () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.triangles, programs: (renderer.info.programs || []).length, dpr: renderer.getPixelRatio(), bloom: bloomOn, paused });
 Object.defineProperty(E, 'current', { get: () => worldName });
 E.region = (top, height) => { region = { top, height }; };
 E.hiRes = on => { if (hiRes === !!on) return; hiRes = !!on; resize(); };

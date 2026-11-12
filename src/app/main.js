@@ -5,9 +5,11 @@ import { Sound } from './sound.js';
 import { setupScreens, drawPoster } from './screens.js';
 import { setupExos } from './exos.js';
 import { setupProfil, needsOnboarding } from './profil.js';
-import { show } from './nav.js';
+import { show, frames } from './nav.js';
 import { COURSES } from './content.js';
 import { signsOfCourse } from './content.js';
+import { prewarm } from './scenes.js';
+import { nextCourse } from './progress.js';
 
 function paintSound() {
   $('#soundBtn').innerHTML = Sound.on
@@ -25,3 +27,7 @@ setupProfil({ done: () => show('salle'), enter: () => drawPoster() });
 if (has3D) Engine.preload(COURSES.flatMap(c => signsOfCourse(c)).slice(0, 24));
 const start = location.hash.slice(1);
 show(needsOnboarding() ? 'bienvenue' : ['salle', 'planning', 'parcours', 'examen', 'exos', 'parebrise', 'decodeur'].includes(start) ? start : 'salle');
+// l'écran de chargement s'efface quand le premier écran est dessiné (la 3D comprise)
+frames(2).then(() => { const sp = $('#splash'); if (!sp) return; sp.classList.add('out'); setTimeout(() => sp.remove(), 700); });
+// pendant qu'on lit l'accueil, la 3D du prochain cours se prépare (compilation des shaders) : la séance démarrera sans attente
+if (has3D) setTimeout(() => prewarm(nextCourse()), 1800);

@@ -12,7 +12,7 @@ import { Serie, setSerieDone, drawExam } from './serie.js';
 import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
-import { Frame } from './scenes.js';
+import { Frame, prewarm } from './scenes.js';
 import { roadmap } from './roadmap.js';
 import { renderHomeExos, Exos, practiceOf, defisOf, best as exoBest, starsHtml, icon } from './exos.js';
 import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plannedDays, refreshBadge, launch, openSheet } from './planning.js';
@@ -97,7 +97,9 @@ function courseRowData(c) {
   const [st, tag] = status(c);
   return { type: 'course', id: c.id, num: courseNumber(c), title: c.titre, sub: `${courseMinutes(c)} min · ${qCount(c)} situations`, status: st, tag };
 }
-let seating = false;
+/* le rideau sombre de début de séance : numéro et titre du cours */
+const slateOf = id => { const c = course(id); return c ? { k: `Cours ${courseNumber(c)}`, t: c.titre } : null; };
+let seating = false, warmT = 0;
 async function seatAndPlay(id) {
   if (seating) return; seating = true;
   Voice.unlock(); Sound.init(); haptic('heavy');
@@ -109,7 +111,7 @@ async function seatAndPlay(id) {
   await curtain('Les lumières s’éteignent', async () => {
     $('.hero').style.opacity = ''; $('#tabbar').style.opacity = ''; seating = false;
     await show('cours', { noCurtain: true, course: id, play: true });
-  });
+  }, slateOf(id));
 }
 
 /* ---------- PARCOURS (catalogue) ---------- */
@@ -141,7 +143,7 @@ function renderFiche(id) {
   $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minute${courseMinutes(c) > 1 ? 's' : ''}</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>situations en pratique</span></div>`;
   $('#fPlay').textContent = st.done ? 'Revoir le cours' : st.scene > 0 ? 'Reprendre le cours' : 'Lancer le cours';
   $('#fChapters').innerHTML = (c.chapitres || []).map((n, k) => `<li><button data-ch="${k}"><span class="cn">${k + 1}</span><b>${esc(n)}</b><small>${c.scenes.filter(s => (s.ch || 0) === k).length} scènes</small></button></li>`).join('');
-  $$('#fChapters button').forEach(b => b.addEventListener('click', () => show('cours', { course: c.id, at: c.scenes.findIndex(s => (s.ch || 0) === +b.dataset.ch), play: true })));
+  $$('#fChapters button').forEach(b => b.addEventListener('click', () => { Voice.unlock(); Sound.init(); show('cours', { course: c.id, at: c.scenes.findIndex(s => (s.ch || 0) === +b.dataset.ch), play: true, slate: slateOf(c.id) }); }));
   const pr = practiceOf(c.id), pb = pr && exoBest(pr.id), defis = defisOf(c.id);
   $('#fSeries').innerHTML = (pr ? `<li><button class="pr-card" data-exo="${pr.id}"><span class="pr-ic">${icon('examen')}</span><div><b>Pratique : ${esc(c.titre)}</b><small>${pr.situations.length} situations en 3D · ${esc(pr.duree)}</small></div><span class="pr-r">${pb ? starsHtml(pb.score) : '<i>Jouer</i>'}</span></button></li>` : '')
     + defis.map(x => { const b = exoBest(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('');
@@ -151,7 +153,7 @@ function renderFiche(id) {
   const ns = notes().filter(n => n.c === c.id && n.i < c.scenes.length).sort((a, b) => a.i - b.i);
   $('#fNotesT').hidden = $('#fNotes').hidden = !ns.length;
   $('#fNotes').innerHTML = ns.map(n => `<li><button data-i="${n.i}" data-k="${n.k || 0}"><i>★</i><div><b>${esc(n.t)}</b><span>${esc(n.s)}</span></div></button></li>`).join('');
-  $$('#fNotes button').forEach(b => b.addEventListener('click', () => { Voice.unlock(); Sound.init(); show('cours', { course: c.id, at: +b.dataset.i, k: +b.dataset.k, play: true }); }));
+  $$('#fNotes button').forEach(b => b.addEventListener('click', () => { Voice.unlock(); Sound.init(); show('cours', { course: c.id, at: +b.dataset.i, k: +b.dataset.k, play: true, slate: slateOf(c.id) }); }));
 }
 export function startSerie(id, extra = {}) {
   const s = SERIES.get(id); if (!s) return;
@@ -180,16 +182,20 @@ export function setupScreens() {
   // une activité du planning s'ouvre là où elle vit, et revient à l'écran d'où on l'a lancée
   setupPlanning({ minutesCours: courseMinutes, ouvrir(kind, ref) {
     const from = currentScreen() || 'planning';
-    if (kind === 'cours') { Voice.unlock(); Sound.init(); show('cours', { course: ref, play: true }); }
+    if (kind === 'cours') { Voice.unlock(); Sound.init(); show('cours', { course: ref, play: true, slate: slateOf(ref) }); }
     else if (kind === 'serie') startSerie(ref, { retour: from });
     else Exos.run(ref, from);
   } });
   $('#meBtn').addEventListener('click', () => { haptic(); Sound.ui('tap'); openProfil(openSheet, renderHome); });
   document.addEventListener('pb:profil', () => { if (currentScreen() === 'salle') renderHello(); });
   register('parcours', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-parcours'), enter() { renderParcours(); SALLE.reset(900); } });
-  register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) { renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100); } });
+  register('fiche', { world: 'salle', amb: 'salle', tab: 'parcours', enter(prev, o) {
+    renderFiche(o.arg || ficheId || (Player.c && Player.c.id)); SALLE.focusScreen(1100);
+    // la séance a de grandes chances de démarrer d'ici : sa première scène se prépare une fois la caméra posée
+    const id = ficheId; clearTimeout(warmT); warmT = setTimeout(() => { if (ficheId === id) { const st = courseState(id); prewarm(course(id), st.done ? 0 : st.scene || 0); } }, 1300);
+  } });
   register('cours', { world: 'route', amb: 'route', noTab: true, reframe: () => Frame.apply(),
-    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0)); if (o.play) { if (o.k > 0) Player.goTo(o.at, o.k); else Player.play(); } } },
+    enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0), !!o.play); if (o.play) Player.start(o.at, o.k); } },
     leave() { if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'examen', enter() { R.reset(); }, leave() { Serie.stop(); } });
   register('examen', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-examen'), enter() { renderHub(); SALLE.reset(900); } });
@@ -203,7 +209,7 @@ export function setupScreens() {
   Decoder.init(() => store.set('decoderUsed', true));
 
   $('#takeSeat').addEventListener('click', () => seatAndPlay(nextCourse().id));
-  $('#fPlay').addEventListener('click', () => { Voice.unlock(); Sound.init(); const st = courseState(ficheId); show('cours', { course: ficheId, at: st.done ? 0 : undefined, play: true }); });
+  $('#fPlay').addEventListener('click', () => { Voice.unlock(); Sound.init(); const st = courseState(ficheId); show('cours', { course: ficheId, at: st.done ? 0 : undefined, play: true, slate: slateOf(ficheId) }); });
   $('#reviewCard').addEventListener('click', () => Serie.start({ titre: 'À revoir', ids: toReview().slice(0, 15), mode: 'entrainement', retour: 'salle' }));
   $('#hubSeriesMore').addEventListener('click', () => { haptic(); renderHub.open = true; renderHub(); });
   // la salle : le conseil « glisse » disparaît dès qu'on a regardé autour
