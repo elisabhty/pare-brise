@@ -215,7 +215,7 @@
     "B22a",
     "C24a"
    ],
-   "dire": "La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. Au feu, le sas vélo, c’est une case avec un vélo peint au sol. Arrête-toi à la première ligne, avant la case. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos. Ce panneau carré bleu te prévient à l’entrée : des vélos peuvent arriver en face, sur ta gauche.",
+   "dire": "La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. Au feu, le sas vélo, c’est une case avec un vélo peint au sol. Arrête-toi à la première ligne, avant la case. Le sas est pour les vélos, et parfois pour les scooters de 50 si un panneau le permet : ta voiture, jamais. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos. Ce panneau carré bleu te prévient à l’entrée : des vélos peuvent arriver en face, sur ta gauche.",
    "etiquettes": [
     [
      "B22a",
@@ -229,7 +229,7 @@
    "puce": "Interdit aux voitures",
    "sync": [
     0.0,
-    3.22
+    4.22
    ]
   },
   {

@@ -38,7 +38,7 @@
   },
   {
    "texte": "Ta voie se termine",
-   "tag": "Rabats-toi quand il y a la place",
+   "tag": "Tu cèdes le passage, puis tu te rabats",
    "panneau": "A3b"
   }
  ],
@@ -452,7 +452,7 @@
      null
     ]
    ],
-   "dire": "Ce triangle annonce que la chaussée se rétrécit par la gauche : la voie de gauche va s’arrêter. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. Les flèches de rabattement au sol te disent de te rabattre : ta voie va finir, ou une ligne continue arrive.",
+   "dire": "Ce triangle annonce que la chaussée se rétrécit par la gauche : la voie de gauche va s’arrêter. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. Les flèches de rabattement au sol te disent de te rabattre : ta voie va finir, ou une ligne continue arrive. Ta voie se termine ? C’est toi qui cèdes le passage à ceux qui roulent déjà sur l’autre voie. Chacun son tour, la fermeture éclair, c’est de la politesse, pas une priorité.",
    "ch": 2
   },
   {

@@ -65,14 +65,15 @@
   "id": "as09-5",
   "cours": "arret-stationnement",
   "type": "qcm",
-  "q": "Déposer un passager quelques secondes, conducteur au volant, c’est :",
+  "q": "Avec ta voiture, tu dois décharger un colis volumineux. Peux-tu t’arrêter sur une place « Livraison » ?",
   "choix": [
-   "un arrêt",
-   "un stationnement"
+   "Oui, le temps de vraiment décharger",
+   "Oui, et j’en profite pour faire mes courses",
+   "Non, jamais avec une voiture personnelle"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Un court moment, conducteur au volant : c’est un arrêt."
+  "explication": "Une place Livraison sert à charger ou décharger, même avec ta voiture, sauf règle locale contraire. T’y garer pour autre chose, c’est gênant : 35 €."
  }
 ]

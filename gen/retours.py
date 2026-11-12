@@ -51,8 +51,8 @@ def t(cid, i, **k):
                 # un texte déjà retouché plus haut et retouché encore : l'ancienne retouche garde le texte final en 3e place,
                 # pour ne pas être rejouée une fois le cours à jour (sinon un ajout serait recollé à chaque passage)
                 for k, (a0, b0, *alt) in enumerate(cur[f]):
-                    fin = alt[0] if alt else b0
-                    if a and a in fin: cur[f][k] = (a0, b0, fin.replace(a, nb, 1))
+                    fin = alt[-1] if alt else b0             # chaque étape intermédiaire reste connue : le cours peut en être à n'importe laquelle
+                    if a and a in fin: cur[f][k] = (a0, b0, *alt, fin.replace(a, nb, 1))
                 cur[f].append((a, nb))
         elif isinstance(v, list) and v and isinstance(v[0], tuple) and isinstance(cur.get(f), str):
             txt = cur[f]                          # texte déjà réécrit plus haut : on le retouche directement
@@ -1547,3 +1547,28 @@ def _b58(d):
     d['illu']['items'][0].update(p='B58', t='1er nov → 31 mars', s='à l’entrée de la zone')
 dec('intemperies', 6, _b58, {'signaux': [['B58', 70]]})
 memo('intemperies', ('Loi montagne', m('Loi montagne', '1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre', 'B58')))
+
+# ---- réponses d'Elisa (12 novembre 2026, 13 h 25) : voie qui se termine, scooters, place Livraison, animaux ----
+# Voie qui se termine : la fermeture éclair est une courtoisie, pas une priorité ; celui qui change de voie cède le passage.
+t('placement-chaussee', 6, dire=[('', 'Ta voie se termine ? C’est toi qui cèdes le passage à ceux qui roulent déjà sur l’autre voie. '
+                                      'Chacun son tour, la fermeture éclair, c’est de la politesse, pas une priorité.')])
+memo('placement-chaussee', ('Ta voie se termine', m('Ta voie se termine', 'Tu cèdes le passage, puis tu te rabats', 'A3b')))
+p2('placement-chaussee', 'Deux voies dans mon sens, circulation normale.', {'q': 'Ta voie se termine et l’autre voie est chargée. Tu :', 'choix': ['passes : c’est chacun son tour', 'cèdes le passage à ceux qui y roulent déjà'],
+   'bonnes': [1], 'mode': 'qcm', 'explication': 'C’est toi qui changes de voie : tu laisses passer ceux qui y roulent déjà. Chacun son tour, c’est de la politesse, pas une priorité.'})
+# Scooters : le sas vélo s'ouvre aux 50 cm³ seulement si la signalisation le permet ; l'inter-files, aux 125 et aux motos (décret 2025-33).
+t('cyclistes-edpm', 3, sync=[0.3, 5.3],
+  dire=[('Arrête-toi à la première ligne, avant la case.', 'Arrête-toi à la première ligne, avant la case. Le sas est pour les vélos, et parfois pour les scooters de 50 si un panneau le permet : ta voiture, jamais.')])
+t('poids-lourds-2rm', 4, dire=[('c’est l’inter-files.', 'c’est l’inter-files. Seules les motos et les scooters de plus de 50 y ont droit : 50 kilomètres heure au maximum, 30 si une file est arrêtée.')])
+memo('poids-lourds-2rm', ('Inter-files', m('Inter-files', 'Motos et scooters de plus de 50, entre les deux voies de gauche, 50 km/h au maximum')))
+# Place « Livraison » : arrêt pour vraiment charger ou décharger, même en voiture personnelle ; s'y garer, c'est gênant (35 €).
+t('arret-stationnement', 4, dire=[('', 'Une place « Livraison » ? Tu peux t’y arrêter pour vraiment charger ou décharger, même avec ta voiture. T’y garer pour autre chose : 35 euros.')])
+memo_plus('arret-stationnement', m('Place « Livraison »', 'Arrêt pour charger ou décharger : oui · t’y garer : 35 €'))
+p2('arret-stationnement', 'Déposer un passager quelques secondes', {'q': 'Avec ta voiture, tu dois décharger un colis volumineux. Peux-tu t’arrêter sur une place « Livraison » ?',
+   'choix': ['Oui, le temps de vraiment décharger', 'Oui, et j’en profite pour faire mes courses', 'Non, jamais avec une voiture personnelle'], 'bonnes': [0], 'mode': 'qcm',
+   'explication': 'Une place Livraison sert à charger ou décharger, même avec ta voiture, sauf règle locale contraire. T’y garer pour autre chose, c’est gênant : 35 €.'})
+# Animal : l'infraction, c'est qu'il gêne la conduite (R412-6) : 35 €, sans retrait de points.
+t('securite-passagers', 3, items_3=['Animaux', 'Le plus sûr : attachés · s’ils gênent : 35 €'],
+  dire=[('S’il te gêne pour conduire, c’est une infraction.', 'S’il te gêne pour conduire, c’est une infraction : 35 euros.')])
+p2('securite-passagers', 'Quel équipement ?', {'contexte': 'Ton chien se déplace librement dans la voiture et t’empêche de bien conduire.', 'q': 'Tu risques :',
+   'choix': ['rien : il n’est pas obligatoire de l’attacher', 'une amende de 35 €', 'un retrait de 3 points'], 'bonnes': [1],
+   'explication': 'S’il gêne tes mouvements ou ta vue, c’est une infraction : 35 €, sans retrait de points. Le plus sûr : un animal attaché ou en cage.'})

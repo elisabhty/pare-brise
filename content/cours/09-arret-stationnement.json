@@ -48,6 +48,10 @@
   {
    "texte": "Très gênant",
    "tag": "135 € et fourrière possible"
+  },
+  {
+   "texte": "Place « Livraison »",
+   "tag": "Arrêt pour charger ou décharger : oui · t’y garer : 35 €"
   }
  ],
  "scenes": [
@@ -387,7 +391,7 @@
      "fourrière possible"
     ]
    ],
-   "dire": "Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé : t’y arrêter ou t’y garer coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer. En double file, c’est « gênant » : 35 euros.",
+   "dire": "Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé : t’y arrêter ou t’y garer coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer. En double file, c’est « gênant » : 35 euros. Une place « Livraison » ? Tu peux t’y arrêter pour vraiment charger ou décharger, même avec ta voiture. T’y garer pour autre chose : 35 euros.",
    "vitesse": 0,
    "decor": {
     "env": "ville",

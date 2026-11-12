@@ -31,7 +31,7 @@
   },
   {
    "texte": "Inter-files",
-   "tag": "Motos entre les deux voies de gauche, dans les bouchons"
+   "tag": "Motos et scooters de plus de 50, entre les deux voies de gauche, 50 km/h au maximum"
   }
  ],
  "scenes": [
@@ -352,7 +352,7 @@
      "Dans les bouchons : reste bien dans ta voie"
     ]
    ],
-   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. Dans les bouchons, sur autoroute ou voie rapide, les motos peuvent rouler entre les deux voies de gauche : c’est l’inter-files. Quand une moto arrive derrière toi, reste bien dans ta voie, sans te décaler vers elle.",
+   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. Dans les bouchons, sur autoroute ou voie rapide, les motos peuvent rouler entre les deux voies de gauche : c’est l’inter-files. Seules les motos et les scooters de plus de 50 y ont droit : 50 kilomètres heure au maximum, 30 si une file est arrêtée. Quand une moto arrive derrière toi, reste bien dans ta voie, sans te décaler vers elle.",
    "decor": {
     "env": "autoroute",
     "kmh": 45,

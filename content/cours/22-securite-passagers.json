@@ -195,10 +195,10 @@
     ],
     [
      "Animaux",
-     "Le plus sûr : attachés ou en cage"
+     "Le plus sûr : attachés · s’ils gênent : 35 €"
     ]
    ],
-   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Le plus sûr : rien sur la plage arrière, car en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Le plus sûr : un animal attaché ou en cage. S’il te gêne pour conduire, c’est une infraction. Et ton chargement ne doit cacher ni ta vue, ni tes feux, ni ta plaque.",
+   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Le plus sûr : rien sur la plage arrière, car en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Le plus sûr : un animal attaché ou en cage. S’il te gêne pour conduire, c’est une infraction : 35 euros. Et ton chargement ne doit cacher ni ta vue, ni tes feux, ni ta plaque.",
    "decor": {
     "env": "route",
     "kmh": 60,

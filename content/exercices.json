@@ -2345,9 +2345,9 @@
   "niveau": 1,
   "cours": "arret-stationnement",
   "titre": "Arrêt et stationnement",
-  "sous": "8 situations en 3D",
+  "sous": "7 situations en 3D · 1 question",
   "duree": "5 min",
-  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Arrêt et stationnement », tu le retrouves ici, sur la route.",
   "env": "ville",
   "situations": [
@@ -2526,30 +2526,18 @@
     "mode": "video"
    },
    {
-    "q": "Déposer un passager quelques secondes, conducteur au volant, c’est :",
+    "q": "Avec ta voiture, tu dois décharger un colis volumineux. Peux-tu t’arrêter sur une place « Livraison » ?",
     "choix": [
-     "un arrêt",
-     "un stationnement"
+     "Oui, le temps de vraiment décharger",
+     "Oui, et j’en profite pour faire mes courses",
+     "Non, jamais avec une voiture personnelle"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Un court moment, conducteur au volant : c’est un arrêt.",
+    "explication": "Une place Livraison sert à charger ou décharger, même avec ta voiture, sauf règle locale contraire. T’y garer pour autre chose, c’est gênant : 35 €.",
     "qid": "as09-5",
-    "env": "ville",
-    "kmh": 0,
-    "camera": "poursuite",
-    "voie": 4.6,
-    "acteurs": [
-     {
-      "type": "pieton",
-      "S": 1,
-      "x": 6.4,
-      "cap": -90
-     }
-    ],
-    "graine": 60,
-    "mode": "image"
+    "mode": "qcm"
    }
   ]
  },
@@ -5307,19 +5295,19 @@
   "env": "route",
   "situations": [
    {
-    "q": "Quel équipement ?",
+    "q": "Tu risques :",
     "choix": [
-     "Un siège auto ou un rehausseur adapté",
-     "Aucun équipement à l’arrière",
-     "La ceinture adulte dans tous les cas"
+     "rien : il n’est pas obligatoire de l’attacher",
+     "une amende de 35 €",
+     "un retrait de 3 points"
     ],
     "bonnes": [
-     0
+     1
     ],
-    "explication": "Avant 10 ans, l’enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids.",
+    "explication": "S’il gêne tes mouvements ou ta vue, c’est une infraction : 35 €, sans retrait de points. Le plus sûr : un animal attaché ou en cage.",
     "bien": "Bien vu !",
     "immersif": "ex-22-01",
-    "contexte": "Un enfant doit voyager en voiture.",
+    "contexte": "Ton chien se déplace librement dans la voiture et t’empêche de bien conduire.",
     "apres": {
      "action": "aucune"
     },
@@ -6717,9 +6705,9 @@
   "niveau": 1,
   "cours": "placement-chaussee",
   "titre": "Se positionner sur la chaussée",
-  "sous": "9 situations en 3D",
+  "sous": "8 situations en 3D · 1 question",
   "duree": "6 min",
-  "consigne": "Chaque situation se joue quelques secondes, puis l’image se fige : réponds comme le jour de l’examen.",
+  "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Se positionner sur la chaussée », tu le retrouves ici, sur la route.",
   "env": "autoroute",
   "situations": [
@@ -6801,36 +6789,17 @@
     "mode": "video"
    },
    {
-    "q": "Deux voies dans mon sens, circulation normale. Je roule :",
+    "q": "Ta voie se termine et l’autre voie est chargée. Tu :",
     "choix": [
-     "sur la voie de droite",
-     "sur la voie de gauche",
-     "sur n’importe quelle voie"
+     "passes : c’est chacun son tour",
+     "cèdes le passage à ceux qui y roulent déjà"
     ],
     "bonnes": [
-     0
+     1
     ],
-    "explication": "En circulation normale, tu utilises la voie la plus à droite. La voie de gauche sert surtout à dépasser.",
+    "explication": "C’est toi qui changes de voie : tu laisses passer ceux qui y roulent déjà. Chacun son tour, c’est de la politesse, pas une priorité.",
     "qid": "pc31-1",
-    "env": "autoroute",
-    "kmh": 110,
-    "camera": "poursuite",
-    "acteurs": [
-     {
-      "type": "voiture",
-      "S": 46,
-      "x": 1.75,
-      "kmh": 110
-     },
-     {
-      "type": "voiture",
-      "S": -20,
-      "x": -1.75,
-      "kmh": 125
-     }
-    ],
-    "graine": 25,
-    "mode": "video"
+    "mode": "qcm"
    },
    {
     "q": "Je vais tout droit au prochain carrefour. D’après les flèches, je me place :",
