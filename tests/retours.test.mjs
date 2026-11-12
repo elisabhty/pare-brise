@@ -88,3 +88,12 @@ test('deuxième passage : les images suivent la voix', () => {
   assert.ok(!types('vehicules-prioritaires').includes('ambulance'), 'une ambulance privée n’est pas prioritaire : les images montrent les pompiers');
   assert.ok(fs.readFileSync('src/engine/sim.js', 'utf8').includes('pompiers(o'));
 });
+test('deuxième passage : les panneaux décrits par la voix sont dessinés et montrés', async () => {
+  const { isSign } = await import('../src/app/signs.js');
+  ['A8', 'B52', 'B54', 'B56', 'C24a'].forEach(id => assert.ok(isSign(id), id));
+  const montres = id => JSON.stringify(C[id].scenes.map(s => [s.panneaux, (s.decor || s).signaux, s.illu]));
+  assert.match(montres('montagne-tunnels-pn'), /"A8"/, 'passage à niveau sans barrières');
+  assert.match(montres('usagers-vulnerables'), /"B52".*"B54"/, 'zone de rencontre et aire piétonne');
+  assert.match(montres('vehicules-propres'), /"B56"/, 'entrée de ZFE');
+  assert.match(montres('cyclistes-edpm'), /"C24a"/, 'double sens cyclable');
+});

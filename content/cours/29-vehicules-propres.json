@@ -22,7 +22,8 @@
   },
   {
    "texte": "ZFE, zone à faibles émissions",
-   "tag": "Vignette Crit’Air obligatoire, les plus polluantes interdites"
+   "tag": "Vignette Crit’Air obligatoire, les plus polluantes interdites",
+   "panneau": "B56"
   },
   {
    "texte": "Voiture électrique",
@@ -178,7 +179,7 @@
      "Elles changent d’une ville à l’autre"
     ]
    ],
-   "dire": "ZFE, ça veut dire zone à faibles émissions : une zone où les voitures qui polluent trop n’ont pas le droit de rouler. Pour y circuler, ta voiture doit avoir sa vignette Crit’Air, et les plus polluantes sont interdites. Les ZFE existent dans certaines grandes villes, et leurs règles peuvent changer : vérifie celles de ta ville.",
+   "dire": "ZFE, ça veut dire zone à faibles émissions : une zone où les voitures qui polluent trop n’ont pas le droit de rouler. Pour y circuler, ta voiture doit avoir sa vignette Crit’Air, et les plus polluantes sont interdites. Les ZFE existent dans certaines grandes villes, et leurs règles peuvent changer : vérifie celles de ta ville. À l’entrée, ce panneau blanc bordé de rouge, avec le mot « zone », te prévient : les vignettes autorisées sont dessous.",
    "decor": {
     "env": "ville",
     "kmh": 28,
@@ -221,7 +222,8 @@
    "illu": {
     "type": "critair",
     "zfe": true,
-    "suit": true
+    "suit": true,
+    "panneau": "B56"
    }
   },
   {

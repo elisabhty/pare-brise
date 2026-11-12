@@ -2947,7 +2947,7 @@
   "niveau": 1,
   "cours": "usagers-vulnerables",
   "titre": "Piétons et enfants",
-  "sous": "10 situations en 3D · 3 questions",
+  "sous": "11 situations en 3D · 2 questions",
   "duree": "7 min",
   "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Piétons et enfants », tu le retrouves ici, sur la route.",
@@ -3225,7 +3225,7 @@
     "mode": "qcm"
    },
    {
-    "q": "Dans une zone de rencontre, la vitesse est limitée à :",
+    "q": "Ce panneau annonce une zone de rencontre. La vitesse y est limitée à :",
     "choix": [
      "10 km/h",
      "20 km/h",
@@ -3234,9 +3234,31 @@
     "bonnes": [
      1
     ],
-    "explication": "Dans une zone de rencontre : 20 km/h au maximum, et les piétons passent avant toi.",
+    "explication": "Zone de rencontre : 20 km/h au maximum, et les piétons sont prioritaires, même au milieu de la rue.",
     "qid": "uv11-3",
-    "mode": "qcm"
+    "env": "ville",
+    "kmh": 20,
+    "acteurs": [
+     {
+      "type": "pieton",
+      "S": 22,
+      "x": 1.2,
+      "vx": -0.6
+     },
+     {
+      "type": "pieton",
+      "S": 30,
+      "x": 5.2
+     }
+    ],
+    "graine": 81,
+    "mode": "image",
+    "signaux": [
+     [
+      "B52",
+      24
+     ]
+    ]
    },
    {
     "q": "Ce panneau annonce :",
@@ -6259,10 +6281,10 @@
   "niveau": 1,
   "cours": "vehicules-propres",
   "titre": "Électrique, Crit’Air et ZFE",
-  "sous": "7 questions",
+  "sous": "1 situation en 3D · 6 questions",
   "duree": "3 min",
-  "consigne": "Des questions de cours, posées directement : une ou plusieurs réponses peuvent être justes, comme le jour de l’examen.",
-  "astuce": "Tout ce que tu as vu dans le cours « Électrique, Crit’Air et ZFE » revient ici en questions : relis bien chaque explication.",
+  "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
+  "astuce": "Tout ce que tu as vu dans le cours « Électrique, Crit’Air et ZFE », tu le retrouves ici, sur la route.",
   "env": "ville",
   "situations": [
    {
@@ -6278,11 +6300,29 @@
     "explication": "Chaque ville a ses règles pour sa ZFE : vérifie celles de la ville où tu entres.",
     "bien": "Bien vu !",
     "immersif": "ex-29-01",
-    "contexte": "Tu arrives à l’entrée d’une ZFE, une zone à faibles émissions.",
+    "contexte": "Tu arrives devant ce panneau : l’entrée d’une ZFE, une zone à faibles émissions.",
+    "env": "ville",
+    "kmh": 20,
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 30,
+      "x": 1.75,
+      "kmh": 30,
+      "couleur": 3122042
+     }
+    ],
     "apres": {
      "action": "aucune"
     },
-    "mode": "qcm"
+    "graine": 5,
+    "mode": "image",
+    "signaux": [
+     [
+      "B56",
+      24
+     ]
+    ]
    },
    {
     "q": "Que dois-tu anticiper ?",

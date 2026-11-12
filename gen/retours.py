@@ -1507,3 +1507,21 @@ for _q in ('i16-2', 'pp20-3', 'e28-1', 'e28-4'): EXP.pop(_q, None)
 # ---- dernières phrases trop longues pour un sous-titre ----
 t('cyclistes-edpm', 2, dire=[('Avant de tourner à droite, regarde ton rétroviseur et tourne la tête : un cycliste peut remonter', 'Avant de tourner à droite, regarde ton rétroviseur et tourne la tête. Un cycliste peut remonter')])
 t('infractions', 3, dire=[('jusqu’à 72 heures, puis le préfet peut le suspendre jusqu’à 6 mois.', 'jusqu’à 72 heures. Puis le préfet peut le suspendre jusqu’à 6 mois.')])
+
+# ---- panneaux dessinés après le deuxième passage : ce que la voix décrit, l'élève le voit ----
+t('montagne-tunnels-pn', 1, panneaux=['A7', 'A8'], etiquettes=[['A7', 'Avec barrières'], ['A8', 'Sans barrières : le train d’abord']], sync=[0.3, 2.2],
+  dire=[('Sans barrières, le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.',
+         'Sans barrières, c’est ce panneau avec une locomotive qui te prévient. Le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.')])
+memo_plus('montagne-tunnels-pn', m('Passage à niveau sans barrières', 'Le train passe en premier : ralentis, regarde des deux côtés', 'A8'))
+dec('usagers-vulnerables', 5, {'signaux': [['B30', 30], ['B52', 75], ['B54', 130]]},
+    lambda d: d.update(illu={'type': 'panneaux', 'suit': True, 'items': [{'p': 'B30', 't': 'Zone 30', 's': '30 km/h'}, {'p': 'B52', 't': 'Zone de rencontre', 's': '20 km/h'}, {'p': 'B54', 't': 'Aire piétonne', 's': 'au pas'}]}))
+memo('usagers-vulnerables', ('Zone de rencontre', m('Zone de rencontre', '20 km/h, piétons prioritaires', 'B52')))
+memo_plus('usagers-vulnerables', m('Aire piétonne', 'Au pas, seulement si le panneau t’autorise', 'B54'))
+p2('usagers-vulnerables', 'Dans une zone de rencontre, la vitesse est limitée à :', {'q': 'Ce panneau annonce une zone de rencontre. La vitesse y est limitée à :', 'mode': 'image', 'env': 'ville', 'kmh': 20, 'signaux': [['B52', 24]],
+   'explication': 'Zone de rencontre : 20 km/h au maximum, et les piétons sont prioritaires, même au milieu de la rue.'})
+t('cyclistes-edpm', 3, panneaux=['B22a', 'C24a'], etiquettes=[['B22a', 'Piste cyclable obligatoire'], ['C24a', 'Double sens cyclable : des vélos en face']], sync=[0.3, 4.3],
+  dire=[('Un panneau te prévient à l’entrée : des vélos peuvent arriver en face.', 'Ce panneau carré bleu te prévient à l’entrée : des vélos peuvent arriver en face, sur ta gauche.')])
+t('vehicules-propres', 2, dire=[('', 'À l’entrée, ce panneau blanc bordé de rouge, avec le mot « zone », te prévient : les vignettes autorisées sont dessous.')])
+dec('vehicules-propres', 2, lambda d: d['illu'].update(panneau='B56'))
+memo('vehicules-propres', ('ZFE, zone à faibles émissions', m('ZFE, zone à faibles émissions', 'Vignette Crit’Air obligatoire, les plus polluantes interdites', 'B56')))
+p2('vehicules-propres', 'Que dois-tu vérifier ?', {'contexte': 'Tu arrives devant ce panneau : l’entrée d’une ZFE, une zone à faibles émissions.', 'mode': 'image', 'env': 'ville', 'kmh': 20, 'signaux': [['B56', 24]]})

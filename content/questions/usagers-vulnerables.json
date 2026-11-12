@@ -32,7 +32,7 @@
   "id": "uv11-3",
   "cours": "usagers-vulnerables",
   "type": "qcm",
-  "q": "Dans une zone de rencontre, la vitesse est limitée à :",
+  "q": "Ce panneau annonce une zone de rencontre. La vitesse y est limitée à :",
   "choix": [
    "10 km/h",
    "20 km/h",
@@ -41,7 +41,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Dans une zone de rencontre : 20 km/h au maximum, et les piétons passent avant toi."
+  "explication": "Zone de rencontre : 20 km/h au maximum, et les piétons sont prioritaires, même au milieu de la rue."
  },
  {
   "id": "uv11-4",

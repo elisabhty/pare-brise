@@ -19,7 +19,7 @@ export function validate(root = '.') {
   const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee', 'derriere'];
   // aides visuelles du simulateur (engine/sim.js, AIDES) et illustrations d'écran (app/illu.js, ILLU)
   const AIDES = ['zone', 'bandes', 'faisceau', 'radar', 'champ', 'fleche', 'cible', 'repere', 'mesure', 'radarfixe', 'borne', 'pn', 'plots', 'manche', 'eau', 'victime', 'table', 'sos', 'issue', 'balises', 'affichette'];
-  const ILLUS = ['critair', 'pictos', 'points', 'ethylotest', 'voyants', 'documents', 'telephone', 'siege', 'sieges', 'constat', 'frise', 'compteur', 'pneu', 'niveaux', 'icones', 'bareme'];
+  const ILLUS = ['critair', 'pictos', 'points', 'ethylotest', 'voyants', 'documents', 'telephone', 'siege', 'sieges', 'constat', 'frise', 'compteur', 'pneu', 'niveaux', 'icones', 'bareme', 'panneaux'];
   const checkStage = (stg, sc, w) => {
     const n = (stg.acteurs || []).length, k = (sc.dire || '').match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g)?.length || 1, items = (sc.items || []).length;
     (stg.aides || []).forEach((a, j) => {

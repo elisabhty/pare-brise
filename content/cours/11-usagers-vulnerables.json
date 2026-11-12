@@ -30,7 +30,8 @@
   },
   {
    "texte": "Zone de rencontre",
-   "tag": "20 km/h, piétons prioritaires"
+   "tag": "20 km/h, piétons prioritaires",
+   "panneau": "B52"
   },
   {
    "texte": "Zone 30",
@@ -40,6 +41,11 @@
   {
    "texte": "Permis probatoire",
    "tag": "6 points au début : un refus = plus de permis"
+  },
+  {
+   "texte": "Aire piétonne",
+   "tag": "Au pas, seulement si le panneau t’autorise",
+   "panneau": "B54"
   }
  ],
  "scenes": [
@@ -296,7 +302,15 @@
     "signaux": [
      [
       "B30",
-      60
+      30
+     ],
+     [
+      "B52",
+      75
+     ],
+     [
+      "B54",
+      130
      ]
     ],
     "acteurs": [
@@ -382,7 +396,28 @@
     1.3,
     2.08,
     3.0
-   ]
+   ],
+   "illu": {
+    "type": "panneaux",
+    "suit": true,
+    "items": [
+     {
+      "p": "B30",
+      "t": "Zone 30",
+      "s": "30 km/h"
+     },
+     {
+      "p": "B52",
+      "t": "Zone de rencontre",
+      "s": "20 km/h"
+     },
+     {
+      "p": "B54",
+      "t": "Aire piétonne",
+      "s": "au pas"
+     }
+    ]
+   }
   },
   {
    "type": "fin",

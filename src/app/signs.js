@@ -51,12 +51,25 @@ const DRAW = {
   A17: () => triUp() + `<rect x="42" y="36" width="16" height="42" rx="5" fill="${K.k}"/><circle cx="50" cy="45" r="4.6" fill="${K.r}"/><circle cx="50" cy="57" r="4.6" fill="${K.y}"/><circle cx="50" cy="69" r="4.6" fill="#1FB25A"/>`,
   A21: () => triUp() + `<g transform="translate(50 64) scale(0.5) translate(-50 -52)">${bike(K.k)}<circle cx="44" cy="27" r="6" fill="${K.k}"/></g>`,
   A4: () => triUp() + `<g fill="${K.k}"><rect x="38" y="40" width="24" height="15" rx="4"/><rect x="36" y="53" width="6" height="6" rx="1.5"/><rect x="58" y="53" width="6" height="6" rx="1.5"/></g><path d="M39 78 Q35 72 40 67 T39 60 M61 78 Q65 72 60 67 T61 60" fill="none" stroke="${K.k}" stroke-width="2.6" stroke-linecap="round"/>`,
+  A8: () => triUp() + `<g fill="${K.k}"><rect x="30" y="55" width="28" height="12" rx="3"/><rect x="56" y="47" width="13" height="20" rx="1.5"/><rect x="54" y="44" width="16" height="4" rx="1"/><rect x="34" y="47" width="6" height="9" rx="1"/><rect x="28" y="67" width="42" height="3"/><circle cx="36" cy="74" r="4.8"/><circle cx="49" cy="74" r="4.8"/><circle cx="62" cy="74" r="4.8"/></g><rect x="59" y="50" width="7" height="7" rx="1" fill="#fff"/>`,
   A7: () => triUp() + `<g fill="${K.k}"><rect x="30" y="52" width="40" height="6" rx="1"/><rect x="30" y="64" width="40" height="6" rx="1"/><rect x="33" y="46" width="5" height="32" rx="1"/><rect x="62" y="46" width="5" height="32" rx="1"/></g>`,
   B3: () => ring() + carFront(37, K.r) + carFront(63, K.k),
   A24: () => triUp() + `<line x1="33" y1="79" x2="33" y2="40" stroke="${K.k}" stroke-width="3.6" stroke-linecap="round"/><g transform="translate(34 41)"><path d="M0 0 L34 5 L34 13 L0 13 Z" fill="${K.r}"/><path d="M8 1.2 L15 2.2 L15 13 L8 13 Z M22 3.2 L28 4.1 L28 13 L22 13 Z" fill="#fff"/><path d="M0 0 L34 5 L34 13 L0 13 Z" fill="none" stroke="${K.k}" stroke-width="1.6" stroke-linejoin="round"/></g>`,
   A16: () => triUp() + `<polygon points="23,79 78,79 23,50" fill="${K.k}"/>` + txt('10%', 14, K.k, 64, undefined, 0).replace('x="50"', 'x="62"'),
   B26: () => disc() + `<circle cx="50" cy="50" r="23" fill="none" stroke="#fff" stroke-width="9"/><circle cx="50" cy="50" r="7" fill="#fff"/><g stroke="${K.b}" stroke-width="3">${[0, 45, 90, 135, 180, 225, 270, 315].map(a => `<line x1="${50 + 18.5 * Math.cos(a * Math.PI / 180)}" y1="${50 + 18.5 * Math.sin(a * Math.PI / 180)}" x2="${50 + 27.5 * Math.cos((a + 22) * Math.PI / 180)}" y2="${50 + 27.5 * Math.sin((a + 22) * Math.PI / 180)}"/>`).join('')}</g>`,
   B30: () => zone(),
+  // zone de rencontre et aire piétonne : carré bleu, listel blanc, pictogrammes blancs (arrêté du 7 novembre 2008)
+  B52: () => square() + walker('#fff', 30, 62, 1.45)
+    + `<g transform="translate(66 32) scale(0.46) translate(-50 -52)">${bike('#fff').replace('stroke-width="4"', 'stroke-width="5.6"')}</g>`
+    + `<g transform="translate(66 55)" fill="#fff"><path d="M-15 3 L-15 -2 Q-14 -5 -10 -5 L-6 -10 L6 -10 L10 -5 L13 -4 Q15 -3 15 0 L15 3 Z"/><circle cx="-8" cy="4" r="3.6" stroke="${K.b}" stroke-width="1.6"/><circle cx="8" cy="4" r="3.6" stroke="${K.b}" stroke-width="1.6"/></g>`
+    + `<circle cx="73" cy="77" r="12" fill="#fff"/><circle cx="73" cy="77" r="9.6" fill="#fff" stroke="${K.r}" stroke-width="3.2"/><text x="73" y="81" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="11" fill="${K.k}">20</text>`,
+  B54: () => square() + walker('#fff', 41, 58, 1.6) + walker('#fff', 64, 67, 1.05),
+  // ZFE : rectangle vertical blanc, listel rouge, « ZONE » et le signal B0 (arrêté du 24 novembre 1967, art. 4), vignettes autorisées dessous
+  B56: () => `<rect x="17" y="3" width="66" height="94" rx="6" fill="#fff" stroke="${K.k}" stroke-width="1.2"/><rect x="21" y="7" width="58" height="86" rx="4" fill="none" stroke="${K.r}" stroke-width="3.6"/>`
+    + `<text x="50" y="25" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="13" fill="${K.k}">ZONE</text>`
+    + `<circle cx="50" cy="47" r="16" fill="#fff" stroke="${K.r}" stroke-width="5"/>`
+    + `<text x="50" y="74" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="6.5" fill="${K.k}">CRIT’AIR</text>`
+    + [['#2E9E44', '0'], ['#7A3E9D', '1'], ['#F2C300', '2']].map(([c, n], i) => `<circle cx="${38 + i * 12}" cy="83" r="5.2" fill="${c}"/><text x="${38 + i * 12}" y="85.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="6.4" fill="${i === 2 ? K.k : '#fff'}">${n}</text>`).join(''),
   B51: () => zone(K.g, K.g, true),
   C107: () => square() + motorway(),
   C108: () => square() + motorway() + `<line x1="16" y1="84" x2="84" y2="16" stroke="${K.r}" stroke-width="7" stroke-linecap="round"/>`,
@@ -85,6 +98,11 @@ const DRAW = {
   C12: () => square() + `<rect x="44" y="40" width="12" height="40" fill="#fff"/><polygon points="31,44 50,19 69,44" fill="#fff"/>`,
   C20a: () => square() + `<polygon points="50,16 86,80 14,80" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><g fill="${K.k}"><rect x="27" y="75" width="8" height="3"/><rect x="40" y="75" width="8" height="3"/><rect x="53" y="75" width="8" height="3"/><rect x="66" y="75" width="7" height="3"/></g><g stroke="${K.k}" stroke-width="5" stroke-linecap="round" fill="none"><path d="M50 47 L46 61 L40 72 M46 61 L54 71 M49 51 L42 57 M49 51 L57 56"/></g><circle cx="52" cy="40" r="4.6" fill="${K.k}"/>`,
   C1a: () => square() + txt('P', 64, '#fff', 73),
+  // double sens cyclable, vu par l'automobiliste qui entre : les vélos arrivent en face, sur sa gauche
+  C24a: () => square() + `<line x1="50" y1="16" x2="50" y2="84" stroke="#fff" stroke-width="2.4" stroke-dasharray="7 6"/>`
+    + `<g transform="translate(29 31) scale(0.4) translate(-50 -52)">${bike('#fff').replace('stroke-width="4"', 'stroke-width="6"')}</g>`
+    + `<rect x="26.5" y="46" width="5" height="22" fill="#fff"/><polygon points="20,66 38,66 29,80" fill="#fff"/>`
+    + `<rect x="66.5" y="34" width="5" height="44" fill="#fff"/><polygon points="60,36 78,36 69,20" fill="#fff"/>`,
   EB10: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72),
   EB20: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72) + `<line x1="14" y1="72" x2="86" y2="28" stroke="${K.r}" stroke-width="6"/>`,
   AB3a: () => triDown(),
@@ -96,8 +114,8 @@ const DRAW = {
 };
 
 const META = {
-  A13a: ['Endroit fréquenté par les enfants', 'danger'], A13b: ['Passage pour piétons', 'danger'], A15b: ['Passage d’animaux sauvages', 'danger'], A17: ['Feux tricolores', 'danger'], A21: ['Débouché de cyclistes', 'danger'], A4: ['Chaussée glissante', 'danger'], A7: ['Passage à niveau avec barrières', 'danger'],
-  B3: ['Interdiction de dépasser', 'interdiction'], A24: ['Vent latéral', 'danger'], A16: ['Descente dangereuse', 'danger'], B26: ['Équipements spéciaux obligatoires (chaînes)', 'obligation'], B30: ['Zone 30', 'interdiction'], B51: ['Fin de zone 30', 'fin'], C107: ['Autoroute', 'indication'], C108: ['Fin d’autoroute', 'indication'],
+  A13a: ['Endroit fréquenté par les enfants', 'danger'], A13b: ['Passage pour piétons', 'danger'], A15b: ['Passage d’animaux sauvages', 'danger'], A17: ['Feux tricolores', 'danger'], A21: ['Débouché de cyclistes', 'danger'], A4: ['Chaussée glissante', 'danger'], A7: ['Passage à niveau avec barrières', 'danger'], A8: ['Passage à niveau sans barrières', 'danger'],
+  B3: ['Interdiction de dépasser', 'interdiction'], A24: ['Vent latéral', 'danger'], A16: ['Descente dangereuse', 'danger'], B26: ['Équipements spéciaux obligatoires (chaînes)', 'obligation'], B30: ['Zone 30', 'interdiction'], B52: ['Zone de rencontre', 'indication'], B54: ['Aire piétonne', 'indication'], B56: ['Zone à faibles émissions', 'interdiction'], B51: ['Fin de zone 30', 'fin'], C107: ['Autoroute', 'indication'], C108: ['Fin d’autoroute', 'indication'],
   A14: ['Autres dangers', 'danger'], A1a: ['Virage à droite', 'danger'], A3: ['Chaussée rétrécie', 'danger'], A3b: ['Chaussée rétrécie par la gauche', 'danger'], A2b: ['Dos-d’âne', 'danger'],
   AK14: ['Danger temporaire', 'temporaire', 'danger'], AK5: ['Travaux', 'temporaire', 'danger'],
   AB1: ['Priorité à droite', 'danger'], AB2: ['Priorité ponctuelle', 'priorite'], AB25: ['Carrefour giratoire', 'danger'],
@@ -105,7 +123,7 @@ const META = {
   B2a: ['Interdit de tourner à gauche', 'interdiction'], B6a1: ['Stationnement interdit', 'interdiction'], B6d: ['Arrêt et stationnement interdits', 'interdiction'],
   B211: ['Tourner à droite', 'obligation', null, 'B21-1'], B21a1: ['Contourner par la droite', 'obligation'], B22a: ['Piste cyclable obligatoire', 'obligation'],
   B40: ['Fin de piste cyclable', 'fin'], B33: [v => `Fin de limitation à ${v || 50}`, 'fin'], B31: ['Fin des interdictions', 'fin'],
-  C12: ['Sens unique', 'indication'], C20a: ['Passage piétons', 'indication'], C1a: ['Parking', 'indication'],
+  C12: ['Sens unique', 'indication'], C20a: ['Passage piétons', 'indication'], C1a: ['Parking', 'indication'], C24a: ['Double sens cyclable', 'indication'],
   EB10: ['Entrée d’agglomération', 'localisation'], EB20: ['Sortie d’agglomération', 'localisation'],
   AB3a: ['Cédez le passage', 'priorite'], AB4: ['Stop', 'priorite'], AB6: ['Route prioritaire', 'priorite'], AB7: ['Fin de route prioritaire', 'fin', null, null, 'priorite'],
   X_FORME: ['Forme', 'fin', null, '01'], X_COULEUR: ['Couleur', 'interdiction', null, '02']

@@ -34,6 +34,11 @@
   {
    "texte": "Descente",
    "tag": "Frein moteur"
+  },
+  {
+   "texte": "Passage à niveau sans barrières",
+   "tag": "Le train passe en premier : ralentis, regarde des deux côtés",
+   "panneau": "A8"
   }
  ],
  "scenes": [
@@ -93,16 +98,25 @@
    "eyebrow": "Passage à niveau",
    "titre": "Un train ne s’arrête pas",
    "panneaux": [
-    "A7"
+    "A7",
+    "A8"
    ],
-   "dire": "Au passage à niveau, dès que le feu rouge clignote, tu t’arrêtes : même sans sonnerie, même si les barrières sont encore levées. Et ne t’engage jamais si tu n’es pas sûr de pouvoir dégager la voie de l’autre côté. Sans barrières, le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.",
+   "dire": "Au passage à niveau, dès que le feu rouge clignote, tu t’arrêtes : même sans sonnerie, même si les barrières sont encore levées. Et ne t’engage jamais si tu n’es pas sûr de pouvoir dégager la voie de l’autre côté. Sans barrières, c’est ce panneau avec une locomotive qui te prévient. Le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.",
    "etiquettes": [
     [
      "A7",
-     "Passage à niveau avec barrières"
+     "Avec barrières"
+    ],
+    [
+     "A8",
+     "Sans barrières : le train d’abord"
     ]
    ],
-   "puce": "Ne jamais s’arrêter sur les rails"
+   "puce": "Ne jamais s’arrêter sur les rails",
+   "sync": [
+    0.0,
+    0.0
+   ]
   },
   {
    "type": "liste",

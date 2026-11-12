@@ -6,6 +6,7 @@
    - « p » : la phrase à laquelle elle apparaît (0 par défaut).
    Chaque type a son dessin (SVG). « pas » décrit un état qui change (points perdus, amende) à chaque étape. */
 import { $, esc } from './util.js';
+import { inner as signe } from './signs.js';
 
 const C = { bleu: '#0A84FF', rouge: '#FF3B30', orange: '#FF9F0A', vert: '#30D158', jaune: '#FFD60A', gris: '#8E8E93', encre: '#1C1C1E', label2: '#6B7280', fond: '#F2F4F7' };
 const T = (x, y, s, size = 12, w = 600, fill = C.encre, anchor = 'middle', extra = '') => `<text x="${x}" y="${y}" font-size="${size}" font-weight="${w}" fill="${fill}" text-anchor="${anchor}" ${extra}>${esc(String(s))}</text>`;
@@ -42,7 +43,9 @@ const ILLU = {
       const groupe = () => 0;                 // « six vignettes » : on les voit toutes dès la première phrase
       const v = cols.map(([bg, fg], n) => { const x = 30 + n * 56; return E(groupe(n), `<circle cx="${x}" cy="50" r="24" fill="${bg}"/><circle cx="${x}" cy="50" r="19.5" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/>${T(x, 59, n, 25, 800, fg)}${T(x, 30.5, "CRIT'Air", 5.6, 800, fg)}${sp.zfe ? `<g class="barre" data-x="${n >= 3 ? 1 : 0}">${n >= 3 ? `<line x1="${x - 20}" y1="70" x2="${x + 20}" y2="30" stroke="${C.rouge}" stroke-width="4" stroke-linecap="round"/>` : ''}</g>` : ''}`); }).join('');
       const bas = sp.zfe ? E(2, `${T(198, 98, 'Exclues dans certaines ZFE, selon la ville', 10, 700, C.rouge)}`) : E(2, `<path d="M86 92 H318" stroke="url(#ca)" stroke-width="5" stroke-linecap="round"/><defs><linearGradient id="ca"><stop offset="0" stop-color="#7A3E9D"/><stop offset=".5" stop-color="#EF8A00"/><stop offset="1" stop-color="#7A7F86"/></linearGradient></defs>${T(86, 108, 'moins polluant', 9.5, 600, C.label2, 'start')}${T(318, 108, 'plus polluant', 9.5, 600, C.label2, 'end')}`) + E(0, T(30, 92, 'électrique', 9.5, 700, '#2E9E44'));
-      return svg(340, 116, v + bas);
+      if (!sp.panneau) return svg(340, 116, v + bas);
+      // le panneau d'entrée de ZFE à gauche, les vignettes à côté
+      return svg(340, 116, E(0, `<g transform="translate(2 8)">${signe(sp.panneau)}</g>`) + `<g transform="translate(108 16) scale(0.68)">${v + bas}</g>`);
     },
     step(root, n, sp) { if (sp.zfe) root.querySelectorAll('.barre').forEach(b => b.classList.toggle('on', n >= 2)); }
   },
@@ -198,6 +201,13 @@ const ILLU = {
     html(sp) {
       const it = sp.items || [], n = it.length, cols = Math.min(n, sp.cols || 4), rows = Math.ceil(n / cols), w = 340 / cols, h = 96;
       return svg(340, rows * h + 4, it.map((x, i) => tile((i % cols) * w + 5, Math.floor(i / cols) * h + 4, w - 10, h - 8, x.i, x.t, x.s, x.barre, x.e ?? i)).join(''));
+    }
+  },
+  /* des panneaux côte à côte, avec leur nom : quand la scène 3D ne les montre pas assez longtemps */
+  panneaux: {
+    html(sp) {
+      const it = sp.items || [], n = Math.max(1, it.length), w = 340 / n, h = 112;
+      return svg(340, h, it.map((x, i) => E(x.e ?? i, `<rect x="${i * w + 5}" y="2" width="${w - 10}" height="${h - 4}" rx="14" fill="${C.fond}"/><g transform="translate(${i * w + w / 2 - 33} 7) scale(0.66)">${signe(x.p)}</g>${T(i * w + w / 2, 91, x.t, 11, 700)}${x.s ? T(i * w + w / 2, 104, x.s, 9.5, 600, C.label2) : ''}`)).join(''));
     }
   },
   /* un barème : une ligne par cas, son badge (points, montant) */
