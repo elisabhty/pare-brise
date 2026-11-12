@@ -74,6 +74,24 @@
       "à toi de t’arrêter à temps",
       1
      ]
+    ],
+    "aides": [
+     {
+      "type": "bandes",
+      "reac": 15,
+      "frein": 10,
+      "p": 1,
+      "textes": [
+       [
+        "15 m",
+        "de réaction"
+       ],
+       [
+        "10 m",
+        "de freinage"
+       ]
+      ]
+     }
     ]
    }
   },
@@ -172,7 +190,7 @@
     "acteurs": [
      {
       "type": "voiture",
-      "S": 62,
+      "S": 63,
       "x": 1.75,
       "kmh": 110,
       "couleur": 10134447
@@ -183,6 +201,22 @@
       "x": -1.75,
       "kmh": 125,
       "couleur": 3829232
+     }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "ego": true,
+      "dz": 32.5,
+      "long": 59,
+      "large": 2.4,
+      "couleur": "vert",
+      "item": 0,
+      "texte": [
+       "2 secondes",
+       "≈ 60 m à 110"
+      ],
+      "etiquette": 0
      }
     ]
    },
@@ -223,6 +257,22 @@
       "x": 1.75,
       "kmh": 90,
       "couleur": 15223370
+     }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "ego": true,
+      "dz": 27,
+      "long": 48,
+      "large": 2.4,
+      "couleur": "vert",
+      "p": 1,
+      "texte": [
+       "2 secondes",
+       "au moins"
+      ],
+      "etiquette": 0
      }
     ]
    }

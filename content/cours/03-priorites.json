@@ -113,6 +113,20 @@
       "arret",
       39
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "S": 46,
+      "x": 0,
+      "rayon": 1.6,
+      "p": 3,
+      "texte": [
+       "Qui passe ?",
+       "en premier"
+      ],
+      "hauteur": 1.2
+     }
     ]
    }
   },
@@ -253,6 +267,18 @@
       "arret",
       39
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.4,
+      "p": 1,
+      "texte": [
+       "À ta droite",
+       "il passe"
+      ]
+     }
     ]
    }
   }

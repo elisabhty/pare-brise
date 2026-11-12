@@ -7,7 +7,8 @@ import { saveCourse } from './progress.js';
 import { Voice, splitSentences, estimate, sayTimed } from './voice.js';
 import { Sound } from './sound.js';
 import { Labels } from './labels.js';
-import { TYPES, ov, isQuestion, View, Live, camOf, paintDash, Frame } from './scenes.js';
+import { TYPES, ov, isQuestion, View, Live, camOf, paintDash, Frame, sceneBeat } from './scenes.js';
+import { Illu } from './illu.js';
 import { actorInfo, signInfo } from './infos.js';
 import { show, currentScreen } from './nav.js';
 import { plot, react, line } from './mascot.js';
@@ -69,10 +70,11 @@ export const Player = {
     this.ctx = ctx;
     const T = TYPES[sc.type];
     if (T) T.enter(sc, ctx);
+    Illu.mount(sc);
     Frame.set(sc.decor && has3D);
     if (isQuestion(sc)) this.showQuiz(sc);
-    // en pause, l'écran montre tout (la liste entière, toutes les étiquettes) ; en lecture, il se construit avec la voix
-    if (!this.playing && T.beat) setTimeout(() => { if (tok === this.sceneTok && !this.playing) try { T.beat(sc, 999, ctx, 0); } catch (e) {} }, 0);
+    // en pause, l'écran montre tout (la liste entière, les étiquettes, l'illustration) ; en lecture, il se construit avec la voix
+    if (!this.playing) setTimeout(() => { if (tok === this.sceneTok && !this.playing) try { sceneBeat(sc, 999, ctx, 0); } catch (e) {} }, 0);
     saveCourse(this.c.id, { scene: i });
     this.paintRail(); this.paintText();
   },
@@ -135,7 +137,7 @@ export const Player = {
     for (let k = from; k < sc.sents.length; k++) {
       if (!live()) return;
       this.k = k; this.kT0 = performance.now(); this.paintText();
-      { const T = TYPES[sc.type]; if (T && T.beat && this.ctx) try { T.beat(sc, k, this.ctx, sEst(sc.sents[k])); } catch (e) {} }
+      if (this.ctx) sceneBeat(sc, k, this.ctx, sEst(sc.sents[k]));
       this.caption(sc, k);
       Sound.duck(true); await sayTimed(sc.sents[k], live); Sound.duck(false);
       if (!live()) return;
@@ -143,7 +145,7 @@ export const Player = {
     }
     if (!live()) return;
     this.k = sc.sents.length; this.caption(sc, sc.sents.length);
-    { const T = TYPES[sc.type]; if (T && T.beat && this.ctx) try { T.beat(sc, 999, this.ctx, 0); } catch (e) {} }
+    if (this.ctx) sceneBeat(sc, 999, this.ctx, 0);
     if (isQuestion(sc)) return;
     const rest = (sc.min || 4.5) * 1000 - (performance.now() - this.sceneT0);
     if (rest > 0) await wait(rest);

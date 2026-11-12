@@ -54,6 +54,13 @@
       "kmh": 110,
       "couleur": 10134447
      }
+    ],
+    "aides": [
+     {
+      "type": "radar",
+      "portee": 34,
+      "p": 0
+     }
     ]
    }
   },
@@ -114,6 +121,26 @@
       1.5
      ],
      [
+      "p3",
+      "freiner",
+      0,
+      50,
+      5
+     ],
+     [
+      "p3+0.3",
+      "vitesse",
+      50,
+      6
+     ],
+     [
+      "p3",
+      "aide",
+      0,
+      "act",
+      "rouge"
+     ],
+     [
       "p4",
       "voie",
       1.0,
@@ -125,6 +152,41 @@
       1.75,
       1100
      ]
+    ],
+    "aides": [
+     {
+      "type": "radar",
+      "portee": 32,
+      "item": 2,
+      "texte": [
+       "Radar",
+       "il garde la distance"
+      ]
+     },
+     {
+      "type": "zone",
+      "ego": true,
+      "dx": -1.75,
+      "dz": 16,
+      "long": 28,
+      "large": 0.3,
+      "couleur": "vert",
+      "opacite": 0.85,
+      "contour": false,
+      "item": 4
+     },
+     {
+      "type": "zone",
+      "ego": true,
+      "dx": 1.75,
+      "dz": 16,
+      "long": 28,
+      "large": 0.3,
+      "couleur": "vert",
+      "opacite": 0.85,
+      "contour": false,
+      "item": 4
+     }
     ]
    },
    "sync": [
@@ -153,6 +215,17 @@
      "type": "voiture",
      "S": 50,
      "kmh": 60
+    }
+   ],
+   "aides": [
+    {
+     "type": "radar",
+     "portee": 30,
+     "couleur": "orange",
+     "texte": [
+      "Capteurs",
+      "gênés par la pluie"
+     ]
     }
    ]
   },
@@ -194,7 +267,29 @@
     0.43,
     0.75,
     1.12
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "🙌",
+      "t": "Mains",
+      "s": "sur le volant"
+     },
+     {
+      "i": "👀",
+      "t": "Yeux",
+      "s": "sur la route"
+     },
+     {
+      "i": "⚖️",
+      "t": "Responsable",
+      "s": "c’est toi"
+     }
+    ]
+   }
   },
   {
    "type": "fin",
@@ -223,6 +318,13 @@
       "x": 1.75,
       "kmh": 110,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "radar",
+      "portee": 32,
+      "p": 0
      }
     ]
    }

@@ -66,6 +66,13 @@
        "croisement": true
       }
      ]
+    ],
+    "aides": [
+     {
+      "type": "faisceau",
+      "portee": 30,
+      "p": 3
+     }
     ]
    }
   },
@@ -81,7 +88,17 @@
    "camera": "cockpit",
    "feux": {
     "croisement": true
-   }
+   },
+   "aides": [
+    {
+     "type": "faisceau",
+     "portee": 30,
+     "texte": [
+      "≈ 30 m",
+      "feux de croisement"
+     ]
+    }
+   ]
   },
   {
    "type": "situation",
@@ -96,7 +113,17 @@
    "feux": {
     "route": true,
     "croisement": false
-   }
+   },
+   "aides": [
+    {
+     "type": "faisceau",
+     "portee": 100,
+     "texte": [
+      "≈ 100 m",
+      "feux de route"
+     ]
+    }
+   ]
   },
   {
    "type": "situation",
@@ -135,7 +162,45 @@
       "route": false,
       "croisement": true
      }
+    ],
+    [
+     0,
+     "aide",
+     0,
+     "on"
+    ],
+    [
+     "p0+1.6",
+     "aide",
+     0,
+     "off"
+    ],
+    [
+     "p0+1.6",
+     "aide",
+     1,
+     "on"
     ]
+   ],
+   "aides": [
+    {
+     "type": "faisceau",
+     "portee": 100,
+     "manuel": true,
+     "texte": [
+      "Feux de route",
+      ""
+     ]
+    },
+    {
+     "type": "faisceau",
+     "portee": 30,
+     "manuel": true,
+     "texte": [
+      "Croisement",
+      "tu n’éblouis pas"
+     ]
+    }
    ]
   },
   {
@@ -161,7 +226,7 @@
    "decor": {
     "env": "route",
     "kmh": 40,
-    "camera": "poursuite",
+    "camera": "derriere",
     "meteo": "brouillard",
     "feux": {
      "croisement": true,
@@ -197,6 +262,39 @@
        "brouillardAv": false
       }
      ]
+    ],
+    "aides": [
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": -2.2,
+      "dx": -0.5,
+      "hauteur": 0.75,
+      "p": 1,
+      "fin": 2,
+      "texte": [
+       "Brouillard arrière",
+       "allumé"
+      ]
+     },
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": -2.2,
+      "dx": -0.5,
+      "hauteur": 0.75,
+      "p": 2,
+      "texte": [
+       "Sous la pluie",
+       "éteint"
+      ]
+     },
+     {
+      "type": "faisceau",
+      "portee": 18,
+      "p": 0,
+      "opacite": 0.4
+     }
     ]
    },
    "sync": [
@@ -234,16 +332,34 @@
     },
     "acteurs": [
      {
-      "type": "pieton",
-      "S": 62,
-      "x": 4.4
-     },
-     {
       "type": "voiture",
-      "S": 300,
+      "S": 220,
       "x": -1.75,
       "kmh": -60,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "faisceau",
+      "portee": 30,
+      "item": 0
+     },
+     {
+      "type": "bandes",
+      "reac": 19,
+      "frein": 30,
+      "item": 1,
+      "textes": [
+       [
+        "19 m",
+        "de réaction"
+       ],
+       [
+        "30 m",
+        "de freinage"
+       ]
+      ]
      }
     ]
    },
@@ -328,6 +444,13 @@
       "x": -1.75,
       "kmh": -60,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "faisceau",
+      "portee": 30,
+      "p": 0
      }
     ]
    }

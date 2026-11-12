@@ -72,6 +72,23 @@
       "x": 1.75,
       "kmh": 90
      }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "ego": true,
+      "dz": 16,
+      "long": 26,
+      "large": 3.0,
+      "couleur": "vert",
+      "opacite": 0.18,
+      "p": 2,
+      "texte": [
+       "À droite",
+       "la règle générale"
+      ],
+      "etiquette": 0
+     }
     ]
    }
   },
@@ -280,7 +297,31 @@
     ]
    ],
    "dire": "Sur une voie d’accélération, observe le trafic, adapte ta vitesse et cherche un espace suffisant. Signale ton intention et cède le passage aux véhicules déjà sur la chaussée. Ne force jamais ton insertion.",
-   "ch": 1
+   "ch": 1,
+   "aides": [
+    {
+     "type": "fleche",
+     "points": [
+      [
+       100,
+       5.0
+      ],
+      [
+       150,
+       5.0
+      ],
+      [
+       200,
+       1.75
+      ],
+      [
+       225,
+       1.75
+      ]
+     ],
+     "couleur": "vert"
+    }
+   ]
   },
   {
    "type": "situation",

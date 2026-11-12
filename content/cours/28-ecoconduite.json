@@ -124,6 +124,18 @@
       45,
       1.2
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.1,
+      "item": 0,
+      "texte": [
+       "Feu rouge au loin",
+       "lève le pied tôt"
+      ]
+     }
     ]
    },
    "sync": [
@@ -182,6 +194,28 @@
       "x": -1.75,
       "kmh": -25,
       "couleur": 3829232
+     }
+    ],
+    "ego": {
+     "coffre": true
+    },
+    "script": [
+     [
+      "p1",
+      "ego",
+      {
+       "coffre": false
+      }
+     ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "ego": true,
+      "dx": 0.85,
+      "dz": -1.4,
+      "rayon": 0.7,
+      "item": 0
      }
     ]
    },

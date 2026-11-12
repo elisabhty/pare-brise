@@ -222,6 +222,9 @@ function markTex(kind, K) {
     else if (kind === 'tout-droit-gauche' || kind === 'tout-droit-droite') { up(); curve(96, 320, kind.endsWith('droite') ? 1 : -1, 262); }
     else if (kind === 'rabat-droite' || kind === 'rabat-gauche') { const sd = kind === 'rabat-droite' ? 1 : -1; line([96 - sd * 36, 384], [96 - sd * 36, 260], [96 + sd * 30, 120]); head(96 + sd * 30, 118, sd * 0.44); }
     else if (kind === 'bus') { x.font = 'bold 92px Arial, Helvetica, sans-serif'; x.textAlign = 'center'; x.save(); x.translate(96, 192); x.scale(0.62, 1.9); x.fillText('BUS', 0, 30); x.restore(); }
+    else if (kind === 'handicape') { x.fillStyle = '#1F5FD1'; x.beginPath(); x.roundRect ? x.roundRect(14, 60, 164, 264, 18) : x.rect(14, 60, 164, 264); x.fill(); x.fillStyle = '#fff'; x.strokeStyle = '#fff'; x.lineWidth = 14; x.beginPath(); x.arc(84, 104, 15, 0, 7); x.fill(); x.beginPath(); x.moveTo(84, 128); x.lineTo(84, 196); x.lineTo(132, 196); x.lineTo(150, 252); x.stroke(); x.beginPath(); x.moveTo(84, 156); x.lineTo(124, 156); x.stroke(); x.lineWidth = 12; x.beginPath(); x.arc(92, 222, 44, -0.3, Math.PI * 1.35); x.stroke(); }
+    else if (kind === 'velo') { x.lineWidth = 12; x.save(); x.translate(96, 192); x.rotate(-Math.PI / 2); x.scale(1.5, 1); x.beginPath(); x.arc(-34, 22, 22, 0, 7); x.stroke(); x.beginPath(); x.arc(34, 22, 22, 0, 7); x.stroke(); x.beginPath(); x.moveTo(-34, 22); x.lineTo(-12, -6); x.lineTo(22, -6); x.lineTo(34, 22); x.moveTo(-12, -6); x.lineTo(4, 22); x.lineTo(22, -6); x.stroke(); x.restore(); }
+    else if (kind === 'zebras') { x.lineWidth = 10; x.strokeRect(8, 8, 176, 368); x.save(); x.beginPath(); x.rect(8, 8, 176, 368); x.clip(); x.lineWidth = 16; for (let y = -200; y < 400; y += 46) { x.beginPath(); x.moveTo(0, y + 192); x.lineTo(192, y); x.stroke(); } x.restore(); }
   });
   const t = K.canvasTex(c); t.anisotropy = 8; return (MARKS[kind] = t);
 }
@@ -347,6 +350,7 @@ export function buildSim(K) {
     ownMats.forEach(m => m.dispose());
     root.remove(run); run = new THREE.Group(); root.add(run);
     actors = []; signs = []; ownMats = []; pick = []; anchorList = []; chunks = [];
+    if (typeof egoG !== 'undefined') { egoG.clear(); aideTicks = []; aideGeos.forEach(g => g.dispose()); aideGeos.length = 0; texList.forEach(t => t.dispose()); texList = []; egoReset(); }
   }
   const own = g => { (g.userData.own || []).forEach(m => ownMats.push(m)); return g; };
 
@@ -580,11 +584,336 @@ export function buildSim(K) {
     }
   };
 
+  /* ======================= Aides visuelles des cours =======================
+     Ce qui explique, posé dans la scène au moment où la voix en parle : zones au sol (angles morts, marges, distances),
+     bandes de réaction et de freinage, faisceau des phares, capteurs, champ de vision, flèches de trajectoire, cibles,
+     règles graduées, et quelques accessoires (radar, borne de recharge, passage à niveau, plots, manche à air, flaque,
+     victime, aire de repos, borne d'appel, issue de secours, balises de tunnel, affichette). */
+  const COLS = { rouge: 0xFF3B30, orange: 0xFF9F0A, jaune: 0xFFD60A, vert: 0x30D158, bleu: 0x0A84FF, violet: 0xBF5AF2, blanc: 0xFFFFFF, cyan: 0x64D2FF, ambre: 0xFFC629 };
+  const col = c => (typeof c === 'number' ? c : COLS[c] ?? 0x0A84FF);
+  const basic = (c, o, extra = {}) => { const m = new THREE.MeshBasicMaterial({ color: col(c), transparent: true, opacity: o, depthWrite: false, toneMapped: false, ...extra }); ownMats.push(m); return m; };
+  const aideGeos = [];
+  const keepGeo = g => { aideGeos.push(g); return g; };
+  function rrShape(w, l, r) {
+    const s = new THREE.Shape(), x = -w / 2, y = -l / 2; r = Math.max(0.01, Math.min(r, w / 2, l / 2));
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r); s.lineTo(x + w, y + l - r); s.quadraticCurveTo(x + w, y + l, x + w - r, y + l);
+    s.lineTo(x + r, y + l); s.quadraticCurveTo(x, y + l, x, y + l - r); s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y); return s;
+  }
+  // un rectangle arrondi posé au sol (centré), rempli et cerné ; « long » dans le sens de la marche
+  function sol(w, l, c, o = 0.26, contour = true) {
+    const g = new THREE.Group(), r = Math.min(0.6, w * 0.3, l * 0.3), mats = [];
+    const fm = basic(c, o); const f = new THREE.Mesh(keepGeo(new THREE.ShapeGeometry(rrShape(w, l, r)).rotateX(-Math.PI / 2)), fm); f.position.y = 0.035; f.renderOrder = 3; g.add(f); mats.push(fm);
+    if (contour && w > 0.4 && l > 0.4) { const sh = rrShape(w, l, r); sh.holes.push(rrShape(w - 0.22, l - 0.22, Math.max(0.02, r - 0.11))); const em = basic(c, 0.92); const e = new THREE.Mesh(keepGeo(new THREE.ShapeGeometry(sh).rotateX(-Math.PI / 2)), em); e.position.y = 0.037; e.renderOrder = 4; g.add(e); mats.push(em); }
+    return { g, mats };
+  }
+  const egoG = new THREE.Group(); s.add(egoG);
+  let aideTicks = [];
+  function poser(g, a, acts) {
+    if (a.ego) { g.position.set(a.dx || 0, a.y || 0, -(a.dz || 0)); egoG.add(g); }
+    else if (a.acteur !== undefined && acts && acts[a.acteur]) { g.position.set(a.dx || 0, a.y || 0, -(a.dz || 0)); acts[a.acteur].g.add(g); }
+    else { g.position.set(a.x ?? 0, a.y || 0, local(a.S ?? 0)); run.add(g); }
+    return g;
+  }
+  // une aide apparaît et disparaît en fondu ; « pulse » la fait respirer doucement
+  function handle(g, mats, o = {}) {
+    const h = { g, mats: mats.map(m => [m, m.opacity]), k: 0, on: false, anchors: [], tick: null, act: null, step: null, born: -1 };
+    g.visible = false;
+    h.show = on => { if (on && !h.on) h.born = 0; h.on = !!on; };
+    h.anchor = (x, y, z, texte, dy = 0) => { const an = new THREE.Object3D(); an.position.set(x, y, z); g.add(an); h.anchors.push({ obj: an, texte, dy }); return an; };
+    aideTicks.push((dt, t) => {
+      const tgt = h.on ? 1 : 0; h.k += (tgt - h.k) * Math.min(1, dt * 5); if (Math.abs(tgt - h.k) < 0.004) h.k = tgt;
+      g.visible = h.k > 0.01; if (h.on && h.born >= 0) h.born += dt;
+      const pulse = o.pulse ? 0.74 + 0.26 * Math.sin(t * 3.4) : 1;
+      h.mats.forEach(([m, b]) => { m.opacity = b * h.k * (m.userData.fixe ? 1 : pulse); });
+      if (h.tick && g.visible) h.tick(dt, t);
+    });
+    return h;
+  }
+  // pousse une géométrie au sol au fur et à mesure (flèches, bandes) : 0 → 1 en « ms » millisecondes après l'apparition
+  const grow = (h, ms, f) => { const prev = h.tick; h.tick = (dt, t) => { f(Math.min(1, Math.max(0, h.born * 1000 / ms))); if (prev) prev(dt, t); }; };
+
+  const texCache = {};
+  const ctex = (key, w, h, draw, rep) => { if (texCache[key]) return texCache[key]; const t = K.canvasTex(canvas(w, h, draw)); if (rep) { t.wrapS = t.wrapT = THREE.RepeatWrapping; } t.anisotropy = 4; return (texCache[key] = t); };
+  const chevronTex = () => ctex('chev', 64, 64, (x, w, h) => { x.clearRect(0, 0, w, h); x.fillStyle = 'rgba(255,255,255,.55)'; x.fillRect(0, 0, w, h); x.fillStyle = '#fff'; x.beginPath(); x.moveTo(8, 50); x.lineTo(32, 18); x.lineTo(56, 50); x.lineTo(44, 50); x.lineTo(32, 34); x.lineTo(20, 50); x.closePath(); x.fill(); }, true);
+  const beamTex = () => ctex('beam', 64, 256, (x, w, h) => {
+    const g1 = x.createLinearGradient(0, h, 0, 0); g1.addColorStop(0, 'rgba(255,244,214,0.95)'); g1.addColorStop(0.55, 'rgba(255,238,200,0.55)'); g1.addColorStop(1, 'rgba(255,236,190,0)');
+    x.fillStyle = g1; x.fillRect(0, 0, w, h); x.globalCompositeOperation = 'destination-in';
+    const g2 = x.createLinearGradient(0, 0, w, 0); g2.addColorStop(0, 'rgba(0,0,0,0)'); g2.addColorStop(0.22, 'rgba(0,0,0,1)'); g2.addColorStop(0.78, 'rgba(0,0,0,1)'); g2.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g2; x.fillRect(0, 0, w, h);
+  });
+  const stripeTex = (a, b, n = 8, key = 'str' + a + b + n) => ctex(key, 256, 32, (x, w, h) => { for (let i = 0; i < n; i++) { x.fillStyle = i % 2 ? b : a; x.fillRect(i * w / n, 0, w / n + 1, h); } });
+  const textTex = (txt, bg, fg, key = 'txt' + txt + bg + fg) => ctex(key, 256, 128, (x, w, h) => { x.fillStyle = bg; x.fillRect(0, 0, w, h); x.fillStyle = fg; x.font = 'bold 64px Arial, Helvetica, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, w / 2, h / 2 + 4); });
+  function trapeze(w0, w1, L) { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute([-w0 / 2, 0, 0, w0 / 2, 0, 0, w1 / 2, 0, -L, -w1 / 2, 0, -L], 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 1], 2)); g.setIndex([0, 1, 2, 0, 2, 3]); return keepGeo(g); }
+  // ruban au sol le long d'une courbe (x, z), avec une pointe de flèche au bout
+  function ruban(pts, w, c, fleche = true) {
+    const curve = new THREE.CatmullRomCurve3(pts.map(([x, z]) => V(x, 0.045, z)), false, 'centripetal');
+    const L = curve.getLength(), N = Math.max(12, Math.round(L * 2)), P2 = curve.getSpacedPoints(N), pos = [], uv = [], idx = [];
+    let d = 0;
+    for (let i = 0; i <= N; i++) {
+      const p = P2[i], q = P2[Math.min(N, i + 1)], o = P2[Math.max(0, i - 1)], tx = q.x - o.x, tz = q.z - o.z, n = Math.hypot(tx, tz) || 1, nx = -tz / n, nz = tx / n;
+      if (i) d += P2[i].distanceTo(P2[i - 1]);
+      pos.push(p.x + nx * w / 2, 0.045, p.z + nz * w / 2, p.x - nx * w / 2, 0.045, p.z - nz * w / 2); uv.push(0, d / 1.3, 1, d / 1.3);
+      if (i < N) { const a = i * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+    }
+    const geo1 = new THREE.BufferGeometry(); geo1.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo1.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); geo1.setIndex(idx); keepGeo(geo1);
+    const map = chevronTex().clone(); map.needsUpdate = true; map.wrapS = map.wrapT = THREE.RepeatWrapping; texList.push(map);
+    const m1 = basic(c, 0.9, { map, side: THREE.DoubleSide }); const band = new THREE.Mesh(geo1, m1); band.renderOrder = 5;
+    const g = new THREE.Group(); g.add(band); const mats = [m1];
+    if (fleche) {
+      const e = P2[N], f = P2[N - 1], tx = e.x - f.x, tz = e.z - f.z, n = Math.hypot(tx, tz) || 1, ux = tx / n, uz = tz / n, nx = -uz, nz = ux, hw = w * 1.25, hl = Math.max(1.4, w * 1.9);
+      const hg = new THREE.BufferGeometry(); hg.setAttribute('position', new THREE.Float32BufferAttribute([e.x + nx * hw, 0.046, e.z + nz * hw, e.x - nx * hw, 0.046, e.z - nz * hw, e.x + ux * hl, 0.046, e.z + uz * hl], 3)); hg.setIndex([0, 1, 2]); keepGeo(hg);
+      const m2 = basic(c, 0.95, { side: THREE.DoubleSide }); const head = new THREE.Mesh(hg, m2); head.renderOrder = 5; g.add(head); mats.push(m2);
+    }
+    return { g, mats, band, head: g.children[1], count: idx.length, map, L, end: P2[N] };
+  }
+  let texList = [];
+
+  const AIDES = {
+    /* zone au sol : angle mort, marge, distance, voie… (accrochée au sol, à un usager ou à notre voiture) */
+    zone(a, acts) {
+      const w = a.large ?? 2.4, l = a.long ?? 4, g = new THREE.Group(), mats = [];
+      if (a.tirets) { const [tl, gap] = a.tirets; for (let z = -l / 2 + tl / 2; z <= l / 2 - tl / 2 + 0.01; z += tl + gap) { const p = sol(w, tl, a.couleur ?? 'jaune', a.opacite ?? 0.95, false); p.g.position.z = -z; g.add(p.g); mats.push(...p.mats); } }
+      else { const p = sol(w, l, a.couleur ?? 'rouge', a.opacite ?? 0.26, a.contour !== false); g.add(p.g); mats.push(...p.mats); }
+      const h = handle(poser(g, a, acts), mats, { pulse: a.pulse !== false && !a.tirets && a.opacite === undefined });
+      if (a.texte) h.anchor(0, 0.3, -(a.etiquette ?? 0) * l / 2, a.texte);
+      return h;
+    },
+    /* distance de réaction (orange) puis de freinage (rouge), devant notre voiture, qui se déroulent */
+    bandes(a) {
+      const reac = a.reac ?? 14, frein = a.frein ?? 14, g = new THREE.Group(), mats = [], front = 2.15;
+      const b1 = sol(2.3, 1, 'orange', 0.42, false), b2 = sol(2.3, 1, 'rouge', 0.42, false); g.add(b1.g, b2.g); mats.push(...b1.mats, ...b2.mats);
+      const tick1 = sol(2.6, 0.18, 'orange', 0.95, false), tick2 = sol(2.6, 0.18, 'rouge', 0.95, false); g.add(tick1.g, tick2.g); mats.push(...tick1.mats, ...tick2.mats);
+      const h = handle(poser(g, { ego: true, dx: a.dx }, null), mats);
+      const an1 = h.anchor(0, 0.25, -(front + reac / 2), a.textes ? a.textes[0] : [`${reac} m`, 'de réaction']), an2 = h.anchor(0, 0.25, -(front + reac + frein / 2), a.textes ? a.textes[1] : [`${frein} m`, 'de freinage']);
+      grow(h, a.ms ?? 1400, e => {
+        const r = Math.min(1, e * 2) * reac, f = Math.max(0, e * 2 - 1) * frein;
+        b1.g.scale.z = Math.max(0.001, r); b1.g.position.z = -(front + r / 2); tick1.g.position.z = -(front + r);
+        b2.g.scale.z = Math.max(0.001, f); b2.g.position.z = -(front + reac + f / 2); tick2.g.position.z = -(front + reac + f); tick2.g.visible = f > 0.2;
+        an1.position.z = -(front + r / 2); an2.position.z = -(front + reac + f / 2);
+      });
+      return h;
+    },
+    /* ce qu'éclairent les phares : un faisceau au sol, jusqu'à « portee » mètres */
+    faisceau(a) {
+      const L = a.portee ?? 30, g = new THREE.Group();
+      const m = basic(0xFFF1C9, a.opacite ?? 0.62, { map: beamTex(), blending: THREE.AdditiveBlending }); m.userData.fixe = true;
+      const beam = new THREE.Mesh(trapeze(1.7, 1.7 + L * 0.34, L), m); beam.position.set(0, 0.05, -2.2); beam.renderOrder = 4; g.add(beam);
+      const end = sol(1.7 + L * 0.34, 0.16, 'jaune', 0.9, false); end.g.position.z = -(2.2 + L); g.add(end.g);
+      const h = handle(poser(g, { ego: true }, null), [m, ...end.mats]);
+      h.anchor(0, 0.3, -(2.2 + L), a.texte || [`≈ ${L} m`, a.sous || 'éclairés']);
+      grow(h, 900, e => { beam.scale.z = Math.max(0.001, e); end.g.position.z = -(2.2 + L * e); end.g.visible = e > 0.97; });
+      return h;
+    },
+    /* ce que « voient » les capteurs : un éventail devant la voiture, des ondes qui partent */
+    radar(a) {
+      const L = a.portee ?? 40, ang = (a.angle ?? 26) * Math.PI / 180, c = a.couleur ?? 'bleu', g = new THREE.Group(), t0 = Math.PI / 2 - ang / 2;
+      const fm = basic(c, 0.16); const fan = new THREE.Mesh(keepGeo(new THREE.CircleGeometry(L, 32, t0, ang).rotateX(-Math.PI / 2)), fm); fan.position.set(0, 0.05, -2.1); fan.renderOrder = 4; g.add(fan);
+      const waves = [0, 1, 2].map(i => { const m = basic(c, 0.7); m.userData.fixe = true; const r = new THREE.Mesh(keepGeo(new THREE.RingGeometry(0.94, 1, 40, 1, t0, ang).rotateX(-Math.PI / 2)), m); r.position.set(0, 0.055, -2.1); r.renderOrder = 4; g.add(r); return [r, m, i]; });
+      const h = handle(poser(g, { ego: true }, null), [fm, ...waves.map(w => w[1])]);
+      h.tick = (dt, t) => waves.forEach(([r, m, i]) => { const u = ((t * 0.55 + i / 3) % 1); r.scale.setScalar(2 + u * (L - 2)); m.opacity = 0.75 * (1 - u) * h.k; });
+      h.act = (cc = 'rouge') => { const cc2 = new THREE.Color(col(cc)); fm.color.copy(cc2); waves.forEach(w => w[1].color.copy(cc2)); };
+      if (a.texte) h.anchor(0, 0.4, -(2.1 + L * 0.7), a.texte);
+      return h;
+    },
+    /* champ de vision du conducteur : large, ou rétréci (alcool, fatigue) au moment dit */
+    champ(a) {
+      const L = a.portee ?? 34, A0 = (a.angle ?? 110) * Math.PI / 180, A1 = (a.etroit ?? 50) * Math.PI / 180, g = new THREE.Group();
+      const m = basic(a.couleur ?? 'cyan', 0.2); let geoC = null; const mesh = new THREE.Mesh(new THREE.BufferGeometry(), m); mesh.position.set(-0.36, 0.06, -0.4); mesh.renderOrder = 4; g.add(mesh);
+      const edge = basic(a.couleur ?? 'cyan', 0.85); edge.userData.fixe = true; const arc = new THREE.Mesh(new THREE.BufferGeometry(), edge); arc.position.copy(mesh.position); arc.renderOrder = 4; g.add(arc);
+      let cur = A0, tgt = A0, last = -1;
+      const build = A => { if (Math.abs(A - last) < 0.01) return; last = A; if (geoC) { geoC.dispose(); arc.geometry.dispose(); } geoC = new THREE.CircleGeometry(L, 36, Math.PI / 2 - A / 2, A).rotateX(-Math.PI / 2); mesh.geometry = geoC; arc.geometry = new THREE.RingGeometry(L - 0.25, L, 36, 1, Math.PI / 2 - A / 2, A).rotateX(-Math.PI / 2); };
+      build(A0);
+      const h = handle(poser(g, { ego: true }, null), [m, edge]);
+      h.tick = dt => { cur += (tgt - cur) * Math.min(1, dt * 1.6); build(cur); };
+      h.act = () => { tgt = A1; };
+      h.dispose = () => { if (geoC) geoC.dispose(); arc.geometry.dispose(); };
+      if (a.texte) h.anchor(0, 0.4, -L * 0.8, a.texte);
+      return h;
+    },
+    /* une trajectoire : flèche au sol qui se dessine (points [S, x] sur la route, ou [devant, côté] autour de nous si ego) */
+    fleche(a, acts) {
+      const rel = a.ego || a.acteur !== undefined;
+      const pts = rel ? a.points.map(([dz, dx]) => [dx, -dz]) : a.points.map(([S, x]) => [x, local(S)]);
+      const r = ruban(pts, a.large ?? 0.75, a.couleur ?? 'vert');
+      const g = rel ? poser(r.g, { ego: a.ego, acteur: a.acteur }, acts) : (run.add(r.g), r.g);
+      const h = handle(g, r.mats);
+      const total = r.count; r.band.geometry.setDrawRange(0, 0); if (r.head) r.head.visible = false;
+      grow(h, a.ms ?? 1300, e => { r.band.geometry.setDrawRange(0, Math.floor(total * e / 6) * 6); if (r.head) r.head.visible = e >= 1; });
+      const prev = h.tick; h.tick = (dt, t) => { r.map.offset.y -= dt * 1.1; if (prev) prev(dt, t); };
+      if (a.texte) h.anchor(r.end.x, 0.4, r.end.z, a.texte);
+      return h;
+    },
+    /* une cible qui pulse : « regarde ici » */
+    cible(a, acts) {
+      const g = new THREE.Group(), c = a.couleur ?? 'jaune', R = a.rayon ?? 0.9;
+      const m1 = basic(c, 0.95); m1.userData.fixe = true; const r1 = new THREE.Mesh(keepGeo(new THREE.RingGeometry(R * 0.82, R, 48).rotateX(-Math.PI / 2)), m1); r1.position.y = 0.06; r1.renderOrder = 6;
+      const m2 = basic(c, 0.6); m2.userData.fixe = true; const r2 = new THREE.Mesh(r1.geometry, m2); r2.position.y = 0.06; r2.renderOrder = 6; g.add(r1, r2);
+      const h = handle(poser(g, a, acts), [m1, m2]);
+      h.tick = (dt, t) => { const u = (t * 0.8) % 1; r2.scale.setScalar(1 + u * 1.3); m2.opacity = 0.6 * (1 - u) * h.k; };
+      if (a.texte) h.anchor(0, a.hauteur ?? 1.9, 0, a.texte);
+      return h;
+    },
+    /* une étiquette posée à un endroit (sans objet) */
+    repere(a, acts) { const g = new THREE.Group(); const h = handle(poser(g, a, acts), []); h.anchor(0, a.hauteur ?? 1.2, 0, a.texte || ['', '']); return h; },
+    /* une règle graduée au sol, devant nous : « 25 m » ; « etapes » la font changer de longueur avec la liste */
+    mesure(a) {
+      const g = new THREE.Group(), dx = a.dx ?? -1.55, c = a.couleur ?? 'blanc', front = 2.15;
+      const line = sol(0.12, 1, c, 0.95, false), t0 = sol(0.9, 0.12, c, 0.95, false), t1 = sol(0.9, 0.12, c, 0.95, false);
+      g.add(line.g, t0.g, t1.g); t0.g.position.z = -front;
+      const ticks = []; for (let i = 0; i < 20; i++) { const tk = sol(0.42, 0.08, c, 0.8, false); g.add(tk.g); ticks.push(tk); }
+      const h = handle(poser(g, { ego: true, dx }, null), [...line.mats, ...t0.mats, ...t1.mats, ...ticks.flatMap(t => t.mats)]);
+      let L = a.long ?? 25, cur = 0; const an = h.anchor(0, 0.3, -(front + L), a.texte || [`${L} m`, a.sous || '']);
+      const lay = v => { line.g.scale.z = Math.max(0.001, v); line.g.position.z = -(front + v / 2); t1.g.position.z = -(front + v); an.position.z = -(front + v); ticks.forEach((tk, i) => { const z = (i + 1) * 5; tk.g.visible = z < v - 1; tk.g.position.z = -(front + z); }); };
+      lay(0.001);
+      h.tick = dt => { cur += (L - cur) * Math.min(1, dt * 2.6); lay(cur); };
+      const show0 = h.show; h.show = on => { if (on && !h.on) cur = 0; show0(on); };
+      h.step = n => { const e = (a.etapes || [])[n]; if (!e) return; L = e.long; h.anchors[0].texte = e.texte || [`${L} m`, '']; if (h.onChange) h.onChange(); };
+      return h;
+    },
+    /* radar automatique au bord de la route : il flashe au moment dit */
+    radarfixe(a) {
+      const g = new THREE.Group(), grey = mat('radG', () => std(0x8C939D, { roughness: 0.5, metalness: 0.3 }));
+      const pole = new THREE.Mesh(geo('radP', () => new THREE.CylinderGeometry(0.08, 0.1, 2.6, 10)), grey); pole.position.y = 1.3; g.add(pole);
+      const box = new THREE.Mesh(geo('radB', () => new RoundedBoxGeometry(0.75, 0.95, 0.62, 2, 0.06)), grey); box.position.y = 3.0; g.add(box);
+      const win = new THREE.Mesh(geo('radW', () => new THREE.PlaneGeometry(0.5, 0.32)), mat('radWin', () => std(0x10151d, { roughness: 0.15, metalness: 0.6 }))); win.position.set(0, 3.08, 0.315); g.add(win);
+      const fm = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0 }); ownMats.push(fm);
+      const fl = new THREE.Mesh(geo('radF', () => new THREE.CircleGeometry(0.1, 16)), fm); fl.position.set(0.18, 2.8, 0.32); g.add(fl);
+      g.rotation.y = a.x > 0 ? -0.35 : 0.35; shadowAll(g);
+      const h = handle(poser(g, a), []); h.act = () => K.tween(700, e => { fm.emissiveIntensity = e < 0.15 ? 40 * (e / 0.15) : 40 * Math.max(0, 1 - (e - 0.15) / 0.5); }); return h;
+    },
+    /* borne de recharge, câble branché sur une voiture garée (acteur « vers ») */
+    borne(a, acts) {
+      const g = new THREE.Group(), white = mat('borW', () => std(0xF4F6FA, { roughness: 0.4 }));
+      const body = new THREE.Mesh(geo('borB', () => new RoundedBoxGeometry(0.55, 1.55, 0.36, 3, 0.08)), white); body.position.y = 0.78; g.add(body);
+      const scr = new THREE.Mesh(geo('borS', () => new THREE.PlaneGeometry(0.34, 0.24)), glow(0x2E7BFF, 1.4)); scr.position.set(0, 1.2, 0.185); g.add(scr);
+      const ledM = new THREE.MeshBasicMaterial({ color: 0x30D158, toneMapped: false }); ownMats.push(ledM);
+      const led = new THREE.Mesh(geo('borL', () => new THREE.BoxGeometry(0.4, 0.05, 0.02)), ledM); led.position.set(0, 0.92, 0.185); g.add(led);
+      g.rotation.y = a.x > 0 ? -Math.PI / 2 : Math.PI / 2; shadowAll(g); poser(g, a);
+      const v = acts && acts[a.vers];
+      if (v) {
+        const side = a.x > v.x ? 1 : -1, bx = a.x - side * 0.2, bz = local(a.S), px = v.x + side * 0.93, pz = local(v.S) - 1.3;
+        const curve = new THREE.CatmullRomCurve3([V(bx, 1.0, bz), V((bx + px) / 2, 0.15, (bz + pz) / 2), V(px, 0.72, pz)]);
+        const cable = new THREE.Mesh(keepGeo(new THREE.TubeGeometry(curve, 24, 0.035, 6)), mat('cab', () => std(0x1d2128, { roughness: 0.6 }))); run.add(cable);
+      }
+      const h = handle(new THREE.Group(), []); h.g.visible = true; h.show = () => {}; h.tick = null;
+      aideTicks.push((dt, t) => { ledM.color.setHSL(0.37, 0.75, 0.35 + 0.2 * Math.sin(t * 3)); });
+      return h;
+    },
+    /* passage à niveau : demi-barrières, croix de Saint-André, feux rouges clignotants ; « act » baisse les barrières */
+    pn(a) {
+      const g = new THREE.Group(), post = mat('pnP', () => std(0xEDEFF2, { roughness: 0.5 })), black = mat('dark', () => std(0x222730, { roughness: 0.5, metalness: 0.4 }));
+      const armM = new THREE.MeshStandardMaterial({ map: stripeTex('#E3262E', '#FFFFFF', 10), roughness: 0.5 }); ownMats.push(armM);
+      const lights = [];
+      const arms = [1, -1].map(sd => {
+        const base = new THREE.Group(); base.position.set(sd * 4.3, 0, sd > 0 ? (a.ecart ?? 1.4) : -(a.ecart ?? 1.4)); g.add(base);
+        const p = new THREE.Mesh(geo('pnPost', () => new THREE.CylinderGeometry(0.12, 0.14, 1.2, 10)), post); p.position.y = 0.6; base.add(p);
+        const piv = new THREE.Group(); piv.position.y = 1.05; base.add(piv);
+        const arm = new THREE.Mesh(geo('pnArm', () => new THREE.BoxGeometry(4.0, 0.11, 0.08).translate(-2.0, 0, 0)), armM); arm.rotation.y = sd > 0 ? 0 : Math.PI; piv.add(arm);
+        piv.rotation.z = sd > 0 ? -1.35 : 1.35;
+        // croix de Saint-André et feux
+        const pole = new THREE.Mesh(geo('pnPole', () => new THREE.CylinderGeometry(0.07, 0.07, 3.2, 8)), post); pole.position.set(sd * 0.9, 1.6, 0); base.add(pole);
+        const cross = new THREE.Group(); cross.position.set(sd * 0.9, 2.9, 0.06); base.add(cross);
+        const board = mat('pnX', () => std(0xffffff, { roughness: 0.5 }));
+        for (const r of [0.6, -0.6]) { const b = new THREE.Mesh(geo('pnBoard', () => new THREE.BoxGeometry(1.25, 0.2, 0.03)), board); b.rotation.z = r; cross.add(b); const br = new THREE.Mesh(geo('pnBorder', () => new THREE.BoxGeometry(1.3, 0.25, 0.02)), glow(0xD3112E, 0.9)); br.position.z = -0.012; br.rotation.z = r; cross.add(br); }
+        if (sd < 0) cross.rotation.y = Math.PI;
+        for (const lx of [-0.24, 0.24]) { const lm = new THREE.MeshStandardMaterial({ color: 0x3a0606, emissive: 0xff1a1a, emissiveIntensity: 0 }); ownMats.push(lm); const l = new THREE.Mesh(geo('pnLamp', () => new THREE.CircleGeometry(0.11, 16)), lm); l.position.set(sd * 0.9 + lx, 2.25, sd > 0 ? 0.09 : -0.09); if (sd < 0) l.rotation.y = Math.PI; base.add(l); lights.push([lm, lx > 0]); }
+        return [piv, sd];
+      });
+      shadowAll(g); poser(g, a);
+      let down = !!a.baissees, e0 = down ? 1 : 0, blink = down;
+      arms.forEach(([piv, sd]) => { piv.rotation.z = (sd > 0 ? -1.35 : 1.35) * (1 - e0); });
+      const h = handle(new THREE.Group(), []); h.g.visible = true; h.show = () => {};
+      aideTicks.push((dt, t) => { const on = Math.sin(t * 6) > 0; lights.forEach(([lm, odd]) => { lm.emissiveIntensity = blink && (on ^ odd) ? 6 : 0; }); });
+      h.act = () => { if (down) return; down = true; blink = true; K.tween(2600, e => arms.forEach(([piv, sd]) => { piv.rotation.z = (sd > 0 ? -1.35 : 1.35) * (1 - e); }), K.ease.io); };
+      return h;
+    },
+    /* plots de chantier alignés */
+    plots(a) {
+      const g = new THREE.Group(), n = a.n ?? 6, pas = a.pas ?? 3;
+      const orange = mat('plotO', () => std(0xFF6A00, { roughness: 0.6 })), white = mat('plotW', () => new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x666666, roughness: 0.4 }));
+      for (let i = 0; i < n; i++) { const c = new THREE.Group(); c.position.set((a.dxPas || 0) * i, 0, -i * pas); const cone = new THREE.Mesh(geo('plotC', () => new THREE.ConeGeometry(0.2, 0.62, 14)), orange); cone.position.y = 0.33; const band = new THREE.Mesh(geo('plotB', () => new THREE.CylinderGeometry(0.115, 0.145, 0.1, 14)), white); band.position.y = 0.4; const foot = new THREE.Mesh(geo('plotF', () => new THREE.BoxGeometry(0.44, 0.04, 0.44)), mat('dark', () => std(0x222730))); foot.position.y = 0.02; c.add(cone, band, foot); g.add(c); }
+      shadowAll(g); const h = handle(poser(g, a), []); h.g.visible = true; h.show = () => {}; return h;
+    },
+    /* manche à air : le vent souffle de côté */
+    manche(a) {
+      const g = new THREE.Group(); const pole = new THREE.Mesh(geo('mPole', () => new THREE.CylinderGeometry(0.05, 0.06, 4.2, 8)), mat('pnP', () => std(0xEDEFF2, { roughness: 0.5 }))); pole.position.y = 2.1; g.add(pole);
+      const piv = new THREE.Group(); piv.position.y = 4.1; g.add(piv);
+      const sockM = new THREE.MeshStandardMaterial({ map: stripeTex('#FF3B1F', '#FFFFFF', 5, 'sock'), side: THREE.DoubleSide, roughness: 0.7 }); ownMats.push(sockM);
+      const sock = new THREE.Mesh(geo('sock', () => new THREE.CylinderGeometry(0.11, 0.26, 1.6, 14, 1, true).rotateZ(Math.PI / 2).translate(-0.8, 0, 0)), sockM); piv.add(sock);
+      shadowAll(g); poser(g, a);
+      const dir = a.vers === 'gauche' ? Math.PI : 0;
+      const h = handle(new THREE.Group(), []); h.g.visible = true; h.show = () => {};
+      aideTicks.push((dt, t) => { piv.rotation.y = dir + Math.sin(t * 2.3) * 0.18; piv.rotation.z = -0.08 + Math.sin(t * 3.1) * 0.06; });
+      return h;
+    },
+    /* flaque / film d'eau sur la chaussée */
+    eau(a) {
+      const g = new THREE.Group(), m = new THREE.MeshStandardMaterial({ color: 0x7F95AD, roughness: 0.04, metalness: 0.9, transparent: true, opacity: 0.72, depthWrite: false }); ownMats.push(m);
+      const w = new THREE.Mesh(keepGeo(new THREE.CircleGeometry(1, 40).rotateX(-Math.PI / 2)), m); w.scale.set((a.large ?? 3.4) / 2, 1, (a.long ?? 16) / 2); w.position.y = 0.03; w.renderOrder = 3; g.add(w);
+      const h = handle(poser(g, a), [m]); if (a.texte) h.anchor(0, 0.3, 0, a.texte);
+      h.tick = (dt, t) => { m.opacity = (0.62 + 0.1 * Math.sin(t * 2.2)) * h.k; }; return h;
+    },
+    /* une victime en position latérale de sécurité, et quelqu'un à genoux à côté */
+    victime(a) {
+      const g = new THREE.Group();
+      const v = personMesh({ haut: a.haut ?? 0x3D7BFF }); v.rotation.z = Math.PI / 2; v.rotation.y = Math.PI / 2; v.position.set(0.85, 0.24, 0);
+      const an = v.userData.anim; an.legs[1].rotation.x = -1.25; an.legs[0].rotation.x = 0.15; an.arms[1].rotation.x = -2.2; an.arms[0].rotation.x = 0.5; g.add(v);
+      if (a.casque) { const helm = new THREE.Mesh(geo('helm', () => new THREE.SphereGeometry(0.19, 16, 12)), mat('helmM', () => std(0x20242c, { roughness: 0.3, metalness: 0.3 }))); helm.position.set(0, 1.68, 0); v.children[0].add(helm); }
+      if (a.aidant !== false) { const s2 = personMesh({ gilet: true }); s2.position.set(0.1, 0, -0.9); s2.scale.set(1, 0.68, 1); s2.rotation.y = Math.PI * 0.85; s2.userData.anim.arms.forEach(p => { p.rotation.x = -1.1; }); g.add(s2); }
+      shadowAll(g); const h = handle(poser(g, a), []); h.g.visible = true; h.show = () => {}; if (a.texte) h.anchor(0.4, 1.1, 0, a.texte); return h;
+    },
+    /* aire de repos : table de pique-nique */
+    table(a) {
+      const g = new THREE.Group(), wood = mat('wood', () => std(0xA8743F, { roughness: 0.8 }));
+      const top = new THREE.Mesh(geo('tabT', () => new THREE.BoxGeometry(1.9, 0.07, 0.8)), wood); top.position.y = 0.76; g.add(top);
+      for (const sz of [-0.62, 0.62]) { const b = new THREE.Mesh(geo('tabB', () => new THREE.BoxGeometry(1.9, 0.06, 0.28)), wood); b.position.set(0, 0.45, sz); g.add(b); }
+      for (const sx of [-0.75, 0.75]) { const l = new THREE.Mesh(geo('tabL', () => new THREE.BoxGeometry(0.08, 0.76, 1.5)), wood); l.position.set(sx, 0.38, 0); g.add(l); }
+      shadowAll(g); const h = handle(poser(g, a), []); h.g.visible = true; h.show = () => {}; return h;
+    },
+    /* borne d'appel d'urgence orange */
+    sos(a) {
+      const g = new THREE.Group(), o = mat('sosO', () => std(0xFF7A00, { roughness: 0.5 }));
+      const body = new THREE.Mesh(geo('sosB', () => new RoundedBoxGeometry(0.42, 1.35, 0.32, 2, 0.05)), o); body.position.y = 0.68; g.add(body);
+      const lab = new THREE.Mesh(geo('sosL', () => new THREE.PlaneGeometry(0.34, 0.17)), mat('sosT', () => new THREE.MeshBasicMaterial({ map: textTex('SOS', '#FFFFFF', '#E3262E'), toneMapped: false }))); lab.position.set(0, 1.12, 0.165); g.add(lab);
+      g.rotation.y = a.x > 0 ? -Math.PI / 2 : Math.PI / 2; shadowAll(g); const h = handle(poser(g, a), []); h.g.visible = true; h.show = () => {}; return h;
+    },
+    /* issue de secours lumineuse (tunnel) */
+    issue(a) {
+      const g = new THREE.Group(); const p = new THREE.Mesh(geo('exitP', () => new THREE.PlaneGeometry(1.1, 0.55)), mat('exitM', () => new THREE.MeshBasicMaterial({ map: textTex('ISSUE →', '#16A34A', '#FFFFFF', 'exit'), toneMapped: false })));
+      p.position.y = 2.4; p.rotation.y = a.x > 0 ? -Math.PI / 2 : Math.PI / 2; g.add(p); const h = handle(poser(g, a), []); h.g.visible = true; h.show = () => {}; return h;
+    },
+    /* balises bleues sur la paroi d'un tunnel : repères de distance */
+    balises(a) {
+      const g = new THREE.Group(), n = a.n ?? 8, pas = a.pas ?? 60;
+      for (let i = 0; i < n; i++) { const b = new THREE.Mesh(geo('balise', () => new THREE.BoxGeometry(0.08, 0.36, 0.7)), glow(0x2E7BFF, 2.2)); b.position.set(0, 1.0, -i * pas); g.add(b); }
+      const h = handle(poser(g, a), []); h.g.visible = true; h.show = () => {}; return h;
+    },
+    /* affichette sur la lunette arrière d'une voiture (« À VENDRE ») */
+    affichette(a, acts) {
+      const g = new THREE.Group(); const p = new THREE.Mesh(geo('affP', () => new THREE.PlaneGeometry(0.7, 0.35)), mat('aff' + a.texte, () => new THREE.MeshBasicMaterial({ map: textTex(a.texte || 'À VENDRE', '#FFFFFF', '#D3112E'), toneMapped: false })));
+      p.position.set(0, 1.12, 1.12); p.rotation.x = -0.5; g.add(p); const h = handle(poser(g, { ...a, y: 0 }, acts), []); h.g.visible = true; h.show = () => {}; return h;
+    }
+  };
+  /* notre voiture : disque « A », coffre de toit, pneu dégonflé */
+  const extra = {};
+  function egoSet(o = {}) {
+    if ('disqueA' in o) {
+      if (!extra.A) { const m = new THREE.MeshBasicMaterial({ map: ctex('discA', 128, 128, (x, w, h) => { x.clearRect(0, 0, w, h); x.fillStyle = '#E3262E'; x.beginPath(); x.arc(64, 64, 62, 0, 7); x.fill(); x.fillStyle = '#fff'; x.beginPath(); x.arc(64, 64, 50, 0, 7); x.fill(); x.fillStyle = '#E3262E'; x.font = 'bold 74px Arial, Helvetica, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('A', 64, 70); }), transparent: true }); extra.A = new THREE.Mesh(geo('discAG', () => new THREE.CircleGeometry(0.2, 32)), m); extra.A.position.set(-0.48, 0.98, 2.13); me.add(extra.A); }
+      extra.A.visible = !!o.disqueA;
+    }
+    if ('coffre' in o) {
+      if (!extra.box) { const b = new THREE.Group(); const m = new THREE.Mesh(geo('roofBox', () => new RoundedBoxGeometry(1.05, 0.38, 1.95, 3, 0.16)), mat('roofBoxM', () => std(0x2A2F38, { roughness: 0.35, metalness: 0.3 }))); m.position.y = 1.68; b.add(m); for (const z of [-0.45, 0.65]) { const bar = new THREE.Mesh(geo('roofBar', () => new THREE.BoxGeometry(1.45, 0.05, 0.06)), mat('dark', () => std(0x222730))); bar.position.set(0, 1.47, z); b.add(bar); } b.position.z = 0.25; shadowAll(b); me.add(b); extra.box = b; }
+      const b = extra.box, on = !!o.coffre;
+      if (on) { b.visible = true; K.tween(500, e => { b.scale.setScalar(Math.max(0.01, e)); }, K.ease.out); } else if (b.visible) K.tween(500, e => { b.scale.setScalar(Math.max(0.01, 1 - e)); if (e >= 1) b.visible = false; });
+    }
+    if ('pneu' in o) { const w = me.userData.wheels[1]; if (w) { const flat = o.pneu === 'degonfle'; w.scale.set(1, flat ? 0.78 : 1, flat ? 1.12 : 1); w.position.y = flat ? 0.29 : 0.35; } }
+  }
+  function egoReset() { egoSet({ disqueA: false, pneu: 'ok' }); if (extra.box) { extra.box.visible = false; } }
+
   function updateActors(dt, t) {
     for (const a of actors) {
       if (!a.alive) continue;
       if (a.tick) a.tick(dt, t, a);
-      a.g.visible = Math.abs(a.S - P.s) < 280;
+      a.g.visible = !a.hidden && Math.abs(a.S - P.s) < 280;
       const dS = a.vS * dt, dx = a.vx * dt;
       a.S += dS; a.x += dx;
       const g = a.g; g.position.set(a.x, a.y, local(a.S));
@@ -612,6 +941,7 @@ export function buildSim(K) {
     // ou plan rapproché sur ce qui se passe juste devant ta voiture arrêtée (feu, carrefour, passage piéton)
     plan: () => ({ pos: V(P.x * 0.5 + 0.3, 5.0, 8), target: V(P.x * 0.4 + 0.3, 0.8, -18), fov: 34 }),
     garee: () => ({ pos: V(P.x + 4.6, 3.6, 8.5), target: V(P.x - 0.4, 0.7, -1.5), fov: 36 }),
+    derriere: () => ({ pos: V(P.x + 0.9, 2.1, 7.4), target: V(P.x - 0.15, 0.95, -3), fov: 34 }),   // l'arrière de notre voiture : disque « A », feux, coffre de toit
     proche: () => ({ pos: V(P.x * 0.5 + 0.2, 8, 8), target: V(P.x * 0.3 + 0.6, 0.6, -12), fov: 44 }),
     haut: () => ({ pos: V(0.6, 34, -4), target: V(0.4, 0, -22), fov: 46 }),
     cote: () => ({ pos: V(-9, 2.2, -6), target: V(2, 1, -16), fov: 50 }),
@@ -668,6 +998,7 @@ export function buildSim(K) {
     get actors() { return actors; },
     enter() {},
     load, clear: clearRun, pose, lights,
+    aide(spec, acts) { const f = AIDES[spec.type]; return f ? f(spec, acts) : null; }, egoSet, AIDES_TYPES: () => Object.keys(AIDES),
     get lightsCfg() { return { ...lightsCfg }; },
     tunnel,
     meteo(m) { cfg.meteo = m; applyWeather(m, cfg.env); lights(lightsCfg); },
@@ -734,6 +1065,7 @@ export function buildSim(K) {
       if (roadMat.map) roadMat.map.offset.y = (P.s / (cfg.env === 'ville' ? 26 : 24)) % 1;
       road.position.x = ox;
       updateActors(dt, t);
+      egoG.position.set(P.x, 0, 0.1); for (const f of aideTicks) f(dt, t);
       ticks.forEach(f => { try { f(dt, t); } catch (e) { console.error(e); } });
       if (guide.visible) { guide.scale.z = guideLen; guide.position.set(P.x, 0.025, -FRONT - guideLen / 2); }
       // pluie / neige

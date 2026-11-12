@@ -139,7 +139,13 @@
    "sync": [
     0.6,
     1.46
-   ]
+   ],
+   "illu": {
+    "type": "ethylotest",
+    "sang": "0,5",
+    "air": "0,25",
+    "suit": true
+   }
   },
   {
    "type": "chiffres",
@@ -201,7 +207,18 @@
    "sync": [
     0.24,
     0.59
-   ]
+   ],
+   "illu": {
+    "type": "ethylotest",
+    "sang": "0,2",
+    "air": "0,1",
+    "verre": true,
+    "etapes": [
+     0.3,
+     0.62,
+     1.2
+    ]
+   }
   },
   {
    "type": "chiffres",
@@ -232,16 +249,37 @@
     },
     "acteurs": [
      {
-      "type": "pieton",
-      "S": 70,
-      "x": 4.6
-     },
-     {
       "type": "voiture",
       "S": 260,
       "x": -1.75,
       "kmh": -60,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "bandes",
+      "reac": 25,
+      "frein": 14,
+      "item": 0,
+      "textes": [
+       [
+        "25 m",
+        "de réaction, au lieu de 14"
+       ],
+       [
+        "",
+        ""
+       ]
+      ]
+     },
+     {
+      "type": "champ",
+      "angle": 110,
+      "etroit": 46,
+      "portee": 30,
+      "p": 0,
+      "animItem": 1
      }
     ]
    },
@@ -281,6 +319,13 @@
       "x": -1.75,
       "kmh": -60,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "faisceau",
+      "portee": 30,
+      "p": 0
      }
     ]
    }

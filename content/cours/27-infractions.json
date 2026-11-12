@@ -51,7 +51,7 @@
     "signaux": [
      [
       "B14:80",
-      70
+      40
      ]
     ],
     "acteurs": [
@@ -61,6 +61,14 @@
       "x": -1.75,
       "kmh": -80,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "radarfixe",
+      "S": 62,
+      "x": 4.9,
+      "anim": 1
      }
     ]
    }
@@ -196,7 +204,33 @@
     0.45,
     0.6,
     0.76
-   ]
+   ],
+   "illu": {
+    "type": "bareme",
+    "suit": true,
+    "items": [
+     {
+      "i": "📱",
+      "t": "Ceinture, téléphone en main",
+      "b": "−3"
+     },
+     {
+      "i": "🚦",
+      "t": "Feu rouge, stop",
+      "b": "−4"
+     },
+     {
+      "i": "🚶",
+      "t": "Refus de priorité à un piéton",
+      "b": "−6"
+     },
+     {
+      "i": "💨",
+      "t": "Excès de vitesse de 50 km/h",
+      "b": "−6"
+     }
+    ]
+   }
   },
   {
    "type": "chiffres",
@@ -235,7 +269,7 @@
     "signaux": [
      [
       "B14:80",
-      55
+      30
      ],
      [
       "B14:80",
@@ -250,6 +284,14 @@
       "kmh": -80,
       "couleur": 10134447
      }
+    ],
+    "aides": [
+     {
+      "type": "radarfixe",
+      "S": 60,
+      "x": 4.9,
+      "anim": 0
+     }
     ]
    },
    "sync": [
@@ -257,7 +299,18 @@
     0.5,
     0.66,
     0.82
-   ]
+   ],
+   "illu": {
+    "type": "compteur",
+    "suit": true,
+    "e": [
+     0,
+     1,
+     2,
+     3,
+     3
+    ]
+   }
   },
   {
    "type": "fin",

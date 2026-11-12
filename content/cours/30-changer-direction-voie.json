@@ -79,6 +79,39 @@
       14,
       1.5
      ]
+    ],
+    "aides": [
+     {
+      "type": "fleche",
+      "points": [
+       [
+        46,
+        1.75
+       ],
+       [
+        62,
+        1.75
+       ],
+       [
+        65.5,
+        3.0
+       ],
+       [
+        67.6,
+        6.5
+       ],
+       [
+        68.25,
+        12
+       ],
+       [
+        68.25,
+        24
+       ]
+      ],
+      "couleur": "vert",
+      "p": 1
+     }
     ]
    }
   },
@@ -166,7 +199,18 @@
     ]
    ],
    "dire": "Même si le rétroviseur semble libre, un véhicule peut se trouver à côté de toi. Vérifie brièvement l’angle mort du côté de la manœuvre, sans perdre de vue la route devant toi.",
-   "ch": 1
+   "ch": 1,
+   "aides": [
+    {
+     "type": "zone",
+     "ego": true,
+     "dx": -3.4,
+     "dz": -2.6,
+     "long": 5.2,
+     "large": 2.4,
+     "couleur": "rouge"
+    }
+   ]
   },
   {
    "type": "situation",
@@ -310,7 +354,18 @@
     ]
    ],
    "dire": "Avant de tourner à droite, regarde le trottoir, la piste cyclable et ton angle mort. Un cycliste ou un piéton peut poursuivre tout droit pendant que tu tournes. Laisse-le passer lorsque tu dois lui céder la priorité.",
-   "ch": 2
+   "ch": 2,
+   "aides": [
+    {
+     "type": "zone",
+     "ego": true,
+     "dx": 2.05,
+     "dz": -2.6,
+     "long": 5.2,
+     "large": 2.0,
+     "couleur": "rouge"
+    }
+   ]
   },
   {
    "type": "situation",
@@ -359,7 +414,50 @@
     ]
    ],
    "dire": "Pour tourner à gauche, ralentis, place-toi correctement et surveille les véhicules venant en face. Ne coupe pas leur trajectoire : attends de pouvoir tourner sans gêner les usagers prioritaires.",
-   "ch": 2
+   "ch": 2,
+   "aides": [
+    {
+     "type": "fleche",
+     "points": [
+      [
+       40,
+       1.75
+      ],
+      [
+       44.5,
+       1.6
+      ],
+      [
+       46.5,
+       0
+      ],
+      [
+       47.75,
+       -4
+      ],
+      [
+       47.75,
+       -16
+      ]
+     ],
+     "couleur": "orange"
+    },
+    {
+     "type": "fleche",
+     "points": [
+      [
+       90,
+       -1.75
+      ],
+      [
+       30,
+       -1.75
+      ]
+     ],
+     "couleur": "vert",
+     "p": 1
+    }
+   ]
   },
   {
    "type": "fin",
@@ -407,6 +505,42 @@
       "clignotant",
       null
      ]
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "ego": true,
+      "dx": -3.4,
+      "dz": -2.6,
+      "long": 5.2,
+      "large": 2.4,
+      "couleur": "rouge",
+      "p": 0,
+      "fin": 1
+     },
+     {
+      "type": "fleche",
+      "points": [
+       [
+        86,
+        1.75
+       ],
+       [
+        104,
+        1.75
+       ],
+       [
+        130,
+        -1.75
+       ],
+       [
+        160,
+        -1.75
+       ]
+      ],
+      "couleur": "vert",
+      "p": 0
+     }
     ]
    }
   }

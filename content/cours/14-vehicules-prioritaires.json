@@ -74,6 +74,14 @@
       "clignotant",
       null
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.6,
+      "p": 1
+     }
     ]
    }
   },
@@ -181,6 +189,30 @@
       "clignotant",
       null
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.6,
+      "item": 0
+     },
+     {
+      "type": "zone",
+      "ego": true,
+      "dx": -2.2,
+      "dz": 22,
+      "long": 34,
+      "large": 2.6,
+      "couleur": "vert",
+      "opacite": 0.18,
+      "item": 1,
+      "texte": [
+       "Passage libre",
+       "pour l’ambulance"
+      ],
+      "etiquette": 0
+     }
     ]
    },
    "sync": [
@@ -233,6 +265,21 @@
       18,
       2
      ]
+    ],
+    "aides": [
+     {
+      "type": "plots",
+      "S": 44,
+      "x": -0.4,
+      "n": 8,
+      "pas": 3.5
+     },
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.5,
+      "item": 0
+     }
     ]
    },
    "sync": [

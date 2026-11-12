@@ -44,7 +44,7 @@
    "vitesse": 90,
    "decor": {
     "env": "autoroute",
-    "kmh": 110,
+    "kmh": 90,
     "camera": "plan",
     "meteo": "couchant",
     "acteurs": [
@@ -52,8 +52,19 @@
       "type": "voiture",
       "S": 130,
       "x": 1.75,
-      "kmh": 110,
+      "kmh": 90,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "mesure",
+      "long": 25,
+      "p": 3,
+      "texte": [
+       "25 m",
+       "en une seconde, à 90"
+      ]
      }
     ]
    }
@@ -93,6 +104,41 @@
       "x": 1.75,
       "kmh": 90,
       "couleur": 15223370
+     }
+    ],
+    "aides": [
+     {
+      "type": "mesure",
+      "long": 14,
+      "item": 0,
+      "suit": true,
+      "texte": [
+       "14 m",
+       "à 50 km/h"
+      ],
+      "etapes": [
+       {
+        "long": 14,
+        "texte": [
+         "14 m",
+         "à 50 km/h"
+        ]
+       },
+       {
+        "long": 25,
+        "texte": [
+         "25 m",
+         "à 90 km/h"
+        ]
+       },
+       {
+        "long": 36,
+        "texte": [
+         "36 m",
+         "à 130 km/h"
+        ]
+       }
+      ]
      }
     ]
    },
@@ -155,7 +201,29 @@
     0.16,
     0.41,
     0.66
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "🥱",
+      "t": "Bâillements",
+      "s": "paupières lourdes"
+     },
+     {
+      "i": "🧍",
+      "t": "Raideurs",
+      "s": "besoin de bouger"
+     },
+     {
+      "i": "❔",
+      "t": "Trous de mémoire",
+      "s": "les derniers km"
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -179,13 +247,35 @@
    "dire": "Fais une pause toutes les deux heures. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas.",
    "decor": {
     "env": "route",
-    "kmh": 50,
+    "kmh": 45,
     "camera": "plan",
     "signaux": [
      [
       "C1a",
-      46
+      40
      ]
+    ],
+    "acteurs": [
+     {
+      "type": "voiture",
+      "S": 52,
+      "x": 5.0,
+      "kmh": 0,
+      "couleur": 10134447
+     },
+     {
+      "type": "voiture",
+      "S": 60,
+      "x": 5.0,
+      "kmh": 0,
+      "couleur": 3829232
+     },
+     {
+      "type": "pieton",
+      "S": 56,
+      "x": 7.6,
+      "kmh": 1.5
+     }
     ],
     "script": [
      [
@@ -196,16 +286,51 @@
      [
       "p0+1",
       "vitesse",
-      18,
+      14,
       1.5
      ]
+    ],
+    "aides": [
+     {
+      "type": "table",
+      "S": 48,
+      "x": 8.2
+     },
+     {
+      "type": "table",
+      "S": 64,
+      "x": 8.4
+     }
     ]
    },
    "sync": [
     0.21,
     1.79,
     2.03
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "⏱️",
+      "t": "Toutes les 2 h",
+      "s": "une pause"
+     },
+     {
+      "i": "😴",
+      "t": "15 à 20 min",
+      "s": "de sieste"
+     },
+     {
+      "i": "☕",
+      "t": "Café",
+      "s": "ça ne suffit pas",
+      "barre": true
+     }
+    ]
+   }
   },
   {
    "type": "chiffres",
@@ -243,27 +368,32 @@
       "S": 38,
       "x": 6.6,
       "kmh": 3.5
-     },
-     {
-      "type": "pieton",
-      "S": 62,
-      "x": -6.5,
-      "kmh": -3.2,
-      "haut": 16742938
-     },
-     {
-      "type": "pieton",
-      "S": 85,
-      "x": 6.4,
-      "kmh": -3,
-      "haut": 3122042
      }
     ]
    },
    "sync": [
     0.6,
     0.82
-   ]
+   ],
+   "illu": {
+    "type": "points",
+    "debut": {
+     "points": 12
+    },
+    "pas": [
+     {
+      "amende": "135 €"
+     },
+     {
+      "points": 9,
+      "perdus": 3,
+      "texte": "−3 points",
+      "amende": "135 €"
+     }
+    ],
+    "suit": true,
+    "icone": "📱"
+   }
   },
   {
    "type": "fin",

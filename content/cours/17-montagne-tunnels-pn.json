@@ -58,18 +58,32 @@
     ],
     "acteurs": [
      {
-      "type": "feu",
-      "S": 49,
-      "x": 5.2,
-      "etat": "rouge"
+      "type": "tram",
+      "S": 54,
+      "x": 150,
+      "couleur": 9345711
      }
     ],
     "script": [
      [
       0.4,
       "arret",
-      46
+      47
+     ],
+     [
+      "p0+1",
+      "acteur",
+      0,
+      0,
+      -17
      ]
+    ],
+    "aides": [
+     {
+      "type": "pn",
+      "S": 54,
+      "anim": 0
+     }
     ]
    }
   },
@@ -114,7 +128,7 @@
     "env": "route",
     "kmh": 0,
     "camera": "garee",
-    "rails": 1,
+    "rails": 0,
     "acteurs": [
      {
       "type": "pieton",
@@ -126,6 +140,12 @@
       "S": -1.2,
       "x": 3.3,
       "haut": 16734815
+     },
+     {
+      "type": "tram",
+      "S": 0,
+      "x": 160,
+      "couleur": 9345711
      }
     ],
     "script": [
@@ -147,16 +167,77 @@
       "p0+5",
       "acteur",
       0,
-      0,
-      0
+      -1.2,
+      0.6
      ],
      [
       "p0+5.2",
       "acteur",
       1,
+      -1.2,
+      0.5
+     ],
+     [
+      "p0+8",
+      "acteur",
+      0,
       0,
       0
+     ],
+     [
+      "p0+8.2",
+      "acteur",
+      1,
+      0,
+      0
+     ],
+     [
+      "p0+1",
+      "acteur",
+      2,
+      0,
+      -5
      ]
+    ],
+    "aides": [
+     {
+      "type": "pn",
+      "S": 0,
+      "ecart": 3.7,
+      "baissees": true
+     },
+     {
+      "type": "fleche",
+      "points": [
+       [
+        0,
+        3.6
+       ],
+       [
+        -3,
+        6.2
+       ],
+       [
+        -8,
+        8.4
+       ]
+      ],
+      "couleur": "vert",
+      "large": 0.6,
+      "item": 1
+     },
+     {
+      "type": "sos",
+      "S": -7,
+      "x": -5.2
+     },
+     {
+      "type": "cible",
+      "S": -7,
+      "x": -5.2,
+      "rayon": 0.9,
+      "item": 2
+     }
     ]
    },
    "sync": [
@@ -204,6 +285,36 @@
       "x": 1.75,
       "kmh": 50,
       "couleur": 15223370
+     }
+    ],
+    "aides": [
+     {
+      "type": "balises",
+      "S": 60,
+      "x": 4.6,
+      "n": 12,
+      "pas": 50
+     },
+     {
+      "type": "issue",
+      "S": 160,
+      "x": 4.6
+     },
+     {
+      "type": "issue",
+      "S": 260,
+      "x": 4.6
+     },
+     {
+      "type": "issue",
+      "S": 360,
+      "x": 4.6
+     },
+     {
+      "type": "faisceau",
+      "portee": 30,
+      "item": 0,
+      "opacite": 0.35
      }
     ]
    },
@@ -278,6 +389,12 @@
     "kmh": 35,
     "camera": "plan",
     "ligne": "discontinue",
+    "signaux": [
+     [
+      "A16",
+      30
+     ]
+    ],
     "acteurs": [
      {
       "type": "camion",
@@ -297,7 +414,29 @@
     0.5,
     0.84,
     1.3
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "⚙️",
+      "t": "Rétrograde",
+      "s": "le frein moteur"
+     },
+     {
+      "i": "🚫",
+      "t": "Point mort",
+      "s": "jamais en descente"
+     },
+     {
+      "i": "🔥",
+      "t": "Freins chauds",
+      "s": "moins efficaces"
+     }
+    ]
+   }
   },
   {
    "type": "fin",

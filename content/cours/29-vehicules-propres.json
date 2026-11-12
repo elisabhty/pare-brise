@@ -44,9 +44,16 @@
    "vitesse": 40,
    "decor": {
     "env": "ville",
-    "kmh": 30,
+    "kmh": 18,
     "camera": "plan",
     "acteurs": [
+     {
+      "type": "voiture",
+      "S": 66,
+      "x": 4.6,
+      "kmh": 0,
+      "couleur": 16054010
+     },
      {
       "type": "voiture",
       "S": 160,
@@ -56,23 +63,29 @@
      },
      {
       "type": "pieton",
-      "S": 38,
+      "S": 48,
       "x": 6.6,
-      "kmh": 3.5
+      "kmh": 3.4
+     }
+    ],
+    "aides": [
+     {
+      "type": "borne",
+      "S": 65,
+      "x": 6.0,
+      "vers": 0
      },
      {
-      "type": "pieton",
-      "S": 62,
-      "x": -6.5,
-      "kmh": -3.2,
-      "haut": 16742938
-     },
-     {
-      "type": "pieton",
-      "S": 85,
-      "x": 6.4,
-      "kmh": -3,
-      "haut": 3122042
+      "type": "cible",
+      "S": 65,
+      "x": 6.0,
+      "rayon": 0.9,
+      "p": 0,
+      "texte": [
+       "Borne de recharge",
+       ""
+      ],
+      "hauteur": 2.2
      }
     ]
    }
@@ -140,7 +153,11 @@
     0.55,
     0.73,
     0.9
-   ]
+   ],
+   "illu": {
+    "type": "critair",
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -200,7 +217,12 @@
     0.24,
     0.81,
     2.5
-   ]
+   ],
+   "illu": {
+    "type": "critair",
+    "zfe": true,
+    "suit": true
+   }
   },
   {
    "type": "situation",
@@ -304,7 +326,29 @@
     0.24,
     1.01,
     2.07
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "🔋",
+      "t": "Lever le pied",
+      "s": "recharge la batterie"
+     },
+     {
+      "i": "⚡",
+      "t": "Accélération",
+      "s": "immédiate"
+     },
+     {
+      "i": "❄️",
+      "t": "Autonomie",
+      "s": "baisse au froid"
+     }
+    ]
+   }
   },
   {
    "type": "fin",
@@ -329,30 +373,24 @@
     "acteurs": [
      {
       "type": "voiture",
-      "S": 160,
-      "x": -1.75,
-      "kmh": -30,
-      "couleur": 15223370
+      "S": 41,
+      "x": 4.6,
+      "kmh": 0,
+      "couleur": 16054010
      },
      {
       "type": "pieton",
-      "S": 38,
+      "S": 30,
       "x": 6.6,
-      "kmh": 3.5
-     },
+      "kmh": 3.4
+     }
+    ],
+    "aides": [
      {
-      "type": "pieton",
-      "S": 62,
-      "x": -6.5,
-      "kmh": -3.2,
-      "haut": 16742938
-     },
-     {
-      "type": "pieton",
-      "S": 85,
-      "x": 6.4,
-      "kmh": -3,
-      "haut": 3122042
+      "type": "borne",
+      "S": 40,
+      "x": 6.0,
+      "vers": 0
      }
     ]
    }

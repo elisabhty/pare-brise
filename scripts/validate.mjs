@@ -15,8 +15,26 @@ export function validate(root = '.') {
   const exercices = fs.existsSync(P('content/exercices.json')) ? read(P('content/exercices.json')) : [];
   const TYPES = [...fs.readFileSync(P('src/app/scenes.js'), 'utf8').matchAll(/^  (\w+): \{$/gm)].map(m => m[1]);
   const ACTEURS = ['voiture', 'trottinette', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'moto', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
-  const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus'];
-  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee'];
+  const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus', 'handicape', 'velo', 'zebras'];
+  const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee', 'derriere'];
+  // aides visuelles du simulateur (engine/sim.js, AIDES) et illustrations d'écran (app/illu.js, ILLU)
+  const AIDES = ['zone', 'bandes', 'faisceau', 'radar', 'champ', 'fleche', 'cible', 'repere', 'mesure', 'radarfixe', 'borne', 'pn', 'plots', 'manche', 'eau', 'victime', 'table', 'sos', 'issue', 'balises', 'affichette'];
+  const ILLUS = ['critair', 'pictos', 'points', 'ethylotest', 'voyants', 'documents', 'telephone', 'siege', 'sieges', 'constat', 'frise', 'compteur', 'pneu', 'niveaux', 'icones', 'bareme'];
+  const checkStage = (stg, sc, w) => {
+    const n = (stg.acteurs || []).length, k = (sc.dire || '').match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g)?.length || 1, items = (sc.items || []).length;
+    (stg.aides || []).forEach((a, j) => {
+      const v = `${w} aide ${j}`;
+      if (!AIDES.includes(a.type)) warn(`${v} : type inconnu « ${a.type} » (${AIDES.join(', ')})`);
+      if (a.acteur !== undefined && !(a.acteur >= 0 && a.acteur < n)) warn(`${v} : acteur ${a.acteur} inexistant`);
+      if (a.vers !== undefined && !(a.vers >= 0 && a.vers < n)) warn(`${v} : acteur ${a.vers} inexistant`);
+      if (a.p !== undefined && !(a.p >= 0 && a.p < k)) warn(`${v} : phrase ${a.p} hors du texte (0 à ${k - 1})`);
+      if (a.item !== undefined && !(a.item >= 0 && a.item < items)) warn(`${v} : élément ${a.item} hors de la liste`);
+      if (a.type === 'fleche' && !(Array.isArray(a.points) && a.points.length >= 2)) warn(`${v} : une flèche a besoin d'au moins deux points`);
+      if (a.texte && a.type !== 'affichette' && !(Array.isArray(a.texte) && a.texte.length === 2)) warn(`${v} : texte = [titre, sous-titre]`);
+    });
+    (stg.script || []).forEach(st => { if (['montrer', 'cacher'].includes(st[1]) && !(st[2] >= 0 && st[2] < n)) warn(`${w} : « ${st[1]} » sur un acteur inexistant`); if (st[1] === 'aide' && !(st[2] >= 0 && st[2] < (stg.aides || []).length)) warn(`${w} : « aide » ${st[2]} inexistante`); });
+    if (stg.ego && Object.keys(stg.ego).some(x => !['disqueA', 'coffre', 'pneu'].includes(x))) warn(`${w} : ego accepte disqueA, coffre, pneu`);
+  };
   const APRES = ['aucune', 'attendre', 'ralentir', 'distance', 'arret', 'freinage', 'voie', 'inserer', 'garer', 'depasser', 'feux'];
   const checkMarks = (s, w) => (s.marquages || []).forEach(m => { if (!MARQUES.includes(m[2])) warn(`${w} : marquage inconnu « ${m[2]} » (${MARQUES.join(', ')})`); });
   const SHAPES = ['tri', 'triBas', 'cercle', 'carre', 'octo', 'losange'];
@@ -53,6 +71,8 @@ export function validate(root = '.') {
       if (stg && stg !== s) { checkMarks(stg, w); (stg.signaux || []).forEach(x => checkSigns([x[0]], w)); (stg.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${w} décor : acteur inconnu « ${a.type} »`); }); (stg.etiquettes || []).forEach(e => { if (!(e[0] >= 0 && e[0] < (stg.acteurs || []).length)) warn(`${w} décor : étiquette sur un acteur inexistant`); }); }
       if (s.sync) { const n = (s.items || s.panneaux || []).length, k = (s.dire || '').match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g)?.length || 1; if (s.sync.length !== n || s.sync.some(v => !(v >= 0 && v < k))) warn(`${w} : « sync » doit donner, pour chaque élément, une phrase entre 0 et ${k - 1}`); }
       if (stg && stg.script) stg.script.forEach(st => { const t = st[0]; if (typeof t === 'string' && !/^p\d+(\+[\d.]+)?$/.test(t)) warn(`${w} : temps de scénario « ${t} » (secondes ou « p2 », « p2+1.5 »)`); });
+      if (stg) checkStage(stg, s, w);
+      if (s.illu) { if (!ILLUS.includes(s.illu.type)) warn(`${w} : illustration inconnue « ${s.illu.type} » (${ILLUS.join(', ')})`); if (s.illu.suit && !s.sync) warn(`${w} : illustration « suit » sans liste synchronisée`); if (s.illu.etapes && s.illu.etapes.some(v => !(v >= 0))) warn(`${w} : étapes d'illustration invalides`); }
       if (s.type === 'situation') { checkMarks(s, w); (s.signaux || []).forEach(x => checkSigns([x[0]], w)); (s.acteurs || []).forEach(a => { if (!ACTEURS.includes(a.type)) warn(`${w} : acteur inconnu « ${a.type} »`); }); (s.etiquettes || []).forEach(e => { if (!(e[0] >= 0 && e[0] < (s.acteurs || []).length)) warn(`${w} : étiquette sur un acteur inexistant`); }); }
     });
   }

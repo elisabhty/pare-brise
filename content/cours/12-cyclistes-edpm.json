@@ -57,17 +57,29 @@
       6.2
      ]
     ],
+    "marquages": [
+     [
+      40,
+      3.3,
+      "velo"
+     ],
+     [
+      90,
+      3.3,
+      "velo"
+     ]
+    ],
     "acteurs": [
      {
       "type": "velo",
       "S": 20,
-      "x": 3.1,
+      "x": 3.2,
       "kmh": 17
      },
      {
       "type": "trottinette",
       "S": 40,
-      "x": 3.0,
+      "x": 3.2,
       "kmh": 20
      },
      {
@@ -81,6 +93,29 @@
       "S": 48,
       "x": 6.7,
       "kmh": 3.4
+     }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "S": 175.0,
+      "x": 3.3,
+      "long": 450,
+      "large": 1.35,
+      "couleur": "vert",
+      "opacite": 0.32,
+      "contour": false
+     },
+     {
+      "type": "repere",
+      "S": 60,
+      "x": 3.3,
+      "hauteur": 0.5,
+      "p": 0,
+      "texte": [
+       "Piste cyclable",
+       "elle longe la route"
+      ]
      }
     ]
    }
@@ -120,6 +155,16 @@
       "marge": 6
      }
     ]
+   ],
+   "aides": [
+    {
+     "type": "zone",
+     "acteur": 0,
+     "dx": -1.15,
+     "long": 2.2,
+     "large": 1.5,
+     "couleur": "orange"
+    }
    ]
   },
   {
@@ -145,6 +190,17 @@
      "Angle mort",
      "invisible dans le rétroviseur"
     ]
+   ],
+   "aides": [
+    {
+     "type": "zone",
+     "ego": true,
+     "dx": 2.05,
+     "dz": -2.6,
+     "long": 5.2,
+     "large": 2.0,
+     "couleur": "rouge"
+    }
    ]
   },
   {
@@ -201,11 +257,18 @@
     "env": "ville",
     "kmh": 22,
     "camera": "plan",
+    "marquages": [
+     [
+      45,
+      3.3,
+      "velo"
+     ]
+    ],
     "acteurs": [
      {
       "type": "trottinette",
       "S": 17,
-      "x": 3.1,
+      "x": 3.2,
       "kmh": 20
      },
      {
@@ -220,6 +283,53 @@
       "S": 40,
       "x": 6.7,
       "kmh": 3.4
+     },
+     {
+      "type": "trottinette",
+      "S": 60,
+      "x": 6.5,
+      "kmh": 10,
+      "haut": 3122042
+     }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "S": 175.0,
+      "x": 3.3,
+      "long": 450,
+      "large": 1.35,
+      "couleur": "vert",
+      "opacite": 0.32,
+      "contour": false
+     },
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 0.9,
+      "item": 0
+     },
+     {
+      "type": "repere",
+      "acteur": 0,
+      "hauteur": 2.4,
+      "item": 1,
+      "texte": [
+       "25 km/h",
+       "au maximum"
+      ]
+     },
+     {
+      "type": "zone",
+      "acteur": 3,
+      "long": 2.2,
+      "large": 1.2,
+      "couleur": "rouge",
+      "item": 3,
+      "texte": [
+       "Trottoir",
+       "interdit"
+      ]
      }
     ]
    },
@@ -258,14 +368,36 @@
      {
       "type": "velo",
       "S": 22,
-      "x": 3.1,
+      "x": 3.2,
       "kmh": 18
      },
      {
       "type": "trottinette",
       "S": 45,
-      "x": 3.0,
+      "x": 3.2,
       "kmh": 19
+     }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "S": 175.0,
+      "x": 3.3,
+      "long": 450,
+      "large": 1.35,
+      "couleur": "vert",
+      "opacite": 0.32,
+      "contour": false
+     },
+     {
+      "type": "zone",
+      "ego": true,
+      "dx": 2.05,
+      "dz": -2.6,
+      "long": 5.2,
+      "large": 2.0,
+      "couleur": "rouge",
+      "p": 1
      }
     ]
    }

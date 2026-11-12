@@ -114,7 +114,25 @@
    "sync": [
     1.37,
     1.59
-   ]
+   ],
+   "illu": {
+    "type": "points",
+    "debut": {
+     "points": 12
+    },
+    "pas": [
+     {
+      "amende": "135 €"
+     },
+     {
+      "points": 9,
+      "perdus": 3,
+      "texte": "−3 points",
+      "amende": "135 €"
+     }
+    ],
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -159,7 +177,11 @@
     0.0,
     1.09,
     2.23
-   ]
+   ],
+   "illu": {
+    "type": "sieges",
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -188,7 +210,7 @@
    "decor": {
     "env": "route",
     "kmh": 60,
-    "camera": "plan",
+    "camera": "derriere",
     "ligne": "discontinue",
     "acteurs": [
      {
@@ -204,6 +226,28 @@
       "x": -1.75,
       "kmh": -60,
       "couleur": 3829232
+     }
+    ],
+    "script": [
+     [
+      "p2",
+      "ego",
+      {
+       "coffre": true
+      }
+     ]
+    ],
+    "aides": [
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": 0.3,
+      "hauteur": 2.1,
+      "p": 2,
+      "texte": [
+       "Coffre de toit",
+       "plus de consommation"
+      ]
      }
     ]
    },

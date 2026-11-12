@@ -75,6 +75,10 @@
       "haut": 3122042
      }
     ]
+   },
+   "illu": {
+    "type": "documents",
+    "p": 1
    }
   },
   {
@@ -136,7 +140,11 @@
     0.14,
     0.66,
     1.0
-   ]
+   ],
+   "illu": {
+    "type": "documents",
+    "suit": true
+   }
   },
   {
    "type": "chiffres",
@@ -194,7 +202,15 @@
    "sync": [
     0.33,
     1.65
-   ]
+   ],
+   "illu": {
+    "type": "documents",
+    "liste": [
+     "assurance"
+    ],
+    "rc": true,
+    "suit": true
+   }
   },
   {
    "type": "chiffres",
@@ -252,7 +268,37 @@
    "sync": [
     0.0,
     0.9
-   ]
+   ],
+   "illu": {
+    "type": "frise",
+    "suit": true,
+    "lignes": [
+     {
+      "noeuds": [
+       [
+        "0",
+        "achat",
+        0
+       ],
+       [
+        "4 ans",
+        "1er contrôle",
+        0
+       ],
+       [
+        "+2",
+        "",
+        1
+       ],
+       [
+        "+2",
+        "",
+        1
+       ]
+      ]
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -319,7 +365,11 @@
     1.18,
     2.0,
     2.55
-   ]
+   ],
+   "illu": {
+    "type": "constat",
+    "suit": true
+   }
   },
   {
    "type": "fin",

@@ -69,6 +69,11 @@
       "couleur": 3829232
      }
     ]
+   },
+   "illu": {
+    "type": "pictos",
+    "boite": true,
+    "p": 0
    }
   },
   {
@@ -124,6 +129,14 @@
       "arret",
       31
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 0.9,
+      "item": 1
+     }
     ]
    },
    "sync": [
@@ -254,7 +267,11 @@
     1.0,
     2.0,
     3.0
-   ]
+   ],
+   "illu": {
+    "type": "pictos",
+    "suit": true
+   }
   },
   {
    "type": "fin",

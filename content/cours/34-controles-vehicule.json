@@ -51,16 +51,9 @@
     "acteurs": [
      {
       "type": "pieton",
-      "S": 9,
-      "x": 6.5,
-      "kmh": 3.2
-     },
-     {
-      "type": "pieton",
-      "S": 26,
-      "x": -6.4,
-      "kmh": -3,
-      "haut": 16742938
+      "S": -3.5,
+      "x": 3.4,
+      "kmh": 1.6
      },
      {
       "type": "voiture",
@@ -68,6 +61,16 @@
       "x": -1.75,
       "kmh": -25,
       "couleur": 3829232
+     }
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "ego": true,
+      "dx": 0.85,
+      "dz": 1.35,
+      "rayon": 0.7,
+      "p": 2
      }
     ]
    }
@@ -122,14 +125,27 @@
       "kmh": -25,
       "couleur": 3829232
      }
-    ]
+    ],
+    "ego": {
+     "pneu": "degonfle"
+    }
    },
    "sync": [
     0.35,
     0.43,
     0.77,
     1.24
-   ]
+   ],
+   "illu": {
+    "type": "pneu",
+    "vues": [
+     "usure",
+     "coupure",
+     "gonflage",
+     "pression"
+    ],
+    "suit": true
+   }
   },
   {
    "type": "situation",
@@ -268,7 +284,33 @@
     0.43,
     0.63,
     0.78
-   ]
+   ],
+   "illu": {
+    "type": "niveaux",
+    "suit": true,
+    "items": [
+     [
+      "temperature",
+      "Refroidissement",
+      0
+     ],
+     [
+      "laveglace",
+      "Lave-glace",
+      1
+     ],
+     [
+      "frein",
+      "Liquide de frein",
+      2
+     ],
+     [
+      "huile",
+      "Huile",
+      3
+     ]
+    ]
+   }
   },
   {
    "type": "liste",
@@ -327,7 +369,12 @@
     0.07,
     1.13,
     2.52
-   ]
+   ],
+   "illu": {
+    "type": "voyants",
+    "manuel": true,
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -381,7 +428,30 @@
     0.41,
     0.86,
     1.88
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "📘",
+      "t": "Carnet",
+      "s": "les échéances"
+     },
+     {
+      "i": "🔧",
+      "t": "Une anomalie",
+      "s": "à faire examiner"
+     },
+     {
+      "i": "♨️",
+      "t": "Moteur chaud",
+      "s": "circuit fermé",
+      "barre": true
+     }
+    ]
+   }
   },
   {
    "type": "fin",

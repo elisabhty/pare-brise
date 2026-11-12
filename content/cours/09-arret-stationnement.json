@@ -122,6 +122,20 @@
       "x": -1.75,
       "kmh": -30,
       "couleur": 3829232
+     },
+     {
+      "type": "pieton",
+      "S": 28.6,
+      "x": 3.4,
+      "cache": true,
+      "haut": 16742938
+     },
+     {
+      "type": "pieton",
+      "S": 28,
+      "x": 2.8,
+      "cache": true,
+      "haut": 5789398
      }
     ],
     "script": [
@@ -145,7 +159,70 @@
       4.2,
       "clignotant",
       null
+     ],
+     [
+      "p0+2.5",
+      "montrer",
+      2
+     ],
+     [
+      "p0+2.7",
+      "acteur",
+      2,
+      0,
+      1.1
+     ],
+     [
+      "p0+4.6",
+      "acteur",
+      2,
+      3.6,
+      0
+     ],
+     [
+      "p1+0.6",
+      "montrer",
+      3
+     ],
+     [
+      "p1+0.8",
+      "acteur",
+      3,
+      0,
+      1.2
+     ],
+     [
+      "p1+3",
+      "acteur",
+      3,
+      -3.6,
+      0
      ]
+    ],
+    "aides": [
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": 0,
+      "hauteur": 1.9,
+      "p": 0,
+      "fin": 1,
+      "texte": [
+       "Arrêt",
+       "conducteur à bord"
+      ]
+     },
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": 0,
+      "hauteur": 1.9,
+      "p": 1,
+      "texte": [
+       "Stationnement",
+       "tu quittes ta voiture"
+      ]
+     }
     ]
    },
    "sync": [
@@ -204,16 +281,34 @@
    "dire": "Même sans panneau, tu ne t’arrêtes pas sur un passage piéton ni sur un trottoir, ni sur une place réservée aux personnes handicapées sans la carte, ni sur une voie de bus ou une piste cyclable. Sur autoroute, dans un tunnel ou sur un passage à niveau, c’est interdit, sauf urgence.",
    "decor": {
     "env": "ville",
-    "kmh": 20,
-    "camera": "proche",
-    "passage": 40,
+    "kmh": 15,
+    "camera": "plan",
+    "marquages": [
+     [
+      56,
+      4.6,
+      "handicape"
+     ],
+     [
+      84,
+      3.3,
+      "velo"
+     ]
+    ],
     "acteurs": [
      {
       "type": "voiture",
-      "S": 40,
+      "S": 32,
       "x": 4.4,
       "kmh": 0,
       "couleur": 15223370
+     },
+     {
+      "type": "voiture",
+      "S": 56,
+      "x": 4.6,
+      "kmh": 0,
+      "couleur": 10134447
      },
      {
       "type": "pieton",
@@ -222,12 +317,38 @@
       "kmh": 3
      }
     ],
-    "script": [
-     [
-      0.3,
-      "arret",
-      31
-     ]
+    "aides": [
+     {
+      "type": "zone",
+      "S": 105.0,
+      "x": 3.3,
+      "long": 70,
+      "large": 1.35,
+      "couleur": "vert",
+      "opacite": 0.32,
+      "contour": false
+     },
+     {
+      "type": "cible",
+      "S": 32,
+      "x": 4.4,
+      "rayon": 1.6,
+      "item": 0
+     },
+     {
+      "type": "cible",
+      "S": 56,
+      "x": 4.6,
+      "rayon": 1.6,
+      "item": 1
+     },
+     {
+      "type": "cible",
+      "S": 84,
+      "x": 3.3,
+      "rayon": 1.3,
+      "item": 2
+     }
     ]
    },
    "sync": [
@@ -283,6 +404,18 @@
       "arret",
       31
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.7,
+      "item": 0,
+      "texte": [
+       "Très gênant",
+       "sur le passage"
+      ]
+     }
     ]
    },
    "sync": [
@@ -326,6 +459,17 @@
      "ouvrir",
      0
     ]
+   ],
+   "aides": [
+    {
+     "type": "zone",
+     "acteur": 0,
+     "dx": -1.5,
+     "dz": 0.5,
+     "long": 1.4,
+     "large": 1.3,
+     "couleur": "rouge"
+    }
    ]
   },
   {

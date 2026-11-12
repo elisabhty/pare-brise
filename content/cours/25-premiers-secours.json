@@ -67,6 +67,12 @@
       "S": 43,
       "x": 4.4,
       "gilet": true
+     },
+     {
+      "type": "triangle",
+      "S": 20,
+      "x": 1.6,
+      "cache": true
      }
     ],
     "script": [
@@ -81,6 +87,11 @@
       {
        "detresse": true
       }
+     ],
+     [
+      "p1+1.5",
+      "montrer",
+      3
      ]
     ]
    }
@@ -204,7 +215,33 @@
     2.32,
     2.7,
     3.06
-   ]
+   ],
+   "illu": {
+    "type": "telephone",
+    "suit": true,
+    "numeros": [
+     [
+      "112",
+      "Urgences, partout en Europe"
+     ],
+     [
+      "15",
+      "SAMU"
+     ],
+     [
+      "18",
+      "Pompiers"
+     ],
+     [
+      "17",
+      "Police, gendarmerie"
+     ],
+     [
+      "114",
+      "Par SMS, sourds et malentendants"
+     ]
+    ]
+   }
   },
   {
    "type": "liste",
@@ -271,7 +308,29 @@
     0.35,
     0.44,
     0.81
-   ]
+   ],
+   "illu": {
+    "type": "telephone",
+    "suit": true,
+    "bulles": [
+     [
+      "Où",
+      "le lieu exact"
+     ],
+     [
+      "Quoi",
+      "ce qui s’est passé"
+     ],
+     [
+      "Combien",
+      "les victimes, leur état"
+     ],
+     [
+      "Dangers",
+      "fuite, incendie, circulation"
+     ]
+    ]
+   }
   },
   {
    "type": "liste",
@@ -325,6 +384,13 @@
       "S": 17,
       "x": 4.4,
       "gilet": true
+     },
+     {
+      "type": "moto",
+      "S": 30,
+      "x": 3.4,
+      "couche": true,
+      "cap": 60
      }
     ],
     "script": [
@@ -335,6 +401,28 @@
        "detresse": true
       }
      ]
+    ],
+    "aides": [
+     {
+      "type": "victime",
+      "S": 27,
+      "x": 5.6,
+      "casque": true
+     },
+     {
+      "type": "cible",
+      "S": 27,
+      "x": 5.6,
+      "rayon": 1.4,
+      "item": 0
+     },
+     {
+      "type": "cible",
+      "S": 30,
+      "x": 3.4,
+      "rayon": 1.4,
+      "item": 1
+     }
     ]
    },
    "sync": [

@@ -87,6 +87,14 @@
       "arret",
       41
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 0.9,
+      "p": 2
+     }
     ]
    }
   },
@@ -178,7 +186,24 @@
    "sync": [
     0.83,
     0.63
-   ]
+   ],
+   "illu": {
+    "type": "points",
+    "debut": {
+     "points": 12
+    },
+    "pas": [
+     {
+      "points": 6,
+      "perdus": 6,
+      "texte": "−6 points"
+     },
+     {
+      "amende": "135 €"
+     }
+    ],
+    "suit": true
+   }
   },
   {
    "type": "panneaux",
@@ -301,6 +326,43 @@
       7,
       2
      ]
+    ],
+    "aides": [
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": 14,
+      "hauteur": 1.2,
+      "p": 1,
+      "fin": 2,
+      "texte": [
+       "Zone 30",
+       "30 km/h"
+      ]
+     },
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": 14,
+      "hauteur": 1.2,
+      "p": 2,
+      "fin": 3,
+      "texte": [
+       "Zone de rencontre",
+       "20 km/h, piétons prioritaires"
+      ]
+     },
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": 14,
+      "hauteur": 1.2,
+      "p": 3,
+      "texte": [
+       "Aire piétonne",
+       "au pas"
+      ]
+     }
     ]
    },
    "sync": [

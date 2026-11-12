@@ -70,6 +70,10 @@
       "couleur": 3829232
      }
     ]
+   },
+   "illu": {
+    "type": "documents",
+    "p": 1
    }
   },
   {
@@ -131,7 +135,15 @@
     0.59,
     1.71,
     2.41
-   ]
+   ],
+   "illu": {
+    "type": "documents",
+    "liste": [
+     "permis",
+     "cg"
+    ],
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -191,7 +203,15 @@
     0.79,
     1.2,
     2.07
-   ]
+   ],
+   "illu": {
+    "type": "documents",
+    "liste": [
+     "assurance"
+    ],
+    "rc": true,
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -250,7 +270,37 @@
     0.9,
     1.0,
     1.62
-   ]
+   ],
+   "illu": {
+    "type": "frise",
+    "suit": true,
+    "lignes": [
+     {
+      "noeuds": [
+       [
+        "0",
+        "mise en circulation",
+        0
+       ],
+       [
+        "4 ans",
+        "1er contrôle",
+        0
+       ],
+       [
+        "+2",
+        "",
+        1
+       ],
+       [
+        "+2",
+        "",
+        1
+       ]
+      ]
+     }
+    ]
+   }
   },
   {
    "type": "liste",
@@ -279,10 +329,11 @@
     "voie": 4.6,
     "acteurs": [
      {
-      "type": "pieton",
+      "type": "voiture",
       "S": 9,
-      "x": 6.5,
-      "kmh": 3.2
+      "x": 4.6,
+      "kmh": 0,
+      "couleur": 15223370
      },
      {
       "type": "pieton",
@@ -290,13 +341,13 @@
       "x": -6.4,
       "kmh": -3,
       "haut": 16742938
-     },
+     }
+    ],
+    "aides": [
      {
-      "type": "voiture",
-      "S": 150,
-      "x": -1.75,
-      "kmh": -25,
-      "couleur": 3829232
+      "type": "affichette",
+      "acteur": 0,
+      "texte": "À VENDRE"
      }
     ]
    },
@@ -304,7 +355,19 @@
     0.0,
     1.15,
     2.11
-   ]
+   ],
+   "illu": {
+    "type": "documents",
+    "liste": [
+     "ct",
+     "cg"
+    ],
+    "e": [
+     1,
+     2
+    ],
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -363,7 +426,18 @@
     1.24,
     1.65,
     2.12
-   ]
+   ],
+   "illu": {
+    "type": "documents",
+    "liste": [
+     "cession",
+     "cg",
+     "csa"
+    ],
+    "barre": "cg",
+    "barreA": 1,
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -428,7 +502,34 @@
     0.1,
     0.16,
     1.07
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 4,
+    "items": [
+     {
+      "i": "🏠",
+      "t": "Déménagement",
+      "s": "l’adresse"
+     },
+     {
+      "i": "🚗",
+      "t": "Achat",
+      "s": "à ton nom"
+     },
+     {
+      "i": "🤝",
+      "t": "Vente, don",
+      "s": "la cession"
+     },
+     {
+      "i": "🌐",
+      "t": "Sources",
+      "s": "officielles"
+     }
+    ]
+   }
   },
   {
    "type": "fin",

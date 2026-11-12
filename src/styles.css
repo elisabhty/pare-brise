@@ -1302,8 +1302,9 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .ovt .olist.sync > li i{transition:background .3s,color .3s,transform .3s}
 .ovt .olist.sync > li.past i{transform:scale(.88)}
 @keyframes syncIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.ovt .nums.sync > div{opacity:0;transform:translateY(10px);transition:opacity .4s,transform .45s cubic-bezier(.2,.9,.25,1)}
-.ovt .nums.sync > div.in{opacity:1;transform:none}
+/* les chiffres arrivent un à un : la carte grandit avec la voix (pas de trou réservé pour ceux qui viennent) */
+.ovt .nums.sync > div{display:none}
+.ovt .nums.sync > div.in{display:grid;animation:syncIn .45s cubic-bezier(.2,.9,.25,1) both;transition:opacity .4s}
 .ovt .nums.sync > div.past{opacity:.5}
 .ovt .nums.sync > div.cur b{color:var(--accent)}
 /* le panneau dont parle la voix */
@@ -1314,3 +1315,22 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 /* longue liste : les éléments déjà dits se replient sur une ligne (le décor reste visible) */
 .ovt .olist.sync.long > li.past{padding:5px 0}
 .ovt .olist.sync.long > li.past span{display:none}
+
+/* ===================== Illustrations d'un écran de cours (ce que la 3D ne sait pas montrer) ===================== */
+#illu{position:absolute;left:0;right:0;z-index:5;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;padding:4px 0 6px}
+#illu[hidden]{display:none}
+.illu-card{width:min(92%,380px);max-height:var(--ih,220px);padding:10px 12px 8px;border-radius:22px;background:rgba(255,255,255,.95);box-shadow:0 14px 34px -18px rgba(16,24,40,.5),inset 0 0 0 .5px rgba(0,0,0,.06);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);opacity:0;transform:translateY(12px) scale(.97);transition:opacity .45s,transform .55s cubic-bezier(.2,.9,.25,1)}
+#illu.on .illu-card{opacity:1;transform:none}
+.illu-card svg{display:block;width:100%;height:auto;max-height:calc(var(--ih,220px) - 18px)}
+.illu .ie{opacity:.13;transition:opacity .45s,transform .45s cubic-bezier(.2,.9,.25,1);transform-box:fill-box;transform-origin:center}
+.illu .ie.on{opacity:1}
+.illu .ie.cur{transform:scale(1.05)}
+.illu .barre{opacity:0;transition:opacity .4s}
+.illu .barre.on{opacity:1}
+.illu .pop{animation:illuPop .5s cubic-bezier(.2,.9,.25,1) both;transform-box:fill-box;transform-origin:center}
+.illu circle.pt{transition:fill .45s}
+.illu circle.pt.lost{animation:ptLost 1.2s ease both;transform-box:fill-box;transform-origin:center}
+.illu circle.pt.won{animation:illuPop .6s cubic-bezier(.2,.9,.25,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes illuPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes ptLost{0%{transform:scale(1)}30%{transform:scale(1.3)}100%{transform:scale(.85);opacity:.55}}
+#s-cours.explore #illu,#s-cours.immersif #illu{display:none!important}

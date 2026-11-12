@@ -75,6 +75,30 @@
       "kmh": -50,
       "couleur": 10134447
      }
+    ],
+    "aides": [
+     {
+      "type": "zone",
+      "S": 180,
+      "x": 0,
+      "long": 120,
+      "large": 0.6,
+      "couleur": "rouge",
+      "opacite": 0.5,
+      "contour": false,
+      "p": 1
+     },
+     {
+      "type": "repere",
+      "S": 150,
+      "x": 0,
+      "hauteur": 0.6,
+      "p": 1,
+      "texte": [
+       "Ligne continue",
+       "interdit de la franchir"
+      ]
+     }
     ]
    }
   },
@@ -137,41 +161,103 @@
    "dire": "Les flèches de rabattement, inclinées, t’obligent à te rabattre : une ligne continue approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Le long du trottoir, une ligne jaune continue interdit l’arrêt et le stationnement, une ligne jaune discontinue interdit seulement le stationnement.",
    "decor": {
     "env": "route",
-    "kmh": 30,
+    "kmh": 20,
     "camera": "plan",
     "ligne": [
      {
       "de": -200,
-      "a": 40,
+      "a": 30,
       "type": "discontinue"
      },
      {
-      "de": 40,
-      "a": 90,
+      "de": 30,
+      "a": 60,
       "type": "annonce"
      },
      {
-      "de": 90,
+      "de": 60,
       "a": 900,
       "type": "continue"
      }
     ],
     "marquages": [
      [
-      50,
+      20,
       -1.75,
       "rabat-droite"
      ],
      [
-      66,
+      32,
       -1.75,
       "rabat-droite"
      ],
      [
-      82,
+      44,
       -1.75,
       "rabat-droite"
+     ],
+     [
+      56,
+      3.0,
+      "zebras"
+     ],
+     [
+      60.5,
+      3.0,
+      "zebras"
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "S": 32,
+      "x": -1.75,
+      "rayon": 1.4,
+      "item": 0
+     },
+     {
+      "type": "cible",
+      "S": 58,
+      "x": 3.0,
+      "rayon": 1.6,
+      "item": 1
+     },
+     {
+      "type": "zone",
+      "S": 105,
+      "x": 3.3,
+      "long": 50,
+      "large": 0.16,
+      "couleur": "jaune",
+      "opacite": 0.95,
+      "contour": false
+     },
+     {
+      "type": "zone",
+      "S": 155,
+      "x": 3.3,
+      "long": 50,
+      "large": 0.16,
+      "couleur": "jaune",
+      "tirets": [
+       1.5,
+       1.5
+      ]
+     },
+     {
+      "type": "cible",
+      "S": 95,
+      "x": 3.3,
+      "rayon": 1.2,
+      "item": 2
+     },
+     {
+      "type": "cible",
+      "S": 150,
+      "x": 3.3,
+      "rayon": 1.2,
+      "item": 3
+     }
     ]
    },
    "sync": [

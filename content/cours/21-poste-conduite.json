@@ -68,6 +68,10 @@
       "couleur": 3829232
      }
     ]
+   },
+   "illu": {
+    "type": "siege",
+    "p": 2
    }
   },
   {
@@ -133,7 +137,11 @@
     2.01,
     3.21,
     4.18
-   ]
+   ],
+   "illu": {
+    "type": "siege",
+    "suit": true
+   }
   },
   {
    "type": "situation",
@@ -183,6 +191,17 @@
      "clignotant",
      null
     ]
+   ],
+   "aides": [
+    {
+     "type": "zone",
+     "ego": true,
+     "dx": -3.4,
+     "dz": -2.6,
+     "long": 5.2,
+     "large": 2.4,
+     "couleur": "rouge"
+    }
    ]
   },
   {
@@ -234,6 +253,14 @@
       0,
       16
      ]
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "acteur": 0,
+      "rayon": 1.0,
+      "item": 3
+     }
     ]
    },
    "sync": [
@@ -241,7 +268,34 @@
     0.61,
     0.81,
     1.01
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 4,
+    "items": [
+     {
+      "i": "🅿️",
+      "t": "Frein",
+      "s": "serré"
+     },
+     {
+      "i": "⚙️",
+      "t": "Vitesse",
+      "s": "engagée"
+     },
+     {
+      "i": "🔑",
+      "t": "Moteur",
+      "s": "coupé"
+     },
+     {
+      "i": "🪞",
+      "t": "Rétroviseur",
+      "s": "avant d’ouvrir"
+     }
+    ]
+   }
   },
   {
    "type": "fin",

@@ -96,6 +96,23 @@
      "S": 60,
      "kmh": 60
     }
+   ],
+   "aides": [
+    {
+     "type": "bandes",
+     "reac": 17,
+     "frein": 30,
+     "textes": [
+      [
+       "17 m",
+       "de réaction"
+      ],
+      [
+       "≈ 30 m",
+       "de freinage, sol mouillé"
+      ]
+     ]
+    }
    ]
   },
   {
@@ -143,6 +160,20 @@
       45,
       1.2
      ]
+    ],
+    "aides": [
+     {
+      "type": "eau",
+      "ego": true,
+      "dz": 9,
+      "long": 12,
+      "large": 3.0,
+      "p": 0,
+      "texte": [
+       "Film d’eau",
+       "les pneus flottent"
+      ]
+     }
     ]
    },
    "sync": [
@@ -191,6 +222,12 @@
     "kmh": 45,
     "camera": "plan",
     "ligne": "discontinue",
+    "signaux": [
+     [
+      "A24",
+      35
+     ]
+    ],
     "acteurs": [
      {
       "type": "velo",
@@ -212,6 +249,29 @@
       0.7,
       1800
      ]
+    ],
+    "aides": [
+     {
+      "type": "manche",
+      "S": 62,
+      "x": 5.6
+     },
+     {
+      "type": "cible",
+      "S": 62,
+      "x": 5.6,
+      "rayon": 1.0,
+      "item": 1
+     },
+     {
+      "type": "zone",
+      "acteur": 0,
+      "dx": -1.15,
+      "long": 2.2,
+      "large": 1.5,
+      "couleur": "orange",
+      "item": 2
+     }
     ]
    },
    "sync": [
@@ -232,7 +292,24 @@
    "camera": "cockpit",
    "feux": {
     "croisement": true
-   }
+   },
+   "aides": [
+    {
+     "type": "bandes",
+     "reac": 11,
+     "frein": 35,
+     "textes": [
+      [
+       "11 m",
+       "de réaction"
+      ],
+      [
+       "≈ 35 m",
+       "de freinage, sur neige"
+      ]
+     ]
+    }
+   ]
   },
   {
    "type": "liste",
@@ -258,6 +335,12 @@
     "feux": {
      "croisement": true
     },
+    "signaux": [
+     [
+      "B26",
+      40
+     ]
+    ],
     "acteurs": [
      {
       "type": "voiture",
@@ -271,7 +354,32 @@
    "sync": [
     0.26,
     0.51
-   ]
+   ],
+   "illu": {
+    "type": "icones",
+    "suit": true,
+    "cols": 3,
+    "items": [
+     {
+      "i": "📅",
+      "t": "1er nov → 31 mars",
+      "s": "communes concernées",
+      "e": 0
+     },
+     {
+      "i": "❄️",
+      "t": "Pneus hiver",
+      "s": "ou quatre saisons",
+      "e": 1
+     },
+     {
+      "i": "⛓️",
+      "t": "Ou des chaînes",
+      "s": "dans le coffre",
+      "e": 1
+     }
+    ]
+   }
   },
   {
    "type": "fin",

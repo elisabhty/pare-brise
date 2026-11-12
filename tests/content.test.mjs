@@ -84,5 +84,5 @@ test('hors cours 1 (script des panneaux), titres, listes, chiffres et fins ont u
 });
 
 test('un décor sous une carte de texte utilise un plan qui garde le sujet visible', () => {
-  for (const c of data.cours) c.scenes.forEach((s, i) => { if (s.decor) assert.ok(['plan', 'proche', 'garee', 'poursuite'].includes(s.decor.camera), `${c.id} scène ${i} : caméra « ${s.decor.camera} »`); });
+  for (const c of data.cours) c.scenes.forEach((s, i) => { if (s.decor) assert.ok(['plan', 'proche', 'garee', 'poursuite', 'derriere'].includes(s.decor.camera), `${c.id} scène ${i} : caméra « ${s.decor.camera} »`); });
 });

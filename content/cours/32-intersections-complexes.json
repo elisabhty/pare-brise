@@ -81,6 +81,54 @@
       "arret",
       44
      ]
+    ],
+    "aides": [
+     {
+      "type": "fleche",
+      "points": [
+       [
+        52,
+        34
+       ],
+       [
+        52,
+        -30
+       ]
+      ],
+      "couleur": "orange",
+      "large": 0.9,
+      "p": 1
+     },
+     {
+      "type": "fleche",
+      "points": [
+       [
+        50.25,
+        -26
+       ],
+       [
+        50.25,
+        26
+       ]
+      ],
+      "couleur": "bleu",
+      "p": 1
+     },
+     {
+      "type": "fleche",
+      "points": [
+       [
+        40,
+        3.2
+       ],
+       [
+        70,
+        3.2
+       ]
+      ],
+      "couleur": "vert",
+      "p": 1
+     }
     ]
    }
   },
@@ -178,7 +226,50 @@
     ]
    ],
    "dire": "Tu veux tourner à gauche. Une voiture arrive en face et continue tout droit. Laisse-la passer avant de traverser sa trajectoire. Vérifie aussi les piétons et cyclistes sur la route que tu vas emprunter.",
-   "ch": 1
+   "ch": 1,
+   "aides": [
+    {
+     "type": "fleche",
+     "points": [
+      [
+       29,
+       1.75
+      ],
+      [
+       33,
+       1.4
+      ],
+      [
+       34.5,
+       -1.0
+      ],
+      [
+       35.75,
+       -5
+      ],
+      [
+       35.75,
+       -18
+      ]
+     ],
+     "couleur": "orange"
+    },
+    {
+     "type": "fleche",
+     "points": [
+      [
+       62,
+       -1.75
+      ],
+      [
+       20,
+       -1.75
+      ]
+     ],
+     "couleur": "vert",
+     "p": 1
+    }
+   ]
   },
   {
    "type": "situation",

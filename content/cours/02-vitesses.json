@@ -103,6 +103,41 @@
       "clignotant",
       null
      ]
+    ],
+    "aides": [
+     {
+      "type": "fleche",
+      "points": [
+       [
+        1.5,
+        4.6
+       ],
+       [
+        9,
+        4.3
+       ],
+       [
+        20,
+        1.9
+       ],
+       [
+        34,
+        1.75
+       ]
+      ]
+     },
+     {
+      "type": "cible",
+      "S": 75,
+      "x": 6.2,
+      "rayon": 1.1,
+      "p": 1,
+      "texte": [
+       "50",
+       "en ville"
+      ],
+      "hauteur": 3.4
+     }
     ]
    }
   },
@@ -226,6 +261,32 @@
       "kmh": 80,
       "couleur": 3829232
      }
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "S": 55,
+      "x": 4.4,
+      "rayon": 1.1,
+      "item": 0,
+      "texte": [
+       "80",
+       "par défaut"
+      ],
+      "hauteur": 3.4
+     },
+     {
+      "type": "cible",
+      "S": 190,
+      "x": 4.4,
+      "rayon": 1.1,
+      "item": 1,
+      "texte": [
+       "90",
+       "seulement si un panneau le dit"
+      ],
+      "hauteur": 3.4
+     }
     ]
    },
    "sync": [
@@ -290,6 +351,20 @@
       "kmh": 118,
       "couleur": 15223370
      }
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "S": 60,
+      "x": 7.4,
+      "rayon": 1.1,
+      "item": 0,
+      "texte": [
+       "Pluie",
+       "110 au lieu de 130"
+      ],
+      "hauteur": 3.4
+     }
     ]
    },
    "sync": [
@@ -336,6 +411,17 @@
       "kmh": 50,
       "couleur": 15223370
      }
+    ],
+    "aides": [
+     {
+      "type": "mesure",
+      "long": 50,
+      "texte": [
+       "50 m",
+       "de visibilité"
+      ],
+      "item": 0
+     }
     ]
    },
    "sync": [
@@ -369,15 +455,18 @@
    "decor": {
     "env": "route",
     "kmh": 80,
-    "camera": "plan",
+    "camera": "derriere",
     "ligne": "discontinue",
+    "ego": {
+     "disqueA": true
+    },
     "signaux": [
      [
-      "B14:80",
-      60
+      "B14:90",
+      70
      ],
      [
-      "B14:80",
+      "B14:90",
       400
      ]
     ],
@@ -388,6 +477,32 @@
       "x": -1.75,
       "kmh": -80,
       "couleur": 10134447
+     }
+    ],
+    "aides": [
+     {
+      "type": "repere",
+      "ego": true,
+      "dz": -2.3,
+      "dx": -0.5,
+      "hauteur": 1.25,
+      "texte": [
+       "Disque « A »",
+       "jeune conducteur"
+      ],
+      "p": 0
+     },
+     {
+      "type": "cible",
+      "S": 70,
+      "x": 4.4,
+      "rayon": 1.1,
+      "item": 2,
+      "texte": [
+       "Panneau 90",
+       "pour toi : 80"
+      ],
+      "hauteur": 3.4
      }
     ]
    },

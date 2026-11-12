@@ -53,6 +53,9 @@ const DRAW = {
   A4: () => triUp() + `<g fill="${K.k}"><rect x="38" y="40" width="24" height="15" rx="4"/><rect x="36" y="53" width="6" height="6" rx="1.5"/><rect x="58" y="53" width="6" height="6" rx="1.5"/></g><path d="M39 78 Q35 72 40 67 T39 60 M61 78 Q65 72 60 67 T61 60" fill="none" stroke="${K.k}" stroke-width="2.6" stroke-linecap="round"/>`,
   A7: () => triUp() + `<g fill="${K.k}"><rect x="30" y="52" width="40" height="6" rx="1"/><rect x="30" y="64" width="40" height="6" rx="1"/><rect x="33" y="46" width="5" height="32" rx="1"/><rect x="62" y="46" width="5" height="32" rx="1"/></g>`,
   B3: () => ring() + carFront(37, K.r) + carFront(63, K.k),
+  A24: () => triUp() + `<line x1="33" y1="79" x2="33" y2="40" stroke="${K.k}" stroke-width="3.6" stroke-linecap="round"/><g transform="translate(34 41)"><path d="M0 0 L34 5 L34 13 L0 13 Z" fill="${K.r}"/><path d="M8 1.2 L15 2.2 L15 13 L8 13 Z M22 3.2 L28 4.1 L28 13 L22 13 Z" fill="#fff"/><path d="M0 0 L34 5 L34 13 L0 13 Z" fill="none" stroke="${K.k}" stroke-width="1.6" stroke-linejoin="round"/></g>`,
+  A16: () => triUp() + `<polygon points="23,79 78,79 23,50" fill="${K.k}"/>` + txt('10%', 14, K.k, 64, undefined, 0).replace('x="50"', 'x="62"'),
+  B26: () => disc() + `<circle cx="50" cy="50" r="23" fill="none" stroke="#fff" stroke-width="9"/><circle cx="50" cy="50" r="7" fill="#fff"/><g stroke="${K.b}" stroke-width="3">${[0, 45, 90, 135, 180, 225, 270, 315].map(a => `<line x1="${50 + 18.5 * Math.cos(a * Math.PI / 180)}" y1="${50 + 18.5 * Math.sin(a * Math.PI / 180)}" x2="${50 + 27.5 * Math.cos((a + 22) * Math.PI / 180)}" y2="${50 + 27.5 * Math.sin((a + 22) * Math.PI / 180)}"/>`).join('')}</g>`,
   B30: () => zone(),
   B51: () => zone(K.g, K.g, true),
   C107: () => square() + motorway(),
@@ -94,7 +97,7 @@ const DRAW = {
 
 const META = {
   A13a: ['Endroit fréquenté par les enfants', 'danger'], A13b: ['Passage pour piétons', 'danger'], A15b: ['Passage d’animaux sauvages', 'danger'], A17: ['Feux tricolores', 'danger'], A21: ['Débouché de cyclistes', 'danger'], A4: ['Chaussée glissante', 'danger'], A7: ['Passage à niveau avec barrières', 'danger'],
-  B3: ['Interdiction de dépasser', 'interdiction'], B30: ['Zone 30', 'interdiction'], B51: ['Fin de zone 30', 'fin'], C107: ['Autoroute', 'indication'], C108: ['Fin d’autoroute', 'indication'],
+  B3: ['Interdiction de dépasser', 'interdiction'], A24: ['Vent latéral', 'danger'], A16: ['Descente dangereuse', 'danger'], B26: ['Équipements spéciaux obligatoires (chaînes)', 'obligation'], B30: ['Zone 30', 'interdiction'], B51: ['Fin de zone 30', 'fin'], C107: ['Autoroute', 'indication'], C108: ['Fin d’autoroute', 'indication'],
   A14: ['Autres dangers', 'danger'], A1a: ['Virage à droite', 'danger'], A3: ['Chaussée rétrécie', 'danger'], A3b: ['Chaussée rétrécie par la gauche', 'danger'], A2b: ['Dos-d’âne', 'danger'],
   AK14: ['Danger temporaire', 'temporaire', 'danger'], AK5: ['Travaux', 'temporaire', 'danger'],
   AB1: ['Priorité à droite', 'danger'], AB2: ['Priorité ponctuelle', 'priorite'], AB25: ['Carrefour giratoire', 'danger'],

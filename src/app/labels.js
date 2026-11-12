@@ -23,7 +23,7 @@ export const Labels = {
     const a = Engine.anchors(), app = $('#app').getBoundingClientRect();
     const lim = limitEl ? limitEl.getBoundingClientRect().top - 24 : Infinity;
     // jamais par-dessus le titre de la scène ni la barre du haut : l'étiquette disparaît plutôt
-    const top = [...document.querySelectorAll('#lower3 > *, #s-exo .xtitle, #s-cours .topbar')].reduce((m, e) => { const r = e.getBoundingClientRect(); return r.height && r.top < app.height / 2 ? Math.max(m, r.bottom) : m; }, 0);
+    const top = [...document.querySelectorAll('#lower3 > *, #s-exo .xtitle, #s-cours .topbar, #s-cours #ovt:not(:empty)')].reduce((m, e) => { const r = e.getBoundingClientRect(); return r.height && r.top < app.height / 2 ? Math.max(m, r.bottom) : m; }, 0);
     this.items.forEach((l, k) => {
       const p = a[k]; if (!p) { l.style.display = 'none'; return; } l.style.display = '';
       const half = (l.offsetWidth || 120) / 2 + 8, x = Math.max(half, Math.min(app.width - half, p.x - app.left));   // jamais coupée par le bord de l'écran

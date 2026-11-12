@@ -61,6 +61,16 @@
       "kmh": -25,
       "couleur": 3829232
      }
+    ],
+    "aides": [
+     {
+      "type": "cible",
+      "ego": true,
+      "dx": 0.85,
+      "dz": 1.35,
+      "rayon": 0.7,
+      "p": 2
+     }
     ]
    }
   },
@@ -109,12 +119,23 @@
       "kmh": -25,
       "couleur": 3829232
      }
-    ]
+    ],
+    "ego": {
+     "pneu": "degonfle"
+    }
    },
    "sync": [
     0.51,
     1.5
-   ]
+   ],
+   "illu": {
+    "type": "pneu",
+    "vues": [
+     "usure",
+     "pression"
+    ],
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -162,13 +183,71 @@
       "kmh": -25,
       "couleur": 3829232
      }
+    ],
+    "script": [
+     [
+      "p1",
+      "feux",
+      {
+       "position": true
+      }
+     ],
+     [
+      "p1+0.9",
+      "feux",
+      {
+       "croisement": true
+      }
+     ],
+     [
+      "p1+1.8",
+      "feux",
+      {
+       "detresse": true
+      }
+     ],
+     [
+      "p2",
+      "feux",
+      {
+       "detresse": false,
+       "croisement": false,
+       "position": false
+      }
+     ]
     ]
    },
    "sync": [
     0.16,
     1.52,
     2.3
-   ]
+   ],
+   "illu": {
+    "type": "niveaux",
+    "suit": true,
+    "items": [
+     [
+      "temperature",
+      "Refroidissement",
+      0
+     ],
+     [
+      "laveglace",
+      "Lave-glace",
+      0
+     ],
+     [
+      "frein",
+      "Liquide de frein",
+      0
+     ],
+     [
+      "huile",
+      "Huile",
+      0
+     ]
+    ]
+   }
   },
   {
    "type": "liste",
@@ -207,13 +286,6 @@
       "x": 1.75,
       "kmh": 50,
       "couleur": 10134447
-     },
-     {
-      "type": "voiture",
-      "S": 260,
-      "x": -1.75,
-      "kmh": -50,
-      "couleur": 3829232
      }
     ]
    },
@@ -221,7 +293,11 @@
     1.0,
     2.0,
     3.0
-   ]
+   ],
+   "illu": {
+    "type": "voyants",
+    "suit": true
+   }
   },
   {
    "type": "liste",
@@ -270,6 +346,24 @@
       12,
       7
      ]
+    ],
+    "aides": [
+     {
+      "type": "bandes",
+      "reac": 17,
+      "frein": 22,
+      "item": 0,
+      "textes": [
+       [
+        "",
+        ""
+       ],
+       [
+        "ABS",
+        "tu peux braquer"
+       ]
+      ]
+     }
     ]
    },
    "sync": [
