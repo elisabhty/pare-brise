@@ -3,7 +3,7 @@
   "id": "uv11-1",
   "cours": "usagers-vulnerables",
   "type": "qcm",
-  "q": "Un piéton manifeste clairement son intention de traverser. Tu dois :",
+  "q": "Un piéton montre clairement qu’il veut traverser. Tu dois :",
   "choix": [
    "lui céder le passage",
    "passer si tu es prioritaire"
@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Le piéton engagé ou qui veut traverser est prioritaire."
+  "explication": "Le piéton qui traverse, ou qui montre qu’il veut traverser, passe avant toi."
  },
  {
   "id": "uv11-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    2
   ],
-  "explication": "135 € et 6 points."
+  "explication": "Ne pas laisser passer un piéton qui traverse, ou qui montre clairement qu’il va traverser : 135 € et 6 points."
  },
  {
   "id": "uv11-3",
@@ -41,7 +41,7 @@
   "bonnes": [
    1
   ],
-  "explication": "20 km/h, et les piétons sont prioritaires."
+  "explication": "Dans une zone de rencontre : 20 km/h au maximum, et les piétons passent avant toi."
  },
  {
   "id": "uv11-4",
@@ -55,7 +55,7 @@
   "bonnes": [
    1
   ],
-  "explication": "A13a : endroit fréquenté par les enfants.",
+  "explication": "Ce triangle avec deux enfants annonce un endroit fréquenté par des enfants, souvent une école : ralentis.",
   "panneaux": [
    "A13a"
   ]
@@ -72,6 +72,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Anticipe : un enfant court souvent derrière son ballon."
+  "explication": "Un ballon qui roule annonce souvent un enfant qui court derrière : freine tout de suite."
  }
 ]

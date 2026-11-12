@@ -22,6 +22,14 @@ QS = []
 for f in sorted(glob.glob(f'{ROOT}/questions/*.json')):
     d = J(f); QS += d if isinstance(d, list) else d.get('questions', [])
 
+# explications de la banque réécrites après les retours des élèves (phrases entières, sans écho de la question)
+import retours as _R
+def exp_banque(q, R):
+    v = R.EXP.get(q['id'])
+    if isinstance(v, str): q['explication'] = v
+    elif v: q.update(v)
+for q in QS: exp_banque(q, _R)
+
 # ---------- 1. situations d'examen existantes, par leçon ----------
 EXAM = {e['id']: e for e in EXOS if e['meca'] == 'examen' and e['id'].startswith('x-exam-')}
 if EXAM:
@@ -145,7 +153,7 @@ QOV = {
     # poids lourds et 2RM
     'pl213-2': dict(env='ville', kmh=25, acteurs=[dict(type='bus', S=30, x=4.4)]),
     'pl213-3': dict(env='route', kmh=40, acteurs=[dict(type='camion', S=60, x=-1.2, kmh=-40)]),
-    'pl213-4': dict(env='route', kmh=0, camera='drone', carrefour={'S': 6}, acteurs=[dict(type='velo', S=60, x=-1.75, kmh=-70)]),
+    'pl213-4': dict(env='route', kmh=0, camera='drone', carrefour={'S': 6}, acteurs=[dict(type='moto', S=60, x=-1.75, kmh=-70)]),
     # véhicules prioritaires
     'vp14-2': dict(env='route', kmh=50, camera='poursuite', acteurs=[dict(type='tracteur', S=26, kmh=25)]),
     'vp14-4': dict(env='ville', kmh=0, camera='arriere', **FEU('rouge', 5)),
@@ -259,11 +267,8 @@ def phrase(q, choix, bonnes, exp):
     """explication courte : on la complète par la réponse, en phrase entière"""
     if len(exp) >= 45: return exp
     rep = ' et '.join(choix[k] for k in bonnes)
-    qq = q.strip()
-    if qq.endswith(':') or qq.endswith('…'):
-        s = qq.rstrip(':… ').strip() + ' ' + rep[0].lower() + rep[1:] + '.'
-    elif rep in ('Oui', 'Non', 'Vrai', 'Faux'): s = rep + '.'
-    else: s = 'La bonne réponse : ' + rep + '.'
+    # sans recopier la question (« Je roule à 80 km/h. Je dois ralentir… » se lisait mal) : la réponse, puis l'explication
+    s = rep + '.' if rep in ('Oui', 'Non', 'Vrai', 'Faux') else 'Réponse : ' + rep + '.'
     e = exp.strip()
     if e.rstrip('.').lower() in s.lower() or not e: return s
     return s + ' ' + e
@@ -317,6 +322,16 @@ def panneaux_choix(sit, src):
 DECOR_CLES = ('env', 'meteo', 'kmh', 'camera', 'puis', 'voie', 'compteur', 'limite', 'signaux', 'cle', 'acteurs', 'carrefour', 'passage', 'giratoire', 'rails', 'tunnel', 'chevrons', 'maisons', 'marquages', 'ligne', 'feux', 'etiquettes', 'graine', 'focus')
 def point(t): t = t.strip(); return t if t[-1:] in '.!?…' else t + '.'
 
+# retours des élèves testeurs (gen/retours.py) : corrections de la pratique, par (cours, début de la question) → champs corrigés ;
+# None = question retirée. Une question de la banque corrigée l'est aussi dans la banque (les séries la reprennent).
+import retours as R
+UTILISES, BANQUE = set(), {}
+def retour(cid, q):
+    for (c, debut), fix in R.P.items():
+        # la question déjà corrigée dans la banque (nouvel énoncé) reçoit la même correction : le passage suivant donne le même résultat
+        if c == cid and (q.startswith(debut) or (fix and fix.get('q') == q)): UTILISES.add((c, debut)); return True, fix
+    return False, None
+
 PRATIQUES = []
 for cid in ORDER:
     f, c = COURS[cid]
@@ -346,6 +361,14 @@ for cid in ORDER:
             sit = dict(q); sit.pop('panneaux', None); sit.update(st)
             if panneaux_choix(sit, q): sit['mode'] = 'qcm'
         if 'mode' not in sit: sit['mode'] = mode_of(kind, sit, sur_mesure)
+        trouve, fix = retour(cid, sit['q'])
+        if trouve:
+            if fix is None: continue
+            if kind == 'bank' and not sit.get('panneauxChoix'):
+                BANQUE[it['id']] = {k: v for k, v in fix.items() if k in ('q', 'choix', 'bonnes', 'explication', 'panneaux')}
+            for k, v in fix.items():
+                if v is None: sit.pop(k, None)
+                else: sit[k] = v
         # question de cours : aucun décor (rien à observer)
         if sit['mode'] == 'qcm':
             for k in DECOR_CLES: sit.pop(k, None)
@@ -368,6 +391,22 @@ for cid in ORDER:
         'consigne': consigne,
         'astuce': astuce,
         'env': next((s['env'] for s in sits if s.get('env')), base.get('env', 'route')), 'situations': sits})
+
+# la banque suit : explications réécrites et questions corrigées (les séries s'en servent aussi)
+for f in sorted(glob.glob(f'{ROOT}/questions/*.json')):
+    d = J(f); lst = d if isinstance(d, list) else d.get('questions', []); avant = json.dumps(d, ensure_ascii=False)
+    for q in lst:
+        exp_banque(q, R)
+        for k, v in BANQUE.get(q['id'], {}).items():
+            if v is None: q.pop(k, None)
+            else: q[k] = v
+    if json.dumps(d, ensure_ascii=False) != avant:      # même mise en forme que la banque : une question par ligne
+        brut = open(f, encoding='utf-8').read(); sp = '  { "' in brut
+        ligne = lambda q: '  { ' + json.dumps(q, ensure_ascii=False)[1:-1] + ' }' if sp else '  ' + json.dumps(q, ensure_ascii=False)
+        if '\n {\n' in brut: W(f, d)
+        else: open(f, 'w', encoding='utf-8').write('[\n' + ',\n'.join(ligne(q) for q in lst) + '\n]\n')
+for k in R.P:
+    if k not in UTILISES: print('  ⚠ retour sans question :', k)
 
 others = [e for e in EXOS if not (e['meca'] == 'examen')]
 for e in others:

@@ -22,8 +22,8 @@
    "tag": "Obligatoire à toutes les places"
   },
   {
-   "texte": "Enfants",
-   "tag": "Siège adapté jusqu’à 10 ans"
+   "texte": "Enfant de moins de 10 ans",
+   "tag": "Siège adapté, à l’arrière sauf exceptions"
   },
   {
    "texte": "Siège dos à la route à l’avant",
@@ -31,7 +31,7 @@
   },
   {
    "texte": "Ceinture non bouclée",
-   "tag": "135 € et 3 points"
+   "tag": "Toi : 135 € et 3 points · passager mineur : 135 € pour toi, sans points"
   }
  ],
  "scenes": [
@@ -84,10 +84,10 @@
     [
      "3",
      "points",
-     "retirés au conducteur non attaché"
+     "si toi, tu n’es pas attaché"
     ]
    ],
-   "dire": "La ceinture est obligatoire à toutes les places. Ne pas la boucler coûte 135 euros et 3 points au conducteur. Et c’est toi qui réponds des passagers mineurs.",
+   "dire": "La ceinture est obligatoire à toutes les places. Si toi, tu ne la boucles pas : 135 euros et 3 points. Un passager adulte non attaché paie lui-même son amende. Un passager de moins de 18 ans n’est pas attaché ? C’est toi qui paies les 135 euros, sans perte de points.",
    "vitesse": 40,
    "decor": {
     "env": "route",
@@ -112,8 +112,8 @@
     ]
    },
    "sync": [
-    1.37,
-    1.59
+    1.55,
+    1.8
    ],
    "illu": {
     "type": "points",
@@ -141,8 +141,8 @@
    "titre": "Un siège adapté",
    "items": [
     [
-     "Jusqu’à 10 ans",
-     "Système de retenue adapté à son poids et sa taille"
+     "Moins de 10 ans",
+     "Siège auto ou rehausseur, à l’arrière"
     ],
     [
      "Bébé",
@@ -153,30 +153,18 @@
      "Seulement avec l’airbag passager désactivé"
     ]
    ],
-   "dire": "Jusqu’à 10 ans, un enfant voyage dans un système de retenue adapté à sa taille et à son poids. Les bébés voyagent dos à la route. Et si un siège dos à la route est installé à l’avant, l’airbag passager doit être désactivé.",
+   "dire": "Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids, et à l’arrière, sauf exceptions. Un bébé voyage dos à la route, le plus longtemps possible. L’exception la plus courante : un siège bébé dos à la route à l’avant, mais alors l’airbag passager doit être désactivé.",
    "decor": {
     "env": "ville",
     "kmh": 0,
     "camera": "garee",
     "voie": 4.6,
-    "acteurs": [
-     {
-      "type": "enfant",
-      "S": 1.2,
-      "x": 5.9
-     },
-     {
-      "type": "pieton",
-      "S": 2.6,
-      "x": 6.3,
-      "haut": 16742938
-     }
-    ]
+    "acteurs": []
    },
    "sync": [
-    0.0,
-    1.09,
-    2.23
+    0.06,
+    1.02,
+    2.42
    ],
    "illu": {
     "type": "sieges",
@@ -195,7 +183,7 @@
     ],
     [
      "Plage arrière",
-     "Vide : en cas de choc, tout devient projectile"
+     "Le plus sûr : vide"
     ],
     [
      "Coffre de toit",
@@ -206,7 +194,7 @@
      "Attachés ou en cage"
     ]
    ],
-   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Rien sur la plage arrière : en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Et les animaux voyagent attachés ou en cage.",
+   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Le plus sûr : rien sur la plage arrière, car en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Les animaux voyagent attachés ou en cage : s’ils te gênent pour conduire, c’est une infraction. Et ton chargement ne doit cacher ni ta vue, ni tes feux, ni ta plaque.",
    "decor": {
     "env": "route",
     "kmh": 60,
@@ -253,9 +241,9 @@
    },
    "sync": [
     0.26,
-    1.12,
+    1.24,
     2.02,
-    3.13
+    3.01
    ]
   },
   {
@@ -270,7 +258,7 @@
     ],
     [
      "3",
-     "points pour la ceinture"
+     "points si toi, tu n’es pas attaché"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique pour protéger chaque passager.",

@@ -30,11 +30,15 @@
   },
   {
    "texte": "Distance",
-   "tag": "Deux chevrons au moins"
+   "tag": "Deux chevrons, ou deux traits de la bande d’arrêt d’urgence"
   },
   {
    "texte": "Panne",
    "tag": "Feux de détresse, gilet, derrière la glissière"
+  },
+  {
+   "texte": "Corridor de sécurité",
+   "tag": "Ralentis, change de voie ou écarte-toi"
   }
  ],
  "scenes": [
@@ -44,7 +48,7 @@
    "eyebrow": "Cours 10 · Circulation",
    "titre": "Autoroute",
    "sous": "vitesse et rigueur",
-   "dire": "Tu arrives à l’entrée d’une autoroute. La circulation accélère progressivement. Cours numéro 10 : l’autoroute. On y roule vite : chaque règle compte double.",
+   "dire": "Tu arrives à l’entrée d’une autoroute. La circulation accélère progressivement. Cours numéro 10 : l’autoroute. On y roule vite : la moindre erreur devient très grave.",
    "vitesse": 110,
    "decor": {
     "env": "autoroute",
@@ -122,7 +126,7 @@
    "ch": 0,
    "eyebrow": "L’insertion",
    "titre": "Accélère, puis cède",
-   "dire": "Sur la voie d’insertion, accélère pour atteindre la vitesse du trafic, regarde dans ton rétroviseur et ton angle mort, puis insère-toi. Les véhicules déjà sur l’autoroute sont prioritaires.",
+   "dire": "Sur la voie d’insertion, accélère jusqu’à la vitesse des autres. Rétroviseur, clignotant à gauche, coup d’œil dans l’angle mort, puis glisse-toi dans un espace libre. Ceux qui sont déjà sur l’autoroute sont prioritaires : pas d’espace ? Adapte ta vitesse pour en trouver un avant la fin de la voie.",
    "env": "autoroute",
    "kmh": 75,
    "camera": "poursuite",
@@ -210,7 +214,7 @@
      "Marche arrière, demi-tour, s’arrêter hors urgence"
     ]
    ],
-   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits.",
+   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits. L’autoroute commence au panneau bleu avec une route qui passe sous un pont : piétons, vélos et petits scooters de 50 y sont interdits. Une voie rapide, aux deux sens séparés, suit presque les mêmes règles, mais à 110 au maximum.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -302,7 +306,7 @@
    "ch": 1,
    "eyebrow": "Les distances",
    "titre": "Deux chevrons",
-   "dire": "Les chevrons au sol t’aident : un chevron entre toi et la voiture de devant, c’est le danger. Deux chevrons, c’est la sécurité.",
+   "dire": "Sur certaines autoroutes, de grandes flèches en V sont peintes sur ta voie : ce sont les chevrons. Garde au moins deux chevrons entre toi et la voiture de devant : un seul, c’est trop près. Sans chevrons, garde deux traits de la bande d’arrêt d’urgence, comme au cours 4. Bouchon soudain devant toi ? Allume tes feux de détresse pour prévenir ceux qui te suivent.",
    "env": "autoroute",
    "kmh": 120,
    "camera": "haut",
@@ -330,7 +334,7 @@
     [
      "110",
      "km/h",
-     "sous la pluie, ou en probatoire"
+     "sous la pluie, ou en permis probatoire"
     ],
     [
      "50",
@@ -338,7 +342,7 @@
      "visibilité < 50 m"
     ]
    ],
-   "dire": "Rappel : 130 par temps sec, 110 sous la pluie et pour les jeunes conducteurs, 50 si la visibilité tombe sous 50 mètres.",
+   "dire": "Rappel : 130 par temps sec, 110 sous la pluie. Pendant ton permis probatoire, c’est 110 aussi, à tout âge. Et 50 si tu vois à moins de 50 mètres.",
    "vitesse": 110,
    "decor": {
     "env": "autoroute",
@@ -372,9 +376,9 @@
     ]
    },
    "sync": [
-    0.05,
-    0.21,
-    0.63
+    0.17,
+    1.6,
+    2.05
    ]
   },
   {
@@ -397,10 +401,10 @@
     ],
     [
      "Alerter",
-     "Borne d’appel ou 112"
+     "Borne orange ou 112"
     ]
    ],
-   "dire": "En cas de panne : bande d’arrêt d’urgence, le plus à droite possible. Feux de détresse, gilet enfilé avant de sortir, et tout le monde sort côté droit pour se mettre derrière la glissière. Puis tu appelles avec une borne d’appel d’urgence ou le 112.",
+   "dire": "En cas de panne, va sur la bande d’arrêt d’urgence, la petite voie tout à droite, le plus à droite possible. Allume tes feux de détresse et enfile ton gilet jaune avant de sortir. Tout le monde sort côté droit et passe derrière la glissière, la barrière de métal au bord. Puis appelle avec une borne orange d’appel d’urgence, ou le 112.",
    "decor": {
     "env": "autoroute",
     "kmh": 0,
@@ -501,10 +505,10 @@
     ]
    },
    "sync": [
-    0.23,
-    1.0,
-    1.31,
-    2.1
+    0.22,
+    1.13,
+    2.18,
+    3.31
    ]
   },
   {
@@ -512,7 +516,7 @@
    "ch": 2,
    "eyebrow": "Corridor de sécurité",
    "titre": "Écarte-toi",
-   "dire": "Quand un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence, gyrophares allumés, change de voie si tu peux, sinon ralentis fortement : c’est le corridor de sécurité.",
+   "dire": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue ou orange qui tourne ? Ralentis, et change de voie si tu peux. Sinon, écarte-toi le plus possible dans ta voie. C’est le corridor de sécurité.",
    "env": "autoroute",
    "kmh": 90,
    "camera": "poursuite",

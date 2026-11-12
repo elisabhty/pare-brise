@@ -30,7 +30,7 @@
   },
   {
    "texte": "Pictogramme orange",
-   "tag": "Avis d’un médecin"
+   "tag": "Avis d’un médecin ou d’un pharmacien"
   }
  ],
  "scenes": [
@@ -40,7 +40,7 @@
    "eyebrow": "Cours 19 · Conducteur",
    "titre": "Drogues et médicaments",
    "sous": "ce qui altère sans prévenir",
-   "dire": "Avant de conduire, tu observes une boîte de médicaments et les risques liés aux substances. Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
+   "dire": "Avant de prendre le volant, tu regardes la boîte de ton médicament. Cours numéro 19 : les drogues et les médicaments. Certains effets sont invisibles pour celui qui conduit.",
    "vitesse": 50,
    "decor": {
     "env": "ville",
@@ -154,12 +154,12 @@
     [
      "2",
      "ans",
-     "de prison au maximum"
+     "de prison au maximum (3 avec de l’alcool)"
     ],
     [
      "4 500",
      "€",
-     "d’amende au maximum"
+     "d’amende au maximum (9 000 avec de l’alcool)"
     ],
     [
      "6",
@@ -167,7 +167,7 @@
      "retirés"
     ]
    ],
-   "dire": "Conduire après avoir consommé des stupéfiants : jusqu’à deux ans de prison, 4 500 euros d’amende et 6 points. Avec de l’alcool en plus : jusqu’à trois ans et 9 000 euros.",
+   "dire": "Conduire après avoir consommé des stupéfiants : jusqu’à deux ans de prison, 4 500 euros d’amende et 6 points. Avec de l’alcool en plus : jusqu’à trois ans et 9 000 euros. C’est un délit : une infraction grave, jugée au tribunal.",
    "vitesse": 0,
    "decor": {
     "env": "route",
@@ -218,18 +218,18 @@
    "items": [
     [
      "Niveau 1, jaune",
-     "Soyez prudent"
+     "« Soyez prudent » : lis la notice"
     ],
     [
      "Niveau 2, orange",
-     "Soyez très prudent, demande l’avis d’un médecin"
+     "« Soyez très prudent » : avis d’un médecin ou d’un pharmacien"
     ],
     [
      "Niveau 3, rouge",
-     "Attention danger : ne conduis pas"
+     "« Attention, danger » : ne conduis pas"
     ]
    ],
-   "dire": "Sur la boîte de certains médicaments, un pictogramme en forme de voiture dans un triangle. Jaune : sois prudent. Orange : sois très prudent et demande l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas.",
+   "dire": "Sur la boîte de certains médicaments, un pictogramme en forme de voiture dans un triangle. Jaune : sois prudent, lis la notice avant de conduire. Orange : sois très prudent et demande l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas. Ton médecin te dira quand reprendre le volant.",
    "puces": [
     "1",
     "2",

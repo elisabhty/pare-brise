@@ -12,7 +12,7 @@
   "bonnes": [
    1
   ],
-  "explication": "1,6 mm."
+  "explication": "Le minimum légal est 1,6 mm de profondeur dans les rainures du pneu. En dessous, il faut le changer."
  },
  {
   "id": "e23-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    0
   ],
-  "explication": "À froid, sinon la mesure est faussée."
+  "explication": "Contrôle la pression à froid, avant de rouler : un pneu chaud donne une mesure faussée."
  },
  {
   "id": "e23-3",
@@ -40,7 +40,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Orange : anomalie. Rouge : alerte."
+  "explication": "Voyant orange : une anomalie, à faire vérifier rapidement. Voyant rouge : arrête-toi dès que tu peux le faire sans danger."
  },
  {
   "id": "e23-4",
@@ -54,6 +54,6 @@
   "bonnes": [
    0
   ],
-  "explication": "Il empêche le blocage des roues."
+  "explication": "L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas forcément le freinage."
  }
 ]

@@ -97,7 +97,7 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "Avec un permis définitif, le taux maximal est de 0,5 gramme par litre de sang. Mesuré à l'éthylotest, ça correspond à 0,25 milligramme par litre d'air expiré.",
+   "dire": "Quand ton permis n’est plus probatoire, il est définitif : le taux maximal est de 0,5 gramme d’alcool par litre de sang. Mesurée dans ton souffle, c’est la même limite, écrite autrement : 0,25 milligramme par litre d’air expiré.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -137,8 +137,8 @@
     ]
    },
    "sync": [
-    0.6,
-    1.46
+    0.65,
+    1.6
    ],
    "illu": {
     "type": "ethylotest",
@@ -165,7 +165,7 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "En permis probatoire, c’est 0,2 gramme par litre de sang, soit 0,1 milligramme par litre d’air expiré. Dans les faits, un seul verre peut suffire à le dépasser.",
+   "dire": "En permis probatoire, et déjà en conduite accompagnée, c’est 0,2 gramme par litre de sang, soit 0,1 milligramme par litre d’air expiré. Un seul verre peut suffire à le dépasser : pour toi, c’est zéro verre.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -205,8 +205,8 @@
     ]
    },
    "sync": [
-    0.24,
-    0.59
+    0.42,
+    0.68
    ],
    "illu": {
     "type": "ethylotest",
@@ -224,7 +224,7 @@
    "type": "chiffres",
    "ch": 1,
    "eyebrow": "Ce que l'alcool change",
-   "titre": "Plus lent, moins large",
+   "titre": "Tu réagis plus tard, tu vois moins",
    "vitesse": 60,
    "items": [
     [
@@ -238,7 +238,7 @@
      "visuel réduit"
     ]
    ],
-   "dire": "L'alcool allonge le temps de réaction et réduit le champ visuel. Tu vois moins, et tu réagis plus tard.",
+   "dire": "L'alcool allonge le temps de réaction et réduit le champ visuel. Tu vois moins, et tu réagis plus tard. Et rien ne fait baisser l’alcoolémie, la quantité d’alcool dans ton sang : ni café, ni eau, ni douche. Seul le temps compte.",
    "decor": {
     "env": "route",
     "kmh": 50,
@@ -265,7 +265,7 @@
       "textes": [
        [
         "25 m",
-        "de réaction, au lieu de 14"
+        "de réaction, au lieu de 15"
        ],
        [
         "",
@@ -303,7 +303,7 @@
      "g/L probatoire"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour vérifier les chiffres.",
+   "dire": "Cours terminé. Concrètement : celui qui conduit ne boit pas ; sinon, dors sur place ou rentre autrement. Passe à la pratique pour vérifier les chiffres.",
    "decor": {
     "env": "route",
     "kmh": 50,

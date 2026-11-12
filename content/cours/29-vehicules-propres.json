@@ -21,8 +21,8 @@
    "tag": "De 0 (électrique) à 5 (plus polluant)"
   },
   {
-   "texte": "ZFE",
-   "tag": "Vignette obligatoire pour y circuler"
+   "texte": "ZFE, zone à faibles émissions",
+   "tag": "Vignette Crit’Air obligatoire, les plus polluantes interdites"
   },
   {
    "texte": "Voiture électrique",
@@ -83,7 +83,7 @@
       "p": 0,
       "texte": [
        "Borne de recharge",
-       ""
+       "pour recharger la batterie"
       ],
       "hauteur": 2.2
      }
@@ -94,7 +94,7 @@
    "type": "liste",
    "ch": 0,
    "eyebrow": "La vignette Crit’Air",
-   "titre": "Six classes",
+   "titre": "Six vignettes, de 0 à 5",
    "items": [
     [
      "Crit’Air 0, verte",
@@ -106,10 +106,10 @@
     ],
     [
      "Crit’Air 2 à 5",
-     "Des plus récents aux plus polluants"
+     "Du moins polluant (2) au plus polluant (5)"
     ]
    ],
-   "dire": "La vignette Crit’Air classe les véhicules selon leurs émissions : zéro pour l’électrique, puis de un à cinq, du moins au plus polluant.",
+   "dire": "Il y a six vignettes Crit’Air, de 0 à 5. 0, la verte, c’est l’électrique. Puis de 1 à 5, du moins au plus polluant : 5, c’est la plus polluante. Tu commandes la vignette sur le site officiel, puis tu la colles sur ton pare-brise.",
    "puces": [
     "0",
     "1",
@@ -150,9 +150,9 @@
     ]
    },
    "sync": [
-    0.55,
-    0.73,
-    0.9
+    1.0,
+    2.08,
+    2.14
    ],
    "illu": {
     "type": "critair",
@@ -171,14 +171,14 @@
     ],
     [
      "Vignette obligatoire",
-     "Pour y circuler"
+     "Les plus polluantes sont interdites"
     ],
     [
      "Règles locales",
      "Elles changent d’une ville à l’autre"
     ]
    ],
-   "dire": "Les zones à faibles émissions limitent l’accès des véhicules les plus polluants, selon leur vignette Crit’Air. Leur avenir fait débat au Parlement, mais à ce jour elles restent en vigueur là où elles existent. Vérifie toujours les règles de ta ville.",
+   "dire": "ZFE, ça veut dire zone à faibles émissions : une zone où les voitures qui polluent trop n’ont pas le droit de rouler. Pour y circuler, ta voiture doit avoir sa vignette Crit’Air, et les plus polluantes sont interdites. Les ZFE existent dans certaines grandes villes, et leurs règles peuvent changer : vérifie celles de ta ville.",
    "decor": {
     "env": "ville",
     "kmh": 28,
@@ -214,9 +214,9 @@
     ]
    },
    "sync": [
-    0.24,
-    0.81,
-    2.5
+    1.39,
+    1.39,
+    2.49
    ],
    "illu": {
     "type": "critair",
@@ -229,7 +229,7 @@
    "ch": 1,
    "eyebrow": "La voiture électrique",
    "titre": "Silencieuse",
-   "dire": "À basse vitesse, une voiture électrique fait très peu de bruit : les piétons ne l’entendent pas arriver. Un son d’alerte est émis à faible vitesse, mais reste vigilant.",
+   "dire": "À basse vitesse, une voiture électrique fait très peu de bruit : les piétons ne l’entendent pas arriver. Jusqu’à 20 kilomètres heure environ, elle émet un petit son d’alerte, mais un piéton distrait peut ne pas l’entendre : ralentis et regarde-le.",
    "env": "ville",
    "kmh": 15,
    "camera": "poursuite",
@@ -266,14 +266,14 @@
     ],
     [
      "Accélération immédiate",
-     "Doser l’accélérateur"
+     "Appuie doucement"
     ],
     [
      "Autonomie",
-     "Elle baisse avec le froid et la vitesse"
+     "Les km possibles, batterie pleine : moins avec le froid"
     ]
    ],
-   "dire": "Au volant d’une électrique : lever le pied ralentit nettement la voiture, tout en rechargeant la batterie. L’accélération est immédiate, il faut la doser. Et l’autonomie baisse avec le froid et la vitesse.",
+   "dire": "Au volant d’une électrique, quand tu lâches l’accélérateur, la voiture ralentit nettement et recharge sa batterie : c’est le freinage régénératif. L’accélération est immédiate : appuie doucement. L’autonomie, c’est le nombre de kilomètres que tu peux faire batterie pleine : elle baisse avec le froid et la vitesse. Avant un long trajet, repère où tu pourras recharger.",
    "decor": {
     "env": "ville",
     "kmh": 40,
@@ -323,9 +323,9 @@
     ]
    },
    "sync": [
-    0.24,
+    0.83,
     1.01,
-    2.07
+    2.0
    ],
    "illu": {
     "type": "icones",

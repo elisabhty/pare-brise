@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "La responsabilité civile, dite « au tiers »."
+  "explication": "Le minimum obligatoire est la responsabilité civile, dite « au tiers » : elle paie les dommages que tu causes aux autres."
  },
  {
   "id": "pa26-2",
@@ -26,21 +26,21 @@
   "bonnes": [
    1
   ],
-  "explication": "Dans les 6 mois avant ses 4 ans, puis tous les 2 ans."
+  "explication": "Dans les 6 mois avant ses 4 ans, comptés depuis sa première mise en circulation, puis tous les 2 ans."
  },
  {
   "id": "pa26-3",
   "cours": "papiers-assurance",
   "type": "qcm",
-  "q": "Le constat amiable doit être envoyé à l’assureur sous :",
+  "q": "Tu achètes une voiture de 3 ans. Son premier contrôle technique a lieu :",
   "choix": [
-   "5 jours ouvrés",
-   "15 jours"
+   "avant ses 4 ans, comptés depuis sa 1re mise en circulation",
+   "4 ans après ton achat"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Cinq jours ouvrés."
+  "explication": "Le compte démarre à la première mise en circulation, écrite sur la carte grise : dans les 6 mois avant ses 4 ans, puis tous les 2 ans."
  },
  {
   "id": "pa26-4",
@@ -54,6 +54,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Vérifie tout avant de signer."
+  "explication": "Une fois signé, le constat ne se modifie plus : relis tout avant de signer."
  }
 ]

@@ -12,7 +12,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Environ 30 mètres."
+  "explication": "Environ 30 mètres : c’est pour ça qu’en feux de croisement, tu ralentis la nuit."
  },
  {
   "id": "ne15-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Il est réservé au brouillard et à la neige."
+  "explication": "Le feu de brouillard arrière est interdit sous la pluie : il sert seulement par brouillard ou quand la neige tombe."
  },
  {
   "id": "ne15-3",
@@ -63,11 +63,11 @@
   "q": "Les feux de route sont utilisables :",
   "choix": [
    "en ville éclairée",
-   "hors agglomération, si tu n’éblouis personne"
+   "sur une route non éclairée, si tu n’éblouis personne"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Route non éclairée et personne en vue."
+  "explication": "Les feux de route servent seulement sur une route non éclairée, et seulement si tu n’éblouis personne, ni devant ni en face."
  }
 ]

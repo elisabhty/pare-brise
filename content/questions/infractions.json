@@ -12,21 +12,22 @@
   "bonnes": [
    1
   ],
-  "explication": "135 €."
+  "explication": "Une amende de 4e classe : 135 € en forfaitaire, 90 € si tu paies dans les 15 jours, 375 € si tu paies trop tard."
  },
  {
   "id": "i27-2",
   "cours": "infractions",
   "type": "qcm",
-  "q": "Ne pas respecter un feu rouge retire :",
+  "q": "Tu commets trois infractions en même temps. Tu perds au maximum :",
   "choix": [
-   "2 points",
-   "4 points"
+   "6 points",
+   "8 points",
+   "12 points"
   ],
   "bonnes": [
    1
   ],
-  "explication": "135 € et 4 points."
+  "explication": "Pour plusieurs infractions commises en même temps, tu perds 8 points au maximum."
  },
  {
   "id": "i27-3",
@@ -41,7 +42,7 @@
   "bonnes": [
    1
   ],
-  "explication": "De 20 à 29 km/h au-dessus : 2 points."
+  "explication": "25 km/h de trop, c’est la tranche de 20 à 29 km/h : 2 points et 135 € d’amende."
  },
  {
   "id": "i27-4",
@@ -55,6 +56,6 @@
   "bonnes": [
    1
   ],
-  "explication": "135 € et 3 points."
+  "explication": "Ne pas boucler ta ceinture quand tu conduis : 135 € et 3 points."
  }
 ]

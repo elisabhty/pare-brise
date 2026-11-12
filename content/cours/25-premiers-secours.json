@@ -27,11 +27,19 @@
   },
   {
    "texte": "112",
-   "tag": "Numéro d’urgence européen"
+   "tag": "Numéro d’urgence de toute l’Union européenne"
   },
   {
    "texte": "Motard blessé",
    "tag": "Ne jamais retirer son casque"
+  },
+  {
+   "texte": "Gilet et triangle",
+   "tag": "Obligatoires à bord"
+  },
+  {
+   "texte": "Ne rien faire",
+   "tag": "Non-assistance à personne en danger : un délit"
   }
  ],
  "scenes": [
@@ -41,7 +49,7 @@
    "eyebrow": "Cours 25 · Secours",
    "titre": "Protéger, alerter, secourir",
    "sous": "les gestes qui sauvent",
-   "dire": "Un accident vient de se produire sur une route. La priorité est d’éviter un second accident. Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir.",
+   "dire": "Un accident vient de se produire sur une route. La priorité est d’éviter un second accident. Cours numéro 25 : les premiers secours. Trois mots, dans cet ordre : protéger, alerter, secourir. La loi t’oblige à agir, au minimum en alertant les secours : ne rien faire est un délit, la non-assistance à personne en danger.",
    "vitesse": 30,
    "decor": {
     "env": "route",
@@ -101,7 +109,7 @@
    "ch": 0,
    "eyebrow": "Protéger",
    "titre": "Éviter le suraccident",
-   "dire": "D’abord, protéger : feux de détresse, gilet enfilé avant de sortir, et le triangle à au moins 30 mètres, si tu peux le poser sans danger. Fais mettre tout le monde à l’abri.",
+   "dire": "D’abord, protéger : feux de détresse, gilet enfilé avant de sortir, et le triangle à au moins 30 mètres, avant le virage ou le haut de la côte, si tu peux le poser sans danger. Gilet et triangle sont obligatoires à bord : garde le gilet à portée de main. Fais mettre tout le monde à l’abri, loin des voitures, derrière la glissière s’il y en a une. Coupe le contact des voitures accidentées, et pas de cigarette.",
    "env": "route",
    "kmh": 0,
    "camera": "drone",
@@ -165,7 +173,7 @@
      "Par SMS, pour les personnes sourdes ou malentendantes"
     ]
    ],
-   "dire": "Ensuite, alerter. Le 112 fonctionne partout en Europe. Le 15 pour le SAMU, le 18 pour les pompiers, le 17 pour la police. Et le 114, par SMS, pour les personnes sourdes ou malentendantes.",
+   "dire": "Ensuite, alerter. Le 112 fonctionne dans toute l’Union européenne, en France aussi : si tu hésites, fais le 112. Le 15 pour le SAMU, le 18 pour les pompiers, le 17 pour la police. Et le 114, par SMS, pour les personnes sourdes ou malentendantes.",
    "puces": [
     "112",
     "15",
@@ -210,7 +218,7 @@
     ]
    },
    "sync": [
-    1.05,
+    1.0,
     2.02,
     2.32,
     2.7,
@@ -222,7 +230,7 @@
     "numeros": [
      [
       "112",
-      "Urgences, partout en Europe"
+      "Urgences, dans toute l’UE"
      ],
      [
       "15",
@@ -359,7 +367,7 @@
      "Massage cardiaque et défibrillateur"
     ]
    ],
-   "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Une victime inconsciente qui respire : position latérale de sécurité. Si elle ne respire plus : massage cardiaque et défibrillateur.",
+   "dire": "Enfin, secourir. Ne déplace pas une victime, sauf danger immédiat : un incendie, ou un risque d’être percutée. Ne retire jamais le casque d’un motard. Un saignement : appuie fort sur la plaie. Pour savoir si une victime inconsciente respire, regarde son ventre et sa poitrine se soulever pendant 10 secondes. Si elle respire : position latérale de sécurité, sur le côté, pour qu’elle ne s’étouffe pas. Si elle ne respire plus : appuie fort et vite au centre de sa poitrine, et fais chercher un défibrillateur.",
    "decor": {
     "env": "route",
     "kmh": 0,
@@ -426,11 +434,11 @@
     ]
    },
    "sync": [
-    1.03,
+    1.0,
     2.05,
     3.04,
-    4.14,
-    5.15
+    5.17,
+    6.07
    ]
   },
   {
@@ -449,7 +457,7 @@
     ],
     [
      "112",
-     "partout en Europe"
+     "dans toute l’Union européenne"
     ]
    ],
    "dire": "Cours terminé. Ces gestes peuvent sauver une vie : relis la fiche mémo, puis passe à la pratique.",

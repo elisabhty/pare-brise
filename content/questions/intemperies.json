@@ -12,7 +12,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Compte environ une fois et demie la distance sur sol sec."
+  "explication": "Sous la pluie, compte environ une fois et demie ta distance d’arrêt sur sol sec : à 50, environ 38 m au lieu de 25."
  },
  {
   "id": "i16-2",
@@ -27,21 +27,21 @@
   "bonnes": [
    0
   ],
-  "explication": "50 km/h partout, autoroute comprise."
+  "explication": "Visibilité sous 50 mètres : 50 km/h au maximum partout, même sur autoroute."
  },
  {
   "id": "i16-3",
   "cours": "intemperies",
   "type": "qcm",
-  "q": "Aquaplaning : le bon réflexe est de :",
+  "q": "Le 15 décembre, dans une commune de montagne signalée, avec des pneus d’été. Il te faut :",
   "choix": [
-   "freiner fort",
-   "lever le pied et tenir le volant droit"
+   "des chaînes ou des chaussettes dans le coffre",
+   "rien de spécial"
   ],
   "bonnes": [
-   1
+   0
   ],
-  "explication": "Les roues ne touchent plus la route : pas de freinage brusque."
+  "explication": "Du 1er novembre au 31 mars, dans les communes signalées : pneus hiver ou quatre saisons, sinon chaînes ou chaussettes à neige dans le coffre."
  },
  {
   "id": "i16-4",
@@ -69,7 +69,7 @@
   "bonnes": [
    0
   ],
-  "explication": "A4 : chaussée particulièrement glissante.",
+  "explication": "Ce triangle, avec une voiture qui dérape, annonce une chaussée particulièrement glissante : ralentis.",
   "panneaux": [
    "A4"
   ]

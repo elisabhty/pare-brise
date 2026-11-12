@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Ils augmentent la résistance au roulement."
+  "explication": "Des pneus pas assez gonflés frottent plus sur la route : ta voiture consomme plus, et freine moins bien."
  },
  {
   "id": "e28-2",
@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Il augmente la prise au vent."
+  "explication": "Un coffre de toit, même vide, freine la voiture dans l’air : tu consommes plus. Retire-le quand tu ne t’en sers pas."
  },
  {
   "id": "e28-4",
@@ -53,6 +53,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Un moteur au ralenti consomme pour rien."
+  "explication": "À l’arrêt prolongé, coupe le moteur : au ralenti, il consomme et pollue pour rien."
  }
 ]

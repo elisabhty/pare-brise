@@ -13,7 +13,7 @@
  "chapitres": [
   "Avant de doubler",
   "Les interdictions",
-  "Les usagers vulnérables"
+  "Le vélo, et quand on te double"
  ],
  "series": [
   "serie-depassement"
@@ -24,18 +24,22 @@
    "tag": "Avant de doubler"
   },
   {
-   "texte": "Panneau B3",
-   "tag": "Dépassement interdit",
+   "texte": "Dépassement interdit",
+   "tag": "Voitures, camions, tracteurs : pas les vélos ni les motos",
    "panneau": "B3"
   },
   {
-   "texte": "Cycliste",
-   "tag": "1 m en ville, 1,50 m hors ville",
-   "panneau": "A21"
+   "texte": "Dépasser un vélo",
+   "tag": "1 m en agglomération · 1,50 m hors agglomération"
   },
   {
    "texte": "On te double",
    "tag": "Ne pas accélérer, serrer à droite"
+  },
+  {
+   "texte": "Débouché de cyclistes",
+   "tag": "Des vélos peuvent arriver par le côté",
+   "panneau": "A21"
   }
  ],
  "scenes": [
@@ -45,7 +49,7 @@
    "eyebrow": "Cours 8 · Circulation",
    "titre": "Dépasser et croiser",
    "sous": "seulement si tout est vert",
-   "dire": "Un véhicule lent circule devant toi sur une route à double sens. Cours numéro 8 : le dépassement. C’est la manœuvre la plus risquée sur route. On ne la commence que si tout est réuni.",
+   "dire": "Un véhicule lent circule devant toi sur une route à double sens. Cours numéro 8 : le dépassement. C’est la manœuvre la plus risquée sur route. Tu la commences seulement si toutes les vérifications sont bonnes.",
    "vitesse": 60,
    "decor": {
     "env": "route",
@@ -84,15 +88,15 @@
      "Et assez de visibilité"
     ],
     [
-     "Rétroviseurs et angle mort",
+     "Rétros, clignotant, angle mort",
      "Personne ne te double déjà"
     ],
     [
-     "Clignotant",
-     "Puis on se rabat sans gêner"
+     "Dépasser vite",
+     "Puis revenir à droite sans gêner"
     ]
    ],
-   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Un coup d’œil aux rétroviseurs et dans l’angle mort. Clignotant, puis dépassement franc, et on se rabat sans couper la route.",
+   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Regarde tes rétroviseurs, mets ton clignotant, puis tourne la tête vers ton angle mort : la zone que tes rétroviseurs ne montrent pas. Personne ne doit déjà te doubler. Dépasse vite, sans hésiter, puis reviens à droite sans gêner celui que tu as doublé.",
    "decor": {
     "env": "route",
     "kmh": 25,
@@ -114,7 +118,7 @@
     ],
     "script": [
      [
-      "p3",
+      "p4",
       "depasser",
       0,
       {
@@ -194,8 +198,8 @@
    "sync": [
     0.29,
     1.0,
-    2.32,
-    3.0
+    2.06,
+    4.0
    ]
   },
   {
@@ -203,7 +207,7 @@
    "ch": 0,
    "eyebrow": "En pratique",
    "titre": "Doubler un tracteur",
-   "dire": "Ligne discontinue, route dégagée : tu peux doubler ce tracteur. Clignotant à gauche, dépassement rapide, puis rabattement quand tu le vois dans ton rétroviseur intérieur.",
+   "dire": "Ligne discontinue, route dégagée : tu peux doubler ce tracteur. Clignotant à gauche, dépassement rapide, puis rabattement quand tu le vois dans ton rétroviseur intérieur. On dépasse toujours par la gauche. Une seule exception : la voiture devant met son clignotant à gauche pour tourner, alors tu la dépasses par la droite.",
    "env": "route",
    "kmh": 30,
    "camera": "poursuite",
@@ -231,25 +235,25 @@
    "type": "panneaux",
    "ch": 1,
    "eyebrow": "Interdit de dépasser",
-   "titre": "Le panneau B3",
+   "titre": "Les cas interdits",
    "panneaux": [
     "B3",
-    "AB1"
+    "A21"
    ],
-   "dire": "Le panneau B3 interdit de dépasser les véhicules à moteur, sauf les deux-roues sans side-car. Le dépassement est aussi interdit à l’approche d’une intersection où tu n’as pas la priorité, dans un virage ou en haut d’une côte sans visibilité.",
+   "dire": "Ce panneau rond, avec une voiture rouge et une noire, interdit de dépasser les voitures, les camions et les tracteurs. Tu peux quand même dépasser un vélo, une moto ou un scooter. Dépasser est aussi interdit avant un carrefour où tu n’as pas la priorité, et quand tu ne vois pas assez loin : dans un virage ou en haut d’une montée. Le triangle avec un vélo, lui, prévient que des cyclistes peuvent arriver sur ta route par le côté.",
    "etiquettes": [
     [
      "B3",
      "Interdiction de dépasser"
     ],
     [
-     "AB1",
-     "Intersection, priorité à droite"
+     "A21",
+     "Débouché de cyclistes"
     ]
    ],
    "sync": [
-    0.12,
-    1.54
+    0.43,
+    3.45
    ]
   },
   {
@@ -257,7 +261,7 @@
    "ch": 2,
    "eyebrow": "Usagers vulnérables",
    "titre": "Un cycliste devant toi",
-   "dire": "Pour dépasser un cycliste, laisse au moins un mètre en agglomération, et un mètre cinquante hors agglomération. Et c’est la seule exception : tu peux chevaucher une ligne continue pour le faire, si c’est sans danger.",
+   "dire": "Pour dépasser un cycliste, laisse au moins un mètre en agglomération, et un mètre cinquante hors agglomération. Rappel du cours 7 : une ligne continue, tu ne roules pas dessus. Seule exception : pour dépasser un vélo ou une trottinette, tes roues de gauche peuvent rouler sur la ligne, si tu vois loin et que personne n’arrive.",
    "env": "route",
    "kmh": 20,
    "camera": "poursuite",
@@ -319,7 +323,7 @@
      "Il peut se rabattre court"
     ]
    ],
-   "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt.",
+   "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt. Et croiser, c’est passer à côté d’une voiture qui vient en face : sur une route étroite, serre-toi à droite et ralentis.",
    "decor": {
     "env": "route",
     "kmh": 55,
@@ -379,15 +383,15 @@
    "stats": [
     [
      "4",
-     "conditions avant de doubler"
+     "vérifications avant de doubler"
     ],
     [
      "1,5",
-     "m pour un cycliste hors ville"
+     "m pour un vélo hors agglomération"
     ],
     [
      "1",
-     "exception : le cycliste"
+     "exception : vélo ou trottinette"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique : à toi de décider si tu peux doubler.",

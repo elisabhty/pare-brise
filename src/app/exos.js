@@ -224,9 +224,9 @@ async function showBands(X, bands, dR, dB) {
 const MECA = {};
 
 /* ---------- Situations d'examen : une courte vidéo, un arrêt sur image, une question, des réponses A à D ---------- */
-const TYPES3D = ['moto', 'tram', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+const TYPES3D = ['moto', 'trottinette', 'tram', 'train', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
 const OBS = 3.6;                                                   // durée de la « vidéo » avant l'arrêt sur image (s)
-const BIG = ['moto', 'tram', 'voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
+const BIG = ['moto', 'tram', 'train', 'voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
 const rollOf = sc => { const v = (sc.kmh ?? 30) / 3.6; return { v, d: Math.min(8, v * 0.6) }; };
 /* T : durée de la vidéo. La voiture et les usagers mobiles partent en arrière d'autant,
    pour se trouver exactement à la place prévue au moment de l'arrêt sur image. */
@@ -403,7 +403,7 @@ MECA.examen = async (ex, X) => {
       const answers = pc
         ? `<div class="xans xsigns n${pc.length}">${pc.map((id, k) => `<button class="xan xsg" data-k="${k}" aria-pressed="false" aria-label="Panneau ${L[k]}"><span class="xsg-s">${sign(id)}</span><i>${L[k]}</i></button>`).join('')}</div>`
         : `<div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${fr(t)}</span></button>`).join('')}</div>`;
-      const c = X.card(`<div class="xq">${qcm ? `<span class="xq-k">${blanc ? `Question ${i + 1}` : 'Question de cours'}</span>` : ''}${sc.contexte ? `<p class="xq-ctx">${fr(sc.contexte)}</p>` : ''}<b>${fr(sc.q)}</b></div>
+      const c = X.card(`<div class="xq">${qcm ? `<span class="xq-k">${blanc ? `Question ${i + 1}` : 'Question de cours'}</span>` : ''}${sc.contexte ? `<p class="xq-ctx">${fr(sc.contexte)}</p>` : ''}<b>${fr(sc.q)}</b>${!blanc && sc.bonnes.length > 1 ? '<span class="xq-multi">Plusieurs réponses possibles</span>' : ''}</div>
         ${answers}
         ${blanc ? '<div class="xtimer"><i id="xQbar"></i></div>' : ''}
         <div class="xbtns">${blanc || mode !== 'video' ? '' : '<button class="btn ghost" id="xReplay" aria-label="Revoir la scène"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Revoir</span></button>'}<button class="btn" id="xOk" disabled>Valider</button></div>`, 'xask' + (qcm ? ' xqcm' : ''));

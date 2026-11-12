@@ -82,22 +82,22 @@
    "items": [
     [
      "L’usure",
-     "Regarde les témoins au fond des rainures"
+     "Les témoins d’usure : 1,6 mm minimum"
     ],
     [
-     "Coupures et déformations",
+     "Coupures et bosses",
      "Un pneu abîmé se remplace"
     ],
     [
      "Le sous-gonflage",
-     "Un pneu écrasé se voit au premier coup d’œil"
+     "Un pneu écrasé manque d’air"
     ],
     [
      "La pression",
-     "À froid, selon le constructeur"
+     "Une fois par mois, pneus froids"
     ]
    ],
-   "dire": "Observe l’état général des pneus : usure, coupures, déformations ou sous-gonflage apparent. Contrôle régulièrement la pression selon les indications du constructeur, de préférence à froid.",
+   "dire": "Regarde tes pneus : pas de coupure, pas de bosse. Au fond des creux, il y a des petites bosses : les témoins d’usure. Usé jusqu’à elles ? Il ne reste que 1,6 millimètre : change-le. Un pneu qui paraît écrasé manque d’air : vérifie la pression une fois par mois, avant de rouler, pneus froids. Les bons chiffres sont sur une étiquette, souvent dans l’encadrement de la portière.",
    "ch": 0,
    "decor": {
     "env": "ville",
@@ -130,12 +130,6 @@
      "pneu": "degonfle"
     }
    },
-   "sync": [
-    0.35,
-    0.43,
-    0.77,
-    1.24
-   ],
    "illu": {
     "type": "pneu",
     "vues": [
@@ -145,7 +139,13 @@
      "pression"
     ],
     "suit": true
-   }
+   },
+   "sync": [
+    1.88,
+    1.88,
+    4.0,
+    4.44
+   ]
   },
   {
    "type": "situation",
@@ -204,8 +204,8 @@
      }
     ]
    ],
-   "dire": "Vérifie que les feux nécessaires fonctionnent et que les optiques sont propres. Des feux défectueux réduisent ta visibilité et empêchent les autres de comprendre tes intentions.",
-   "ch": 1
+   "dire": "Allume tes feux et fais le tour de la voiture : avant, arrière, clignotants. Pour les feux stop, demande à quelqu’un de regarder pendant que tu freines. Des feux en panne t’empêchent de bien voir, et les autres ne comprennent pas ce que tu fais.",
+   "ch": 0
   },
   {
    "type": "situation",
@@ -224,8 +224,8 @@
      "kmh": -60
     }
    ],
-   "dire": "Un pare-brise sale ou des essuie-glaces usés peuvent masquer un danger. Nettoie les vitres, vérifie les balais et assure-toi d’avoir du liquide lave-glace adapté.",
-   "ch": 1
+   "dire": "Un pare-brise sale ou des essuie-glaces usés peuvent cacher un danger. Les balais, c’est le caoutchouc des essuie-glaces : s’ils laissent des traces, change-les. En hiver, prends un lave-glace qui ne gèle pas.",
+   "ch": 0
   },
   {
    "type": "liste",
@@ -249,7 +249,7 @@
      "À la jauge, si ton modèle en a une"
     ]
    ],
-   "dire": "Selon le véhicule, repère le liquide de refroidissement, le lave-glace, le liquide de frein et la jauge d’huile lorsqu’elle existe. Consulte le manuel : les méthodes de contrôle varient selon les modèles.",
+   "dire": "Sous le capot, les réservoirs ont deux traits : mini et maxi. Le niveau doit être entre les deux. Liquide de refroidissement, lave-glace, liquide de frein, et l’huile, à la jauge : le manuel te montre où ils sont.",
    "ch": 1,
    "decor": {
     "env": "ville",
@@ -279,12 +279,6 @@
      }
     ]
    },
-   "sync": [
-    0.28,
-    0.43,
-    0.63,
-    0.78
-   ],
    "illu": {
     "type": "niveaux",
     "suit": true,
@@ -310,7 +304,13 @@
       3
      ]
     ]
-   }
+   },
+   "sync": [
+    2.07,
+    2.21,
+    2.41,
+    2.52
+   ]
   },
   {
    "type": "liste",
@@ -324,18 +324,18 @@
    "items": [
     [
      "Rouge",
-     "Anomalie grave : arrête-toi dès que possible, en sécurité"
+     "Grave : arrête-toi dès que possible"
     ],
     [
      "Orange",
-     "Fais vérifier rapidement"
+     "Pas urgent : fais vérifier vite"
     ],
     [
-     "Le manuel du véhicule",
-     "Il donne le sens exact de chaque voyant"
+     "Vert ou bleu",
+     "Simple information"
     ]
    ],
-   "dire": "Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt dès que possible en sécurité. Un voyant orange demande généralement une vérification rapide. Leur signification exacte dépend du véhicule : consulte le manuel.",
+   "dire": "Voyant rouge : c’est grave, par exemple l’huile, la température du moteur ou les freins. Arrête-toi dès que tu peux, dans un endroit sûr. Voyant orange : ce n’est pas urgent, mais fais vérifier vite. Vert ou bleu, c’est juste une information. Le manuel donne le sens exact de chaque voyant.",
    "ch": 2,
    "decor": {
     "env": "ville",
@@ -365,16 +365,16 @@
      }
     ]
    },
-   "sync": [
-    0.07,
-    1.13,
-    2.52
-   ],
    "illu": {
     "type": "voyants",
     "manuel": true,
     "suit": true
-   }
+   },
+   "sync": [
+    0.05,
+    2.08,
+    3.0
+   ]
   },
   {
    "type": "liste",
@@ -391,10 +391,10 @@
     ],
     [
      "Moteur chaud",
-     "N’ouvre jamais le circuit de refroidissement"
+     "N’ouvre jamais le bouchon du refroidissement"
     ]
    ],
-   "dire": "Même si tout paraît normal, respecte les échéances d’entretien et fais examiner les anomalies. N’ouvre jamais le circuit de refroidissement lorsqu’il est chaud.",
+   "dire": "Même si tout va bien, fais la révision aux dates du carnet d’entretien. Un bruit bizarre ou un voyant ? Fais vérifier sans attendre. Moteur chaud : n’ouvre jamais le bouchon du liquide de refroidissement. Il est sous pression : il peut jaillir et te brûler.",
    "ch": 2,
    "decor": {
     "env": "ville",
@@ -424,11 +424,6 @@
      }
     ]
    },
-   "sync": [
-    0.41,
-    0.86,
-    1.88
-   ],
    "illu": {
     "type": "icones",
     "suit": true,
@@ -447,11 +442,16 @@
      {
       "i": "♨️",
       "t": "Moteur chaud",
-      "s": "circuit fermé",
+      "s": "ne pas ouvrir",
       "barre": true
      }
     ]
-   }
+   },
+   "sync": [
+    0.7,
+    2.0,
+    3.0
+   ]
   },
   {
    "type": "fin",
@@ -460,14 +460,14 @@
    "stats": [
     [
      "4",
-     "zones à vérifier"
+     "choses à vérifier avant de partir"
     ],
     [
      "2",
-     "couleurs de voyant à surveiller"
+     "couleurs qui demandent d’agir"
     ]
    ],
-   "dire": "Avant de partir, pense aux pneus, aux feux, aux vitres et aux alertes du tableau de bord. Pour les contrôles précis, suis toujours les indications de ton véhicule. Place à la pratique.",
+   "dire": "Avant de partir : pneus, feux, vitres, voyants. Et de temps en temps, les niveaux sous le capot. Place à la pratique.",
    "ch": 2,
    "decor": {
     "env": "ville",

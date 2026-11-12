@@ -26,7 +26,7 @@
   },
   {
    "texte": "Avant de partir",
-   "tag": "Rétroviseur, angle mort, clignotant"
+   "tag": "Rétroviseur, clignotant, angle mort"
   },
   {
    "texte": "En quittant",
@@ -82,11 +82,11 @@
    "items": [
     [
      "Le siège",
-     "Jambes légèrement fléchies, pédale au plancher"
+     "Pédale de gauche au fond, jambe un peu pliée"
     ],
     [
      "Le dossier",
-     "Bras légèrement pliés, poignets sur le haut du volant"
+     "Bras tendus, poignets sur le haut du volant"
     ],
     [
      "L’appui-tête",
@@ -94,14 +94,14 @@
     ],
     [
      "Les rétroviseurs",
-     "Le minimum de carrosserie visible"
+     "Un petit bout de carrosserie sur les côtés"
     ],
     [
      "La ceinture",
      "À plat, sur l’épaule et le bassin"
     ]
    ],
-   "dire": "D’abord le siège : jambes légèrement fléchies quand la pédale est au plancher. Puis le dossier : poignets posés sur le haut du volant, bras légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs. Et la ceinture, bien à plat.",
+   "dire": "D’abord le siège : pédale de gauche enfoncée à fond, ou le frein en boîte automatique, ta jambe reste légèrement fléchie. Puis le dossier : dos collé, bras tendus, tes poignets touchent le haut du volant ; mains sur le volant, tes bras sont alors légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs : sur les côtés, un petit bout de ta carrosserie ; au milieu, toute la lunette arrière. Et la ceinture, bien à plat, sur l’épaule et le bassin.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -132,11 +132,11 @@
     ]
    },
    "sync": [
-    0.11,
-    1.07,
+    0.06,
+    1.03,
     2.01,
-    3.21,
-    4.18
+    3.01,
+    4.08
    ],
    "illu": {
     "type": "siege",
@@ -148,7 +148,7 @@
    "ch": 1,
    "eyebrow": "Avant de partir",
    "titre": "Regarder autour",
-   "dire": "Avant de démarrer : rétroviseurs, coup d’œil dans l’angle mort, clignotant, puis tu t’insères sans gêner ceux qui arrivent.",
+   "dire": "Avant de démarrer : rétroviseurs, clignotant, coup d’œil dans l’angle mort, puis tu t’insères sans gêner ceux qui arrivent.",
    "env": "ville",
    "kmh": 0,
    "camera": "drone",
@@ -216,7 +216,7 @@
     ],
     [
      "Une vitesse engagée",
-     "Surtout en pente"
+     "1re en montée, marche arrière en descente"
     ],
     [
      "Moteur coupé",
@@ -224,10 +224,10 @@
     ],
     [
      "Portière",
-     "Rétroviseur avant d’ouvrir"
+     "Rétroviseur et angle mort avant d’ouvrir"
     ]
    ],
-   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. Et avant d’ouvrir, un coup d’œil au rétroviseur : un cycliste peut arriver.",
+   "dire": "En quittant ta voiture : frein de parking serré, une vitesse engagée, moteur coupé. En pente : la première en montée, la marche arrière en descente ; en boîte automatique, le levier sur P. Et avant d’ouvrir : rétroviseur, puis coup d’œil dans l’angle mort. Un cycliste peut arriver.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -248,7 +248,7 @@
     ],
     "script": [
      [
-      "p1",
+      "p2",
       "acteur",
       0,
       16
@@ -267,7 +267,7 @@
     0.27,
     0.61,
     0.81,
-    1.01
+    2.01
    ],
    "illu": {
     "type": "icones",

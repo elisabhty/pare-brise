@@ -20,7 +20,7 @@
  ],
  "memo": [
   {
-   "texte": "Ballon, portière, bus à l’arrêt",
+   "texte": "Ballon, camion garé, voiture qui freine",
    "tag": "des indices"
   },
   {
@@ -46,7 +46,7 @@
    "titre": "Anticiper les dangers",
    "sous": "voir le risque avant qu’il apparaisse",
    "vitesse": 30,
-   "dire": "Tu roules dans une rue calme. Une balle apparaît près du trottoir. Aucun enfant n’est encore visible, mais cette balle est déjà un indice : quelqu’un peut surgir. Anticiper, c’est comprendre ce qui pourrait se produire.",
+   "dire": "Tu roules dans une rue calme. Un ballon roule près du trottoir. Tu ne vois pas d’enfant, mais ce ballon est un indice : un enfant peut courir derrière. Anticiper, c’est comprendre ce qui pourrait se produire.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -158,13 +158,13 @@
      1.5
     ]
    ],
-   "dire": "Balaye régulièrement la route au loin, les abords et les rétroviseurs. Une observation trop fixée sur le véhicule devant toi peut te faire manquer un danger plus loin.",
+   "dire": "Regarde loin, regarde les côtés de la route, et regarde tes rétros, chacun à son tour. Si tu regardes seulement la voiture devant, tu rates cette biche, là-bas. Et dans un virage dont tu ne vois pas la sortie, ralentis avant, pas dedans.",
    "ch": 0
   },
   {
    "type": "situation",
-   "eyebrow": "Un masque",
-   "titre": "Une voiture garée peut cacher un piéton",
+   "eyebrow": "Caché",
+   "titre": "Un camion garé peut cacher un piéton",
    "env": "ville",
    "kmh": 30,
    "camera": "cockpit",
@@ -196,7 +196,7 @@
      2
     ]
    ],
-   "dire": "Une camionnette stationnée masque une partie du trottoir. Un piéton pourrait traverser devant elle. Ralentis si nécessaire, augmente ton attention et conserve une marge pour réagir.",
+   "dire": "Un camion garé cache une partie du trottoir. Un piéton pourrait traverser devant lui. Ralentis, regarde sous le camion, tu peux voir des pieds, et garde le pied prêt à freiner.",
    "ch": 1
   },
   {
@@ -247,13 +247,13 @@
      1.6
     ]
    ],
-   "dire": "Des enfants se déplacent près de la chaussée. Leur comportement peut être imprévisible. Adapte ton allure, surveille les abords et prépare-toi à t’arrêter si la situation l’exige.",
+   "dire": "Des enfants marchent près de la route. Ils peuvent courir sur la chaussée sans regarder. Ralentis, regarde les trottoirs, et prépare-toi à freiner.",
    "ch": 1
   },
   {
    "type": "situation",
    "eyebrow": "L’adhérence",
-   "titre": "Quand l’adhérence diminue",
+   "titre": "Quand la route glisse",
    "puce": "Pluie : distance d’arrêt plus longue",
    "env": "route",
    "meteo": "pluie",
@@ -278,17 +278,17 @@
     [
      1.6,
      "vitesse",
-     62,
+     55,
      1.4
     ]
    ],
-   "dire": "La pluie réduit l’adhérence et peut allonger le freinage. Diminue ton allure, augmente les distances et évite les gestes brusques. Les limites affichées ne remplacent jamais l’adaptation aux conditions.",
+   "dire": "La pluie rend la route glissante : les pneus accrochent moins bien, et tu freines plus long. Roule moins vite, garde plus de distance et évite les gestes brusques. La limite affichée, c’est un maximum : sous la pluie, roule en dessous.",
    "ch": 1
   },
   {
    "type": "situation",
    "eyebrow": "Ta marge",
-   "titre": "Laisser une porte de sortie",
+   "titre": "Garder de l’espace autour de toi",
    "env": "autoroute",
    "kmh": 110,
    "camera": "drone",
@@ -324,7 +324,7 @@
      1
     ]
    ],
-   "dire": "Dans une circulation dense, conserve une distance suffisante et évite de rester inutilement dans l’angle mort d’un autre véhicule. Plus tu gardes de marge, plus tu peux réagir sans précipitation.",
+   "dire": "Garde un espace libre autour de toi : de quoi t’échapper si ça freine devant. Tu es dans l’angle mort d’une voiture ? Ralentis, ou dépasse-la franchement. Plus tu gardes de marge, plus tu peux réagir sans te précipiter.",
    "ch": 2,
    "aides": [
     {
@@ -395,7 +395,7 @@
      -1.25
     ]
    ],
-   "dire": "Une voiture devant freine, un vélo approche et un piéton attend au passage. Observe l’évolution de la scène plutôt que de te fier à une seule image. Adapte ta conduite au risque le plus immédiat.",
+   "dire": "Une voiture devant freine, un vélo approche et un piéton attend au passage piéton. Regarde comment la scène évolue, pas une seule image. Le plus urgent ici : la voiture qui freine devant toi. Freine aussi.",
    "ch": 2
   },
   {
@@ -408,7 +408,7 @@
      "étapes : observer, prévoir, adapter"
     ]
    ],
-   "dire": "Le réflexe essentiel : je repère les indices, j’imagine ce qui peut arriver, puis j’adapte ma vitesse et mes distances. Passe à la pratique pour t’entraîner à repérer les risques.",
+   "dire": "Trois étapes : j’observe, je prévois, j’adapte. Je vois le ballon, je pense à l’enfant, je ralentis. Passe à la pratique pour t’entraîner à repérer les risques.",
    "ch": 2,
    "decor": {
     "env": "ville",

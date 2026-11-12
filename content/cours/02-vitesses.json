@@ -27,9 +27,9 @@
    "tag": "50 km/h"
   },
   {
-   "panneau": "B14:80",
-   "texte": "Route à double sens sans séparateur",
-   "tag": "80 km/h*"
+   "texte": "Route à double sens, rien au milieu",
+   "tag": "80 km/h · 90 si un panneau le dit",
+   "panneau": "B14:80"
   },
   {
    "panneau": "B14:110",
@@ -45,6 +45,14 @@
    "panneau": "B14:50",
    "texte": "Visibilité de moins de 50 m",
    "tag": "50 km/h"
+  },
+  {
+   "texte": "Pluie : 110 · 100 · 80",
+   "tag": "Autoroute · chaussées séparées · double sens"
+  },
+  {
+   "texte": "Permis probatoire : 110 · 100 · 80",
+   "tag": "3 ans, 2 après la conduite accompagnée"
   }
  ],
  "scenes": [
@@ -159,23 +167,23 @@
     ],
     [
      "Route",
-     "Double sens"
+     "Une voie par sens"
     ],
     [
      "Voie rapide",
-     "Chaussées séparées"
+     "Sens séparés"
     ],
     [
      "Autoroute",
-     " "
+     "Panneau bleu"
     ]
    ],
-   "dire": "En agglomération : 50. Sur une route à double sens sans séparateur central : 80. Sur une route à chaussées séparées : 110. Sur autoroute : 130.",
+   "dire": "En agglomération, c’est-à-dire en ville ou au village : 50. Une voie dans chaque sens, rien au milieu : 80. Les deux sens séparés par un muret ou une glissière : 110. Sur autoroute, après le panneau bleu de l’autoroute : 130.",
    "sync": [
-    0.83,
-    1.11,
-    2.87,
-    3.17
+    0.55,
+    1.9,
+    2.9,
+    3.04
    ]
   },
   {
@@ -198,10 +206,10 @@
     ]
    ],
    "puce": "50 km/h sauf panneau contraire",
-   "dire": "L'agglomération commence au panneau blanc bordé de rouge qui porte le nom de la ville. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie.",
+   "dire": "L’agglomération, c’est la ville ou le village : elle commence au panneau blanc bordé de rouge qui porte son nom. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie : tu reprends la vitesse de la route, souvent 80. Certains quartiers sont en zone 30 : un panneau l’annonce, et c’est 30 jusqu’au panneau de sortie de la zone.",
    "sync": [
-    0.16,
-    2.71
+    0.2,
+    2.23
    ]
   },
   {
@@ -222,7 +230,7 @@
      "si le département l'a relevée, avec panneaux"
     ]
    ],
-   "dire": "Depuis 2018, ces routes sont à 80 par défaut. Mais beaucoup de départements en ont relevé une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80.",
+   "dire": "Depuis 2018, les routes à double sens sont à 80 par défaut. Mais certains départements en ont remonté une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80.",
    "decor": {
     "env": "route",
     "kmh": 80,
@@ -290,7 +298,7 @@
     ]
    },
    "sync": [
-    0.66,
+    0.73,
     1.9
    ]
   },
@@ -314,7 +322,7 @@
     [
      "80",
      "km/h",
-     "route à double sens"
+     "route à double sens, même celles à 90"
     ]
    ],
    "dire": "Quand il pleut : 110 sur autoroute au lieu de 130, et 100 sur route à chaussées séparées au lieu de 110. Sur les routes à 80, rien ne change. Les routes à 90 descendent à 80.",
@@ -370,7 +378,7 @@
    "sync": [
     0.13,
     0.49,
-    1.44
+    2.88
    ]
   },
   {
@@ -386,7 +394,7 @@
      "partout, même sur autoroute"
     ]
    ],
-   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute.",
+   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute. Repère sur autoroute : un trait et un espace de la bande d’arrêt d’urgence font environ 50 mètres.",
    "decor": {
     "env": "autoroute",
     "kmh": 50,
@@ -451,7 +459,7 @@
      "route à double sens"
     ]
    ],
-   "dire": "Pendant le permis probatoire : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90.",
+   "dire": "Après l’examen, ton permis est probatoire : trois ans, ou deux ans après la conduite accompagnée, à tout âge. Tu poses le disque « A » à l’arrière de ta voiture. Tes vitesses : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90.",
    "decor": {
     "env": "route",
     "kmh": 80,
@@ -490,7 +498,7 @@
        "Disque « A »",
        "jeune conducteur"
       ],
-      "p": 0
+      "p": 1
      },
      {
       "type": "cible",
@@ -507,9 +515,9 @@
     ]
    },
    "sync": [
-    0.18,
-    0.31,
-    0.57
+    2.08,
+    2.23,
+    2.52
    ]
   },
   {

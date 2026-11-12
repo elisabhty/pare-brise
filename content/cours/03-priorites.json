@@ -139,18 +139,18 @@
     "AB1"
    ],
    "puce": "La règle par défaut",
-   "dire": "Sans panneau ni feu, la règle est simple : tu cèdes le passage aux véhicules qui arrivent de ta droite. Ce panneau, avec sa croix, te rappelle la règle avant l'intersection."
+   "dire": "Sans panneau ni feu, la règle est simple : tu cèdes le passage aux véhicules qui arrivent de ta droite. Ce panneau, avec sa croix, te rappelle la règle avant l'intersection. Ceux qui arrivent de ta gauche, eux, doivent te laisser passer. Et si tu tournes à gauche, laisse d’abord passer ceux d’en face qui vont tout droit."
   },
   {
    "type": "panneaux",
    "ch": 1,
-   "eyebrow": "Priorité ponctuelle",
+   "eyebrow": "Prioritaire une seule fois",
    "titre": "Une seule intersection",
    "panneaux": [
     "AB2"
    ],
    "puce": "Uniquement la prochaine",
-   "dire": "Ce panneau-là te donne la priorité, mais seulement à la prochaine intersection. Juste après, la priorité à droite reprend."
+   "dire": "Ce triangle avec un gros trait noir te donne la priorité, mais seulement à la prochaine intersection. Juste après, la priorité à droite reprend."
   },
   {
    "type": "famille",
@@ -188,9 +188,9 @@
      "Arrêt obligatoire"
     ]
    ],
-   "dire": "Au cédez le passage, tu laisses passer et tu ne t'arrêtes que si quelqu'un arrive. Au stop, l'arrêt est obligatoire dans tous les cas, même si la route est vide.",
+   "dire": "Au cédez le passage, tu laisses passer tout le monde, à gauche comme à droite : tu t’arrêtes seulement si quelqu’un arrive. Au stop, tu t’arrêtes à la ligne blanche, roues immobiles, même si la route est vide.",
    "sync": [
-    0.01,
+    0.0,
     1.01
    ]
   },
@@ -198,7 +198,7 @@
    "type": "panneaux",
    "ch": 2,
    "eyebrow": "Carrefour giratoire",
-   "titre": "Ceux qui tournent passent",
+   "titre": "Ceux du rond-point passent",
    "panneaux": [
     "AB25",
     "AB3a"
@@ -213,10 +213,10 @@
      "À l'entrée"
     ]
    ],
-   "dire": "Ce panneau annonce un carrefour à sens giratoire. À l'entrée, il y a presque toujours un cédez le passage : tu laisses passer ceux qui sont déjà engagés sur l'anneau.",
+   "dire": "Ce panneau annonce un carrefour giratoire : un rond-point. À l’entrée, il y a presque toujours un cédez le passage. Tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche.",
    "sync": [
-    0.42,
-    1.31
+    0.35,
+    1.67
    ]
   },
   {
@@ -234,8 +234,8 @@
      "panneaux clés"
     ],
     [
-     "2",
-     "questions"
+     "1",
+     "question : qui passe ?"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique : à toi de dire qui passe en premier.",

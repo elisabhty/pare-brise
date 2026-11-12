@@ -11,21 +11,21 @@
   "bonnes": [
    1
   ],
-  "explication": "Une ligne continue ne se franchit pas et ne se chevauche pas (sauf pour dépasser un cycliste, sans danger)."
+  "explication": "Pour dépasser une voiture, tu ne passes pas sur la ligne continue, même un peu. Seule exception : dépasser un vélo ou une trottinette, si c’est sans danger."
  },
  {
   "id": "m07-2",
   "cours": "marquages",
   "type": "qcm",
-  "q": "Des traits longs et rapprochés annoncent :",
+  "q": "Ces hachures blanches au sol, les zébras : je peux rouler dessus ?",
   "choix": [
-   "la fin d’une interdiction",
-   "une ligne continue"
+   "Oui, si la voie est libre",
+   "Non"
   ],
   "bonnes": [
    1
   ],
-  "explication": "C’est la ligne d’annonce : une ligne continue arrive."
+  "explication": "Les zébras interdisent d’y rouler et de s’y garer : ils protègent une zone, souvent avant une séparation de voies."
  },
  {
   "id": "m07-3",
@@ -53,7 +53,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ce sont des flèches de rabattement : une ligne continue approche."
+  "explication": "Ce sont des flèches de rabattement : reviens dans ta voie, à droite, une ligne continue approche."
  },
  {
   "id": "m07-5",

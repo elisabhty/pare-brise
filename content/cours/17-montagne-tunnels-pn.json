@@ -21,15 +21,15 @@
  "memo": [
   {
    "texte": "Feux rouges clignotants au passage à niveau",
-   "tag": "Arrêt"
+   "tag": "Arrêt, même barrières levées"
   },
   {
    "texte": "Tunnel",
-   "tag": "Feux de croisement, pas de demi-tour"
+   "tag": "Feux de croisement, deux balises bleues d’écart, ni demi-tour ni marche arrière"
   },
   {
    "texte": "Route étroite en montagne",
-   "tag": "Celui qui descend cède"
+   "tag": "Celui qui descend cède, et recule si besoin"
   },
   {
    "texte": "Descente",
@@ -58,7 +58,7 @@
     ],
     "acteurs": [
      {
-      "type": "tram",
+      "type": "train",
       "S": 54,
       "x": 150,
       "couleur": 9345711
@@ -95,7 +95,7 @@
    "panneaux": [
     "A7"
    ],
-   "dire": "Au passage à niveau : quand les feux rouges clignotent et que la sonnerie retentit, tu t’arrêtes, même si les barrières ne sont pas encore baissées. Et ne t’engage jamais si tu n’es pas sûr de pouvoir dégager la voie de l’autre côté.",
+   "dire": "Au passage à niveau, dès que le feu rouge clignote, tu t’arrêtes : même sans sonnerie, même si les barrières sont encore levées. Et ne t’engage jamais si tu n’es pas sûr de pouvoir dégager la voie de l’autre côté. Sans barrières, le train passe toujours en premier : ralentis, regarde des deux côtés, puis seulement tu t’engages.",
    "etiquettes": [
     [
      "A7",
@@ -120,10 +120,10 @@
     ],
     [
      "Prévenir",
-     "Avec le téléphone d’urgence ou le 112"
+     "Téléphone d’urgence du passage à niveau, ou 112"
     ]
    ],
-   "dire": "Si ta voiture reste bloquée sur les rails : fais sortir tout le monde, éloignez-vous des voies, et prévenez avec le téléphone d’urgence ou le 112.",
+   "dire": "Si ta voiture reste bloquée sur les rails : fais sortir tout le monde, et éloignez-vous tous des voies. Puis préviens : le téléphone d’urgence du passage à niveau s’il y en a un, sinon le 112.",
    "decor": {
     "env": "route",
     "kmh": 0,
@@ -142,7 +142,7 @@
       "haut": 16734815
      },
      {
-      "type": "tram",
+      "type": "train",
       "S": 0,
       "x": 160,
       "couleur": 9345711
@@ -241,9 +241,9 @@
     ]
    },
    "sync": [
-    0.31,
-    0.46,
-    0.65
+    0.45,
+    0.69,
+    1.19
    ]
   },
   {
@@ -258,18 +258,22 @@
     ],
     [
      "Distance",
-     "Repérée par des marques bleues"
+     "Au moins deux balises bleues"
     ],
     [
-     "Interdit",
-     "Demi-tour, marche arrière, dépassement si signalé"
+     "Toujours interdits",
+     "Demi-tour, marche arrière"
+    ],
+    [
+     "Dépasser",
+     "Interdit si un panneau le dit"
     ],
     [
      "Incendie",
      "On sort à pied par les issues de secours"
     ]
    ],
-   "dire": "Dans un tunnel, feux de croisement allumés et distances respectées, souvent repérées par des marques bleues. Demi-tour et marche arrière sont interdits. En cas d’incendie, on gare la voiture, on coupe le moteur et on rejoint à pied une issue de secours.",
+   "dire": "Dans un tunnel, allume tes feux de croisement. S’il y a des balises bleues sur la paroi, garde au moins deux balises entre toi et le véhicule devant. Demi-tour et marche arrière sont toujours interdits ; le dépassement, quand un panneau l’interdit. Incendie devant toi : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche.",
    "decor": {
     "env": "route",
     "kmh": 50,
@@ -319,10 +323,11 @@
     ]
    },
    "sync": [
-    0.12,
-    0.4,
-    1.74,
-    2.06
+    0.56,
+    1.1,
+    2.4,
+    2.55,
+    3.0
    ]
   },
   {
@@ -330,7 +335,7 @@
    "ch": 2,
    "eyebrow": "Montagne",
    "titre": "Route étroite",
-   "dire": "Sur une route de montagne trop étroite pour se croiser, c’est le véhicule qui descend qui doit céder le passage à celui qui monte, sauf si celui qui monte peut se garer plus facilement.",
+   "dire": "Sur une route de montagne trop étroite, celui qui descend s’arrête et cède le passage à celui qui monte, en reculant si besoin. Sauf si celui qui monte peut se ranger plus facilement. Pourquoi ? Redémarrer en montée est plus difficile. Entre une voiture et un camion, c’est le plus léger qui manœuvre.",
    "env": "route",
    "kmh": 20,
    "camera": "drone",
@@ -372,18 +377,18 @@
    "items": [
     [
      "Frein moteur",
-     "Rétrograde avant la descente"
+     "Une vitesse plus basse avant la descente"
     ],
     [
      "Jamais au point mort",
-     "Tu perdrais le frein moteur"
+     "Sans vitesse, le moteur ne retient plus rien"
     ],
     [
      "Freins qui chauffent",
      "Ils perdent leur efficacité"
     ]
    ],
-   "dire": "En descente, rétrograde pour utiliser le frein moteur, et ne roule jamais au point mort. Freiner en continu fait chauffer les freins, qui perdent leur efficacité.",
+   "dire": "En descente, passe une vitesse plus basse : le moteur retient la voiture, c’est le frein moteur. Repère : prends la vitesse que tu prendrais pour monter cette pente. Ne roule jamais au point mort, sans vitesse : le moteur ne retiendrait plus rien. Et freiner sans arrêt fait chauffer les freins, qui perdent leur efficacité.",
    "decor": {
     "env": "route",
     "kmh": 35,
@@ -411,9 +416,9 @@
     ]
    },
    "sync": [
-    0.5,
-    0.84,
-    1.3
+    0.46,
+    2.2,
+    3.33
    ],
    "illu": {
     "type": "icones",

@@ -436,6 +436,59 @@ def caler(sc, key):
     if key == ('nuit-eclairage', 3):     # « repasse en feux de croisement » dès que la voiture d'en face apparaît
         sc['script'] = [[0, 'feux', {'route': True, 'croisement': False}], ['p0+1.6', 'feux', {'route': False, 'croisement': True}]]
 
+# ---------------- retours des élèves testeurs (gen/retours.py) ----------------
+import importlib.util, re as _re
+_spec = importlib.util.spec_from_file_location('retours', os.path.join(HERE, 'retours.py')); R = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(R)
+def phrases(t): return [x.strip() for x in _re.findall(r"[^.!?…]+[.!?…]+|[^.!?…]+$", t or '') if x.strip()]
+def refs(sc):
+    """Indices de phrases utilisés par les aides, étiquettes et gestes de la scène."""
+    out = []
+    for d in (sc, sc.get('decor') or {}):
+        for a in d.get('aides') or []:
+            out += [a[k] for k in ('p', 'fin') if isinstance(a.get(k), int)]
+        for e in d.get('etiquettes') or []:
+            if len(e) > 3 and isinstance(e[3], int): out.append(e[3])
+        for st in d.get('script') or []:
+            if isinstance(st[0], str) and st[0].startswith('p'): out.append(int(_re.match(r'p(\d+)', st[0]).group(1)))
+    return out
+ALERTES = []
+def retoucher(sc, key, champs):
+    for f, v in champs.items():
+        if f.startswith('items_'):
+            sc['items'][int(f[6:])] = v
+        elif isinstance(v, list) and v and isinstance(v[0], tuple):
+            txt = sc.get(f, '')
+            for a, b in v:                       # rejouable : un remplacement déjà fait n'est pas refait
+                if b and b in txt: continue
+                if a == '': txt = (txt.rstrip() + ' ' + b).strip()
+                elif a in txt: txt = txt.replace(a, b, 1)
+                else: ALERTES.append(f'{key} {f} : « {a[:50]} » introuvable')
+            sc[f] = txt
+        elif v is None:
+            sc.pop(f, None)
+        else:
+            sc[f] = v
+def corriger(d, v):
+    for f in (v if isinstance(v, list) else [v]):
+        if callable(f): f(d)
+        else: d.update(f)
+    return d
+for k, v in R.DECOR.items():
+    if k in DECOR: DECOR[k] = corriger(json.loads(json.dumps(DECOR[k])), v)
+for cid, meta in R.COURS.items():
+    c = COURS[cid]; memo = c.setdefault('memo', [])
+    for debut, ligne in meta.get('memo', []):
+        idx = [j for j, l in enumerate(memo) if l['texte'].startswith(debut)]
+        if not idx:                              # déjà remplacée lors d'un passage précédent : rien à faire
+            if ligne and all(l['texte'] != ligne['texte'] for l in memo): memo.append(ligne)
+            continue
+        if ligne: memo[idx[0]] = ligne
+        else: del memo[idx[0]]
+    for ligne in meta.get('memo+', []):
+        if all(l['texte'] != ligne['texte'] for l in memo): memo.append(ligne)
+    for f in ('resume', 'accroche', 'titre', 'chapitres'):
+        if f in meta: c[f] = meta[f]
+
 n_dec = n_txt = n_ill = n_sit = 0
 for cid, c in COURS.items():
     changed = False
@@ -445,6 +498,13 @@ for cid, c in COURS.items():
             for k, v in TEXTES[key].items():
                 if k.startswith('items_'): sc['items'][int(k[6:])] = v
                 else: sc[k] = v
+            n_txt += 1; changed = True
+        if key in R.T:
+            avant = len(phrases(sc.get('dire')))
+            retoucher(sc, key, R.T[key])
+            apres = len(phrases(sc.get('dire')))
+            r = [x for x in refs(sc) if x >= min(avant, apres) - 1] if avant != apres else []
+            if r and key not in R.DECOR: ALERTES.append(f'{key} : {avant} → {apres} phrases, renvois {sorted(set(refs(sc)))} à vérifier')
             n_txt += 1; changed = True
         before = json.dumps(sc)
         if key in DECOR:
@@ -460,7 +520,9 @@ for cid, c in COURS.items():
             if key in SITU: sc['aides'] = SITU[key]; n_sit += 1
             else: sc.pop('aides', None)
             if key in SITU_SCRIPT: sc['script'] = [st for st in sc.get('script', []) if st[1] != 'aide'] + SITU_SCRIPT[key]
+            if key in R.DECOR: corriger(sc, R.DECOR[key])
         changed = changed or json.dumps(sc) != before
-    if changed: W(FILES[cid], c)
+    if changed or cid in R.COURS: W(FILES[cid], c)
 missing = [(cid, i, s['type']) for cid, c in COURS.items() if c['ordre'] > 1 for i, s in enumerate(c['scenes']) if s['type'] in ('titre', 'liste', 'chiffres', 'fin') and (cid, i) not in DECOR]
 print(f'{n_dec} décors ({n_ill} illustrations), {n_sit} mises en situation annotées, {n_txt} textes corrigés' + (f' ; sans décor : {missing}' if missing else ''))
+for a in ALERTES: print('  ⚠', a)

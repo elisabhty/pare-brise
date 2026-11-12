@@ -19,13 +19,12 @@
  ],
  "memo": [
   {
-   "texte": "Dépasser un vélo",
-   "tag": "1 m en ville, 1,50 m hors ville",
-   "panneau": "A21"
+   "texte": "Dépasser un vélo ou une trottinette",
+   "tag": "1 m en agglomération · 1,50 m hors agglomération"
   },
   {
    "texte": "Piste cyclable obligatoire",
-   "tag": "Réservée aux cycles",
+   "tag": "Réservée aux vélos",
    "panneau": "B22a"
   },
   {
@@ -35,6 +34,10 @@
   {
    "texte": "Avant de tourner à droite",
    "tag": "Angle mort"
+  },
+  {
+   "texte": "Casque à vélo",
+   "tag": "Obligatoire avant 12 ans"
   }
  ],
  "scenes": [
@@ -44,7 +47,7 @@
    "eyebrow": "Cours 12 · Usagers",
    "titre": "Vélos et trottinettes",
    "sous": "partager la route",
-   "dire": "Une piste cyclable longe la route. Plusieurs mobilités partagent l’espace. Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
+   "dire": "Une piste cyclable longe la route. Voitures, vélos, trottinettes et piétons se partagent la rue. Cours numéro 12 : les vélos et les trottinettes. Ils vont moins vite que toi, et ils sont beaucoup plus fragiles.",
    "vitesse": 30,
    "decor": {
     "env": "ville",
@@ -125,7 +128,7 @@
    "ch": 0,
    "eyebrow": "Dépasser un vélo",
    "titre": "Laisse de la place",
-   "dire": "Pour dépasser un cycliste : au moins un mètre en agglomération, un mètre cinquante hors agglomération. Si la route est trop étroite, tu attends.",
+   "dire": "Pour dépasser un cycliste : au moins un mètre en agglomération, un mètre cinquante hors agglomération. Si la route est trop étroite, tu attends. Une trottinette électrique se dépasse de la même façon. Et à vélo, un enfant de moins de 12 ans doit porter un casque.",
    "env": "route",
    "kmh": 20,
    "camera": "haut",
@@ -209,25 +212,16 @@
    "eyebrow": "Les aménagements",
    "titre": "Pistes et sas",
    "panneaux": [
-    "B22a",
-    "B40"
+    "B22a"
    ],
-   "dire": "La piste cyclable est réservée aux cycles. Le sas vélo, devant les feux, aussi : tu t’arrêtes à la première ligne. Et dans une rue à sens unique avec double sens cyclable, des vélos peuvent arriver en face.",
+   "dire": "La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. Au feu, le sas vélo, c’est la case avec un vélo peint au sol, entre deux lignes : arrête-toi à la première ligne que tu rencontres, avant la case. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos : un petit panneau « sauf vélos » te prévient, des vélos peuvent arriver en face.",
    "etiquettes": [
     [
      "B22a",
      "Piste cyclable obligatoire"
-    ],
-    [
-     "B40",
-     "Fin de piste"
     ]
    ],
-   "puce": "Interdit aux voitures",
-   "sync": [
-    0.49,
-    0.04
-   ]
+   "puce": "Interdit aux voitures"
   },
   {
    "type": "liste",
@@ -241,7 +235,7 @@
     ],
     [
      "25 km/h maximum",
-     "Bridée par construction"
+     "Elle ne peut pas aller plus vite"
     ],
     [
      "Une seule personne",
@@ -249,10 +243,10 @@
     ],
     [
      "Pas sur le trottoir",
-     "Sauf autorisation, au pas"
+     "Sauf panneau, et alors au pas"
     ]
    ],
-   "dire": "Les trottinettes électriques sont des engins de déplacement personnel motorisés. Il faut avoir au moins 14 ans, elles ne dépassent pas 25 kilomètres heure, on y monte seul, et le trottoir est interdit sauf autorisation, à l’allure du pas.",
+   "dire": "Le code appelle les trottinettes électriques des « EDPM » : engins de déplacement personnel motorisés. Il faut avoir 14 ans au moins, monter seul, et rouler à 25 kilomètres heure au maximum. Le trottoir est interdit. Seule exception : un panneau l’autorise, et alors on roule au pas. Toi, en voiture, tu dépasses une trottinette comme un vélo.",
    "decor": {
     "env": "ville",
     "kmh": 22,
@@ -334,10 +328,10 @@
     ]
    },
    "sync": [
-    1.12,
-    1.31,
-    1.45,
-    1.59
+    1.13,
+    1.61,
+    3.07,
+    4.53
    ]
   },
   {

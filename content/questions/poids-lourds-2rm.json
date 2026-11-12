@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Tu es dans son angle mort."
+  "explication": "Si tu ne vois pas le chauffeur dans son rétroviseur, il ne te voit pas non plus : tu es dans son angle mort."
  },
  {
   "id": "pl213-2",
@@ -34,12 +34,12 @@
   "q": "Dans un virage serré, un camion :",
   "choix": [
    "reste au centre de sa voie",
-   "peut se déporter sur le côté"
+   "peut prendre de la place sur le côté"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Ne te mets pas à côté de lui dans un virage."
+  "explication": "Dans un virage serré, un camion a besoin de plus de place : il peut venir sur le côté. Ne reste pas à côté de lui."
  },
  {
   "id": "pl213-4",
@@ -53,7 +53,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Une moto arrive plus vite qu’on ne le pense."
+  "explication": "Une moto est étroite : elle paraît plus loin et plus lente qu’elle ne l’est. On sous-estime souvent sa vitesse."
  },
  {
   "id": "pl213-5",

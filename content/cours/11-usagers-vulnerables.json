@@ -21,9 +21,8 @@
  ],
  "memo": [
   {
-   "texte": "Piéton engagé ou qui veut traverser",
-   "tag": "Tu cèdes",
-   "panneau": "C20a"
+   "texte": "Piéton qui traverse ou veut traverser",
+   "tag": "Tu le laisses passer"
   },
   {
    "texte": "Refus de priorité à un piéton",
@@ -37,6 +36,10 @@
    "texte": "Zone 30",
    "tag": "30 km/h",
    "panneau": "B30"
+  },
+  {
+   "texte": "Permis probatoire",
+   "tag": "Un refus de priorité = 6 points : tout ton capital"
   }
  ],
  "scenes": [
@@ -46,7 +49,7 @@
    "eyebrow": "Cours 11 · Usagers",
    "titre": "Piétons et enfants",
    "sous": "les plus fragiles d’abord",
-   "dire": "Tu traverses une rue commerçante fréquentée par des piétons. Cours numéro 11 : les piétons et les enfants. Face à une voiture, ils n’ont aucune protection.",
+   "dire": "Tu roules dans une rue commerçante pleine de piétons. Cours numéro 11 : les piétons et les enfants. Face à une voiture, ils n’ont aucune protection.",
    "vitesse": 30,
    "decor": {
     "env": "ville",
@@ -103,7 +106,7 @@
    "ch": 0,
    "eyebrow": "La règle",
    "titre": "Le piéton passe",
-   "dire": "Tu dois céder le passage au piéton engagé sur la chaussée, ou qui montre clairement son intention de traverser. Pas seulement sur le passage piéton.",
+   "dire": "Laisse passer le piéton qui a commencé à traverser la route. Et aussi celui qui veut traverser : il est au bord, il regarde vers toi, ou il fait un signe. Pas seulement sur le passage piéton.",
    "env": "ville",
    "kmh": 20,
    "camera": "poursuite",
@@ -153,7 +156,7 @@
      "d’amende"
     ]
    ],
-   "dire": "Ne pas céder le passage à un piéton coûte 135 euros et 6 points. C’est autant qu’un excès de vitesse de 50 kilomètres heure.",
+   "dire": "Ne pas laisser passer un piéton coûte 135 euros et 6 points. Tu perds autant de points qu’en roulant 50 kilomètres heure au-dessus de la limite. Avec un permis probatoire, tu n’as que 6 points : un seul refus, et tu perds ton permis.",
    "vitesse": 20,
    "decor": {
     "env": "ville",
@@ -184,8 +187,8 @@
     ]
    },
    "sync": [
-    0.83,
-    0.63
+    0.82,
+    0.6
    ],
    "illu": {
     "type": "points",
@@ -214,7 +217,7 @@
     "A13a",
     "A13b"
    ],
-   "dire": "Un enfant ne sait pas évaluer la vitesse d’une voiture, et il peut surgir entre deux véhicules. Près d’une école ou d’un parc, ralentis et prépare ton pied au-dessus du frein.",
+   "dire": "Un enfant ne sait pas évaluer la vitesse d’une voiture, et il peut surgir entre deux véhicules. Près d’une école ou d’un parc, ralentis et prépare ton pied au-dessus du frein. Le triangle avec deux enfants annonce une école ou un parc. Celui avec un piéton annonce un passage piéton.",
    "etiquettes": [
     [
      "A13a",
@@ -224,6 +227,10 @@
      "A13b",
      "Passage piétons"
     ]
+   ],
+   "sync": [
+    2.34,
+    3.27
    ]
   },
   {
@@ -231,7 +238,7 @@
    "ch": 1,
    "eyebrow": "Anticiper",
    "titre": "Un ballon, un enfant",
-   "dire": "Un ballon qui roule sur la chaussée ? Un enfant risque de courir derrière. Freine tout de suite.",
+   "dire": "Un ballon qui roule sur la chaussée ? Un enfant risque de courir derrière. Freine tout de suite. Même réflexe derrière un bus arrêté : des piétons peuvent traverser devant lui, passe doucement.",
    "env": "ville",
    "kmh": 20,
    "camera": "cockpit",
@@ -259,7 +266,7 @@
   {
    "type": "liste",
    "ch": 2,
-   "eyebrow": "Zones apaisées",
+   "eyebrow": "Les zones lentes",
    "titre": "Trois vitesses",
    "items": [
     [
@@ -272,13 +279,13 @@
     ],
     [
      "Aire piétonne",
-     "À l’allure du pas, seulement si l’accès est autorisé"
+     "Au pas, seulement si un panneau t’y autorise"
     ]
    ],
-   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : on y roule au pas, seulement si l’accès est autorisé, et les piétons sont toujours prioritaires.",
+   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : tu y entres seulement si un panneau t’y autorise, comme les livreurs, et tu roules au pas, à la vitesse d’une personne qui marche. Les piétons y sont toujours prioritaires.",
    "decor": {
     "env": "ville",
-    "kmh": 38,
+    "kmh": 25,
     "camera": "plan",
     "signaux": [
      [

@@ -4,12 +4,12 @@
  "theme": "mecanique",
  "titre": "Entretien et voyants",
  "accroche": "une voiture en bon état",
- "resume": "Pneus, niveaux, freins, éclairage et couleurs des voyants du tableau de bord.",
+ "resume": "Pneus, niveaux, freins, éclairage, couleurs des voyants et aides au freinage.",
  "affiche": [
   "A14"
  ],
  "chapitres": [
-  "Les pneus",
+  "Pneus et niveaux",
   "Le tableau de bord"
  ],
  "series": [
@@ -18,7 +18,7 @@
  "memo": [
   {
    "texte": "Pneus",
-   "tag": "Usure maximale : 1,6 mm de profondeur"
+   "tag": "Sculptures : 1,6 mm de profondeur au minimum"
   },
   {
    "texte": "Pression",
@@ -78,7 +78,7 @@
    "type": "chiffres",
    "ch": 0,
    "eyebrow": "Les pneus",
-   "titre": "Le minimum légal",
+   "titre": "La loi et le bon réflexe",
    "items": [
     [
      "1,6",
@@ -88,10 +88,10 @@
     [
      "1",
      "fois par mois",
-     "contrôle de la pression, à froid"
+     "la pression, à froid : un conseil"
     ]
    ],
-   "dire": "Les pneus doivent avoir au moins 1,6 millimètre de sculpture. Vérifie leur pression une fois par mois, à froid. Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien.",
+   "dire": "Les pneus doivent avoir au moins 1,6 millimètre de sculpture. Pour le voir, regarde les témoins d’usure, des petits bourrelets au fond des rainures : s’ils arrivent au niveau du pneu, change-le. En dessous, c’est une infraction : amende, et ta voiture peut être immobilisée. Conseil : vérifie la pression une fois par mois, à froid. Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -126,7 +126,7 @@
    },
    "sync": [
     0.51,
-    1.5
+    3.57
    ],
    "illu": {
     "type": "pneu",
@@ -141,7 +141,7 @@
    "type": "liste",
    "ch": 0,
    "eyebrow": "Les vérifications",
-   "titre": "Régulièrement",
+   "titre": "Une fois par mois",
    "items": [
     [
      "Niveaux",
@@ -156,7 +156,7 @@
      "Ils ne doivent pas laisser de traces"
     ]
    ],
-   "dire": "Régulièrement : les niveaux d’huile, de liquide de refroidissement, de liquide de frein et de lave-glace. Toutes les ampoules. Et les essuie-glaces.",
+   "dire": "Une fois par mois et avant un long trajet : les niveaux d’huile, de liquide de refroidissement, de liquide de frein et de lave-glace. Toutes les ampoules. Et les essuie-glaces. Et si la pédale de frein devient molle, ou si la voiture tire d’un côté en freinant, fais contrôler tes freins sans attendre.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -218,7 +218,7 @@
     ]
    },
    "sync": [
-    0.16,
+    0.33,
     1.52,
     2.3
    ],
@@ -257,7 +257,7 @@
    "items": [
     [
      "Rouge",
-     "Alerte : arrête-toi dès que possible"
+     "Alerte : huile, température, freins"
     ],
     [
      "Orange",
@@ -268,7 +268,7 @@
      "Information : un équipement fonctionne"
     ]
    ],
-   "dire": "Au tableau de bord, trois couleurs. Rouge : alerte, arrête-toi dès que possible, en sécurité. Orange : une anomalie, à faire vérifier rapidement. Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu.",
+   "dire": "Au tableau de bord, trois couleurs. Rouge : une alerte, comme l’huile, la température ou les freins. Arrête-toi dès que possible, en sécurité. Certains rouges sont de simples rappels : ceinture, frein à main, porte ouverte. Orange : une anomalie, à faire vérifier rapidement. Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu.",
    "puces": [
     "●",
     "●",
@@ -291,8 +291,8 @@
    },
    "sync": [
     1.0,
-    2.0,
-    3.0
+    4.0,
+    5.0
    ],
    "illu": {
     "type": "voyants",
@@ -314,7 +314,7 @@
      "Corrige une perte de trajectoire"
     ]
    ],
-   "dire": "L’ABS empêche les roues de se bloquer au freinage : tu gardes la direction. L’ESP corrige la trajectoire quand la voiture commence à glisser. Mais aucun des deux ne raccourcit miraculeusement la distance d’arrêt.",
+   "dire": "L’ABS empêche les roues de se bloquer au freinage : tu gardes la direction. L’ESP corrige la trajectoire quand la voiture commence à glisser. Mais ni l’un ni l’autre ne raccourcit ta distance d’arrêt : garde tes distances.",
    "decor": {
     "env": "route",
     "kmh": 60,

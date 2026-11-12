@@ -20,7 +20,7 @@
  "memo": [
   {
    "texte": "Ligne continue",
-   "tag": "Ne jamais franchir ni chevaucher"
+   "tag": "Ne pas franchir · sauf pour dépasser un vélo"
   },
   {
    "texte": "Ligne d’annonce",
@@ -35,6 +35,14 @@
    "texte": "Ligne jaune discontinue",
    "tag": "Stationnement interdit",
    "panneau": "B6a1"
+  },
+  {
+   "texte": "Ligne mixte",
+   "tag": "On lit la ligne de son côté"
+  },
+  {
+   "texte": "Zébras",
+   "tag": "Ni rouler, ni se garer dessus"
   }
  ],
  "scenes": [
@@ -107,33 +115,75 @@
    "ch": 0,
    "eyebrow": "Ligne continue",
    "titre": "On ne la franchit pas",
-   "dire": "Une ligne continue ne se franchit pas, et ne se chevauche pas non plus. Elle signale souvent une zone sans visibilité : virage, sommet de côte.",
+   "dire": "Une ligne continue, tu ne passes pas dessus : ni avec toute la voiture, ni avec une seule roue. Elle est souvent là où tu ne vois pas loin : un virage, le haut d’une montée. Seule exception : tu peux rouler dessus avec les roues de gauche pour dépasser un vélo ou une trottinette, si c’est sans danger.",
    "env": "route",
    "kmh": 50,
    "camera": "poursuite",
-   "ligne": "continue"
+   "ligne": "continue",
+   "aides": [
+    {
+     "type": "repere",
+     "ego": true,
+     "dx": -1.75,
+     "dz": 14,
+     "hauteur": 0.6,
+     "texte": [
+      "Ligne continue",
+      "on ne passe pas dessus"
+     ],
+     "p": 0
+    }
+   ]
   },
   {
    "type": "situation",
    "ch": 0,
    "eyebrow": "Ligne discontinue",
    "titre": "On peut la franchir",
-   "dire": "La ligne discontinue, avec des traits courts et des intervalles longs, peut être franchie : pour dépasser, ou pour tourner à gauche, si c’est sans danger.",
+   "dire": "La ligne discontinue a des traits courts et de grands espaces. Tu peux la franchir pour dépasser ou tourner à gauche, si c’est sans danger. Parfois, une continue et une discontinue sont collées : c’est une ligne mixte. Regarde celle de ton côté : discontinue, tu peux passer ; continue, c’est interdit.",
    "env": "route",
    "kmh": 50,
    "camera": "poursuite",
-   "ligne": "discontinue"
+   "ligne": "discontinue",
+   "aides": [
+    {
+     "type": "repere",
+     "ego": true,
+     "dx": -1.75,
+     "dz": 14,
+     "hauteur": 0.6,
+     "texte": [
+      "Ligne discontinue",
+      "tu peux la franchir"
+     ],
+     "p": 0
+    }
+   ]
   },
   {
    "type": "situation",
    "ch": 0,
    "eyebrow": "Ligne d’annonce",
    "titre": "Attention, ça va changer",
-   "dire": "Quand les traits s’allongent et que les intervalles raccourcissent, c’est une ligne d’annonce. Elle prévient qu’une ligne continue arrive : ne commence pas de dépassement.",
+   "dire": "Quand les traits s’allongent et que les intervalles raccourcissent, c’est une ligne d’annonce. Elle prévient qu’une ligne continue arrive : ne commence pas de dépassement. Tu as déjà commencé à doubler ? Termine vite si tu as la place, sinon reviens derrière.",
    "env": "route",
    "kmh": 50,
    "camera": "haut",
-   "ligne": "annonce"
+   "ligne": "annonce",
+   "aides": [
+    {
+     "type": "repere",
+     "ego": true,
+     "dx": -1.75,
+     "dz": 16,
+     "hauteur": 0.6,
+     "texte": [
+      "Ligne d’annonce",
+      "traits longs, petits espaces"
+     ],
+     "p": 0
+    }
+   ]
   },
   {
    "type": "liste",
@@ -143,7 +193,7 @@
    "items": [
     [
      "Flèches de rabattement",
-     "Elles t’obligent à te rabattre"
+     "Reviens dans ta voie, à droite"
     ],
     [
      "Zébras",
@@ -158,7 +208,7 @@
      "Stationnement interdit"
     ]
    ],
-   "dire": "Les flèches de rabattement, inclinées, t’obligent à te rabattre : une ligne continue approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Le long du trottoir, une ligne jaune continue interdit l’arrêt et le stationnement, une ligne jaune discontinue interdit seulement le stationnement.",
+   "dire": "Des flèches penchées au sol ? Ce sont des flèches de rabattement : reviens dans ta voie, à droite, une ligne continue ou la fin de ta voie approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Ligne jaune continue au bord du trottoir : ni arrêt, ni stationnement. Ligne jaune en pointillés : tu peux t’arrêter un instant, mais pas te garer.",
    "decor": {
     "env": "route",
     "kmh": 20,
@@ -261,10 +311,10 @@
     ]
    },
    "sync": [
-    0.01,
-    1.03,
-    2.22,
-    2.65
+    1.07,
+    2.03,
+    3.14,
+    3.77
    ]
   },
   {

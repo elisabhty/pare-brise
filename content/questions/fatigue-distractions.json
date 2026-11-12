@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Une pause toutes les deux heures."
+  "explication": "Fais une pause au moins toutes les 2 heures de route : quelques minutes pour marcher et te reposer."
  },
  {
   "id": "fd18-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Seul le sommeil répare la fatigue."
+  "explication": "Le café ne remplace pas le sommeil : arrête-toi dans un endroit sûr et dors 15 à 20 minutes."
  },
  {
   "id": "fd18-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "135 € et 3 points."
+  "explication": "Téléphone tenu en main au volant : 135 € d’amende et 3 points, même arrêté dans un bouchon."
  },
  {
   "id": "fd18-4",
@@ -53,7 +53,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Tout dispositif dans l’oreille est interdit."
+  "explication": "Écouteurs, oreillettes, casque : tout ce qui se met sur ou dans l’oreille est interdit au volant (135 € et 3 points)."
  },
  {
   "id": "fd18-5",
@@ -62,12 +62,12 @@
   "q": "À 90 km/h, en une seconde, tu parcours environ :",
   "choix": [
    "9 m",
-   "25 m",
+   "27 m",
    "50 m"
   ],
   "bonnes": [
    1
   ],
-  "explication": "90 ÷ 3,6 ≈ 25 m par seconde."
+  "explication": "Ta vitesse sans le zéro, fois 3 : 9 × 3 = 27 m en une seconde, comme au cours 4."
  }
 ]

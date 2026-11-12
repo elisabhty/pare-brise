@@ -26,7 +26,7 @@
    "tag": "Serrer à droite, sans freiner brusquement"
   },
   {
-   "texte": "Feu orange tournant",
+   "texte": "Gyrophare orange",
    "tag": "Prudence, pas de priorité"
   }
  ],
@@ -37,7 +37,7 @@
    "eyebrow": "Cours 14 · Usagers",
    "titre": "Véhicules prioritaires",
    "sous": "laisser passer l’urgence",
-   "dire": "Une sirène se fait entendre au loin. Un véhicule d’intervention approche. Cours numéro 14 : les véhicules d’urgence. Quand ils sont en intervention, chaque seconde compte.",
+   "dire": "Une sirène se fait entendre au loin. Un véhicule prioritaire approche. Cours numéro 14 : les véhicules prioritaires. Quand ils sont en intervention, chaque seconde compte.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -90,7 +90,7 @@
    "ch": 0,
    "eyebrow": "Ils arrivent",
    "titre": "Feux bleus et deux tons",
-   "dire": "Police, gendarmerie, pompiers, SAMU : en intervention, avec feux bleus et avertisseur deux tons, ils ont la priorité sur tous les usagers, quels que soient les feux et panneaux.",
+   "dire": "Police, gendarmerie, pompiers, SAMU, c’est-à-dire les médecins d’urgence : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer.",
    "env": "ville",
    "kmh": 25,
    "camera": "drone",
@@ -224,19 +224,19 @@
   {
    "type": "liste",
    "ch": 1,
-   "eyebrow": "Les feux orange",
+   "eyebrow": "Les gyrophares orange",
    "titre": "Prudence",
    "items": [
     [
-     "Feu orange tournant",
-     "Dépanneuse, travaux, convoi exceptionnel"
+     "Gyrophare orange",
+     "Dépanneuse, travaux, convoi très large"
     ],
     [
      "Ce n’est pas une priorité",
      "Mais un danger : ralentis"
     ]
    ],
-   "dire": "Un gyrophare orange signale un véhicule lent ou un danger : dépanneuse, engin de chantier, convoi exceptionnel. Ce n’est pas une priorité de passage, mais ralentis et sois prudent.",
+   "dire": "Un gyrophare, c’est une lumière qui tourne sur le toit. Orange, il signale un véhicule lent ou un danger : dépanneuse, engin de chantier, ou convoi exceptionnel, c’est-à-dire un camion très large ou très long. Ce n’est pas une priorité de passage, mais ralentis et sois prudent.",
    "decor": {
     "env": "route",
     "kmh": 35,
@@ -283,8 +283,8 @@
     ]
    },
    "sync": [
-    0.09,
-    1.22
+    1.0,
+    2.22
    ]
   },
   {

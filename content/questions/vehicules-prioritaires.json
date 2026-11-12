@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Feux bleus et deux tons : priorité absolue."
+  "explication": "Feux bleus et sirène à deux tons : les pompiers en intervention passent avant tout le monde. Facilite leur passage."
  },
  {
   "id": "vp14-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Orange : prudence, pas de priorité."
+  "explication": "Un gyrophare orange signale un véhicule lent ou un danger : sois prudent, mais il n’a pas de priorité."
  },
  {
   "id": "vp14-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    0
   ],
-  "explication": "On libère la voie, sans manœuvre brusque."
+  "explication": "Serre-toi à droite, ralentis ou arrête-toi si besoin, sans geste brusque, pour lui libérer le passage."
  },
  {
   "id": "vp14-4",
@@ -48,11 +48,11 @@
   "q": "Au feu rouge, une ambulance arrive derrière toi. Tu peux :",
   "choix": [
    "avancer légèrement si c’est sans danger",
-   "griller le feu"
+   "passer le feu rouge"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Uniquement pour lui faire de la place, et sans danger."
+  "explication": "Tu peux avancer un peu, seulement pour lui faire de la place et si c’est sans danger. Tu ne passes pas le feu rouge."
  }
 ]

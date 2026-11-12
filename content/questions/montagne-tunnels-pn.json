@@ -3,15 +3,15 @@
   "id": "mtp17-1",
   "cours": "montagne-tunnels-pn",
   "type": "qcm",
-  "q": "Feux rouges clignotants au passage à niveau, barrières levées. Tu :",
+  "q": "Un bouchon commence juste après les rails, les barrières sont levées. Tu :",
   "choix": [
-   "passes rapidement",
-   "t’arrêtes"
+   "attends avant les rails",
+   "t’engages : les barrières sont levées"
   ],
   "bonnes": [
-   1
+   0
   ],
-  "explication": "Les feux imposent l’arrêt.",
+  "explication": "Ne t’engage jamais si tu n’es pas sûr de dégager les rails de l’autre côté : tu attends avant.",
   "panneaux": [
    "A7"
   ]
@@ -28,21 +28,21 @@
   "bonnes": [
    1
   ],
-  "explication": "Celui qui descend cède, sauf si celui qui monte peut se ranger plus facilement."
+  "explication": "Celui qui descend s’arrête et recule si besoin, sauf si celui qui monte peut se ranger plus facilement : redémarrer en montée est plus difficile."
  },
  {
   "id": "mtp17-3",
   "cours": "montagne-tunnels-pn",
   "type": "qcm",
-  "q": "Dans un tunnel, les feux de croisement sont :",
+  "q": "Dans ce tunnel, aucun panneau n’interdit de dépasser. Tu peux doubler ?",
   "choix": [
-   "obligatoires",
-   "interdits"
+   "oui, avec les précautions habituelles",
+   "non, jamais dans un tunnel"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Toujours allumés dans un tunnel."
+  "explication": "Dans un tunnel, demi-tour et marche arrière sont toujours interdits ; le dépassement, seulement quand un panneau ou une ligne continue l’interdit."
  },
  {
   "id": "mtp17-4",
@@ -56,7 +56,7 @@
   "bonnes": [
    1
   ],
-  "explication": "On rétrograde, jamais de point mort."
+  "explication": "En descente, rétrograde pour garder le frein moteur. Jamais au point mort : tes freins chaufferaient."
  },
  {
   "id": "mtp17-5",
@@ -70,6 +70,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Demi-tour interdit : on évacue à pied."
+  "explication": "Incendie dans un tunnel : arrête-toi, coupe le moteur et sors à pied par l’issue de secours la plus proche. Jamais de demi-tour."
  }
 ]

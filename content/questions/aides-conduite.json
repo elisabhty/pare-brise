@@ -11,7 +11,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Le régulateur, lui, maintient la vitesse."
+  "explication": "Le limiteur t’empêche de dépasser la vitesse que tu as choisie. Le régulateur, lui, maintient une vitesse constante."
  },
  {
   "id": "ac24-2",
@@ -39,13 +39,13 @@
   "bonnes": [
    1
   ],
-  "explication": "Les capteurs voient mal par mauvais temps."
+  "explication": "Par brouillard, les caméras et les capteurs voient mal : les aides peuvent être moins fiables, voire se couper."
  },
  {
   "id": "ac24-4",
   "cours": "aides-conduite",
   "type": "qcm",
-  "q": "En cas d’accident avec une aide activée, le responsable est :",
+  "q": "Pour le code de la route, qui répond d’un accident avec une aide activée ?",
   "choix": [
    "le constructeur",
    "le conducteur"
@@ -53,6 +53,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Le conducteur reste responsable."
+  "explication": "C’est toi qui conduis : tu réponds des infractions et de l’accident, même avec une aide activée."
  }
 ]

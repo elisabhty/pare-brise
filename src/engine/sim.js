@@ -207,6 +207,13 @@ function tramMesh(color = 0x2FA37A) {
   g.userData.tail = g.children[1].userData.tail;
   return g;
 }
+/* Train : trois voitures de 11,6 m (34 m en tout), pour les passages à niveau — le tramway, lui, roule en ville. */
+function trainMesh(color = 0xC9D0DA) {
+  const g = new THREE.Group();
+  for (const z of [-11.7, 0, 11.7]) { const b = busMesh(color); b.position.z = z; g.add(b); }
+  g.userData.tail = g.children[2].userData.tail;
+  return g;
+}
 /* Marquages peints : flèches de direction, de rabattement, « BUS » */
 const MARKS = {};
 function markTex(kind, K) {
@@ -530,6 +537,7 @@ export function buildSim(K) {
     trottinette(o = {}) { const g = scooterMesh(o); return actor(g, { kind: 'trottinette', len: 1.1, wid: 0.6, ...o }); },
     moto(o = {}) { const g = motoMesh(o); return actor(g, { kind: 'moto', len: 2.1, wid: 0.8, ...o }); },
     tram(o = {}) { const g = tramMesh(o.couleur ?? 0x2FA37A); return actor(g, { kind: 'tram', len: 23, wid: 2.5, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
+    train(o = {}) { const g = trainMesh(o.couleur ?? 0xC9D0DA); return actor(g, { kind: 'train', len: 35, wid: 2.6, ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     triangle(o = {}) { const g = triangleMesh(); return actor(g, { kind: 'triangle', len: 0.4, wid: 0.6, ...o }); },
     feu(o = {}) { const g = lightMesh(); const a = actor(g, { kind: 'feu', len: 0.3, wid: 0.3, x: 4.3, ...o }); a.set = st => setLight(g, st); a.set(o.etat || 'vert'); return a; },
     portiere(o = {}) {
@@ -580,7 +588,8 @@ export function buildSim(K) {
     },
     chevrons(de, a, pas = 40) {
       const white = mat('paintW', () => new THREE.MeshStandardMaterial({ color: 0xF2F2EC, roughness: 0.6 }));
-      for (let S = de; S < a; S += pas) for (const sd of [-1, 1]) { const m = new THREE.Mesh(geo('chev', () => new THREE.PlaneGeometry(0.25, 1.7).rotateX(-Math.PI / 2)), white); m.position.set(LANE + sd * 0.48, 0.014, local(S) + 0.4); m.rotation.y = sd * 0.75; run.add(m); }
+      /* de grands V peints au milieu de la voie, pointe vers l'avant, comme sur l'autoroute (assez grands pour se voir de haut) */
+      for (let S = de; S < a; S += pas) for (const sd of [-1, 1]) { const m = new THREE.Mesh(geo('chev2', () => new THREE.PlaneGeometry(0.42, 3.4).rotateX(-Math.PI / 2)), white); m.position.set(LANE + sd * 0.92, 0.014, local(S) + 1.15); m.rotation.y = sd * 0.62; run.add(m); }
     }
   };
 

@@ -27,7 +27,7 @@
   "bonnes": [
    1
   ],
-  "explication": "14 ans depuis 2023."
+  "explication": "Il faut avoir au moins 14 ans pour conduire une trottinette électrique, depuis 2023."
  },
  {
   "id": "ce12-3",
@@ -42,7 +42,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Elles sont limitées à 25 km/h."
+  "explication": "Une trottinette électrique est bridée : 25 km/h au maximum."
  },
  {
   "id": "ce12-4",
@@ -70,7 +70,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Rond bleu avec un vélo : piste obligatoire pour les cycles.",
+  "explication": "Rond bleu avec un vélo : piste obligatoire pour les vélos. Toi, en voiture, tu n’y vas pas.",
   "panneaux": [
    "B22a"
   ]

@@ -7,8 +7,8 @@
  "resume": "Placement, voies multiples, voies réservées, insertion et rabattement.",
  "chapitres": [
   "Choisir sa voie",
-  "S’insérer",
-  "Circuler sur plusieurs voies"
+  "S’insérer et sortir",
+  "Quand une voie se termine"
  ],
  "affiche": [
   "C12",
@@ -126,13 +126,13 @@
      null
     ]
    ],
-   "dire": "Sur une chaussée à plusieurs voies dans le même sens, utilise normalement la voie la plus à droite. La voie de gauche sert notamment à dépasser ou à préparer certaines manœuvres, selon la signalisation.",
+   "dire": "Sur route et sur autoroute, roule sur la voie la plus à droite. La voie de gauche sert à dépasser : ensuite, tu reviens à droite. En ville, avec plusieurs voies dans ton sens, choisis plutôt ta voie selon ta direction.",
    "ch": 0
   },
   {
    "type": "situation",
    "eyebrow": "Les flèches",
-   "titre": "Lire les flèches et les panneaux de voie",
+   "titre": "Lire les flèches au sol",
    "env": "ville",
    "kmh": 30,
    "camera": "drone",
@@ -184,8 +184,21 @@
      1.5
     ]
    ],
-   "dire": "À l’approche d’un carrefour, observe les flèches peintes au sol et les panneaux au-dessus des voies. Ils indiquent les directions autorisées. Place-toi à temps, sans traverser plusieurs files au dernier moment.",
-   "ch": 1
+   "dire": "À l’approche d’un carrefour, regarde les flèches peintes au sol : à gauche pour tourner à gauche, à droite pour aller tout droit ou à droite. Place-toi à temps, sans traverser plusieurs voies au dernier moment.",
+   "ch": 0,
+   "aides": [
+    {
+     "type": "repere",
+     "S": 30,
+     "x": 1.75,
+     "hauteur": 0.5,
+     "texte": [
+      "Flèche au sol",
+      "tout droit ou à droite"
+     ],
+     "p": 0
+    }
+   ]
   },
   {
    "type": "situation",
@@ -196,12 +209,6 @@
    "camera": "poursuite",
    "voie": -1.75,
    "ligne": "continue",
-   "signaux": [
-    [
-     "C12",
-     8
-    ]
-   ],
    "marquages": [
     [
      24,
@@ -239,13 +246,13 @@
      "réservée, même si elle semble libre"
     ]
    ],
-   "dire": "Une voie de bus, une piste cyclable ou une voie réservée à certaines catégories de véhicules ne se prend pas simplement parce qu’elle est dégagée. Vérifie les panneaux et les marquages qui indiquent qui peut l’emprunter.",
-   "ch": 1
+   "dire": "Une voie de bus est réservée aux bus : même vide, tu n’as pas le droit d’y rouler. Pareil pour une piste cyclable. Regarde les panneaux et les marquages au sol, comme ce « BUS » peint sur la voie.",
+   "ch": 0
   },
   {
    "type": "situation",
    "eyebrow": "L’insertion",
-   "titre": "S’insérer sur une voie rapide",
+   "titre": "S’insérer sur une autoroute",
    "env": "autoroute",
    "kmh": 70,
    "camera": "drone",
@@ -296,7 +303,7 @@
      null
     ]
    ],
-   "dire": "Sur une voie d’accélération, observe le trafic, adapte ta vitesse et cherche un espace suffisant. Signale ton intention et cède le passage aux véhicules déjà sur la chaussée. Ne force jamais ton insertion.",
+   "dire": "Sur la voie d’insertion, qu’on appelle aussi voie d’accélération, accélère pour rouler à la vitesse des autres. Rétros, clignotant, angle mort : cède le passage à ceux qui sont déjà sur la voie, puis glisse-toi dans un espace libre. Ne force jamais ton insertion.",
    "ch": 1,
    "aides": [
     {
@@ -364,7 +371,7 @@
      1.5
     ]
    ],
-   "dire": "Pour prendre une sortie, repère les panneaux assez tôt. Rejoins la voie appropriée avec les contrôles nécessaires, puis emprunte la voie de décélération. Si tu rates la sortie, continue jusqu’à la suivante.",
+   "dire": "Pour prendre une sortie, repère les panneaux assez tôt. Mets-toi sur la voie de droite : rétros, clignotant, angle mort. Puis prends la voie de sortie : c’est là que tu ralentis. Si tu rates la sortie, continue jusqu’à la suivante.",
    "ch": 2
   },
   {
@@ -429,7 +436,7 @@
      null
     ]
    ],
-   "dire": "Un panneau annonce la fin de ta voie. Anticipe, vérifie les rétroviseurs et l’angle mort, puis rabats-toi lorsque l’espace le permet. Les flèches au sol t’aident à prévoir la réduction.",
+   "dire": "Ce triangle annonce que la route se rétrécit par la gauche : la voie de gauche va s’arrêter. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. Les flèches de rabattement au sol te disent de te rabattre : ta voie va finir, ou une ligne continue arrive.",
    "ch": 2
   },
   {
@@ -446,7 +453,7 @@
      "réflexes de placement"
     ]
    ],
-   "dire": "Retiens trois réflexes : rester à droite quand c’est la règle, lire la signalisation assez tôt et ne jamais changer de file sans contrôle. Place à la pratique.",
+   "dire": "Retiens trois réflexes : je roule à droite, je lis les flèches et les panneaux tôt, et je regarde avant de changer de voie. Place à la pratique.",
    "ch": 2,
    "decor": {
     "env": "autoroute",

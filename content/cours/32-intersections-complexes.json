@@ -24,8 +24,7 @@
    "tag": "qui commande"
   },
   {
-   "panneau": "AB1",
-   "texte": "Rien du tout",
+   "texte": "Pas d’agent, de feu ni de panneau",
    "tag": "priorité à droite"
   },
   {
@@ -136,7 +135,7 @@
    "type": "situation",
    "eyebrow": "Qui commande ?",
    "titre": "Qui règle le passage ?",
-   "puce": "Feu orange clignotant : règles habituelles",
+   "puce": "Feu orange clignotant : il ne donne pas la priorité",
    "env": "ville",
    "kmh": 22,
    "camera": "drone",
@@ -178,7 +177,7 @@
      1.5
     ]
    ],
-   "dire": "Si un agent dirige la circulation, suis ses indications. Sinon, regarde les feux et la signalisation. Quand aucune règle particulière ne s’applique, la priorité à droite peut entrer en jeu.",
+   "dire": "Un : l’agent qui dirige la circulation. Deux : les feux. Trois : les panneaux. Quatre : pas d’agent, pas de feu, pas de panneau ? Priorité à droite. Ici, le feu clignote orange : il ne donne pas la priorité, et sans panneau, c’est la priorité à droite.",
    "ch": 0
   },
   {
@@ -308,7 +307,7 @@
      28.5
     ]
    ],
-   "dire": "Lorsque deux véhicules venant en sens opposés tournent tous deux à gauche, leurs trajectoires dépendent de la configuration et du marquage du carrefour. Observe les aménagements et évite de couper la trajectoire de l’autre.",
+   "dire": "Toi et la voiture d’en face, vous tournez tous les deux à gauche. S’il y a des marquages au sol, suis-les : ils montrent par où passer. Sans marquage, vous vous contournez : chacun passe derrière l’autre.",
    "ch": 1
   },
   {
@@ -350,7 +349,7 @@
      1.5
     ]
    ],
-   "dire": "À l’approche de rails, repère la signalisation et la direction du tramway. En règle générale, laisse passer le tramway lorsqu’il bénéficie de la priorité. N’entre jamais sur les rails si tu risques d’y rester immobilisé.",
+   "dire": "À l’approche de rails, repère la signalisation et le tramway. Le tramway est prioritaire : il ne peut ni t’éviter, ni s’arrêter vite. Laisse-le passer, et s’il y a des feux, respecte-les. Ne t’avance pas sur les rails si tu risques d’y rester bloqué.",
    "ch": 1
   },
   {
@@ -405,7 +404,7 @@
      29.5
     ]
    ],
-   "dire": "Même au vert, n’avance pas si tu risques de bloquer le carrefour. Et si tu tournes, reste attentif aux usagers qui traversent légalement la chaussée.",
+   "dire": "Même au vert, n’avance pas si tu risques de bloquer le carrefour. Et si tu tournes, laisse passer les piétons qui traversent au feu vert.",
    "ch": 2
   },
   {
@@ -459,7 +458,7 @@
      1.2
     ]
    ],
-   "dire": "Des voitures garées masquent une rue sur ta droite. Réduis ta vitesse et avance avec prudence pour mieux voir, tout en respectant les priorités. Ne t’engage que lorsque la situation est suffisamment claire.",
+   "dire": "Un camion garé cache une rue sur ta droite. Pas de panneau : priorité à droite, une voiture peut sortir de cette rue. Ralentis, et avance doucement jusqu’à bien voir la rue.",
    "ch": 2
   },
   {
@@ -469,14 +468,14 @@
    "stats": [
     [
      "4",
-     "niveaux : agent, feux, panneaux, règle"
+     "niveaux : agent, feux, panneaux, priorité à droite"
     ],
     [
      "1",
-     "réflexe : jamais sur les rails"
+     "réflexe : ne jamais s’arrêter sur les rails"
     ]
    ],
-   "dire": "À chaque carrefour, repère la règle applicable, les usagers concernés et les trajectoires qui se croisent. Passe à la pratique pour appliquer cette méthode.",
+   "dire": "À chaque carrefour : qui commande ? L’agent, le feu, le panneau, sinon la priorité à droite. Puis : qui croise ta route ? Passe à la pratique pour appliquer cette méthode.",
    "ch": 2,
    "decor": {
     "env": "ville",

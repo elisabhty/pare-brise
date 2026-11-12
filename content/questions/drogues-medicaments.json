@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Tolérance zéro : une trace suffit."
+  "explication": "Aucun : contrairement à l’alcool, il n’y a pas de taux toléré. Une simple trace suffit."
  },
  {
   "id": "dm19-2",
@@ -20,12 +20,12 @@
   "q": "Pictogramme orange sur un médicament :",
   "choix": [
    "aucun risque",
-   "sois très prudent, demande l’avis d’un médecin"
+   "sois très prudent, demande l’avis d’un médecin ou d’un pharmacien"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Niveau 2 : très prudent, avis médical."
+  "explication": "Pictogramme orange, niveau 2 : sois très prudent, et ne conduis pas sans l’avis d’un médecin ou d’un pharmacien."
  },
  {
   "id": "dm19-3",
@@ -39,7 +39,7 @@
   "bonnes": [
    1
   ],
-  "explication": "C’est un délit : 6 points."
+  "explication": "Conduire après des stupéfiants est un délit, une infraction grave jugée au tribunal : 6 points en moins, en plus de l’amende."
  },
  {
   "id": "dm19-4",

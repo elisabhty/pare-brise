@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Avant et arrière."
+  "explication": "La ceinture est obligatoire à toutes les places, à l’avant comme à l’arrière."
  },
  {
   "id": "sp22-2",
@@ -25,13 +25,13 @@
   "bonnes": [
    1
   ],
-  "explication": "L’airbag pourrait blesser gravement le bébé."
+  "explication": "Siège bébé dos à la route à l’avant : désactive l’airbag passager, il pourrait blesser gravement le bébé."
  },
  {
   "id": "sp22-3",
   "cours": "securite-passagers",
   "type": "qcm",
-  "q": "Jusqu’à quel âge un système de retenue adapté est-il obligatoire ?",
+  "q": "Jusqu’à quel âge un siège auto ou un rehausseur adapté est-il obligatoire ?",
   "choix": [
    "8 ans",
    "10 ans",
@@ -40,13 +40,13 @@
   "bonnes": [
    1
   ],
-  "explication": "Jusqu’à 10 ans."
+  "explication": "Jusqu’à 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc."
  },
  {
   "id": "sp22-4",
   "cours": "securite-passagers",
   "type": "qcm",
-  "q": "Sur la plage arrière, on peut poser :",
+  "q": "Sur la plage arrière, le plus sûr est de poser :",
   "choix": [
    "des objets légers",
    "rien"
@@ -54,6 +54,6 @@
   "bonnes": [
    1
   ],
-  "explication": "En cas de choc, tout objet devient un projectile."
+  "explication": "Le plus sûr, c’est rien : en cas de choc, tout objet devient un projectile."
  }
 ]

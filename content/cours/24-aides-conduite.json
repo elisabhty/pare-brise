@@ -26,7 +26,7 @@
   },
   {
    "texte": "Freinage d’urgence automatique",
-   "tag": "Peut freiner à ta place"
+   "tag": "Peut freiner, sans garantie"
   },
   {
    "texte": "Toujours",
@@ -72,7 +72,7 @@
    "items": [
     [
      "Limiteur de vitesse",
-     "Tu ne peux pas dépasser la vitesse choisie"
+     "Il t’empêche d’accélérer au-delà de la vitesse choisie"
     ],
     [
      "Régulateur",
@@ -84,14 +84,18 @@
     ],
     [
      "Freinage d’urgence automatique",
-     "Il freine si tu ne réagis pas"
+     "Il peut freiner si tu ne réagis pas, sans garantie"
     ],
     [
      "Alerte de franchissement de ligne",
      "Elle te prévient si tu dérives"
+    ],
+    [
+     "Alerte d’angle mort",
+     "Un voyant s’allume dans le rétro si quelqu’un est caché à côté"
     ]
    ],
-   "dire": "Le limiteur t’empêche de dépasser une vitesse. Le régulateur la maintient. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives.",
+   "dire": "Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais en descente, il ne freine pas : surveille ton compteur. Le régulateur la maintient. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives. Enfin, l’alerte d’angle mort allume un voyant dans le rétroviseur quand quelqu’un est caché à côté de toi.",
    "vitesse": 80,
    "decor": {
     "env": "autoroute",
@@ -190,11 +194,12 @@
     ]
    },
    "sync": [
-    0.04,
+    0.0,
     1.08,
     2.15,
     3.01,
-    4.05
+    4.2,
+    5.14
    ]
   },
   {
@@ -202,7 +207,7 @@
    "ch": 1,
    "eyebrow": "Leurs limites",
    "titre": "Pluie, brouillard, capteurs sales",
-   "dire": "Les caméras et radars voient mal par forte pluie, brouillard, neige, ou si les capteurs sont sales. Ils peuvent aussi ne pas détecter un piéton, un cycliste ou un obstacle inhabituel.",
+   "dire": "Les caméras et radars voient mal par forte pluie, brouillard, neige, ou si les capteurs sont sales. Ils peuvent aussi rater un piéton, un cycliste, un animal ou un objet tombé sur la route. Sur route mouillée ou enneigée, coupe le régulateur : en aquaplaning, il continuerait d’accélérer.",
    "env": "route",
    "meteo": "pluie",
    "kmh": 60,
@@ -274,7 +279,7 @@
     "cols": 3,
     "items": [
      {
-      "i": "🙌",
+      "i": "🛞",
       "t": "Mains",
       "s": "sur le volant"
      },
@@ -298,7 +303,7 @@
    "titre": "Ce qu’il faut retenir",
    "stats": [
     [
-     "5",
+     "6",
      "aides à connaître"
     ],
     [

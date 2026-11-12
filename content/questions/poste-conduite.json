@@ -3,15 +3,15 @@
   "id": "pc21-1",
   "cours": "poste-conduite",
   "type": "qcm",
-  "q": "Le haut de l’appui-tête doit être :",
+  "q": "Rétroviseur extérieur bien réglé, tu y vois :",
   "choix": [
-   "au niveau de la nuque",
-   "au niveau du haut du crâne"
+   "un petit bout de ta carrosserie",
+   "surtout ta carrosserie"
   ],
   "bonnes": [
-   1
+   0
   ],
-  "explication": "Il protège ainsi la nuque en cas de choc arrière."
+  "explication": "Un petit bout de carrosserie te sert de repère ; tout le reste du miroir montre la route derrière toi."
  },
  {
   "id": "pc21-2",
@@ -25,7 +25,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Et mettre ton clignotant."
+  "explication": "Avant de partir : rétroviseur, clignotant, coup d’œil dans l’angle mort, puis tu t’insères doucement."
  },
  {
   "id": "pc21-3",
@@ -39,13 +39,13 @@
   "bonnes": [
    1
   ],
-  "explication": "Frein de parking serré et vitesse engagée."
+  "explication": "Si le frein lâche, la vitesse engagée retient la voiture : la première en montée, la marche arrière en descente."
  },
  {
   "id": "pc21-4",
   "cours": "poste-conduite",
   "type": "qcm",
-  "q": "Le siège est bien réglé quand, pédale au plancher, les jambes sont :",
+  "q": "Le siège est bien réglé quand, pédale de gauche enfoncée à fond, ta jambe est :",
   "choix": [
    "tendues",
    "légèrement fléchies"
@@ -53,6 +53,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Légèrement fléchies, pour garder de la force et du contrôle."
+  "explication": "Légèrement fléchie : tu gardes de la force et du contrôle sur la pédale."
  }
 ]

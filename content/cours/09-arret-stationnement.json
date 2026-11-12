@@ -4,7 +4,7 @@
  "theme": "circulation",
  "titre": "Arrêt et stationnement",
  "accroche": "s’immobiliser au bon endroit",
- "resume": "La différence entre arrêt et stationnement, les interdictions, les panneaux, le stationnement en pente et la sortie de voiture.",
+ "resume": "La différence entre arrêt et stationnement, les endroits toujours interdits, les panneaux et la sortie de voiture.",
  "affiche": [
   "B6a1",
   "B6d",
@@ -21,7 +21,7 @@
  "memo": [
   {
    "texte": "Arrêt",
-   "tag": "Conducteur à proximité, courte durée"
+   "tag": "Un court moment, au volant ou juste à côté"
   },
   {
    "texte": "Stationnement interdit",
@@ -98,14 +98,14 @@
    "items": [
     [
      "Arrêt",
-     "Immobilisation courte, conducteur à bord ou tout près, prêt à repartir"
+     "Un court moment : tu restes au volant ou juste à côté"
     ],
     [
      "Stationnement",
-     "Tout le reste : tu quittes ta voiture ou tu restes longtemps"
+     "Tout le reste : tu t’éloignes, ou tu attends longtemps"
     ]
    ],
-   "dire": "L’arrêt, c’est une immobilisation courte, pour déposer quelqu’un ou charger un objet, avec le conducteur à bord ou tout près. Le stationnement, c’est tout le reste.",
+   "dire": "L’arrêt, c’est un court moment pour déposer quelqu’un ou charger un objet : tu restes au volant, ou juste à côté, prêt à repartir. Le stationnement, c’est tout le reste : tu t’éloignes, par exemple pour monter un colis, ou tu attends longtemps, même assis dedans.",
    "decor": {
     "env": "ville",
     "kmh": 20,
@@ -227,19 +227,19 @@
    },
    "sync": [
     0.0,
-    1.05
+    1.0
    ]
   },
   {
    "type": "panneaux",
    "ch": 1,
    "eyebrow": "Les panneaux",
-   "titre": "Deux ronds bleus",
+   "titre": "Deux interdictions",
    "panneaux": [
     "B6a1",
     "B6d"
    ],
-   "dire": "Un rond bleu barré une fois : stationnement interdit, mais tu peux t’arrêter. Barré d’une croix : arrêt et stationnement interdits.",
+   "dire": "Fond bleu, bord rouge, une seule barre : stationnement interdit, mais tu peux t’arrêter. Barré d’une croix : arrêt et stationnement interdits.",
    "etiquettes": [
     [
      "B6a1",
@@ -251,23 +251,23 @@
     ]
    ],
    "sync": [
-    0.14,
+    0.34,
     1.2
    ]
   },
   {
    "type": "liste",
    "ch": 1,
-   "eyebrow": "Interdit partout",
+   "eyebrow": "Toujours interdit",
    "titre": "Même sans panneau",
    "items": [
     [
      "Passages piétons et trottoirs",
-     "Stationnement très gênant"
+     "Arrêt et stationnement : très gênant"
     ],
     [
-     "Places réservées aux personnes handicapées",
-     "Sans carte : très gênant"
+     "Places handicapé",
+     "Sans la carte : très gênant, même un arrêt"
     ],
     [
      "Voies de bus et pistes cyclables",
@@ -278,7 +278,7 @@
      "Interdits, sauf urgence"
     ]
    ],
-   "dire": "Même sans panneau, tu ne t’arrêtes pas sur un passage piéton ni sur un trottoir, ni sur une place réservée aux personnes handicapées sans la carte, ni sur une voie de bus ou une piste cyclable. Sur autoroute, dans un tunnel ou sur un passage à niveau, c’est interdit, sauf urgence.",
+   "dire": "Même sans panneau, certains endroits sont toujours interdits, même pour dix secondes. Le passage piéton, le trottoir, la voie de bus et la piste cyclable. La place handicapé aussi, sauf avec la carte de stationnement pour personnes handicapées. Et sur autoroute, dans un tunnel ou sur un passage à niveau, là où la route croise une voie ferrée : interdit, sauf urgence.",
    "decor": {
     "env": "ville",
     "kmh": 15,
@@ -352,10 +352,10 @@
     ]
    },
    "sync": [
-    0.25,
-    0.45,
-    0.79,
-    1.02
+    1.13,
+    2.0,
+    3.67,
+    3.67
    ]
   },
   {
@@ -367,15 +367,15 @@
     [
      "135",
      "€",
-     "amende forfaitaire"
+     "d’amende"
     ],
     [
      "+",
      "",
-     "mise en fourrière possible"
+     "fourrière possible"
     ]
    ],
-   "dire": "Le stationnement très gênant, sur un passage piéton ou une place handicapée par exemple, coûte 135 euros, avec possible mise en fourrière.",
+   "dire": "Se garer sur un passage piéton ou une place handicapé coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -419,8 +419,8 @@
     ]
    },
    "sync": [
-    0.66,
-    0.77
+    0.83,
+    1.28
    ]
   },
   {
@@ -428,7 +428,7 @@
    "ch": 2,
    "eyebrow": "Bien sortir",
    "titre": "La portière",
-   "dire": "Avant d’ouvrir ta portière, regarde dans le rétroviseur et dans l’angle mort : un cycliste peut arriver. Astuce : ouvre avec la main opposée, tu te retournes naturellement.",
+   "dire": "Avant d’ouvrir ta portière, regarde dans le rétroviseur et dans l’angle mort : un cycliste peut arriver. Astuce : ouvre ta portière avec la main droite. Ton corps tourne, et tu vois derrière toi.",
    "env": "ville",
    "kmh": 0,
    "camera": "poursuite",
@@ -483,15 +483,15 @@
      "panneaux"
     ],
     [
-     "4",
-     "lieux interdits partout"
+     "8",
+     "lieux toujours interdits"
     ],
     [
      "1",
      "réflexe avant d’ouvrir"
     ]
    ],
-   "dire": "Cours terminé. Retiens surtout le réflexe rétroviseur avant d’ouvrir ta portière. Place à la pratique.",
+   "dire": "Cours terminé. Retiens surtout : rétroviseur et angle mort avant d’ouvrir ta portière. Place à la pratique.",
    "decor": {
     "env": "ville",
     "kmh": 25,

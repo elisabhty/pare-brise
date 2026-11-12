@@ -11,7 +11,7 @@
   "bonnes": [
    1
   ],
-  "explication": "D’abord éviter le suraccident."
+  "explication": "D’abord protéger, pour éviter un nouvel accident ; puis alerter (15, 18 ou 112) ; enfin secourir."
  },
  {
   "id": "ps25-2",
@@ -32,30 +32,30 @@
   "id": "ps25-3",
   "cours": "premiers-secours",
   "type": "qcm",
-  "q": "Le numéro d’urgence européen est :",
+  "q": "Tu appelles les secours. Que donnes-tu en premier ?",
   "choix": [
-   "15",
-   "18",
-   "112"
+   "le lieu exact",
+   "ton nom et ton adresse",
+   "la marque des voitures"
   ],
   "bonnes": [
-   2
+   0
   ],
-  "explication": "Le 112 fonctionne dans toute l’Union européenne."
+  "explication": "D’abord le lieu exact, pour qu’on te trouve ; puis ce qui s’est passé, le nombre de victimes et leur état, et les dangers."
  },
  {
   "id": "ps25-4",
   "cours": "premiers-secours",
   "type": "qcm",
-  "q": "Un motard blessé : son casque doit être :",
+  "q": "Une victime saigne beaucoup. Tu :",
   "choix": [
-   "retiré",
-   "laissé en place"
+   "appuies fort sur la plaie",
+   "la fais marcher jusqu’à l’ombre"
   ],
   "bonnes": [
-   1
+   0
   ],
-  "explication": "Seuls les secours le retirent."
+  "explication": "Un saignement : appuie fort sur la plaie, avec ta main ou un tissu, jusqu’à l’arrivée des secours."
  },
  {
   "id": "ps25-5",
@@ -69,6 +69,6 @@
   "bonnes": [
    1
   ],
-  "explication": "La PLS libère les voies respiratoires."
+  "explication": "Inconsciente mais qui respire : mets-la en position latérale de sécurité, sur le côté, pour qu’elle ne s’étouffe pas."
  }
 ]

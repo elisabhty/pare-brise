@@ -12,7 +12,7 @@
   "bonnes": [
    2
   ],
-  "explication": "On circule à droite, on double à gauche."
+  "explication": "Sur autoroute, tu roules sur la voie de droite. Les voies de gauche servent à dépasser."
  },
  {
   "id": "a10-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Gilet enfilé, tout le monde derrière la glissière de sécurité."
+  "explication": "Gilet enfilé, tout le monde attend derrière la glissière. Le triangle, tu le poses seulement si tu peux le faire sans danger."
  },
  {
   "id": "a10-3",
@@ -40,7 +40,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Un trait : danger. Deux traits : sécurité."
+  "explication": "Un seul chevron d’écart, c’est trop près : danger. Garde au moins deux chevrons : c’est la sécurité."
  },
  {
   "id": "a10-4",
@@ -54,7 +54,7 @@
   "bonnes": [
    0
   ],
-  "explication": "C’est le corridor de sécurité."
+  "explication": "Un véhicule d’intervention est arrêté : change de voie si tu peux, sinon ralentis bien. C’est le corridor de sécurité."
  },
  {
   "id": "a10-5",
@@ -68,7 +68,7 @@
   "bonnes": [
    0
   ],
-  "explication": "C107 : entrée d’autoroute.",
+  "explication": "Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, tu peux y rouler jusqu’à 130.",
   "panneaux": [
    "C107"
   ]
@@ -86,6 +86,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Sous la pluie : 110 km/h."
+  "explication": "Sous la pluie, l’autoroute passe de 130 à 110 km/h."
  }
 ]

@@ -32,6 +32,18 @@
   {
    "texte": "Alcool 0,8 g/L ou plus",
    "tag": "Délit"
+  },
+  {
+   "texte": "Alcool de 0,5 à 0,8 g/L",
+   "tag": "135 € et 6 points"
+  },
+  {
+   "texte": "50 km/h de trop ou plus",
+   "tag": "Délit, 6 points"
+  },
+  {
+   "texte": "Plusieurs infractions d’un coup",
+   "tag": "8 points au maximum"
   }
  ],
  "scenes": [
@@ -95,7 +107,7 @@
      "4e classe"
     ]
    ],
-   "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Elles sont minorées si tu paies vite, majorées si tu tardes.",
+   "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Tu paies vite, elle baisse ; tu tardes, elle monte. Exemple, une amende à 135 euros : 90 si tu paies dans les 15 jours, 375 si tu paies trop tard.",
    "vitesse": 50,
    "decor": {
     "env": "ville",
@@ -160,7 +172,7 @@
      "6 points"
     ]
    ],
-   "dire": "Les retraits les plus fréquents : 3 points pour la ceinture ou le téléphone tenu en main, 4 points pour un feu rouge ou un stop, 6 points pour un refus de priorité à un piéton ou un excès de vitesse de 50 kilomètres heure ou plus.",
+   "dire": "Les retraits les plus fréquents. 3 points : la ceinture, ou le téléphone tenu en main. 4 points : un feu rouge ou un stop grillé. 6 points : refuser le passage à un piéton, ou 50 kilomètres heure de trop. Plusieurs infractions en même temps ? Tu perds 8 points au maximum.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -200,10 +212,10 @@
     ]
    },
    "sync": [
-    0.19,
-    0.45,
-    0.6,
-    0.76
+    1.23,
+    2.4,
+    3.44,
+    3.59
    ],
    "illu": {
     "type": "bareme",
@@ -241,7 +253,7 @@
     [
      "1",
      "point",
-     "moins de 20 km/h au-dessus"
+     "de 5 à 19 km/h au-dessus"
     ],
     [
      "2",
@@ -259,7 +271,7 @@
      "de 40 à 49"
     ]
    ],
-   "dire": "Pour la vitesse : 1 point pour moins de 20 kilomètres heure de trop, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. Au-delà, c’est 6 points et une suspension possible.",
+   "dire": "Pour la vitesse : moins de 5 kilomètres heure de trop, une amende, mais aucun point. 1 point de 5 à 19, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. À partir de 40 de trop, ton permis peut t’être retiré sur-le-champ. À 50 de trop ou plus : 6 points, et c’est désormais un délit, plus grave qu’une amende : tribunal, et prison possible. Les autres délits à connaître : l’alcool à 0,8 gramme ou plus, les stupéfiants, rouler sans assurance. Entre 0,5 et 0,8 gramme, c’est 135 euros et 6 points.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -295,10 +307,10 @@
     ]
    },
    "sync": [
-    0.11,
-    0.5,
-    0.66,
-    0.82
+    1.0,
+    1.2,
+    1.46,
+    1.72
    ],
    "illu": {
     "type": "compteur",
@@ -325,9 +337,13 @@
     [
      "6",
      "points au maximum par infraction"
+    ],
+    [
+     "8",
+     "points au maximum d’un coup"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour connaître le prix de chaque infraction.",
+   "dire": "Cours terminé. Retiens deux mots : une suspension, ton permis t’est retiré pour un temps ; une annulation, tu dois le repasser. Passe à la pratique pour connaître le prix de chaque infraction.",
    "decor": {
     "env": "route",
     "kmh": 80,

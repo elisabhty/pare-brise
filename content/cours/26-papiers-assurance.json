@@ -26,7 +26,7 @@
   },
   {
    "texte": "Constat amiable",
-   "tag": "À envoyer sous 5 jours ouvrés"
+   "tag": "À l’assureur sous 5 jours ouvrés (jours de semaine)"
   },
   {
    "texte": "Changement d’adresse",
@@ -89,7 +89,7 @@
    "items": [
     [
      "Permis de conduire",
-     "Papier, ou dématérialisé via France Identité"
+     "Papier, ou sur ton téléphone avec France Identité"
     ],
     [
      "Certificat d’immatriculation",
@@ -97,10 +97,10 @@
     ],
     [
      "Assurance",
-     "Vérifiée dans le fichier des véhicules assurés"
+     "Vérifiée par la police dans un fichier national"
     ]
    ],
-   "dire": "Lors d’un contrôle : ton permis, papier ou dématérialisé dans l’application France Identité, et le certificat d’immatriculation, la carte grise. L’assurance se vérifie désormais dans le fichier des véhicules assurés : la carte verte n’est plus à apposer sur le pare-brise.",
+   "dire": "Lors d’un contrôle : ton permis, en papier ou sur ton téléphone, dans France Identité, l’appli officielle de l’État, et le certificat d’immatriculation, la carte grise. La police vérifie ton assurance dans un fichier national : plus de carte verte sur le pare-brise. Pas tes papiers sur toi ? Une petite amende, et quelques jours pour les présenter à la police ou à la gendarmerie. Tu déménages ? Tu as un mois pour mettre à jour l’adresse de ta carte grise.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -137,9 +137,9 @@
     ]
    },
    "sync": [
-    0.14,
-    0.66,
-    1.0
+    0.12,
+    0.7,
+    1.2
    ],
    "illu": {
     "type": "documents",
@@ -153,9 +153,9 @@
    "titre": "Obligatoire",
    "items": [
     [
-     "1",
+     "RC",
      "minimum",
-     "la responsabilité civile, dite « au tiers »"
+     "la responsabilité civile : les dégâts que tu causes aux autres"
     ],
     [
      "3 750",
@@ -163,7 +163,7 @@
      "d’amende au maximum sans assurance"
     ]
    ],
-   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, pour les dommages causés aux autres. Rouler sans assurance est un délit : jusqu’à 3 750 euros d’amende.",
+   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, dite « au tiers » : elle paie les dommages que tu causes aux autres. Rouler sans assurance est un délit, une infraction grave : amende, jusqu’à 3 750 euros au tribunal, permis suspendu, voiture confisquée.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -200,8 +200,8 @@
     ]
    },
    "sync": [
-    0.33,
-    1.65
+    0.25,
+    1.52
    ],
    "illu": {
     "type": "documents",
@@ -229,7 +229,7 @@
      "ensuite, tous les deux ans"
     ]
    ],
-   "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans.",
+   "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans. Le compte démarre à sa première mise en circulation, écrite sur la carte grise, pas au jour de l’achat. En retard ? Amende, et ta voiture peut être immobilisée.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -277,7 +277,7 @@
       "noeuds": [
        [
         "0",
-        "achat",
+        "1re carte grise",
         0
        ],
        [
@@ -323,7 +323,7 @@
      "Sous 5 jours ouvrés"
     ]
    ],
-   "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés.",
+   "dire": "Après un accrochage sans blessé : remplissez un constat amiable ensemble, sur place. Vérifie bien les cases et le croquis avant de signer : après, on ne modifie plus. Chacun garde un exemplaire et l’envoie à son assureur sous cinq jours ouvrés, c’est-à-dire cinq jours de semaine, sans les week-ends ni les jours fériés. S’il y a un blessé : protège, alerte, et attends la police ou la gendarmerie. Si l’autre refuse le constat, note sa plaque, prends des photos et des témoins.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -364,7 +364,7 @@
     0.9,
     1.18,
     2.0,
-    2.55
+    2.26
    ],
    "illu": {
     "type": "constat",

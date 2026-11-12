@@ -76,7 +76,7 @@
     ],
     [
      "Passer les rapports tôt",
-     "Le moteur tourne moins vite"
+     "Vers 2 000 tours en diesel, 2 500 en essence"
     ],
     [
      "Vitesse stable",
@@ -87,7 +87,7 @@
      "La consommation grimpe vite avec la vitesse"
     ]
    ],
-   "dire": "Anticipe : lève le pied tôt plutôt que de freiner tard. Passe les rapports tôt. Garde une vitesse stable. Et rouler un peu moins vite fait baisser nettement la consommation, surtout sur autoroute.",
+   "dire": "Anticipe : lève le pied tôt plutôt que de freiner tard, en gardant ta vitesse passée : le moteur retient la voiture et ne consomme presque rien. Passe la vitesse supérieure tôt, vers 2 000 tours en diesel et 2 500 en essence, ou quand le tableau de bord te l’indique. Garde une vitesse stable. Et rouler un peu moins vite fait baisser nettement la consommation, surtout sur autoroute.",
    "vitesse": 70,
    "decor": {
     "env": "route",
@@ -148,8 +148,8 @@
   {
    "type": "liste",
    "ch": 0,
-   "eyebrow": "Avant de partir",
-   "titre": "La voiture",
+   "eyebrow": "Côté voiture",
+   "titre": "Les bons réflexes",
    "items": [
     [
      "Pneus bien gonflés",
@@ -157,18 +157,18 @@
     ],
     [
      "Coffre de toit retiré",
-     "Il freine la voiture"
+     "Il prend le vent : tu consommes plus"
     ],
     [
-     "Climatisation avec mesure",
-     "Elle augmente la consommation"
+     "Climatisation",
+     "Quand il fait très chaud, ou pour désembuer"
     ],
     [
      "Moteur coupé",
-     "Lors d’un arrêt prolongé"
+     "Quand tu attends à l’arrêt"
     ]
    ],
-   "dire": "Côté voiture : des pneus bien gonflés, un coffre de toit retiré quand il ne sert pas, la climatisation avec mesure, et le moteur coupé lors d’un arrêt prolongé.",
+   "dire": "Côté voiture : des pneus bien gonflés, et pas de coffre de toit quand il ne sert pas. La climatisation quand il fait vraiment chaud ou pour désembuer, pas en permanence. Et quand tu attends à l’arrêt, coupe le moteur.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -201,7 +201,7 @@
     },
     "script": [
      [
-      "p1",
+      "p0+2.6",
       "ego",
       {
        "coffre": false
@@ -220,10 +220,10 @@
     ]
    },
    "sync": [
-    0.09,
-    0.23,
-    0.53,
-    0.73
+    0.19,
+    0.55,
+    1.01,
+    2.63
    ]
   },
   {
@@ -238,7 +238,7 @@
     ],
     [
      "4",
-     "réglages avant de partir"
+     "réflexes côté voiture"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique pour conduire plus souple.",

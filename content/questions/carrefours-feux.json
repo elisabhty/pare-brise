@@ -35,15 +35,15 @@
   "id": "cf06-3",
   "cours": "carrefours-feux",
   "type": "qcm",
-  "q": "À l’entrée d’un giratoire avec un cédez-le-passage, tu laisses passer :",
+  "q": "Tu prends la première sortie du rond-point. Tu te places :",
   "choix": [
-   "les véhicules à ta droite",
-   "les véhicules déjà sur l’anneau"
+   "sur la voie de droite",
+   "sur la voie de gauche"
   ],
   "bonnes": [
-   1
+   0
   ],
-  "explication": "Ceux qui circulent sur l’anneau, arrivant par ta gauche, sont prioritaires.",
+  "explication": "Pour une sortie proche, la première ou tout droit, tu restes sur la voie de droite, et tu mets ton clignotant à droite avant de sortir.",
   "panneaux": [
    "AB25"
   ]
@@ -75,7 +75,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Le sas est réservé aux cyclistes. Une voiture s’arrête à la première ligne."
+  "explication": "Le sas vélo est réservé aux cyclistes : une voiture s’arrête à la première ligne, avant la case avec le vélo peint."
  },
  {
   "id": "cf06-6",
@@ -90,6 +90,6 @@
   "bonnes": [
    1
   ],
-  "explication": "Feu rouge grillé : 135 € et 4 points."
+  "explication": "Franchir un feu rouge coûte 135 € d’amende et 4 points."
  }
 ]

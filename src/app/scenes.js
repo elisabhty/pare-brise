@@ -61,7 +61,7 @@ export const View = { cam: null };
 export const Live = { sc: null, actors: [], aides: [], shown: null, k: 0 };
 export const camOf = sc => View.cam || (sc && sc.camera) || 'poursuite';
 export const paintDash = cam => { const d = $('#v-cours .dash'); if (d) d.hidden = cam !== 'cockpit'; };
-const ACT = { trottinette: 'trottinette', moto: 'moto', tram: 'tram', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
+const ACT = { trottinette: 'trottinette', moto: 'moto', tram: 'tram', train: 'train', voiture: 'voiture', velo: 'velo', pieton: 'pieton', enfant: 'enfant', bus: 'bus', camion: 'camion', tracteur: 'tracteur', biche: 'biche', ambulance: 'ambulance', triangle: 'triangle', portiere: 'portiere', feu: 'feu', ballon: 'ballon' };
 
 /* Monte une mise en scène dans le simulateur : celle d'une mise en situation, ou le décor d'un écran (liste, chiffres,
    titre, fin) pour que l'image parle de la même chose que la voix. */

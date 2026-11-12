@@ -12,7 +12,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Crit’Air 0, verte."
+  "explication": "Une voiture électrique a la vignette Crit’Air 0, la verte : la plus propre."
  },
  {
   "id": "vp29-2",
@@ -26,7 +26,7 @@
   "bonnes": [
    0
   ],
-  "explication": "L’accès dépend de la vignette."
+  "explication": "Pour circuler dans une ZFE, ta voiture doit avoir une vignette Crit’Air autorisée dans cette zone."
  },
  {
   "id": "vp29-3",
@@ -40,7 +40,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Il récupère de l’énergie en décélération."
+  "explication": "Quand tu lèves le pied, le moteur électrique freine la voiture et recharge un peu la batterie."
  },
  {
   "id": "vp29-4",
@@ -54,7 +54,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Les piétons peuvent ne pas l’entendre."
+  "explication": "À basse vitesse, une voiture électrique fait très peu de bruit : les piétons risquent de ne pas l’entendre arriver."
  },
  {
   "id": "vp29-5",

@@ -36,7 +36,7 @@
    "panneau": "AB25"
   },
   {
-   "texte": "Sas vélo",
+   "texte": "Sas vélo : arrêt à la première ligne",
    "tag": "Interdit aux voitures"
   }
  ],
@@ -104,7 +104,7 @@
     ],
     [
      "Les feux",
-     "Ils priment sur les panneaux"
+     "Ils passent avant les panneaux"
     ],
     [
      "Les panneaux et marquages",
@@ -115,7 +115,7 @@
      "Sans rien : priorité à droite"
     ]
    ],
-   "dire": "Retiens cet ordre. L’agent de circulation commande en premier, même s’il contredit un feu. Ensuite viennent les feux, puis les panneaux et le marquage. Et quand il n’y a rien du tout, c’est la priorité à droite.",
+   "dire": "Retiens cet ordre. L’agent de circulation commande en premier, même s’il contredit un feu : bras levé, tout le monde s’arrête ; de face ou de dos, tu t’arrêtes ; de profil, tu passes. Ensuite viennent les feux, puis les panneaux et le marquage. Et quand il n’y a rien du tout, c’est la priorité à droite.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -206,10 +206,10 @@
    "type": "situation",
    "ch": 1,
    "eyebrow": "Le feu orange fixe",
-   "titre": "Je m’arrête… si je peux",
-   "dire": "Le feu orange fixe impose l’arrêt. La seule exception : quand tu es trop près pour t’arrêter sans danger. Dans ce cas, tu continues.",
+   "titre": "Je m’arrête, sauf si c’est dangereux",
+   "dire": "Ce triangle avec trois feux annonce des feux, souvent là où tu ne les attends pas. Ici, le feu passe à l’orange : l’orange fixe impose l’arrêt. La seule exception : tu es si près qu’il faudrait freiner très fort. Dans ce cas, tu continues.",
    "env": "ville",
-   "kmh": 30,
+   "kmh": 22,
    "camera": "cockpit",
    "carrefour": 60,
    "ligneStop": "feu",
@@ -218,26 +218,33 @@
      "type": "feu",
      "S": 55,
      "x": 6.0,
-     "etat": "orange"
+     "etat": "vert"
     }
    ],
    "script": [
     [
-     1.4,
+     "p1",
      "feu",
      0,
      "orange"
     ],
     [
-     1.6,
+     "p1+0.2",
      "arret",
      51
     ],
     [
-     4.2,
+     "p1+2.8",
      "feu",
      0,
      "rouge"
+    ]
+   ],
+   "signaux": [
+    [
+     "A17",
+     40,
+     5.2
     ]
    ]
   },
@@ -250,7 +257,7 @@
     [
      "0",
      "",
-     "tolérance : on s’arrête à la ligne"
+     "tolérance : on s’arrête avant la ligne blanche"
     ],
     [
      "4",
@@ -263,7 +270,7 @@
      "d’amende forfaitaire"
     ]
    ],
-   "dire": "Au feu rouge, l’arrêt est absolu, à la ligne d’effet du feu. Le franchir coûte 135 euros et 4 points.",
+   "dire": "Au feu rouge, tu t’arrêtes toujours, avant la ligne blanche au sol. Le franchir coûte 135 euros et 4 points. Avec un permis probatoire, tu n’as que 6 points : il ne t’en resterait que 2.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -317,7 +324,7 @@
     ]
    },
    "sync": [
-    0.24,
+    0.25,
     1.75,
     1.42
    ],
@@ -357,11 +364,11 @@
      "Tu peux aller dans la direction indiquée"
     ],
     [
-     "Panonceau cycliste au feu",
-     "Les vélos peuvent passer au rouge en cédant le passage"
+     "Panonceau vélo sous le feu",
+     "Les vélos peuvent passer au rouge, toi non"
     ]
    ],
-   "dire": "Un feu orange clignotant ne donne aucune priorité : il signale un danger, et ce sont les règles habituelles qui s’appliquent. Une flèche verte t’autorise à aller dans sa direction. Et le petit panonceau vélo, sous un feu, permet aux cyclistes de franchir le rouge pour aller dans la direction indiquée, en cédant le passage.",
+   "dire": "Un feu orange clignotant ne donne aucune priorité : suis le panneau placé sous le feu ; sans panneau, c’est la priorité à droite. Une flèche verte t’autorise à aller dans sa direction. Au vert, un piéton déjà sur le passage finit de traverser avant toi. Un petit panneau vélo sous le feu ? Les cyclistes peuvent passer au rouge dans le sens de la flèche. Toi, tu restes arrêté. Devant certains feux, une case avec un vélo peint au sol est réservée aux cyclistes : le sas vélo. Toi, tu t’arrêtes à la première ligne, avant cette case.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -396,13 +403,13 @@
       40
      ],
      [
-      "p2",
+      "p3",
       "feu",
       0,
       "rouge"
      ],
      [
-      "p2+1",
+      "p3+1",
       "acteur",
       2,
       14
@@ -430,9 +437,9 @@
     ]
    },
    "sync": [
-    0.03,
+    0.02,
     1.04,
-    2.05
+    6.37
    ]
   },
   {
@@ -480,7 +487,7 @@
      "Clignotant à droite avant de sortir"
     ]
    ],
-   "dire": "Pour une sortie proche, reste sur la voie de droite. Pour une sortie plus lointaine, tu peux utiliser la voie de gauche, puis te rapprocher de la droite. Dans tous les cas, mets ton clignotant à droite avant de sortir.",
+   "dire": "Pour une sortie proche, la première ou tout droit, reste sur la voie de droite. Pour une sortie plus lointaine, tu peux utiliser la voie de gauche, puis te rapprocher de la droite. Dans tous les cas, mets ton clignotant à droite juste après la sortie qui précède la tienne.",
    "decor": {
     "env": "route",
     "kmh": 30,
@@ -631,9 +638,9 @@
     ]
    },
    "sync": [
-    0.28,
+    0.17,
     1.18,
-    2.41
+    2.27
    ]
   },
   {

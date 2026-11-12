@@ -111,7 +111,7 @@
     "A4",
     "A13b"
    ],
-   "puce": "150 m avant · 50 m en ville",
+   "puce": "150 m avant hors ville · 50 m en ville",
    "etiquettes": [
     [
      "A1a",
@@ -227,7 +227,7 @@
     "B31",
     "B40"
    ],
-   "puce": "Fin de prescription",
+   "puce": "Fin de la règle",
    "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir peut signaler la fin de cette limitation. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin.",
    "sync": [
     2.15,
@@ -280,7 +280,7 @@
     "AK5",
     "AK14"
    ],
-   "puce": "Prime sur le permanent",
+   "puce": "Le panneau jaune l’emporte",
    "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est notamment le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : lorsqu’elles se contredisent, les indications de la signalisation temporaire priment sur celles de la signalisation permanente.",
    "sync": [
     1.74,
@@ -343,7 +343,7 @@
     ],
     [
      "Panneau barré",
-     "Fin de prescription"
+     "Fin de la règle"
     ],
     [
      "Formes uniques",
@@ -351,7 +351,7 @@
     ],
     [
      "Fond jaune",
-     "Temporaire"
+     "Temporaire (sauf le losange de la route prioritaire)"
     ]
    ],
    "dire": "Bravo ! Tu connais maintenant les sept règles essentielles pour reconnaître les panneaux.",
@@ -380,8 +380,8 @@
      "étapes"
     ],
     [
-     "11",
-     "situations"
+     "13",
+     "questions"
     ]
    ],
    "dire": "Il est temps de passer à la pratique ! À toi de reconnaître les panneaux dans de vraies situations de circulation."

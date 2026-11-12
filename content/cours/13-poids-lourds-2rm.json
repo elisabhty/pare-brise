@@ -3,8 +3,8 @@
  "ordre": 13,
  "theme": "usagers",
  "titre": "Poids lourds, bus et motos",
- "accroche": "les gabarits à part",
- "resume": "Angles morts des camions, bus qui quittent leur arrêt, tramways et motos.",
+ "accroche": "les très grands et les très petits",
+ "resume": "Angles morts des camions, bus qui quittent leur arrêt, motos et inter-files.",
  "affiche": [
   "B3",
   "C12"
@@ -19,7 +19,7 @@
  "memo": [
   {
    "texte": "Camion",
-   "tag": "Si tu ne vois pas le chauffeur, il ne te voit pas"
+   "tag": "Vois son visage dans son rétro, sinon il ne te voit pas"
   },
   {
    "texte": "Bus qui quitte son arrêt (en ville)",
@@ -28,6 +28,10 @@
   {
    "texte": "Moto",
    "tag": "Difficile à voir, vitesse difficile à estimer"
+  },
+  {
+   "texte": "Inter-files",
+   "tag": "Motos entre les deux voies de gauche, dans les bouchons"
   }
  ],
  "scenes": [
@@ -36,7 +40,7 @@
    "ch": 0,
    "eyebrow": "Cours 13 · Usagers",
    "titre": "Poids lourds, bus et motos",
-   "sous": "les gabarits à part",
+   "sous": "les très grands et les très petits",
    "dire": "Un camion, un bus et une moto circulent autour de toi. Cours numéro 13 : les gros véhicules et les deux-roues motorisés.",
    "vitesse": 60,
    "decor": {
@@ -90,7 +94,7 @@
    "ch": 0,
    "eyebrow": "Les angles morts",
    "titre": "Le camion ne te voit pas",
-   "dire": "Un camion a de grands angles morts, devant, sur les côtés et derrière. La règle : si tu ne vois pas le chauffeur dans son rétroviseur, il ne te voit pas.",
+   "dire": "Un camion a 4 grands angles morts : devant, à gauche, à droite et derrière. Le plus grand est à droite : ne reste pas là. La règle : pour que le chauffeur te voie, tu dois voir son visage dans son rétroviseur.",
    "env": "route",
    "kmh": 40,
    "camera": "drone",
@@ -153,7 +157,7 @@
    "items": [
     [
      "Virages",
-     "Ils se déportent : ne te glisse pas à côté"
+     "Il prend plus de place : ne reste pas à côté"
     ],
     [
      "Freinage",
@@ -164,7 +168,7 @@
      "Plus long : il faut beaucoup de place"
     ]
    ],
-   "dire": "Dans un virage, un camion se déporte : ne te glisse pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place.",
+   "dire": "Dans un virage, un camion a besoin de plus de place : il peut venir sur ta voie. Ne reste pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place.",
    "decor": {
     "env": "route",
     "kmh": 45,
@@ -249,9 +253,9 @@
     ]
    },
    "sync": [
-    0.08,
-    1.18,
-    1.52
+    0.07,
+    2.18,
+    2.52
    ]
   },
   {
@@ -341,14 +345,14 @@
     ],
     [
      "Vitesse trompeuse",
-     "Elles arrivent plus vite qu’on ne croit"
+     "Elles arrivent plus vite que tu le penses"
     ],
     [
      "Inter-files",
-     "Autorisée sous conditions : laisse-leur la place"
+     "Dans les bouchons : reste bien dans ta voie"
     ]
    ],
-   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. La circulation inter-files est autorisée sous conditions, entre les deux voies les plus à gauche : ne leur ferme pas la porte.",
+   "dire": "Une moto est petite : elle disparaît vite dans un angle mort, et on estime mal sa vitesse. Dans les bouchons, sur autoroute ou voie rapide, les motos peuvent rouler entre les deux voies de gauche : c’est l’inter-files. Quand une moto arrive derrière toi, reste bien dans ta voie, sans te décaler vers elle.",
    "decor": {
     "env": "autoroute",
     "kmh": 45,
@@ -420,7 +424,7 @@
    "sync": [
     0.53,
     0.88,
-    1.09
+    1.88
    ]
   },
   {

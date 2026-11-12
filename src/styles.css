@@ -1436,3 +1436,5 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 /* petit écran : la carte de l'illustration épouse le dessin (pas de grand cadre blanc autour d'un dessin rétréci) */
 #illu.small .illu-card{width:auto;max-width:min(92%,380px)}
 #illu.small .illu-card svg{width:auto;height:calc(var(--ih,120px) - 18px);max-width:100%}
+/* plusieurs bonnes réponses : on le dit (sauf à l'examen blanc, comme le jour J) */
+.xq-multi{display:table;margin:8px auto 0;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.01em;color:#1E5BFF;background:rgba(30,91,255,.1)}

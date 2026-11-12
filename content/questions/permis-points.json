@@ -3,16 +3,15 @@
   "id": "pp20-1",
   "cours": "permis-points",
   "type": "qcm",
-  "q": "En période probatoire, ton capital de départ est de :",
+  "q": "En probatoire, tu as 6 points. Tu refuses la priorité à un piéton (6 points). Ton permis :",
   "choix": [
-   "6 points",
-   "8 points",
-   "12 points"
+   "n’est plus valable",
+   "reste valable avec 0 point"
   ],
   "bonnes": [
    0
   ],
-  "explication": "6 points, qui montent progressivement à 12."
+  "explication": "À zéro point, le permis n’est plus valable : il faut le repasser. En probatoire, une seule grosse infraction peut suffire."
  },
  {
   "id": "pp20-2",
@@ -26,7 +25,7 @@
   "bonnes": [
    0
   ],
-  "explication": "2 ans, avec +3 points par an sans infraction."
+  "explication": "Après la conduite accompagnée, la période probatoire dure 2 ans, avec 3 points de plus par an sans en perdre."
  },
  {
   "id": "pp20-3",
@@ -55,7 +54,7 @@
   "bonnes": [
    1
   ],
-  "explication": "4 points, au maximum une fois par an."
+  "explication": "Un stage de sensibilisation rend jusqu’à 4 points, une fois par an au maximum. En probatoire, il devient obligatoire si tu perds 3 points ou plus d’un coup."
  },
  {
   "id": "pp20-5",
@@ -70,6 +69,6 @@
   "bonnes": [
    1
   ],
-  "explication": "17 ans depuis le 1er janvier 2024."
+  "explication": "Depuis le 1er janvier 2024, on peut passer le permis B dès 17 ans."
  }
 ]

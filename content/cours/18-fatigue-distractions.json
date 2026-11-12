@@ -4,7 +4,7 @@
  "theme": "conducteur",
  "titre": "Fatigue et distractions",
  "accroche": "garder la tête à la route",
- "resume": "Somnolence, pauses, téléphone et écrans : les pièges de l’attention et leurs sanctions.",
+ "resume": "Somnolence, pauses, téléphone et oreillettes : les pièges de l’attention et leurs sanctions.",
  "affiche": [
   "A14"
  ],
@@ -29,8 +29,12 @@
    "tag": "135 € et 3 points"
   },
   {
-   "texte": "Kit oreillettes",
-   "tag": "Interdit"
+   "texte": "Écouteurs, oreillettes",
+   "tag": "Interdits : 135 € et 3 points"
+  },
+  {
+   "texte": "Haut-parleurs de la voiture",
+   "tag": "Autorisés, mais ils distraient quand même"
   }
  ],
  "scenes": [
@@ -40,7 +44,7 @@
    "eyebrow": "Cours 18 · Conducteur",
    "titre": "Fatigue et distractions",
    "sous": "garder la tête à la route",
-   "dire": "Tu conduis depuis longtemps. L’attention commence à diminuer. Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 25 mètres parcourus les yeux fermés.",
+   "dire": "Tu conduis depuis longtemps. L’attention commence à diminuer. Cours numéro 18 : l’attention. Une seconde d’inattention à 90, c’est 27 mètres parcourus sans regarder la route.",
    "vitesse": 90,
    "decor": {
     "env": "autoroute",
@@ -59,10 +63,10 @@
     "aides": [
      {
       "type": "mesure",
-      "long": 25,
+      "long": 27,
       "p": 3,
       "texte": [
-       "25 m",
+       "27 m",
        "en une seconde, à 90"
       ]
      }
@@ -76,22 +80,22 @@
    "titre": "Sans regarder la route",
    "items": [
     [
-     "14",
+     "15",
      "m",
      "à 50 km/h"
     ],
     [
-     "25",
+     "27",
      "m",
      "à 90 km/h"
     ],
     [
-     "36",
+     "39",
      "m",
      "à 130 km/h"
     ]
    ],
-   "dire": "En une seconde, tu parcours 14 mètres à 50, 25 mètres à 90 et 36 mètres à 130. Lire un message prend bien plus qu’une seconde.",
+   "dire": "En une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130 : ta vitesse sans le zéro, fois 3, comme au cours 4. Lire un message prend bien plus qu’une seconde.",
    "vitesse": 90,
    "decor": {
     "env": "autoroute",
@@ -109,32 +113,32 @@
     "aides": [
      {
       "type": "mesure",
-      "long": 14,
+      "long": 15,
       "item": 0,
       "suit": true,
       "texte": [
-       "14 m",
+       "15 m",
        "à 50 km/h"
       ],
       "etapes": [
        {
-        "long": 14,
+        "long": 15,
         "texte": [
-         "14 m",
+         "15 m",
          "à 50 km/h"
         ]
        },
        {
-        "long": 25,
+        "long": 27,
         "texte": [
-         "25 m",
+         "27 m",
          "à 90 km/h"
         ]
        },
        {
-        "long": 36,
+        "long": 39,
         "texte": [
-         "36 m",
+         "39 m",
          "à 130 km/h"
         ]
        }
@@ -143,9 +147,9 @@
     ]
    },
    "sync": [
-    0.33,
-    0.53,
-    0.76
+    0.21,
+    0.35,
+    0.44
    ]
   },
   {
@@ -229,7 +233,7 @@
    "type": "liste",
    "ch": 0,
    "eyebrow": "La solution",
-   "titre": "Une seule vraie",
+   "titre": "Pause et sieste",
    "items": [
     [
      "Pause toutes les 2 heures",
@@ -244,7 +248,7 @@
      "Ça ne suffit pas"
     ]
    ],
-   "dire": "Fais une pause toutes les deux heures. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas.",
+   "dire": "Conseil : fais une pause d’au moins un quart d’heure toutes les deux heures, même sans fatigue. Et si tu as sommeil, la seule solution, c’est de t’arrêter pour dormir 15 à 20 minutes. Le café ou la fenêtre ouverte ne suffisent pas.",
    "decor": {
     "env": "route",
     "kmh": 45,
@@ -304,7 +308,7 @@
     ]
    },
    "sync": [
-    0.21,
+    0.17,
     1.79,
     2.03
    ],
@@ -349,7 +353,7 @@
      "retirés"
     ]
    ],
-   "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points. Les écouteurs, oreillettes et casques sont interdits aussi. Et si tu commets une autre infraction en même temps, ton permis peut être retenu sur place.",
+   "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points, même arrêté à un feu rouge ou dans un bouchon. Les écouteurs, oreillettes et casques sont interdits aussi, avec la même sanction. Le kit mains libres par les haut-parleurs de la voiture reste autorisé, mais il te distrait quand même. Et avec une autre infraction en même temps, un excès de vitesse par exemple, les policiers peuvent te retirer ton permis sur-le-champ.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -372,8 +376,8 @@
     ]
    },
    "sync": [
-    0.6,
-    0.82
+    0.33,
+    0.45
    ],
    "illu": {
     "type": "points",
@@ -406,7 +410,7 @@
      "heures entre deux pauses"
     ],
     [
-     "20",
+     "15 à 20",
      "minutes de sieste"
     ],
     [

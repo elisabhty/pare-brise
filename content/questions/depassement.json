@@ -24,12 +24,12 @@
   "q": "Ce panneau interdit de dépasser :",
   "choix": [
    "tous les véhicules",
-   "les véhicules à moteur, sauf les deux-roues sans side-car"
+   "les voitures, camions et tracteurs, mais pas les vélos ni les motos"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Le B3 interdit de dépasser les véhicules à moteur autres que les deux-roues sans side-car.",
+  "explication": "Ce panneau interdit de dépasser les véhicules à moteur : voitures, camions, tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter.",
   "panneaux": [
    "B3"
   ]
@@ -38,7 +38,7 @@
   "id": "d08-3",
   "cours": "depassement",
   "type": "qcm",
-  "q": "Pour dépasser un cycliste, peux-tu chevaucher une ligne continue ?",
+  "q": "Pour dépasser un cycliste, tes roues peuvent-elles rouler sur une ligne continue ?",
   "choix": [
    "Oui, si c’est sans danger",
    "Non, jamais"
@@ -46,7 +46,7 @@
   "bonnes": [
    0
   ],
-  "explication": "C’est l’exception prévue par le code, si la visibilité le permet et la voie d’en face est libre."
+  "explication": "Oui, c’est la seule exception : pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face."
  },
  {
   "id": "d08-4",
