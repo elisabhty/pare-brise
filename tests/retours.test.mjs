@@ -154,3 +154,17 @@ test('le terme officiel entre guillemets s’affiche en gras, les nombres resten
   assert.equal(fr('Visibilité de moins de 50 m'), 'Visibilité de moins de 50\u00a0m');
   assert.equal(fr('vers 2 000 tours'), 'vers 2\u00a0000 tours');
 });
+
+// Le piège de l'examen : une carte par cours (fiche, fin de cours, « piège du jour » de la salle).
+test('chaque cours a son piège de l’examen : l’erreur, puis le bon réflexe', () => {
+  for (const c of data.cours) {
+    assert.ok(Array.isArray(c.piege) && c.piege.length === 2 && c.piege.every(t => typeof t === 'string' && t.length > 12), c.id);
+    assert.ok(c.piege.every(t => t.length <= 96), `${c.id} : un piège tient en deux lignes`);
+    assert.ok(!RETIRES.test(c.piege.join(' ')), c.id);
+  }
+  // le réflexe reprend une règle du cours, avec ses chiffres
+  assert.match(C.vitesses.piege[1], /110/); assert.match(C.distances.piege[1], /49 m/); assert.match(C.ecoconduite.piege[1], /135 €/);
+});
+test('lecteur : un sous-titre reste court (au-delà de 108 caractères, le lecteur réduit le texte ; jamais plus de 136)', () => {
+  for (const c of data.cours) c.scenes.forEach((s, i) => phrases(s.dire).forEach(p => assert.ok(p.trim().length <= 136, `${c.id} écran ${i} : ${p.trim().length} caractères « ${p.trim().slice(0, 50)}… »`)));
+});

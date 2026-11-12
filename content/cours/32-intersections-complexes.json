@@ -611,5 +611,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Feu vert, mais le carrefour est bouché : avancer quand même.",
+  "Tu attends : n’avance pas si tu risques de bloquer le carrefour."
  ]
 }

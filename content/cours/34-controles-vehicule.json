@@ -507,5 +507,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Ouvrir le bouchon du liquide de refroidissement, moteur chaud.",
+  "Jamais : il est sous pression, il peut jaillir et te brûler."
  ]
 }

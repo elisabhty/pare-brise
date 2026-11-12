@@ -498,5 +498,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Retirer le casque d’un motard blessé.",
+  "Laisse toujours son casque en place."
  ]
 }

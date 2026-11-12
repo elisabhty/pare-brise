@@ -27,14 +27,20 @@ export function syncRegion() {
   if (el && !el.hidden && el.offsetParent !== null) Engine.regionFromEl(el);
 }
 
+/* deux navigations coup sur coup (double toucher, téléphone lent) : seule la dernière aboutit. Sans cela, la première,
+   qui attendait son rideau, reprenait la main après la seconde et ramenait l'élève sur le mauvais écran. */
+let navTok = 0, enVol = 0, rideauOublie = false;
 export async function show(name, opts = {}) {
   if (!screens[name]) name = 'salle';
+  const tok = ++navTok;
   const prev = current, def = screens[name];
   if (prev === name && !opts.force) { def.enter && def.enter(prev, opts); return; }
   if (prev && screens[prev].leave) screens[prev].leave(name);
   const worldChange = has3D && def.world && Engine.current !== def.world;
   const cur = $('#curtain');
-  if (worldChange && prev && !opts.noCurtain) { slate(opts.slate); cur.classList.add('on'); await wait(opts.slate ? 380 : 260); }
+  if (worldChange && prev && !opts.noCurtain) { slate(opts.slate); cur.classList.add('on'); enVol++; await wait(opts.slate ? 380 : 260); enVol--;
+    // dépassée par une navigation plus récente : on s'arrête là ; si personne d'autre ne relèvera le rideau, on le relève
+    if (tok !== navTok) { if (enVol) rideauOublie = true; else { await frames(2); if (!enVol) cur.classList.remove('on'); } return; } }
   current = name;
   $$('.screen').forEach(s => s.classList.toggle('active', s.id === 's-' + name));
   $('#tabbar').classList.toggle('hide', !!def.noTab);
@@ -49,7 +55,10 @@ export async function show(name, opts = {}) {
   requestAnimationFrame(() => { syncRegion(); requestAnimationFrame(syncRegion); });
   try { document.dispatchEvent(new CustomEvent('pb:ecran', { detail: name })); } catch (e) {}
   // le rideau se lève dès que le nouveau monde a dessiné ses premières images (les shaders sont compilés)
-  if (worldChange && prev && !opts.noCurtain) { await frames(2); cur.classList.remove('on'); }
+  // (une navigation imbriquée, comme l'exercice qui se relance lui-même, ne doit pas laisser le rideau baissé : seule une
+  // navigation encore en attente derrière son rideau le relèvera elle-même)
+  if (worldChange && prev && !opts.noCurtain) { await frames(2); if (!enVol) { cur.classList.remove('on'); rideauOublie = false; } }
+  else if (rideauOublie && tok === navTok) { rideauOublie = false; await frames(2); cur.classList.remove('on'); }
 }
 
 export async function curtain(text, fn, s) {

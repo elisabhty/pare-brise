@@ -1015,7 +1015,7 @@ COURS.setdefault('panneaux', {})['insere'] = [(8, dict(
          'À l’entrée, un panneau blanc entouré de rouge annonce une agglomération, c’est-à-dire une ville ou un village. '
          'Ce bord rouge n’annonce pas une interdiction : retiens ce panneau à part. '
          'À la sortie, le nom de la ville est barré d’une diagonale rouge, sur un panneau bordé de noir. '
-         'Tu quittes l’agglomération : les règles de la circulation en ville cessent alors de s’appliquer, sauf si un panneau dit autre chose.'))]
+         'Tu quittes l’agglomération. Les règles de la circulation en ville cessent alors de s’appliquer, sauf si un panneau dit autre chose.'))]
 p2('panneaux', 'À partir de ce panneau :', {'env': 'route', 'kmh': 50, 'explication': 'Panneau barré de noir : la limitation à 50 prend fin. Tu reprends la vitesse normale de la route : ici, une route à double sens, donc 80 (cours 2).'})
 
 # ---- 2 · Vitesses ----
@@ -1665,3 +1665,48 @@ dec('demarches-conducteur', 3, lambda d: d['illu'].update(lignes=[{'noeuds': [['
 dec('demarches-conducteur', 4, lambda d: d['illu'].update(e=[1, 2]))
 # Cours 28 : l'étiquette du feu reprend le mot fixé de la voix.
 dec('ecoconduite', 1, lambda d: [a.update(texte=['Feu rouge au loin', 'lâche l’accélérateur']) for a in d.get('aides') or [] if 'lève le pied tôt' in (a.get('texte') or [])])
+
+# ---- « Le piège de l'examen » : pour chaque cours, l'erreur classique et le bon réflexe, avec les mots du cours ----
+# (aucune règle nouvelle : chaque ligne reprend une phrase de la voix ou d'une explication de la pratique).
+# Affiché sur la fiche du cours, à la fin du cours et, chaque jour, dans la salle (« Le piège du jour »).
+PIEGES = {
+    'panneaux': ('Prendre un rond bleu bordé de rouge pour une obligation.', 'Bord rouge = interdiction, même sur fond bleu.'),
+    'vitesses': ('Jeune conducteur sur autoroute, par temps sec : répondre 130.', 'C’est 110, pendant tout le permis probatoire.'),
+    'priorites': ('Croire que le triangle au gros trait noir te rend prioritaire pour toute la route.', 'Seulement à la prochaine intersection : ensuite, priorité à droite.'),
+    'distances': ('Confondre distance de réaction et distance d’arrêt.', 'À 70 : 21 m pour réagir, mais 49 m pour t’arrêter.'),
+    'alcool': ('Croire qu’un café fait baisser l’alcoolémie.', 'Seul le temps la fait baisser : ni café, ni eau, ni douche.'),
+    'carrefours-feux': ('Ton feu est vert, mais l’agent te demande de t’arrêter.', 'Les gestes de l’agent passent avant les feux.'),
+    'marquages': ('Ligne mixte : regarder la mauvaise ligne.', 'C’est la ligne de ton côté qui décide.'),
+    'depassement': ('La ligne est discontinue, mais le panneau rond interdit de dépasser.', 'Le panneau compte : tu ne dépasses pas.'),
+    'arret-stationnement': ('Allumer ses feux de détresse pour s’arrêter sur une place interdite.', 'L’arrêt interdit reste interdit.'),
+    'autoroute': ('Au corridor de sécurité, croire que changer de voie suffit.', 'Tu ralentis toujours, puis tu changes de voie ou tu te décales.'),
+    'usagers-vulnerables': ('Le piéton attend au bord, sans être encore sur le passage.', 'Il veut traverser : tu t’arrêtes.'),
+    'cyclistes-edpm': ('Avant de tourner à droite, regarder seulement le rétroviseur.', 'Rétroviseur, puis tourne la tête : l’angle mort.'),
+    'poids-lourds-2rm': ('Dans un bouchon, te décaler vers la moto qui remonte.', 'Reste bien dans ta voie : tu lui laisses la place.'),
+    'vehicules-prioritaires': ('Prendre un gyrophare orange pour un véhicule prioritaire.', 'Orange : un danger, pas une priorité. Tu ralentis.'),
+    'nuit-eclairage': ('Allumer le feu de brouillard arrière sous une forte pluie.', 'Interdit : il éblouit. Seulement par brouillard ou chute de neige.'),
+    'intemperies': ('Freiner quand la voiture flotte sur l’eau.', 'Aquaplaning : lâche doucement l’accélérateur, volant droit.'),
+    'montagne-tunnels-pn': ('Croire que celui qui monte ne recule jamais.', 'Voiture contre camion : c’est la voiture qui recule, même si elle monte.'),
+    'fatigue-distractions': ('Prendre son téléphone en main, arrêté au feu rouge.', 'Interdit aussi : tu es encore dans la circulation.'),
+    'drogues-medicaments': ('« Je me sens bien, je peux conduire. »', 'Stupéfiants : tolérance zéro, une simple trace suffit.'),
+    'permis-points': ('Croire qu’un stage rend toujours 4 points.', 'Jusqu’à 4 points, sans dépasser ton plafond.'),
+    'poste-conduite': ('Régler les rétroviseurs avant le siège.', 'D’abord le siège et le dossier : les rétroviseurs viennent une fois ta position réglée.'),
+    'securite-passagers': ('Ton passager de 15 ans n’est pas attaché : croire qu’il paie lui-même.', 'C’est toi, le conducteur, qui paies les 135 €, sans perte de points.'),
+    'entretien': ('Croire que l’ABS raccourcit la distance d’arrêt.', 'Il empêche les roues de se bloquer : garde tes distances.'),
+    'aides-conduite': ('Quitter la route des yeux parce qu’une aide est activée.', 'Mains sur le volant, yeux sur la route : tu restes responsable.'),
+    'premiers-secours': ('Retirer le casque d’un motard blessé.', 'Laisse toujours son casque en place.'),
+    'papiers-assurance': ('Compter le contrôle technique à partir de l’achat.', 'Il se compte dès la première mise en circulation.'),
+    'infractions': ('Confondre suspension et annulation du permis.', 'Suspension : on te le rend. Annulation : tu dois le repasser.'),
+    'ecoconduite': ('Garé, laisser le moteur tourner en attendant quelqu’un.', 'Couper le moteur est obligatoire : sinon, 135 € d’amende.'),
+    'vehicules-propres': ('Croire que les règles des ZFE sont les mêmes partout.', 'Elles changent d’une ville à l’autre : vérifie celles de ta ville.'),
+    'changer-direction-voie': ('« J’ai mis mon clignotant, on me laisse passer. »', 'Ton clignotant est une information, pas une priorité.'),
+    'placement-chaussee': ('Ta voie se termine : croire que « chacun son tour » est un droit.', 'C’est toi qui changes de voie : tu cèdes le passage.'),
+    'intersections-complexes': ('Feu vert, mais le carrefour est bouché : avancer quand même.', 'Tu attends : n’avance pas si tu risques de bloquer le carrefour.'),
+    'anticiper-dangers': ('L’enfant est sur le trottoir : croire qu’il n’y a pas de danger.', 'Il peut quand même traverser : ralentis.'),
+    'controles-vehicule': ('Ouvrir le bouchon du liquide de refroidissement, moteur chaud.', 'Jamais : il est sous pression, il peut jaillir et te brûler.'),
+    'demarches-conducteur': ('Vendre sa voiture sans déclarer la cession.', 'Tu la déclares en ligne, dans les 15 jours.'),
+}
+for _c, (_a, _b) in PIEGES.items(): COURS.setdefault(_c, {})['piege'] = [_a, _b]
+
+# Cours 4, fin : la zone des 2 secondes s'allume quand la voix en parle.
+dec('distances', 6, decale(1))

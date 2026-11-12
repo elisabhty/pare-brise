@@ -488,7 +488,7 @@ for cid, meta in R.COURS.items():
         else: del memo[idx[0]]
     for ligne in meta.get('memo+', []):
         if all(l['texte'] != ligne['texte'] for l in memo): memo.append(ligne)
-    for f in ('resume', 'accroche', 'titre', 'chapitres'):
+    for f in ('resume', 'accroche', 'titre', 'chapitres', 'piege'):
         if f in meta: c[f] = meta[f]
 
 n_dec = n_txt = n_ill = n_sit = 0
@@ -496,8 +496,10 @@ for cid, c in COURS.items():
     changed = False
     # un écran ajouté au cours (avant les retouches : les numéros d'écran de R.T comptent déjà avec lui)
     for pos, nouvel in R.COURS.get(cid, {}).get('insere', []):
-        if not any(s.get('type') == nouvel['type'] and s.get('titre') == nouvel['titre'] for s in c['scenes']):
-            c['scenes'].insert(pos, json.loads(json.dumps(nouvel))); changed = True
+        deja = [k for k, s in enumerate(c['scenes']) if s.get('type') == nouvel['type'] and s.get('titre') == nouvel['titre']]
+        if deja: c['scenes'][deja[0]] = dict(json.loads(json.dumps(nouvel)), **{k: c['scenes'][deja[0]][k] for k in ('sync',) if k in c['scenes'][deja[0]]})
+        else: c['scenes'].insert(pos, json.loads(json.dumps(nouvel)))
+        changed = True
     for i, sc in enumerate(c['scenes']):
         key = (cid, i)
         if key in TEXTES:

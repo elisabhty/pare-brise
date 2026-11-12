@@ -329,5 +329,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Prendre un gyrophare orange pour un véhicule prioritaire.",
+  "Orange : un danger, pas une priorité. Tu ralentis."
  ]
 }

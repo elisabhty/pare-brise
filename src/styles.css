@@ -1440,3 +1440,81 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 #illu.small .illu-card svg{width:auto;height:calc(var(--ih,120px) - 18px);max-width:100%}
 /* plusieurs bonnes réponses : on le dit (sauf à l'examen blanc, comme le jour J) */
 .xq-multi{display:table;margin:8px auto 0;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.01em;color:#1E5BFF;background:rgba(30,91,255,.1)}
+
+/* ---------- sous-titre « karaoké » : le texte se remplit au rythme de la voix ---------- */
+#s-cours .caption .kar{background-image:linear-gradient(90deg,var(--craie) 49%,rgba(22,30,50,.42) 51%);background-size:200% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:capIn .35s ease both,kar var(--kd,2s) linear both}
+#s-cours .caption .kar.done{animation:none;background-position:0 0}
+#s-cours .caption.wait .kar{animation:capIn .35s ease both}
+#s-cours.enpause .caption .kar{animation-play-state:paused}
+@keyframes kar{from{background-position:100% 0}to{background-position:0 0}}
+/* ---------- étiquettes 3D : celle dont on ne parle pas reste lisible ---------- */
+.lab.on.dim{opacity:.72;background:rgba(255,255,255,.7);box-shadow:none}
+.lab.on.dim span{color:#3B4763}
+.lab{transition:opacity .4s,transform .28s cubic-bezier(.2,.9,.25,1.2),top .22s ease,box-shadow .25s}
+/* ---------- « Le piège de l'examen » : une carte à retourner ---------- */
+.piege{position:relative;display:grid;gap:8px;width:100%;padding:15px 16px 14px;text-align:left;border-radius:var(--r-card,22px);background:linear-gradient(150deg,#FFF6E0,#FFECC2);box-shadow:inset 0 0 0 1.5px rgba(214,138,0,.35),0 14px 28px -22px rgba(120,72,0,.55);color:#3A2600;transition:transform .18s ease,box-shadow .3s,background .4s}
+.piege:active{transform:scale(.985)}
+.piege .pg-k{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:#A35A00}
+.piege .pg-k svg{width:17px;height:17px;flex:none}
+.piege .pg-k em{margin-left:auto;font-style:normal;font-weight:650;text-transform:none;padding:2px 9px;border-radius:999px;background:rgba(163,90,0,.12)}
+.piege .pg-q{font-size:17px;font-weight:700;line-height:1.3;letter-spacing:-.015em}
+.piege .pg-a{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;max-height:0;opacity:0;overflow:hidden;transform:translateY(-6px);transition:max-height .45s cubic-bezier(.2,.9,.25,1),opacity .35s .08s,transform .4s cubic-bezier(.2,.9,.25,1)}
+.piege .pg-a i{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#12884A;color:#fff;transform:scale(.4);transition:transform .45s cubic-bezier(.2,1.4,.4,1) .12s}
+.piege .pg-a i svg{width:15px;height:15px}
+.piege .pg-a span{font-size:15.5px;line-height:1.4;font-weight:550;color:#0E3B22;padding-top:2px}
+.piege .pg-h{font-size:13px;font-weight:600;color:#A35A00;display:flex;align-items:center;gap:6px}
+.piege .pg-h::before{content:"";width:7px;height:7px;border-radius:50%;background:#E08A00;animation:pgPulse 1.6s ease-in-out infinite}
+.piege.vu{background:linear-gradient(150deg,#F1FBF4,#DDF5E6);box-shadow:inset 0 0 0 1.5px rgba(18,136,74,.35),0 14px 28px -22px rgba(10,80,40,.5)}
+.piege.vu .pg-a{max-height:160px;opacity:1;transform:none}
+.piege.vu .pg-a i{transform:scale(1)}
+.piege.vu .pg-h{display:none}
+.piege.vu .pg-q{color:#6B5A3A;font-weight:600;font-size:15px}
+@keyframes pgPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.35}}
+#fPiege,#homePiege{display:grid}
+#fPiege:empty,#homePiege:empty{display:none}
+#endcard .piege{margin:2px 0}
+@media (prefers-reduced-motion:reduce){
+  #s-cours .caption .kar{animation:none;background-position:0 0}
+  .piege .pg-h::before{animation:none}
+  .piege,.piege .pg-a,.piege .pg-a i,.lab{transition:none}
+}
+
+/* ---------- fiche mémo : la règle, puis ce qu'il faut retenir en dessous (les tags sont devenus des phrases) ---------- */
+.memo li{grid-template-columns:42px minmax(0,1fr);column-gap:12px;row-gap:2px;padding:10px 0}
+.memo li>svg,.memo li>.memo-dot{grid-row:1 / span 2;align-self:center}
+.memo li>b{grid-column:2;align-self:end;font-size:15px;line-height:1.25}
+.memo li>span{grid-column:2;align-self:start;font-size:13px;font-weight:600;line-height:1.35;letter-spacing:0}
+.memo li>span:empty{display:none}
+/* ---------- salle : le résumé du prochain cours tient en entier, les tuiles d'exercice se lisent ---------- */
+.nc-lead{-webkit-line-clamp:3}
+.xcar.m-examen small{color:rgba(255,255,255,.9)}
+.xcar.m-examen .xcar-f em{color:rgba(255,255,255,.85);font-weight:600}
+
+/* ---------- micro-animations : chaque geste a sa réponse (réponses de la pratique, onglets, lecteur) ---------- */
+.xan{transition:background .15s,box-shadow .15s,transform .12s ease}
+.xan:not(:disabled):active{transform:scale(.985)}
+.xan[aria-pressed="true"] i{animation:mPop .28s cubic-bezier(.2,1.5,.4,1)}
+.xan.good{animation:mOk .5s ease}
+.xan.bad{animation:mShake .4s ease}
+.xexp{animation:mUp .38s cubic-bezier(.2,.9,.25,1) both}
+#tabbar button[aria-current="page"] svg{animation:mPop .32s cubic-bezier(.2,1.5,.4,1)}
+#cPlay svg,#cVoice svg{animation:mPop .22s cubic-bezier(.2,1.5,.4,1)}
+.ibtn{transition:transform .12s ease}
+.ibtn:active,.pr-card:active,.chapters li button:active,.srows button:active,.more:active{transform:scale(.97)}
+.rbtn[aria-pressed="true"] svg{animation:mPop .32s cubic-bezier(.2,1.6,.4,1)}
+.chapters li.cur .cn{animation:mPop .3s cubic-bezier(.2,1.5,.4,1)}
+@keyframes mPop{from{transform:scale(.72)}to{transform:scale(1)}}
+@keyframes mOk{0%{transform:scale(1)}40%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes mShake{0%,100%{transform:none}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@keyframes mUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .xan,.xan i,.xexp,#tabbar button svg,#cPlay svg,#cVoice svg,.rbtn svg,.chapters li .cn{animation:none!important}
+}
+
+/* une phrase longue garde un sous-titre de trois lignes : le texte rétrécit un peu */
+#s-cours .caption.long{font-size:15.8px;line-height:1.36}
+#s-cours .caption.xlong{font-size:15px;line-height:1.34;padding-left:13px;padding-right:13px}
+
+/* pratique : une fois la réponse donnée, la carte se resserre pour laisser voir la scène (mauvaises réponses écartées plus basses) */
+.xask:not(.xqcm) .xan.dim{min-height:42px;padding-top:4px;padding-bottom:4px;opacity:.72}
+.xask:has(.xexp) .xq-multi{display:none}

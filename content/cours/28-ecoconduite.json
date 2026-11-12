@@ -269,5 +269,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Garé, laisser le moteur tourner en attendant quelqu’un.",
+  "Couper le moteur est obligatoire : sinon, 135 € d’amende."
  ]
 }

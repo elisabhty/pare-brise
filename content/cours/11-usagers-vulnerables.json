@@ -474,5 +474,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Le piéton attend au bord, sans être encore sur le passage.",
+  "Il veut traverser : tu t’arrêtes."
  ]
 }

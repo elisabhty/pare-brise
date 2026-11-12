@@ -392,7 +392,8 @@ function demonstre(X, sc, st) {
 }
 MECA.examen = async (ex, X) => {
   const W = X.W, res = [], L = 'ABCD', blanc = ex.mode === 'blanc', n = ex.situations.length, v3 = $('#v-exo');
-  const offL = W.onTick(() => Labels.frame());
+  // une étiquette ne passe jamais sur la carte de la question (elle grandit avec l'explication)
+  const offL = W.onTick(() => { const c = document.querySelector('#s-exo .xcard.on:not([hidden]):not(.xqcm)'); Labels.frame(c || undefined); });
   try {
     for (let i = 0; i < n; i++) {
       const sc = ex.situations[i], mode = modeOf(sc), qcm = mode === 'qcm'; X.step(i + 1, n);

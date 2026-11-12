@@ -6,7 +6,7 @@
    "dire": [
     "Un triangle bordé de rouge, pointe vers le haut, annonce un danger.",
     "Un virage dangereux, une chaussée glissante, c’est-à-dire une route qui glisse, ou encore un passage piéton.",
-    "Hors des villes, ces panneaux sont habituellement placés 150 mètres avant le danger, pour te laisser le temps de ralentir.",
+    "Hors des villes, ils sont habituellement placés 150 mètres avant le danger : tu as le temps de ralentir.",
     "En ville, 50 mètres avant.",
     "Ton réflexe ?",
     "Reste vigilant : lâche l’accélérateur, regarde loin devant, et prépare-toi à freiner."
@@ -85,7 +85,8 @@
     "Sur la route, certaines situations nécessitent une signalisation provisoire.",
     "C’est le cas des travaux.",
     "Les panneaux temporaires de danger ont souvent un fond jaune.",
-    "Retiens cette règle essentielle : si un panneau jaune dit le contraire d’un panneau habituel, c’est le jaune qui l’emporte.",
+    "Retiens cette règle essentielle.",
+    "Si un panneau jaune dit le contraire d’un panneau habituel, c’est le jaune qui l’emporte.",
     "Il montre la route telle qu’elle est aujourd’hui, avec les travaux.",
     "Attention : le losange jaune de la route prioritaire, lui, reste un panneau habituel."
    ]

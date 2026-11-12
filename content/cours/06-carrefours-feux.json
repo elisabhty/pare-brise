@@ -698,5 +698,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Ton feu est vert, mais l’agent te demande de t’arrêter.",
+  "Les gestes de l’agent passent avant les feux."
  ]
 }

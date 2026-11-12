@@ -3,6 +3,7 @@ import { $, $$, esc, fr, wait, fmt, haptic, store } from './util.js';
 import { has3D, Engine, R, SIM } from './world.js';
 import { sign, FAM } from './signs.js';
 import { course, courseNumber, COURSES, EXOS } from './content.js';
+import { piegeHTML, bindPieges } from './piege.js';
 import { saveCourse } from './progress.js';
 import { Voice, splitSentences, estimate, sayTimed } from './voice.js';
 import { Sound } from './sound.js';
@@ -32,13 +33,15 @@ export const Player = {
     this.c = c; this.scenes = c.scenes.map(s => Object.assign({}, s, { sents: splitSentences(s.dire || '') }));
     this.i = Math.max(0, Math.min(this.scenes.length - 1, startAt)); this.started = false; this.answered = -1;
     this.entered = -1; this.frozen = false; this.mode = null; $('#s-cours').classList.remove('explore', 'ralenti', 'immersif');
-    $('#cTitle').textContent = `Cours ${courseNumber(c)} · ${c.titre}`;
+    $('#cTitle').textContent = c.titre; $('#cTitle').style.fontSize = '';
     $('#endcard').hidden = true;
     this.renderChapters(); this.renderText();
     if (!quiet) { this.enterScene(this.i); this.setPlaying(false); }
   },
   /* début de séance (fiche, accueil, planning) : la scène se construit sous le rideau, la voix attend que l'image soit à l'écran */
   start(at, k) { const gate = settled(); if (k > 0) this.goTo(at, k, gate); else this.play(gate); },
+  /* (mesuré quand l'écran est visible : au chargement, la barre n'a pas encore de largeur ; la boucle d'affichage y revient) */
+  fitTitle() { const t = $('#cTitle'); if (this.titleFit || !t || !t.clientWidth) return; let f = 14; t.style.fontSize = ''; while (t.scrollWidth > t.clientWidth && f > 10.5) { f -= 0.5; t.style.fontSize = f + 'px'; } if (f < 14) t.style.fontSize = (f - 0.5) + 'px'; this.titleFit = true; },   // une marge : les largeurs sont arrondies
   total() { return this.scenes.reduce((a, s) => a + est(s), 0); },
   cum() { let t = 0; for (let k = 0; k < this.i; k++) t += est(this.scenes[k]); return t; },
   renderChapters() {
@@ -64,7 +67,9 @@ export const Player = {
     Live.sc = null; Live.actors = [];
     this.entered = i; this.frozen = false; this.k = 0; this.sceneT0 = this.kT0 = performance.now();
     const chs = this.c.chapitres || ['Cours'];
-    $('#cChap').textContent = `Chapitre ${(sc.ch || 0) + 1} / ${chs.length}`;
+    $('#cChap').textContent = `Cours ${courseNumber(this.c)} · chapitre ${(sc.ch || 0) + 1} sur ${chs.length}`;
+    // le titre du cours tient toujours en entier dans la barre : il rétrécit un peu plutôt que de finir par « … »
+    this.titleFit = false; this.fitTitle();
     $$('#chapters li').forEach((li, k) => { li.classList.toggle('cur', k === (sc.ch || 0)); if (k < (sc.ch || 0)) li.classList.add('seen'); });
     this.caption(sc, -1);
     $('#quiz').hidden = true;
@@ -82,9 +87,11 @@ export const Player = {
     this.paintRail(); this.paintText();
   },
   /* sous-titres façon vidéo : une seule phrase à la fois, posée sur l'image */
-  caption(sc, k) { const el = $('#caption'), s = sc.sents[Math.max(0, Math.min(k, sc.sents.length - 1))] || ''; el.innerHTML = s ? `<span>${fr(s)}</span>` : ''; el.classList.toggle('wait', k < 0); el.hidden = !s || !this.started; },
+  /* le sous-titre se remplit au rythme de la voix (durée estimée de la phrase) : on suit des yeux ce qu'on entend */
+  caption(sc, k) { const el = $('#caption'), n = sc.sents.length, s = sc.sents[Math.max(0, Math.min(k, n - 1))] || ''; el.innerHTML = s ? `<span class="kar${k >= n ? ' done' : ''}" style="--kd:${Math.round(sEst(s))}ms">${fr(s)}</span>` : ''; el.classList.toggle('wait', k < 0); el.classList.toggle('long', s.length > 108); el.classList.toggle('xlong', s.length > 122); el.hidden = !s || !this.started; },
   setPlaying(p) {
     this.playing = p;
+    $('#s-cours').classList.toggle('enpause', !p);
     $('#cPlay').innerHTML = p ? '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="5" height="16" rx="1.2"/><rect x="14" y="4" width="5" height="16" rx="1.2"/></svg>' : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4 L20 12 L7 20 Z"/></svg>';
     $('#cPlay').setAttribute('aria-label', p ? 'Pause' : 'Lecture');
     $('#playOver').hidden = p || !!this.mode || isQuestion(this.scenes[this.i]);
@@ -203,10 +210,12 @@ export const Player = {
     const memo = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span style="color:${m.famille && FAM[m.famille] ? FAM[m.famille].t : 'var(--jaune)'}">${esc(m.tag || (m.famille && FAM[m.famille] ? FAM[m.famille].n : ''))}</span></li>`).join('');
     const e = $('#endcard'); e.hidden = false;
     e.innerHTML = `<div class="plot-hero">${plot({ size: 96, bubble: 'Cours terminé, bravo !' })}<div><span class="eyebrow">Fiche mémo</span><h3 class="d">Cours terminé</h3></div></div>${memo ? `<ul class="memo">${memo}</ul>` : ''}
+      ${piegeHTML(c)}
       ${pr ? `<div class="end-pr"><span class="eyebrow">Deuxième partie</span><b>Passe à la pratique</b><p>${pr.situations.length} situations sur la route, en 3D, pour appliquer tout ce que tu viens de voir.</p><button class="btn" id="endSerie">Lancer la pratique</button></div>` : ''}
       ${this.notesHTML()}
       ${nxt ? `<button class="btn ghost sm" id="endNext">Cours suivant →</button>` : ''}
       <button class="btn ghost sm" id="endHome">Retour au parcours</button>`;
+    bindPieges(e);
     if (pr) $('#endSerie').addEventListener('click', () => onSerie(pr.id));
     if (nxt) $('#endNext').addEventListener('click', () => { Voice.unlock(); this.load(nxt.id); this.play(); });
     $('#endHome').addEventListener('click', () => onHome());
@@ -441,9 +450,9 @@ export const Player = {
     $('#chapClose').addEventListener('click', () => chap(false));
     $('#chapters').addEventListener('click', e => { if (e.target.closest('button')) chap(false); });
     this.closeChapters = () => chap(false);
-    const loop = () => { if (currentScreen() === 'cours') { this.tickUI(); Labels.frame($('#caption').hidden ? $('#s-cours .dock') : $('#caption')); } requestAnimationFrame(loop); };
+    const loop = () => { if (currentScreen() === 'cours') { this.tickUI(); this.fitTitle(); Labels.frame($('#caption').hidden ? $('#s-cours .dock') : $('#caption')); } requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
   }
 };
 /* pour les tests automatisés du lecteur */
-if (typeof window !== 'undefined' && window.__expose) window.__lecteur = { Player, Live, Engine, SIM, View };
+if (typeof window !== 'undefined' && window.__expose) window.__lecteur = { Player, Live, Engine, SIM, View, Voice };

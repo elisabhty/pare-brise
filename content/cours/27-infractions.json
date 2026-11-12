@@ -407,5 +407,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Confondre suspension et annulation du permis.",
+  "Suspension : on te le rend. Annulation : tu dois le repasser."
  ]
 }

@@ -244,7 +244,7 @@
      "sol mouillé"
     ]
    ],
-   "dire": "Cours terminé. Trois calculs à retenir : fois 3, au carré, puis fois 1,5. Passe à la pratique pour les appliquer sur la route.",
+   "dire": "Cours terminé. Trois calculs à retenir : fois 3, au carré, puis fois 1,5. Et sur la route, garde au moins 2 secondes d’écart. Passe à la pratique.",
    "decor": {
     "env": "autoroute",
     "kmh": 90,
@@ -267,7 +267,7 @@
       "long": 48,
       "large": 2.4,
       "couleur": "vert",
-      "p": 1,
+      "p": 2,
       "texte": [
        "2 secondes",
        "au moins"
@@ -277,5 +277,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Confondre distance de réaction et distance d’arrêt.",
+  "À 70 : 21 m pour réagir, mais 49 m pour t’arrêter."
  ]
 }

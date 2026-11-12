@@ -418,5 +418,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "La ligne est discontinue, mais le panneau rond interdit de dépasser.",
+  "Le panneau compte : tu ne dépasses pas."
  ]
 }

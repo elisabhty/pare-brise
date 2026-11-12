@@ -543,5 +543,9 @@
     ]
    }
   }
+ ],
+ "piege": [
+  "Allumer ses feux de détresse pour s’arrêter sur une place interdite.",
+  "L’arrêt interdit reste interdit."
  ]
 }

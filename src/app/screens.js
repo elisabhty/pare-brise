@@ -3,6 +3,7 @@ import { $, $$, esc, wait, haptic, store } from './util.js';
 import { has3D, R, SALLE, STUDIO } from './world.js';
 import { sign } from './signs.js';
 import { THEMES, COURSES, SERIES, course, theme, coursesOf, courseNumber, seriesOfCourse, signsOfCourse, allQuestionIds } from './content.js';
+import { piegeHTML, bindPieges, piegeDuJour } from './piege.js';
 import { courseState, seriesBest, seriesTotal, toReview, mastered, nextCourse, doneCount, readiness, exams } from './progress.js';
 import { Voice, splitSentences, estimate } from './voice.js';
 import { Sound } from './sound.js';
@@ -89,6 +90,7 @@ function renderHome() {
   $('#readyM').innerHTML = `<div><b class="num">${doneCount()}<small>/${COURSES.length}</small></b><span>cours vus</span></div><div><b class="num">${prDone}<small>/${COURSES.length}</small></b><span>pratiques faites</span></div><div><b class="num">${blancs}</b><span>examen${blancs > 1 ? 's' : ''} blanc${blancs > 1 ? 's' : ''}</span></div>`;
   $('#readyTxt').textContent = `Le jour J : 35 bonnes réponses sur 40.${mastered() ? ` ${mastered()} question${mastered() > 1 ? 's' : ''} maîtrisée${mastered() > 1 ? 's' : ''}.` : ''}${exams().length ? ` Dernier examen rapide : ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}.` : ''}`;
   $('#reviewCard').hidden = !rev;
+  { const pj = piegeDuJour(id => courseState(id).done, c); $('#homePiege').innerHTML = pj ? piegeHTML(pj, { titre: 'Le piège du jour', lien: true }) : ''; bindPieges($('#homePiege')); }
   $('#reviewN').textContent = rev;
   const i0 = Math.max(0, Math.min(COURSES.indexOf(c) - 1, COURSES.length - 4));
   roadmap($('#homeRoad'), COURSES.slice(i0, i0 + 4).map(courseRowData), { here: 'À suivre' });
@@ -142,13 +144,14 @@ function renderFiche(id) {
   $('#fResume').textContent = c.resume || '';
   $('#fFacts').innerHTML = `<div><b class="num">${courseMinutes(c)}</b><span>minute${courseMinutes(c) > 1 ? 's' : ''}</span></div><div><b class="num">${(c.chapitres || []).length}</b><span>chapitres</span></div><div><b class="num">${qCount(c)}</b><span>situations en pratique</span></div>`;
   $('#fPlay').textContent = st.done ? 'Revoir le cours' : st.scene > 0 ? 'Reprendre le cours' : 'Lancer le cours';
-  $('#fChapters').innerHTML = (c.chapitres || []).map((n, k) => `<li><button data-ch="${k}"><span class="cn">${k + 1}</span><b>${esc(n)}</b><small>${c.scenes.filter(s => (s.ch || 0) === k).length} scènes</small></button></li>`).join('');
+  $('#fChapters').innerHTML = (c.chapitres || []).map((n, k) => `<li><button data-ch="${k}"><span class="cn">${k + 1}</span><b>${esc(n)}</b><small>${(n => `${n} scène${n > 1 ? 's' : ''}`)(c.scenes.filter(s => (s.ch || 0) === k).length)}</small></button></li>`).join('');
   $$('#fChapters button').forEach(b => b.addEventListener('click', () => { Voice.unlock(); Sound.init(); show('cours', { course: c.id, at: c.scenes.findIndex(s => (s.ch || 0) === +b.dataset.ch), play: true, slate: slateOf(c.id) }); }));
   const pr = practiceOf(c.id), pb = pr && exoBest(pr.id), defis = defisOf(c.id);
   $('#fSeries').innerHTML = (pr ? `<li><button class="pr-card" data-exo="${pr.id}"><span class="pr-ic">${icon('examen')}</span><div><b>Pratique : ${esc(c.titre)}</b><small>${pr.situations.length} situations en 3D · ${esc(pr.duree)}</small></div><span class="pr-r">${pb ? starsHtml(pb.score) : '<i>Jouer</i>'}</span></button></li>` : '')
     + defis.map(x => { const b = exoBest(x.id); return `<li><button class="cell sub" data-exo="${x.id}"><span class="cell-ic m-${x.meca}">${icon(x.meca)}</span><span class="cell-t"><b>${esc(x.titre)}</b><small>Défi 3D · ${esc(x.sous || '')}</small></span><span class="cell-r">${b ? starsHtml(b.score) : `<em>${esc(x.duree || '')}</em>`}</span></button></li>`; }).join('');
   $('#fMemo').innerHTML = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span>${esc(m.tag || '')}</span></li>`).join('');
   $('#fMemoT').hidden = !(c.memo || []).length;
+  $('#fPiege').innerHTML = piegeHTML(c); bindPieges($('#fPiege'));
   // les passages que l'élève a retenus pendant le cours (étoile du lecteur)
   const ns = notes().filter(n => n.c === c.id && n.i < c.scenes.length).sort((a, b) => a.i - b.i);
   $('#fNotesT').hidden = $('#fNotes').hidden = !ns.length;

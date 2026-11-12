@@ -139,7 +139,7 @@
      "Passage piéton"
     ]
    ],
-   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce un danger. Un virage dangereux, une chaussée glissante, c’est-à-dire une route qui glisse, ou encore un passage piéton. Hors des villes, ces panneaux sont habituellement placés 150 mètres avant le danger, pour te laisser le temps de ralentir. En ville, 50 mètres avant. Ton réflexe ? Reste vigilant : lâche l’accélérateur, regarde loin devant, et prépare-toi à freiner.",
+   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce un danger. Un virage dangereux, une chaussée glissante, c’est-à-dire une route qui glisse, ou encore un passage piéton. Hors des villes, ils sont habituellement placés 150 mètres avant le danger : tu as le temps de ralentir. En ville, 50 mètres avant. Ton réflexe ? Reste vigilant : lâche l’accélérateur, regarde loin devant, et prépare-toi à freiner.",
    "sync": [
     1.0,
     1.2,
@@ -285,7 +285,7 @@
      "Nom barré de rouge, bord noir"
     ]
    ],
-   "dire": "Un cas à part : les panneaux qui portent le nom d’une ville. À l’entrée, un panneau blanc entouré de rouge annonce une agglomération, c’est-à-dire une ville ou un village. Ce bord rouge n’annonce pas une interdiction : retiens ce panneau à part. À la sortie, le nom de la ville est barré d’une diagonale rouge, sur un panneau bordé de noir. Tu quittes l’agglomération : les règles de la circulation en ville cessent alors de s’appliquer, sauf si un panneau dit autre chose.",
+   "dire": "Un cas à part : les panneaux qui portent le nom d’une ville. À l’entrée, un panneau blanc entouré de rouge annonce une agglomération, c’est-à-dire une ville ou un village. Ce bord rouge n’annonce pas une interdiction : retiens ce panneau à part. À la sortie, le nom de la ville est barré d’une diagonale rouge, sur un panneau bordé de noir. Tu quittes l’agglomération. Les règles de la circulation en ville cessent alors de s’appliquer, sauf si un panneau dit autre chose.",
    "sync": [
     1.01,
     3.02
@@ -337,7 +337,7 @@
     "AK14"
    ],
    "puce": "Le panneau jaune l’emporte",
-   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : si un panneau jaune dit le contraire d’un panneau habituel, c’est le jaune qui l’emporte. Il montre la route telle qu’elle est aujourd’hui, avec les travaux. Attention : le losange jaune de la route prioritaire, lui, reste un panneau habituel.",
+   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle. Si un panneau jaune dit le contraire d’un panneau habituel, c’est le jaune qui l’emporte. Il montre la route telle qu’elle est aujourd’hui, avec les travaux. Attention : le losange jaune de la route prioritaire, lui, reste un panneau habituel.",
    "sync": [
     1.65,
     2.18
@@ -442,5 +442,9 @@
    ],
    "dire": "Il est temps de passer à la pratique ! À toi de reconnaître les panneaux dans de vraies situations de circulation. Devant chaque panneau, pense : forme, couleur, symbole."
   }
+ ],
+ "piege": [
+  "Prendre un rond bleu bordé de rouge pour une obligation.",
+  "Bord rouge = interdiction, même sur fond bleu."
  ]
 }
