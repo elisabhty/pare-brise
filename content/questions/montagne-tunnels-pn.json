@@ -34,7 +34,7 @@
   "id": "mtp17-3",
   "cours": "montagne-tunnels-pn",
   "type": "qcm",
-  "q": "Dans ce tunnel, aucun panneau n’interdit de dépasser. Tu peux doubler ?",
+  "q": "Dans ce tunnel, ni panneau ni ligne continue n’interdit de dépasser. Tu peux doubler ?",
   "choix": [
    "oui, avec les précautions habituelles",
    "non, jamais dans un tunnel"
@@ -56,7 +56,7 @@
   "bonnes": [
    1
   ],
-  "explication": "En descente, rétrograde pour garder le frein moteur. Jamais au point mort : tes freins chaufferaient."
+  "explication": "Avant la descente, passe une vitesse plus basse : le frein moteur retient la voiture. Jamais au point mort : tes freins chaufferaient."
  },
  {
   "id": "mtp17-5",

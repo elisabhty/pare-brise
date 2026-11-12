@@ -18,16 +18,15 @@
   "id": "i16-2",
   "cours": "intemperies",
   "type": "qcm",
-  "q": "Brouillard, visibilité inférieure à 50 m. Vitesse maximale :",
+  "q": "Il se met à pleuvoir après plusieurs semaines sans pluie. La route est :",
   "choix": [
-   "50 km/h",
-   "70 km/h",
-   "90 km/h"
+   "plus glissante que d’habitude",
+   "aussi sûre que par temps sec"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Visibilité sous 50 mètres : 50 km/h au maximum partout, même sur autoroute."
+  "explication": "Les premières gouttes, mêlées à la poussière et à l’huile, rendent la route savonneuse : ralentis et garde plus d’écart."
  },
  {
   "id": "i16-3",

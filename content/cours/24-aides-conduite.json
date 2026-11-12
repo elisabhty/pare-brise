@@ -18,7 +18,7 @@
  "memo": [
   {
    "texte": "Limiteur",
-   "tag": "Empêche de dépasser une vitesse"
+   "tag": "Empêche d’accélérer au-delà de la vitesse choisie, mais ne freine pas en descente"
   },
   {
    "texte": "Régulateur",
@@ -95,7 +95,7 @@
      "Un voyant s’allume dans le rétro si quelqu’un est caché à côté"
     ]
    ],
-   "dire": "Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais en descente, il ne freine pas : surveille ton compteur. Le régulateur la maintient. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives. Enfin, l’alerte d’angle mort allume un voyant dans le rétroviseur quand quelqu’un est caché à côté de toi.",
+   "dire": "Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais en descente, il ne freine pas : surveille ton compteur. Le régulateur, lui, maintient la vitesse que tu as choisie. Le régulateur adaptatif garde en plus la distance avec la voiture de devant. Le freinage d’urgence automatique peut freiner si tu ne réagis pas. Et l’alerte de franchissement de ligne te prévient si tu dérives. Enfin, l’alerte d’angle mort allume un voyant dans le rétroviseur quand quelqu’un est caché à côté de toi.",
    "vitesse": 80,
    "decor": {
     "env": "autoroute",
@@ -195,7 +195,7 @@
    },
    "sync": [
     0.0,
-    1.08,
+    1.02,
     2.15,
     3.01,
     4.2,
@@ -279,7 +279,7 @@
     "cols": 3,
     "items": [
      {
-      "i": "🛞",
+      "i": "✋",
       "t": "Mains",
       "s": "sur le volant"
      },

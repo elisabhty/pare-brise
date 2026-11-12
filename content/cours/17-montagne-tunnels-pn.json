@@ -29,7 +29,7 @@
   },
   {
    "texte": "Route étroite en montagne",
-   "tag": "Celui qui descend cède, et recule si besoin"
+   "tag": "Même type : celui qui descend recule · voiture contre camion : la voiture"
   },
   {
    "texte": "Descente",
@@ -266,14 +266,14 @@
     ],
     [
      "Dépasser",
-     "Interdit si un panneau le dit"
+     "Interdit si un panneau ou une ligne continue le dit"
     ],
     [
      "Incendie",
      "On sort à pied par les issues de secours"
     ]
    ],
-   "dire": "Dans un tunnel, allume tes feux de croisement. S’il y a des balises bleues sur la paroi, garde au moins deux balises entre toi et le véhicule devant. Demi-tour et marche arrière sont toujours interdits ; le dépassement, quand un panneau l’interdit. Incendie devant toi : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche.",
+   "dire": "Dans un tunnel, allume tes feux de croisement. S’il y a des balises bleues sur la paroi, garde au moins deux balises entre toi et le véhicule devant. Demi-tour et marche arrière sont toujours interdits ; le dépassement, quand un panneau ou une ligne continue l’interdit. Incendie devant toi : range-toi à droite, coupe le moteur, et rejoins à pied l’issue de secours la plus proche.",
    "decor": {
     "env": "route",
     "kmh": 50,
@@ -325,8 +325,8 @@
    "sync": [
     0.56,
     1.1,
-    2.4,
-    2.55,
+    2.32,
+    2.44,
     3.0
    ]
   },
@@ -335,7 +335,7 @@
    "ch": 2,
    "eyebrow": "Montagne",
    "titre": "Route étroite",
-   "dire": "Sur une route de montagne trop étroite, celui qui descend s’arrête et cède le passage à celui qui monte, en reculant si besoin. Sauf si celui qui monte peut se ranger plus facilement. Pourquoi ? Redémarrer en montée est plus difficile. Entre une voiture et un camion, c’est le plus léger qui manœuvre.",
+   "dire": "Sur une route de montagne trop étroite, entre deux véhicules du même type, celui qui descend recule. Sauf si c’est bien plus facile pour celui qui monte. Pourquoi ? Redémarrer en montée est plus difficile. Entre une voiture et un camion, c’est la voiture qui recule, même si elle monte.",
    "env": "route",
    "kmh": 20,
    "camera": "drone",
@@ -388,7 +388,7 @@
      "Ils perdent leur efficacité"
     ]
    ],
-   "dire": "En descente, passe une vitesse plus basse : le moteur retient la voiture, c’est le frein moteur. Repère : prends la vitesse que tu prendrais pour monter cette pente. Ne roule jamais au point mort, sans vitesse : le moteur ne retiendrait plus rien. Et freiner sans arrêt fait chauffer les freins, qui perdent leur efficacité.",
+   "dire": "Avant la descente, passe une vitesse plus basse : le moteur retient la voiture, c’est le frein moteur. Repère : prends la vitesse que tu prendrais pour monter cette pente. Ne roule jamais au point mort, sans vitesse : le moteur ne retiendrait plus rien. Et freiner sans arrêt fait chauffer les freins, qui perdent leur efficacité.",
    "decor": {
     "env": "route",
     "kmh": 35,
@@ -416,7 +416,7 @@
     ]
    },
    "sync": [
-    0.46,
+    0.49,
     2.2,
     3.33
    ],
@@ -427,7 +427,7 @@
     "items": [
      {
       "i": "⚙️",
-      "t": "Rétrograde",
+      "t": "Vitesse plus basse",
       "s": "le frein moteur"
      },
      {
@@ -454,12 +454,12 @@
      "règle : jamais sur les rails"
     ],
     [
-     "4",
-     "réflexes en tunnel"
+     "5",
+     "règles en tunnel"
     ],
     [
      "1",
-     "priorité à celui qui monte"
+     "même type : celui qui descend recule"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique pour revoir ces lieux à part.",

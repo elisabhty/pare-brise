@@ -3,9 +3,9 @@
   "id": "m07-1",
   "cours": "marquages",
   "type": "qcm",
-  "q": "Peut-on chevaucher une ligne continue pour dépasser une voiture ?",
+  "q": "Pour dépasser une voiture, peux-tu rouler sur la ligne continue, même avec une seule roue ?",
   "choix": [
-   "Oui, brièvement",
+   "Oui, un instant",
    "Non"
   ],
   "bonnes": [

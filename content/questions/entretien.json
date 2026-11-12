@@ -20,13 +20,13 @@
   "type": "qcm",
   "q": "La pression des pneus se contrôle :",
   "choix": [
-   "à froid",
+   "pneus froids, avant de rouler",
    "après un long trajet"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Contrôle la pression à froid, avant de rouler : un pneu chaud donne une mesure faussée."
+  "explication": "Contrôle la pression pneus froids, avant de rouler : un pneu chaud donne une mesure faussée."
  },
  {
   "id": "e23-3",
@@ -54,6 +54,6 @@
   "bonnes": [
    0
   ],
-  "explication": "L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas forcément le freinage."
+  "explication": "L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas ta distance d’arrêt."
  }
 ]

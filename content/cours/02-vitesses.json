@@ -42,9 +42,8 @@
    "tag": "130 km/h"
   },
   {
-   "panneau": "B14:50",
    "texte": "Visibilité de moins de 50 m",
-   "tag": "50 km/h"
+   "tag": "50 km/h partout, même sans panneau"
   },
   {
    "texte": "Pluie : 110 · 100 · 80",
@@ -170,20 +169,20 @@
      "Une voie par sens"
     ],
     [
-     "Voie rapide",
-     "Sens séparés"
+     "Chaussées séparées",
+     "Un muret au milieu"
     ],
     [
      "Autoroute",
      "Panneau bleu"
     ]
    ],
-   "dire": "En agglomération, c’est-à-dire en ville ou au village : 50. Une voie dans chaque sens, rien au milieu : 80. Les deux sens séparés par un muret ou une glissière : 110. Sur autoroute, après le panneau bleu de l’autoroute : 130.",
+   "dire": "En agglomération, c’est-à-dire en ville ou au village : 50. Une voie dans chaque sens, rien au milieu : 80. Les deux sens séparés par un muret ou une glissière, c’est une route à chaussées séparées : 110. Sur autoroute, après le panneau bleu où une route passe sous un pont : 130.",
    "sync": [
     0.55,
     1.9,
-    2.9,
-    3.04
+    2.12,
+    3.02
    ]
   },
   {
@@ -193,23 +192,29 @@
    "titre": "Le panneau d'entrée",
    "panneaux": [
     "EB10",
-    "EB20"
+    "EB20",
+    "B30"
    ],
    "etiquettes": [
     [
      "EB10",
-     "Entrée d'agglomération"
+     "Entrée d’agglomération"
     ],
     [
      "EB20",
-     "Sortie d'agglomération"
+     "Sortie d’agglomération"
+    ],
+    [
+     "B30",
+     "Zone 30"
     ]
    ],
    "puce": "50 km/h sauf panneau contraire",
-   "dire": "L’agglomération, c’est la ville ou le village : elle commence au panneau blanc bordé de rouge qui porte son nom. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie : tu reprends la vitesse de la route, souvent 80. Certains quartiers sont en zone 30 : un panneau l’annonce, et c’est 30 jusqu’au panneau de sortie de la zone.",
+   "dire": "L’agglomération, c’est la ville ou le village : elle commence au panneau blanc bordé de rouge qui porte son nom. Ce panneau est à part : il ne suit pas les règles du cours 1, retiens-le tel quel. Dès ce panneau : 50 maximum, sauf indication contraire. Barré, il marque la sortie : tu reprends la vitesse de la route, souvent 80. Certains quartiers sont en zone 30 : un panneau l’annonce, et c’est 30 jusqu’au panneau de sortie de la zone.",
    "sync": [
     0.2,
-    2.23
+    3.23,
+    4.22
    ]
   },
   {
@@ -227,7 +232,7 @@
     [
      "90",
      "km/h",
-     "si le département l'a relevée, avec panneaux"
+     "si le département l’a remontée, avec panneaux"
     ]
    ],
    "dire": "Depuis 2018, les routes à double sens sont à 80 par défaut. Mais certains départements en ont remonté une partie à 90. Dans ce cas, c'est toujours indiqué par des panneaux. Sans panneau, c'est 80.",
@@ -394,7 +399,7 @@
      "partout, même sur autoroute"
     ]
    ],
-   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute. Repère sur autoroute : un trait et un espace de la bande d’arrêt d’urgence font environ 50 mètres.",
+   "dire": "Si la visibilité tombe sous 50 mètres, à cause du brouillard ou de la neige, c'est 50 maximum partout. Même sur autoroute. Repère sur autoroute : un trait et un espace, au bord de la voie des pannes, font environ 50 mètres. Sur route, un trait et un espace de la ligne du milieu font environ 13 mètres : quatre, c’est à peu près 50.",
    "decor": {
     "env": "autoroute",
     "kmh": 50,
@@ -405,12 +410,7 @@
      "brouillardAv": true,
      "brouillardAr": true
     },
-    "signaux": [
-     [
-      "B14:50",
-      40
-     ]
-    ],
+    "signaux": [],
     "acteurs": [
      {
       "type": "voiture",
@@ -459,7 +459,7 @@
      "route à double sens"
     ]
    ],
-   "dire": "Après l’examen, ton permis est probatoire : trois ans, ou deux ans après la conduite accompagnée, à tout âge. Tu poses le disque « A » à l’arrière de ta voiture. Tes vitesses : 110 sur autoroute, 100 sur route à chaussées séparées, et 80 sur les routes à double sens, même celles relevées à 90.",
+   "dire": "Après l’examen, ton permis est probatoire, c’est-à-dire à l’essai, même si tu as 40 ans. Il dure trois ans, ou deux ans après la conduite accompagnée. Tu poses le disque « A » à l’arrière de ta voiture. Tes vitesses : 110 sur autoroute, 100 sur chaussées séparées. Et 80 sur les routes à double sens, même celles remontées à 90.",
    "decor": {
     "env": "route",
     "kmh": 80,
@@ -498,7 +498,7 @@
        "Disque « A »",
        "jeune conducteur"
       ],
-      "p": 1
+      "p": 2
      },
      {
       "type": "cible",
@@ -515,9 +515,9 @@
     ]
    },
    "sync": [
-    2.08,
-    2.23,
-    2.52
+    3.22,
+    3.53,
+    4.02
    ]
   },
   {

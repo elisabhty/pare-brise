@@ -14,7 +14,7 @@
  "chapitres": [
   "Les piétons",
   "Les enfants",
-  "Les zones apaisées"
+  "Les zones lentes"
  ],
  "series": [
   "serie-usagers-vulnerables"
@@ -39,7 +39,7 @@
   },
   {
    "texte": "Permis probatoire",
-   "tag": "Un refus de priorité = 6 points : tout ton capital"
+   "tag": "6 points au début : un refus = plus de permis"
   }
  ],
  "scenes": [
@@ -156,7 +156,7 @@
      "d’amende"
     ]
    ],
-   "dire": "Ne pas laisser passer un piéton coûte 135 euros et 6 points. Tu perds autant de points qu’en roulant 50 kilomètres heure au-dessus de la limite. Avec un permis probatoire, tu n’as que 6 points : un seul refus, et tu perds ton permis.",
+   "dire": "Ne pas laisser passer un piéton coûte 135 euros et 6 points. Tu perds autant de points qu’en roulant 50 kilomètres heure au-dessus de la limite. Au début de ton permis probatoire, tu as seulement 6 points. Un seul refus, et tu perds ton permis.",
    "vitesse": 20,
    "decor": {
     "env": "ville",
@@ -193,13 +193,13 @@
    "illu": {
     "type": "points",
     "debut": {
-     "points": 12
+     "points": 6
     },
     "pas": [
      {
-      "points": 6,
+      "points": 0,
       "perdus": 6,
-      "texte": "−6 points"
+      "texte": "−6 points : plus de permis"
      },
      {
       "amende": "135 €"
@@ -238,7 +238,7 @@
    "ch": 1,
    "eyebrow": "Anticiper",
    "titre": "Un ballon, un enfant",
-   "dire": "Un ballon qui roule sur la chaussée ? Un enfant risque de courir derrière. Freine tout de suite. Même réflexe derrière un bus arrêté : des piétons peuvent traverser devant lui, passe doucement.",
+   "dire": "Un ballon qui roule sur la route ? Un enfant risque de courir derrière. Freine tout de suite. Un bus est arrêté ? Des piétons peuvent sortir devant lui. Passe à côté doucement, prêt à freiner.",
    "env": "ville",
    "kmh": 20,
    "camera": "cockpit",
@@ -253,6 +253,12 @@
      "type": "enfant",
      "S": 19,
      "x": 5.2
+    },
+    {
+     "type": "bus",
+     "S": 78,
+     "x": 4.6,
+     "kmh": 0
     }
    ],
    "script": [
@@ -275,14 +281,14 @@
     ],
     [
      "Zone de rencontre",
-     "20 km/h, les piétons sont prioritaires et peuvent marcher sur la chaussée"
+     "20 km/h, les piétons sont prioritaires et peuvent marcher au milieu de la rue"
     ],
     [
      "Aire piétonne",
      "Au pas, seulement si un panneau t’y autorise"
     ]
    ],
-   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher sur la chaussée. L’aire piétonne : tu y entres seulement si un panneau t’y autorise, comme les livreurs, et tu roules au pas, à la vitesse d’une personne qui marche. Les piétons y sont toujours prioritaires.",
+   "dire": "Trois zones à connaître. La zone 30 : 30 maximum. La zone de rencontre : 20 maximum, les piétons sont prioritaires et peuvent marcher au milieu de la rue. L’aire piétonne : tu y entres seulement si le panneau t’autorise, par exemple « sauf livraisons », parfois à certaines heures. Tu roules au pas, à la vitesse d’une personne qui marche. Les piétons y sont toujours prioritaires. À l’entrée de chaque zone, un panneau te dit où tu entres.",
    "decor": {
     "env": "ville",
     "kmh": 25,

@@ -3,15 +3,15 @@
   "id": "e28-1",
   "cours": "ecoconduite",
   "type": "qcm",
-  "q": "Des pneus sous-gonflés :",
+  "q": "La climatisation :",
   "choix": [
-   "font économiser du carburant",
-   "augmentent la consommation"
+   "ne change rien à la consommation",
+   "fait consommer plus : à garder pour les grosses chaleurs ou le désembuage"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Des pneus pas assez gonflés frottent plus sur la route : ta voiture consomme plus, et freine moins bien."
+  "explication": "La clim fait consommer plus : allume-la quand il fait vraiment chaud ou pour désembuer, pas en permanence."
  },
  {
   "id": "e28-2",
@@ -39,20 +39,20 @@
   "bonnes": [
    1
   ],
-  "explication": "Un coffre de toit, même vide, freine la voiture dans l’air : tu consommes plus. Retire-le quand tu ne t’en sers pas."
+  "explication": "Un coffre de toit, même vide, prend le vent : tu consommes plus. Retire-le quand tu ne t’en sers pas."
  },
  {
   "id": "e28-4",
   "cours": "ecoconduite",
   "type": "qcm",
-  "q": "Lors d’un arrêt prolongé, il est conseillé de :",
+  "q": "Tu es garé et tu attends quelqu’un. Ton moteur :",
   "choix": [
-   "laisser tourner le moteur",
-   "couper le moteur"
+   "peut tourner pour garder le chauffage",
+   "doit être coupé"
   ],
   "bonnes": [
    1
   ],
-  "explication": "À l’arrêt prolongé, coupe le moteur : au ralenti, il consomme et pollue pour rien."
+  "explication": "Garé, laisser tourner le moteur est interdit : 135 euros. Coupe-le."
  }
 ]

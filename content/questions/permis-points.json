@@ -31,15 +31,17 @@
   "id": "pp20-3",
   "cours": "permis-points",
   "type": "qcm",
-  "q": "Le taux d’alcool maximal pour un jeune conducteur est de :",
+  "q": "En période probatoire :",
   "choix": [
-   "0,2 g/L",
-   "0,5 g/L"
+   "ton taux d’alcool maximal est 0,2 g/L",
+   "le disque « A » est obligatoire",
+   "tu peux rouler à 130 sur autoroute"
   ],
   "bonnes": [
-   0
+   0,
+   1
   ],
-  "explication": "0,2 g/L de sang, soit pratiquement zéro verre."
+  "explication": "0,2 g/L d’alcool au maximum, et le disque « A » à l’arrière. Sur autoroute, c’est 110, pas 130."
  },
  {
   "id": "pp20-4",
@@ -54,7 +56,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Un stage de sensibilisation rend jusqu’à 4 points, une fois par an au maximum. En probatoire, il devient obligatoire si tu perds 3 points ou plus d’un coup."
+  "explication": "Un stage de sensibilisation rend jusqu’à 4 points, sans dépasser ton maximum, un par an au plus. En probatoire, il devient obligatoire si tu perds 3 points ou plus d’un coup."
  },
  {
   "id": "pp20-5",

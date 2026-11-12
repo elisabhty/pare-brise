@@ -458,8 +458,8 @@ def retoucher(sc, key, champs):
             sc['items'][int(f[6:])] = v
         elif isinstance(v, list) and v and isinstance(v[0], tuple):
             txt = sc.get(f, '')
-            for a, b in v:                       # rejouable : un remplacement déjà fait n'est pas refait
-                if b and b in txt: continue
+            for a, b, *fin in v:                 # rejouable : un remplacement déjà fait (ou déjà dépassé) n'est pas refait
+                if (b and b in txt) or any(x in txt for x in fin): continue
                 if a == '': txt = (txt.rstrip() + ' ' + b).strip()
                 elif a in txt: txt = txt.replace(a, b, 1)
                 else: ALERTES.append(f'{key} {f} : « {a[:50]} » introuvable')
@@ -476,7 +476,9 @@ def corriger(d, v):
 for k, v in R.DECOR.items():
     if k in DECOR: DECOR[k] = corriger(json.loads(json.dumps(DECOR[k])), v)
 for cid, meta in R.COURS.items():
-    c = COURS[cid]; memo = c.setdefault('memo', [])
+    c = COURS[cid]
+    if 'memo_tout' in meta: c['memo'] = json.loads(json.dumps(meta['memo_tout']))
+    memo = c.setdefault('memo', [])
     for debut, ligne in meta.get('memo', []):
         idx = [j for j, l in enumerate(memo) if l['texte'].startswith(debut)]
         if not idx:                              # déjà remplacée lors d'un passage précédent : rien à faire
@@ -521,7 +523,14 @@ for cid, c in COURS.items():
             else: sc.pop('aides', None)
             if key in SITU_SCRIPT: sc['script'] = [st for st in sc.get('script', []) if st[1] != 'aide'] + SITU_SCRIPT[key]
             if key in R.DECOR: corriger(sc, R.DECOR[key])
+        rem = R.ACTEURS.get(cid)                     # usager remplacé dans toutes les images du cours
+        if rem:
+            for d in (sc, sc.get('decor') or {}):
+                for a in d.get('acteurs') or []:
+                    if a.get('type') in rem: a['type'] = rem[a['type']]
         changed = changed or json.dumps(sc) != before
+    for i, j, debut in R.COURS.get(cid, {}).get('echange', []):     # deux écrans à remettre dans l'ordre de la voix
+        if (c['scenes'][i].get('eyebrow') or '').startswith(debut): c['scenes'][i], c['scenes'][j] = c['scenes'][j], c['scenes'][i]; changed = True
     if changed or cid in R.COURS: W(FILES[cid], c)
 missing = [(cid, i, s['type']) for cid, c in COURS.items() if c['ordre'] > 1 for i, s in enumerate(c['scenes']) if s['type'] in ('titre', 'liste', 'chiffres', 'fin') and (cid, i) not in DECOR]
 print(f'{n_dec} décors ({n_ill} illustrations), {n_sit} mises en situation annotées, {n_txt} textes corrigés' + (f' ; sans décor : {missing}' if missing else ''))

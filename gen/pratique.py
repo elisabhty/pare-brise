@@ -369,6 +369,8 @@ for cid in ORDER:
             for k, v in fix.items():
                 if v is None: sit.pop(k, None)
                 else: sit[k] = v
+        for a in sit.get('acteurs') or []:                # usager remplacé dans tout le cours (retours des élèves)
+            if a.get('type') in R.ACTEURS.get(cid, {}): a['type'] = R.ACTEURS[cid][a['type']]
         # question de cours : aucun décor (rien à observer)
         if sit['mode'] == 'qcm':
             for k in DECOR_CLES: sit.pop(k, None)
@@ -406,7 +408,7 @@ for f in sorted(glob.glob(f'{ROOT}/questions/*.json')):
         if '\n {\n' in brut: W(f, d)
         else: open(f, 'w', encoding='utf-8').write('[\n' + ',\n'.join(ligne(q) for q in lst) + '\n]\n')
 for k in R.P:
-    if k not in UTILISES: print('  ⚠ retour sans question :', k)
+    if k not in UTILISES and not any(R.P[u] is R.P[k] for u in UTILISES): print('  ⚠ retour sans question :', k)
 
 others = [e for e in EXOS if not (e['meca'] == 'examen')]
 for e in others:

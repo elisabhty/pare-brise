@@ -14,7 +14,7 @@ export function validate(root = '.') {
   const series = read(P('content/series.json'));
   const exercices = fs.existsSync(P('content/exercices.json')) ? read(P('content/exercices.json')) : [];
   const TYPES = [...fs.readFileSync(P('src/app/scenes.js'), 'utf8').matchAll(/^  (\w+): \{$/gm)].map(m => m[1]);
-  const ACTEURS = ['voiture', 'trottinette', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'train', 'moto', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+  const ACTEURS = ['voiture', 'trottinette', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'tram', 'train', 'moto', 'biche', 'ambulance', 'police', 'pompiers', 'triangle', 'portiere', 'feu', 'ballon'];
   const MARQUES = ['tout-droit', 'gauche', 'droite', 'tout-droit-gauche', 'tout-droit-droite', 'rabat-droite', 'rabat-gauche', 'bus', 'handicape', 'velo', 'zebras'];
   const CAMS = ['vue', 'cockpit', 'poursuite', 'drone', 'haut', 'cote', 'bilan', 'arriere', 'plan', 'proche', 'garee', 'derriere'];
   // aides visuelles du simulateur (engine/sim.js, AIDES) et illustrations d'écran (app/illu.js, ILLU)

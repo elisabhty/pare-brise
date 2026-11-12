@@ -97,7 +97,7 @@
      "dans l'air expiré"
     ]
    ],
-   "dire": "Quand ton permis n’est plus probatoire, il est définitif : le taux maximal est de 0,5 gramme d’alcool par litre de sang. Mesurée dans ton souffle, c’est la même limite, écrite autrement : 0,25 milligramme par litre d’air expiré.",
+   "dire": "Quand ton permis n’est plus probatoire, il est définitif : le taux maximal est de 0,5 gramme d’alcool par litre de sang. Mesurée dans ton souffle, c’est la même limite, écrite autrement : 0,25 milligramme par litre d’air expiré. Un verre fait monter le taux d’environ 0,2 à 0,25 gramme : deux verres peuvent déjà dépasser 0,5.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -301,6 +301,10 @@
     [
      "0,2",
      "g/L probatoire"
+    ],
+    [
+     "0",
+     "remède : seul le temps fait baisser"
     ]
    ],
    "dire": "Cours terminé. Concrètement : celui qui conduit ne boit pas ; sinon, dors sur place ou rentre autrement. Passe à la pratique pour vérifier les chiffres.",

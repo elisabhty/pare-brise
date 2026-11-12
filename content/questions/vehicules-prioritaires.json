@@ -31,7 +31,7 @@
   "id": "vp14-3",
   "cours": "vehicules-prioritaires",
   "type": "qcm",
-  "q": "Pour laisser passer un véhicule d’urgence, tu :",
+  "q": "Pour laisser passer un véhicule prioritaire, tu :",
   "choix": [
    "te serres à droite",
    "t’arrêtes au milieu de la voie"
@@ -45,7 +45,7 @@
   "id": "vp14-4",
   "cours": "vehicules-prioritaires",
   "type": "qcm",
-  "q": "Au feu rouge, une ambulance arrive derrière toi. Tu peux :",
+  "q": "Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :",
   "choix": [
    "avancer légèrement si c’est sans danger",
    "passer le feu rouge"

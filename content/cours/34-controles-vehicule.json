@@ -18,7 +18,7 @@
  ],
  "memo": [
   {
-   "texte": "Pneus : usure, coupures, pression à froid",
+   "texte": "Pneus : usure, coupures, pression pneus froids",
    "tag": "avant de partir"
   },
   {
@@ -26,12 +26,16 @@
    "tag": "voir et être vu"
   },
   {
-   "texte": "Voyant rouge",
-   "tag": "arrêt en sécurité"
+   "texte": "Voyants : rouge, je m’arrête ; orange, je fais vérifier",
+   "tag": "dès que possible"
   },
   {
-   "texte": "Voyant orange",
-   "tag": "vérifier vite"
+   "texte": "Vitres et essuie-glaces",
+   "tag": "bien voir"
+  },
+  {
+   "texte": "Niveaux sous le capot",
+   "tag": "une fois par mois, et avant un long trajet"
   }
  ],
  "scenes": [
@@ -81,12 +85,12 @@
    "titre": "Le seul contact avec la route",
    "items": [
     [
-     "L’usure",
-     "Les témoins d’usure : 1,6 mm minimum"
-    ],
-    [
      "Coupures et bosses",
      "Un pneu abîmé se remplace"
+    ],
+    [
+     "L’usure",
+     "Les témoins d’usure : 1,6 mm minimum"
     ],
     [
      "Le sous-gonflage",
@@ -97,8 +101,14 @@
      "Une fois par mois, pneus froids"
     ]
    ],
-   "dire": "Regarde tes pneus : pas de coupure, pas de bosse. Au fond des creux, il y a des petites bosses : les témoins d’usure. Usé jusqu’à elles ? Il ne reste que 1,6 millimètre : change-le. Un pneu qui paraît écrasé manque d’air : vérifie la pression une fois par mois, avant de rouler, pneus froids. Les bons chiffres sont sur une étiquette, souvent dans l’encadrement de la portière.",
+   "dire": "Regarde tes pneus : pas de coupure, pas de bosse. Au fond des creux, il y a des petits blocs de gomme : les témoins d’usure. Usé jusqu’à eux ? Il ne reste que 1,6 millimètre : change-le. Un pneu qui paraît écrasé manque d’air : vérifie la pression une fois par mois, avant de rouler, pneus froids. Pneus froids, on dit aussi « à froid » : la voiture n’a pas encore roulé. Les bons chiffres sont sur une étiquette, souvent dans l’encadrement de la portière.",
    "ch": 0,
+   "sync": [
+    0.52,
+    1.89,
+    4.0,
+    4.44
+   ],
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -133,19 +143,14 @@
    "illu": {
     "type": "pneu",
     "vues": [
-     "usure",
      "coupure",
+     "usure",
      "gonflage",
      "pression"
     ],
-    "suit": true
-   },
-   "sync": [
-    1.88,
-    1.88,
-    4.0,
-    4.44
-   ]
+    "suit": true,
+    "pression": "Pression"
+   }
   },
   {
    "type": "situation",
@@ -246,11 +251,17 @@
     ],
     [
      "Huile moteur",
-     "À la jauge, si ton modèle en a une"
+     "À la jauge : une tige à tirer"
     ]
    ],
-   "dire": "Sous le capot, les réservoirs ont deux traits : mini et maxi. Le niveau doit être entre les deux. Liquide de refroidissement, lave-glace, liquide de frein, et l’huile, à la jauge : le manuel te montre où ils sont.",
+   "dire": "Sous le capot, les réservoirs ont deux traits : mini et maxi. Le niveau doit être entre les deux. Liquide de refroidissement, lave-glace, liquide de frein : le manuel te montre où ils sont. L’huile se regarde avec la jauge : une tige que tu tires pour voir le niveau.",
    "ch": 1,
+   "sync": [
+    2.09,
+    2.28,
+    2.53,
+    3.0
+   ],
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -304,13 +315,7 @@
       3
      ]
     ]
-   },
-   "sync": [
-    2.07,
-    2.21,
-    2.41,
-    2.52
-   ]
+   }
   },
   {
    "type": "liste",
@@ -382,12 +387,12 @@
    "titre": "Les contrôles ne remplacent pas l’entretien",
    "items": [
     [
-     "Les échéances",
-     "Celles du carnet d’entretien"
+     "La révision",
+     "Aux dates du carnet d’entretien"
     ],
     [
-     "Une anomalie",
-     "Fais-la examiner sans attendre"
+     "Un bruit bizarre, un voyant",
+     "Fais vérifier sans attendre"
     ],
     [
      "Moteur chaud",
@@ -432,12 +437,12 @@
      {
       "i": "📘",
       "t": "Carnet",
-      "s": "les échéances"
+      "s": "la révision"
      },
      {
       "i": "🔧",
-      "t": "Une anomalie",
-      "s": "à faire examiner"
+      "t": "Un bruit bizarre",
+      "s": "à faire vérifier"
      },
      {
       "i": "♨️",
@@ -448,8 +453,8 @@
     ]
    },
    "sync": [
-    0.7,
-    2.0,
+    0.39,
+    1.07,
     3.0
    ]
   },
@@ -467,7 +472,7 @@
      "couleurs qui demandent d’agir"
     ]
    ],
-   "dire": "Avant de partir : pneus, feux, vitres, voyants. Et de temps en temps, les niveaux sous le capot. Place à la pratique.",
+   "dire": "Avant de partir : pneus, feux, vitres, voyants. Et une fois par mois, et avant un long trajet, les niveaux sous le capot. Place à la pratique.",
    "ch": 2,
    "decor": {
     "env": "ville",

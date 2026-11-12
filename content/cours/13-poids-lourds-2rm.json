@@ -19,10 +19,10 @@
  "memo": [
   {
    "texte": "Camion",
-   "tag": "Vois son visage dans son rétro, sinon il ne te voit pas"
+   "tag": "Pour qu’il te voie : vois son visage dans son rétro"
   },
   {
-   "texte": "Bus qui quitte son arrêt (en ville)",
+   "texte": "Bus qui quitte son arrêt (en agglomération)",
    "tag": "Tu le laisses partir"
   },
   {
@@ -168,7 +168,7 @@
      "Plus long : il faut beaucoup de place"
     ]
    ],
-   "dire": "Dans un virage, un camion a besoin de plus de place : il peut venir sur ta voie. Ne reste pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place.",
+   "dire": "Dans un virage, un camion a besoin de plus de place : il peut venir sur ta voie. Ne reste pas à côté de lui. Il met aussi plus longtemps à s’arrêter, et le dépasser prend beaucoup plus de place. Au carrefour, un camion qui tourne à droite s’écarte souvent d’abord à gauche : ne te mets jamais à sa droite.",
    "decor": {
     "env": "route",
     "kmh": 45,
@@ -200,7 +200,7 @@
       "item": 0,
       "texte": [
        "Pas à côté",
-       "il se déporte"
+       "il prend de la place"
       ],
       "etiquette": 0
      },

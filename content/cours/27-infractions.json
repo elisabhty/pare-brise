@@ -35,7 +35,7 @@
   },
   {
    "texte": "Alcool de 0,5 à 0,8 g/L",
-   "tag": "135 € et 6 points"
+   "tag": "135 € et 6 points · dès 0,2 g/L en probatoire"
   },
   {
    "texte": "50 km/h de trop ou plus",
@@ -44,6 +44,14 @@
   {
    "texte": "Plusieurs infractions d’un coup",
    "tag": "8 points au maximum"
+  },
+  {
+   "texte": "Suspension",
+   "tag": "Ton permis t’est retiré pour un temps"
+  },
+  {
+   "texte": "Annulation",
+   "tag": "À repasser : le nouveau est probatoire, 6 points"
   }
  ],
  "scenes": [
@@ -107,7 +115,7 @@
      "4e classe"
     ]
    ],
-   "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Tu paies vite, elle baisse ; tu tardes, elle monte. Exemple, une amende à 135 euros : 90 si tu paies dans les 15 jours, 375 si tu paies trop tard.",
+   "dire": "Les amendes forfaitaires les plus courantes : 35 euros pour la deuxième classe, 68 pour la troisième, 135 pour la quatrième. Tu paies vite, elle baisse ; tu tardes, elle monte. Exemple, une amende à 135 euros : 90 si tu paies dans les 15 jours, 375 si tu paies après 45 jours.",
    "vitesse": 50,
    "decor": {
     "env": "ville",
@@ -271,7 +279,7 @@
      "de 40 à 49"
     ]
    ],
-   "dire": "Pour la vitesse : moins de 5 kilomètres heure de trop, une amende, mais aucun point. 1 point de 5 à 19, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. À partir de 40 de trop, ton permis peut t’être retiré sur-le-champ. À 50 de trop ou plus : 6 points, et c’est désormais un délit, plus grave qu’une amende : tribunal, et prison possible. Les autres délits à connaître : l’alcool à 0,8 gramme ou plus, les stupéfiants, rouler sans assurance. Entre 0,5 et 0,8 gramme, c’est 135 euros et 6 points.",
+   "dire": "Pour la vitesse : moins de 5 kilomètres heure de trop, une amende, mais aucun point. 1 point de 5 à 19, 2 points de 20 à 29, 3 points de 30 à 39, 4 points de 40 à 49. À partir de 40 de trop, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures. Puis le préfet peut le suspendre jusqu’à 6 mois. À 50 de trop ou plus : 6 points, et c’est désormais un délit, plus grave qu’une amende : tribunal, et prison possible. Les autres délits à connaître : l’alcool à 0,8 gramme ou plus, les stupéfiants, rouler sans assurance. Entre 0,5 et 0,8 gramme par litre de sang, ou dès 0,2 en probatoire : 135 euros et 6 points.",
    "vitesse": 50,
    "decor": {
     "env": "route",
@@ -318,9 +326,42 @@
     "e": [
      0,
      1,
-     2,
-     3,
+     1,
+     1,
+     1,
      3
+    ],
+    "segments": [
+     [
+      "< 5",
+      "0",
+      "#C9D0DA"
+     ],
+     [
+      "5–19",
+      "−1",
+      "#FFD60A"
+     ],
+     [
+      "20–29",
+      "−2",
+      "#FFB020"
+     ],
+     [
+      "30–39",
+      "−3",
+      "#FF8A00"
+     ],
+     [
+      "40–49",
+      "−4",
+      "#FF5A1F"
+     ],
+     [
+      "≥ 50",
+      "−6",
+      "#E5141F"
+     ]
     ]
    }
   },
@@ -343,7 +384,7 @@
      "points au maximum d’un coup"
     ]
    ],
-   "dire": "Cours terminé. Retiens deux mots : une suspension, ton permis t’est retiré pour un temps ; une annulation, tu dois le repasser. Passe à la pratique pour connaître le prix de chaque infraction.",
+   "dire": "Cours terminé. Retiens deux mots. Une suspension : ton permis t’est retiré pour un temps. Une annulation : tu dois le repasser, et le nouveau est probatoire, avec 6 points. Passe à la pratique pour connaître le prix de chaque infraction.",
    "decor": {
     "env": "route",
     "kmh": 80,

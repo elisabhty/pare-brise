@@ -20,7 +20,7 @@
  "memo": [
   {
    "texte": "Ligne continue",
-   "tag": "Ne pas franchir · sauf pour dépasser un vélo"
+   "tag": "Jamais dessus · sauf roues de gauche pour dépasser un vélo ou une trottinette"
   },
   {
    "texte": "Ligne d’annonce",
@@ -43,6 +43,14 @@
   {
    "texte": "Zébras",
    "tag": "Ni rouler, ni se garer dessus"
+  },
+  {
+   "texte": "Ligne discontinue",
+   "tag": "Tu peux la franchir, si c’est sans danger"
+  },
+  {
+   "texte": "Flèches de rabattement",
+   "tag": "Reviens à droite"
   }
  ],
  "scenes": [
@@ -193,7 +201,7 @@
    "items": [
     [
      "Flèches de rabattement",
-     "Reviens dans ta voie, à droite"
+     "Reviens à droite"
     ],
     [
      "Zébras",
@@ -208,7 +216,7 @@
      "Stationnement interdit"
     ]
    ],
-   "dire": "Des flèches penchées au sol ? Ce sont des flèches de rabattement : reviens dans ta voie, à droite, une ligne continue ou la fin de ta voie approche. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Ligne jaune continue au bord du trottoir : ni arrêt, ni stationnement. Ligne jaune en pointillés : tu peux t’arrêter un instant, mais pas te garer.",
+   "dire": "Des flèches penchées au sol ? Ce sont des flèches de rabattement : reviens à droite. Une ligne continue arrive, ou la voie où tu roules va s’arrêter. Les zébras, ces hachures, interdisent d’y rouler et de s’y garer. Ligne jaune continue au bord du trottoir : ni arrêt, ni stationnement. Ligne jaune en pointillés : tu peux t’arrêter un instant, mais pas te garer.",
    "decor": {
     "env": "route",
     "kmh": 20,
@@ -311,10 +319,10 @@
     ]
    },
    "sync": [
-    1.07,
-    2.03,
-    3.14,
-    3.77
+    1.19,
+    3.03,
+    4.14,
+    4.77
    ]
   },
   {

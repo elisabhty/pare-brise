@@ -20,22 +20,26 @@
  ],
  "memo": [
   {
-   "panneau": "C12",
-   "texte": "Plusieurs voies dans ton sens",
-   "tag": "la voie de droite"
+   "texte": "Je roule à droite",
+   "tag": "Sur route et autoroute : la voie de droite"
   },
   {
-   "texte": "Flèches au sol, panneaux de voie",
-   "tag": "se placer tôt"
+   "texte": "Je lis les flèches et les panneaux tôt",
+   "tag": "En ville : ta voie selon ta direction",
+   "panneau": "C12"
+  },
+  {
+   "texte": "Avant de changer de voie",
+   "tag": "Rétros, clignotant, angle mort"
   },
   {
    "texte": "Voie de bus, piste cyclable",
-   "tag": "réservées"
+   "tag": "Réservées, même vides"
   },
   {
-   "panneau": "A3b",
    "texte": "Ta voie se termine",
-   "tag": "se rabattre"
+   "tag": "Rabats-toi quand il y a la place",
+   "panneau": "A3b"
   }
  ],
  "scenes": [
@@ -46,7 +50,7 @@
    "titre": "Se positionner sur la chaussée",
    "sous": "choisir la bonne voie au bon moment",
    "vitesse": 90,
-   "dire": "Tu arrives sur une route à plusieurs voies. Le bon placement te permet de circuler sans gêner et d’anticiper la prochaine direction. Commençons par la règle générale : en France, on circule à droite.",
+   "dire": "Tu arrives sur une route à plusieurs voies. La chaussée, c’est la partie de la route où roulent les voitures : elle peut avoir plusieurs voies. Le bon placement te permet de circuler sans gêner et d’anticiper la prochaine direction. Commençons par la règle générale : en France, on circule à droite.",
    "decor": {
     "env": "autoroute",
     "kmh": 100,
@@ -82,7 +86,7 @@
       "large": 3.0,
       "couleur": "vert",
       "opacite": 0.18,
-      "p": 2,
+      "p": 3,
       "texte": [
        "À droite",
        "la règle générale"
@@ -178,25 +182,37 @@
    ],
    "script": [
     [
-     4.0,
+     1.0,
      "vitesse",
-     20,
-     1.5
+     12,
+     2.0
     ]
    ],
-   "dire": "À l’approche d’un carrefour, regarde les flèches peintes au sol : à gauche pour tourner à gauche, à droite pour aller tout droit ou à droite. Place-toi à temps, sans traverser plusieurs voies au dernier moment.",
+   "dire": "À l’approche d’un carrefour, regarde les flèches peintes au sol. Ici, la voie de gauche, c’est pour tourner à gauche. La voie de droite, c’est pour aller tout droit ou à droite. Place-toi à temps, sans traverser plusieurs voies au dernier moment.",
    "ch": 0,
    "aides": [
     {
      "type": "repere",
-     "S": 30,
+     "S": 52,
      "x": 1.75,
      "hauteur": 0.5,
      "texte": [
       "Flèche au sol",
       "tout droit ou à droite"
      ],
-     "p": 0
+     "p": 2
+    },
+    {
+     "type": "repere",
+     "S": 30,
+     "x": -1.75,
+     "hauteur": 0.5,
+     "texte": [
+      "Flèche à gauche",
+      "pour tourner à gauche"
+     ],
+     "p": 1,
+     "fin": 2
     }
    ]
   },
@@ -303,7 +319,7 @@
      null
     ]
    ],
-   "dire": "Sur la voie d’insertion, qu’on appelle aussi voie d’accélération, accélère pour rouler à la vitesse des autres. Rétros, clignotant, angle mort : cède le passage à ceux qui sont déjà sur la voie, puis glisse-toi dans un espace libre. Ne force jamais ton insertion.",
+   "dire": "Sur la voie d’insertion, qu’on appelle aussi voie d’accélération, accélère pour rouler à la vitesse des autres. Rétros, clignotant, angle mort : cède le passage à ceux qui sont déjà sur la voie, puis glisse-toi dans un espace libre. Ne force jamais ton insertion. Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.",
    "ch": 1,
    "aides": [
     {
@@ -372,7 +388,7 @@
     ]
    ],
    "dire": "Pour prendre une sortie, repère les panneaux assez tôt. Mets-toi sur la voie de droite : rétros, clignotant, angle mort. Puis prends la voie de sortie : c’est là que tu ralentis. Si tu rates la sortie, continue jusqu’à la suivante.",
-   "ch": 2
+   "ch": 1
   },
   {
    "type": "situation",
@@ -436,7 +452,7 @@
      null
     ]
    ],
-   "dire": "Ce triangle annonce que la route se rétrécit par la gauche : la voie de gauche va s’arrêter. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. Les flèches de rabattement au sol te disent de te rabattre : ta voie va finir, ou une ligne continue arrive.",
+   "dire": "Ce triangle annonce que la chaussée se rétrécit par la gauche : la voie de gauche va s’arrêter. Rétros, clignotant, angle mort : puis rabats-toi quand il y a la place. Les flèches de rabattement au sol te disent de te rabattre : ta voie va finir, ou une ligne continue arrive.",
    "ch": 2
   },
   {
@@ -453,7 +469,7 @@
      "réflexes de placement"
     ]
    ],
-   "dire": "Retiens trois réflexes : je roule à droite, je lis les flèches et les panneaux tôt, et je regarde avant de changer de voie. Place à la pratique.",
+   "dire": "Trois réflexes. Un : je roule à droite. Deux : je lis les flèches et les panneaux tôt. Trois : avant de changer de voie, rétros, clignotant, angle mort. Place à la pratique.",
    "ch": 2,
    "decor": {
     "env": "autoroute",

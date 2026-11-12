@@ -22,11 +22,11 @@
   },
   {
    "texte": "Pression",
-   "tag": "À froid, chaque mois"
+   "tag": "Pneus froids, chaque mois"
   },
   {
    "texte": "Voyant rouge",
-   "tag": "Arrêt dès que possible"
+   "tag": "Arrêt dès que possible, en sécurité"
   },
   {
    "texte": "Voyant orange",
@@ -88,10 +88,10 @@
     [
      "1",
      "fois par mois",
-     "la pression, à froid : un conseil"
+     "la pression, pneus froids : un conseil"
     ]
    ],
-   "dire": "Les pneus doivent avoir au moins 1,6 millimètre de sculpture. Pour le voir, regarde les témoins d’usure, des petits bourrelets au fond des rainures : s’ils arrivent au niveau du pneu, change-le. En dessous, c’est une infraction : amende, et ta voiture peut être immobilisée. Conseil : vérifie la pression une fois par mois, à froid. Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien.",
+   "dire": "Les pneus doivent avoir au moins 1,6 millimètre de sculpture. Pour le voir, regarde les témoins d’usure, des petits bourrelets au fond des rainures : s’ils arrivent au niveau du pneu, change-le. Sous 1,6 mm, c’est une infraction : 135 euros, et ta voiture peut être immobilisée. Conseil : vérifie la pression une fois par mois, pneus froids. Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien.",
    "vitesse": 40,
    "decor": {
     "env": "ville",
@@ -126,7 +126,7 @@
    },
    "sync": [
     0.51,
-    3.57
+    3.52
    ],
    "illu": {
     "type": "pneu",
@@ -134,7 +134,8 @@
      "usure",
      "pression"
     ],
-    "suit": true
+    "suit": true,
+    "pression": "Pression"
    }
   },
   {
@@ -257,18 +258,18 @@
    "items": [
     [
      "Rouge",
-     "Alerte : huile, température, freins"
+     "Alerte (huile, température, freins) : arrête-toi dès que possible"
     ],
     [
      "Orange",
-     "Anomalie : fais vérifier rapidement"
+     "À faire vérifier vite, sauf simple témoin"
     ],
     [
      "Vert ou bleu",
      "Information : un équipement fonctionne"
     ]
    ],
-   "dire": "Au tableau de bord, trois couleurs. Rouge : une alerte, comme l’huile, la température ou les freins. Arrête-toi dès que possible, en sécurité. Certains rouges sont de simples rappels : ceinture, frein à main, porte ouverte. Orange : une anomalie, à faire vérifier rapidement. Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu.",
+   "dire": "Au tableau de bord, trois couleurs. Rouge : une alerte, comme l’huile, la température ou les freins. Arrête-toi dès que possible, en sécurité. Certains rouges sont de simples rappels : ceinture, frein à main, porte ouverte. Orange : une anomalie, à faire vérifier rapidement. Parfois, c’est juste un témoin, comme le feu de brouillard arrière allumé. Vert ou bleu : simple information, par exemple tes feux de route allumés, en bleu.",
    "puces": [
     "●",
     "●",
@@ -292,7 +293,7 @@
    "sync": [
     1.0,
     4.0,
-    5.0
+    6.0
    ],
    "illu": {
     "type": "voyants",

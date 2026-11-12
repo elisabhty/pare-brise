@@ -25,7 +25,7 @@
   },
   {
    "texte": "Aquaplaning",
-   "tag": "Lâche l’accélérateur, ne freine pas fort"
+   "tag": "Ne freine pas : lève le pied, volant droit"
   },
   {
    "texte": "Visibilité < 50 m",
@@ -38,7 +38,11 @@
   },
   {
    "texte": "Loi montagne",
-   "tag": "1er nov. → 31 mars : pneus hiver, ou chaînes dans le coffre"
+   "tag": "1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre"
+  },
+  {
+   "texte": "Pluie : 110 · 100 · 80",
+   "tag": "Autoroute · chaussées séparées · routes à 90"
   }
  ],
  "scenes": [
@@ -85,7 +89,7 @@
    "ch": 0,
    "eyebrow": "La pluie",
    "titre": "Ça glisse",
-   "dire": "Sous la pluie, ta distance d’arrêt s’allonge : compte environ une fois et demie celle sur sol sec. Les premières gouttes après une période sèche sont les pires : mêlées à la poussière et à l’huile, elles rendent la route savonneuse.",
+   "dire": "Sous la pluie, ta distance d’arrêt s’allonge : compte environ une fois et demie celle sur sol sec. Les premières gouttes après une période sèche sont les pires : mêlées à la poussière et à l’huile, elles rendent la route savonneuse. Et les vitesses baissent : 110 sur autoroute, 100 sur chaussées séparées, et 80 sur les routes à 90.",
    "env": "route",
    "meteo": "pluie",
    "kmh": 60,
@@ -137,7 +141,7 @@
      "Jusqu’à ce que les pneus accrochent"
     ]
    ],
-   "dire": "Aquaplaning : une couche d’eau sépare les pneus de la route. La direction devient légère. Ne freine pas, ne donne pas de coup de volant : lève le pied doucement et tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau la route.",
+   "dire": "Aquaplaning : une couche d’eau sépare les pneus de la route. La direction devient légère. Ne freine pas, ne donne pas de coup de volant. Lève le pied doucement et tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau.",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -180,9 +184,9 @@
     ]
    },
    "sync": [
-    2.0,
-    2.37,
-    2.37
+    2.04,
+    3.11,
+    3.24
    ]
   },
   {
@@ -190,7 +194,7 @@
    "ch": 1,
    "eyebrow": "Brouillard",
    "titre": "Moins de 50 mètres",
-   "dire": "Quand la visibilité tombe sous 50 mètres, c’est 50 maximum, même sur autoroute, même si un panneau indique plus. Repère sur autoroute : un trait et un espace de la bande d’arrêt d’urgence font environ 50 mètres. Feux de croisement, feux de brouillard, et grandes distances.",
+   "dire": "Quand la visibilité tombe sous 50 mètres, c’est 50 maximum, même sur autoroute, même si un panneau indique plus. Repère sur autoroute : un trait et un espace, au bord de la voie des pannes, font environ 50 mètres. Sur route : quatre traits et quatre espaces de la ligne du milieu. Feux de croisement, feux de brouillard, et grandes distances.",
    "env": "route",
    "meteo": "brouillard",
    "kmh": 45,
@@ -288,7 +292,7 @@
    "ch": 2,
    "eyebrow": "L’hiver",
    "titre": "Neige et verglas",
-   "dire": "Sur neige ou verglas, la distance de freinage peut être plusieurs fois plus longue. Douceur sur l’accélérateur, le volant et le frein. Le verglas se forme d’abord sur les ponts et dans les zones à l’ombre.",
+   "dire": "Sur neige, la distance de freinage est plusieurs fois plus longue ; sur verglas, jusqu’à 10 fois. Douceur sur l’accélérateur, le volant et le frein. Le verglas se forme d’abord sur les ponts et dans les zones à l’ombre.",
    "env": "route",
    "meteo": "neige",
    "kmh": 40,

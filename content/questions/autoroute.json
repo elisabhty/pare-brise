@@ -46,15 +46,15 @@
   "id": "a10-4",
   "cours": "autoroute",
   "type": "qcm",
-  "q": "Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Tu :",
+  "q": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue qui tourne. Tu :",
   "choix": [
-   "changes de voie ou ralentis",
+   "ralentis et changes de voie si tu peux",
    "klaxonnes"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Un véhicule d’intervention est arrêté : change de voie si tu peux, sinon ralentis bien. C’est le corridor de sécurité."
+  "explication": "Ralentis toujours. Change de voie si tu peux, sinon écarte-toi dans ta voie : c’est le corridor de sécurité."
  },
  {
   "id": "a10-5",
@@ -68,7 +68,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, tu peux y rouler jusqu’à 130.",
+  "explication": "Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.",
   "panneaux": [
    "C107"
   ]

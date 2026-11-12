@@ -153,7 +153,7 @@
      "Seulement avec l’airbag passager désactivé"
     ]
    ],
-   "dire": "Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids, et à l’arrière, sauf exceptions. Un bébé voyage dos à la route, le plus longtemps possible. L’exception la plus courante : un siège bébé dos à la route à l’avant, mais alors l’airbag passager doit être désactivé.",
+   "dire": "Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids. Et à l’arrière, sauf exceptions. Un bébé voyage dos à la route, le plus longtemps possible. Les exceptions : la voiture n’a pas de places arrière, ou elles sont déjà prises par d’autres enfants. Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -162,9 +162,9 @@
     "acteurs": []
    },
    "sync": [
-    0.06,
-    1.02,
-    2.42
+    0.08,
+    2.02,
+    4.27
    ],
    "illu": {
     "type": "sieges",
@@ -191,10 +191,10 @@
     ],
     [
      "Animaux",
-     "Attachés ou en cage"
+     "Le plus sûr : attachés ou en cage"
     ]
    ],
-   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Le plus sûr : rien sur la plage arrière, car en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Les animaux voyagent attachés ou en cage : s’ils te gênent pour conduire, c’est une infraction. Et ton chargement ne doit cacher ni ta vue, ni tes feux, ni ta plaque.",
+   "dire": "Le chargement : les objets lourds en bas, dans le coffre, bien calés. Le plus sûr : rien sur la plage arrière, car en cas de choc, chaque objet devient un projectile. Un coffre de toit augmente la consommation et la prise au vent. Le plus sûr : un animal attaché ou en cage. S’il te gêne pour conduire, c’est une infraction. Et ton chargement ne doit cacher ni ta vue, ni tes feux, ni ta plaque.",
    "decor": {
     "env": "route",
     "kmh": 60,
@@ -243,7 +243,7 @@
     0.26,
     1.24,
     2.02,
-    3.01
+    3.37
    ]
   },
   {

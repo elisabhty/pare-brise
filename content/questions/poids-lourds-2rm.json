@@ -48,12 +48,12 @@
   "q": "La vitesse d’une moto qui arrive est :",
   "choix": [
    "facile à estimer",
-   "souvent sous-estimée"
+   "souvent plus rapide qu’on le pense"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Une moto est étroite : elle paraît plus loin et plus lente qu’elle ne l’est. On sous-estime souvent sa vitesse."
+  "explication": "Une moto est étroite : elle paraît plus loin et plus lente qu’en vrai. Elle arrive plus vite que tu le penses."
  },
  {
   "id": "pl213-5",

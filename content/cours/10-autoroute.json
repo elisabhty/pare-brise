@@ -26,7 +26,7 @@
   },
   {
    "texte": "Voie de droite",
-   "tag": "Par défaut"
+   "tag": "Ta voie normale"
   },
   {
    "texte": "Distance",
@@ -38,7 +38,7 @@
   },
   {
    "texte": "Corridor de sécurité",
-   "tag": "Ralentis, change de voie ou écarte-toi"
+   "tag": "Ralentis et change de voie ; sinon écarte-toi"
   }
  ],
  "scenes": [
@@ -126,7 +126,7 @@
    "ch": 0,
    "eyebrow": "L’insertion",
    "titre": "Accélère, puis cède",
-   "dire": "Sur la voie d’insertion, accélère jusqu’à la vitesse des autres. Rétroviseur, clignotant à gauche, coup d’œil dans l’angle mort, puis glisse-toi dans un espace libre. Ceux qui sont déjà sur l’autoroute sont prioritaires : pas d’espace ? Adapte ta vitesse pour en trouver un avant la fin de la voie.",
+   "dire": "Sur la voie d’insertion, accélère jusqu’à la vitesse des autres. Rétroviseur, clignotant à gauche, coup d’œil dans l’angle mort, puis glisse-toi dans un espace libre. Ceux qui sont déjà sur l’autoroute sont prioritaires. Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.",
    "env": "autoroute",
    "kmh": 75,
    "camera": "poursuite",
@@ -214,7 +214,7 @@
      "Marche arrière, demi-tour, s’arrêter hors urgence"
     ]
    ],
-   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits. L’autoroute commence au panneau bleu avec une route qui passe sous un pont : piétons, vélos et petits scooters de 50 y sont interdits. Une voie rapide, aux deux sens séparés, suit presque les mêmes règles, mais à 110 au maximum.",
+   "dire": "Sur autoroute, ta voie normale, c’est celle de droite. Tu doubles par la gauche, puis tu reviens à droite. Marche arrière, demi-tour et arrêt hors urgence sont interdits. Sortie ratée ? Continue jusqu’à la suivante. L’autoroute commence au panneau bleu avec une route qui passe sous un pont : piétons, vélos et petits scooters de 50 y sont interdits. Une voie rapide, c’est la route à chaussées séparées du cours 2 : 110 au maximum. Sous la pluie ou en permis probatoire : 100.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -293,6 +293,12 @@
       "couleur": "vert",
       "item": 1
      }
+    ],
+    "signaux": [
+     [
+      "C107",
+      40
+     ]
     ]
    },
    "sync": [
@@ -404,7 +410,7 @@
      "Borne orange ou 112"
     ]
    ],
-   "dire": "En cas de panne, va sur la bande d’arrêt d’urgence, la petite voie tout à droite, le plus à droite possible. Allume tes feux de détresse et enfile ton gilet jaune avant de sortir. Tout le monde sort côté droit et passe derrière la glissière, la barrière de métal au bord. Puis appelle avec une borne orange d’appel d’urgence, ou le 112.",
+   "dire": "En cas de panne, va sur la bande d’arrêt d’urgence, la petite voie tout à droite, le plus à droite possible. Allume tes feux de détresse et enfile ton gilet jaune avant de sortir. Tout le monde sort côté droit et passe derrière la glissière, la barrière de métal au bord. Puis appelle avec une borne orange d’appel d’urgence, ou le 112. Le triangle, pose-le seulement si tu peux le faire sans danger.",
    "decor": {
     "env": "autoroute",
     "kmh": 0,
@@ -516,7 +522,7 @@
    "ch": 2,
    "eyebrow": "Corridor de sécurité",
    "titre": "Écarte-toi",
-   "dire": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue ou orange qui tourne ? Ralentis, et change de voie si tu peux. Sinon, écarte-toi le plus possible dans ta voie. C’est le corridor de sécurité.",
+   "dire": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue ou orange qui tourne, ou ses feux de détresse ? Ralentis, et change de voie si tu peux. Sinon, écarte-toi le plus possible dans ta voie. C’est le corridor de sécurité.",
    "env": "autoroute",
    "kmh": 90,
    "camera": "poursuite",
@@ -531,7 +537,7 @@
     [
      0,
      "Corridor",
-     "décale-toi ou ralentis"
+     "ralentis et décale-toi"
     ]
    ],
    "script": [
@@ -565,7 +571,7 @@
     ],
     [
      "130",
-     "km/h maximum"
+     "km/h maximum, 110 en probatoire"
     ],
     [
      "4",

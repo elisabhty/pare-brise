@@ -31,7 +31,7 @@
   "id": "sp22-3",
   "cours": "securite-passagers",
   "type": "qcm",
-  "q": "Jusqu’à quel âge un siège auto ou un rehausseur adapté est-il obligatoire ?",
+  "q": "Un siège auto ou un rehausseur adapté est obligatoire tant que l’enfant a moins de :",
   "choix": [
    "8 ans",
    "10 ans",
@@ -40,7 +40,7 @@
   "bonnes": [
    1
   ],
-  "explication": "Jusqu’à 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc."
+  "explication": "Moins de 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc."
  },
  {
   "id": "sp22-4",

@@ -22,7 +22,7 @@
   },
   {
    "texte": "Siège",
-   "tag": "Jambes légèrement fléchies"
+   "tag": "Pédale de gauche au fond, jambe légèrement fléchie"
   },
   {
    "texte": "Avant de partir",
@@ -30,7 +30,7 @@
   },
   {
    "texte": "En quittant",
-   "tag": "Frein de parking, vitesse engagée"
+   "tag": "Frein de parking, vitesse engagée, rétro et angle mort avant d’ouvrir"
   }
  ],
  "scenes": [
@@ -86,7 +86,7 @@
     ],
     [
      "Le dossier",
-     "Bras tendus, poignets sur le haut du volant"
+     "Poignets au haut du volant, bras tendus ; en roulant, bras pliés"
     ],
     [
      "L’appui-tête",
@@ -101,7 +101,7 @@
      "À plat, sur l’épaule et le bassin"
     ]
    ],
-   "dire": "D’abord le siège : pédale de gauche enfoncée à fond, ou le frein en boîte automatique, ta jambe reste légèrement fléchie. Puis le dossier : dos collé, bras tendus, tes poignets touchent le haut du volant ; mains sur le volant, tes bras sont alors légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs : sur les côtés, un petit bout de ta carrosserie ; au milieu, toute la lunette arrière. Et la ceinture, bien à plat, sur l’épaule et le bassin.",
+   "dire": "D’abord le siège : pédale de gauche enfoncée à fond, ou le frein en boîte automatique, ta jambe reste légèrement fléchie. Puis le dossier : dos collé, bras tendus, tes poignets touchent le haut du volant. Mains sur le volant, tes bras sont alors légèrement pliés. L’appui-tête, son haut au niveau du haut de ton crâne. Les rétroviseurs : sur les côtés, un petit bout de ta carrosserie ; au milieu, toute la lunette arrière. Et la ceinture, bien à plat, sur l’épaule et le bassin.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -133,10 +133,10 @@
    },
    "sync": [
     0.06,
-    1.03,
-    2.01,
+    1.07,
     3.01,
-    4.08
+    4.01,
+    5.08
    ],
    "illu": {
     "type": "siege",
@@ -291,7 +291,7 @@
      },
      {
       "i": "🪞",
-      "t": "Rétroviseur",
+      "t": "Rétro + angle mort",
       "s": "avant d’ouvrir"
      }
     ]

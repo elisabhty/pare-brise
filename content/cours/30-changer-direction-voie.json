@@ -6,8 +6,7 @@
  "accroche": "préparer chaque manœuvre sans surprise",
  "resume": "Contrôles, clignotants, angles morts, changements de file et virages.",
  "chapitres": [
-  "Observer avant de bouger",
-  "Changer de voie",
+  "Les 4 étapes",
   "Tourner en sécurité"
  ],
  "affiche": [
@@ -28,8 +27,8 @@
    "tag": "2 · le clignotant"
   },
   {
-   "texte": "Coup d’œil dans l’angle mort",
-   "tag": "3 · tourner la tête"
+   "texte": "Tourner la tête vers l’épaule",
+   "tag": "3 · l’angle mort"
   },
   {
    "texte": "Seulement si c’est libre",
@@ -44,7 +43,7 @@
    "titre": "Changer de direction et de voie",
    "sous": "préparer chaque manœuvre sans surprise",
    "vitesse": 40,
-   "dire": "Tu roules en ville. À la prochaine intersection, tu dois tourner. Avant de tourner, il y a 4 étapes, toujours dans le même ordre : les rétros, le clignotant, l’angle mort, puis tu y vas si c’est libre.",
+   "dire": "Tu roules en ville. À la prochaine intersection, tu dois tourner. Avant de tourner, il y a 4 étapes, toujours dans le même ordre. Les rétros, le clignotant, l’angle mort, puis tu y vas si c’est libre.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -144,73 +143,8 @@
      "d"
     ]
    ],
-   "dire": "Étape 1, les rétros : regarde le rétroviseur du milieu, puis celui du côté où tu vas. Tu vas à droite ? Le rétro du milieu, puis le rétro droit. Un deux-roues peut se rapprocher sans être encore à ta hauteur.",
+   "dire": "Étape 1, les rétros : regarde le rétroviseur du milieu, qu’on appelle le rétroviseur intérieur. Puis celui du côté où tu vas. Tu vas à droite ? Le rétro du milieu, puis le rétro droit. Un deux-roues peut se rapprocher sans être encore à ta hauteur.",
    "ch": 0
-  },
-  {
-   "type": "situation",
-   "eyebrow": "Étape 3 · l’angle mort",
-   "titre": "L’angle mort : la zone invisible",
-   "env": "autoroute",
-   "kmh": 90,
-   "camera": "drone",
-   "acteurs": [
-    {
-     "type": "voiture",
-     "S": -3.5,
-     "x": -1.75,
-     "kmh": 90,
-     "couleur": 15223370
-    }
-   ],
-   "etiquettes": [
-    [
-     0,
-     "Angle mort",
-     "invisible dans le rétroviseur"
-    ]
-   ],
-   "script": [
-    [
-     1.2,
-     "clignotant",
-     "g"
-    ],
-    [
-     5.0,
-     "acteur",
-     0,
-     112
-    ],
-    [
-     5.6,
-     "etiquettes"
-    ],
-    [
-     7.6,
-     "voie",
-     -1.75,
-     2200
-    ],
-    [
-     10.0,
-     "clignotant",
-     null
-    ]
-   ],
-   "dire": "Étape 3, l’angle mort : même si le rétroviseur semble libre, un véhicule peut se trouver à côté de toi. Tourne vite la tête vers ton épaule, du côté où tu vas, puis regarde de nouveau devant toi.",
-   "ch": 1,
-   "aides": [
-    {
-     "type": "zone",
-     "ego": true,
-     "dx": -3.4,
-     "dz": -2.6,
-     "long": 5.2,
-     "large": 2.4,
-     "couleur": "rouge"
-    }
-   ]
   },
   {
    "type": "situation",
@@ -269,8 +203,73 @@
      null
     ]
    ],
-   "dire": "Entre les deux, étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer. Il prévient les autres, mais ne les oblige jamais à te laisser passer. Attends un espace suffisant avant de te décaler.",
-   "ch": 1
+   "dire": "Étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer. Il prévient les autres, mais ne les oblige jamais à te laisser passer. Attends un espace suffisant avant de te décaler.",
+   "ch": 0
+  },
+  {
+   "type": "situation",
+   "eyebrow": "Étape 3 · l’angle mort",
+   "titre": "L’angle mort : la zone invisible",
+   "env": "autoroute",
+   "kmh": 90,
+   "camera": "drone",
+   "acteurs": [
+    {
+     "type": "voiture",
+     "S": -3.5,
+     "x": -1.75,
+     "kmh": 90,
+     "couleur": 15223370
+    }
+   ],
+   "etiquettes": [
+    [
+     0,
+     "Angle mort",
+     "invisible dans le rétroviseur"
+    ]
+   ],
+   "script": [
+    [
+     1.2,
+     "clignotant",
+     "g"
+    ],
+    [
+     5.0,
+     "acteur",
+     0,
+     112
+    ],
+    [
+     5.6,
+     "etiquettes"
+    ],
+    [
+     7.6,
+     "voie",
+     -1.75,
+     2200
+    ],
+    [
+     10.0,
+     "clignotant",
+     null
+    ]
+   ],
+   "dire": "Étape 3, l’angle mort : même si le rétroviseur semble libre, un véhicule peut se trouver à côté de toi. Tourne vite la tête vers ton épaule, du côté où tu vas, puis regarde de nouveau devant toi.",
+   "ch": 0,
+   "aides": [
+    {
+     "type": "zone",
+     "ego": true,
+     "dx": -3.4,
+     "dz": -2.6,
+     "long": 5.2,
+     "large": 2.4,
+     "couleur": "rouge"
+    }
+   ]
   },
   {
    "type": "situation",
@@ -306,8 +305,8 @@
      null
     ]
    ],
-   "dire": "Étape 4 : quand c’est libre, décale-toi doucement. Garde tes distances devant et derrière. Une fois dans ta nouvelle voie, éteins le clignotant.",
-   "ch": 1
+   "dire": "Étape 4 : quand c’est libre, décale-toi doucement : on dit aussi te déporter. Changer de file, c’est la même chose que changer de voie. Garde tes distances devant et derrière. Une fois dans ta nouvelle voie, éteins le clignotant.",
+   "ch": 0
   },
   {
    "type": "situation",
@@ -353,8 +352,8 @@
      30
     ]
    ],
-   "dire": "Avant de tourner à droite, regarde le trottoir, la piste cyclable et ton angle mort. Un cycliste ou un piéton peut poursuivre tout droit pendant que tu tournes. Il va tout droit : il passe avant toi. Attends qu’il soit passé pour tourner.",
-   "ch": 2,
+   "dire": "Avant de tourner à droite, fais tes 4 étapes, et regarde aussi le trottoir et la piste cyclable. Un cycliste ou un piéton peut poursuivre tout droit pendant que tu tournes. Il va tout droit : il passe avant toi. Attends qu’il soit passé pour tourner.",
+   "ch": 1,
    "aides": [
     {
      "type": "zone",
@@ -414,7 +413,7 @@
     ]
    ],
    "dire": "Pour tourner à gauche, ralentis et serre à gauche de ta voie, près du milieu de la route. Ceux d’en face qui vont tout droit passent avant toi : attends qu’ils soient passés, puis tourne.",
-   "ch": 2,
+   "ch": 1,
    "aides": [
     {
      "type": "fleche",
@@ -474,7 +473,7 @@
     ]
    ],
    "dire": "Avant chaque changement de direction ou de voie : les rétros, le clignotant, l’angle mort, puis tu y vas seulement si c’est libre. Passe à la pratique pour t’entraîner en situation.",
-   "ch": 2,
+   "ch": 1,
    "decor": {
     "env": "autoroute",
     "kmh": 100,

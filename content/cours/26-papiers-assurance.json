@@ -22,7 +22,7 @@
   },
   {
    "texte": "Contrôle technique",
-   "tag": "Avant 4 ans, puis tous les 2 ans"
+   "tag": "Dans les 6 mois avant ses 4 ans, puis tous les 2 ans"
   },
   {
    "texte": "Constat amiable",
@@ -100,7 +100,7 @@
      "Vérifiée par la police dans un fichier national"
     ]
    ],
-   "dire": "Lors d’un contrôle : ton permis, en papier ou sur ton téléphone, dans France Identité, l’appli officielle de l’État, et le certificat d’immatriculation, la carte grise. La police vérifie ton assurance dans un fichier national : plus de carte verte sur le pare-brise. Pas tes papiers sur toi ? Une petite amende, et quelques jours pour les présenter à la police ou à la gendarmerie. Tu déménages ? Tu as un mois pour mettre à jour l’adresse de ta carte grise.",
+   "dire": "Lors d’un contrôle, montre ton permis : en papier, ou sur ton téléphone avec France Identité, l’appli officielle de l’État. Et ta carte grise, qu’on appelle certificat d’immatriculation. La police vérifie ton assurance dans un fichier national : plus de carte verte sur le pare-brise. Pas tes papiers sur toi ? Une amende de 11 euros, et 5 jours pour les présenter à la police ou à la gendarmerie ; sinon, 135 euros. Tu déménages ? Tu as un mois pour mettre à jour l’adresse de ta carte grise.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -137,9 +137,9 @@
     ]
    },
    "sync": [
-    0.12,
-    0.7,
-    1.2
+    0.22,
+    1.5,
+    2.2
    ],
    "illu": {
     "type": "documents",
@@ -163,7 +163,7 @@
      "d’amende au maximum sans assurance"
     ]
    ],
-   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, dite « au tiers » : elle paie les dommages que tu causes aux autres. Rouler sans assurance est un délit, une infraction grave : amende, jusqu’à 3 750 euros au tribunal, permis suspendu, voiture confisquée.",
+   "dire": "Assurer sa voiture est obligatoire, au minimum en responsabilité civile, dite « au tiers » : elle paie les dommages que tu causes aux autres. Rouler sans assurance est un délit : jusqu’à 3 750 euros d’amende, et le juge peut aussi suspendre ton permis ou confisquer ta voiture.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -201,7 +201,7 @@
    },
    "sync": [
     0.25,
-    1.52
+    1.3
    ],
    "illu": {
     "type": "documents",
@@ -229,7 +229,7 @@
      "ensuite, tous les deux ans"
     ]
    ],
-   "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans. Le compte démarre à sa première mise en circulation, écrite sur la carte grise, pas au jour de l’achat. En retard ? Amende, et ta voiture peut être immobilisée.",
+   "dire": "Le premier contrôle technique a lieu dans les six mois qui précèdent les quatre ans de la voiture, puis tous les deux ans. Le compte démarre à sa première mise en circulation, écrite sur la carte grise en case B, pas au jour de l’achat. En retard ? Amende, et ta voiture peut être immobilisée.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -277,7 +277,7 @@
       "noeuds": [
        [
         "0",
-        "1re carte grise",
+        "1re mise en circ.",
         0
        ],
        [
@@ -383,7 +383,7 @@
     ],
     [
      "5",
-     "jours pour le constat"
+     "jours ouvrés pour le constat"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique pour revoir les papiers et le constat.",

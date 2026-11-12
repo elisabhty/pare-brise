@@ -4,7 +4,7 @@
  "theme": "environnement",
  "titre": "Écoconduite",
  "accroche": "moins consommer, plus de sécurité",
- "resume": "Anticiper, passer les rapports tôt, surveiller les pneus et le chargement : les gestes qui économisent.",
+ "resume": "Anticiper, passer les rapports tôt, rouler un peu moins vite, surveiller les pneus, la clim et le coffre de toit : les gestes qui économisent.",
  "affiche": [
   "B14:110"
  ],
@@ -28,8 +28,12 @@
    "tag": "Plus de consommation"
   },
   {
-   "texte": "Arrêt prolongé",
-   "tag": "Couper le moteur"
+   "texte": "Moteur coupé",
+   "tag": "Garé : obligatoire, sinon 135 € · bouchon qui dure : conseillé"
+  },
+  {
+   "texte": "Rouler moins vite",
+   "tag": "110 au lieu de 130 : environ 20 % de carburant en moins"
   }
  ],
  "scenes": [
@@ -87,7 +91,7 @@
      "La consommation grimpe vite avec la vitesse"
     ]
    ],
-   "dire": "Anticipe : lève le pied tôt plutôt que de freiner tard, en gardant ta vitesse passée : le moteur retient la voiture et ne consomme presque rien. Passe la vitesse supérieure tôt, vers 2 000 tours en diesel et 2 500 en essence, ou quand le tableau de bord te l’indique. Garde une vitesse stable. Et rouler un peu moins vite fait baisser nettement la consommation, surtout sur autoroute.",
+   "dire": "Anticipe : lève le pied tôt plutôt que de freiner tard. Garde ta vitesse passée : le moteur retient la voiture et ne consomme presque rien. Passe la vitesse supérieure tôt, vers 2 000 tours en diesel et 2 500 en essence, ou quand le tableau de bord te l’indique. Garde une vitesse stable. Et rouler un peu moins vite fait baisser la consommation : à 110 au lieu de 130, environ 20 % de carburant en moins.",
    "vitesse": 70,
    "decor": {
     "env": "route",
@@ -113,13 +117,13 @@
       0.9
      ],
      [
-      "p3",
+      "p4",
       "feu",
       0,
       "vert"
      ],
      [
-      "p3+0.5",
+      "p4+0.5",
       "vitesse",
       45,
       1.2
@@ -140,9 +144,9 @@
    },
    "sync": [
     0.0,
-    1.0,
-    2.37,
-    3.0
+    2.0,
+    3.37,
+    4.0
    ]
   },
   {
@@ -165,10 +169,10 @@
     ],
     [
      "Moteur coupé",
-     "Quand tu attends à l’arrêt"
+     "Garé : obligatoire · arrêt qui dure : conseillé"
     ]
    ],
-   "dire": "Côté voiture : des pneus bien gonflés, et pas de coffre de toit quand il ne sert pas. La climatisation quand il fait vraiment chaud ou pour désembuer, pas en permanence. Et quand tu attends à l’arrêt, coupe le moteur.",
+   "dire": "Côté voiture : des pneus bien gonflés, et pas de coffre de toit quand il ne sert pas. La climatisation quand il fait vraiment chaud ou pour désembuer, pas en permanence. Garé, laisser tourner le moteur est interdit : 135 euros. Et à l’arrêt dans un bouchon qui dure, coupe-le aussi.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -223,7 +227,7 @@
     0.19,
     0.55,
     1.01,
-    2.63
+    3.69
    ]
   },
   {

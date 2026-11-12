@@ -5,7 +5,7 @@
   "type": "qcm",
   "q": "Pour les stupéfiants, le seuil toléré au volant est :",
   "choix": [
-   "0,2 g",
+   "0,2 g/L",
    "aucun"
   ],
   "bonnes": [
@@ -20,7 +20,7 @@
   "q": "Pictogramme orange sur un médicament :",
   "choix": [
    "aucun risque",
-   "sois très prudent, demande l’avis d’un médecin ou d’un pharmacien"
+   "sois très prudent : ne conduis pas sans l’avis d’un médecin ou d’un pharmacien"
   ],
   "bonnes": [
    1
@@ -53,6 +53,6 @@
   "bonnes": [
    0
   ],
-  "explication": "Test salivaire, confirmé si besoin par une analyse."
+  "explication": "Un test salivaire ; s’il est positif, une analyse en laboratoire le confirme."
  }
 ]

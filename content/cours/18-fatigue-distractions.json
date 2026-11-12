@@ -18,7 +18,7 @@
  "memo": [
   {
    "texte": "Pause",
-   "tag": "Toutes les 2 heures"
+   "tag": "Au moins 15 min toutes les 2 heures"
   },
   {
    "texte": "Somnolence",
@@ -26,7 +26,7 @@
   },
   {
    "texte": "Téléphone tenu en main",
-   "tag": "135 € et 3 points"
+   "tag": "135 € et 3 points, même arrêté au feu rouge ou dans un bouchon"
   },
   {
    "texte": "Écouteurs, oreillettes",
@@ -95,18 +95,18 @@
      "à 130 km/h"
     ]
    ],
-   "dire": "En une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130 : ta vitesse sans le zéro, fois 3, comme au cours 4. Lire un message prend bien plus qu’une seconde.",
+   "dire": "En une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130. C’est ta vitesse sans le zéro, fois 3, comme au cours 4. Lire un message prend bien plus qu’une seconde.",
    "vitesse": 90,
    "decor": {
     "env": "autoroute",
-    "kmh": 90,
+    "kmh": 50,
     "camera": "plan",
     "acteurs": [
      {
       "type": "voiture",
       "S": 80,
       "x": 1.75,
-      "kmh": 90,
+      "kmh": 50,
       "couleur": 15223370
      }
     ],
@@ -147,9 +147,9 @@
     ]
    },
    "sync": [
-    0.21,
-    0.35,
-    0.44
+    0.41,
+    0.66,
+    0.83
    ]
   },
   {
@@ -237,7 +237,7 @@
    "items": [
     [
      "Pause toutes les 2 heures",
-     "Même sans fatigue"
+     "Au moins un quart d’heure"
     ],
     [
      "Sieste de 15 à 20 minutes",
@@ -320,7 +320,7 @@
      {
       "i": "⏱️",
       "t": "Toutes les 2 h",
-      "s": "une pause"
+      "s": "au moins 15 min"
      },
      {
       "i": "😴",
@@ -353,7 +353,7 @@
      "retirés"
     ]
    ],
-   "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points, même arrêté à un feu rouge ou dans un bouchon. Les écouteurs, oreillettes et casques sont interdits aussi, avec la même sanction. Le kit mains libres par les haut-parleurs de la voiture reste autorisé, mais il te distrait quand même. Et avec une autre infraction en même temps, un excès de vitesse par exemple, les policiers peuvent te retirer ton permis sur-le-champ.",
+   "dire": "Le téléphone tenu en main au volant : 135 euros et 3 points, même arrêté à un feu rouge ou dans un bouchon. Les écouteurs, oreillettes et casques sont interdits aussi, avec la même sanction. Le kit mains libres par les haut-parleurs de la voiture reste autorisé, mais il te distrait quand même. Et avec une autre infraction en même temps, un excès de vitesse par exemple, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures.",
    "vitesse": 0,
    "decor": {
     "env": "ville",

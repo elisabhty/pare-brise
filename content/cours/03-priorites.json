@@ -46,6 +46,15 @@
    "panneau": "AB4",
    "texte": "Arrêt obligatoire puis céder",
    "famille": "priorite"
+  },
+  {
+   "texte": "Rond-point",
+   "tag": "Je laisse passer ceux qui y sont déjà, à ma gauche",
+   "panneau": "AB25"
+  },
+  {
+   "texte": "Je tourne à gauche",
+   "tag": "Je laisse passer ceux d’en face qui vont tout droit"
   }
  ],
  "scenes": [
@@ -213,10 +222,10 @@
      "À l'entrée"
     ]
    ],
-   "dire": "Ce panneau annonce un carrefour giratoire : un rond-point. À l’entrée, il y a presque toujours un cédez le passage. Tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche.",
+   "dire": "Ce panneau annonce un carrefour giratoire : un rond-point. À l’entrée, il y a presque toujours un cédez le passage : sans lui, c’est la priorité à droite, mais c’est très rare. Tu laisses passer ceux qui sont déjà dans le rond-point : ils arrivent de ta gauche.",
    "sync": [
     0.35,
-    1.67
+    1.3
    ]
   },
   {
@@ -230,7 +239,7 @@
      "règle par défaut"
     ],
     [
-     "6",
+     "7",
      "panneaux clés"
     ],
     [

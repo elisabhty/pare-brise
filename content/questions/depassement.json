@@ -24,12 +24,12 @@
   "q": "Ce panneau interdit de dépasser :",
   "choix": [
    "tous les véhicules",
-   "les voitures, camions et tracteurs, mais pas les vélos ni les motos"
+   "les voitures, camions, bus et tracteurs, mais pas les vélos ni les motos"
   ],
   "bonnes": [
    1
   ],
-  "explication": "Ce panneau interdit de dépasser les véhicules à moteur : voitures, camions, tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter.",
+  "explication": "Ce panneau interdit de dépasser les voitures, les camions, les bus et les tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter : ils n’ont que deux roues.",
   "panneaux": [
    "B3"
   ]
@@ -46,7 +46,7 @@
   "bonnes": [
    0
   ],
-  "explication": "Oui, c’est la seule exception : pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face."
+  "explication": "Oui : c’est l’exception de la ligne continue, pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face."
  },
  {
   "id": "d08-4",

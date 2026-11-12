@@ -14,6 +14,7 @@ Le cours 1 garde sa narration (texte d'origine) : seules ses cartes et sa pratiq
 """
 import re
 T, COURS, P, DECOR, EXP = {}, {}, {}, {}, {}
+ACTEURS = {}          # ACTEURS[cours] = {type d'usager: type qui le remplace dans les images et la pratique}
 # ---- corrections de décor (appliquées au décor existant) ----
 def decale(n, de=1):
     """les renvois à la phrase n et suivantes avancent de « de » phrases (une phrase a été ajoutée avant)"""
@@ -45,8 +46,26 @@ def sans(*cles):
 def t(cid, i, **k):
     for f, v in k.items():
         cur = T.setdefault((cid, i), {})
-        if isinstance(v, list) and v and isinstance(v[0], tuple) and isinstance(cur.get(f), list): cur[f] += v
+        if isinstance(v, list) and v and isinstance(v[0], tuple) and isinstance(cur.get(f), list):
+            for a, nb in v:
+                # un texte déjà retouché plus haut et retouché encore : l'ancienne retouche garde le texte final en 3e place,
+                # pour ne pas être rejouée une fois le cours à jour (sinon un ajout serait recollé à chaque passage)
+                for k, (a0, b0, *alt) in enumerate(cur[f]):
+                    fin = alt[0] if alt else b0
+                    if a and a in fin: cur[f][k] = (a0, b0, fin.replace(a, nb, 1))
+                cur[f].append((a, nb))
+        elif isinstance(v, list) and v and isinstance(v[0], tuple) and isinstance(cur.get(f), str):
+            txt = cur[f]                          # texte déjà réécrit plus haut : on le retouche directement
+            for a, b in v:
+                if a == '': txt = (txt.rstrip() + ' ' + b).strip()
+                else:
+                    assert a in txt, (cid, i, f, a); txt = txt.replace(a, b, 1)
+            cur[f] = txt
         else: cur[f] = v
+def dec(cid, i, *fixes):
+    """ajoute des corrections de décor à celles déjà prévues pour cet écran"""
+    cur = DECOR.get((cid, i)); cur = [] if cur is None else (cur if isinstance(cur, list) else [cur])
+    DECOR[(cid, i)] = cur + list(fixes)
 def p(cid, q, fix): P[(cid, q)] = fix
 def memo(cid, *ops): COURS.setdefault(cid, {}).setdefault('memo', []).extend(ops)
 def memo_plus(cid, *lignes): COURS.setdefault(cid, {}).setdefault('memo+', []).extend(lignes)
@@ -598,7 +617,7 @@ t('permis-points', 4, items=[['6 mois', 'Pour un seul point perdu'], ['2 ou 3 an
        'En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. '
        'Et ton solde de points se consulte sur le site officiel Télépoints.')
 memo('permis-points', ('Stage volontaire', m('Stage de sensibilisation', '+4 points, une fois par an · obligatoire si −3 en probatoire')))
-memo_plus('permis-points', m('Zéro point', 'Permis plus valable : à repasser'), m('Télépoints', 'Le site officiel de ton solde de points'))
+memo_plus('permis-points', m('Zéro point', 'Permis plus valable : à repasser'))      # le site : voir « Mes points permis » plus bas
 p('permis-points', 'De combien de points dispose-t-il', {'explication': 'Un permis probatoire démarre avec 6 points, qui montent jusqu’à 12 sans perte de points.'})
 p('permis-points', 'Quelle démarche ?', {'choix': ['Consulter le site officiel Télépoints', 'Demander à un ami', 'Attendre une infraction'], 'explication': 'Ton solde de points se consulte sur le site officiel Télépoints.'})
 p('permis-points', 'Jeune conducteur, tu as bu un verre de vin', {'q': 'Jeune conducteur, tu as bu un verre de vin. Tu peux conduire ?', 'choix': ['Non : un seul verre peut suffire à dépasser 0,2 g/L', 'Oui, un verre est toléré'], 'bonnes': [0],
@@ -957,3 +976,534 @@ t('depassement', 3, etiquettes=[['B3', 'Interdiction de dépasser'], ['A21', 'D�
 # questions de la banque remplacées par une autre question (doublons) : l'explication réécrite de l'ancienne question ne s'applique plus
 for _q in ('d02', 'i27-2', 'mtp17-1', 'mtp17-3', 'pp20-1', 'ps25-4', 'pa26-3'): EXP.pop(_q, None)
 p('papiers-assurance', 'Après un accrochage, tu dois envoyer ton constat', {'explication': 'Sous 5 jours ouvrés, c’est-à-dire 5 jours de semaine, sans compter les week-ends ni les jours fériés.'})
+
+# ############################################################################################################
+# Deuxième passage des élèves (cours corrigés relus) : surtout aligner cartes, fiches, images et pratique sur la voix
+# ############################################################################################################
+def p2(cid, debut, fix):
+    """comme p(), mais complète une correction déjà prévue pour la même question au premier passage"""
+    for (c, d), f in P.items():
+        if c == cid and isinstance(f, dict) and (d.startswith(debut) or debut.startswith(d) or str(f.get('q', '')).startswith(debut)):
+            if f.get('q') and fix.get('q') and f['q'] != fix['q']: P[(cid, f['q'])] = f     # l'énoncé du premier passage, déjà écrit dans la banque
+            f.update(fix); return
+    P[(cid, debut)] = fix
+def mt(texte, tag, panneau=None, famille=None):
+    d = m(texte, tag, panneau)
+    if famille: d['famille'] = famille
+    return d
+
+# ---- 1 · Panneaux : cartes, fiche et pratique seulement (la voix reste celle d'Elisa) ----
+t('panneaux', 3, puce='Bord rouge, ou tout rouge')
+t('panneaux', 4, puce='Bord rouge = interdiction, même sur fond bleu')
+t('panneaux', 5, etiquettes=[['B21-1', 'Tourner à droite'], ['B21a1', 'Contourner par la droite'], ['B22a', 'Piste obligatoire pour les vélos']])
+t('panneaux', 7, puce='Barré, sans bord rouge : fin')
+t('panneaux', 12, items_1=['Rond bordé de rouge, ou tout rouge', 'Interdiction, même sur fond bleu'], items_4=['Panneau barré, sans bord rouge', 'Fin de la règle'])
+cours('panneaux', memo_tout=[mt('Triangle, bord rouge', 'Danger', 'A14', 'danger'), mt('Rond, bord rouge, ou tout rouge', 'Interdiction, même sur fond bleu', 'B14', 'interdiction'),
+                             mt('Rond bleu', 'Obligation', 'B211', 'obligation'), mt('Carré ou rectangle bleu', 'Indication', 'C12', 'indication'),
+                             mt('Panneau barré, sans bord rouge', 'Fin de la règle', 'B33', 'fin'), mt('Octogone, triangle inversé, losange', 'Priorité', 'AB4', 'priorite'),
+                             mt('Fond jaune', 'Temporaire, sauf le losange', 'AK5', 'temporaire'), m('Forme → couleur → symbole', 'La méthode')])
+p2('panneaux', 'À partir de ce panneau :', {'env': 'route', 'kmh': 50, 'explication': 'Panneau barré de noir : la limitation à 50 prend fin. Tu reprends la vitesse normale de la route : ici, une route à double sens, donc 80 (cours 2).'})
+
+# ---- 2 · Vitesses ----
+t('vitesses', 1, etiquettes=[['Ville', 'Agglomération'], ['Route', 'Une voie par sens'], ['Chaussées séparées', 'Un muret au milieu'], ['Autoroute', 'Panneau bleu']],
+  dire=[('Les deux sens séparés par un muret ou une glissière : 110.', 'Les deux sens séparés par un muret ou une glissière, c’est une route à chaussées séparées : 110.'),
+        ('Sur autoroute, après le panneau bleu de l’autoroute : 130.', 'Sur autoroute, après le panneau bleu où une route passe sous un pont : 130.')])
+t('vitesses', 2, panneaux=['EB10', 'EB20', 'B30'], etiquettes=[['EB10', 'Entrée d’agglomération'], ['EB20', 'Sortie d’agglomération'], ['B30', 'Zone 30']], sync=[0.2, 3.23, 4.4],
+  dire=[('qui porte son nom.', 'qui porte son nom. Ce panneau est à part : il ne suit pas les règles du cours 1, retiens-le tel quel.')])
+t('vitesses', 3, items_1=['90', 'km/h', 'si le département l’a remontée, avec panneaux'])
+t('vitesses', 5, dire=[('Repère sur autoroute : un trait et un espace de la bande d’arrêt d’urgence font environ 50 mètres.',
+                       'Repère sur autoroute : un trait et un espace, au bord de la voie des pannes, font environ 50 mètres. '
+                       'Sur route, un trait et un espace de la ligne du milieu font environ 13 mètres : quatre, c’est à peu près 50.')])
+dec('vitesses', 5, {'signaux': []})
+t('vitesses', 6, sync=[3.1, 3.5, 4.3],
+  dire='Après l’examen, ton permis est probatoire, c’est-à-dire à l’essai, même si tu as 40 ans. '
+       'Il dure trois ans, ou deux ans après la conduite accompagnée. '
+       'Tu poses le disque « A » à l’arrière de ta voiture. '
+       'Tes vitesses : 110 sur autoroute, 100 sur chaussées séparées. '
+       'Et 80 sur les routes à double sens, même celles remontées à 90.')
+dec('vitesses', 6, decale(1, 1))
+memo('vitesses', ('Visibilité de moins de 50 m', m('Visibilité de moins de 50 m', '50 km/h partout, même sans panneau')))
+
+# ---- 3 · Priorités ----
+t('priorites', 5, dire=[('À l’entrée, il y a presque toujours un cédez le passage.', 'À l’entrée, il y a presque toujours un cédez le passage : sans lui, c’est la priorité à droite, mais c’est très rare.')])
+t('priorites', 6, stats=[['1', 'règle par défaut'], ['7', 'panneaux clés'], ['1', 'question : qui passe ?']])
+memo_plus('priorites', m('Rond-point', 'Je laisse passer ceux qui y sont déjà, à ma gauche', 'AB25'), m('Je tourne à gauche', 'Je laisse passer ceux d’en face qui vont tout droit'))
+p2('priorites', 'La voiture de droite :', {'explication': 'Losange jaune : tu es sur une route prioritaire. Les voitures des routes qui la croisent te laissent passer, même celles de droite.'})
+p2('priorites', 'Ce panneau annonce :', {'choix': ['un carrefour giratoire, un rond-point', 'un demi-tour obligatoire', 'une route à double sens'], 'explication': 'Les flèches en cercle : un carrefour giratoire, c’est-à-dire un rond-point.'})
+p2('priorites', 'Au stop, je dois d\'abord', {'q': 'Tu arrives au rond-point. Une voiture y tourne déjà, à ta gauche. Je :', 'choix': ['la laisse passer', 'passe : elle est à ma gauche'], 'bonnes': [0], 'mode': 'qcm',
+                                             'explication': 'À l’entrée du rond-point, tu laisses passer ceux qui y tournent déjà. Ils arrivent de ta gauche : c’est normal, le cédez-le-passage te le demande.'})
+
+# ---- 4 · Distances ----
+t('distances', 4, reperes=[[64, 'Sec · 64 m'], [96, 'Mouillé · 96 m']])
+t('distances', 5, dire='Avec le véhicule de devant, garde au moins deux secondes d’écart. '
+                       'Pour compter : quand il passe un poteau, dis « un crocodile, deux crocodiles » : tu dois l’atteindre après. '
+                       'À 110, deux secondes, c’est environ 60 mètres. '
+                       'Sur autoroute, regarde les traits blancs au bord de la bande d’arrêt d’urgence, la voie des pannes. '
+                       'Entre toi et la voiture de devant : au moins deux traits. '
+                       'Deux traits, c’est environ 100 mètres : plus que deux secondes, même à 130. '
+                       'Parfois, des flèches en forme de V sont peintes au milieu de ta voie : ce sont des chevrons. '
+                       'Garde au moins deux chevrons entre toi et la voiture de devant.')
+memo('distances', ('Distance de réaction (1 s)', m('Distance de réaction (1 s)', 'vitesse sans le zéro × 3')), ('Distance d\'arrêt, sol sec', m('Distance d’arrêt, sol sec', 'vitesse sans le zéro, au carré')))
+
+# ---- 5 · Alcool ----
+t('alcool', 1, dire=[('', 'Un verre fait monter le taux d’environ 0,2 à 0,25 gramme : deux verres peuvent déjà dépasser 0,5.')])
+t('alcool', 4, stats=[['0,5', 'g/L définitif'], ['0,2', 'g/L probatoire'], ['0', 'remède : seul le temps fait baisser']])
+p2('alcool', 'Quelle attitude adopter face à l’alcool ?', {'explication': 'En permis probatoire, la limite est très basse : un seul verre peut suffire. Le plus sûr : zéro alcool.'})
+
+# ---- 6 · Carrefours et feux ----
+t('carrefours-feux', 1, sync=[1.0, 5.32, 5.82, 6.28],
+  dire=[('L’agent de circulation commande en premier, même s’il contredit un feu : bras levé, tout le monde s’arrête ; de face ou de dos, tu t’arrêtes ; de profil, tu passes.',
+         'L’agent de circulation commande en premier, même s’il contredit un feu. Bras levé : tout le monde s’arrête. De face ou de dos : tu t’arrêtes. De profil : tu passes.')])
+t('carrefours-feux', 3, dire=[('Avec un permis probatoire, tu n’as que 6 points : il ne t’en resterait que 2.',
+                               'Avec un permis définitif, tu as 12 points : il t’en resterait 8. Au début du permis probatoire, tu as seulement 6 points : il t’en resterait 2.')])
+t('carrefours-feux', 4, items=[['Orange clignotant', 'Pas de priorité : le panneau, sinon à droite'], ['Flèche verte', 'Tu peux aller dans la direction indiquée'],
+                               ['Vélo et flèche sous le feu', 'Les vélos passent au rouge, toi non'], ['Sas vélo', 'Tu t’arrêtes à la première ligne']], sync=[0.02, 1.04, 3.3, 6.3],
+  dire=[('Une flèche verte t’autorise à aller dans sa direction.', 'Une flèche verte t’autorise à aller dans la direction indiquée.'),
+        ('Un petit panneau vélo sous le feu ?', 'Un petit panneau avec un vélo et une flèche, sous le feu ?')])
+t('carrefours-feux', 5, eyebrow='Le rond-point', titre='Ceux du rond-point passent', puce='Ils arrivent de ta gauche', etiquettes=[['AB25', 'Rond-point'], ['AB3a', 'Cédez-le-passage']],
+  dire='Ce triangle avec trois flèches en cercle annonce un carrefour giratoire : un rond-point. '
+       'À l’entrée, le cédez-le-passage : tu laisses passer ceux qui sont déjà dans le rond-point, qui arrivent de ta gauche.')
+t('carrefours-feux', 6, eyebrow='Dans le rond-point')
+t('carrefours-feux', 7, stats=[['4', 'niveaux de priorité'], ['3', 'couleurs de feu'], ['3', 'règles au rond-point']])
+memo('carrefours-feux', ('Feu orange fixe', m('Feu orange fixe', 'Arrêt, sauf si c’est dangereux', 'A17')),
+     ('Giratoire + cédez', m('Rond-point + cédez-le-passage', 'Ceux du rond-point passent', 'AB25')))
+p2('carrefours-feux', 'À qui cèdes-tu ?', {'contexte': 'Tu arrives à un rond-point avec cédez-le-passage.', 'choix': ['À ceux déjà dans le rond-point', 'À personne', 'Aux véhicules derrière toi']})
+p2('carrefours-feux', 'Ce panneau m’annonce :', {'choix': ['un carrefour giratoire, un rond-point', 'une intersection avec priorité à droite', 'un virage dangereux'],
+                                                 'explication': 'Le triangle avec trois flèches en cercle annonce un rond-point. À l’entrée, tu laisseras passer ceux qui y tournent déjà.'})
+p2('carrefours-feux', 'J’entre dans le giratoire. Je dois :', {'q': 'J’entre dans le rond-point. Je dois :', 'choix': ['laisser passer ceux qui sont déjà dans le rond-point', 'passer : ils arrivent par ma gauche']})
+
+# ---- 7 · Marquages ----
+t('marquages', 4, items_0=['Flèches de rabattement', 'Reviens à droite'], sync=[1.07, 3.03, 4.14, 4.77],
+  dire=[('Ce sont des flèches de rabattement : reviens dans ta voie, à droite, une ligne continue ou la fin de ta voie approche.',
+         'Ce sont des flèches de rabattement : reviens à droite. Une ligne continue arrive, ou la voie où tu roules va s’arrêter.')])
+memo('marquages', ('Ligne continue', m('Ligne continue', 'Jamais dessus · sauf roues de gauche pour dépasser un vélo ou une trottinette')))
+memo_plus('marquages', m('Ligne discontinue', 'Tu peux la franchir, si c’est sans danger'), m('Flèches de rabattement', 'Reviens à droite'))
+p2('marquages', 'Peut-on chevaucher une ligne continue', {'q': 'Pour dépasser une voiture, peux-tu rouler sur la ligne continue, même avec une seule roue ?', 'choix': ['Oui, un instant', 'Non']})
+p2('marquages', 'Ces traits longs et rapprochés', {'q': 'Une ligne jaune en pointillés longe le trottoir. Tu peux :', 'choix': ['t’arrêter un instant pour déposer quelqu’un', 'te garer pour aller faire une course', 'ni l’un ni l’autre'],
+                                                 'bonnes': [0], 'mode': 'qcm', 'explication': 'Ligne jaune en pointillés : l’arrêt est permis, le stationnement interdit. Continue, elle interdit les deux.'})
+
+# ---- 8 · Dépasser et croiser ----
+t('depassement', 1, items_3=['Puis : doubler rapidement', 'Sous la limite, et revenir à droite sans gêner'],
+  dire=[('Dépasse vite, sans hésiter, puis reviens à droite sans gêner celui que tu as doublé.', 'Double rapidement, en restant sous la limite de vitesse, puis reviens à droite sans gêner celui que tu as doublé.')])
+t('depassement', 2, dire=[('Clignotant à gauche, dépassement rapide, puis rabattement quand tu le vois dans ton rétroviseur intérieur.',
+                           'Clignotant à gauche, double rapidement, puis reviens à droite quand tu vois le tracteur dans le rétroviseur du milieu, en haut du pare-brise.'),
+                          ('Une seule exception : la voiture devant met son clignotant à gauche pour tourner, alors tu la dépasses par la droite.',
+                           'Exception : la voiture devant met son clignotant à gauche pour tourner ? Tu la dépasses par la droite. Un tramway au milieu de la rue se dépasse aussi par la droite.')])
+t('depassement', 3, panneaux=['B3'], etiquettes=[['B3', 'Interdiction de dépasser']], sync=[0.43],
+  dire='Ce panneau rond, avec une voiture rouge et une noire, interdit de dépasser les voitures, les camions, les bus et les tracteurs. '
+       'Tu peux quand même dépasser un vélo, une moto ou un scooter : ils n’ont que deux roues. '
+       'Dépasser est aussi interdit avant un carrefour où tu dois céder le passage. '
+       'Et quand tu ne vois pas assez loin : dans un virage ou en haut d’une montée.')
+t('depassement', 4, eyebrow='Dépasser un vélo',
+  dire=[('Seule exception : pour dépasser un vélo ou une trottinette, tes roues de gauche peuvent rouler sur la ligne, si tu vois loin et que personne n’arrive.',
+         'Exception : pour dépasser un vélo ou une trottinette, tes roues de gauche peuvent rouler sur la ligne. Seulement si tu vois loin et que personne n’arrive. '
+         'Et le triangle avec un vélo, au bord de la route, prévient que des cyclistes peuvent arriver par le côté.')])
+dec('depassement', 4, {'signaux': [['A21', 44]]})
+t('depassement', 5, items=[['Ne pas accélérer', 'C’est interdit'], ['Serrer à droite', 'Pour lui laisser de la place'], ['Rester attentif', 'Il peut revenir devant toi trop tôt'], ['Croiser sur route étroite', 'Serre à droite et ralentis']],
+  sync=[0.78, 1.0, 1.51, 2.2])
+t('depassement', 6, stats=[['3', 'vérifications, puis doubler vite'], ['1,5', 'm pour un vélo hors agglomération'], ['2', 'exceptions : par la droite, roues sur la ligne']])
+memo('depassement', ('Visibilité, place, ligne discontinue', m('Avant de doubler', 'Ligne discontinue · personne en face · personne derrière')),
+     ('Dépassement interdit', m('Dépassement interdit', 'Voitures, camions, bus, tracteurs : pas les vélos ni les motos', 'B3')))
+memo_plus('depassement', m('Croiser', 'Route étroite : serre à droite et ralentis'))
+p2('depassement', 'Ce panneau interdit de dépasser :', {'choix': ['tous les véhicules', 'les voitures, camions, bus et tracteurs, mais pas les vélos ni les motos'],
+                                                       'explication': 'Ce panneau interdit de dépasser les voitures, les camions, les bus et les tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter : ils n’ont que deux roues.'})
+p2('depassement', 'Pour dépasser un cycliste, tes roues', {'explication': 'Oui : c’est l’exception de la ligne continue, pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face.'})
+p2('depassement', 'Un véhicule devant toi tourne à gauche.', {'explication': 'Il a mis son clignotant à gauche et s’est décalé pour tourner : tu le dépasses par la droite. C’est l’exception, avec le tramway.'})
+
+# ---- 9 · Arrêt et stationnement ----
+cours('arret-stationnement', accroche='s’arrêter au bon endroit')
+t('arret-stationnement', 0, dire=[('Tu cherches un endroit où t’immobiliser dans une rue animée.', 'Tu cherches un endroit où arrêter ta voiture, dans une rue pleine de monde.')])
+dec('arret-stationnement', 1, aide_(0, texte=['Arrêt', 'tu restes au volant']))
+t('arret-stationnement', 3, items_2=['Voies de bus et pistes cyclables', 'Arrêt et stationnement : très gênant'],
+  dire=[('', 'Tes feux de détresse n’y changent rien : l’arrêt reste interdit.')])
+t('arret-stationnement', 4, dire='Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé : t’y arrêter ou t’y garer coûte 135 euros. '
+                                 'Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer. '
+                                 'En double file, c’est « gênant » : 35 euros.')
+t('arret-stationnement', 5, dire=[('', 'Et quand tu passes à côté d’une voiture garée avec quelqu’un dedans, écarte-toi : sa portière peut s’ouvrir.')])
+memo_plus('arret-stationnement', m('Stationnement', 'Tu t’éloignes, ou tu attends longtemps'),
+          m('Toujours interdit, même 10 secondes', 'Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé sans carte, autoroute, tunnel, passage à niveau'),
+          m('Très gênant', '135 € et fourrière possible'))
+p2('arret-stationnement', 'Peux-tu t’y arrêter deux minutes', {'contexte': 'Une place est réservée aux personnes handicapées. Tu n’as pas la carte.'})
+p2('arret-stationnement', 'Quelqu’un est assis au volant de cette voiture garée', {'choix': ['m’écarte un peu : la portière peut s’ouvrir', 'reste tout près des voitures garées']})
+p2('arret-stationnement', 'Déposer un passager quelques secondes', {'explication': 'Un court moment, conducteur au volant : c’est un arrêt.'})
+
+# ---- 10 · Autoroute ----
+t('autoroute', 1, dire=[('Ceux qui sont déjà sur l’autoroute sont prioritaires : pas d’espace ?', 'Ceux qui sont déjà sur l’autoroute sont prioritaires.'),
+                        ('Adapte ta vitesse pour en trouver un avant la fin de la voie.', 'Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.')])
+t('autoroute', 2, dire=[('Marche arrière, demi-tour et arrêt hors urgence sont interdits.', 'Marche arrière, demi-tour et arrêt hors urgence sont interdits. Sortie ratée ? Continue jusqu’à la suivante.'),
+                        ('Une voie rapide, aux deux sens séparés, suit presque les mêmes règles, mais à 110 au maximum.',
+                         'Une voie rapide, c’est la route à chaussées séparées du cours 2 : 110 au maximum. Sous la pluie ou en permis probatoire : 100.')])
+dec('autoroute', 2, {'signaux': [['C107', 40]]})
+t('autoroute', 5, dire=[('', 'Le triangle, pose-le seulement si tu peux le faire sans danger.')])
+t('autoroute', 6, etiquettes=[[0, 'Corridor', 'ralentis et décale-toi']],
+  dire=[('Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue ou orange qui tourne ?',
+         'Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue ou orange qui tourne, ou ses feux de détresse ?')])
+t('autoroute', 7, stats=[['2', 'chevrons d’écart'], ['130', 'km/h maximum, 110 en probatoire'], ['4', 'gestes en cas de panne']])
+memo('autoroute', ('Voie de droite', m('Voie de droite', 'Ta voie normale')), ('Corridor de sécurité', m('Corridor de sécurité', 'Ralentis et change de voie ; sinon écarte-toi')))
+p2('autoroute', 'Après ce panneau :', {'choix': ['les piétons et les vélos sont interdits', 'je peux faire demi-tour en cas d’erreur', 'la vitesse maximale est de 130 km/h par temps sec, 110 en permis probatoire'],
+                                      'explication': 'Le panneau bleu d’entrée d’autoroute : piétons, vélos et petits scooters de 50 y sont interdits, comme le demi-tour et la marche arrière. Par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.'})
+_corridor = 'Ralentis toujours. Change de voie si tu peux, sinon écarte-toi dans ta voie : c’est le corridor de sécurité.'
+p2('autoroute', 'Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Je :',
+   {'q': 'Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue qui tourne. Je :', 'choix': ['ralentis, et change de voie si possible', 'maintiens ma vitesse : il est sur la bande d’arrêt'], 'explication': _corridor})
+p2('autoroute', 'Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Tu :',
+   {'q': 'Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue qui tourne. Tu :', 'choix': ['ralentis et changes de voie si tu peux', 'klaxonnes'], 'explication': _corridor})
+p2('autoroute', 'Sur la voie d’insertion, qui est prioritaire ?', {'explication': 'Ce sont les véhicules déjà sur l’autoroute qui sont prioritaires.'})
+p2('autoroute', 'Ce panneau indique :', {'explication': 'Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.'})
+
+# ---- 11 · Piétons et enfants ----
+cours('usagers-vulnerables', chapitres=['Les piétons', 'Les enfants', 'Les zones lentes'])
+t('usagers-vulnerables', 2, dire=[('Avec un permis probatoire, tu n’as que 6 points : un seul refus, et tu perds ton permis.',
+                                   'Au début de ton permis probatoire, tu as seulement 6 points. Un seul refus, et tu perds ton permis.')])
+dec('usagers-vulnerables', 2, lambda d: d.update(illu={'type': 'points', 'debut': {'points': 6}, 'pas': [{'points': 0, 'perdus': 6, 'texte': '−6 points : plus de permis'}, {'amende': '135 €'}], 'suit': True}))
+t('usagers-vulnerables', 4, dire=[('Un ballon qui roule sur la chaussée ?', 'Un ballon qui roule sur la route ?'),
+                                  ('Même réflexe derrière un bus arrêté : des piétons peuvent traverser devant lui, passe doucement.',
+                                   'Un bus est arrêté ? Des piétons peuvent sortir devant lui. Passe à côté doucement, prêt à freiner.')])
+dec('usagers-vulnerables', 4, lambda d: any(x['type'] == 'bus' for x in d.setdefault('acteurs', [])) or d['acteurs'].append({'type': 'bus', 'S': 78, 'x': 4.6, 'kmh': 0}))
+t('usagers-vulnerables', 5, items_1=['Zone de rencontre', '20 km/h, les piétons sont prioritaires et peuvent marcher au milieu de la rue'],
+  dire=[('peuvent marcher sur la chaussée.', 'peuvent marcher au milieu de la rue.'),
+        ('L’aire piétonne : tu y entres seulement si un panneau t’y autorise, comme les livreurs, et tu roules au pas, à la vitesse d’une personne qui marche.',
+         'L’aire piétonne : tu y entres seulement si le panneau t’autorise, par exemple « sauf livraisons », parfois à certaines heures. Tu roules au pas, à la vitesse d’une personne qui marche.'),
+        ('', 'À l’entrée de chaque zone, un panneau te dit où tu entres.')])
+memo('usagers-vulnerables', ('Permis probatoire', m('Permis probatoire', '6 points au début : un refus = plus de permis')))
+p2('usagers-vulnerables', 'Que fais-tu ?', {'contexte': 'Un piéton, au bord du trottoir, te fait signe qu’il veut traverser.'})
+
+# ---- 12 · Vélos et trottinettes ----
+t('cyclistes-edpm', 3, dire='La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. '
+                            'Au feu, le sas vélo, c’est une case avec un vélo peint au sol. Arrête-toi à la première ligne, avant la case. '
+                            'Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos. '
+                            'Un panneau te prévient à l’entrée : des vélos peuvent arriver en face.')
+t('cyclistes-edpm', 5, dire=[('Retiens le réflexe angle mort avant chaque virage à droite.', 'Retiens le réflexe angle mort chaque fois que tu tournes à droite.')])
+p2('cyclistes-edpm', 'La vitesse maximale d’une trottinette électrique est :', {'explication': 'Une trottinette électrique ne peut pas aller plus vite que 25 km/h.'})
+
+# ---- 13 · Poids lourds, bus et motos ----
+dec('poids-lourds-2rm', 2, aide_(0, texte=['Pas à côté', 'il prend de la place']))
+t('poids-lourds-2rm', 2, dire=[('', 'Au carrefour, un camion qui tourne à droite s’écarte souvent d’abord à gauche : ne te mets jamais à sa droite.')])
+memo('poids-lourds-2rm', ('Camion', m('Camion', 'Pour qu’il te voie : vois son visage dans son rétro')), ('Bus qui quitte son arrêt', m('Bus qui quitte son arrêt (en agglomération)', 'Tu le laisses partir')))
+p2('poids-lourds-2rm', 'Si je ne vois pas le chauffeur dans son rétroviseur :', {'explication': 'Tu es dans son angle mort. Rappel : pour qu’il te voie, tu dois voir son visage dans son rétroviseur.'})
+p2('poids-lourds-2rm', 'La vitesse d’une moto qui arrive est :', {'choix': ['facile à estimer', 'souvent plus rapide qu’on le pense'],
+                                                                     'explication': 'Une moto est étroite : elle paraît plus loin et plus lente qu’en vrai. Elle arrive plus vite que tu le penses.'})
+
+# ---- 14 · Véhicules prioritaires : des pompiers dans les images (une ambulance privée n'est pas prioritaire) ----
+ACTEURS['vehicules-prioritaires'] = {'ambulance': 'pompiers'}
+t('vehicules-prioritaires', 1, titre='Feux bleus et sirène',
+  dire=[('Police, gendarmerie, pompiers, SAMU, c’est-à-dire les médecins d’urgence : avec feux bleus et sirène à deux tons, ils passent avant tout le monde.',
+         'Police, gendarmerie, pompiers et SAMU : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Le SAMU, ce sont les médecins d’urgence.')])
+dec('vehicules-prioritaires', 2, aide_(1, texte=['Passage libre', 'pour les pompiers']))
+t('vehicules-prioritaires', 4, stats=[['2', 'signaux : feux bleus et sirène à deux tons'], ['1', 'réflexe : serrer à droite']],
+  dire=[('Passe à la pratique : une ambulance t’attend.', 'Passe à la pratique : les pompiers t’attendent.')])
+memo_plus('vehicules-prioritaires', m('Au feu rouge', 'Tu peux avancer un peu, si c’est sans danger'), m('Ambulance privée', 'Pas prioritaire, mais aide-la à passer'))
+p2('vehicules-prioritaires', 'Une ambulance arrive derrière moi, sirène hurlante. Je :', {'q': 'Une voiture de pompiers arrive derrière moi, feux bleus et sirène. Je :'})
+p2('vehicules-prioritaires', 'Une ambulance, feux bleus et sirène, arrive derrière toi.', {'q': 'Une voiture de police, feux bleus et sirène, arrive derrière toi. Tu :'})
+p2('vehicules-prioritaires', 'Au feu rouge, une ambulance arrive derrière toi.', {'q': 'Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :'})
+p2('vehicules-prioritaires', 'Pour laisser passer un véhicule d’urgence, tu :', {'q': 'Pour laisser passer un véhicule prioritaire, tu :'})
+
+# ---- 29 · Électrique, Crit'Air, ZFE ----
+t('vehicules-propres', 1, items_2=['Crit’Air 2, 3, 4 et 5', 'Plus le chiffre est grand, plus elle pollue'],
+  dire=[('Puis de 1 à 5, du moins au plus polluant : 5, c’est la plus polluante.', 'Puis de 1 à 5 : plus le chiffre est grand, plus la voiture pollue.')])
+t('vehicules-propres', 4, items_0=['Freinage régénératif', 'Lâcher l’accélérateur ralentit et recharge la batterie'],
+  items_2=['Autonomie', 'Les km possibles, batterie pleine : moins avec le froid et la vitesse'])
+def _ic29(d):
+    d['illu']['items'][0].update(t='Lâcher l’accélérateur'); d['illu']['items'][2].update(s='baisse : froid, vitesse')
+dec('vehicules-propres', 4, _ic29)
+t('vehicules-propres', 5, stats=[['6', 'vignettes Crit’Air'], ['1', 'réflexe : penser aux piétons']],
+  dire='Cours terminé. À retenir : six vignettes, de 0 à 5. Et en électrique, pense aux piétons : ils ne t’entendent pas arriver. '
+       'Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions.')
+memo('vehicules-propres', ('Freinage régénératif', m('Freinage régénératif', 'Lâcher l’accélérateur ralentit et recharge')))
+p2('vehicules-propres', 'Que dois-tu vérifier ?', {'choix': ['Seulement la couleur de la voiture', 'La météo', 'Les règles de cette ville pour ta voiture'],
+                                                   'explication': 'Chaque ville a ses règles pour sa ZFE : vérifie celles de la ville où tu entres.'})
+p2('vehicules-propres', 'Le freinage régénératif :', {'explication': 'Quand tu lâches l’accélérateur, le moteur électrique freine la voiture et recharge un peu la batterie.'})
+
+# ---- 30 · Changer de direction : les 4 étapes dans l'ordre de la voix ----
+cours('changer-direction-voie', chapitres=['Les 4 étapes', 'Tourner en sécurité'], echange=[(2, 3, 'Étape 3')])
+for _i in range(5): t('changer-direction-voie', _i, ch=0)
+for _i in range(5, 8): t('changer-direction-voie', _i, ch=1)
+t('changer-direction-voie', 0, dire=[('Avant de tourner, il y a 4 étapes, toujours dans le même ordre : les rétros, le clignotant, l’angle mort, puis tu y vas si c’est libre.',
+                                      'Avant de tourner, il y a 4 étapes, toujours dans le même ordre. Les rétros, le clignotant, l’angle mort, puis tu y vas si c’est libre.')])
+t('changer-direction-voie', 1, dire=[('Étape 1, les rétros : regarde le rétroviseur du milieu, puis celui du côté où tu vas.',
+                                      'Étape 1, les rétros : regarde le rétroviseur du milieu, qu’on appelle le rétroviseur intérieur. Puis celui du côté où tu vas.')])
+t('changer-direction-voie', 3, dire=[('Entre les deux, étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer.', 'Étape 2, le clignotant : mets-le tôt, avant de ralentir et avant de te placer.')])
+t('changer-direction-voie', 4, dire=[('Étape 4 : quand c’est libre, décale-toi doucement.', 'Étape 4 : quand c’est libre, décale-toi doucement : on dit aussi te déporter. Changer de file, c’est la même chose que changer de voie.')])
+t('changer-direction-voie', 5, dire=[('Avant de tourner à droite, regarde le trottoir, la piste cyclable et ton angle mort.', 'Avant de tourner à droite, fais tes 4 étapes, et regarde aussi le trottoir et la piste cyclable.')])
+memo('changer-direction-voie', ('Coup d’œil dans l’angle mort', m('Tourner la tête vers l’épaule', '3 · l’angle mort')))
+p2('changer-direction-voie', 'Je veux tourner à droite. Avant de me déporter', {'q': 'Je veux tourner à droite. Avant de me décaler, je regarde :', 'choix': ['le rétroviseur intérieur, celui du milieu', 'le rétroviseur extérieur droit', 'l’angle mort à droite'],
+   'explication': 'Le rétroviseur du milieu, aussi appelé intérieur, puis celui du côté où tu vas, puis un coup d’œil dans l’angle mort : un deux-roues peut s’y cacher.'})
+p2('changer-direction-voie', 'Mon clignotant est allumé.', {'explication': 'Le clignotant annonce ton intention, il ne donne aucune priorité. Tu attends un espace suffisant avant de te décaler.'})
+p2('changer-direction-voie', 'Pour changer de file, je dois :', {'q': 'Pour changer de file, c’est-à-dire de voie, je dois :', 'choix': ['me décaler d’un coup', 'me décaler doucement', 'garder mes distances devant et derrière'],
+   'explication': 'On change de voie doucement, sans couper la route de quelqu’un, en gardant ses distances devant et derrière.'})
+p2('changer-direction-voie', 'Je tourne à droite. Un cycliste continue tout droit', {'explication': 'Le cycliste qui va tout droit passe avant toi qui tournes : attends qu’il soit passé.'})
+p2('changer-direction-voie', 'Je veux tourner à gauche. Une voiture arrive en face', {'explication': 'En tournant à gauche, tu passes devant ceux d’en face : laisse-les passer avant de tourner.'})
+
+# ---- 31 · Se placer sur la chaussée ----
+t('placement-chaussee', 0, dire=[('Tu arrives sur une route à plusieurs voies.', 'Tu arrives sur une route à plusieurs voies. La chaussée, c’est la partie de la route où roulent les voitures : elle peut avoir plusieurs voies.')])
+dec('placement-chaussee', 0, decale(1, 1))
+t('placement-chaussee', 2, dire=[('À l’approche d’un carrefour, regarde les flèches peintes au sol : à gauche pour tourner à gauche, à droite pour aller tout droit ou à droite.',
+                                  'À l’approche d’un carrefour, regarde les flèches peintes au sol. Ici, la voie de gauche, c’est pour tourner à gauche. La voie de droite, c’est pour aller tout droit ou à droite.')])
+dec('placement-chaussee', 2, aide_(0, p=2, S=52), lambda d: d['aides'].append({'type': 'repere', 'S': 30, 'x': -1.75, 'hauteur': 0.5, 'texte': ['Flèche à gauche', 'pour tourner à gauche'], 'p': 1, 'fin': 2}),
+    {'script': [[1.0, 'vitesse', 12, 2.0]]})       # la voiture s'attarde devant les flèches pendant les trois phrases
+t('placement-chaussee', 4, dire=[('', 'Pas d’espace libre ? Accélère ou ralentis un peu pour en trouver un, avant la fin de la voie.')])
+t('placement-chaussee', 5, ch=1)
+t('placement-chaussee', 6, dire=[('Ce triangle annonce que la route se rétrécit par la gauche', 'Ce triangle annonce que la chaussée se rétrécit par la gauche')])
+t('placement-chaussee', 7, dire='Trois réflexes. Un : je roule à droite. Deux : je lis les flèches et les panneaux tôt. Trois : avant de changer de voie, rétros, clignotant, angle mort. Place à la pratique.')
+cours('placement-chaussee', memo_tout=[m('Je roule à droite', 'Sur route et autoroute : la voie de droite'), m('Je lis les flèches et les panneaux tôt', 'En ville : ta voie selon ta direction', 'C12'),
+                                       m('Avant de changer de voie', 'Rétros, clignotant, angle mort'), m('Voie de bus, piste cyclable', 'Réservées, même vides'), m('Ta voie se termine', 'Rabats-toi quand il y a la place', 'A3b')])
+p2('placement-chaussee', 'Que fais-tu ?', {'choix': ['Tu forces le passage', 'Tu adaptes ta vitesse et cherches un espace libre', 'Tu coupes toutes les voies'],
+                                          'explication': 'Ceux qui sont déjà sur l’autoroute passent d’abord : accélère ou ralentis un peu pour trouver un espace libre, sans forcer.'})
+p2('placement-chaussee', 'Sur la voie d’insertion, je dois :', {'choix': ['m’arrêter au bout de la voie', 'adapter ma vitesse à celle des autres', 'céder le passage à ceux déjà sur l’autoroute']})
+
+# ---- 32 · Intersections complexes ----
+cours('intersections-complexes', chapitres=['Lire l’intersection', 'Les routes qui se croisent', 'Cas particuliers'])
+t('intersections-complexes', 0, dire=[('', 'La trajectoire, c’est le chemin que va suivre chaque véhicule.')])
+t('intersections-complexes', 2, dire=[('Laisse-la passer avant de traverser sa trajectoire.', 'Laisse-la passer avant de lui couper la route.'),
+                                      ('Vérifie aussi les piétons et cyclistes sur la route que tu vas emprunter.', 'Laisse aussi passer les vélos d’en face, et les piétons qui traversent la rue où tu vas.')])
+t('intersections-complexes', 3, dire=[('Sans marquage, vous vous contournez : chacun passe derrière l’autre.', 'Sans marquage, vous vous croisez d’abord, comme sur une route normale. Puis chacun tourne derrière l’autre voiture.')])
+dec('intersections-complexes', 3, lambda d: d.setdefault('aides', []).extend([
+    {'type': 'fleche', 'points': [[24, 1.75], [33, 1.75], [36, 0.6], [35, -3], [33.75, -8], [33.75, -16]], 'couleur': 'vert', 'p': 2},
+    {'type': 'fleche', 'points': [[42, -1.75], [31, -1.75], [28, -0.6], [29, 3], [30.25, 8], [30.25, 16]], 'couleur': 'orange', 'p': 2}]))
+t('intersections-complexes', 5, etiquettes=[[1, 'Plus de place', 'tu attends avant le carrefour'], [4, 'Piéton', 'il traverse, tu le laisses passer']])
+dec('intersections-complexes', 5, lambda d: d['acteurs'].append({'type': 'pieton', 'S': 39, 'x': -6.5, 'vx': 1.1}))
+p2('intersections-complexes', 'Que fais-tu ?', {'explication': 'Quand tu tournes, laisse passer ceux dont tu vas couper la route.'})
+p2('intersections-complexes', 'Je tourne à gauche. En plus des voitures d’en face', {'choix': ['les piétons qui traversent la rue où je vais', 'les vélos qui viennent en face', 'seulement mon rétroviseur'],
+   'explication': 'En tournant à gauche, tu laisses passer les vélos d’en face, et les piétons qui traversent la rue où tu vas.'})
+p2('intersections-complexes', 'Un tramway arrive au carrefour.', {'explication': 'Le tramway est prioritaire et ne peut pas t’éviter : laisse-le passer, et ne t’arrête jamais sur ses rails.'})
+p2('intersections-complexes', 'Mon feu est vert, mais la file est arrêtée', {'explication': 'Même au vert, tu n’avances pas si tu risques de rester bloqué au milieu du carrefour : tu bloquerais les voitures de l’autre rue.'})
+p2('intersections-complexes', 'La voiture d’en face tourne aussi à gauche.', {'choix': ['observe le marquage et ne lui coupe pas la route', 'passe le plus vite possible'],
+   'explication': 'Suis les marquages au sol s’il y en a. Sans marquage, vous vous croisez d’abord, puis chacun tourne derrière l’autre voiture.'})
+
+# ---- 33 · Anticiper les dangers ----
+t('anticiper-dangers', 1, dire=[('Et dans un virage dont tu ne vois pas la sortie, ralentis avant, pas dedans.', 'Et ce panneau annonce un virage : si tu ne vois pas sa sortie, ralentis avant, pas dedans.')])
+dec('anticiper-dangers', 1, {'signaux': [['A1a', 95]]})
+t('anticiper-dangers', 2, dire=[('Ralentis, regarde sous le camion, tu peux voir des pieds, et garde le pied prêt à freiner.', 'Ralentis. Regarde sous le camion : tu peux voir des pieds. Et garde ton pied prêt à freiner.')])
+t('anticiper-dangers', 4, eyebrow='Quand ça glisse',
+  dire='La pluie rend la route glissante : les pneus accrochent moins bien, c’est l’adhérence qui baisse. Tu freines plus long. '
+       'Roule moins vite, garde plus de distance et évite les gestes brusques. '
+       'Sous la pluie, certaines limites baissent : 110 au lieu de 130 sur autoroute. Et la limite reste un maximum : si ça glisse, roule encore moins vite.')
+memo('anticiper-dangers', ('Abords d’école', m('Près d’une école', 'ralentir', 'A13a')))
+p2('anticiper-dangers', 'Un camion est garé au bord', {'contexte': None})
+p2('anticiper-dangers', 'Quel danger ?', {'contexte': 'Un camion garé cache un passage piéton.', 'explication': 'Un camion garé peut cacher un piéton : il peut traverser devant lui.'})
+p2('anticiper-dangers', 'Quelle conduite ?', {'choix': ['Te décaler sans voir', 'Accélérer dans le virage', 'Ralentir avant le virage'], 'explication': 'Tu ne vois pas la sortie du virage : ralentis avant d’y entrer, pas dedans.'})
+p2('anticiper-dangers', 'En roulant, je regarde surtout :', {'choix': ['le véhicule juste devant moi', 'loin devant, les côtés de la route et mes rétros, chacun à son tour']})
+p2('anticiper-dangers', 'Il commence à pleuvoir. Je :', {'choix': ['garde ma vitesse : la limite n’a pas changé', 'roule moins vite', 'augmente mes distances'],
+   'explication': 'Sur route mouillée, les pneus accrochent moins bien : c’est l’adhérence qui baisse, et tu freines plus long. Roule moins vite et garde plus de distance.'})
+p2('anticiper-dangers', 'Je roule à hauteur d’une voiture, dans son angle mort.', {'explication': 'Dans l’angle mort d’une voiture, son conducteur ne te voit pas : ralentis, ou dépasse-la franchement.'})
+p2('anticiper-dangers', 'Près d’une école, des enfants marchent', {'choix': ['ralentis et regarde les trottoirs', 'garde ma vitesse : ils sont sur le trottoir']})
+
+# ---- 34 · Contrôles du véhicule ----
+t('controles-vehicule', 1, items=[['Coupures et bosses', 'Un pneu abîmé se remplace'], ['L’usure', 'Les témoins d’usure : 1,6 mm minimum'], ['Le sous-gonflage', 'Un pneu écrasé manque d’air'], ['La pression', 'Une fois par mois, pneus froids']],
+  sync=[0.3, 1.5, 4.0, 4.44],
+  dire=[('il y a des petites bosses : les témoins d’usure. Usé jusqu’à elles ?', 'il y a des petits blocs de gomme : les témoins d’usure. Usé jusqu’à eux ?'),
+        ('avant de rouler, pneus froids.', 'avant de rouler, pneus froids. Pneus froids, on dit aussi « à froid » : la voiture n’a pas encore roulé.')])
+dec('controles-vehicule', 1, lambda d: d['illu'].update(vues=['coupure', 'usure', 'gonflage', 'pression'], pression='Pression'))
+t('controles-vehicule', 4, items_3=['Huile moteur', 'À la jauge : une tige à tirer'], sync=[2.07, 2.21, 2.41, 3.2],
+  dire=[('Liquide de refroidissement, lave-glace, liquide de frein, et l’huile, à la jauge : le manuel te montre où ils sont.',
+         'Liquide de refroidissement, lave-glace, liquide de frein : le manuel te montre où ils sont. L’huile se regarde avec la jauge : une tige que tu tires pour voir le niveau.')])
+t('controles-vehicule', 6, items_0=['La révision', 'Aux dates du carnet d’entretien'], items_1=['Un bruit bizarre, un voyant', 'Fais vérifier sans attendre'])
+def _ic34(d):
+    d['illu']['items'][0].update(s='la révision'); d['illu']['items'][1].update(t='Un bruit bizarre', s='à faire vérifier')
+dec('controles-vehicule', 6, _ic34)
+t('controles-vehicule', 7, dire=[('Et de temps en temps, les niveaux sous le capot.', 'Et une fois par mois, et avant un long trajet, les niveaux sous le capot.')])
+memo('controles-vehicule', ('Pneus : usure', m('Pneus : usure, coupures, pression pneus froids', 'avant de partir')),
+     ('Voyant rouge', m('Voyants : rouge, je m’arrête ; orange, je fais vérifier', 'dès que possible')), ('Voyant orange', None))
+memo_plus('controles-vehicule', m('Vitres et essuie-glaces', 'bien voir'), m('Niveaux sous le capot', 'une fois par mois, et avant un long trajet'))
+p2('controles-vehicule', 'Quand effectuer une vérification ?', {'choix': ['En roulant', 'Moteur froid', 'Moteur brûlant en ouvrant immédiatement'],
+   'explication': 'Moteur chaud, le liquide est sous pression : n’ouvre pas le bouchon, attends que le moteur refroidisse.'})
+p2('controles-vehicule', 'Je contrôle la pression des pneus de préférence :', {'choix': ['pneus froids, avant de rouler', 'après un long trajet'],
+   'explication': 'La pression se mesure pneus froids, avant de rouler : les bons chiffres sont sur l’étiquette de la portière.'})
+
+# ---- 35 · Documents et démarches ----
+t('demarches-conducteur', 2, sync=[1.15, 1.44, 4.08],
+  dire=[('par exemple la voiture que tu as abîmée.', 'par exemple la voiture que tu as abîmée. On l’appelle aussi l’assurance « au tiers ». La tous risques, elle, paie aussi tes propres dégâts.')])
+t('demarches-conducteur', 3, sync=[1.0, 3.2, 3.6, 4.1],
+  dire=[('Le premier se fait dans les 6 mois avant les 4 ans de la voiture, comptés depuis sa première mise en circulation, puis tous les 2 ans.',
+         'Le premier contrôle se fait dans les 6 mois avant les 4 ans de la voiture. On compte depuis sa première mise en circulation, écrite sur la carte grise, pas depuis le jour de l’achat. Ensuite, tous les 2 ans.')])
+dec('demarches-conducteur', 3, lambda d: d['illu'].update(lignes=[{'noeuds': [['0', '1re mise en circ.', 0], ['4 ans', '1er contrôle', 1], ['+2', '', 3], ['+2', '', 3]]}]))
+t('demarches-conducteur', 4, items_1=['Plus de 4 ans', 'Le papier du contrôle : moins de 6 mois'], sync=[0.0, 1.15, 3.11],
+  dire=[('S’il a plus de 4 ans, le vendeur te remet un contrôle technique de moins de 6 mois.', 'S’il a plus de 4 ans, le vendeur te donne le papier de son dernier contrôle technique. Ce papier doit avoir moins de 6 mois.')])
+dec('demarches-conducteur', 4, lambda d: d['illu'].update(e=[1, 3]))
+t('demarches-conducteur', 5, sync=[2.39, 3.12, 4.3],
+  dire=[('Tu donnes à l’acheteur la carte grise barrée, datée et signée, et un papier récent', 'Tu donnes à l’acheteur la carte grise barrée, datée et signée. Et un papier récent')])
+p2('demarches-conducteur', 'Quelle démarche importante ?', {'explication': 'Tu achètes ? Tu as un mois pour mettre la carte grise à ton nom.'})
+p2('demarches-conducteur', 'Que vérifies-tu ?', {'contexte': 'Tu prépares un trajet avec une voiture de plus de 4 ans.', 'choix': ['Que son contrôle technique est encore valable', 'La couleur des sièges', 'Le nombre de stations radio'],
+   'explication': 'Après 4 ans, la voiture passe le contrôle technique tous les 2 ans : vérifie la date du dernier.'})
+p2('demarches-conducteur', 'L’assurance minimale obligatoire', {'explication': 'La responsabilité civile, dite « au tiers », est obligatoire : elle paie les dégâts que tu fais aux autres. La tous risques paie aussi tes propres dégâts.'})
+p2('demarches-conducteur', 'Je vends ma voiture de 6 ans', {'q': 'Je vends ma voiture de 7 ans à un particulier. Le contrôle technique doit dater de moins de :',
+   'explication': 'Pour vendre à un particulier une voiture de plus de 4 ans, le contrôle technique doit dater de moins de 6 mois.'})
+
+# ---- 15 · Nuit et éclairage ----
+t('nuit-eclairage', 1, dire='Pour rouler, les feux de croisement éclairent à environ 30 mètres. '
+                            'Ce sont tes feux de base la nuit, et de jour quand la visibilité baisse. '
+                            'Les feux de position sont les plus faibles : ils n’éclairent pas la route, ils servent à ce qu’on te voie. '
+                            'La nuit, garé au bord d’une route non éclairée, tu les laisses allumés.')
+dec('nuit-eclairage', 1, {'script': [['p2', 'vitesse', 0, 2.5], ['p2+1', 'feux', {'croisement': False, 'position': True}], ['p2+1', 'aide', 0, 'off']]})
+t('nuit-eclairage', 4, items_0=['Brouillard avant', 'Brouillard, chute de neige ou forte pluie'],
+  dire=[('Les feux de brouillard avant s’utilisent par brouillard, neige ou forte pluie.', 'Les feux de brouillard avant s’utilisent par brouillard, chute de neige ou forte pluie : ils remplacent ou complètent les feux de croisement.')])
+t('nuit-eclairage', 5, dire=[('En feux de croisement, au-dessus d’environ 50, tu ne peux plus t’arrêter dans la zone éclairée : la nuit, adapte ta vitesse à ce que tu vois.',
+                              'En feux de croisement, au-dessus d’environ 50 kilomètres heure, tu ne peux plus t’arrêter dans la zone éclairée. La nuit, adapte ta vitesse à ce que tu vois.')])
+t('nuit-eclairage', 6, dire=[('Sans gilet, ralentis et écarte-toi dès que tu le devines.', 'S’il n’a pas de gilet, ralentis et écarte-toi dès que tu le devines.')])
+memo('nuit-eclairage', ('Feux de route', m('Feux de route', 'Route non éclairée, et tu n’éblouis personne')))
+p2('nuit-eclairage', 'Dans le brouillard, les feux de route :', {'explication': 'Dans le brouillard, la lumière des feux de route se reflète et t’éblouit : allume tes feux de croisement et tes feux de brouillard.'})
+p2('nuit-eclairage', 'Brouillard épais.', {'q': 'Brouillard épais. Tu peux allumer :', 'explication': 'Dans le brouillard, les feux de brouillard avant t’aident à voir : ils remplacent ou complètent les feux de croisement. Les feux de route, eux, se reflètent sur le brouillard et t’éblouissent.'})
+p2('nuit-eclairage', 'Une voiture arrive en face. Je :', {'q': 'En plein jour, une grosse averse te gêne pour voir. Tu allumes :', 'choix': ['tes feux de croisement', 'rien : il fait jour', 'ton feu de brouillard arrière'], 'bonnes': [0], 'mode': 'qcm',
+   'explication': 'De jour, quand la visibilité baisse, allume tes feux de croisement. Le feu de brouillard arrière est interdit sous la pluie : il éblouit celui qui te suit.'})
+
+# ---- 16 · Intempéries ----
+t('intemperies', 1, dire=[('', 'Et les vitesses baissent : 110 sur autoroute, 100 sur chaussées séparées, et 80 sur les routes à 90.')])
+dec('intemperies', 2)            # les renvois (phrases 0 et 2) restent justes
+t('intemperies', 2, sync=[2.0, 3.2, 3.6],
+  dire=[('Ne freine pas, ne donne pas de coup de volant : lève le pied doucement et tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau la route.',
+         'Ne freine pas, ne donne pas de coup de volant. Lève le pied doucement et tiens le volant droit, jusqu’à ce que les pneus accrochent de nouveau.')])
+t('intemperies', 3, dire=[('Repère sur autoroute : un trait et un espace de la bande d’arrêt d’urgence font environ 50 mètres.',
+                           'Repère sur autoroute : un trait et un espace, au bord de la voie des pannes, font environ 50 mètres. Sur route : quatre traits et quatre espaces de la ligne du milieu.')])
+t('intemperies', 5, dire=[('Sur neige ou verglas, la distance de freinage peut être plusieurs fois plus longue.', 'Sur neige, la distance de freinage est plusieurs fois plus longue ; sur verglas, jusqu’à 10 fois.')])
+memo('intemperies', ('Aquaplaning', m('Aquaplaning', 'Ne freine pas : lève le pied, volant droit')),
+     ('Loi montagne', m('Loi montagne', '1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre')))
+memo_plus('intemperies', m('Pluie : 110 · 100 · 80', 'Autoroute · chaussées séparées · routes à 90'))
+p2('intemperies', 'Quelle adaptation ?', {'contexte': 'Une forte pluie rend la route glissante.'})
+p2('intemperies', 'Sur route enneigée, ma distance de freinage :', {'explication': 'Sur neige, la distance de freinage est plusieurs fois plus longue ; sur verglas, jusqu’à 10 fois. Douceur et grandes distances.'})
+p2('intemperies', 'Brouillard, visibilité inférieure à 50 m. Vitesse maximale :', {'q': 'Il se met à pleuvoir après plusieurs semaines sans pluie. La route est :', 'choix': ['plus glissante que d’habitude', 'aussi sûre que par temps sec'], 'bonnes': [0], 'mode': 'qcm',
+   'explication': 'Les premières gouttes, mêlées à la poussière et à l’huile, rendent la route savonneuse : ralentis et garde plus d’écart.'})
+
+# ---- 17 · Tunnels, passages à niveau, montagne ----
+t('montagne-tunnels-pn', 3, items_3=['Dépasser', 'Interdit si un panneau ou une ligne continue le dit'],
+  dire=[('le dépassement, quand un panneau l’interdit.', 'le dépassement, quand un panneau ou une ligne continue l’interdit.')])
+t('montagne-tunnels-pn', 4, dire='Sur une route de montagne trop étroite, entre deux véhicules du même type, celui qui descend recule. '
+                                 'Sauf si c’est bien plus facile pour celui qui monte. Pourquoi ? Redémarrer en montée est plus difficile. '
+                                 'Entre une voiture et un camion, c’est la voiture qui recule, même si elle monte.')
+t('montagne-tunnels-pn', 5, dire=[('En descente, passe une vitesse plus basse', 'Avant la descente, passe une vitesse plus basse')])
+dec('montagne-tunnels-pn', 5, lambda d: d['illu']['items'][0].update(t='Vitesse plus basse'))
+t('montagne-tunnels-pn', 6, stats=[['1', 'règle : jamais sur les rails'], ['5', 'règles en tunnel'], ['1', 'même type : celui qui descend recule']])
+memo('montagne-tunnels-pn', ('Route étroite en montagne', m('Route étroite en montagne', 'Même type : celui qui descend recule · voiture contre camion : la voiture')))
+EXP['mtp17-4'] = 'Avant la descente, passe une vitesse plus basse : le frein moteur retient la voiture. Jamais au point mort : tes freins chaufferaient.'
+p2('montagne-tunnels-pn', 'Dans ce tunnel, aucun panneau', {'q': 'Dans ce tunnel, ni panneau ni ligne continue n’interdit de dépasser. Tu peux doubler ?'})
+p2('montagne-tunnels-pn', 'En entrant dans le tunnel :', {'q': 'Dans le tunnel, des balises bleues sur la paroi. Tu gardes au moins :', 'choix': ['deux balises entre toi et la voiture devant', 'une balise'], 'bonnes': [0], 'mode': 'qcm',
+   'explication': 'Deux balises bleues d’écart au minimum : c’est ta distance de sécurité dans le tunnel.'})
+
+# ---- 18 · Fatigue et distractions ----
+t('fatigue-distractions', 1, dire=[('En une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130 : ta vitesse sans le zéro, fois 3, comme au cours 4.',
+                                    'En une seconde, tu parcours 15 mètres à 50, 27 à 90 et 39 à 130. C’est ta vitesse sans le zéro, fois 3, comme au cours 4.')])
+dec('fatigue-distractions', 1, {'kmh': 50}, acteur(0, kmh=50))
+t('fatigue-distractions', 3, items_0=['Pause toutes les 2 heures', 'Au moins un quart d’heure'])
+dec('fatigue-distractions', 3, lambda d: d['illu']['items'][0].update(s='au moins 15 min'))
+t('fatigue-distractions', 4, dire=[('les policiers peuvent te retirer ton permis sur-le-champ.', 'les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures.')])
+memo('fatigue-distractions', ('Pause', m('Pause', 'Au moins 15 min toutes les 2 heures')), ('Téléphone tenu en main', m('Téléphone tenu en main', '135 € et 3 points, même arrêté au feu rouge ou dans un bouchon')))
+EXP['fd18-1'] = 'Fais une pause d’au moins un quart d’heure toutes les 2 heures de route, même sans fatigue.'
+
+# ---- 19 · Drogues et médicaments ----
+t('drogues-medicaments', 1, dire=[('Le dépistage se fait par un test salivaire.', 'Le dépistage se fait par un test salivaire ; s’il est positif, une analyse en laboratoire le confirme.')])
+t('drogues-medicaments', 3, items_1=['Niveau 2, orange', '« Soyez très prudent » : pas sans l’avis d’un médecin ou d’un pharmacien'],
+  dire=[('Orange : sois très prudent et demande l’avis d’un médecin ou d’un pharmacien.', 'Orange : sois très prudent, et ne conduis pas sans l’avis d’un médecin ou d’un pharmacien.')])
+memo('drogues-medicaments', ('Pictogramme orange', m('Pictogramme orange', 'Pas de volant sans l’avis d’un médecin ou d’un pharmacien')))
+EXP['dm19-1'] = {'choix': ['0,2 g/L', 'aucun'], 'explication': 'Aucun : contrairement à l’alcool, il n’y a pas de taux toléré. Une simple trace suffit.'}
+p2('drogues-medicaments', 'Pictogramme orange sur un médicament', {'choix': ['aucun risque', 'sois très prudent : ne conduis pas sans l’avis d’un médecin ou d’un pharmacien']})
+p2('drogues-medicaments', 'Le dépistage des stupéfiants se fait par :', {'explication': 'Un test salivaire ; s’il est positif, une analyse en laboratoire le confirme.'})
+p2('drogues-medicaments', 'Le pictogramme est rouge sur ta boîte', {'q': 'Sur une boîte de médicaments, avec quels pictogrammes tu ne prends pas le volant sans l’avis d’un médecin ?', 'choix': ['le rouge', 'l’orange', 'le jaune'], 'bonnes': [0, 1], 'mode': 'qcm',
+   'explication': 'Rouge : ne conduis pas, ton médecin te dira quand reprendre. Orange : pas de volant sans l’avis d’un médecin ou d’un pharmacien. Jaune : sois prudent et lis la notice.'})
+
+# ---- 20 · Permis à points ----
+t('permis-points', 2, titre='Sans perdre de point')
+t('permis-points', 3, items_1=['Vitesses réduites', '110 autoroute · 100 chaussées séparées · 80 double sens'],
+  dire=[('Avec 6 points, une seule grosse infraction peut suffire.', 'Avec 6 points, une seule infraction qui en retire 6, comme un refus de priorité à un piéton, suffit.')])
+t('permis-points', 4, items_1=['2 ou 3 ans', 'Sans perdre de point : ton maximum revient'], sync=[0.56, 1.22, 3.01],
+  dire='Un seul point perdu revient après six mois sans perdre de point. '
+       'Sinon, tout ton capital revient après 2 ans sans perdre de point. Il faut 3 ans si ta dernière infraction était un délit, ou punie d’une amende de 135 euros ou plus. '
+       'Un stage de sensibilisation rend jusqu’à 4 points, sans dépasser ton maximum : un par an au plus. '
+       'En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. '
+       'Et ton solde de points se consulte sur le site officiel « Mes points permis ».')
+def _bar20(d):
+    it = d['illu']['items']; it[0].update(t='6 mois sans perdre de point'); it[1].update(t='2 ou 3 ans sans perdre de point', b='max')
+dec('permis-points', 4, _bar20)
+memo('permis-points', ('Télépoints', m('Mes points permis', 'Le site officiel de ton solde de points')),
+     ('Stage de sensibilisation', m('Stage de sensibilisation', 'Jusqu’à +4 points, sans dépasser ton maximum, un par an · obligatoire si −3 en probatoire')))
+p2('permis-points', 'Quelle démarche ?', {'choix': ['Consulter le site officiel « Mes points permis »', 'Demander à un ami', 'Attendre une infraction'], 'explication': 'Ton solde de points se consulte sur le site officiel « Mes points permis ».'})
+p2('permis-points', 'Un stage de sensibilisation volontaire rend :', {'explication': 'Un stage de sensibilisation rend jusqu’à 4 points, sans dépasser ton maximum, un par an au plus. En probatoire, il devient obligatoire si tu perds 3 points ou plus d’un coup.'})
+p2('permis-points', 'Le taux d’alcool maximal pour un jeune conducteur', {'q': 'En période probatoire :', 'choix': ['ton taux d’alcool maximal est 0,2 g/L', 'le disque « A » est obligatoire', 'tu peux rouler à 130 sur autoroute'], 'bonnes': [0, 1], 'mode': 'qcm',
+   'explication': '0,2 g/L d’alcool au maximum, et le disque « A » à l’arrière. Sur autoroute, c’est 110, pas 130.'})
+
+# ---- 21 · Poste de conduite ----
+t('poste-conduite', 1, items_1=['Le dossier', 'Poignets au haut du volant, bras tendus ; en roulant, bras pliés'], sync=[0.06, 1.03, 3.01, 4.01, 5.08],
+  dire=[('tes poignets touchent le haut du volant ; mains sur le volant, tes bras sont alors légèrement pliés.', 'tes poignets touchent le haut du volant. Mains sur le volant, tes bras sont alors légèrement pliés.')])
+dec('poste-conduite', 3, lambda d: d['illu']['items'][3].update(t='Rétro + angle mort', s='avant d’ouvrir'))
+memo('poste-conduite', ('Siège', m('Siège', 'Pédale de gauche au fond, jambe légèrement fléchie')), ('En quittant', m('En quittant', 'Frein de parking, vitesse engagée, rétro et angle mort avant d’ouvrir')))
+EXP['pc21-4'] = {'q': 'Le siège est bien réglé quand, pédale de gauche enfoncée à fond, ta jambe est :', 'choix': ['tendue', 'légèrement fléchie'], 'explication': 'Légèrement fléchie : tu gardes de la force et du contrôle sur la pédale.'}
+
+# ---- 22 · Passagers et chargement ----
+t('securite-passagers', 2, sync=[0.06, 2.02, 4.42],
+  dire='Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids. Et à l’arrière, sauf exceptions. '
+       'Un bébé voyage dos à la route, le plus longtemps possible. '
+       'Les exceptions : la voiture n’a pas de places arrière, ou elles sont déjà prises par d’autres enfants. '
+       'Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé.')
+t('securite-passagers', 3, items_3=['Animaux', 'Le plus sûr : attachés ou en cage'],
+  dire=[('Les animaux voyagent attachés ou en cage : s’ils te gênent pour conduire, c’est une infraction.', 'Le plus sûr : un animal attaché ou en cage. S’il te gêne pour conduire, c’est une infraction.')])
+EXP['sp22-3'] = {'q': 'Un siège auto ou un rehausseur adapté est obligatoire tant que l’enfant a moins de :', 'explication': 'Moins de 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc.'}
+
+# ---- 23 · Entretien et voyants ----
+t('entretien', 1, items_1=['1', 'fois par mois', 'la pression, pneus froids : un conseil'],
+  dire=[('En dessous, c’est une infraction : amende, et ta voiture peut être immobilisée.', 'Sous 1,6 mm, c’est une infraction : 135 euros, et ta voiture peut être immobilisée.'),
+        ('Conseil : vérifie la pression une fois par mois, à froid.', 'Conseil : vérifie la pression une fois par mois, pneus froids.')])
+dec('entretien', 1, lambda d: d['illu'].update(pression='Pression'))
+t('entretien', 3, items_0=['Rouge', 'Alerte (huile, température, freins) : arrête-toi dès que possible'], items_1=['Orange', 'À faire vérifier vite, sauf simple témoin'],
+  dire=[('Orange : une anomalie, à faire vérifier rapidement.', 'Orange : une anomalie, à faire vérifier rapidement. Parfois, c’est juste un témoin, comme le feu de brouillard arrière allumé.')])
+memo('entretien', ('Pression', m('Pression', 'Pneus froids, chaque mois')), ('Voyant rouge', m('Voyant rouge', 'Arrêt dès que possible, en sécurité')))
+EXP['e23-4'] = 'L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas ta distance d’arrêt.'
+p2('entretien', 'Quel réflexe ?', {'explication': 'Pression d’huile : arrête-toi dès que possible, en sécurité, et coupe le moteur : sans huile, il peut casser.'})
+p2('entretien', 'Un voyant rouge s’allume en roulant.', {'q': 'Le voyant rouge de température du moteur s’allume en roulant. Tu :'})
+p2('entretien', 'La pression des pneus se contrôle :', {'choix': ['pneus froids, avant de rouler', 'après un long trajet'], 'explication': 'Contrôle la pression pneus froids, avant de rouler : un pneu chaud donne une mesure faussée.'})
+
+# ---- 24 · Aides à la conduite ----
+t('aides-conduite', 1, dire=[('Le régulateur la maintient.', 'Le régulateur, lui, maintient la vitesse que tu as choisie.')])
+dec('aides-conduite', 3, lambda d: d['illu']['items'][0].update(i='✋'))
+memo('aides-conduite', ('Limiteur', m('Limiteur', 'Empêche d’accélérer au-delà de la vitesse choisie, mais ne freine pas en descente')))
+EXP['ac24-1'] = {'choix': ['empêche d’accélérer au-delà de la vitesse choisie', 'maintient une vitesse constante'],
+                 'explication': 'Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais il ne freine pas en descente. Le régulateur, lui, maintient la vitesse que tu as choisie.'}
+p2('aides-conduite', 'Le régulateur adaptatif est activé. Tu peux regarder ton téléphone ?', {'q': 'Le régulateur adaptatif est activé. Tu peux prendre ton téléphone en main ?'})
+
+# ---- 25 · Premiers secours ----
+t('premiers-secours', 1, dire=[('D’abord, protéger : feux de détresse, gilet enfilé avant de sortir, et le triangle à au moins 30 mètres, avant le virage ou le haut de la côte, si tu peux le poser sans danger.',
+                                'D’abord, protéger : feux de détresse, et gilet enfilé avant de sortir. Puis le triangle, à au moins 30 mètres, avant le virage ou le haut de la côte. Seulement si tu peux le poser sans danger.')])
+
+# ---- 26 · Papiers, assurance, constat ----
+t('papiers-assurance', 1, sync=[0.12, 1.2, 2.2],
+  dire=[('Lors d’un contrôle : ton permis, en papier ou sur ton téléphone, dans France Identité, l’appli officielle de l’État, et le certificat d’immatriculation, la carte grise.',
+         'Lors d’un contrôle, montre ton permis : en papier, ou sur ton téléphone avec France Identité, l’appli officielle de l’État. Et ta carte grise, qu’on appelle certificat d’immatriculation.'),
+        ('Une petite amende, et quelques jours pour les présenter à la police ou à la gendarmerie.', 'Une amende de 11 euros, et 5 jours pour les présenter à la police ou à la gendarmerie ; sinon, 135 euros.')])
+t('papiers-assurance', 2, dire=[('Rouler sans assurance est un délit, une infraction grave : amende, jusqu’à 3 750 euros au tribunal, permis suspendu, voiture confisquée.',
+                                 'Rouler sans assurance est un délit : jusqu’à 3 750 euros d’amende, et le juge peut aussi suspendre ton permis ou confisquer ta voiture.')])
+t('papiers-assurance', 3, dire=[('écrite sur la carte grise, pas au jour de l’achat.', 'écrite sur la carte grise en case B, pas au jour de l’achat.')])
+dec('papiers-assurance', 3, lambda d: d['illu']['lignes'][0]['noeuds'][0].__setitem__(1, '1re mise en circ.'))
+t('papiers-assurance', 5, stats=[['4', 'ans : premier contrôle technique'], ['5', 'jours ouvrés pour le constat']])
+memo('papiers-assurance', ('Contrôle technique', m('Contrôle technique', 'Dans les 6 mois avant ses 4 ans, puis tous les 2 ans')))
+EXP['pa26-2'] = {'choix': ['à 2 ans', 'dans les 6 mois avant ses 4 ans', 'à 6 ans'], 'explication': 'Dans les 6 mois avant ses 4 ans, comptés depuis sa première mise en circulation, puis tous les 2 ans.'}
+
+# ---- 27 · Infractions et sanctions ----
+t('infractions', 1, dire=[('375 si tu paies trop tard.', '375 si tu paies après 45 jours.')])
+dec('infractions', 3, lambda d: d['illu'].update(segments=[['< 5', '0', '#C9D0DA'], ['5–19', '−1', '#FFD60A'], ['20–29', '−2', '#FFB020'], ['30–39', '−3', '#FF8A00'], ['40–49', '−4', '#FF5A1F'], ['≥ 50', '−6', '#E5141F']],
+                                                    e=[0, 1, 1, 1, 1, 3]))
+t('infractions', 3, dire=[('À partir de 40 de trop, ton permis peut t’être retiré sur-le-champ.', 'À partir de 40 de trop, les policiers peuvent garder ton permis sur-le-champ, jusqu’à 72 heures, puis le préfet peut le suspendre jusqu’à 6 mois.'),
+                          ('Entre 0,5 et 0,8 gramme, c’est 135 euros et 6 points.', 'Entre 0,5 et 0,8 gramme par litre de sang, ou dès 0,2 en probatoire : 135 euros et 6 points.')])
+t('infractions', 4, dire=[('Retiens deux mots : une suspension, ton permis t’est retiré pour un temps ; une annulation, tu dois le repasser.',
+                           'Retiens deux mots. Une suspension : ton permis t’est retiré pour un temps. Une annulation : tu dois le repasser, et le nouveau est probatoire, avec 6 points.')])
+memo('infractions', ('Alcool de 0,5 à 0,8 g/L', m('Alcool de 0,5 à 0,8 g/L', '135 € et 6 points · dès 0,2 g/L en probatoire')))
+memo_plus('infractions', m('Suspension', 'Ton permis t’est retiré pour un temps'), m('Annulation', 'À repasser : le nouveau est probatoire, 6 points'))
+EXP['i27-3'] = '25 km/h d’excès retenu : c’est la tranche de 20 à 29 km/h, soit 2 points et 135 € d’amende.'
+
+# ---- 28 · Écoconduite ----
+cours('ecoconduite', resume='Anticiper, passer les rapports tôt, rouler un peu moins vite, surveiller les pneus, la clim et le coffre de toit : les gestes qui économisent.')
+t('ecoconduite', 1, sync=[0.0, 2.0, 3.37, 4.0],
+  dire=[('Anticipe : lève le pied tôt plutôt que de freiner tard, en gardant ta vitesse passée : le moteur retient la voiture et ne consomme presque rien.',
+         'Anticipe : lève le pied tôt plutôt que de freiner tard. Garde ta vitesse passée : le moteur retient la voiture et ne consomme presque rien.'),
+        ('Et rouler un peu moins vite fait baisser nettement la consommation, surtout sur autoroute.', 'Et rouler un peu moins vite fait baisser la consommation : à 110 au lieu de 130, environ 20 % de carburant en moins.')])
+dec('ecoconduite', 1, decale(1, 1))
+t('ecoconduite', 2, items_3=['Moteur coupé', 'Garé : obligatoire · arrêt qui dure : conseillé'],
+  dire=[('Et quand tu attends à l’arrêt, coupe le moteur.', 'Garé, laisser tourner le moteur est interdit : 135 euros. Et à l’arrêt dans un bouchon qui dure, coupe-le aussi.')])
+memo('ecoconduite', ('Arrêt prolongé', m('Moteur coupé', 'Garé : obligatoire, sinon 135 € · bouchon qui dure : conseillé')))
+memo_plus('ecoconduite', m('Rouler moins vite', '110 au lieu de 130 : environ 20 % de carburant en moins'))
+EXP['e28-3'] = 'Un coffre de toit, même vide, prend le vent : tu consommes plus. Retire-le quand tu ne t’en sers pas.'
+p2('ecoconduite', 'Sur autoroute, rouler un peu moins vite :', {'explication': 'La consommation grimpe vite avec la vitesse : à 110 au lieu de 130, tu économises environ 20 % de carburant.'})
+p2('ecoconduite', 'Lors d’un arrêt prolongé', {'q': 'Tu es garé et tu attends quelqu’un. Ton moteur :', 'choix': ['peut tourner pour garder le chauffage', 'doit être coupé'], 'bonnes': [1], 'mode': 'qcm',
+   'explication': 'Garé, laisser tourner le moteur est interdit : 135 euros. Coupe-le.'})
+p2('ecoconduite', 'Des pneus sous-gonflés :', {'q': 'La climatisation :', 'choix': ['ne change rien à la consommation', 'fait consommer plus : à garder pour les grosses chaleurs ou le désembuage'], 'bonnes': [1], 'mode': 'qcm',
+   'explication': 'La clim fait consommer plus : allume-la quand il fait vraiment chaud ou pour désembuer, pas en permanence.'})
+for _q in ('i16-2', 'pp20-3', 'e28-1', 'e28-4'): EXP.pop(_q, None)
+
+# ---- dernières phrases trop longues pour un sous-titre ----
+t('cyclistes-edpm', 2, dire=[('Avant de tourner à droite, regarde ton rétroviseur et tourne la tête : un cycliste peut remonter', 'Avant de tourner à droite, regarde ton rétroviseur et tourne la tête. Un cycliste peut remonter')])
+t('infractions', 3, dire=[('jusqu’à 72 heures, puis le préfet peut le suspendre jusqu’à 6 mois.', 'jusqu’à 72 heures. Puis le préfet peut le suspendre jusqu’à 6 mois.')])

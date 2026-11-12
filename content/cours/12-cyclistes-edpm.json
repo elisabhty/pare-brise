@@ -175,7 +175,7 @@
    "ch": 0,
    "eyebrow": "L’angle mort",
    "titre": "Avant de tourner à droite",
-   "dire": "Avant de tourner à droite, regarde ton rétroviseur et tourne la tête : un cycliste peut remonter le long de ta voiture, dans ton angle mort.",
+   "dire": "Avant de tourner à droite, regarde ton rétroviseur et tourne la tête. Un cycliste peut remonter le long de ta voiture, dans ton angle mort.",
    "env": "ville",
    "kmh": 15,
    "camera": "drone",
@@ -214,7 +214,7 @@
    "panneaux": [
     "B22a"
    ],
-   "dire": "La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. Au feu, le sas vélo, c’est la case avec un vélo peint au sol, entre deux lignes : arrête-toi à la première ligne que tu rencontres, avant la case. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos : un petit panneau « sauf vélos » te prévient, des vélos peuvent arriver en face.",
+   "dire": "La piste cyclable est réservée aux vélos : tu n’y roules pas et tu ne t’y arrêtes pas. Au feu, le sas vélo, c’est une case avec un vélo peint au sol. Arrête-toi à la première ligne, avant la case. Certaines rues sont à sens unique pour les voitures, mais à double sens pour les vélos. Un panneau te prévient à l’entrée : des vélos peuvent arriver en face.",
    "etiquettes": [
     [
      "B22a",
@@ -353,7 +353,7 @@
      "km/h maximum"
     ]
    ],
-   "dire": "Cours terminé. Retiens le réflexe angle mort avant chaque virage à droite. Place à la pratique.",
+   "dire": "Cours terminé. Retiens le réflexe angle mort chaque fois que tu tournes à droite. Place à la pratique.",
    "decor": {
     "env": "ville",
     "kmh": 25,

@@ -3,7 +3,7 @@
  "ordre": 9,
  "theme": "circulation",
  "titre": "Arrêt et stationnement",
- "accroche": "s’immobiliser au bon endroit",
+ "accroche": "s’arrêter au bon endroit",
  "resume": "La différence entre arrêt et stationnement, les endroits toujours interdits, les panneaux et la sortie de voiture.",
  "affiche": [
   "B6a1",
@@ -36,6 +36,18 @@
   {
    "texte": "Avant d’ouvrir",
    "tag": "Rétroviseur et angle mort"
+  },
+  {
+   "texte": "Stationnement",
+   "tag": "Tu t’éloignes, ou tu attends longtemps"
+  },
+  {
+   "texte": "Toujours interdit, même 10 secondes",
+   "tag": "Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé sans carte, autoroute, tunnel, passage à niveau"
+  },
+  {
+   "texte": "Très gênant",
+   "tag": "135 € et fourrière possible"
   }
  ],
  "scenes": [
@@ -45,7 +57,7 @@
    "eyebrow": "Cours 9 · Circulation",
    "titre": "Arrêt et stationnement",
    "sous": "s’immobiliser au bon endroit",
-   "dire": "Tu cherches un endroit où t’immobiliser dans une rue animée. Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
+   "dire": "Tu cherches un endroit où arrêter ta voiture, dans une rue pleine de monde. Cours numéro 9 : l’arrêt et le stationnement. Deux mots qui ne veulent pas dire la même chose.",
    "vitesse": 30,
    "decor": {
     "env": "ville",
@@ -209,7 +221,7 @@
       "fin": 1,
       "texte": [
        "Arrêt",
-       "conducteur à bord"
+       "tu restes au volant"
       ]
      },
      {
@@ -271,14 +283,14 @@
     ],
     [
      "Voies de bus et pistes cyclables",
-     "Interdits"
+     "Arrêt et stationnement : très gênant"
     ],
     [
      "Autoroute, tunnel, passage à niveau",
      "Interdits, sauf urgence"
     ]
    ],
-   "dire": "Même sans panneau, certains endroits sont toujours interdits, même pour dix secondes. Le passage piéton, le trottoir, la voie de bus et la piste cyclable. La place handicapé aussi, sauf avec la carte de stationnement pour personnes handicapées. Et sur autoroute, dans un tunnel ou sur un passage à niveau, là où la route croise une voie ferrée : interdit, sauf urgence.",
+   "dire": "Même sans panneau, certains endroits sont toujours interdits, même pour dix secondes. Le passage piéton, le trottoir, la voie de bus et la piste cyclable. La place handicapé aussi, sauf avec la carte de stationnement pour personnes handicapées. Et sur autoroute, dans un tunnel ou sur un passage à niveau, là où la route croise une voie ferrée : interdit, sauf urgence. Tes feux de détresse n’y changent rien : l’arrêt reste interdit.",
    "decor": {
     "env": "ville",
     "kmh": 15,
@@ -375,7 +387,7 @@
      "fourrière possible"
     ]
    ],
-   "dire": "Se garer sur un passage piéton ou une place handicapé coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer.",
+   "dire": "Passage piéton, trottoir, voie de bus, piste cyclable, place handicapé : t’y arrêter ou t’y garer coûte 135 euros. Et ta voiture peut partir à la fourrière : la police la fait enlever, et tu paies pour la récupérer. En double file, c’est « gênant » : 35 euros.",
    "vitesse": 0,
    "decor": {
     "env": "ville",
@@ -419,7 +431,7 @@
     ]
    },
    "sync": [
-    0.83,
+    0.88,
     1.28
    ]
   },
@@ -428,7 +440,7 @@
    "ch": 2,
    "eyebrow": "Bien sortir",
    "titre": "La portière",
-   "dire": "Avant d’ouvrir ta portière, regarde dans le rétroviseur et dans l’angle mort : un cycliste peut arriver. Astuce : ouvre ta portière avec la main droite. Ton corps tourne, et tu vois derrière toi.",
+   "dire": "Avant d’ouvrir ta portière, regarde dans le rétroviseur et dans l’angle mort : un cycliste peut arriver. Astuce : ouvre ta portière avec la main droite. Ton corps tourne, et tu vois derrière toi. Et quand tu passes à côté d’une voiture garée avec quelqu’un dedans, écarte-toi : sa portière peut s’ouvrir.",
    "env": "ville",
    "kmh": 0,
    "camera": "poursuite",

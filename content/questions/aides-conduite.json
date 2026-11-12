@@ -5,13 +5,13 @@
   "type": "qcm",
   "q": "Le limiteur de vitesse :",
   "choix": [
-   "empêche de dépasser la vitesse choisie",
+   "empêche d’accélérer au-delà de la vitesse choisie",
    "maintient une vitesse constante"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Le limiteur t’empêche de dépasser la vitesse que tu as choisie. Le régulateur, lui, maintient une vitesse constante."
+  "explication": "Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais il ne freine pas en descente. Le régulateur, lui, maintient la vitesse que tu as choisie."
  },
  {
   "id": "ac24-2",

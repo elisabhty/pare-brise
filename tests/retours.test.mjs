@@ -53,3 +53,38 @@ test('la narration du cours 1 reste celle d’origine', () => {
   const src = fs.readFileSync('gen/retours.py', 'utf8');
   assert.ok(!/^t\('panneaux', \d+, [^\n]*dire=/m.test(src), 'retours.py ne touche pas à la voix du cours 1');
 });
+
+// Deuxième passage : la voix avait été corrigée, la carte, l'image, la fiche et la pratique doivent suivre.
+const pratique = id => data.exercices.find(e => e.id === 'p-' + id).situations;
+const phrases = t => (t || '').match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [];
+test('deuxième passage : chaque sous-titre se lit au rythme de la voix', () => {
+  for (const c of data.cours) if (c.ordre > 1) c.scenes.forEach((s, i) => phrases(s.dire).forEach(p =>
+    assert.ok(p.trim().split(/\s+/).length <= 25, `${c.id} écran ${i} : « ${p.trim().slice(0, 60)}… »`)));
+});
+test('deuxième passage : les mots retirés de la voix ne restent pas dans les réponses', () => {
+  const textes = id => pratique(id).map(s => [s.q, s.contexte, ...(s.choix || [])].join(' ')).join(' ');
+  assert.ok(!/abords|allure/.test(textes('anticiper-dangers')));
+  assert.ok(!/déporter/.test(textes('changer-direction-voie')));
+  assert.ok(!/à froid/.test(textes('controles-vehicule') + textes('entretien')));
+  assert.ok(!/\banneau\b/.test(textes('carrefours-feux')), 'on dit « rond-point », comme au cours 3');
+  assert.ok(!/Télépoints/.test(JSON.stringify(C['permis-points'])) && /Mes points permis/.test(dire('permis-points', 4)));
+});
+test('deuxième passage : une règle dite d’une seule façon', () => {
+  // corridor de sécurité : on ralentit toujours, et on change de voie si on peut
+  pratique('autoroute').filter(s => /bande d’arrêt d’urgence, avec une lumière/.test(s.q)).forEach(s => assert.match(s.explication, /^Ralentis toujours/));
+  // cours 30 : les étapes dans l'ordre où la voix les annonce
+  const ey = C['changer-direction-voie'].scenes.map(s => s.eyebrow || '');
+  assert.ok(ey.findIndex(e => e.startsWith('Étape 2')) < ey.findIndex(e => e.startsWith('Étape 3')));
+  // montagne : même type, celui qui descend recule ; voiture contre camion, la voiture
+  assert.match(dire('montagne-tunnels-pn', 4), /c’est la voiture qui recule, même si elle monte/);
+  // probatoire : 110 sur autoroute, aussi dans la pratique du cours 10
+  assert.ok(pratique('autoroute').filter(s => /130 au maximum/.test(s.explication || '')).every(s => /110 pendant ton permis probatoire/.test(s.explication)));
+});
+test('deuxième passage : les images suivent la voix', () => {
+  const ill = (id, i) => (C[id].scenes[i].illu || {});
+  assert.deepEqual(ill('infractions', 3).segments.map(s => s[0])[0], '< 5', 'le compteur commence à « moins de 5 », sans point');
+  assert.equal(ill('usagers-vulnerables', 2).debut.points, 6, 'un permis probatoire part de 6 points');
+  const types = id => C[id].scenes.flatMap(s => ((s.decor || s).acteurs || []).map(a => a.type)).concat(pratique(id).flatMap(s => (s.acteurs || []).map(a => a.type)));
+  assert.ok(!types('vehicules-prioritaires').includes('ambulance'), 'une ambulance privée n’est pas prioritaire : les images montrent les pompiers');
+  assert.ok(fs.readFileSync('src/engine/sim.js', 'utf8').includes('pompiers(o'));
+});

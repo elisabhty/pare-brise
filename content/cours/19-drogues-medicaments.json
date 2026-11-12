@@ -30,7 +30,7 @@
   },
   {
    "texte": "Pictogramme orange",
-   "tag": "Avis d’un médecin ou d’un pharmacien"
+   "tag": "Pas de volant sans l’avis d’un médecin ou d’un pharmacien"
   }
  ],
  "scenes": [
@@ -95,7 +95,7 @@
      "Réflexes, vision, jugement altérés"
     ]
    ],
-   "dire": "Pour les stupéfiants, il n’y a aucun seuil toléré : une trace suffit. Le dépistage se fait par un test salivaire. Le cannabis, par exemple, ralentit les réflexes et perturbe la perception des distances.",
+   "dire": "Pour les stupéfiants, il n’y a aucun seuil toléré : une trace suffit. Le dépistage se fait par un test salivaire ; s’il est positif, une analyse en laboratoire le confirme. Le cannabis, par exemple, ralentit les réflexes et perturbe la perception des distances.",
    "decor": {
     "env": "route",
     "kmh": 30,
@@ -141,7 +141,7 @@
    },
    "sync": [
     0.42,
-    1.62,
+    1.24,
     2.41
    ]
   },
@@ -222,14 +222,14 @@
     ],
     [
      "Niveau 2, orange",
-     "« Soyez très prudent » : avis d’un médecin ou d’un pharmacien"
+     "« Soyez très prudent » : pas sans l’avis d’un médecin ou d’un pharmacien"
     ],
     [
      "Niveau 3, rouge",
      "« Attention, danger » : ne conduis pas"
     ]
    ],
-   "dire": "Sur la boîte de certains médicaments, un pictogramme en forme de voiture dans un triangle. Jaune : sois prudent, lis la notice avant de conduire. Orange : sois très prudent et demande l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas. Ton médecin te dira quand reprendre le volant.",
+   "dire": "Sur la boîte de certains médicaments, un pictogramme en forme de voiture dans un triangle. Jaune : sois prudent, lis la notice avant de conduire. Orange : sois très prudent, et ne conduis pas sans l’avis d’un médecin ou d’un pharmacien. Rouge : ne conduis pas. Ton médecin te dira quand reprendre le volant.",
    "puces": [
     "1",
     "2",

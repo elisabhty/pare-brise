@@ -24,9 +24,9 @@
    "tag": "des indices"
   },
   {
-   "panneau": "A13a",
-   "texte": "Abords d’école",
-   "tag": "ralentir"
+   "texte": "Près d’une école",
+   "tag": "ralentir",
+   "panneau": "A13a"
   },
   {
    "panneau": "A4",
@@ -158,8 +158,14 @@
      1.5
     ]
    ],
-   "dire": "Regarde loin, regarde les côtés de la route, et regarde tes rétros, chacun à son tour. Si tu regardes seulement la voiture devant, tu rates cette biche, là-bas. Et dans un virage dont tu ne vois pas la sortie, ralentis avant, pas dedans.",
-   "ch": 0
+   "dire": "Regarde loin, regarde les côtés de la route, et regarde tes rétros, chacun à son tour. Si tu regardes seulement la voiture devant, tu rates cette biche, là-bas. Et ce panneau annonce un virage : si tu ne vois pas sa sortie, ralentis avant, pas dedans.",
+   "ch": 0,
+   "signaux": [
+    [
+     "A1a",
+     95
+    ]
+   ]
   },
   {
    "type": "situation",
@@ -196,7 +202,7 @@
      2
     ]
    ],
-   "dire": "Un camion garé cache une partie du trottoir. Un piéton pourrait traverser devant lui. Ralentis, regarde sous le camion, tu peux voir des pieds, et garde le pied prêt à freiner.",
+   "dire": "Un camion garé cache une partie du trottoir. Un piéton pourrait traverser devant lui. Ralentis. Regarde sous le camion : tu peux voir des pieds. Et garde ton pied prêt à freiner.",
    "ch": 1
   },
   {
@@ -252,7 +258,7 @@
   },
   {
    "type": "situation",
-   "eyebrow": "L’adhérence",
+   "eyebrow": "Quand ça glisse",
    "titre": "Quand la route glisse",
    "puce": "Pluie : distance d’arrêt plus longue",
    "env": "route",
@@ -282,7 +288,7 @@
      1.4
     ]
    ],
-   "dire": "La pluie rend la route glissante : les pneus accrochent moins bien, et tu freines plus long. Roule moins vite, garde plus de distance et évite les gestes brusques. La limite affichée, c’est un maximum : sous la pluie, roule en dessous.",
+   "dire": "La pluie rend la route glissante : les pneus accrochent moins bien, c’est l’adhérence qui baisse. Tu freines plus long. Roule moins vite, garde plus de distance et évite les gestes brusques. Sous la pluie, certaines limites baissent : 110 au lieu de 130 sur autoroute. Et la limite reste un maximum : si ça glisse, roule encore moins vite.",
    "ch": 1
   },
   {

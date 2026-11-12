@@ -30,7 +30,7 @@
   },
   {
    "texte": "Freinage régénératif",
-   "tag": "Ralentit en rechargeant"
+   "tag": "Lâcher l’accélérateur ralentit et recharge"
   }
  ],
  "scenes": [
@@ -105,11 +105,11 @@
      "Hybrides rechargeables, essence récents, gaz"
     ],
     [
-     "Crit’Air 2 à 5",
-     "Du moins polluant (2) au plus polluant (5)"
+     "Crit’Air 2, 3, 4 et 5",
+     "Plus le chiffre est grand, plus elle pollue"
     ]
    ],
-   "dire": "Il y a six vignettes Crit’Air, de 0 à 5. 0, la verte, c’est l’électrique. Puis de 1 à 5, du moins au plus polluant : 5, c’est la plus polluante. Tu commandes la vignette sur le site officiel, puis tu la colles sur ton pare-brise.",
+   "dire": "Il y a six vignettes Crit’Air, de 0 à 5. 0, la verte, c’est l’électrique. Puis de 1 à 5 : plus le chiffre est grand, plus la voiture pollue. Tu commandes la vignette sur le site officiel, puis tu la colles sur ton pare-brise.",
    "puces": [
     "0",
     "1",
@@ -151,8 +151,8 @@
    },
    "sync": [
     1.0,
-    2.08,
-    2.14
+    2.09,
+    2.15
    ],
    "illu": {
     "type": "critair",
@@ -262,7 +262,7 @@
    "items": [
     [
      "Freinage régénératif",
-     "Lever le pied ralentit et recharge la batterie"
+     "Lâcher l’accélérateur ralentit et recharge la batterie"
     ],
     [
      "Accélération immédiate",
@@ -270,7 +270,7 @@
     ],
     [
      "Autonomie",
-     "Les km possibles, batterie pleine : moins avec le froid"
+     "Les km possibles, batterie pleine : moins avec le froid et la vitesse"
     ]
    ],
    "dire": "Au volant d’une électrique, quand tu lâches l’accélérateur, la voiture ralentit nettement et recharge sa batterie : c’est le freinage régénératif. L’accélération est immédiate : appuie doucement. L’autonomie, c’est le nombre de kilomètres que tu peux faire batterie pleine : elle baisse avec le froid et la vitesse. Avant un long trajet, repère où tu pourras recharger.",
@@ -334,7 +334,7 @@
     "items": [
      {
       "i": "🔋",
-      "t": "Lever le pied",
+      "t": "Lâcher l’accélérateur",
       "s": "recharge la batterie"
      },
      {
@@ -345,7 +345,7 @@
      {
       "i": "❄️",
       "t": "Autonomie",
-      "s": "baisse au froid"
+      "s": "baisse : froid, vitesse"
      }
     ]
    }
@@ -358,14 +358,14 @@
    "stats": [
     [
      "6",
-     "classes Crit’Air"
+     "vignettes Crit’Air"
     ],
     [
      "1",
      "réflexe : penser aux piétons"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions.",
+   "dire": "Cours terminé. À retenir : six vignettes, de 0 à 5. Et en électrique, pense aux piétons : ils ne t’entendent pas arriver. Passe à la pratique pour revoir Crit’Air et les zones à faibles émissions.",
    "decor": {
     "env": "ville",
     "kmh": 30,

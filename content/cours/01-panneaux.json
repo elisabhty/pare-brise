@@ -25,38 +25,45 @@
  ],
  "memo": [
   {
-   "panneau": "A14",
    "texte": "Triangle, bord rouge",
+   "tag": "Danger",
+   "panneau": "A14",
    "famille": "danger"
   },
   {
+   "texte": "Rond, bord rouge, ou tout rouge",
+   "tag": "Interdiction, même sur fond bleu",
    "panneau": "B14",
-   "texte": "Rond, bord rouge",
    "famille": "interdiction"
   },
   {
-   "panneau": "B211",
    "texte": "Rond bleu",
+   "tag": "Obligation",
+   "panneau": "B211",
    "famille": "obligation"
   },
   {
-   "panneau": "C12",
    "texte": "Carré ou rectangle bleu",
+   "tag": "Indication",
+   "panneau": "C12",
    "famille": "indication"
   },
   {
+   "texte": "Panneau barré, sans bord rouge",
+   "tag": "Fin de la règle",
    "panneau": "B33",
-   "texte": "Panneau barré : fin de prescription",
    "famille": "fin"
   },
   {
-   "panneau": "AB4",
    "texte": "Octogone, triangle inversé, losange",
+   "tag": "Priorité",
+   "panneau": "AB4",
    "famille": "priorite"
   },
   {
-   "panneau": "AK5",
    "texte": "Fond jaune",
+   "tag": "Temporaire, sauf le losange",
+   "panneau": "AK5",
    "famille": "temporaire"
   },
   {
@@ -144,7 +151,7 @@
     "B2a",
     "B14:90"
    ],
-   "puce": "Rond bordé de rouge",
+   "puce": "Bord rouge, ou tout rouge",
    "dire": "Un panneau rond bordé de rouge indique généralement une interdiction ou une restriction. Il peut t’interdire de dépasser, de tourner ou de circuler au-delà d’une certaine vitesse.",
    "sync": [
     1.23,
@@ -175,7 +182,8 @@
    "sync": [
     1.07,
     2.02
-   ]
+   ],
+   "puce": "Bord rouge = interdiction, même sur fond bleu"
   },
   {
    "type": "famille",
@@ -194,6 +202,20 @@
     2.13,
     2.38,
     2.62
+   ],
+   "etiquettes": [
+    [
+     "B21-1",
+     "Tourner à droite"
+    ],
+    [
+     "B21a1",
+     "Contourner par la droite"
+    ],
+    [
+     "B22a",
+     "Piste obligatoire pour les vélos"
+    ]
    ]
   },
   {
@@ -227,7 +249,7 @@
     "B31",
     "B40"
    ],
-   "puce": "Fin de la règle",
+   "puce": "Barré, sans bord rouge : fin",
    "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir peut signaler la fin de cette limitation. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin.",
    "sync": [
     2.15,
@@ -330,8 +352,8 @@
      "Danger"
     ],
     [
-     "Rond bordé de rouge",
-     "Interdiction"
+     "Rond bordé de rouge, ou tout rouge",
+     "Interdiction, même sur fond bleu"
     ],
     [
      "Rond bleu",
@@ -342,7 +364,7 @@
      "Indication"
     ],
     [
-     "Panneau barré",
+     "Panneau barré, sans bord rouge",
      "Fin de la règle"
     ],
     [

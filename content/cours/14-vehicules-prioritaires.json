@@ -28,6 +28,14 @@
   {
    "texte": "Gyrophare orange",
    "tag": "Prudence, pas de priorité"
+  },
+  {
+   "texte": "Au feu rouge",
+   "tag": "Tu peux avancer un peu, si c’est sans danger"
+  },
+  {
+   "texte": "Ambulance privée",
+   "tag": "Pas prioritaire, mais aide-la à passer"
   }
  ],
  "scenes": [
@@ -45,7 +53,7 @@
     "camera": "plan",
     "acteurs": [
      {
-      "type": "ambulance",
+      "type": "pompiers",
       "S": 170,
       "x": -1.75,
       "kmh": -45
@@ -89,14 +97,14 @@
    "type": "situation",
    "ch": 0,
    "eyebrow": "Ils arrivent",
-   "titre": "Feux bleus et deux tons",
-   "dire": "Police, gendarmerie, pompiers, SAMU, c’est-à-dire les médecins d’urgence : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer.",
+   "titre": "Feux bleus et sirène",
+   "dire": "Police, gendarmerie, pompiers et SAMU : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Le SAMU, ce sont les médecins d’urgence. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer.",
    "env": "ville",
    "kmh": 25,
    "camera": "drone",
    "acteurs": [
     {
-     "type": "ambulance",
+     "type": "pompiers",
      "S": -12,
      "kmh": 40,
      "x": -1.3
@@ -160,7 +168,7 @@
     "camera": "plan",
     "acteurs": [
      {
-      "type": "ambulance",
+      "type": "pompiers",
       "S": 175,
       "x": -1.75,
       "kmh": -50
@@ -209,7 +217,7 @@
       "item": 1,
       "texte": [
        "Passage libre",
-       "pour l’ambulance"
+       "pour les pompiers"
       ],
       "etiquette": 0
      }
@@ -295,21 +303,21 @@
    "stats": [
     [
      "2",
-     "signaux : bleus et deux tons"
+     "signaux : feux bleus et sirène à deux tons"
     ],
     [
      "1",
      "réflexe : serrer à droite"
     ]
    ],
-   "dire": "Cours terminé. Passe à la pratique : une ambulance t’attend.",
+   "dire": "Cours terminé. Passe à la pratique : les pompiers t’attendent.",
    "decor": {
     "env": "ville",
     "kmh": 25,
     "camera": "plan",
     "acteurs": [
      {
-      "type": "ambulance",
+      "type": "pompiers",
       "S": 150,
       "x": -1.75,
       "kmh": -45

@@ -39,7 +39,7 @@ const ILLU = {
   critair: {
     html(sp) {
       const cols = [['#2E9E44', '#fff'], ['#7A3E9D', '#fff'], ['#F2C300', '#1C1C1E'], ['#EF8A00', '#fff'], ['#8B1D3B', '#fff'], ['#7A7F86', '#fff']];
-      const groupe = n => sp.zfe ? 0 : n <= 1 ? n : 2;
+      const groupe = () => 0;                 // « six vignettes » : on les voit toutes dès la première phrase
       const v = cols.map(([bg, fg], n) => { const x = 30 + n * 56; return E(groupe(n), `<circle cx="${x}" cy="50" r="24" fill="${bg}"/><circle cx="${x}" cy="50" r="19.5" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/>${T(x, 59, n, 25, 800, fg)}${T(x, 30.5, "CRIT'Air", 5.6, 800, fg)}${sp.zfe ? `<g class="barre" data-x="${n >= 3 ? 1 : 0}">${n >= 3 ? `<line x1="${x - 20}" y1="70" x2="${x + 20}" y2="30" stroke="${C.rouge}" stroke-width="4" stroke-linecap="round"/>` : ''}</g>` : ''}`); }).join('');
       const bas = sp.zfe ? E(2, `${T(198, 98, 'Exclues dans certaines ZFE, selon la ville', 10, 700, C.rouge)}`) : E(2, `<path d="M86 92 H318" stroke="url(#ca)" stroke-width="5" stroke-linecap="round"/><defs><linearGradient id="ca"><stop offset="0" stop-color="#7A3E9D"/><stop offset=".5" stop-color="#EF8A00"/><stop offset="1" stop-color="#7A7F86"/></linearGradient></defs>${T(86, 108, 'moins polluant', 9.5, 600, C.label2, 'start')}${T(318, 108, 'plus polluant', 9.5, 600, C.label2, 'end')}`) + E(0, T(30, 92, 'électrique', 9.5, 700, '#2E9E44'));
       return svg(340, 116, v + bas);

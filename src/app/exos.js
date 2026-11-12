@@ -224,9 +224,9 @@ async function showBands(X, bands, dR, dB) {
 const MECA = {};
 
 /* ---------- Situations d'examen : une courte vidéo, un arrêt sur image, une question, des réponses A à D ---------- */
-const TYPES3D = ['moto', 'trottinette', 'tram', 'train', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'triangle', 'portiere', 'feu', 'ballon'];
+const TYPES3D = ['moto', 'trottinette', 'tram', 'train', 'voiture', 'velo', 'pieton', 'enfant', 'bus', 'camion', 'tracteur', 'biche', 'ambulance', 'police', 'pompiers', 'triangle', 'portiere', 'feu', 'ballon'];
 const OBS = 3.6;                                                   // durée de la « vidéo » avant l'arrêt sur image (s)
-const BIG = ['moto', 'tram', 'train', 'voiture', 'velo', 'ambulance', 'bus', 'camion', 'tracteur'];
+const BIG = ['moto', 'tram', 'train', 'voiture', 'velo', 'ambulance', 'police', 'pompiers', 'bus', 'camion', 'tracteur'];
 const rollOf = sc => { const v = (sc.kmh ?? 30) / 3.6; return { v, d: Math.min(8, v * 0.6) }; };
 /* T : durée de la vidéo. La voiture et les usagers mobiles partent en arrière d'autant,
    pour se trouver exactement à la place prévue au moment de l'arrêt sur image. */
@@ -690,11 +690,11 @@ function stagePriorite(sc, X) {
   (sc.acteurs || []).forEach(o => {
     const sp = ms(o.kmh || 30), cede = o.role === 'cede';
     let a;
-    if (o.depuis === 'droite') { a = (o.type === 'velo' ? W.velo : o.type === 'ambulance' ? W.ambulance : W.voiture)({ S: Sc + 1.75, x: 41, couleur: o.couleur }); a.g.rotation.y = Math.PI / 2; mover(W, a, { axis: 'x', dir: -1, speed: sp, stopAt: 6.6, wait: cede }); a.place = eta => { a.x = 9.5 + sp * eta * 0.85; }; a.conflict = () => a.x < 7.5 && a.x > -3; a.dist = () => a.x - 3.5; }
-    else if (o.depuis === 'gauche') { a = (o.type === 'velo' ? W.velo : o.type === 'ambulance' ? W.ambulance : W.voiture)({ S: Sc - 1.75, x: -41, couleur: o.couleur }); a.g.rotation.y = -Math.PI / 2; mover(W, a, { axis: 'x', dir: 1, speed: sp, stopAt: -6.6, wait: cede }); a.place = eta => { a.x = -(9.5 + sp * eta * 0.85); }; a.conflict = () => a.x > -7.5 && a.x < 3.5; a.dist = () => -3.5 - a.x; }
+    if (o.depuis === 'droite') { a = (o.type === 'velo' ? W.velo : ['ambulance', 'police', 'pompiers'].includes(o.type) ? W[o.type] : W.voiture)({ S: Sc + 1.75, x: 41, couleur: o.couleur }); a.g.rotation.y = Math.PI / 2; mover(W, a, { axis: 'x', dir: -1, speed: sp, stopAt: 6.6, wait: cede }); a.place = eta => { a.x = 9.5 + sp * eta * 0.85; }; a.conflict = () => a.x < 7.5 && a.x > -3; a.dist = () => a.x - 3.5; }
+    else if (o.depuis === 'gauche') { a = (o.type === 'velo' ? W.velo : ['ambulance', 'police', 'pompiers'].includes(o.type) ? W[o.type] : W.voiture)({ S: Sc - 1.75, x: -41, couleur: o.couleur }); a.g.rotation.y = -Math.PI / 2; mover(W, a, { axis: 'x', dir: 1, speed: sp, stopAt: -6.6, wait: cede }); a.place = eta => { a.x = -(9.5 + sp * eta * 0.85); }; a.conflict = () => a.x > -7.5 && a.x < 3.5; a.dist = () => -3.5 - a.x; }
     else if (o.depuis === 'face') { a = (o.type === 'bus' ? W.bus : W.voiture)({ S: Sc + 48, x: -LANE, couleur: o.couleur, sens: -1 }); a.g.rotation.y = Math.PI; mover(W, a, { axis: 'S', dir: -1, speed: sp, stopAt: Sc + w / 2 + 2.4, wait: cede }); a.place = eta => { a.S = Sc + 12 + sp * eta * 0.85; }; a.conflict = () => a.S < Sc + w / 2 + 2 && a.S > Sc - w / 2 - 2; a.dist = () => a.S - (Sc + w / 2); }
     else if (o.depuis === 'pieton') { a = W.pieton({ S: o.S ? Sc + o.S : Sc + w / 2 + 3, x: o.x ?? 6.4, haut: pick(SHIRTS) }); a.g.rotation.y = Math.PI / 2; mover(W, a, { axis: 'x', dir: -1, speed: 1.4, stopAt: -8, wait: false }); a.conflict = () => a.x < 3.8 && a.x > -0.2; a.dist = () => 0; a.ped = true; }
-    else if (o.depuis === 'derriere') { a = W.ambulance({ S: -48, x: LANE }); mover(W, a, { axis: 'S', dir: 1, speed: ms(55), wait: false }); a.urgence = true; a.conflict = () => false; a.dist = () => 99; }
+    else if (o.depuis === 'derriere') { a = (['police', 'pompiers'].includes(o.type) ? W[o.type] : W.ambulance)({ S: -48, x: LANE }); mover(W, a, { axis: 'S', dir: 1, speed: ms(55), wait: false }); a.urgence = true; a.conflict = () => false; a.dist = () => 99; }
     else if (o.depuis === 'anneau') {
       a = W.voiture({ S: Sc, x: -12, couleur: o.couleur }); a.fixedHeading = true; const R = ring.R, cS = Sc + 14; let th = 1.5 * Math.PI - 14 / R - sp * 4 / R;
       a.data = { go: false, cur: 0, speed: sp, panic: false };
@@ -703,7 +703,7 @@ function stagePriorite(sc, X) {
     }
     a.role = o.role; actors.push(a);
   });
-  return { Sc, gir, meZone, actors, Sdec: Sc - (gir ? 9 : w / 2 + 8.5), stopS: Sc - (gir ? 2.2 : w / 2 + 1.6), siren: (sc.acteurs || []).some(o => o.type === 'ambulance') };
+  return { Sc, gir, meZone, actors, Sdec: Sc - (gir ? 9 : w / 2 + 8.5), stopS: Sc - (gir ? 2.2 : w / 2 + 1.6), siren: (sc.acteurs || []).some(o => ['ambulance', 'police', 'pompiers'].includes(o.type)) };
 }
 
 async function playPriorite(st, sc, choice, X) {

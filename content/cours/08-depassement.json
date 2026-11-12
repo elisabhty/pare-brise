@@ -20,12 +20,12 @@
  ],
  "memo": [
   {
-   "texte": "Visibilité, place, ligne discontinue",
-   "tag": "Avant de doubler"
+   "texte": "Avant de doubler",
+   "tag": "Ligne discontinue · personne en face · personne derrière"
   },
   {
    "texte": "Dépassement interdit",
-   "tag": "Voitures, camions, tracteurs : pas les vélos ni les motos",
+   "tag": "Voitures, camions, bus, tracteurs : pas les vélos ni les motos",
    "panneau": "B3"
   },
   {
@@ -40,6 +40,10 @@
    "texte": "Débouché de cyclistes",
    "tag": "Des vélos peuvent arriver par le côté",
    "panneau": "A21"
+  },
+  {
+   "texte": "Croiser",
+   "tag": "Route étroite : serre à droite et ralentis"
   }
  ],
  "scenes": [
@@ -92,11 +96,11 @@
      "Personne ne te double déjà"
     ],
     [
-     "Dépasser vite",
-     "Puis revenir à droite sans gêner"
+     "Puis : doubler rapidement",
+     "Sous la limite, et revenir à droite sans gêner"
     ]
    ],
-   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Regarde tes rétroviseurs, mets ton clignotant, puis tourne la tête vers ton angle mort : la zone que tes rétroviseurs ne montrent pas. Personne ne doit déjà te doubler. Dépasse vite, sans hésiter, puis reviens à droite sans gêner celui que tu as doublé.",
+   "dire": "Avant de doubler : une ligne discontinue et aucun panneau d’interdiction. Personne en face, et assez de visibilité pour aller au bout. Regarde tes rétroviseurs, mets ton clignotant, puis tourne la tête vers ton angle mort : la zone que tes rétroviseurs ne montrent pas. Personne ne doit déjà te doubler. Double rapidement, en restant sous la limite de vitesse, puis reviens à droite sans gêner celui que tu as doublé.",
    "decor": {
     "env": "route",
     "kmh": 25,
@@ -207,7 +211,7 @@
    "ch": 0,
    "eyebrow": "En pratique",
    "titre": "Doubler un tracteur",
-   "dire": "Ligne discontinue, route dégagée : tu peux doubler ce tracteur. Clignotant à gauche, dépassement rapide, puis rabattement quand tu le vois dans ton rétroviseur intérieur. On dépasse toujours par la gauche. Une seule exception : la voiture devant met son clignotant à gauche pour tourner, alors tu la dépasses par la droite.",
+   "dire": "Ligne discontinue, route dégagée : tu peux doubler ce tracteur. Clignotant à gauche, double rapidement, puis reviens à droite quand tu vois le tracteur dans le rétroviseur du milieu, en haut du pare-brise. On dépasse toujours par la gauche. Exception : la voiture devant met son clignotant à gauche pour tourner ? Tu la dépasses par la droite. Un tramway au milieu de la rue se dépasse aussi par la droite.",
    "env": "route",
    "kmh": 30,
    "camera": "poursuite",
@@ -237,31 +241,25 @@
    "eyebrow": "Interdit de dépasser",
    "titre": "Les cas interdits",
    "panneaux": [
-    "B3",
-    "A21"
+    "B3"
    ],
-   "dire": "Ce panneau rond, avec une voiture rouge et une noire, interdit de dépasser les voitures, les camions et les tracteurs. Tu peux quand même dépasser un vélo, une moto ou un scooter. Dépasser est aussi interdit avant un carrefour où tu n’as pas la priorité, et quand tu ne vois pas assez loin : dans un virage ou en haut d’une montée. Le triangle avec un vélo, lui, prévient que des cyclistes peuvent arriver sur ta route par le côté.",
+   "dire": "Ce panneau rond, avec une voiture rouge et une noire, interdit de dépasser les voitures, les camions, les bus et les tracteurs. Tu peux quand même dépasser un vélo, une moto ou un scooter : ils n’ont que deux roues. Dépasser est aussi interdit avant un carrefour où tu dois céder le passage. Et quand tu ne vois pas assez loin : dans un virage ou en haut d’une montée.",
    "etiquettes": [
     [
      "B3",
      "Interdiction de dépasser"
-    ],
-    [
-     "A21",
-     "Débouché de cyclistes"
     ]
    ],
    "sync": [
-    0.43,
-    3.45
+    0.43
    ]
   },
   {
    "type": "situation",
    "ch": 2,
-   "eyebrow": "Usagers vulnérables",
+   "eyebrow": "Dépasser un vélo",
    "titre": "Un cycliste devant toi",
-   "dire": "Pour dépasser un cycliste, laisse au moins un mètre en agglomération, et un mètre cinquante hors agglomération. Rappel du cours 7 : une ligne continue, tu ne roules pas dessus. Seule exception : pour dépasser un vélo ou une trottinette, tes roues de gauche peuvent rouler sur la ligne, si tu vois loin et que personne n’arrive.",
+   "dire": "Pour dépasser un cycliste, laisse au moins un mètre en agglomération, et un mètre cinquante hors agglomération. Rappel du cours 7 : une ligne continue, tu ne roules pas dessus. Exception : pour dépasser un vélo ou une trottinette, tes roues de gauche peuvent rouler sur la ligne. Seulement si tu vois loin et que personne n’arrive. Et le triangle avec un vélo, au bord de la route, prévient que des cyclistes peuvent arriver par le côté.",
    "env": "route",
    "kmh": 20,
    "camera": "poursuite",
@@ -302,6 +300,12 @@
      "large": 1.5,
      "couleur": "orange"
     }
+   ],
+   "signaux": [
+    [
+     "A21",
+     44
+    ]
    ]
   },
   {
@@ -320,7 +324,11 @@
     ],
     [
      "Rester attentif",
-     "Il peut se rabattre court"
+     "Il peut revenir devant toi trop tôt"
+    ],
+    [
+     "Croiser sur route étroite",
+     "Serre à droite et ralentis"
     ]
    ],
    "dire": "Quand quelqu’un te double, tu ne dois pas accélérer. Serre-toi à droite pour lui laisser de la place, et reste prêt à ralentir s’il se rabat trop tôt. Et croiser, c’est passer à côté d’une voiture qui vient en face : sur une route étroite, serre-toi à droite et ralentis.",
@@ -372,7 +380,8 @@
    "sync": [
     0.78,
     1.0,
-    1.51
+    1.51,
+    2.0
    ]
   },
   {
@@ -382,16 +391,16 @@
    "titre": "Ce qu’il faut retenir",
    "stats": [
     [
-     "4",
-     "vérifications avant de doubler"
+     "3",
+     "vérifications, puis doubler vite"
     ],
     [
      "1,5",
      "m pour un vélo hors agglomération"
     ],
     [
-     "1",
-     "exception : vélo ou trottinette"
+     "2",
+     "exceptions : par la droite, roues sur la ligne"
     ]
    ],
    "dire": "Cours terminé. Passe à la pratique : à toi de décider si tu peux doubler.",

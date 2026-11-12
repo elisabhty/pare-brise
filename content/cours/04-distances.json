@@ -21,11 +21,11 @@
  "memo": [
   {
    "texte": "Distance de réaction (1 s)",
-   "tag": "dizaines × 3"
+   "tag": "vitesse sans le zéro × 3"
   },
   {
-   "texte": "Distance d'arrêt, sol sec",
-   "tag": "dizaines²"
+   "texte": "Distance d’arrêt, sol sec",
+   "tag": "vitesse sans le zéro, au carré"
   },
   {
    "texte": "Distance d'arrêt, sol mouillé",
@@ -152,12 +152,12 @@
    "titre": "Arrêt : 96 m",
    "reperes": [
     [
-     81,
-     "Sec · 81 m"
+     64,
+     "Sec · 64 m"
     ],
     [
-     121.5,
-     "Mouillé · 121 m"
+     96,
+     "Mouillé · 96 m"
     ]
    ],
    "puce": "× 1,5",
@@ -181,7 +181,7 @@
      "ou 2 chevrons au sol, sur autoroute"
     ]
    ],
-   "dire": "Avec le véhicule de devant, garde au moins deux secondes d’écart. Pour compter : quand il passe un poteau, dis « un crocodile, deux crocodiles » : tu dois l’atteindre après. À 80, deux secondes, c’est environ 44 mètres. Sur autoroute, regarde les traits blancs au bord de la bande d’arrêt d’urgence, la voie des pannes : garde au moins deux traits entre toi et lui. Quand des chevrons sont peints au sol, garde-en au moins deux.",
+   "dire": "Avec le véhicule de devant, garde au moins deux secondes d’écart. Pour compter : quand il passe un poteau, dis « un crocodile, deux crocodiles » : tu dois l’atteindre après. À 110, deux secondes, c’est environ 60 mètres. Sur autoroute, regarde les traits blancs au bord de la bande d’arrêt d’urgence, la voie des pannes. Entre toi et la voiture de devant : au moins deux traits. Deux traits, c’est environ 100 mètres : plus que deux secondes, même à 130. Parfois, des flèches en forme de V sont peintes au milieu de ta voie : ce sont des chevrons. Garde au moins deux chevrons entre toi et la voiture de devant.",
    "decor": {
     "env": "autoroute",
     "kmh": 110,
@@ -222,7 +222,7 @@
    },
    "sync": [
     0.09,
-    3.16
+    3.24
    ]
   },
   {

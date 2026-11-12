@@ -526,6 +526,8 @@ export function buildSim(K) {
   const API = {
     voiture(o = {}) { const g = carMesh(o.couleur ?? [0x3A6DF0, 0xE84A4A, 0x2E3440, 0x9AA3AF, 0x2FA37A][(Math.random() * 5) | 0], { gyro: o.gyro, long: o.long }); return actor(g, { kind: 'voiture', ...o, heading: o.heading ?? (o.sens === -1 ? Math.PI : 0) }); },
     ambulance(o = {}) { return API.voiture({ gyro: true, ...o, couleur: o.couleur ?? 0xF4F6FA }); },
+    police(o = {}) { return API.voiture({ gyro: true, ...o, couleur: o.couleur ?? 0x1E3A8A }); },
+    pompiers(o = {}) { return API.voiture({ gyro: true, ...o, couleur: o.couleur ?? 0xD7262E }); },
     pieton(o = {}) { const g = personMesh(o); return actor(g, { kind: 'pieton', len: 0.5, wid: 0.5, ...o }); },
     enfant(o = {}) { return API.pieton({ enfant: true, haut: 0xFF5A5F, cartable: true, ...o }); },
     velo(o = {}) { const g = bikeMesh(o); return actor(g, { kind: 'velo', len: 1.8, wid: 0.7, ...o }); },

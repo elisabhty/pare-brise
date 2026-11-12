@@ -23,7 +23,7 @@
   },
   {
    "texte": "Feux de route",
-   "tag": "Route non éclairée, et personne ébloui"
+   "tag": "Route non éclairée, et tu n’éblouis personne"
   },
   {
    "texte": "Brouillard arrière",
@@ -85,7 +85,7 @@
    "ch": 0,
    "eyebrow": "Position et croisement",
    "titre": "Environ 30 mètres",
-   "dire": "Les feux de position sont les plus faibles : ils n’éclairent pas la route, ils servent à ce qu’on te voie. La nuit, garé au bord d’une route non éclairée, tu les laisses allumés. Pour rouler, les feux de croisement éclairent à environ 30 mètres. Ce sont tes feux de base la nuit, et de jour quand la visibilité baisse.",
+   "dire": "Pour rouler, les feux de croisement éclairent à environ 30 mètres. Ce sont tes feux de base la nuit, et de jour quand la visibilité baisse. Les feux de position sont les plus faibles : ils n’éclairent pas la route, ils servent à ce qu’on te voie. La nuit, garé au bord d’une route non éclairée, tu les laisses allumés.",
    "env": "route",
    "meteo": "nuit",
    "kmh": 50,
@@ -102,6 +102,28 @@
       "feux de croisement"
      ]
     }
+   ],
+   "script": [
+    [
+     "p2",
+     "vitesse",
+     0,
+     2.5
+    ],
+    [
+     "p2+1",
+     "feux",
+     {
+      "croisement": false,
+      "position": true
+     }
+    ],
+    [
+     "p2+1",
+     "aide",
+     0,
+     "off"
+    ]
    ]
   },
   {
@@ -215,7 +237,7 @@
    "items": [
     [
      "Brouillard avant",
-     "Brouillard, neige ou forte pluie"
+     "Brouillard, chute de neige ou forte pluie"
     ],
     [
      "Brouillard arrière",
@@ -226,7 +248,7 @@
      "Pas de brouillard arrière : il éblouit"
     ]
    ],
-   "dire": "Les feux de brouillard avant s’utilisent par brouillard, neige ou forte pluie. Le feu de brouillard arrière, uniquement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit. Et dans le brouillard, jamais de feux de route : leur lumière se reflète, et c’est toi qu’elle éblouit.",
+   "dire": "Les feux de brouillard avant s’utilisent par brouillard, chute de neige ou forte pluie : ils remplacent ou complètent les feux de croisement. Le feu de brouillard arrière, uniquement par brouillard ou chute de neige. Sous la pluie, il est interdit : il éblouit celui qui te suit. Et dans le brouillard, jamais de feux de route : leur lumière se reflète, et c’est toi qu’elle éblouit.",
    "decor": {
     "env": "route",
     "kmh": 40,
@@ -302,7 +324,7 @@
     ]
    },
    "sync": [
-    0.26,
+    0.13,
     1.25,
     2.1
    ]
@@ -324,7 +346,7 @@
      "pour s’arrêter à 70 km/h"
     ]
    ],
-   "dire": "À 70 kilomètres heure, ta distance d’arrêt est d’environ 49 mètres, alors que tes feux de croisement n’éclairent qu’à 30 mètres. En feux de croisement, au-dessus d’environ 50, tu ne peux plus t’arrêter dans la zone éclairée : la nuit, adapte ta vitesse à ce que tu vois.",
+   "dire": "À 70 kilomètres heure, ta distance d’arrêt est d’environ 49 mètres, alors que tes feux de croisement n’éclairent qu’à 30 mètres. En feux de croisement, au-dessus d’environ 50 kilomètres heure, tu ne peux plus t’arrêter dans la zone éclairée. La nuit, adapte ta vitesse à ce que tu vois.",
    "vitesse": 70,
    "decor": {
     "env": "route",
@@ -377,7 +399,7 @@
    "ch": 1,
    "eyebrow": "Les piétons la nuit",
    "titre": "Presque invisibles",
-   "dire": "Un piéton habillé en sombre n’apparaît qu’au dernier moment. Avec un gilet réfléchissant, tu le vois de bien plus loin. Sans gilet, ralentis et écarte-toi dès que tu le devines.",
+   "dire": "Un piéton habillé en sombre n’apparaît qu’au dernier moment. Avec un gilet réfléchissant, tu le vois de bien plus loin. S’il n’a pas de gilet, ralentis et écarte-toi dès que tu le devines.",
    "env": "route",
    "meteo": "nuit",
    "kmh": 40,

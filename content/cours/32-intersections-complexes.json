@@ -7,7 +7,7 @@
  "resume": "Virages à gauche, croisements, tramways et règles particulières de priorité.",
  "chapitres": [
   "Lire l’intersection",
-  "Trajectoires croisées",
+  "Les routes qui se croisent",
   "Cas particuliers"
  ],
  "affiche": [
@@ -44,7 +44,7 @@
    "titre": "Les intersections complexes",
    "sous": "comprendre les trajectoires qui se croisent",
    "vitesse": 30,
-   "dire": "Tu approches d’un carrefour où des voitures, un vélo et un tramway peuvent se croiser. Avant de décider, observe les feux, les panneaux, les marquages et la trajectoire de chaque usager.",
+   "dire": "Tu approches d’un carrefour où des voitures, un vélo et un tramway peuvent se croiser. Avant de décider, observe les feux, les panneaux, les marquages et la trajectoire de chaque usager. La trajectoire, c’est le chemin que va suivre chaque véhicule.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -224,7 +224,7 @@
      31
     ]
    ],
-   "dire": "Tu veux tourner à gauche. Une voiture arrive en face et continue tout droit. Laisse-la passer avant de traverser sa trajectoire. Vérifie aussi les piétons et cyclistes sur la route que tu vas emprunter.",
+   "dire": "Tu veux tourner à gauche. Une voiture arrive en face et continue tout droit. Laisse-la passer avant de lui couper la route. Laisse aussi passer les vélos d’en face, et les piétons qui traversent la rue où tu vas.",
    "ch": 1,
    "aides": [
     {
@@ -307,8 +307,72 @@
      28.5
     ]
    ],
-   "dire": "Toi et la voiture d’en face, vous tournez tous les deux à gauche. S’il y a des marquages au sol, suis-les : ils montrent par où passer. Sans marquage, vous vous contournez : chacun passe derrière l’autre.",
-   "ch": 1
+   "dire": "Toi et la voiture d’en face, vous tournez tous les deux à gauche. S’il y a des marquages au sol, suis-les : ils montrent par où passer. Sans marquage, vous vous croisez d’abord, comme sur une route normale. Puis chacun tourne derrière l’autre voiture.",
+   "ch": 1,
+   "aides": [
+    {
+     "type": "fleche",
+     "points": [
+      [
+       24,
+       1.75
+      ],
+      [
+       33,
+       1.75
+      ],
+      [
+       36,
+       0.6
+      ],
+      [
+       35,
+       -3
+      ],
+      [
+       33.75,
+       -8
+      ],
+      [
+       33.75,
+       -16
+      ]
+     ],
+     "couleur": "vert",
+     "p": 2
+    },
+    {
+     "type": "fleche",
+     "points": [
+      [
+       42,
+       -1.75
+      ],
+      [
+       31,
+       -1.75
+      ],
+      [
+       28,
+       -0.6
+      ],
+      [
+       29,
+       3
+      ],
+      [
+       30.25,
+       8
+      ],
+      [
+       30.25,
+       16
+      ]
+     ],
+     "couleur": "orange",
+     "p": 2
+    }
+   ]
   },
   {
    "type": "situation",
@@ -388,6 +452,12 @@
      "S": 52.5,
      "x": 1.75,
      "couleur": 3829232
+    },
+    {
+     "type": "pieton",
+     "S": 39,
+     "x": -6.5,
+     "vx": 1.1
     }
    ],
    "etiquettes": [
@@ -395,6 +465,11 @@
      1,
      "Plus de place",
      "tu attends avant le carrefour"
+    ],
+    [
+     4,
+     "Piéton",
+     "il traverse, tu le laisses passer"
     ]
    ],
    "script": [

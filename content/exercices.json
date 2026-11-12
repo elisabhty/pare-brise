@@ -246,10 +246,10 @@
     "bonnes": [
      0
     ],
-    "explication": "Panneau barré de noir : la limitation à 50 prend fin. Tu reprends la vitesse normale de la route, par exemple 80 sur une route à double sens (cours 2).",
+    "explication": "Panneau barré de noir : la limitation à 50 prend fin. Tu reprends la vitesse normale de la route : ici, une route à double sens, donc 80 (cours 2).",
     "qid": "p07",
-    "env": "ville",
-    "kmh": 30,
+    "env": "route",
+    "kmh": 50,
     "signaux": [
      [
       "B33",
@@ -640,7 +640,7 @@
   "niveau": 1,
   "cours": "priorites",
   "titre": "Les priorités aux intersections",
-  "sous": "12 situations en 3D · 2 questions",
+  "sous": "11 situations en 3D · 3 questions",
   "duree": "8 min",
   "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Les priorités aux intersections », tu le retrouves ici, sur la route.",
@@ -832,7 +832,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Le losange jaune indique une route à caractère prioritaire : les usagers des routes qui la croisent te cèdent le passage.",
+    "explication": "Losange jaune : tu es sur une route prioritaire. Les voitures des routes qui la croisent te laissent passer, même celles de droite.",
     "env": "route",
     "kmh": 25,
     "camera": "drone",
@@ -1002,14 +1002,14 @@
    {
     "q": "Ce panneau annonce :",
     "choix": [
-     "un carrefour à sens giratoire",
+     "un carrefour giratoire, un rond-point",
      "un demi-tour obligatoire",
      "une route à double sens"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Les flèches en cercle : carrefour à sens giratoire.",
+    "explication": "Les flèches en cercle : un carrefour giratoire, c’est-à-dire un rond-point.",
     "qid": "r03",
     "env": "ville",
     "kmh": 20,
@@ -1024,27 +1024,17 @@
     "mode": "image"
    },
    {
-    "q": "Au stop, je dois d'abord :",
+    "q": "Tu arrives au rond-point. Une voiture y tourne déjà, à ta gauche. Je :",
     "choix": [
-     "marquer l'arrêt",
-     "céder le passage seulement si quelqu'un arrive"
+     "la laisse passer",
+     "passe : elle est à ma gauche"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Au stop, l'arrêt est obligatoire dans tous les cas, puis tu cèdes le passage.",
+    "explication": "À l’entrée du rond-point, tu laisses passer ceux qui y tournent déjà. Ils arrivent de ta gauche : c’est normal, le cédez-le-passage te le demande.",
     "qid": "r05",
-    "env": "ville",
-    "kmh": 20,
-    "camera": "vue",
-    "signaux": [
-     [
-      "AB4",
-      24
-     ]
-    ],
-    "graine": 102,
-    "mode": "image"
+    "mode": "qcm"
    }
   ]
  },
@@ -1330,7 +1320,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Le seuil probatoire est très bas : la conduite sans alcool est le choix sûr.",
+    "explication": "En permis probatoire, la limite est très basse : un seul verre peut suffire. Le plus sûr : zéro alcool.",
     "bien": "Bien vu !",
     "immersif": "ex-05-01",
     "contexte": "Tu viens d’obtenir ton permis probatoire.",
@@ -1475,7 +1465,7 @@
    {
     "q": "À qui cèdes-tu ?",
     "choix": [
-     "Aux véhicules déjà sur l’anneau",
+     "À ceux déjà dans le rond-point",
      "À personne",
      "Aux véhicules derrière toi"
     ],
@@ -1485,7 +1475,7 @@
     "explication": "Ceux qui sont déjà dans le rond-point passent avant toi : ils arrivent de ta gauche.",
     "bien": "Bien vu !",
     "immersif": "ex-06-02",
-    "contexte": "Tu arrives à un giratoire avec cédez-le-passage.",
+    "contexte": "Tu arrives à un rond-point avec cédez-le-passage.",
     "env": "ville",
     "kmh": 20,
     "camera": "drone",
@@ -1515,14 +1505,14 @@
     "titre": "Annonce",
     "q": "Ce panneau m’annonce :",
     "choix": [
-     "un carrefour à sens giratoire",
+     "un carrefour giratoire, un rond-point",
      "une intersection avec priorité à droite",
      "un virage dangereux"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Le triangle avec trois flèches en cercle annonce un carrefour à sens giratoire. À l’entrée, tu céderas le passage aux véhicules sur l’anneau.",
+    "explication": "Le triangle avec trois flèches en cercle annonce un rond-point. À l’entrée, tu laisseras passer ceux qui y tournent déjà.",
     "env": "route",
     "kmh": 50,
     "signaux": [
@@ -1603,9 +1593,9 @@
    },
    {
     "titre": "Giratoire",
-    "q": "J’entre dans le giratoire. Je dois :",
+    "q": "J’entre dans le rond-point. Je dois :",
     "choix": [
-     "céder le passage aux véhicules déjà sur l’anneau",
+     "laisser passer ceux qui sont déjà dans le rond-point",
      "passer : ils arrivent par ma gauche"
     ],
     "bonnes": [
@@ -1819,7 +1809,7 @@
   "niveau": 1,
   "cours": "marquages",
   "titre": "Les marquages au sol",
-  "sous": "6 situations en 3D · 3 questions",
+  "sous": "5 situations en 3D · 4 questions",
   "duree": "4 min",
   "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Les marquages au sol », tu le retrouves ici, sur la route.",
@@ -1909,21 +1899,17 @@
    },
    {
     "titre": "Marquage",
-    "q": "Ces traits longs et rapprochés au milieu de la chaussée :",
+    "q": "Une ligne jaune en pointillés longe le trottoir. Tu peux :",
     "choix": [
-     "annoncent une ligne continue",
-     "autorisent à doubler sans restriction",
-     "signalent la fin d’une interdiction"
+     "t’arrêter un instant pour déposer quelqu’un",
+     "te garer pour aller faire une course",
+     "ni l’un ni l’autre"
     ],
     "bonnes": [
      0
     ],
-    "explication": "C’est une ligne d’annonce : une ligne continue arrive. On ne commence pas de dépassement.",
-    "env": "route",
-    "kmh": 50,
-    "camera": "haut",
-    "ligne": "annonce",
-    "mode": "image"
+    "explication": "Ligne jaune en pointillés : l’arrêt est permis, le stationnement interdit. Continue, elle interdit les deux.",
+    "mode": "qcm"
    },
    {
     "q": "Une ligne mixte : continue de ton côté, discontinue de l’autre. Peux-tu dépasser ?",
@@ -1938,9 +1924,9 @@
     "mode": "qcm"
    },
    {
-    "q": "Peut-on chevaucher une ligne continue pour dépasser une voiture ?",
+    "q": "Pour dépasser une voiture, peux-tu rouler sur la ligne continue, même avec une seule roue ?",
     "choix": [
-     "Oui, brièvement",
+     "Oui, un instant",
      "Non"
     ],
     "bonnes": [
@@ -2211,7 +2197,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Il a mis son clignotant à gauche et s’est décalé pour tourner : c’est la seule fois où tu le dépasses par la droite.",
+    "explication": "Il a mis son clignotant à gauche et s’est décalé pour tourner : tu le dépasses par la droite. C’est l’exception, avec le tramway.",
     "mode": "qcm"
    },
    {
@@ -2243,12 +2229,12 @@
     "q": "Ce panneau interdit de dépasser :",
     "choix": [
      "tous les véhicules",
-     "les voitures, camions et tracteurs, mais pas les vélos ni les motos"
+     "les voitures, camions, bus et tracteurs, mais pas les vélos ni les motos"
     ],
     "bonnes": [
      1
     ],
-    "explication": "Ce panneau interdit de dépasser les véhicules à moteur : voitures, camions, tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter.",
+    "explication": "Ce panneau interdit de dépasser les voitures, les camions, les bus et les tracteurs. Tu peux encore dépasser un vélo, une moto ou un scooter : ils n’ont que deux roues.",
     "qid": "d08-2",
     "env": "route",
     "kmh": 50,
@@ -2272,7 +2258,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Oui, c’est la seule exception : pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face.",
+    "explication": "Oui : c’est l’exception de la ligne continue, pour dépasser un vélo ou une trottinette, si tu vois loin et que personne n’arrive en face.",
     "qid": "d08-3",
     "env": "route",
     "kmh": 25,
@@ -2410,7 +2396,7 @@
     "explication": "Non. Sans la carte, même un arrêt est interdit sur une place handicapé. Les feux de détresse n’y changent rien.",
     "bien": "Bien vu !",
     "immersif": "ex-09-02",
-    "contexte": "Une place est réservée aux personnes handicapées et tu n’as pas le droit de l’utiliser.",
+    "contexte": "Une place est réservée aux personnes handicapées. Tu n’as pas la carte.",
     "env": "ville",
     "kmh": 15,
     "camera": "poursuite",
@@ -2448,7 +2434,7 @@
     "q": "Quelqu’un est assis au volant de cette voiture garée. Je :",
     "choix": [
      "m’écarte un peu : la portière peut s’ouvrir",
-     "reste au ras des voitures garées"
+     "reste tout près des voitures garées"
     ],
     "bonnes": [
      0
@@ -2548,7 +2534,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Immobilisation courte, conducteur à bord : c’est un arrêt.",
+    "explication": "Un court moment, conducteur au volant : c’est un arrêt.",
     "qid": "as09-5",
     "env": "ville",
     "kmh": 0,
@@ -2641,13 +2627,13 @@
     "choix": [
      "les piétons et les vélos sont interdits",
      "je peux faire demi-tour en cas d’erreur",
-     "la vitesse maximale est de 130 km/h par temps sec"
+     "la vitesse maximale est de 130 km/h par temps sec, 110 en permis probatoire"
     ],
     "bonnes": [
      0,
      2
     ],
-    "explication": "Le panneau bleu d’entrée d’autoroute : piétons, vélos et petits scooters de 50 y sont interdits, comme le demi-tour et la marche arrière. Par temps sec, c’est 130 au maximum.",
+    "explication": "Le panneau bleu d’entrée d’autoroute : piétons, vélos et petits scooters de 50 y sont interdits, comme le demi-tour et la marche arrière. Par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.",
     "env": "autoroute",
     "kmh": 90,
     "signaux": [
@@ -2686,15 +2672,15 @@
    },
    {
     "titre": "Corridor de sécurité",
-    "q": "Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Je :",
+    "q": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue qui tourne. Je :",
     "choix": [
-     "change de voie si possible, sinon ralentis fortement",
+     "ralentis, et change de voie si possible",
      "maintiens ma vitesse : il est sur la bande d’arrêt"
     ],
     "bonnes": [
      0
     ],
-    "explication": "C’est le corridor de sécurité : on s’écarte d’une voie, ou on ralentit fortement.",
+    "explication": "Ralentis toujours. Change de voie si tu peux, sinon écarte-toi dans ta voie : c’est le corridor de sécurité.",
     "env": "autoroute",
     "kmh": 110,
     "camera": "poursuite",
@@ -2798,7 +2784,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Sauf signalisation contraire, ce sont les véhicules déjà sur l’autoroute qui sont prioritaires.",
+    "explication": "Ce sont les véhicules déjà sur l’autoroute qui sont prioritaires.",
     "mode": "qcm"
    },
    {
@@ -2888,15 +2874,15 @@
     "mode": "video"
    },
    {
-    "q": "Un véhicule d’intervention est arrêté sur la bande d’arrêt d’urgence. Tu :",
+    "q": "Un véhicule est arrêté sur la bande d’arrêt d’urgence, avec une lumière bleue qui tourne. Tu :",
     "choix": [
-     "changes de voie ou ralentis",
+     "ralentis et changes de voie si tu peux",
      "klaxonnes"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Un véhicule d’intervention est arrêté : change de voie si tu peux, sinon ralentis bien. C’est le corridor de sécurité.",
+    "explication": "Ralentis toujours. Change de voie si tu peux, sinon écarte-toi dans ta voie : c’est le corridor de sécurité.",
     "qid": "a10-4",
     "env": "autoroute",
     "kmh": 90,
@@ -2920,7 +2906,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, tu peux y rouler jusqu’à 130.",
+    "explication": "Ce panneau bleu marque l’entrée d’une autoroute : par temps sec, c’est 130 au maximum, ou 110 pendant ton permis probatoire.",
     "qid": "a10-5",
     "env": "autoroute",
     "kmh": 110,
@@ -2980,7 +2966,7 @@
     "explication": "Tu dois laisser passer le piéton qui montre clairement qu’il veut traverser.",
     "bien": "Bien vu !",
     "immersif": "ex-11-01",
-    "contexte": "Un piéton manifeste clairement l’intention de traverser.",
+    "contexte": "Un piéton, au bord du trottoir, te fait signe qu’il veut traverser.",
     "env": "ville",
     "kmh": 30,
     "passage": 30,
@@ -3512,7 +3498,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Une trottinette électrique est bridée : 25 km/h au maximum.",
+    "explication": "Une trottinette électrique ne peut pas aller plus vite que 25 km/h.",
     "qid": "ce12-3",
     "mode": "qcm"
    },
@@ -3716,7 +3702,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Tu es dans son angle mort : si tu ne vois pas son visage dans son rétroviseur, il ne te voit pas.",
+    "explication": "Tu es dans son angle mort. Rappel : pour qu’il te voie, tu dois voir son visage dans son rétroviseur.",
     "env": "route",
     "kmh": 50,
     "camera": "poursuite",
@@ -3769,12 +3755,12 @@
     "q": "La vitesse d’une moto qui arrive est :",
     "choix": [
      "facile à estimer",
-     "souvent sous-estimée"
+     "souvent plus rapide qu’on le pense"
     ],
     "bonnes": [
      1
     ],
-    "explication": "Une moto est étroite : elle paraît plus loin et plus lente qu’elle ne l’est. On sous-estime souvent sa vitesse.",
+    "explication": "Une moto est étroite : elle paraît plus loin et plus lente qu’en vrai. Elle arrive plus vite que tu le penses.",
     "qid": "pl213-4",
     "env": "route",
     "kmh": 0,
@@ -3840,7 +3826,7 @@
     "camera": "arriere",
     "acteurs": [
      {
-      "type": "ambulance",
+      "type": "pompiers",
       "S": -18,
       "x": 1.2,
       "kmh": 68
@@ -3884,7 +3870,7 @@
     "puis": "vue",
     "acteurs": [
      {
-      "type": "ambulance",
+      "type": "pompiers",
       "S": -30,
       "x": 1.75,
       "kmh": 58
@@ -3900,7 +3886,7 @@
    },
    {
     "titre": "Véhicule d’urgence",
-    "q": "Une ambulance arrive derrière moi, sirène hurlante. Je :",
+    "q": "Une voiture de pompiers arrive derrière moi, feux bleus et sirène. Je :",
     "choix": [
      "facilite son passage en me serrant à droite",
      "accélère pour ne pas la gêner",
@@ -3915,7 +3901,7 @@
     "camera": "arriere",
     "acteurs": [
      {
-      "type": "ambulance",
+      "type": "pompiers",
       "S": -16,
       "x": 1.75,
       "kmh": 40
@@ -3947,7 +3933,7 @@
     "mode": "image"
    },
    {
-    "q": "Une ambulance, feux bleus et sirène, arrive derrière toi. Tu :",
+    "q": "Une voiture de police, feux bleus et sirène, arrive derrière toi. Tu :",
     "choix": [
      "freines d’un coup",
      "te serres à droite calmement",
@@ -3997,7 +3983,7 @@
     "mode": "image"
    },
    {
-    "q": "Pour laisser passer un véhicule d’urgence, tu :",
+    "q": "Pour laisser passer un véhicule prioritaire, tu :",
     "choix": [
      "te serres à droite",
      "t’arrêtes au milieu de la voie"
@@ -4010,7 +3996,7 @@
     "mode": "qcm"
    },
    {
-    "q": "Au feu rouge, une ambulance arrive derrière toi. Tu peux :",
+    "q": "Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :",
     "choix": [
      "avancer légèrement si c’est sans danger",
      "passer le feu rouge"
@@ -4046,7 +4032,7 @@
   "niveau": 1,
   "cours": "nuit-eclairage",
   "titre": "La nuit et l’éclairage",
-  "sous": "9 situations en 3D · 3 questions",
+  "sous": "8 situations en 3D · 4 questions",
   "duree": "6 min",
   "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « La nuit et l’éclairage », tu le retrouves ici, sur la route.",
@@ -4152,31 +4138,17 @@
    },
    {
     "titre": "Feux de route",
-    "q": "Une voiture arrive en face. Je :",
+    "q": "En plein jour, une grosse averse te gêne pour voir. Tu allumes :",
     "choix": [
-     "passe en feux de croisement",
-     "garde mes feux de route"
+     "tes feux de croisement",
+     "rien : il fait jour",
+     "ton feu de brouillard arrière"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Dès qu’un véhicule arrive en face, tu passes en feux de croisement pour ne pas l’éblouir.",
-    "env": "route",
-    "meteo": "nuit",
-    "kmh": 60,
-    "feux": {
-     "route": true,
-     "croisement": false
-    },
-    "acteurs": [
-     {
-      "type": "voiture",
-      "S": 120,
-      "x": -1.75,
-      "kmh": -60
-     }
-    ],
-    "mode": "video"
+    "explication": "De jour, quand la visibilité baisse, allume tes feux de croisement. Le feu de brouillard arrière est interdit sous la pluie : il éblouit celui qui te suit.",
+    "mode": "qcm"
    },
    {
     "titre": "Brouillard",
@@ -4188,7 +4160,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Dans le brouillard, la lumière des feux de route se réfléchit et t’éblouit. Feux de croisement et feux de brouillard.",
+    "explication": "Dans le brouillard, la lumière des feux de route se reflète et t’éblouit : allume tes feux de croisement et tes feux de brouillard.",
     "env": "route",
     "meteo": "brouillard",
     "kmh": 50,
@@ -4220,7 +4192,7 @@
     "mode": "image"
    },
    {
-    "q": "Brouillard épais. En plus des feux de croisement, tu peux allumer :",
+    "q": "Brouillard épais. Tu peux allumer :",
     "choix": [
      "tes feux de brouillard avant",
      "tes feux de route"
@@ -4228,7 +4200,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Dans le brouillard, les feux de brouillard avant t’aident à voir. Les feux de route, eux, se reflètent sur le brouillard et t’éblouissent.",
+    "explication": "Dans le brouillard, les feux de brouillard avant t’aident à voir : ils remplacent ou complètent les feux de croisement. Les feux de route, eux, se reflètent sur le brouillard et t’éblouissent.",
     "mode": "qcm"
    },
    {
@@ -4340,7 +4312,7 @@
   "niveau": 1,
   "cours": "intemperies",
   "titre": "Pluie, brouillard, neige",
-  "sous": "8 situations en 3D · 3 questions",
+  "sous": "7 situations en 3D · 4 questions",
   "duree": "5 min",
   "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Pluie, brouillard, neige », tu le retrouves ici, sur la route.",
@@ -4359,7 +4331,7 @@
     "explication": "Sur route mouillée, tu t’arrêtes sur une distance environ une fois et demie plus longue : garde plus d’écart.",
     "bien": "Bien vu !",
     "immersif": "ex-16-01",
-    "contexte": "Une forte pluie réduit l’adhérence.",
+    "contexte": "Une forte pluie rend la route glissante.",
     "env": "route",
     "meteo": "pluie",
     "kmh": 80,
@@ -4451,7 +4423,7 @@
     "bonnes": [
      2
     ],
-    "explication": "Sur neige ou verglas, la distance de freinage peut être plusieurs fois plus longue. Douceur et grandes distances.",
+    "explication": "Sur neige, la distance de freinage est plusieurs fois plus longue ; sur verglas, jusqu’à 10 fois. Douceur et grandes distances.",
     "env": "route",
     "meteo": "neige",
     "kmh": 40,
@@ -4501,23 +4473,17 @@
     "mode": "qcm"
    },
    {
-    "q": "Brouillard, visibilité inférieure à 50 m. Vitesse maximale :",
+    "q": "Il se met à pleuvoir après plusieurs semaines sans pluie. La route est :",
     "choix": [
-     "50 km/h",
-     "70 km/h",
-     "90 km/h"
+     "plus glissante que d’habitude",
+     "aussi sûre que par temps sec"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Visibilité sous 50 mètres : 50 km/h au maximum partout, même sur autoroute.",
+    "explication": "Les premières gouttes, mêlées à la poussière et à l’huile, rendent la route savonneuse : ralentis et garde plus d’écart.",
     "qid": "i16-2",
-    "env": "route",
-    "meteo": "brouillard",
-    "kmh": 50,
-    "compteur": true,
-    "graine": 60,
-    "mode": "image"
+    "mode": "qcm"
    },
    {
     "q": "Le 15 décembre, dans une commune de montagne signalée, avec des pneus d’été. Il te faut :",
@@ -4581,7 +4547,7 @@
   "niveau": 1,
   "cours": "montagne-tunnels-pn",
   "titre": "Tunnels, passages à niveau, montagne",
-  "sous": "5 situations en 3D · 4 questions",
+  "sous": "4 situations en 3D · 5 questions",
   "duree": "4 min",
   "consigne": "Les situations en 3D se jouent quelques secondes puis se figent ; les questions de cours s’affichent directement. Réponds comme le jour de l’examen.",
   "astuce": "Tout ce que tu as vu dans le cours « Tunnels, passages à niveau, montagne », tu le retrouves ici, sur la route.",
@@ -4670,19 +4636,16 @@
    },
    {
     "titre": "Tunnel",
-    "q": "En entrant dans le tunnel :",
+    "q": "Dans le tunnel, des balises bleues sur la paroi. Tu gardes au moins :",
     "choix": [
-     "j’allume mes feux de croisement",
-     "je peux faire demi-tour en cas de bouchon"
+     "deux balises entre toi et la voiture devant",
+     "une balise"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Dans un tunnel, feux de croisement obligatoires. Demi-tour et marche arrière sont interdits.",
-    "env": "route",
-    "kmh": 50,
-    "tunnel": 34,
-    "mode": "image"
+    "explication": "Deux balises bleues d’écart au minimum : c’est ta distance de sécurité dans le tunnel.",
+    "mode": "qcm"
    },
    {
     "q": "Les feux rouges du passage à niveau clignotent, les barrières sont encore levées. Tu :",
@@ -4735,7 +4698,7 @@
     "mode": "image"
    },
    {
-    "q": "Dans ce tunnel, aucun panneau n’interdit de dépasser. Tu peux doubler ?",
+    "q": "Dans ce tunnel, ni panneau ni ligne continue n’interdit de dépasser. Tu peux doubler ?",
     "choix": [
      "oui, avec les précautions habituelles",
      "non, jamais dans un tunnel"
@@ -4756,7 +4719,7 @@
     "bonnes": [
      1
     ],
-    "explication": "En descente, rétrograde pour garder le frein moteur. Jamais au point mort : tes freins chaufferaient.",
+    "explication": "Avant la descente, passe une vitesse plus basse : le frein moteur retient la voiture. Jamais au point mort : tes freins chaufferaient.",
     "qid": "mtp17-4",
     "env": "route",
     "kmh": 50,
@@ -4866,7 +4829,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Fais une pause au moins toutes les 2 heures de route : quelques minutes pour marcher et te reposer.",
+    "explication": "Fais une pause d’au moins un quart d’heure toutes les 2 heures de route, même sans fatigue.",
     "qid": "fd18-1",
     "mode": "qcm"
    },
@@ -4977,21 +4940,23 @@
     "mode": "qcm"
    },
    {
-    "q": "Le pictogramme est rouge sur ta boîte de médicaments. Tu :",
+    "q": "Sur une boîte de médicaments, avec quels pictogrammes tu ne prends pas le volant sans l’avis d’un médecin ?",
     "choix": [
-     "conduis prudemment",
-     "ne conduis pas"
+     "le rouge",
+     "l’orange",
+     "le jaune"
     ],
     "bonnes": [
+     0,
      1
     ],
-    "explication": "Niveau 3, rouge : ne conduis pas. Ton médecin te dira quand reprendre le volant.",
+    "explication": "Rouge : ne conduis pas, ton médecin te dira quand reprendre. Orange : pas de volant sans l’avis d’un médecin ou d’un pharmacien. Jaune : sois prudent et lis la notice.",
     "mode": "qcm"
    },
    {
     "q": "Pour les stupéfiants, le seuil toléré au volant est :",
     "choix": [
-     "0,2 g",
+     "0,2 g/L",
      "aucun"
     ],
     "bonnes": [
@@ -5005,7 +4970,7 @@
     "q": "Pictogramme orange sur un médicament :",
     "choix": [
      "aucun risque",
-     "sois très prudent, demande l’avis d’un médecin ou d’un pharmacien"
+     "sois très prudent : ne conduis pas sans l’avis d’un médecin ou d’un pharmacien"
     ],
     "bonnes": [
      1
@@ -5036,7 +5001,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Test salivaire, confirmé si besoin par une analyse.",
+    "explication": "Un test salivaire ; s’il est positif, une analyse en laboratoire le confirme.",
     "qid": "dm19-4",
     "mode": "qcm"
    }
@@ -5077,14 +5042,14 @@
    {
     "q": "Quelle démarche ?",
     "choix": [
-     "Consulter le site officiel Télépoints",
+     "Consulter le site officiel « Mes points permis »",
      "Demander à un ami",
      "Attendre une infraction"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Ton solde de points se consulte sur le site officiel Télépoints.",
+    "explication": "Ton solde de points se consulte sur le site officiel « Mes points permis ».",
     "bien": "Bien vu !",
     "immersif": "ex-20-02",
     "contexte": "Tu veux connaître ton solde de points.",
@@ -5132,15 +5097,17 @@
     "mode": "qcm"
    },
    {
-    "q": "Le taux d’alcool maximal pour un jeune conducteur est de :",
+    "q": "En période probatoire :",
     "choix": [
-     "0,2 g/L",
-     "0,5 g/L"
+     "ton taux d’alcool maximal est 0,2 g/L",
+     "le disque « A » est obligatoire",
+     "tu peux rouler à 130 sur autoroute"
     ],
     "bonnes": [
-     0
+     0,
+     1
     ],
-    "explication": "0,2 g/L de sang, soit pratiquement zéro verre.",
+    "explication": "0,2 g/L d’alcool au maximum, et le disque « A » à l’arrière. Sur autoroute, c’est 110, pas 130.",
     "qid": "pp20-3",
     "mode": "qcm"
    },
@@ -5154,7 +5121,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Un stage de sensibilisation rend jusqu’à 4 points, une fois par an au maximum. En probatoire, il devient obligatoire si tu perds 3 points ou plus d’un coup.",
+    "explication": "Un stage de sensibilisation rend jusqu’à 4 points, sans dépasser ton maximum, un par an au plus. En probatoire, il devient obligatoire si tu perds 3 points ou plus d’un coup.",
     "qid": "pp20-4",
     "mode": "qcm"
    },
@@ -5292,8 +5259,8 @@
    {
     "q": "Le siège est bien réglé quand, pédale de gauche enfoncée à fond, ta jambe est :",
     "choix": [
-     "tendues",
-     "légèrement fléchies"
+     "tendue",
+     "légèrement fléchie"
     ],
     "bonnes": [
      1
@@ -5394,7 +5361,7 @@
     "mode": "qcm"
    },
    {
-    "q": "Jusqu’à quel âge un siège auto ou un rehausseur adapté est-il obligatoire ?",
+    "q": "Un siège auto ou un rehausseur adapté est obligatoire tant que l’enfant a moins de :",
     "choix": [
      "8 ans",
      "10 ans",
@@ -5403,7 +5370,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Jusqu’à 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc.",
+    "explication": "Moins de 10 ans : avant, la ceinture adulte passe sur le cou et le ventre de l’enfant, et le blesse en cas de choc.",
     "qid": "sp22-3",
     "mode": "qcm"
    },
@@ -5445,7 +5412,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Un voyant rouge peut signaler une anomalie grave nécessitant un arrêt sécurisé.",
+    "explication": "Pression d’huile : arrête-toi dès que possible, en sécurité, et coupe le moteur : sans huile, il peut casser.",
     "bien": "Bien vu !",
     "immersif": "ex-23-01",
     "contexte": "Le voyant rouge de pression d’huile s’allume.",
@@ -5482,7 +5449,7 @@
     "mode": "qcm"
    },
    {
-    "q": "Un voyant rouge s’allume en roulant. Tu :",
+    "q": "Le voyant rouge de température du moteur s’allume en roulant. Tu :",
     "choix": [
      "continues jusqu’au prochain garage",
      "t’arrêtes dès que possible en sécurité"
@@ -5510,13 +5477,13 @@
    {
     "q": "La pression des pneus se contrôle :",
     "choix": [
-     "à froid",
+     "pneus froids, avant de rouler",
      "après un long trajet"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Contrôle la pression à froid, avant de rouler : un pneu chaud donne une mesure faussée.",
+    "explication": "Contrôle la pression pneus froids, avant de rouler : un pneu chaud donne une mesure faussée.",
     "qid": "e23-2",
     "mode": "qcm"
    },
@@ -5542,7 +5509,7 @@
     "bonnes": [
      0
     ],
-    "explication": "L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas forcément le freinage.",
+    "explication": "L’ABS empêche les roues de se bloquer : tu peux encore tourner le volant en freinant fort. Il ne raccourcit pas ta distance d’arrêt.",
     "qid": "e23-4",
     "mode": "qcm"
    }
@@ -5639,7 +5606,7 @@
     "mode": "video"
    },
    {
-    "q": "Le régulateur adaptatif est activé. Tu peux regarder ton téléphone ?",
+    "q": "Le régulateur adaptatif est activé. Tu peux prendre ton téléphone en main ?",
     "choix": [
      "Oui, il gère tout",
      "Non, tu restes responsable"
@@ -5653,13 +5620,13 @@
    {
     "q": "Le limiteur de vitesse :",
     "choix": [
-     "empêche de dépasser la vitesse choisie",
+     "empêche d’accélérer au-delà de la vitesse choisie",
      "maintient une vitesse constante"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Le limiteur t’empêche de dépasser la vitesse que tu as choisie. Le régulateur, lui, maintient une vitesse constante.",
+    "explication": "Le limiteur t’empêche d’accélérer au-delà de la vitesse choisie, mais il ne freine pas en descente. Le régulateur, lui, maintient la vitesse que tu as choisie.",
     "qid": "ac24-1",
     "mode": "qcm"
    },
@@ -5952,7 +5919,7 @@
     "q": "Le premier contrôle technique d’une voiture neuve a lieu :",
     "choix": [
      "à 2 ans",
-     "à 4 ans",
+     "dans les 6 mois avant ses 4 ans",
      "à 6 ans"
     ],
     "bonnes": [
@@ -6121,7 +6088,7 @@
     "bonnes": [
      1
     ],
-    "explication": "25 km/h de trop, c’est la tranche de 20 à 29 km/h : 2 points et 135 € d’amende.",
+    "explication": "25 km/h d’excès retenu : c’est la tranche de 20 à 29 km/h, soit 2 points et 135 € d’amende.",
     "qid": "i27-3",
     "env": "route",
     "kmh": 105,
@@ -6228,19 +6195,19 @@
     "bonnes": [
      1
     ],
-    "explication": "La consommation grimpe vite avec la vitesse : sur autoroute, rouler un peu moins vite la fait nettement baisser.",
+    "explication": "La consommation grimpe vite avec la vitesse : à 110 au lieu de 130, tu économises environ 20 % de carburant.",
     "mode": "qcm"
    },
    {
-    "q": "Des pneus sous-gonflés :",
+    "q": "La climatisation :",
     "choix": [
-     "font économiser du carburant",
-     "augmentent la consommation"
+     "ne change rien à la consommation",
+     "fait consommer plus : à garder pour les grosses chaleurs ou le désembuage"
     ],
     "bonnes": [
      1
     ],
-    "explication": "Des pneus pas assez gonflés frottent plus sur la route : ta voiture consomme plus, et freine moins bien.",
+    "explication": "La clim fait consommer plus : allume-la quand il fait vraiment chaud ou pour désembuer, pas en permanence.",
     "qid": "e28-1",
     "mode": "qcm"
    },
@@ -6266,20 +6233,20 @@
     "bonnes": [
      1
     ],
-    "explication": "Un coffre de toit, même vide, freine la voiture dans l’air : tu consommes plus. Retire-le quand tu ne t’en sers pas.",
+    "explication": "Un coffre de toit, même vide, prend le vent : tu consommes plus. Retire-le quand tu ne t’en sers pas.",
     "qid": "e28-3",
     "mode": "qcm"
    },
    {
-    "q": "Lors d’un arrêt prolongé, il est conseillé de :",
+    "q": "Tu es garé et tu attends quelqu’un. Ton moteur :",
     "choix": [
-     "laisser tourner le moteur",
-     "couper le moteur"
+     "peut tourner pour garder le chauffage",
+     "doit être coupé"
     ],
     "bonnes": [
      1
     ],
-    "explication": "À l’arrêt prolongé, coupe le moteur : au ralenti, il consomme et pollue pour rien.",
+    "explication": "Garé, laisser tourner le moteur est interdit : 135 euros. Coupe-le.",
     "qid": "e28-4",
     "mode": "qcm"
    }
@@ -6303,12 +6270,12 @@
     "choix": [
      "Seulement la couleur de la voiture",
      "La météo",
-     "Les règles locales en vigueur pour ton véhicule"
+     "Les règles de cette ville pour ta voiture"
     ],
     "bonnes": [
      2
     ],
-    "explication": "Les conditions d’accès aux ZFE dépendent des règles locales applicables.",
+    "explication": "Chaque ville a ses règles pour sa ZFE : vérifie celles de la ville où tu entres.",
     "bien": "Bien vu !",
     "immersif": "ex-29-01",
     "contexte": "Tu arrives à l’entrée d’une ZFE, une zone à faibles émissions.",
@@ -6371,7 +6338,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Quand tu lèves le pied, le moteur électrique freine la voiture et recharge un peu la batterie.",
+    "explication": "Quand tu lâches l’accélérateur, le moteur électrique freine la voiture et recharge un peu la batterie.",
     "qid": "vp29-3",
     "mode": "qcm"
    },
@@ -6495,9 +6462,9 @@
     "mode": "video"
    },
    {
-    "q": "Je veux tourner à droite. Avant de me déporter, je regarde :",
+    "q": "Je veux tourner à droite. Avant de me décaler, je regarde :",
     "choix": [
-     "le rétroviseur intérieur",
+     "le rétroviseur intérieur, celui du milieu",
      "le rétroviseur extérieur droit",
      "l’angle mort à droite"
     ],
@@ -6506,7 +6473,7 @@
      1,
      2
     ],
-    "explication": "Rétroviseur intérieur, rétroviseur du côté de la manœuvre, puis un coup d’œil dans l’angle mort : un deux-roues peut s’y cacher.",
+    "explication": "Le rétroviseur du milieu, aussi appelé intérieur, puis celui du côté où tu vas, puis un coup d’œil dans l’angle mort : un deux-roues peut s’y cacher.",
     "qid": "cdv30-1",
     "env": "ville",
     "kmh": 20,
@@ -6538,7 +6505,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Le clignotant annonce ton intention, il ne donne aucune priorité. Tu attends un espace suffisant avant de te déporter.",
+    "explication": "Le clignotant annonce ton intention, il ne donne aucune priorité. Tu attends un espace suffisant avant de te décaler.",
     "qid": "cdv30-2",
     "env": "autoroute",
     "kmh": 90,
@@ -6586,17 +6553,17 @@
     "mode": "video"
    },
    {
-    "q": "Pour changer de file, je dois :",
+    "q": "Pour changer de file, c’est-à-dire de voie, je dois :",
     "choix": [
-     "me déporter d’un coup",
-     "me déporter progressivement",
+     "me décaler d’un coup",
+     "me décaler doucement",
      "garder mes distances devant et derrière"
     ],
     "bonnes": [
      1,
      2
     ],
-    "explication": "Un changement de file se fait progressivement, sans couper la route de quelqu’un, en gardant tes distances avec les véhicules devant et derrière.",
+    "explication": "On change de voie doucement, sans couper la route de quelqu’un, en gardant ses distances devant et derrière.",
     "qid": "cdv30-4",
     "env": "autoroute",
     "kmh": 100,
@@ -6625,7 +6592,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Le cycliste qui va tout droit garde la priorité sur toi qui tournes : tu le laisses passer avant de couper sa trajectoire.",
+    "explication": "Le cycliste qui va tout droit passe avant toi qui tournes : attends qu’il soit passé.",
     "qid": "cdv30-5",
     "env": "ville",
     "kmh": 12,
@@ -6656,7 +6623,7 @@
     "bonnes": [
      1
     ],
-    "explication": "En tournant à gauche, tu coupes la trajectoire de ceux qui viennent en face : tu les laisses passer avant de tourner.",
+    "explication": "En tournant à gauche, tu passes devant ceux d’en face : laisse-les passer avant de tourner.",
     "qid": "cdv30-6",
     "env": "ville",
     "kmh": 10,
@@ -6753,13 +6720,13 @@
     "q": "Que fais-tu ?",
     "choix": [
      "Tu forces le passage",
-     "Tu ajustes ta vitesse et cherches un créneau sûr",
+     "Tu adaptes ta vitesse et cherches un espace libre",
      "Tu coupes toutes les voies"
     ],
     "bonnes": [
      1
     ],
-    "explication": "L’insertion exige observation, adaptation et respect de la priorité.",
+    "explication": "Ceux qui sont déjà sur l’autoroute passent d’abord : accélère ou ralentis un peu pour trouver un espace libre, sans forcer.",
     "bien": "Bien vu !",
     "immersif": "ex-31-02",
     "contexte": "Tu arrives au bout d’une voie d’accélération.",
@@ -6921,8 +6888,8 @@
     "q": "Sur la voie d’insertion, je dois :",
     "choix": [
      "m’arrêter au bout de la voie",
-     "adapter ma vitesse à celle du trafic",
-     "céder le passage aux véhicules déjà sur la chaussée"
+     "adapter ma vitesse à celle des autres",
+     "céder le passage à ceux déjà sur l’autoroute"
     ],
     "bonnes": [
      1,
@@ -7068,7 +7035,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Lors d’un changement de direction, cède le passage aux usagers que ta trajectoire coupe.",
+    "explication": "Quand tu tournes, laisse passer ceux dont tu vas couper la route.",
     "bien": "Bien vu !",
     "immersif": "ex-32-01",
     "contexte": "Tu tournes à gauche et un véhicule arrive en face tout droit.",
@@ -7205,14 +7172,14 @@
     "q": "Je tourne à gauche. En plus des voitures d’en face, je surveille :",
     "choix": [
      "les piétons qui traversent la rue où je vais",
-     "les cyclistes qui viennent en face",
+     "les vélos qui viennent en face",
      "seulement mon rétroviseur"
     ],
     "bonnes": [
      0,
      1
     ],
-    "explication": "En tournant, tu croises aussi la route des piétons qui traversent la rue où tu entres et des cyclistes venant d’en face.",
+    "explication": "En tournant à gauche, tu laisses passer les vélos d’en face, et les piétons qui traversent la rue où tu vas.",
     "qid": "ic32-3",
     "env": "ville",
     "kmh": 10,
@@ -7250,7 +7217,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Le tramway est en général prioritaire et ne peut pas t’éviter. Laisse-le passer et ne t’arrête jamais sur les rails.",
+    "explication": "Le tramway est prioritaire et ne peut pas t’éviter : laisse-le passer, et ne t’arrête jamais sur ses rails.",
     "qid": "ic32-4",
     "env": "ville",
     "kmh": 15,
@@ -7278,7 +7245,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Même au vert, tu ne t’engages pas si tu risques de rester bloqué au milieu du carrefour et de gêner la circulation transversale.",
+    "explication": "Même au vert, tu n’avances pas si tu risques de rester bloqué au milieu du carrefour : tu bloquerais les voitures de l’autre rue.",
     "qid": "ic32-5",
     "env": "ville",
     "kmh": 15,
@@ -7340,13 +7307,13 @@
    {
     "q": "La voiture d’en face tourne aussi à gauche. Je :",
     "choix": [
-     "observe le marquage et évite de couper sa trajectoire",
+     "observe le marquage et ne lui coupe pas la route",
      "passe le plus vite possible"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Suis les marquages au sol s’il y en a. Sans marquage, vous vous contournez : chacun passe derrière l’autre, sans couper sa route.",
+    "explication": "Suis les marquages au sol s’il y en a. Sans marquage, vous vous croisez d’abord, puis chacun tourne derrière l’autre voiture.",
     "qid": "ic32-7",
     "env": "ville",
     "kmh": 10,
@@ -7392,10 +7359,10 @@
     "bonnes": [
      1
     ],
-    "explication": "Un obstacle visuel peut cacher un usager vulnérable.",
+    "explication": "Un camion garé peut cacher un piéton : il peut traverser devant lui.",
     "bien": "Bien vu !",
     "immersif": "ex-33-01",
-    "contexte": "Une camionnette cache un passage piéton.",
+    "contexte": "Un camion garé cache un passage piéton.",
     "env": "ville",
     "kmh": 30,
     "passage": 32,
@@ -7429,14 +7396,14 @@
    {
     "q": "Quelle conduite ?",
     "choix": [
-     "Te déporter sans voir",
+     "Te décaler sans voir",
      "Accélérer dans le virage",
-     "Adapter ta vitesse avant le virage"
+     "Ralentir avant le virage"
     ],
     "bonnes": [
      2
     ],
-    "explication": "Anticipe les zones sans visibilité et garde une marge de sécurité.",
+    "explication": "Tu ne vois pas la sortie du virage : ralentis avant d’y entrer, pas dedans.",
     "bien": "Bien vu !",
     "immersif": "ex-33-02",
     "contexte": "Tu approches d’un virage dont tu ne vois pas la sortie.",
@@ -7513,7 +7480,7 @@
     "q": "En roulant, je regarde surtout :",
     "choix": [
      "le véhicule juste devant moi",
-     "loin devant, les abords et mes rétroviseurs, à tour de rôle"
+     "loin devant, les côtés de la route et mes rétros, chacun à son tour"
     ],
     "bonnes": [
      1
@@ -7543,14 +7510,14 @@
     "q": "Il commence à pleuvoir. Je :",
     "choix": [
      "garde ma vitesse : la limite n’a pas changé",
-     "réduis mon allure",
+     "roule moins vite",
      "augmente mes distances"
     ],
     "bonnes": [
      1,
      2
     ],
-    "explication": "Sur chaussée mouillée, l’adhérence baisse et le freinage s’allonge : moins vite, plus de distance. La limite affichée reste un maximum.",
+    "explication": "Sur route mouillée, les pneus accrochent moins bien : c’est l’adhérence qui baisse, et tu freines plus long. Roule moins vite et garde plus de distance.",
     "qid": "ad33-4",
     "env": "route",
     "meteo": "pluie",
@@ -7576,7 +7543,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Dans l’angle mort d’un autre véhicule, son conducteur ne te voit pas : ne t’y attarde pas, garde une porte de sortie.",
+    "explication": "Dans l’angle mort d’une voiture, son conducteur ne te voit pas : ralentis, ou dépasse-la franchement.",
     "qid": "ad33-5",
     "env": "autoroute",
     "kmh": 110,
@@ -7595,7 +7562,7 @@
    {
     "q": "Près d’une école, des enfants marchent sur le trottoir. Je :",
     "choix": [
-     "ralentis et surveille les abords",
+     "ralentis et regarde les trottoirs",
      "garde ma vitesse : ils sont sur le trottoir"
     ],
     "bonnes": [
@@ -7697,13 +7664,13 @@
     "q": "Quand effectuer une vérification ?",
     "choix": [
      "En roulant",
-     "Moteur froid, selon les consignes constructeur",
+     "Moteur froid",
      "Moteur brûlant en ouvrant immédiatement"
     ],
     "bonnes": [
      1
     ],
-    "explication": "Ne manipule pas un circuit de refroidissement chaud sous pression.",
+    "explication": "Moteur chaud, le liquide est sous pression : n’ouvre pas le bouchon, attends que le moteur refroidisse.",
     "bien": "Bien vu !",
     "immersif": "ex-34-02",
     "contexte": "Le niveau de liquide de refroidissement semble bas.",
@@ -7715,13 +7682,13 @@
    {
     "q": "Je contrôle la pression des pneus de préférence :",
     "choix": [
-     "à froid",
+     "pneus froids, avant de rouler",
      "après un long trajet"
     ],
     "bonnes": [
      0
     ],
-    "explication": "La pression se mesure pneus froids, selon les valeurs indiquées par le constructeur du véhicule.",
+    "explication": "La pression se mesure pneus froids, avant de rouler : les bons chiffres sont sur l’étiquette de la portière.",
     "qid": "cv34-1",
     "mode": "qcm"
    },
@@ -7843,7 +7810,7 @@
     "bonnes": [
      2
     ],
-    "explication": "Un changement de propriétaire implique des démarches administratives.",
+    "explication": "Tu achètes ? Tu as un mois pour mettre la carte grise à ton nom.",
     "bien": "Bien vu !",
     "immersif": "ex-35-01",
     "contexte": "Tu achètes une voiture d’occasion.",
@@ -7855,17 +7822,17 @@
    {
     "q": "Que vérifies-tu ?",
     "choix": [
-     "La validité du contrôle technique si applicable",
+     "Que son contrôle technique est encore valable",
      "La couleur des sièges",
      "Le nombre de stations radio"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Vérifie les obligations et échéances applicables à ton véhicule.",
+    "explication": "Après 4 ans, la voiture passe le contrôle technique tous les 2 ans : vérifie la date du dernier.",
     "bien": "Bien vu !",
     "immersif": "ex-35-02",
-    "contexte": "Tu prépares un trajet avec un véhicule soumis au contrôle technique.",
+    "contexte": "Tu prépares un trajet avec une voiture de plus de 4 ans.",
     "apres": {
      "action": "aucune"
     },
@@ -7895,7 +7862,7 @@
     "bonnes": [
      0
     ],
-    "explication": "La responsabilité civile est obligatoire : elle indemnise les dommages que tu causes aux autres.",
+    "explication": "La responsabilité civile, dite « au tiers », est obligatoire : elle paie les dégâts que tu fais aux autres. La tous risques paie aussi tes propres dégâts.",
     "qid": "dc35-2",
     "mode": "qcm"
    },
@@ -7914,7 +7881,7 @@
     "mode": "qcm"
    },
    {
-    "q": "Je vends ma voiture de 6 ans à un particulier. Le contrôle technique doit dater de moins de :",
+    "q": "Je vends ma voiture de 7 ans à un particulier. Le contrôle technique doit dater de moins de :",
     "choix": [
      "6 mois",
      "1 an",
@@ -7923,7 +7890,7 @@
     "bonnes": [
      0
     ],
-    "explication": "Pour vendre à un particulier une voiture de plus de 4 ans, le procès-verbal de contrôle technique doit dater de moins de 6 mois.",
+    "explication": "Pour vendre à un particulier une voiture de plus de 4 ans, le contrôle technique doit dater de moins de 6 mois.",
     "qid": "dc35-4",
     "mode": "qcm"
    },

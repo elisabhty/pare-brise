@@ -30,14 +30,14 @@
   },
   {
    "texte": "Stage de sensibilisation",
-   "tag": "+4 points, une fois par an · obligatoire si −3 en probatoire"
+   "tag": "Jusqu’à +4 points, sans dépasser ton maximum, un par an · obligatoire si −3 en probatoire"
   },
   {
    "texte": "Zéro point",
    "tag": "Permis plus valable : à repasser"
   },
   {
-   "texte": "Télépoints",
+   "texte": "Mes points permis",
    "tag": "Le site officiel de ton solde de points"
   }
  ],
@@ -175,7 +175,7 @@
    "type": "liste",
    "ch": 0,
    "eyebrow": "Monter à 12",
-   "titre": "Sans infraction",
+   "titre": "Sans perdre de point",
    "items": [
     [
      "Conduite accompagnée",
@@ -274,14 +274,14 @@
     ],
     [
      "Vitesses réduites",
-     "110, 100, et 80 sur les routes à double sens"
+     "110 autoroute · 100 chaussées séparées · 80 double sens"
     ],
     [
      "Disque « A »",
      "Obligatoire, à l’arrière"
     ]
    ],
-   "dire": "Pendant la période probatoire : alcool limité à 0,2 gramme par litre de sang, autant dire aucun verre. Vitesses réduites : 110 sur autoroute, 100 sur les routes à chaussées séparées, et 80 sur les routes à double sens, même celles à 90. Et le disque « A » à l’arrière, obligatoire pendant toute la période probatoire. À zéro point, ton permis n’est plus valable : tu dois le repasser. Avec 6 points, une seule grosse infraction peut suffire.",
+   "dire": "Pendant la période probatoire : alcool limité à 0,2 gramme par litre de sang, autant dire aucun verre. Vitesses réduites : 110 sur autoroute, 100 sur les routes à chaussées séparées, et 80 sur les routes à double sens, même celles à 90. Et le disque « A » à l’arrière, obligatoire pendant toute la période probatoire. À zéro point, ton permis n’est plus valable : tu dois le repasser. Avec 6 points, une seule infraction qui en retire 6, comme un refus de priorité à un piéton, suffit.",
    "decor": {
     "env": "route",
     "kmh": 80,
@@ -338,14 +338,14 @@
     ],
     [
      "2 ou 3 ans",
-     "Sans perdre de point : capital complet"
+     "Sans perdre de point : ton maximum revient"
     ],
     [
      "Stage de sensibilisation",
      "+4 points, une fois par an au maximum"
     ]
    ],
-   "dire": "Un seul point perdu revient après six mois sans perdre de point. Sinon, tout ton capital revient après 2 ans sans perdre de point, ou 3 ans si ta dernière infraction était un délit ou une amende de 135 euros ou plus. Un stage de sensibilisation rend 4 points, au maximum une fois par an. En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. Et ton solde de points se consulte sur le site officiel Télépoints.",
+   "dire": "Un seul point perdu revient après six mois sans perdre de point. Sinon, tout ton capital revient après 2 ans sans perdre de point. Il faut 3 ans si ta dernière infraction était un délit, ou punie d’une amende de 135 euros ou plus. Un stage de sensibilisation rend jusqu’à 4 points, sans dépasser ton maximum : un par an au plus. En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. Et ton solde de points se consulte sur le site officiel « Mes points permis ».",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -363,8 +363,8 @@
    },
    "sync": [
     0.56,
-    1.22,
-    2.01
+    1.55,
+    3.0
    ],
    "illu": {
     "type": "bareme",
@@ -372,14 +372,14 @@
     "items": [
      {
       "i": "📅",
-      "t": "6 mois sans infraction",
+      "t": "6 mois sans perdre de point",
       "b": "+1",
       "c": "#1E9E4A"
      },
      {
       "i": "🗓️",
-      "t": "2 ou 3 ans sans infraction",
-      "b": "12",
+      "t": "2 ou 3 ans sans perdre de point",
+      "b": "max",
       "c": "#1E9E4A"
      },
      {
