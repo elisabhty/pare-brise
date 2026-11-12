@@ -35,7 +35,7 @@ test('une seule méthode pour tourner ou changer de voie : rétros, clignotant, 
 test('l’image montre ce dont parle la voix', () => {
   const acteurs = s => (s.decor || s).acteurs || [];
   assert.ok(acteurs(C['montagne-tunnels-pn'].scenes[0]).some(a => a.type === 'train'), 'un train au passage à niveau');
-  assert.ok(!(C.intemperies.scenes[6].decor.signaux || []).length, 'pas le panneau « chaînes » pour la loi montagne');
+  assert.ok(!JSON.stringify(C.intemperies.scenes[6].decor.signaux || []).includes('B26'), 'pas le panneau « chaînes » B26 pour la loi montagne, mais son panneau B58');
   const ex = Object.fromEntries(data.exercices.map(e => [e.id, e]));
   assert.ok(ex['p-cyclistes-edpm'].situations.some(s => /trottinette/i.test(s.contexte || '') && s.acteurs.some(a => a.type === 'trottinette')));
   assert.ok(ex['p-poids-lourds-2rm'].situations.some(s => s.qid === 'pl213-4' && s.acteurs.some(a => a.type === 'moto')));
@@ -90,10 +90,11 @@ test('deuxième passage : les images suivent la voix', () => {
 });
 test('deuxième passage : les panneaux décrits par la voix sont dessinés et montrés', async () => {
   const { isSign } = await import('../src/app/signs.js');
-  ['A8', 'B52', 'B54', 'B56', 'C24a'].forEach(id => assert.ok(isSign(id), id));
+  ['A8', 'B52', 'B54', 'B56', 'B58', 'B59', 'C24a'].forEach(id => assert.ok(isSign(id), id));
   const montres = id => JSON.stringify(C[id].scenes.map(s => [s.panneaux, (s.decor || s).signaux, s.illu]));
   assert.match(montres('montagne-tunnels-pn'), /"A8"/, 'passage à niveau sans barrières');
   assert.match(montres('usagers-vulnerables'), /"B52".*"B54"/, 'zone de rencontre et aire piétonne');
   assert.match(montres('vehicules-propres'), /"B56"/, 'entrée de ZFE');
   assert.match(montres('cyclistes-edpm'), /"C24a"/, 'double sens cyclable');
+  assert.match(montres('intemperies'), /"B58"/, 'entrée de zone loi montagne');
 });

@@ -1538,3 +1538,12 @@ memo_plus('securite-passagers', m('Bébé dos à la route', 'Obligatoire jusqu�
 t('vehicules-prioritaires', 1, dire=[('', 'Des feux bleus sans sirène ne suffisent pas toujours à le rendre prioritaire : facilite quand même son passage, sans te mettre en danger.')])
 memo_plus('vehicules-prioritaires', m('Feux bleus sans sirène', 'Pas toujours prioritaire : facilite son passage quand même'))
 t('vehicules-propres', 1, dire=[('Tu commandes la vignette sur le site officiel, puis', 'Tu commandes la vignette sur le seul site officiel, certificat-air.gouv.fr, puis')])
+
+# ---- panneau B58 de la loi montagne (modèle de l'arrêté du 23 juin 2021, envoyé par Elisa) ----
+t('intemperies', 6, sync=[0.02, 2.09],
+  dire=[('Du 1er novembre au 31 mars, dans les communes de montagne signalées par un panneau à l’entrée, ta voiture doit être équipée.',
+         'Du 1er novembre au 31 mars, certaines communes de montagne imposent des équipements d’hiver. Elles l’annoncent à l’entrée par ce panneau blanc bordé de rouge : ta voiture doit être équipée.')])
+def _b58(d):
+    d['illu']['items'][0].update(p='B58', t='1er nov → 31 mars', s='à l’entrée de la zone')
+dec('intemperies', 6, _b58, {'signaux': [['B58', 70]]})
+memo('intemperies', ('Loi montagne', m('Loi montagne', '1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre', 'B58')))

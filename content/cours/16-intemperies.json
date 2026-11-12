@@ -38,7 +38,8 @@
   },
   {
    "texte": "Loi montagne",
-   "tag": "1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre"
+   "tag": "1er nov. → 31 mars : pneus hiver ou 4 saisons (montagne-flocon), sinon chaînes ou chaussettes dans le coffre",
+   "panneau": "B58"
   },
   {
    "texte": "Pluie : 110 · 100 · 80",
@@ -333,7 +334,7 @@
      "Ou chaînes ou chaussettes dans le coffre"
     ]
    ],
-   "dire": "Du 1er novembre au 31 mars, dans les communes de montagne signalées par un panneau à l’entrée, ta voiture doit être équipée. Soit des pneus hiver ou quatre saisons, marqués d’une montagne avec un flocon. Soit des chaînes ou des chaussettes à neige dans le coffre.",
+   "dire": "Du 1er novembre au 31 mars, certaines communes de montagne imposent des équipements d’hiver. Elles l’annoncent à l’entrée par ce panneau blanc bordé de rouge : ta voiture doit être équipée. Soit des pneus hiver ou quatre saisons, marqués d’une montagne avec un flocon. Soit des chaînes ou des chaussettes à neige dans le coffre.",
    "decor": {
     "env": "route",
     "kmh": 40,
@@ -350,11 +351,17 @@
       "kmh": 40,
       "couleur": 15223370
      }
+    ],
+    "signaux": [
+     [
+      "B58",
+      70
+     ]
     ]
    },
    "sync": [
-    0.03,
-    1.09
+    0.05,
+    2.09
    ],
    "illu": {
     "type": "icones",
@@ -364,8 +371,9 @@
      {
       "i": "📅",
       "t": "1er nov → 31 mars",
-      "s": "communes concernées",
-      "e": 0
+      "s": "à l’entrée de la zone",
+      "e": 0,
+      "p": "B58"
      },
      {
       "i": "❄️",

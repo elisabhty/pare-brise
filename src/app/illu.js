@@ -200,7 +200,9 @@ const ILLU = {
   icones: {
     html(sp) {
       const it = sp.items || [], n = it.length, cols = Math.min(n, sp.cols || 4), rows = Math.ceil(n / cols), w = 340 / cols, h = 96;
-      return svg(340, rows * h + 4, it.map((x, i) => tile((i % cols) * w + 5, Math.floor(i / cols) * h + 4, w - 10, h - 8, x.i, x.t, x.s, x.barre, x.e ?? i)).join(''));
+      // une tuile peut porter un panneau (« p ») à la place de l'émoji
+      const pan = (x, y, w, h, p) => { const k = Math.min(w, h) * 0.6; return `<g transform="translate(${x + w / 2 - k / 2} ${y + h * 0.05}) scale(${k / 100})">${signe(p)}</g>`; };
+      return svg(340, rows * h + 4, it.map((x, i) => { const X = (i % cols) * w + 5, Y = Math.floor(i / cols) * h + 4; const t = tile(X, Y, w - 10, h - 8, x.p ? '' : x.i, x.t, x.s, x.barre, x.e ?? i); return x.p ? t.replace(/<\/g>$/, pan(X, Y, w - 10, h - 8, x.p) + '</g>') : t; }).join(''));
     }
   },
   /* des panneaux côte à côte, avec leur nom : quand la scène 3D ne les montre pas assez longtemps */
