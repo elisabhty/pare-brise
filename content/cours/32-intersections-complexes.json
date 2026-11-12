@@ -413,7 +413,7 @@
      1.5
     ]
    ],
-   "dire": "À l’approche de rails, repère la signalisation et le tramway. Le tramway est prioritaire : il ne peut ni t’éviter, ni s’arrêter vite. Laisse-le passer, et s’il y a des feux, respecte-les. Ne t’avance pas sur les rails si tu risques d’y rester bloqué.",
+   "dire": "À l’approche de rails, repère la signalisation et le tramway. Le tramway est prioritaire : il ne peut ni t’éviter, ni s’arrêter vite. Laisse-le passer. Aux feux, il a aussi les siens : si ton feu est vert, tu peux passer, en restant attentif. Mais s’il traverse déjà, ne t’engage jamais devant lui. Ne t’avance pas sur les rails si tu risques d’y rester bloqué.",
    "ch": 1
   },
   {

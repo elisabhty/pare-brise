@@ -1525,3 +1525,16 @@ t('vehicules-propres', 2, dire=[('', 'À l’entrée, ce panneau blanc bordé de
 dec('vehicules-propres', 2, lambda d: d['illu'].update(panneau='B56'))
 memo('vehicules-propres', ('ZFE, zone à faibles émissions', m('ZFE, zone à faibles émissions', 'Vignette Crit’Air obligatoire, les plus polluantes interdites', 'B56')))
 p2('vehicules-propres', 'Que dois-tu vérifier ?', {'contexte': 'Tu arrives devant ce panneau : l’entrée d’une ZFE, une zone à faibles émissions.', 'mode': 'image', 'env': 'ville', 'kmh': 20, 'signaux': [['B56', 24]]})
+
+# ---- réponses d'Elisa aux questions restées ouvertes (12 novembre 2026), vérifiées sur Service-Public et Légifrance ----
+t('permis-points', 2, dire=[('', 'Une seule infraction qui en retire, et les bonus s’arrêtent jusqu’à la fin de la période probatoire. Une infraction sans retrait de points, elle, ne les bloque pas.')])
+memo_plus('permis-points', m('Bonus probatoire', 'Une seule infraction avec retrait de points les arrête jusqu’à la fin'))
+t('intersections-complexes', 4, dire=[('Laisse-le passer, et s’il y a des feux, respecte-les.',
+                                       'Laisse-le passer. Aux feux, il a aussi les siens : si ton feu est vert, tu peux passer, en restant attentif. Mais s’il traverse déjà, ne t’engage jamais devant lui.')])
+t('securite-passagers', 2, items_1=['Bébé', 'Dos à la route : obligatoire jusqu’à 15 mois (i-Size)'], sync=[0.06, 2.02, 5.42],
+  dire=[('Un bébé voyage dos à la route, le plus longtemps possible.',
+         'Un bébé voyage dos à la route : c’est obligatoire jusqu’à 15 mois avec un siège i-Size, et conseillé le plus longtemps possible. Avec un siège plus ancien, suis la limite de poids de sa notice.')])
+memo_plus('securite-passagers', m('Bébé dos à la route', 'Obligatoire jusqu’à 15 mois (siège i-Size)'))
+t('vehicules-prioritaires', 1, dire=[('', 'Des feux bleus sans sirène ne suffisent pas toujours à le rendre prioritaire : facilite quand même son passage, sans te mettre en danger.')])
+memo_plus('vehicules-prioritaires', m('Feux bleus sans sirène', 'Pas toujours prioritaire : facilite son passage quand même'))
+t('vehicules-propres', 1, dire=[('Tu commandes la vignette sur le site officiel, puis', 'Tu commandes la vignette sur le seul site officiel, certificat-air.gouv.fr, puis')])

@@ -32,6 +32,10 @@
   {
    "texte": "Ceinture non bouclée",
    "tag": "Toi : 135 € et 3 points · passager mineur : 135 € pour toi, sans points"
+  },
+  {
+   "texte": "Bébé dos à la route",
+   "tag": "Obligatoire jusqu’à 15 mois (siège i-Size)"
   }
  ],
  "scenes": [
@@ -146,14 +150,14 @@
     ],
     [
      "Bébé",
-     "Dos à la route, le plus longtemps possible"
+     "Dos à la route : obligatoire jusqu’à 15 mois (i-Size)"
     ],
     [
      "À l’avant, dos à la route",
      "Seulement avec l’airbag passager désactivé"
     ]
    ],
-   "dire": "Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids. Et à l’arrière, sauf exceptions. Un bébé voyage dos à la route, le plus longtemps possible. Les exceptions : la voiture n’a pas de places arrière, ou elles sont déjà prises par d’autres enfants. Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé.",
+   "dire": "Tant qu’il a moins de 10 ans, un enfant voyage dans un siège auto ou un rehausseur adapté à sa taille et à son poids. Et à l’arrière, sauf exceptions. Un bébé voyage dos à la route : c’est obligatoire jusqu’à 15 mois avec un siège i-Size, et conseillé le plus longtemps possible. Avec un siège plus ancien, suis la limite de poids de sa notice. Les exceptions : la voiture n’a pas de places arrière, ou elles sont déjà prises par d’autres enfants. Ou un siège bébé dos à la route à l’avant : l’airbag passager doit alors être désactivé.",
    "decor": {
     "env": "ville",
     "kmh": 0,
@@ -163,8 +167,8 @@
    },
    "sync": [
     0.08,
-    2.02,
-    4.27
+    2.0,
+    5.27
    ],
    "illu": {
     "type": "sieges",

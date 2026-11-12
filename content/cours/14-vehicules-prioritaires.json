@@ -36,6 +36,10 @@
   {
    "texte": "Ambulance privée",
    "tag": "Pas prioritaire, mais aide-la à passer"
+  },
+  {
+   "texte": "Feux bleus sans sirène",
+   "tag": "Pas toujours prioritaire : facilite son passage quand même"
   }
  ],
  "scenes": [
@@ -98,7 +102,7 @@
    "ch": 0,
    "eyebrow": "Ils arrivent",
    "titre": "Feux bleus et sirène",
-   "dire": "Police, gendarmerie, pompiers et SAMU : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Le SAMU, ce sont les médecins d’urgence. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer.",
+   "dire": "Police, gendarmerie, pompiers et SAMU : avec feux bleus et sirène à deux tons, ils passent avant tout le monde. Le SAMU, ce sont les médecins d’urgence. Même si ton feu est vert, même si tu as la priorité : tu les laisses passer. Une ambulance privée n’est pas prioritaire, mais tu l’aides aussi à passer. Des feux bleus sans sirène ne suffisent pas toujours à le rendre prioritaire : facilite quand même son passage, sans te mettre en danger.",
    "env": "ville",
    "kmh": 25,
    "camera": "drone",

@@ -39,6 +39,10 @@
   {
    "texte": "Mes points permis",
    "tag": "Le site officiel de ton solde de points"
+  },
+  {
+   "texte": "Bonus probatoire",
+   "tag": "Une seule infraction avec retrait de points les arrête jusqu’à la fin"
   }
  ],
  "scenes": [
@@ -186,7 +190,7 @@
      "Probatoire de 3 ans : +2 points par an"
     ]
    ],
-   "dire": "Si tu as fait la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an. Sinon, elle dure 3 ans : plus 2 points par an. Toujours à condition de ne commettre aucune infraction qui retire des points.",
+   "dire": "Si tu as fait la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an. Sinon, elle dure 3 ans : plus 2 points par an. Toujours à condition de ne commettre aucune infraction qui retire des points. Une seule infraction qui en retire, et les bonus s’arrêtent jusqu’à la fin de la période probatoire. Une infraction sans retrait de points, elle, ne les bloque pas.",
    "decor": {
     "env": "route",
     "kmh": 70,
