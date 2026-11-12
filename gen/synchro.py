@@ -94,7 +94,10 @@ def elements(s):
 
 # réglages à la main, quand la voix ne nomme pas les éléments un par un
 OVR = {
-    'panneaux-12': [0.0, 0.5, 1.0, 1.14, 1.28, 1.42, 1.56],   # « Bravo ! Tu connais les sept règles » : la récap défile pendant la phrase
+    'panneaux-13': [0.0, 0.5, 1.0, 1.14, 1.28, 1.42, 1.56],   # « Bravo ! Tu connais les sept règles » : la récap défile pendant la phrase
+    'panneaux-4': [1.07, 3.02],      # la barre, puis la croix : les deux phrases disent « stationnement »
+    'panneaux-12': [1.74, 3.68, 5.69],   # le symbole s'allume sur « Enfin, identifie son symbole », avant l'exemple
+    'vehicules-prioritaires-2': [0.18, 1.0, 2.05],   # « Au feu rouge » s'allume quand la voix arrive au feu rouge
 }
 ECRIRE = '--ecrire' in sys.argv
 for f in sorted(glob.glob(f'{ROOT}/cours/*.json')):

@@ -4008,13 +4008,13 @@
    {
     "q": "Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :",
     "choix": [
-     "avancer légèrement si c’est sans danger",
-     "passer le feu rouge"
+     "te décaler, ou bouger un peu sans franchir le feu",
+     "traverser le carrefour au rouge pour lui ouvrir la route"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Avancer un peu pour lui laisser la place, seulement si c’est sans danger. Mais tu ne passes pas le feu rouge.",
+    "explication": "Te décaler, ou bouger un peu sans franchir le feu, si c’est sans danger. Tu ne traverses pas le carrefour au rouge pour lui ouvrir la route.",
     "qid": "vp14-4",
     "env": "ville",
     "kmh": 0,
@@ -5131,7 +5131,7 @@
     "bonnes": [
      1
     ],
-    "explication": "Jusqu’à 4 points, sans dépasser ton maximum, un stage par an au plus. En probatoire, ce stage devient obligatoire si tu perds 3 points ou plus d’un coup.",
+    "explication": "Jusqu’à 4 points, sans dépasser ton plafond, un stage par an au plus. En probatoire, ce stage devient obligatoire si tu perds 3 points ou plus d’un coup.",
     "qid": "pp20-4",
     "mode": "qcm"
    },
@@ -5487,13 +5487,13 @@
    {
     "q": "La pression des pneus se contrôle :",
     "choix": [
-     "pneus froids, avant de rouler",
+     "« à froid » : pneus froids, avant de rouler",
      "après un long trajet"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Pneus froids, avant de rouler : un pneu chaud donne une mesure faussée.",
+    "explication": "« À froid » : pneus froids, avant de rouler. Un pneu chaud donne une mesure faussée.",
     "qid": "e23-2",
     "mode": "qcm"
    },
@@ -6583,15 +6583,15 @@
    {
     "q": "Pour changer de file, c’est-à-dire de voie, je dois :",
     "choix": [
-     "me décaler d’un coup",
-     "me décaler doucement",
+     "me déporter d’un coup",
+     "me déporter doucement",
      "garder mes distances devant et derrière"
     ],
     "bonnes": [
      1,
      2
     ],
-    "explication": "Deux bonnes réponses : te décaler doucement, et garder tes distances devant et derrière. Te décaler d’un coup surprend les autres.",
+    "explication": "Deux bonnes réponses : te déporter doucement, c’est-à-dire te décaler sur le côté, et garder tes distances devant et derrière. Te déporter d’un coup surprend les autres.",
     "qid": "cdv30-4",
     "env": "autoroute",
     "kmh": 100,
@@ -7660,7 +7660,7 @@
     "bonnes": [
      0
     ],
-    "explication": "L’état et la pression : coupures, bosses, usure, et pression pneus froids. Tes pneus sont ton seul contact avec la route.",
+    "explication": "L’état et la pression : coupures, bosses, usure, et pression « à froid », pneus froids. Tes pneus sont ton seul contact avec la route.",
     "bien": "Bien vu !",
     "immersif": "ex-34-01",
     "contexte": "Avant un long trajet, tu regardes les pneus.",
@@ -7691,13 +7691,13 @@
    {
     "q": "Je contrôle la pression des pneus de préférence :",
     "choix": [
-     "pneus froids, avant de rouler",
+     "« à froid » : pneus froids, avant de rouler",
      "après un long trajet"
     ],
     "bonnes": [
      0
     ],
-    "explication": "Pneus froids, avant de rouler : un pneu chaud donne une fausse mesure. La bonne pression est sur l’étiquette de la portière.",
+    "explication": "« À froid » : pneus froids, avant de rouler. En roulant, un pneu chauffe et donne une fausse mesure. La bonne pression est sur l’étiquette de la portière.",
     "qid": "cv34-1",
     "mode": "qcm"
    },

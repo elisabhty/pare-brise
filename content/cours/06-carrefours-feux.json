@@ -115,7 +115,7 @@
      "Sans rien : priorité à droite"
     ]
    ],
-   "dire": "Au carrefour, qui commande ? Retiens cet ordre, du plus fort au plus faible. D’abord l’agent de circulation : il commande en premier, même s’il contredit un feu. Bras levé : tout le monde s’arrête. De face ou de dos : tu t’arrêtes. De profil : tu passes. Ensuite viennent les feux, puis les panneaux et le marquage au sol. Et sans rien du tout, c’est la règle générale : la priorité à droite.",
+   "dire": "Au carrefour, qui commande ? Retiens cet ordre, du plus fort au plus faible. D’abord l’agent de circulation : il commande en premier, même s’il contredit un feu. Bras levé : tous les usagers s’arrêtent, quelle que soit leur direction. Tu es déjà engagé dans le carrefour ? Dégage-le prudemment, sans freiner brutalement. De face ou de dos : tu t’arrêtes. De profil : tu passes. Ensuite viennent les feux, puis les panneaux et le marquage au sol. Et sans rien du tout, c’est la règle générale : la priorité à droite.",
    "decor": {
     "env": "ville",
     "kmh": 25,
@@ -197,9 +197,9 @@
    },
    "sync": [
     2.09,
-    6.28,
-    6.73,
-    7.42
+    8.28,
+    8.73,
+    9.42
    ]
   },
   {

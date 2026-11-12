@@ -20,13 +20,13 @@
   "type": "qcm",
   "q": "La pression des pneus se contrôle :",
   "choix": [
-   "pneus froids, avant de rouler",
+   "« à froid » : pneus froids, avant de rouler",
    "après un long trajet"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Pneus froids, avant de rouler : un pneu chaud donne une mesure faussée."
+  "explication": "« À froid » : pneus froids, avant de rouler. Un pneu chaud donne une mesure faussée."
  },
  {
   "id": "e23-3",

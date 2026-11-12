@@ -17,8 +17,20 @@
     "Pour le voir, cherche les témoins d’usure, des petits bourrelets au fond des sculptures.",
     "S’ils arrivent au niveau du pneu, change-le.",
     "Sous 1,6 millimètre, c’est une infraction : 135 euros, et ta voiture peut être interdite de rouler.",
-    "Conseil : vérifie la pression une fois par mois, pneus froids, avant de rouler.",
+    "Conseil : vérifie la pression une fois par mois, « à froid » : pneus froids, avant de rouler.",
     "Un pneu sous-gonflé s’use vite, consomme plus et freine moins bien."
+   ],
+   "items": [
+    [
+     "1,6",
+     "mm",
+     "de profondeur de sculpture au minimum"
+    ],
+    [
+     "1",
+     "fois par mois",
+     "la pression « à froid » : un conseil"
+    ]
    ]
   },
   {
@@ -116,8 +128,8 @@
    "tag": "Sculptures : 1,6 mm de profondeur au minimum"
   },
   {
-   "texte": "Pression",
-   "tag": "Une fois par mois, pneus froids, avant de rouler"
+   "texte": "Pression « à froid »",
+   "tag": "Une fois par mois : pneus froids, avant de rouler"
   },
   {
    "texte": "Voyant rouge d’alerte",

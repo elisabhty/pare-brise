@@ -47,12 +47,12 @@
   "type": "qcm",
   "q": "Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :",
   "choix": [
-   "avancer légèrement si c’est sans danger",
-   "passer le feu rouge"
+   "te décaler, ou bouger un peu sans franchir le feu",
+   "traverser le carrefour au rouge pour lui ouvrir la route"
   ],
   "bonnes": [
    0
   ],
-  "explication": "Avancer un peu pour lui laisser la place, seulement si c’est sans danger. Mais tu ne passes pas le feu rouge."
+  "explication": "Te décaler, ou bouger un peu sans franchir le feu, si c’est sans danger. Tu ne traverses pas le carrefour au rouge pour lui ouvrir la route."
  }
 ]

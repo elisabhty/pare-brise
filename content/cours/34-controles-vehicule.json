@@ -19,7 +19,11 @@
  "memo": [
   {
    "texte": "Pneus : coupures, usure, pression",
-   "tag": "avant de partir, pression pneus froids"
+   "tag": "avant de partir, pression « à froid »"
+  },
+  {
+   "texte": "Pression « à froid »",
+   "tag": "pneus froids : avant de rouler, ou après des heures d’arrêt"
   },
   {
    "texte": "Feux, clignotants, feux stop",
@@ -97,17 +101,17 @@
      "Un pneu écrasé manque d’air"
     ],
     [
-     "La pression",
+     "La pression « à froid »",
      "Une fois par mois, pneus froids"
     ]
    ],
-   "dire": "Tes pneus sont ton seul contact avec la route : regarde-les de près. Cherche les coupures et les bosses : un pneu abîmé se remplace, il peut éclater. Au fond des creux, il y a des petits blocs de gomme : les témoins d’usure. Usé jusqu’à eux ? Il reste seulement 1,6 millimètre : change-le. Un pneu qui paraît écrasé manque d’air : il est sous-gonflé. Vérifie la pression une fois par mois, pneus froids, c’est-à-dire avant de rouler. La bonne pression est écrite sur une étiquette, souvent dans l’encadrement de la portière.",
+   "dire": "Tes pneus sont ton seul contact avec la route : regarde-les de près. Cherche les coupures et les bosses : un pneu abîmé se remplace, il peut éclater. Au fond des creux, il y a des petits blocs de gomme : les témoins d’usure. Usé jusqu’à eux ? Il reste seulement 1,6 millimètre : change-le. Un pneu qui paraît écrasé manque d’air : il est sous-gonflé. Vérifie la pression une fois par mois, « à froid » : pneus froids, avant de rouler ou après plusieurs heures d’arrêt. En roulant, les pneus chauffent : la pression mesurée serait faussée. La bonne pression est écrite sur une étiquette, souvent dans l’encadrement de la portière.",
    "ch": 0,
    "sync": [
     1.12,
     2.89,
     5.85,
-    6.1
+    6.06
    ],
    "decor": {
     "env": "ville",

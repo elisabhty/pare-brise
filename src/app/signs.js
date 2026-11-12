@@ -13,6 +13,8 @@ export const disc = (c = K.b) => `<circle cx="50" cy="50" r="48" fill="#fff"/><c
 export const endDisc = () => `<circle cx="50" cy="50" r="47" fill="#fff" stroke="${K.k}" stroke-width="1.8"/>`;
 export const square = (c = K.b) => `<rect x="4" y="4" width="92" height="92" rx="11" fill="#fff"/><rect x="7.5" y="7.5" width="85" height="85" rx="8" fill="${c}"/>`;
 export const rectRed = () => `<rect x="4" y="22" width="92" height="56" rx="7" fill="#fff" stroke="${K.k}" stroke-width="1"/><rect x="8" y="26" width="84" height="48" rx="4" fill="none" stroke="${K.r}" stroke-width="5"/>`;
+/* sortie d'agglomération (EB20) : fond blanc, listel noir (pas de bord rouge), nom barré d'une diagonale rouge */
+export const rectNoir = () => `<rect x="4" y="22" width="92" height="56" rx="7" fill="#fff" stroke="${K.k}" stroke-width="1"/><rect x="7.5" y="25.5" width="85" height="49" rx="4.5" fill="none" stroke="${K.k}" stroke-width="2.2"/>`;
 export const octo = () => `<polygon points="${pts(octPts(48))}" fill="#fff"/><polygon points="${pts(octPts(44.5))}" fill="${K.r}"/>`;
 export const losange = (c = K.y) => `<polygon points="50,3 97,50 50,97 3,50" fill="#fff" stroke="${K.k}" stroke-width="1.2" stroke-linejoin="round"/><polygon points="50,15 85,50 50,85 15,50" fill="${c}"/>`;
 export const bars = (c = K.k, n = 5, half = 38, gap = 3.6, w = 1.7) => { let o = ''; for (let i = 0; i < n; i++) { const s = (i - (n - 1) / 2) * gap, cx = 50 + s / Math.SQRT2, cy = 50 + s / Math.SQRT2, d = half / Math.SQRT2; o += `<line x1="${(cx - d).toFixed(1)}" y1="${(cy + d).toFixed(1)}" x2="${(cx + d).toFixed(1)}" y2="${(cy - d).toFixed(1)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`; } return o; };
@@ -113,7 +115,7 @@ const DRAW = {
     + `<rect x="26.5" y="46" width="5" height="22" fill="#fff"/><polygon points="20,66 38,66 29,80" fill="#fff"/>`
     + `<rect x="66.5" y="34" width="5" height="44" fill="#fff"/><polygon points="60,36 78,36 69,20" fill="#fff"/>`,
   EB10: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72),
-  EB20: (n = 'VILLE') => rectRed() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72) + `<line x1="14" y1="72" x2="86" y2="28" stroke="${K.r}" stroke-width="6"/>`,
+  EB20: (n = 'VILLE') => rectNoir() + txt(n, n.length > 7 ? 15 : 17, K.k, 56, undefined, 72) + `<line x1="14" y1="72" x2="86" y2="28" stroke="${K.r}" stroke-width="6"/>`,
   AB3a: () => triDown(),
   AB4: () => octo() + txt('STOP', 26, '#fff', 59.5),
   AB6: () => losange(),
@@ -146,7 +148,7 @@ export const FAM = {
   priorite: { n: 'Priorité', c: '#FFC629', t: '#A35A00', rule: 'forme unique' },
   fin: { n: 'Fin', c: '#DDE3EE', t: '#4A5878', rule: 'panneau barré' },
   temporaire: { n: 'Temporaire', c: '#FFC629', t: '#A35A00', rule: 'fond jaune' },
-  localisation: { n: 'Localisation', c: '#FF3048', t: 'var(--rouge-t)', rule: 'rectangle blanc bordé de rouge' }
+  localisation: { n: 'Localisation', c: '#FF3048', t: 'var(--rouge-t)', rule: 'rectangle blanc avec le nom de la ville' }
 };
 
 export const parse = id => { const i = String(id).indexOf(':'); return i < 0 ? [id, undefined] : [id.slice(0, i), id.slice(i + 1)]; };

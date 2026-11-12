@@ -15,7 +15,7 @@ const DEC = {
   'carre-bleu': { f: 'indication', t: 'Il te renseigne : il n’interdit rien et n’oblige à rien.', d: 'Informe-toi', ex: ['C12', 'C20a', 'C1a'] },
   'carre-jaune': { f: 'temporaire', t: 'Indication temporaire, par exemple une déviation pendant des travaux.', d: 'Suis l’itinéraire indiqué', ex: ['AK5'] },
   'carre-rouge': { f: 'localisation', n: 'Entrée de ville', t: 'Rectangle blanc bordé de rouge avec un nom de ville : tu entres en agglomération.', d: '50 km/h, sauf panneau contraire', ex: ['EB10'] },
-  'carre-barre': { f: 'localisation', n: 'Sortie de ville', t: 'Le même panneau barré de rouge : tu quittes l’agglomération.', d: 'La limite de la route reprend', ex: ['EB20'] },
+  'carre-barre': { f: 'localisation', n: 'Sortie de ville', t: 'Rectangle blanc bordé de noir, le nom barré de rouge : tu quittes l’agglomération.', d: 'La limite de la route reprend', ex: ['EB20'] },
   'octo-rouge': { f: 'priorite', n: 'Stop', t: 'Forme réservée au stop : arrêt obligatoire, puis tu cèdes le passage.', d: 'Arrête-toi, regarde, repars', ex: ['AB4'] },
   'triBas-rouge': { f: 'priorite', n: 'Cédez le passage', t: 'Tu laisses passer les autres. Tu ne t’arrêtes que si quelqu’un arrive.', d: 'Laisse passer', ex: ['AB3a'] },
   'losange-jaune': { f: 'priorite', n: 'Route prioritaire', t: 'Aux intersections, les autres te cèdent le passage.', d: 'Tu passes, prudemment', ex: ['AB6'] },

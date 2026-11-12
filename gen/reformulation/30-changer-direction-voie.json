@@ -47,7 +47,7 @@
    "titre": "Changer de voie en douceur",
    "dire": [
     "Étape 4 : seulement si c’est libre, tu y vas.",
-    "Décale-toi doucement, pour que les autres te voient venir.",
+    "« Se déporter », c’est décaler ta voiture sur le côté : fais-le doucement, pour que les autres te voient venir.",
     "Garde tes distances, devant et derrière.",
     "Une fois dans ta nouvelle voie, éteins le clignotant.",
     "Changer de file, c’est la même chose que changer de voie."
@@ -97,6 +97,10 @@
   {
    "texte": "Seulement si c’est libre",
    "tag": "4 · y aller"
+  },
+  {
+   "texte": "« Se déporter »",
+   "tag": "décaler ta voiture sur le côté"
   }
  ],
  "pratique": [

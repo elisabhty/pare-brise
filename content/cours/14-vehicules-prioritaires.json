@@ -31,7 +31,7 @@
   },
   {
    "texte": "Au feu rouge",
-   "tag": "Avance un peu, seulement si c’est sans danger"
+   "tag": "Décale-toi, sans franchir le feu ni traverser"
   },
   {
    "texte": "Ambulance privée",
@@ -162,10 +162,10 @@
     ],
     [
      "Au feu rouge",
-     "Avancer un peu, seulement si sans danger"
+     "Te décaler, sans franchir le feu"
     ]
    ],
-   "dire": "La sirène approche : garde ton calme, car un freinage brusque surprendrait la voiture derrière toi. Serre-toi à droite pour libérer le passage au véhicule prioritaire. Au feu rouge, tu peux avancer un peu pour lui laisser la place, seulement si c’est sans danger.",
+   "dire": "La sirène approche : garde ton calme, car un freinage brusque surprendrait la voiture derrière toi. Serre-toi à droite pour libérer le passage au véhicule prioritaire. Tu es arrêté au feu rouge, et des pompiers arrivent derrière toi ? Cherche d’abord à te décaler pour leur laisser de la place. Tu peux bouger un peu, si c’est sans danger et sans franchir le feu. Mais ne traverse pas le carrefour au rouge pour leur ouvrir la route.",
    "decor": {
     "env": "ville",
     "kmh": 30,
@@ -230,7 +230,7 @@
    "sync": [
     0.18,
     1.0,
-    2.04
+    2.05
    ]
   },
   {

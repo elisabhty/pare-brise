@@ -42,7 +42,7 @@
   },
   {
    "texte": "Bonus probatoire",
-   "tag": "Une seule infraction qui retire des points les arrête jusqu’à la fin"
+   "tag": "Une infraction qui retire des points les arrête : tu gardes ton plafond"
   }
  ],
  "scenes": [
@@ -190,7 +190,7 @@
      "Probatoire de 3 ans : +2 points par an"
     ]
    ],
-   "dire": "Chaque anniversaire de ton permis peut t’apporter des points. Après la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an. Après une formation classique, elle dure 3 ans : plus 2 points par an. Dans les deux cas, tes points arrivent à 12. Tu reçois ces bonus seulement si tu roules sans perdre de point. Une seule infraction qui retire des points, et les bonus s’arrêtent jusqu’à la fin de la période probatoire. Une infraction sans retrait de points ? Les bonus continuent.",
+   "dire": "Chaque anniversaire de ton permis peut t’apporter des points. Après la conduite accompagnée, ta période probatoire dure 2 ans : plus 3 points par an. Après une formation classique, elle dure 3 ans : plus 2 points par an. Dans les deux cas, tes points arrivent à 12. Tu reçois ces bonus seulement si tu roules sans perdre de point. Une seule infraction qui retire des points, et les bonus s’arrêtent jusqu’à la fin de la période probatoire. Une infraction sans retrait de points ? Les bonus continuent. Si les bonus s’arrêtent, tu gardes le plafond déjà atteint : 8 points, par exemple, après un an sans perdre de point. Tes points perdus peuvent revenir, jusqu’à ce plafond.",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -342,14 +342,14 @@
     ],
     [
      "2 ou 3 ans",
-     "Sans perdre de point : ton maximum revient"
+     "Sans perdre de point : jusqu’à ton plafond"
     ],
     [
      "Stage de sensibilisation",
      "Jusqu’à 4 points, un par an au plus"
     ]
    ],
-   "dire": "Tu as perdu un seul point ? Il revient après six mois sans perdre de point. Sinon, ton maximum de points revient après 2 ans sans perdre de point. Il faut 3 ans si l’une de tes infractions était un délit, une infraction grave jugée au tribunal. Pareil si elle était punie d’une amende de 135 euros ou plus. Un stage de sensibilisation, une formation à la sécurité routière, rend jusqu’à 4 points, sans dépasser ton maximum. Tu peux en faire un par an, au plus. En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. Ton solde de points se consulte sur le site officiel « Mes points permis ».",
+   "dire": "Tu as perdu un seul point ? Il revient après six mois sans perdre de point. Sinon, tes points remontent jusqu’à ton plafond après 2 ans sans perdre de point. Il faut 3 ans si l’une de tes infractions était un délit, une infraction grave jugée au tribunal. Pareil si elle était punie d’une amende de 135 euros ou plus. Un stage de sensibilisation, une formation à la sécurité routière, rend jusqu’à 4 points, sans dépasser ton plafond. Tu peux en faire un par an, au plus. En probatoire, si tu perds 3 points ou plus d’un coup, ce stage devient obligatoire. Ton solde de points se consulte sur le site officiel « Mes points permis ».",
    "decor": {
     "env": "route",
     "kmh": 70,
@@ -367,7 +367,7 @@
    },
    "sync": [
     1.42,
-    2.58,
+    2.64,
     5.0
    ],
    "illu": {

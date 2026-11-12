@@ -761,6 +761,8 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .xexp b{font-size:15px;font-weight:700;color:#12884A}
 .xexp.ko b{color:#D11F36}
 .xexp p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:var(--craie)}
+/* le terme officiel entre guillemets (util.js, fr) : en gras, sans la couleur du verdict */
+.xexp p b.terme,.caption b.terme{font-size:inherit;color:inherit;font-weight:700}
 .m-examen{background:linear-gradient(145deg,#4C8DFF,#1F3FD8)}
 
 .feat-exam{margin-top:12px;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,#1A9E54 0%,#0F7A3E 60%,#0A5A2D 100%);box-shadow:0 22px 44px -22px rgba(15,122,62,.7)}

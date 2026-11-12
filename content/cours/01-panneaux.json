@@ -49,8 +49,8 @@
    "famille": "indication"
   },
   {
-   "texte": "Panneau barré, sans bord rouge",
-   "tag": "Fin de la règle",
+   "texte": "Panneau de fin, souvent barré",
+   "tag": "Fin de la règle (pas tous les barrés)",
    "panneau": "B33",
    "famille": "fin"
   },
@@ -69,6 +69,12 @@
   {
    "texte": "Forme → couleur → symbole",
    "tag": "La méthode"
+  },
+  {
+   "texte": "Panneau de ville",
+   "tag": "Bord rouge : entrée · nom barré, bord noir : sortie",
+   "panneau": "EB10",
+   "famille": "localisation"
   }
  ],
  "scenes": [
@@ -133,11 +139,11 @@
      "Passage piéton"
     ]
    ],
-   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce généralement un danger. Un virage dangereux, une chaussée glissante ou encore un passage piéton. Ces panneaux sont habituellement placés à 150 mètres du danger hors agglomération et à 50 mètres en ville. Ton réflexe ? Rester vigilant, anticiper et adapter ta vitesse.",
+   "dire": "Un triangle bordé de rouge, pointe vers le haut, annonce un danger. Un virage dangereux, une chaussée glissante, c’est-à-dire une route qui glisse, ou encore un passage piéton. Hors des villes, ces panneaux sont habituellement placés 150 mètres avant le danger, pour te laisser le temps de ralentir. En ville, 50 mètres avant. Ton réflexe ? Reste vigilant : lâche l’accélérateur, regarde loin devant, et prépare-toi à freiner.",
    "sync": [
-    1.01,
-    1.32,
-    1.76
+    1.0,
+    1.2,
+    1.83
    ]
   },
   {
@@ -149,14 +155,16 @@
    "panneaux": [
     "B3",
     "B2a",
-    "B14:90"
+    "B14:90",
+    "B1"
    ],
    "puce": "Bord rouge, ou tout rouge",
-   "dire": "Un panneau rond bordé de rouge indique généralement une interdiction ou une restriction. Il peut t’interdire de dépasser, de tourner ou de circuler au-delà d’une certaine vitesse.",
+   "dire": "Un panneau rond bordé de rouge, ou tout rouge, indique une interdiction ou une restriction. Il peut t’interdire de dépasser, de tourner ou de circuler au-delà d’une certaine vitesse. Le sens interdit, tout rouge avec une barre blanche, t’interdit d’entrer.",
    "sync": [
     1.23,
     1.37,
-    1.88
+    1.88,
+    2.01
    ]
   },
   {
@@ -178,10 +186,10 @@
      "Arrêt et stationnement interdits"
     ]
    ],
-   "dire": "Attention à deux panneaux souvent confondus ! Une seule barre rouge sur fond bleu interdit le stationnement, mais autorise généralement un arrêt. Une croix rouge sur fond bleu interdit à la fois l’arrêt et le stationnement.",
+   "dire": "Attention à deux panneaux souvent confondus ! Une seule barre rouge sur fond bleu interdit le stationnement : laisser ta voiture plus qu’un instant. Mais l’arrêt reste permis : un instant, au volant ou juste à côté. Une croix rouge sur fond bleu interdit à la fois l’arrêt et le stationnement. Retiens : un rond bordé de rouge, même sur fond bleu, est une interdiction.",
    "sync": [
     1.07,
-    2.02
+    3.02
    ],
    "puce": "Bord rouge = interdiction, même sur fond bleu"
   },
@@ -197,11 +205,11 @@
     "B22a"
    ],
    "puce": "Tu dois le faire",
-   "dire": "Un panneau rond bleu indique généralement une obligation. Contrairement aux interdictions, il te précise ce que tu dois faire. Par exemple, tourner dans une direction imposée ou emprunter une voie réservée.",
+   "dire": "Un panneau rond bleu indique une obligation. Contrairement aux interdictions, il te précise ce que tu dois faire. Par exemple, tourner dans la direction imposée, ici à droite, ou contourner un obstacle par la droite. Avec un vélo dessus, c’est une piste obligatoire pour les vélos. Toi, en voiture, tu restes sur la route.",
    "sync": [
-    2.13,
-    2.38,
-    2.62
+    2.1,
+    2.61,
+    3.45
    ],
    "etiquettes": [
     [
@@ -230,7 +238,7 @@
     "C20a"
    ],
    "puce": "Il te renseigne",
-   "dire": "Un panneau carré ou rectangulaire, souvent bleu, te donne une information utile. Il peut signaler un parking, un passage piéton ou un sens unique. Ces panneaux t’aident à comprendre ton environnement et les conditions de circulation.",
+   "dire": "Un panneau carré ou rectangulaire, souvent bleu, te donne une information utile : c’est une indication. Il peut signaler un parking, un passage piéton ou un sens unique. Tu te souviens du triangle avec un piéton ? Il te prévient avant le passage. Le carré bleu, lui, est placé juste au passage : c’est ici.",
    "sync": [
     1.28,
     1.79,
@@ -249,12 +257,38 @@
     "B31",
     "B40"
    ],
-   "puce": "Barré, sans bord rouge : fin",
-   "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir peut signaler la fin de cette limitation. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin.",
+   "puce": "Souvent barré : la règle prend fin",
+   "dire": "Certaines règles ne s’appliquent pas indéfiniment. Des panneaux spécifiques indiquent la fin d’une interdiction, d’une restriction ou d’une obligation. Par exemple, une limitation de vitesse barrée de noir signale la fin de cette limitation. Le rond bleu du vélo, barré de rouge : c’est la fin de la piste cyclable obligatoire. Attention : tous les panneaux barrés ne signifient pas qu’une règle prend fin. Le stationnement interdit, par exemple, est barré : c’est pourtant une interdiction.",
    "sync": [
-    2.15,
+    2.16,
     1.45,
-    1.45
+    3.65
+   ]
+  },
+  {
+   "type": "panneaux",
+   "ch": 1,
+   "eyebrow": "Un cas à part",
+   "titre": "Entrer en ville, en sortir",
+   "puce": "Entrée : bord rouge · sortie : nom barré",
+   "panneaux": [
+    "EB10:BEAULIEU",
+    "EB20:BEAULIEU"
+   ],
+   "etiquettes": [
+    [
+     "Entrée de ville",
+     "Bord rouge, nom de la ville"
+    ],
+    [
+     "Sortie de ville",
+     "Nom barré de rouge, bord noir"
+    ]
+   ],
+   "dire": "Un cas à part : les panneaux qui portent le nom d’une ville. À l’entrée, un panneau blanc entouré de rouge annonce une agglomération, c’est-à-dire une ville ou un village. Ce bord rouge n’annonce pas une interdiction : retiens ce panneau à part. À la sortie, le nom de la ville est barré d’une diagonale rouge, sur un panneau bordé de noir. Tu quittes l’agglomération : les règles de la circulation en ville cessent alors de s’appliquer, sauf si un panneau dit autre chose.",
+   "sync": [
+    1.01,
+    3.02
    ]
   },
   {
@@ -269,7 +303,7 @@
     "AB3a"
    ],
    "puce": "Des formes uniques",
-   "dire": "Certains panneaux possèdent une forme unique pour être facilement reconnaissables. Le STOP, avec ses huit côtés, impose un arrêt complet, même si personne n’arrive. Le triangle pointe vers le bas signifie « Cédez le passage ». Tu ralentis et tu t’arrêtes uniquement si nécessaire pour laisser passer les usagers prioritaires.",
+   "dire": "Certains panneaux possèdent une forme unique : tu les reconnais même couverts de neige. Le STOP, avec ses huit côtés, impose un arrêt complet, même si personne n’arrive. Le triangle pointe vers le bas signifie « Cédez le passage ». Tu ralentis, et tu laisses passer tout le monde, à gauche comme à droite. Tu t’arrêtes seulement si quelqu’un arrive.",
    "sync": [
     1.01,
     2.66
@@ -286,10 +320,10 @@
     "AB7"
    ],
    "puce": "Route prioritaire",
-   "dire": "Enfin, le losange jaune indique une route prioritaire. Lorsqu’il est barré d’une bande noire, cette priorité prend fin.",
+   "dire": "Enfin, le losange jaune indique une route prioritaire. Aux intersections, les autres te laissent passer. Lorsqu’il est barré d’une bande noire, cette priorité prend fin.",
    "sync": [
     0.16,
-    1.19
+    2.19
    ]
   },
   {
@@ -303,9 +337,9 @@
     "AK14"
    ],
    "puce": "Le panneau jaune l’emporte",
-   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est notamment le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : lorsqu’elles se contredisent, les indications de la signalisation temporaire priment sur celles de la signalisation permanente.",
+   "dire": "Sur la route, certaines situations nécessitent une signalisation provisoire. C’est le cas des travaux. Les panneaux temporaires de danger ont souvent un fond jaune. Retiens cette règle essentielle : si un panneau jaune dit le contraire d’un panneau habituel, c’est le jaune qui l’emporte. Il montre la route telle qu’elle est aujourd’hui, avec les travaux. Attention : le losange jaune de la route prioritaire, lui, reste un panneau habituel.",
    "sync": [
-    1.74,
+    1.65,
     2.18
    ]
   },
@@ -333,7 +367,7 @@
      "Symbole"
     ]
    ],
-   "dire": "Pour reconnaître rapidement un panneau, retiens cette méthode en trois étapes. D’abord, observe sa forme. Elle t’aide à identifier sa famille. Ensuite, regarde sa couleur. Elle te donne un indice supplémentaire. Enfin, identifie son symbole. C’est lui qui précise le message. Avec cette méthode, tu pourras comprendre plus facilement les panneaux que tu rencontreras.",
+   "dire": "Pour reconnaître rapidement un panneau, retiens cette méthode en trois étapes. D’abord, observe sa forme. Elle t’aide à identifier sa famille. Ensuite, regarde sa couleur. Elle te donne un indice supplémentaire. Enfin, identifie son symbole. C’est lui qui précise le message. Exemple : un rond bordé de rouge, avec 50 au centre, c’est 50 kilomètres heure au maximum. Avec cette méthode, tu pourras comprendre plus facilement les panneaux que tu rencontreras.",
    "sync": [
     1.74,
     3.68,
@@ -364,8 +398,8 @@
      "Indication"
     ],
     [
-     "Panneau barré, sans bord rouge",
-     "Fin de la règle"
+     "Panneau de fin, souvent barré",
+     "La règle s’arrête"
     ],
     [
      "Formes uniques",
@@ -406,7 +440,7 @@
      "questions"
     ]
    ],
-   "dire": "Il est temps de passer à la pratique ! À toi de reconnaître les panneaux dans de vraies situations de circulation."
+   "dire": "Il est temps de passer à la pratique ! À toi de reconnaître les panneaux dans de vraies situations de circulation. Devant chaque panneau, pense : forme, couleur, symbole."
   }
  ]
 }

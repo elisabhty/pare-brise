@@ -26,10 +26,11 @@
    "dire": [
     "Tu arrives dans un village : à l’entrée, un panneau blanc bordé de rouge porte son nom.",
     "Il marque le début de l’agglomération, c’est-à-dire la ville ou le village.",
-    "Ce panneau est à part : retiens-le tel quel, hors des règles du cours 1.",
+    "Comme au cours 1, retiens-le à part : bordé de rouge, ce n’est pas une interdiction.",
     "Dès ce panneau : 50 maximum, sauf si un autre panneau dit autre chose.",
     "Ton geste : freine avant, pour être déjà à 50 en passant le panneau.",
-    "Le même panneau, barré de rouge, marque la sortie : tu reprends la vitesse de la route, souvent 80.",
+    "À la sortie, le panneau a un bord noir, et le nom est barré de rouge.",
+    "Tu reprends alors la vitesse de la route, souvent 80.",
     "Certains quartiers sont en zone 30 : un panneau l’annonce.",
     "C’est 30 jusqu’au panneau de sortie de la zone."
    ]

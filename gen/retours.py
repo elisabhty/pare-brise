@@ -10,7 +10,8 @@ Format :
   COURS[cours] = { 'resume': …, 'memo': [(début du texte, nouvelle ligne | None)], 'memo+': [nouvelles lignes] }
   P[(cours, début de la question)] = { champs } ou None (question retirée de la pratique)
   DECOR[(cours, écran)] = { champs du décor remplacés }
-Le cours 1 garde sa narration (texte d'origine) : seules ses cartes et sa pratique changent.
+Le cours 1 a gardé la narration d'Elisa jusqu'à la reformulation : elle a ensuite demandé de la corriger (novembre 2026,
+voir gen/reformulation/01-panneaux.json et l'écran ajouté plus bas).
 """
 import re
 T, COURS, P, DECOR, EXP = {}, {}, {}, {}, {}
@@ -75,9 +76,9 @@ def cours(cid, **k): COURS.setdefault(cid, {}).update(k)
 # =============================== 1 · Panneaux (narration d'origine conservée) ===============================
 t('panneaux', 2, puce='150 m avant hors ville · 50 m en ville')
 t('panneaux', 7, puce='Fin de la règle')
-t('panneaux', 10, puce='Le panneau jaune l’emporte')
-t('panneaux', 12, items_4=['Panneau barré', 'Fin de la règle'], items_6=['Fond jaune', 'Temporaire (sauf le losange de la route prioritaire)'])
-t('panneaux', 13, stats=[['7', 'règles'], ['3', 'étapes'], ['13', 'questions']])
+t('panneaux', 11, puce='Le panneau jaune l’emporte')
+t('panneaux', 13, items_4=['Panneau barré', 'Fin de la règle'], items_6=['Fond jaune', 'Temporaire (sauf le losange de la route prioritaire)'])
+t('panneaux', 14, stats=[['7', 'règles'], ['3', 'étapes'], ['13', 'questions']])
 p('panneaux', 'Ce panneau appartient à la famille :', {'explication': 'Il est bleu, mais bordé de rouge : c’est le bord rouge qui compte. C’est une interdiction : ici, stationnement interdit.'})
 p('panneaux', 'Ici, je peux m\'arrêter quelques instants', {'explication': 'Une seule barre : stationnement interdit, mais tu peux t’arrêter un instant pour déposer quelqu’un, en restant au volant ou juste à côté.'})
 p('panneaux', 'À partir de ce panneau :', {'explication': 'Panneau barré de noir : la limitation à 50 prend fin. Tu reprends la vitesse normale de la route, par exemple 80 sur une route à double sens (cours 2).'})
@@ -992,16 +993,29 @@ def mt(texte, tag, panneau=None, famille=None):
     if famille: d['famille'] = famille
     return d
 
-# ---- 1 · Panneaux : cartes, fiche et pratique seulement (la voix reste celle d'Elisa) ----
+# ---- 1 · Panneaux : cartes, fiche et pratique (la voix d'Elisa est corrigée dans gen/reformulation/01-panneaux.json) ----
 t('panneaux', 3, puce='Bord rouge, ou tout rouge')
 t('panneaux', 4, puce='Bord rouge = interdiction, même sur fond bleu')
 t('panneaux', 5, etiquettes=[['B21-1', 'Tourner à droite'], ['B21a1', 'Contourner par la droite'], ['B22a', 'Piste obligatoire pour les vélos']])
-t('panneaux', 7, puce='Barré, sans bord rouge : fin')
-t('panneaux', 12, items_1=['Rond bordé de rouge, ou tout rouge', 'Interdiction, même sur fond bleu'], items_4=['Panneau barré, sans bord rouge', 'Fin de la règle'])
+t('panneaux', 7, puce='Souvent barré : la règle prend fin')
+t('panneaux', 13, items_1=['Rond bordé de rouge, ou tout rouge', 'Interdiction, même sur fond bleu'], items_4=['Panneau de fin, souvent barré', 'La règle s’arrête'])
 cours('panneaux', memo_tout=[mt('Triangle, bord rouge', 'Danger', 'A14', 'danger'), mt('Rond, bord rouge, ou tout rouge', 'Interdiction, même sur fond bleu', 'B14', 'interdiction'),
                              mt('Rond bleu', 'Obligation', 'B211', 'obligation'), mt('Carré ou rectangle bleu', 'Indication', 'C12', 'indication'),
-                             mt('Panneau barré, sans bord rouge', 'Fin de la règle', 'B33', 'fin'), mt('Octogone, triangle inversé, losange', 'Priorité', 'AB4', 'priorite'),
-                             mt('Fond jaune', 'Temporaire, sauf le losange', 'AK5', 'temporaire'), m('Forme → couleur → symbole', 'La méthode')])
+                             mt('Panneau de fin, souvent barré', 'Fin de la règle (pas tous les barrés)', 'B33', 'fin'), mt('Octogone, triangle inversé, losange', 'Priorité', 'AB4', 'priorite'),
+                             mt('Fond jaune', 'Temporaire, sauf le losange', 'AK5', 'temporaire'), m('Forme → couleur → symbole', 'La méthode'),
+                             mt('Panneau de ville', 'Bord rouge : entrée · nom barré, bord noir : sortie', 'EB10', 'localisation')])
+# Retours d'Elisa (novembre 2026) : le sens interdit dont parle la voix est montré, et l'entrée et la sortie de ville ont
+# leur écran, à part : le panneau d'entrée est bordé de rouge sans être une interdiction, celui de sortie a un bord noir
+# et le nom barré de rouge (pas de règle « barré sans bord rouge = fin » : les panneaux de fin ont leurs propres formes).
+t('panneaux', 3, panneaux=['B3', 'B2a', 'B14:90', 'B1'])
+COURS.setdefault('panneaux', {})['insere'] = [(8, dict(
+    type='panneaux', ch=1, eyebrow='Un cas à part', titre='Entrer en ville, en sortir', puce='Entrée : bord rouge · sortie : nom barré',
+    panneaux=['EB10:BEAULIEU', 'EB20:BEAULIEU'], etiquettes=[['Entrée de ville', 'Bord rouge, nom de la ville'], ['Sortie de ville', 'Nom barré de rouge, bord noir']],
+    dire='Un cas à part : les panneaux qui portent le nom d’une ville. '
+         'À l’entrée, un panneau blanc entouré de rouge annonce une agglomération, c’est-à-dire une ville ou un village. '
+         'Ce bord rouge n’annonce pas une interdiction : retiens ce panneau à part. '
+         'À la sortie, le nom de la ville est barré d’une diagonale rouge, sur un panneau bordé de noir. '
+         'Tu quittes l’agglomération : les règles de la circulation en ville cessent alors de s’appliquer, sauf si un panneau dit autre chose.'))]
 p2('panneaux', 'À partir de ce panneau :', {'env': 'route', 'kmh': 50, 'explication': 'Panneau barré de noir : la limitation à 50 prend fin. Tu reprends la vitesse normale de la route : ici, une route à double sens, donc 80 (cours 2).'})
 
 # ---- 2 · Vitesses ----
@@ -1577,7 +1591,7 @@ p2('securite-passagers', 'Quel équipement ?', {'contexte': 'Ton chien se dépla
 # Reformulation pédagogique (experts, novembre 2026) : la voix, les cartes, la fiche et les explications de la
 # pratique, réécrites pour être immersives, sans changer de règle (gen/reformulation/*.json, contrôlés par
 # /tmp/reform/valider.py avant intégration). Ce sont les textes finaux : ils passent après toutes les retouches.
-# Le cours 1 n'y figure que sous forme de propositions de voix (« proposition_dire ») : Elisa choisit.
+# Le cours 1 : la voix d'Elisa, corrigée à sa demande phrase par phrase (numéros d'écran comptés avec l'écran ajouté).
 # ############################################################################################################
 import json as _json, glob as _glob, os as _os
 REFORM = {}
@@ -1617,6 +1631,22 @@ prat('drogues-medicaments', 'Pictogramme orange sur un médicament :',
 prat('entretien', 'Un voyant orange signale :', choix=['une alerte grave', 'un défaut à faire vérifier'],
      explication='Un défaut à faire vérifier rapidement. Parfois, c’est juste un témoin : un équipement allumé. Le rouge d’alerte, lui, demande de t’arrêter.')
 prat('ecoconduite', 'Quel geste réduit consommation et risque ?', choix=['Rester en forte accélération', 'Lâcher l’accélérateur progressivement', 'Accélérer puis freiner fort'])
+# Décisions d'Elisa (novembre 2026) : au feu rouge, on se décale sans franchir le feu ; en probatoire, on parle de
+# « plafond » ; les mots de l'examen « à froid » et « se déporter » sont appris, avec leur explication.
+prat('vehicules-prioritaires', 'Au feu rouge, une voiture de pompiers arrive derrière toi. Tu peux :',
+     choix=['te décaler, ou bouger un peu sans franchir le feu', 'traverser le carrefour au rouge pour lui ouvrir la route'],
+     explication='Te décaler, ou bouger un peu sans franchir le feu, si c’est sans danger. Tu ne traverses pas le carrefour au rouge pour lui ouvrir la route.')
+prat('permis-points', 'Un stage de sensibilisation volontaire rend :',
+     explication='Jusqu’à 4 points, sans dépasser ton plafond, un stage par an au plus. En probatoire, ce stage devient obligatoire si tu perds 3 points ou plus d’un coup.')
+prat('entretien', 'La pression des pneus se contrôle :', choix=['« à froid » : pneus froids, avant de rouler', 'après un long trajet'],
+     explication='« À froid » : pneus froids, avant de rouler. Un pneu chaud donne une mesure faussée.')
+prat('controles-vehicule', 'Je contrôle la pression des pneus de préférence :', choix=['« à froid » : pneus froids, avant de rouler', 'après un long trajet'],
+     explication='« À froid » : pneus froids, avant de rouler. En roulant, un pneu chauffe et donne une fausse mesure. La bonne pression est sur l’étiquette de la portière.')
+prat('controles-vehicule', 'Que contrôles-tu ?',
+     explication='L’état et la pression : coupures, bosses, usure, et pression « à froid », pneus froids. Tes pneus sont ton seul contact avec la route.')
+prat('changer-direction-voie', 'Pour changer de file, c’est-à-dire de voie, je dois :',
+     choix=['me déporter d’un coup', 'me déporter doucement', 'garder mes distances devant et derrière'],
+     explication='Deux bonnes réponses : te déporter doucement, c’est-à-dire te décaler sur le côté, et garder tes distances devant et derrière. Te déporter d’un coup surprend les autres.')
 # Cours 18 : deux questions s'appellent « Que fais-tu ? » ; chacune reçoit son explication, dans l'ordre.
 prat('fatigue-distractions', 'Que fais-tu ?', 0, explication='T’arrêter dans un endroit sûr pour te reposer : tu bâilles, tes paupières sont lourdes, c’est la fatigue. La fenêtre ou la musique ne remplacent pas le sommeil.')
 prat('fatigue-distractions', 'Que fais-tu ?', 1, explication='Tu restes concentré : téléphone en main interdit au volant. Laisse sonner, et si l’appel est urgent, arrête-toi d’abord en sécurité.')

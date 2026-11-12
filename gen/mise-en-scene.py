@@ -494,6 +494,10 @@ for cid, meta in R.COURS.items():
 n_dec = n_txt = n_ill = n_sit = 0
 for cid, c in COURS.items():
     changed = False
+    # un écran ajouté au cours (avant les retouches : les numéros d'écran de R.T comptent déjà avec lui)
+    for pos, nouvel in R.COURS.get(cid, {}).get('insere', []):
+        if not any(s.get('type') == nouvel['type'] and s.get('titre') == nouvel['titre'] for s in c['scenes']):
+            c['scenes'].insert(pos, json.loads(json.dumps(nouvel))); changed = True
     for i, sc in enumerate(c['scenes']):
         key = (cid, i)
         if key in TEXTES:
