@@ -86,7 +86,7 @@ button:focus-visible{outline:2px solid var(--jaune);outline-offset:3px;border-ra
 .tl-r{display:flex;gap:8px;align-items:center}
 #v-salle{height:52vh;min-height:330px;margin:0 -16px;touch-action:pan-y}
 .below{margin:0 -16px;padding:4px 16px 24px;background:var(--nuit);display:flex;flex-direction:column;gap:14px}
-#s-examen.res{background:var(--nuit)}
+#s-entrainer.res{background:var(--nuit)}
 .drag-hint{position:absolute;left:50%;bottom:140px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;color:rgba(11,27,63,.65);opacity:0;animation:hint 6s 2.4s ease both}
 .drag-hint svg{width:16px;height:16px}
 @keyframes hint{10%,70%{opacity:1}100%{opacity:0}}
@@ -1279,8 +1279,8 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 .srow-go{margin-left:auto;color:var(--label3);display:grid;place-items:center}
 .srow-go svg{width:18px;height:18px}
 .srows li[hidden]{display:none}
-#s-examen .feat-exam{margin-top:0}
-#s-examen .hubcard .btn.ghost{background:#fff}
+#s-entrainer .feat-exam{margin-top:0}
+#s-entrainer .hubcard .btn.ghost{background:#fff}
 /* exercices : progression en segments sous le titre */
 .xprog{grid-column:1/-1;display:flex;gap:3px;height:4px;margin:2px 4px 0}
 .xprog[hidden]{display:none}
@@ -1518,3 +1518,106 @@ html,body{font-family:var(--f);letter-spacing:-.011em;font-feature-settings:"ss0
 /* pratique : une fois la réponse donnée, la carte se resserre pour laisser voir la scène (mauvaises réponses écartées plus basses) */
 .xask:not(.xqcm) .xan.dim{min-height:42px;padding-top:4px;padding-bottom:4px;opacity:.72}
 .xask:has(.xexp) .xq-multi{display:none}
+
+/* ================= S'entraîner : un onglet, deux volets (questions · conduite 3D) ================= */
+.ent-seg{position:sticky;top:0;z-index:3;margin:2px 0 0;background:rgba(226,232,243,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.ent-seg button{height:40px;font-size:15px}
+.ent-pan{display:grid;gap:16px}
+.ent-pan>*{min-width:0}
+.ent-pan .more{justify-self:start}
+
+/* ================= Réserver : le vrai examen ================= */
+a.btn,a.jj-chip{text-decoration:none}
+.btn svg{width:18px;height:18px;flex:none;opacity:.85}
+/* l'onglet Réserver compte les jours une fois la session notée */
+.tabbar button.compte span{font-weight:800;color:var(--accent);letter-spacing:0}
+.jj{display:grid;gap:14px}
+.jj-hero{position:relative;overflow:hidden;display:grid;gap:8px;padding:20px;border-radius:26px;color:#fff;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,#3D86FF 0%,#0A5AE8 60%,#0842B8 100%);box-shadow:0 22px 44px -22px rgba(10,90,232,.7)}
+.jj-hero.pret,.jj-hero.resa{background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,#1A9E54 0%,#0F7A3E 60%,#0A5A2D 100%);box-shadow:0 22px 44px -22px rgba(15,122,62,.7)}
+.jj-hero.attente{background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.18),transparent 55%),linear-gradient(150deg,#26324F 0%,#141C33 100%);box-shadow:0 22px 44px -22px rgba(20,28,51,.7)}
+.jj-k{font-size:13px;font-weight:600;opacity:.85}
+.jj-t{font-family:var(--fd);font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1.08}
+.jj-hero p{margin:0;font-size:15px;line-height:1.4;opacity:.9}
+.jj-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden;margin-top:4px}
+.jj-bar i{display:block;height:100%;border-radius:inherit;background:#fff;transition:width .9s ease}
+.jj-count{display:flex;align-items:center;gap:14px;margin:2px 0}
+.jj-count>b{font-family:var(--fr);font-size:46px;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
+.jj-hero.auj .jj-count>b{font-size:36px}
+.jj-count div{display:grid;gap:2px;min-width:0}
+.jj-count strong{font-size:16.5px;font-weight:650;letter-spacing:-.015em;line-height:1.2}
+.jj-count span{font-size:13.5px;opacity:.85;line-height:1.3}
+.jj-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.jj-chip{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff;font-size:15px;font-weight:600;letter-spacing:-.01em;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.35)}
+.jj-chip.plein{background:#fff;color:#0B1B3F}
+.jj-chip svg{width:16px;height:16px;opacity:.85}
+.jj-chip:active{transform:scale(.97)}
+
+.jj-steps{display:grid;border-radius:var(--r-card);background:#fff;box-shadow:var(--sh-1);overflow:hidden}
+.jj-step+.jj-step{border-top:.5px solid var(--sep)}
+.jj-sh{width:100%;display:grid;grid-template-columns:34px 1fr 20px;align-items:center;gap:12px;padding:13px 14px;text-align:left}
+.jj-n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;color:var(--label2);background:rgba(20,28,48,.06)}
+.jj-n svg{width:17px;height:17px}
+.jj-step.now .jj-n{color:#fff;background:var(--accent);box-shadow:0 6px 14px -6px rgba(10,102,255,.7)}
+.jj-step.done .jj-n{color:#fff;background:#1A9E54}
+.jj-st{display:grid;gap:1px;min-width:0}
+.jj-st b{font-size:16.5px;font-weight:600;letter-spacing:-.018em}
+.jj-st small{font-size:13.5px;color:var(--label2);line-height:1.3}
+.jj-step.done .jj-st small{color:#12884A}
+.jj-chev{color:#B4BAC6;display:grid;place-items:center;transition:transform .25s}
+.jj-chev svg{width:18px;height:18px}
+.jj-step.open .jj-chev{transform:rotate(180deg)}
+.jj-in{display:grid;gap:12px;padding:2px 14px 16px;animation:mUp .28s ease both}
+.jj-in>*{min-width:0}
+.jj-p{margin:0;font-size:15px;line-height:1.45;color:var(--craie)}
+.jj-note{margin:0;font-size:13.5px;line-height:1.42;color:var(--label2)}
+.jj-warn{margin:0;padding:10px 12px;border-radius:14px;background:rgba(255,122,26,.1);color:#9A3D06;font-size:14px;line-height:1.4}
+.jj-list{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.jj-list li{position:relative;padding-left:20px;font-size:15px;line-height:1.35}
+.jj-list li::before{content:"";position:absolute;left:4px;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.jj-seg3{grid-template-columns:repeat(3,1fr)}
+.jj-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.jj-facts div{display:grid;align-content:start;gap:2px;padding:10px 10px 9px;border-radius:14px;background:rgba(16,24,40,.035)}
+.jj-facts b{font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--craie)}
+.jj-facts b small{font-size:12px;font-weight:600;color:var(--label3)}
+.jj-facts span{font-size:11.5px;line-height:1.25;color:var(--label2)}
+.jj-poste{display:grid;gap:12px;padding:14px;border-radius:20px;background:linear-gradient(160deg,#FFF9D6,#FFF3B0);box-shadow:inset 0 0 0 1px rgba(214,170,0,.28)}
+.jj-ph{display:flex;align-items:center;gap:12px}
+.jj-logo{width:42px;height:42px;flex:none;border-radius:13px;display:grid;place-items:center;background:#FFD400;color:#12357A;font-family:var(--fd);font-weight:800;font-size:16px;letter-spacing:-.04em;box-shadow:inset 0 -2px 0 rgba(18,53,122,.12)}
+.jj-ph b{display:block;font-size:17px;font-weight:650;letter-spacing:-.02em}
+.jj-ph small{font-size:13px;color:rgba(20,28,48,.62)}
+.jj-cp{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 6px 6px 14px;border-radius:14px;background:#fff;box-shadow:var(--sh-1)}
+.jj-cp span{font-size:14.5px;color:var(--label2)}
+.jj-cp input,.jj-txt input{height:40px;border:0;border-radius:10px;background:rgba(10,102,255,.08);color:var(--accent);font:600 16px var(--f);-webkit-user-select:text;user-select:text}
+.jj-cp input{width:108px;padding:0 10px;text-align:center;letter-spacing:.06em}
+.jj-cp input::placeholder,.jj-txt input::placeholder{color:rgba(10,102,255,.35);font-weight:500;letter-spacing:0}
+.jj-txt input{flex:1;min-width:0;padding:0 12px;text-align:left}
+.rf-date input[type=time]{min-width:108px}
+.jj-poste .jj-note{color:rgba(20,28,48,.66)}
+.jj-autres{border-radius:16px;background:rgba(16,24,40,.035);padding:0 12px}
+.jj-autres summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:46px;font-size:15px;font-weight:600;color:var(--accent);cursor:pointer}
+.jj-autres summary::-webkit-details-marker{display:none}
+.jj-autres summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-right:4px;transition:transform .2s}
+.jj-autres[open] summary::after{transform:rotate(-135deg)}
+.jj-autres ul{list-style:none;margin:8px 0 0;padding:0 0 6px}
+.jj-autres li+li{border-top:.5px solid var(--sep)}
+.jj-autres a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;color:var(--craie);text-decoration:none}
+.jj-autres a span{display:grid;gap:1px}
+.jj-autres a b{font-size:15.5px;font-weight:600}
+.jj-autres a small{font-size:12.5px;color:var(--label2)}
+.jj-autres a svg{width:17px;height:17px;color:#B4BAC6}
+.jj-resa li:first-child{border-top:0;padding-top:2px}
+.jj-resa li b{max-width:62%}
+.jj-sac{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.jj-sac button{width:100%;display:grid;grid-template-columns:28px 1fr;align-items:start;gap:12px;padding:12px;border-radius:16px;text-align:left;background:rgba(16,24,40,.035);transition:background .2s}
+.jj-sac i{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;color:transparent;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(20,28,48,.2);transition:background .2s,color .2s,box-shadow .2s}
+.jj-sac i svg{width:16px;height:16px}
+.jj-sac span{display:grid;gap:2px}
+.jj-sac b{font-size:15.5px;font-weight:600;letter-spacing:-.015em}
+.jj-sac small{font-size:13px;line-height:1.35;color:var(--label2)}
+.jj-sac button[aria-checked="true"]{background:rgba(26,158,84,.09)}
+.jj-sac button[aria-checked="true"] i{color:#fff;background:#1A9E54;box-shadow:none;animation:mPop .3s ease}
+.jj-ops{display:flex;flex-wrap:wrap;gap:8px}
+.jj-ops .chipb{padding:0 14px}
+.jj-ops .chipb[aria-checked="true"]{box-shadow:inset 0 0 0 2px var(--accent);background:rgba(10,102,255,.1);color:var(--accent)}
+#readyGo{justify-self:start;padding:2px 0 0}
+@media (prefers-reduced-motion:reduce){.jj-in,.jj-sac button[aria-checked="true"] i{animation:none}}

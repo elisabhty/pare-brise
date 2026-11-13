@@ -48,6 +48,8 @@ export const defisOf = cid => EXOS.filter(e => e.cours === cid && e.meca !== 'ex
 const saveBest = (id, score) => {
   const all = store.get('exoBest', {}) || {}; if (!all[id] || score > all[id].score) all[id] = { score, at: Date.now() }; store.set('exoBest', all);
   const runs = store.get('exoRuns', {}) || {}; runs[id] = (runs[id] || 0) + 1; store.set('exoRuns', runs);   // compte les examens blancs du planning
+  // chaque examen blanc garde sa note : l'onglet « Réserver » dit « prêt » quand les deux derniers passent la barre du jour J
+  if (id === 'x-exam-blanc') store.set('blancs', (store.get('blancs', []) || []).concat({ t: Date.now(), score }).slice(-20));
   markActive();
 };
 let retourX = 'exos';
@@ -1024,8 +1026,8 @@ export function renderHomeExos() {
 document.addEventListener('click', e => { const b = e.target.closest('[data-exo]'); if (!b) return; haptic(); Sound.ui('tap'); runExo(b.dataset.exo, currentScreen()); });
 
 export function setupExos() {
-  register('exos', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-exos'), enter() { renderExos(); } });
-  register('exo', { world: 'sim', amb: null, noTab: true, tab: 'exos', region: () => $('#v-exo'), enter(prev, o) { if (o && o.arg) runExo(o.arg); }, leave() { stopRun(); Sound.ambience(null); } });
+  // la liste des exercices vit dans l'onglet « S'entraîner » (screens.js) ; « exos » y mène toujours, côté conduite
+  register('exo', { world: 'sim', amb: null, noTab: true, tab: 'entrainer', region: () => $('#v-exo'), enter(prev, o) { if (o && o.arg) runExo(o.arg); }, leave() { stopRun(); Sound.ambience(null); } });
   $('#xQuit').addEventListener('click', () => { haptic(); stopRun(); show(retourX); });
 }
 export const Exos = { run: runExo, list: () => EXOS };

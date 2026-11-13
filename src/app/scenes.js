@@ -79,7 +79,7 @@ function stage(sc, ctx) {
    et ses shaders sont compilés en arrière-plan. La séance démarre ensuite sans écran figé. */
 export function prewarm(c, at) {
   if (!has3D || !SIM || !Engine.warm || !c || Engine.current === 'sim') return;
-  if (!['salle', 'fiche', 'parcours', 'planning', 'examen', 'exos', 'profil'].includes(document.querySelector('.screen.active') ? document.querySelector('.screen.active').id.slice(2) : '')) return;
+  if (!['salle', 'fiche', 'parcours', 'planning', 'entrainer', 'jourj', 'profil'].includes(document.querySelector('.screen.active') ? document.querySelector('.screen.active').id.slice(2) : '')) return;
   const i = Math.max(0, Math.min(c.scenes.length - 1, at || 0)), sc = c.scenes[i];
   const spec = sc && (sc.type === 'situation' ? sc : sc.decor); if (!spec) { Engine.warm('route'); return; }
   try { const acts = build(spec); if (SIM.aide) (spec.aides || []).forEach(sp => SIM.aide(sp, acts)); Engine.warm('sim'); } catch (e) {}

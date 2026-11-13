@@ -30,7 +30,10 @@ export function syncRegion() {
 /* deux navigations coup sur coup (double toucher, téléphone lent) : seule la dernière aboutit. Sans cela, la première,
    qui attendait son rideau, reprenait la main après la seconde et ramenait l'élève sur le mauvais écran. */
 let navTok = 0, enVol = 0, rideauOublie = false;
+/* les anciens écrans « Examen » (questions) et « Exercices » (conduite 3D) sont les deux volets de « S'entraîner » */
+const ALIAS = { examen: ['entrainer', 'questions'], exos: ['entrainer', 'conduite'] };
 export async function show(name, opts = {}) {
+  if (ALIAS[name]) { opts = Object.assign({ volet: ALIAS[name][1] }, opts); name = ALIAS[name][0]; }
   if (!screens[name]) name = 'salle';
   const tok = ++navTok;
   const prev = current, def = screens[name];

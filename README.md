@@ -40,7 +40,9 @@ content/
 src/
   engine/engine.js       moteur 3D : salle, route, studio (Three.js + bloom + ombres)
   engine/sim.js          simulateur de conduite : ville, campagne, autoroute, météo, usagers, pédales
-  app/exos.js            les exercices : 8 mécaniques, écran Exercices, résultats
+  app/exos.js            les exercices : 8 mécaniques, volet Conduite 3D de l'onglet S'entraîner, résultats
+  app/jourj.js           onglet Réserver : NEPH, niveau, réservation à La Poste, session, affaires du jour J
+  app/jourj-core.js      le cœur de l'onglet Réserver, sans DOM (testé à part) : étapes, lien La Poste, compte à rebours
   app/scenes.js          les types de scènes d'un cours (l'endroit où en ajouter)
   app/player.js          lecteur de cours générique
   app/serie.js           séries : entraînement ou examen, QCM et association
@@ -92,6 +94,35 @@ et 4 examens blancs (à 60 %, à 85 %, puis deux à la fin). L'accueil salue l'�
 l'onglet Planning montre 6 jours à partir d'aujourd'hui, l'avancement et la date de fin prévue. Les activités en retard se
 replacent d'un appui. La série compte les jours où l'élève a fait au moins une activité (cours terminé, série, exercice 3D,
 examen, ou une question répondue). Le profil se modifie d'un appui sur l'avatar de l'accueil.
+
+## Les onglets, et la réservation de l'examen
+
+Cinq onglets, chacun avec une vraie page : **Salle** (l'accueil), **Cours** (le parcours), **S'entraîner**, **Planning**, **Réserver**.
+
+L'ancien onglet Exercices répétait ce qu'on trouve déjà sur chaque fiche de cours, dans le planning et sur l'accueil : il a
+fusionné avec l'ancien onglet Examen. **S'entraîner** a deux volets, « Questions » (questions à revoir, examen blanc, examen
+rapide, séries par cours) et « Conduite 3D » (pratiques, défis, Pare-brise, Décodeur). Les anciens noms d'écran `examen` et
+`exos` mènent toujours au bon volet (`ALIAS` dans `nav.js`) : retour d'une série, d'un exercice, vieux liens.
+
+**Réserver** accompagne le vrai examen, dans l'ordre : le numéro NEPH (demande sur le site officiel du permis de conduire), le
+niveau (prêt quand les deux derniers examens faits dans l'app atteignent 35 sur 40 : c'est le repère de l'app, pas une règle),
+la réservation, la session, les affaires du jour J, puis le résultat.
+
+- **La réservation se fait chez l'opérateur agréé.** L'élève tape son code postal et le bouton ouvre la recherche de sessions
+  de La Poste sur sa commune (`lienLaPoste`, vérifié sur le site : le champ « Où ? » arrive rempli). Il y choisit son centre,
+  paie les 30 € et reçoit sa convocation. Les quatre autres opérateurs agréés sont listés avec leur site officiel.
+- **L'app n'encaisse rien et ne demande pas le NEPH** : elle ne garde que « pas encore / demandé / je l'ai ».
+- **La session notée** (date, heure, lieu, centre) donne le compte à rebours de l'accueil, renomme l'onglet en « J-12 » puis « Jour J », et
+  devient le jour J du planning (`adaptPlan({ examen })`).
+- **Les règles affichées** : 30 € par passage, tarif réglementé identique partout ; inscription au plus tard la veille de
+  l'épreuve (arrêté du 16 avril 2026, en vigueur depuis le 1er juillet 2026) ; 40 questions, 35 bonnes réponses ; résultat par
+  e-mail sous 24 à 72 heures.
+
+**Réserver sans quitter l'app.** La Poste propose aux partenaires des API pour chercher des sessions depuis un site ou une
+application ; c'est par un tel partenariat que les auto-écoles en ligne réservent depuis leur propre compte. Il passe par un
+contrat avec La Poste (le partenaire agit comme son mandataire) et par un serveur qui garde la clé : une page statique ne peut
+pas la cacher. Le jour où le partenariat existe, la liste des sessions prend la place du bouton dans l'étape « Réserver ma
+place » (`reserverHTML` dans `jourj.js`), et la session se note toute seule.
 
 ## Le lecteur de cours
 
@@ -162,7 +193,7 @@ Chaque exercice est décrit dans `content/exercices.json` et joué par une **mé
 | `danger` | arrêt sur image : touche tous les dangers, attention aux leurres | `scenes` |
 | `eclairage` | allume les bons feux, effet visible en direct | `situations` |
 
-L’examen blanc en situation (onglet Examen) tire 40 situations au hasard parmi toutes les situations d’examen : 20 secondes chacune, correction à la fin, réussite à 35 sur 40.
+L’examen blanc en situation (onglet S’entraîner, volet Questions) tire 40 situations au hasard parmi toutes les situations d’examen : 20 secondes chacune, correction à la fin, réussite à 35 sur 40.
 
 Chaque exercice compte 10 situations (10 événements, 10 feux, 10 zones, 10 scénarios…).
 

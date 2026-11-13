@@ -10,7 +10,7 @@ import { weekHTML } from './streak.js';
 import { Sound } from './sound.js';
 
 /* ---------- les activités ---------- */
-/* une leçon, puis sa pratique (les défis 3D restent en accès libre depuis la leçon et l'onglet Exercices) */
+/* une leçon, puis sa pratique (les défis 3D restent en accès libre depuis la leçon et l'onglet S'entraîner) */
 const exosOf = c => EXOS.filter(e => e.id === 'p-' + c.id);
 let cfg = { minutesCours: () => 3, ouvrir: () => {} };
 let ORDER = null;
@@ -93,7 +93,8 @@ export const plannedDays = () => new Set(((getPlan() || {}).sessions || []).map(
 
 /* ---------- formulaire « Ton rythme » (onboarding, planning, feuille Adapter) ---------- */
 export const MINUTES = [10, 20, 30, 45];
-export const draftFrom = p => ({ jours: p ? p.jours.slice() : [0, 1, 3, 4], minutes: p ? p.minutes : 20, examen: p ? p.examen : null, avecDate: !!(p && p.examen) });
+const sessionNotee = () => { const r = (store.get('jourj', null) || {}).resa; return r && r.d > iso(today()) ? r.d : null; };   // la session de l'onglet « Réserver »
+export const draftFrom = p => { const ex = p ? p.examen : sessionNotee(); return { jours: p ? p.jours.slice() : [0, 1, 3, 4], minutes: p ? p.minutes : 20, examen: ex, avecDate: !!ex }; };
 export function rythmeHTML(d) {
   const t = iso(today()), max = iso(addD(today(), 365));
   return `<div class="rf">
@@ -107,7 +108,7 @@ export function rythmeHTML(d) {
 export function previewHTML(d) {
   if (!d.jours.length) return '<p class="rf-warn">Choisis au moins un jour.</p>';
   const pv = preview(order(), isDone, d, today());
-  if (!pv.activites) return '<p><b>Tout le parcours est fait.</b> Les examens blancs restent dans Examen.</p>';
+  if (!pv.activites) return '<p><b>Tout le parcours est fait.</b> Les examens blancs restent dans S’entraîner.</p>';
   let ex = '';
   if (d.avecDate && d.examen) {
     const marge = diffD(pv.fin, fromIso(d.examen));

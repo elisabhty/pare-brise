@@ -26,7 +26,7 @@ setupExos();
 setupProfil({ done: () => show('salle'), enter: () => drawPoster() });
 if (has3D) Engine.preload(COURSES.flatMap(c => signsOfCourse(c)).slice(0, 24));
 const start = location.hash.slice(1);
-show(needsOnboarding() ? 'bienvenue' : ['salle', 'planning', 'parcours', 'examen', 'exos', 'parebrise', 'decodeur'].includes(start) ? start : 'salle');
+show(needsOnboarding() ? 'bienvenue' : ['salle', 'planning', 'parcours', 'entrainer', 'jourj', 'examen', 'exos', 'parebrise', 'decodeur'].includes(start) ? start : 'salle');
 // l'écran de chargement s'efface quand le premier écran est dessiné (la 3D comprise)
 frames(2).then(() => { const sp = $('#splash'); if (!sp) return; sp.classList.add('out'); setTimeout(() => sp.remove(), 700); });
 // pendant qu'on lit l'accueil, la 3D du prochain cours se prépare (compilation des shaders) : la séance démarrera sans attente

@@ -1,4 +1,4 @@
-/* Écrans : salle (accueil), parcours (catalogue), fiche cours, examen (hub), et branchement des autres. */
+/* Écrans : salle (accueil), parcours (catalogue), fiche cours, s'entraîner (questions et conduite 3D), réserver (jourj.js). */
 import { $, $$, esc, wait, haptic, store } from './util.js';
 import { has3D, R, SALLE, STUDIO } from './world.js';
 import { sign } from './signs.js';
@@ -15,7 +15,8 @@ import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
 import { Frame, prewarm } from './scenes.js';
 import { roadmap } from './roadmap.js';
-import { renderHomeExos, Exos, practiceOf, defisOf, best as exoBest, starsHtml, icon } from './exos.js';
+import { renderHomeExos, renderExos, Exos, practiceOf, defisOf, best as exoBest, starsHtml, icon } from './exos.js';
+import { setupJourJ, renderJourJ, accueilJJ } from './jourj.js';
 import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plannedDays, refreshBadge, launch, openSheet } from './planning.js';
 import { getProfil, salut, avatarHTML, openProfil } from './profil.js';
 import { weekHTML, streak, activeToday, FLAME } from './streak.js';
@@ -90,6 +91,7 @@ function renderHome() {
   $('#readyM').innerHTML = `<div><b class="num">${doneCount()}<small>/${COURSES.length}</small></b><span>cours vus</span></div><div><b class="num">${prDone}<small>/${COURSES.length}</small></b><span>pratiques faites</span></div><div><b class="num">${blancs}</b><span>examen${blancs > 1 ? 's' : ''} blanc${blancs > 1 ? 's' : ''}</span></div>`;
   $('#readyTxt').textContent = `Le jour J : 35 bonnes réponses sur 40.${mastered() ? ` ${mastered()} question${mastered() > 1 ? 's' : ''} maîtrisée${mastered() > 1 ? 's' : ''}.` : ''}${exams().length ? ` Dernier examen rapide : ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}.` : ''}`;
   $('#reviewCard').hidden = !rev;
+  $('#readyGo').textContent = accueilJJ();
   { const pj = piegeDuJour(id => courseState(id).done, c); $('#homePiege').innerHTML = pj ? piegeHTML(pj, { titre: 'Le piège du jour', lien: true }) : ''; bindPieges($('#homePiege')); }
   $('#reviewN').textContent = rev;
   const i0 = Math.max(0, Math.min(COURSES.indexOf(c) - 1, COURSES.length - 4));
@@ -163,7 +165,14 @@ export function startSerie(id, extra = {}) {
   Serie.start(Object.assign({ titre: s.titre, ids: s.questions, mode: 'entrainement', serieId: s.id }, extra));
 }
 
-/* ---------- EXAMEN (hub) ---------- */
+/* ---------- S'ENTRAÎNER : deux volets, les questions d'examen et la conduite en 3D ---------- */
+let volet = 'questions';
+function renderEntrainer(v) {
+  if (v === 'questions' || v === 'conduite') volet = v;
+  $$('#entSeg [data-volet]').forEach(b => { const on = b.dataset.volet === volet; b.setAttribute('aria-checked', on); b.setAttribute('aria-selected', on); });
+  $('#entQ').hidden = volet !== 'questions'; $('#entC').hidden = volet !== 'conduite';
+  if (volet === 'questions') renderHub(); else renderExos();
+}
 function renderHub() {
   const n = Math.min(20, allQuestionIds().length), rev = toReview();
   $('#hubExamN').textContent = n;
@@ -200,8 +209,11 @@ export function setupScreens() {
   register('cours', { world: 'route', amb: 'route', noTab: true, reframe: () => Frame.apply(),
     enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0), !!o.play); if (o.play) Player.start(o.at, o.k); } },
     leave() { if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
-  register('serie', { world: 'route', amb: null, noTab: true, tab: 'examen', enter() { R.reset(); }, leave() { Serie.stop(); } });
-  register('examen', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-examen'), enter() { renderHub(); SALLE.reset(900); } });
+  register('serie', { world: 'route', amb: null, noTab: true, tab: 'entrainer', enter() { R.reset(); }, leave() { Serie.stop(); } });
+  register('entrainer', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-entrainer'), enter(prev, o) { renderEntrainer(o && o.volet); SALLE.reset(900); } });
+  $$('#entSeg [data-volet]').forEach(b => b.addEventListener('click', () => { if (b.dataset.volet === volet) return; haptic(); Sound.ui('tick'); renderEntrainer(b.dataset.volet); $('#s-entrainer').scrollTop = 0; }));
+  register('jourj', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-jourj'), enter() { renderJourJ(true); SALLE.reset(900); } });
+  setupJourJ();
   register('parebrise', { world: 'route', amb: 'route', enter() { R.reset(); R.setSpeed(40, 20); R.pose('reflex', 1); }, leave() { Reflex.stop(); } });
   register('decodeur', { world: 'studio', amb: null, enter() { Decoder.paint(true); } });
 
