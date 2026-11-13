@@ -1671,3 +1671,41 @@ a.btn,a.jj-chip{text-decoration:none}
 .jj-h{font-size:13px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--label2);margin:4px 0 -2px}
 #readyGo{justify-self:start;padding:2px 0 0}
 @media (prefers-reduced-motion:reduce){.jj-in,.jj-sac button[aria-checked="true"] i{animation:none}}
+
+/* ================= Plot, ton moniteur : sa bulle (accueil, onglets) et la fête des étapes clés ================= */
+#homeCoach:empty{display:none}
+#plCoach[hidden],#entCoach[hidden]{display:none}
+.coach{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:end;gap:8px}
+.coach-p{padding:0;display:grid;justify-items:center;border-radius:20px;transition:transform .15s;-webkit-tap-highlight-color:transparent}
+.coach-p:active{transform:scale(.93)}
+.coach-p .plot-wrap{pointer-events:none}
+.coach-p .bubble{font-size:10.5px;padding:4px 8px;background:#E8650A;animation:coachInv 2.4s ease-in-out infinite}
+@keyframes coachInv{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.coach-b{position:relative;display:grid;gap:5px;margin-bottom:12px;padding:12px 14px 13px;border-radius:20px 20px 20px 6px;background:#fff;box-shadow:var(--sh-1);animation:mUp .35s ease both}
+.coach-b::before{content:"";position:absolute;left:-5px;bottom:9px;width:12px;height:12px;background:#fff;transform:rotate(45deg);border-radius:2px}
+.coach-k{font-size:12.5px;font-weight:700;letter-spacing:-.005em;color:#D9590A}
+.coach-t{margin:0;font-size:15px;line-height:1.42;color:var(--craie)}
+.coach-a{justify-self:start;display:inline-flex;align-items:center;gap:3px;margin-top:3px;min-height:36px;padding:0 12px 0 14px;border-radius:999px;background:rgba(10,102,255,.1);color:var(--accent);font-size:14.5px;font-weight:650;letter-spacing:-.01em;text-align:left;transition:transform .15s}
+.coach-a:active{transform:scale(.97)}
+.coach-a svg{width:15px;height:15px;flex:none}
+.coach.petit .coach-b{margin-bottom:8px;padding:11px 13px 12px}
+.coach.petit .coach-t{font-size:14.5px}
+.coach.rappel .coach-k{color:var(--accent)}
+.coach-r{display:flex;align-items:center;gap:12px}
+.coach-sg{flex:none;display:grid}
+.coach-sg svg{width:46px;height:46px;display:block}
+.coach-r p{margin:0;display:grid;gap:2px;font-size:15px;line-height:1.35;color:var(--craie)}
+.coach-r p b{font-weight:650;letter-spacing:-.012em}
+.coach-r p span{font-size:13.5px;line-height:1.38;color:var(--label2)}
+.coach-h{font-size:12px;color:var(--label3)}
+.fete{position:relative;display:grid;justify-items:center;gap:8px;padding:4px 2px 2px;text-align:center}
+.fete-p{position:relative;padding:14px 30px 2px}
+.fete-p::before{content:"";position:absolute;left:50%;bottom:0;width:170px;height:170px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,170,60,.28),rgba(255,170,60,0) 68%)}
+.fete-p .plot-wrap{position:relative}
+.fete h2{margin:6px 0 0;font-family:var(--fd);font-size:27px;font-weight:700;letter-spacing:-.03em;line-height:1.12}
+.fete p{margin:0;max-width:320px;font-size:16px;line-height:1.45;color:var(--label2)}
+.fete .bs-btns{width:100%;margin-top:12px}
+.fete-conf{position:absolute;inset:-20px 0 0;overflow:hidden;pointer-events:none}
+.fete-conf i{position:absolute;top:0;left:var(--x);width:8px;height:13px;border-radius:2px;background:var(--c);opacity:0;animation:conf 2.2s var(--d) cubic-bezier(.25,.6,.35,1) both}
+@keyframes conf{0%{transform:translateY(-10px) rotate(var(--r));opacity:0}8%{opacity:1}100%{transform:translateY(330px) rotate(calc(var(--r) + 600deg));opacity:0}}
+@media (prefers-reduced-motion:reduce){.fete-conf{display:none}.coach-p .bubble,.coach-b{animation:none}}

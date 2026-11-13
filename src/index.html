@@ -40,6 +40,7 @@
         <div class="hello-t"><h1 class="d" id="helloT">Bonjour</h1><span id="helloP"></span></div>
         <button class="stk-pill" id="stkPill" data-go="planning"></button>
       </div>
+      <div id="homeCoach"></div>
       <div id="homeToday"></div>
       <div class="next-c" id="nextC">
         <div class="nc-card">
@@ -88,6 +89,7 @@
   <!-- ================= PLANNING ================= -->
   <section class="screen dimbg" id="s-planning" aria-label="Planning">
     <div class="page-head"><div class="eyebrow">Ton rythme</div><h1 class="d">Planning</h1><p class="pl-sub" id="plSub"></p></div>
+    <div id="plCoach" hidden></div>
     <div id="plBody" class="pl-body"></div>
   </section>
 
@@ -199,6 +201,7 @@
   <section class="screen dimbg" id="s-entrainer" aria-label="S’entraîner">
     <div class="page-head"><div class="eyebrow">Questions et conduite en 3D</div><h1 class="d">S’entraîner</h1></div>
     <div class="rf-seg ent-seg" id="entSeg" role="tablist" aria-label="Type d’entraînement"><button type="button" role="tab" data-volet="questions" aria-checked="true" aria-selected="true">Questions</button><button type="button" role="tab" data-volet="conduite" aria-checked="false" aria-selected="false">Conduite 3D</button></div>
+    <div id="entCoach" hidden></div>
     <div class="ent-pan" id="entQ" role="tabpanel" aria-label="Questions">
       <button class="review" id="hubReview" hidden><b class="num" id="hubReviewN">0</b><div><strong>Questions à revoir</strong><span>Révision espacée : elles reviennent jusqu’à être maîtrisées.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
       <button class="feat feat-exam" data-exo="x-exam-blanc"><span class="feat-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h5"/><path d="m14 16.5 1.6 1.6 3-3.2"/></svg>Comme le jour J · en 3D</span><b>Examen blanc</b><span>40 situations filmées, 20 secondes chacune, correction à la fin. Il faut 35 bonnes réponses pour réussir.</span><i>Commencer</i></button>

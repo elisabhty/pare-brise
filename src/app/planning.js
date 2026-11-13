@@ -194,6 +194,7 @@ export function renderPlanning() {
     host.innerHTML = `<div class="pl-setup"><div class="pl-intro"><span class="pl-intro-ic">${ico('cours')}</span><div><b>Ton planning personnalisé</b><p>${COURSES.length} leçons, chacune suivie de sa pratique en 3D, et 4 examens blancs, répartis dans l’ordre. Tu pourras tout ajuster ensuite.</p></div></div>${rythmeHTML(d)}<button class="btn" id="plCreate">Créer mon planning</button></div>`;
     bindRythme(host, d, () => { $('#plCreate').disabled = !d.jours.length; });
     $('#plCreate').addEventListener('click', () => { haptic('ok'); Sound.ui('ok'); createPlan(draftOut(d)); weekOff = 0; daySel = null; renderPlanning(); });
+    try { document.dispatchEvent(new CustomEvent('pb:planning')); } catch (e) {}
     return;
   }
   const t = today(), tIso = iso(t), st = stats(), fin = lastDay(p);
@@ -232,6 +233,7 @@ export function renderPlanning() {
   $$('[data-day]', host).forEach(b => b.addEventListener('click', () => { haptic(); Sound.ui('tick'); daySel = b.dataset.day; renderPlanning(); }));
   $$('[data-avance]', host).forEach(b => b.addEventListener('click', () => { const s = sessionOf(p, b.dataset.avance); const id = s && s.items.find(x => !isDone(x)); if (id) launch(id); }));
   bindToday(host, renderPlanning);
+  try { document.dispatchEvent(new CustomEvent('pb:planning')); } catch (e) {}
 }
 /* boutons communs de la carte du jour : « Commencer la séance », « Replacer » */
 export function bindToday(root, after, startFn = launch) {

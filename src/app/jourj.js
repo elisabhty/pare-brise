@@ -10,12 +10,13 @@ import { getPlan, adaptPlan, openSheet } from './planning.js';
 import { lire, PRIX, OPERATEURS, operateur, ANTS, AGES, DOCS, ageOk, docsNeph, docsPrets, NEPH_SEMAINES, attenteNeph, REGLES, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge } from './jourj-core.js';
 
 export const getJJ = () => lire(store.get('jourj', null));
-const put = patch => { const e = Object.assign(getJJ(), patch); store.set('jourj', e); refreshJJBadge(); return e; };
+const put = patch => { const e = Object.assign(getJJ(), patch); store.set('jourj', e); refreshJJBadge(); try { document.dispatchEvent(new CustomEvent('pb:jj')); } catch (x) {} return e; };
 
 /* tous les examens faits dans l'app, du plus ancien au plus récent : examens blancs (en %) et examens rapides */
 const examens = () => (store.get('blancs', []) || []).map(b => ({ t: b.t, score: b.score, total: 100 }))
   .concat(exams().map(x => ({ t: x.t, score: x.score, total: x.total }))).sort((a, b) => a.t - b.t);
 const niv = () => niveau({ examens: examens(), coursVus: doneCount(), coursTotal: COURSES.length });
+export const niveauActuel = niv;
 
 const I = {
   ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5.5 12.5 4.2 4.2 8.8-9.4"/></svg>',

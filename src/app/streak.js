@@ -16,6 +16,8 @@ export const streak = () => streakOf(days(), today());
 export const best = () => Math.max(bestStreak(days()), streak());
 export const activeToday = () => days().includes(iso(today()));
 export const activeCount = () => days().length;
+/* le dernier jour actif avant aujourd'hui (AAAA-MM-JJ), ou null */
+export const lastActive = () => { const t = iso(today()), l = days().filter(d => d < t).sort(); return l.length ? l[l.length - 1] : null; };
 
 /* La semaine en cours, du lundi au dimanche : une flamme par jour actif, le jour même entouré, les jours prévus au planning marqués. */
 export function weekHTML(planned = new Set()) {

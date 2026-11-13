@@ -72,6 +72,25 @@ Plot, le cône mascotte, est une planche de 9 images (`src/assets/plot-sprite.we
 
 Il réagit aux bonnes et aux mauvaises réponses (cours et séries), se tient à l'étape en cours sur la carte du parcours, accueille l'élève et félicite à la fin des cours.
 
+### Plot parle à l'élève
+
+`coach-core.js` (sans DOM, testé dans `tests/coach.test.mjs`) décide de ce que dit Plot ; `coach.js` lit l'état de l'élève et l'affiche.
+
+- **À l'accueil, le conseil du moment**, sous le bonjour : une phrase, au plus un bouton. Dans l'ordre : le jour J et ce qui
+  l'entoure (résultat attendu, réussi, raté, J-3 à J-1), le retour après 3 jours d'absence, la série en danger le soir
+  (à partir de 18 h, série de 2 jours ou plus), le retard du planning, un rythme qui finit après l'examen, la journée faite,
+  les erreurs à revoir, « prêt à réserver », le NEPH à demander dès 3 cours vus, l'examen blanc quand tous les cours sont vus,
+  la pratique 3D oubliée, le planning à créer, et sinon le prochain cours.
+- **Sur les onglets Planning et S'entraîner**, Plot ne parle que s'il a quelque chose d'utile à ajouter (`conseilEcran`
+  renvoie `null` sinon) : rythme qui dépasse l'examen, retard, questions à revoir, dernier examen blanc, pratique oubliée.
+- **Toucher Plot** affiche un rappel tiré des fiches mémo des cours déjà vus (panneau compris), un autre à chaque toucher.
+  Une étiquette « Touche-moi » l'indique jusqu'au premier toucher.
+- **Les étapes clés se fêtent**, une fois chacune, dans une feuille avec confettis : 1, 5, 10, 20 puis tous les cours ;
+  3, 7, 14 et 30 jours d'affilée ; premier examen blanc réussi ; « prêt » ; NEPH reçu ; place réservée ; code réussi
+  (`JALONS`). Au premier lancement de cette version, ce qui est déjà acquis est noté comme fêté, sans feuille.
+- Plot ne cite que des repères déjà affichés ailleurs dans l'app (35 sur 40, 15 minutes avant, 24 à 72 heures, 2 à 6
+  semaines pour le NEPH) : un test vérifie qu'il n'en invente pas d'autres.
+
 La scène animée de l'accueil est `src/assets/plot-scene.webp`. Pour changer de mascotte, remplace ces deux fichiers en gardant 9 images de même taille côte à côte. Le build les intègre automatiquement.
 
 ## Ce qui se branche tout seul

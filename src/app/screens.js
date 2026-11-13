@@ -21,6 +21,7 @@ import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plann
 import { getProfil, salut, avatarHTML, openProfil } from './profil.js';
 import { weekHTML, streak, activeToday, FLAME } from './streak.js';
 import { currentScreen } from './nav.js';
+import { setupCoach, renderCoachAccueil, renderCoachEcran } from './coach.js';
 
 /* ---------- utilitaires d'affichage ---------- */
 export const courseMinutes = c => Math.max(1, Math.round(c.scenes.reduce((a, s) => a + splitSentences(s.dire || '').reduce((b, t) => b + estimate(t) + 180, 0) + 450, 0) / 60000));
@@ -68,6 +69,7 @@ function renderHello() {
 function renderHome() {
   const c = nextCourse(), st = courseState(c.id);
   renderHello();
+  renderCoachAccueil(renderHome);
   const plan = getPlan();
   $('#homeToday').innerHTML = plan ? todayCardHTML({ home: true }) : '';
   bindToday($('#homeToday'), renderHome, id => (id[0] === 'c' ? seatAndPlay(id.slice(2)) : launch(id)));
@@ -172,6 +174,7 @@ function renderEntrainer(v) {
   $$('#entSeg [data-volet]').forEach(b => { const on = b.dataset.volet === volet; b.setAttribute('aria-checked', on); b.setAttribute('aria-selected', on); });
   $('#entQ').hidden = volet !== 'questions'; $('#entC').hidden = volet !== 'conduite';
   if (volet === 'questions') renderHub(); else renderExos();
+  renderCoachEcran(volet, '#entCoach', () => renderEntrainer());
 }
 function renderHub() {
   const n = Math.min(20, allQuestionIds().length), rev = toReview();
@@ -191,6 +194,8 @@ function renderHub() {
 export function setupScreens() {
   register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); renderHomeExos(); drawPoster(nextCourse()); if (prev && prev !== 'bienvenue') SALLE.reset(1200); } });
   register('planning', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-planning'), enter() { renderPlanning(); SALLE.reset(900); } });
+  document.addEventListener('pb:replanifie', () => renderPlanning());
+  setupCoach({ minutes: courseMinutes });
   // une activité du planning s'ouvre là où elle vit, et revient à l'écran d'où on l'a lancée
   setupPlanning({ minutesCours: courseMinutes, ouvrir(kind, ref) {
     const from = currentScreen() || 'planning';
