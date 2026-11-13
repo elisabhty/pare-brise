@@ -116,16 +116,20 @@ examen, ou une question répondue). Le profil se modifie d'un appui sur l'avatar
 
 ## Les onglets, et la réservation de l'examen
 
-Cinq onglets, chacun avec une vraie page : **Salle** (l'accueil), **Cours** (le parcours), **S'entraîner**, **Planning**, **Réserver**.
+Quatre onglets, dans l'ordre de ce qu'il faut pour réussir : **Accueil** (Plot, la séance du jour, la semaine), **Cours**,
+**S'entraîner**, **Mon examen**. Le planning n'est plus un onglet : c'est une page de l'accueil (« Ma semaine » → « Mon
+planning », avec un retour), et le compteur d'activités du jour passe sur l'onglet Accueil. Peu de texte à l'écran : une
+phrase, un bouton ; le détail s'ouvre au toucher.
 
 L'ancien onglet Exercices répétait ce qu'on trouve déjà sur chaque fiche de cours, dans le planning et sur l'accueil : il a
 fusionné avec l'ancien onglet Examen. **S'entraîner** a deux volets, « Questions » (questions à revoir, examen blanc, examen
-rapide, séries par cours) et « Conduite 3D » (pratiques, défis, Pare-brise, Décodeur). Les anciens noms d'écran `examen` et
+rapide, séries par cours) et « Conduite 3D » (pratiques, défis, Décodeur). Les anciens noms d'écran `examen` et
 `exos` mènent toujours au bon volet (`ALIAS` dans `nav.js`) : retour d'une série, d'un exercice, vieux liens.
 
-**Réserver** accompagne le vrai examen, dans l'ordre : le numéro NEPH (demande sur le site officiel du permis de conduire), le
-niveau (prêt quand les deux derniers examens faits dans l'app atteignent 35 sur 40 : c'est le repère de l'app, pas une règle),
-la réservation, la session, les affaires du jour J, puis le résultat.
+**Mon examen** accompagne le vrai examen en 4 étapes : le numéro NEPH (demande sur le site officiel du permis de conduire),
+être prêt (deux derniers examens faits dans l'app à 35 sur 40 ou plus : le repère de l'app, pas une règle), réserver sa place,
+le jour J (affaires, puis résultat). La page tient en une grande carte « où j'en suis » (une image, une ligne, un ou deux
+boutons ; Plot tant que l'image n'est pas là) et quatre lignes ; chaque ligne ouvre une feuille avec le détail de l'étape.
 
 - **La réservation se fait chez l'opérateur agréé.** L'élève tape son code postal et le bouton ouvre la recherche de sessions
   de La Poste sur sa commune (`lienLaPoste`, vérifié sur le site : le champ « Où ? » arrive rempli). Il y choisit son centre,

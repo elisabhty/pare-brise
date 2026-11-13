@@ -10,9 +10,15 @@ const src = ['screens', 'exos', 'jourj', 'planning', 'main', 'scenes'].map(f => 
 const VEN = fromIso('2026-11-13');
 const tabs = [...html.match(/<nav class="tabbar"[\s\S]*?<\/nav>/)[0].matchAll(/data-go="(\w+)"[\s\S]*?<span[^>]*>([^<]+)<\/span>/g)].map(m => [m[1], m[2]]);
 
-test('cinq onglets, chacun avec sa page : Salle, Cours, S’entraîner, Planning, Réserver', () => {
-  assert.deepEqual(tabs, [['salle', 'Salle'], ['parcours', 'Cours'], ['entrainer', 'S’entraîner'], ['planning', 'Planning'], ['jourj', 'Réserver']]);
+test('quatre onglets pensés pour réussir : Accueil, Cours, S’entraîner, Mon examen', () => {
+  assert.deepEqual(tabs, [['salle', 'Accueil'], ['parcours', 'Cours'], ['entrainer', 'S’entraîner'], ['jourj', 'Mon examen']]);
   tabs.forEach(([id]) => { assert.ok(html.includes(`id="s-${id}"`), `écran ${id}`); assert.ok(src.includes(`register('${id}'`), `écran ${id} enregistré`); });
+  // le planning devient une page de l'accueil : ouverte depuis « Ma semaine », avec un retour, et l'onglet Accueil allumé
+  assert.ok(html.includes('id="weekGo"') && /data-go="planning"[^>]*id="weekGo"/.test(html));
+  assert.ok(/id="s-planning"[\s\S]*?class="pg-back" data-go="salle"/.test(html));
+  assert.ok(src.includes("register('planning', { world: 'salle', amb: 'salle', still: true, tab: 'salle'"));
+  // le compteur d'activités du jour passe sur l'onglet Accueil
+  assert.ok(/<button data-go="salle">[\s\S]*?id="plBadge"/.test(html.match(/<nav class="tabbar"[\s\S]*?<\/nav>/)[0]));
 });
 test('l’onglet Exercices a disparu : questions et conduite 3D sont les deux volets de S’entraîner', () => {
   assert.ok(!html.includes('id="s-exos"') && !html.includes('id="s-examen"'));

@@ -50,30 +50,18 @@
           <span class="nc-meta" id="ncMeta"></span>
           <button class="btn" id="takeSeat">Lancer le cours</button>
         </div>
-        <button class="more" data-go="planning">Créer mon planning pour le jour J →</button>
       </div>
     </div>
     <div class="below">
+      <div class="h-row"><h2 class="h-sec">Ma semaine</h2><button class="h-more" data-go="planning" id="weekGo">Mon planning</button></div>
       <div id="homeStreak"></div>
-      <button class="review" id="reviewCard" hidden><b class="num" id="reviewN">0</b><div><strong>Questions à revoir</strong><span>Tes erreurs reviennent jusqu’à ce que tu les maîtrises.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
-      <div class="glass ready">
-        <div class="ready-top"><span class="eyebrow">Prêt pour l’examen</span><b class="num" id="readyPct">0 %</b></div>
+      <button class="review" id="reviewCard" hidden><b class="num" id="reviewN">0</b><div><strong>Questions à revoir</strong><span>Tes erreurs, jusqu’à ce que tu les maîtrises</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="glass ready" data-go="jourj" id="readyCard">
+        <div class="ready-top"><span class="eyebrow">Mon examen</span><b class="num" id="readyPct">0 %</b></div>
         <div class="bar"><i id="readyBar"></i></div>
-        <div class="ready-m" id="readyM"></div>
-        <span class="small" id="readyTxt"></span>
-        <button class="more" data-go="jourj" id="readyGo">Réserver mon examen →</button>
-      </div>
+        <span class="ready-go" id="readyGo">Réserver mon examen</span>
+      </button>
       <div id="homePiege"></div>
-      <h2 class="h-sec">Ton parcours</h2>
-      <div id="homeRoad" class="mini"></div>
-      <button class="more" data-go="parcours">Voir tout le parcours →</button>
-      <h2 class="h-sec">Conduite en 3D<button class="h-more" data-go="exos">Tout voir</button></h2>
-      <div class="xcarousel" id="homeExos"></div>
-      <h2 class="h-sec">Outils</h2>
-      <ul class="cells">
-        <li><button class="cell" data-go="decodeur"><span class="cell-ic m-decodeur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="5.5"/><path d="M13 13l7.5 7.5"/></svg></span><span class="cell-t"><b>Décodeur</b><small>Forme + couleur = sens, même pour un panneau inconnu</small></span><span class="cell-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>
-      </ul>
-      <p class="small">Voix : synthèse vocale de ton appareil. Les autres élèves de la salle sont simulés.</p>
     </div>
   </section>
 
@@ -87,7 +75,7 @@
 
   <!-- ================= PLANNING ================= -->
   <section class="screen dimbg" id="s-planning" aria-label="Planning">
-    <div class="page-head"><div class="eyebrow">Ton rythme</div><h1 class="d">Planning</h1><p class="pl-sub" id="plSub"></p></div>
+    <div class="page-head"><button class="pg-back" data-go="salle" aria-label="Retour à l’accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg>Accueil</button><h1 class="d">Mon planning</h1><p class="pl-sub" id="plSub"></p></div>
     <div id="plCoach" hidden></div>
     <div id="plBody" class="pl-body"></div>
   </section>
@@ -202,12 +190,12 @@
     <div class="rf-seg ent-seg" id="entSeg" role="tablist" aria-label="Type d’entraînement"><button type="button" role="tab" data-volet="questions" aria-checked="true" aria-selected="true">Questions</button><button type="button" role="tab" data-volet="conduite" aria-checked="false" aria-selected="false">Conduite 3D</button></div>
     <div id="entCoach" hidden></div>
     <div class="ent-pan" id="entQ" role="tabpanel" aria-label="Questions">
-      <button class="review" id="hubReview" hidden><b class="num" id="hubReviewN">0</b><div><strong>Questions à revoir</strong><span>Révision espacée : elles reviennent jusqu’à être maîtrisées.</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
-      <button class="feat feat-exam" data-exo="x-exam-blanc"><span class="feat-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h5"/><path d="m14 16.5 1.6 1.6 3-3.2"/></svg>Comme le jour J · en 3D</span><b>Examen blanc</b><span>40 situations filmées, 20 secondes chacune, correction à la fin. Il faut 35 bonnes réponses pour réussir.</span><i>Commencer</i></button>
+      <button class="review" id="hubReview" hidden><b class="num" id="hubReviewN">0</b><div><strong>Questions à revoir</strong><span>Tes erreurs, jusqu’à ce que tu les maîtrises</span></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 L16 12 L9 19"/></svg></button>
+      <button class="feat feat-exam" data-exo="x-exam-blanc"><span class="feat-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h5"/><path d="m14 16.5 1.6 1.6 3-3.2"/></svg>Comme le jour J · en 3D</span><b>Examen blanc</b><span>40 situations, comme le jour J. 35 pour réussir.</span><i>Commencer</i></button>
       <div class="glass hubcard">
         <div class="eyebrow">Entraînement</div>
         <h2 class="d">Examen rapide</h2>
-        <p class="lead">Des questions tirées de toute la banque, en alternant les thèmes, lues à voix haute. 20 secondes chacune, correction à la fin.</p>
+        <p class="lead">20 questions de tous les thèmes, lues à voix haute.</p>
         <div class="facts"><div><b class="num" id="hubExamN">20</b><span>questions</span></div><div><b class="num">20 s</b><span>par question</span></div><div><b class="num">87,5 %</b><span>pour réussir</span></div></div>
         <p class="small" id="hubLast"></p>
         <button class="btn ghost" id="hubExam">Commencer l’examen rapide</button>
@@ -215,8 +203,6 @@
       <h2 class="h-sec">Séries par cours<small id="hubSeriesN"></small></h2>
       <ul class="srows" id="hubSeries"></ul>
       <button class="more" id="hubSeriesMore" hidden>Voir toutes les séries</button>
-      <p class="small">Le jour J : 40 questions, 35 bonnes réponses minimum.</p>
-      <button class="more" data-go="jourj">Prêt ? Réserver mon examen →</button>
     </div>
     <div class="ent-pan" id="entC" role="tabpanel" aria-label="Conduite 3D" hidden>
       <div class="pstats" id="xHubStats"></div>
@@ -226,13 +212,12 @@
       <div class="tools">
         <button class="tile glass" data-go="decodeur"><b class="d">Décodeur</b><span>Forme + couleur = sens</span></button>
       </div>
-      <p class="small">Les situations sont simulées. Les distances suivent les règles enseignées au code : réaction d’environ 1 seconde, freinage plus long sur sol mouillé.</p>
     </div>
   </section>
 
   <!-- ================= RÉSERVER (le vrai examen : NEPH, niveau, réservation, session, jour J) ================= -->
-  <section class="screen dimbg" id="s-jourj" aria-label="Réserver l’examen">
-    <div class="page-head"><div class="eyebrow">L’épreuve officielle</div><h1 class="d">Réserver</h1><p class="pl-sub">De ton numéro NEPH à ta convocation : tout ce qu’il faut pour passer le code, dans l’ordre.</p></div>
+  <section class="screen dimbg" id="s-jourj" aria-label="Mon examen">
+    <div class="page-head"><div class="eyebrow">Le vrai examen</div><h1 class="d">Mon examen</h1></div>
     <div id="jjBody" class="jj"></div>
   </section>
 
@@ -274,11 +259,10 @@
   <div class="labels" id="labels"></div>
 
   <nav class="tabbar" id="tabbar" aria-label="Navigation">
-    <button data-go="salle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 10.5 12 4l8.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19v-8.5Z"/></svg><span>Salle</span></button>
+    <button data-go="salle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 10.5 12 4l8.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19v-8.5Z"/></svg><span>Accueil</span><i class="tbadge num" id="plBadge" hidden></i></button>
     <button data-go="parcours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H5.5A1.5 1.5 0 0 1 4 16.5v-11ZM20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h4.5a1.5 1.5 0 0 0 1.5-1.5v-11Z"/></svg><span>Cours</span></button>
     <button data-go="entrainer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.4"/><path d="M12 3.5v6.1M4.2 15.4l5.5-2.6M19.8 15.4l-5.5-2.6"/></svg><span>S’entraîner</span></button>
-    <button data-go="planning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 9.5h17M8 3v4M16 3v4M8 13.5h2M14 13.5h2M8 17h2"/></svg><span>Planning</span><i class="tbadge num" id="plBadge" hidden></i></button>
-    <button data-go="jourj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v1.2a2.3 2.3 0 0 0 0 4.6v1.2a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 15.5v-1.2a2.3 2.3 0 0 0 0-4.6V8.5Z"/><path d="m9.3 12.2 1.9 1.9 3.6-3.9"/></svg><span id="jjTab">Réserver</span></button>
+    <button data-go="jourj"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v1.2a2.3 2.3 0 0 0 0 4.6v1.2a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 15.5v-1.2a2.3 2.3 0 0 0 0-4.6V8.5Z"/><path d="m9.3 12.2 1.9 1.9 3.6-3.9"/></svg><span id="jjTab">Mon examen</span></button>
   </nav>
 
   <div class="sheet-ov" id="sheetOv" hidden><div class="bsheet" id="bsheet" role="dialog" aria-modal="true" aria-label="Réglages"></div></div>

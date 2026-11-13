@@ -1709,3 +1709,64 @@ a.btn,a.jj-chip{text-decoration:none}
 .fete-conf i{position:absolute;top:0;left:var(--x);width:8px;height:13px;border-radius:2px;background:var(--c);opacity:0;animation:conf 2.2s var(--d) cubic-bezier(.25,.6,.35,1) both}
 @keyframes conf{0%{transform:translateY(-10px) rotate(var(--r));opacity:0}8%{opacity:1}100%{transform:translateY(330px) rotate(calc(var(--r) + 600deg));opacity:0}}
 @media (prefers-reduced-motion:reduce){.fete-conf{display:none}.coach-p .bubble,.coach-b{animation:none}}
+
+/* ================= Mon examen : la carte « où j'en suis », les 4 étapes, les feuilles de détail ================= */
+.jx-hero{position:relative;overflow:hidden;display:grid;gap:12px;padding:0 0 16px;border-radius:26px;background:#fff;box-shadow:var(--sh-2);animation:mUp .4s ease both}
+.jx-vis{position:relative;height:196px;display:grid;place-items:end center;overflow:hidden;background:radial-gradient(70% 60% at 50% 100%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%),linear-gradient(165deg,#D9E8FF 0%,#A9CAFF 100%)}
+.jx-hero.vert .jx-vis{background:radial-gradient(70% 60% at 50% 100%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%),linear-gradient(165deg,#DDF6E6 0%,#9EE0B8 100%)}
+.jx-hero.orange .jx-vis{background:radial-gradient(70% 60% at 50% 100%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%),linear-gradient(165deg,#FFEBDB 0%,#FFC79A 100%)}
+.jx-vis.img{background:#DCE9FF}
+.jx-vis.img::after{content:"";position:absolute;inset:auto 0 0;height:46px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+.jx-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;animation:kenburns 20s ease-in-out infinite alternate}
+.jx-plot{position:relative;height:178px;width:auto;margin-bottom:-4px;animation:flotte 3.2s ease-in-out infinite}
+.jx-vis .plot-wrap{margin-bottom:8px}
+@keyframes kenburns{from{transform:scale(1.03) translate(0,0)}to{transform:scale(1.13) translate(-1.6%,-1.4%)}}
+@keyframes flotte{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.jx-txt{display:grid;gap:4px;padding:0 18px}
+.jx-k{font-size:13px;font-weight:650;color:var(--accent);letter-spacing:-.005em}
+.jx-hero.vert .jx-k{color:#15904B}
+.jx-hero.orange .jx-k{color:#D9590A}
+.jx-t{font-family:var(--fd);font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1.08;color:var(--craie)}
+.jx-s{font-size:15.5px;line-height:1.4;color:var(--label2)}
+.jx-bar{height:10px;margin:0 18px;border-radius:99px;background:rgba(10,102,255,.12);overflow:hidden}
+.jx-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#5AA0FF,#0A66FF);transition:width .9s ease}
+.jx-btns{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;padding:0 16px}
+.jx-btns .btn{height:50px;padding:0 12px;font-size:16px;gap:6px}
+.jx-btns .btn svg{width:16px;height:16px;flex:none}
+.jx-hero.compte{gap:10px;padding:20px 18px 16px;color:#fff;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,#1A9E54 0%,#0F7A3E 60%,#0A5A2D 100%);box-shadow:0 22px 44px -22px rgba(15,122,62,.7)}
+.jx-hero.compte .jx-s{color:rgba(255,255,255,.9)}
+.jx-hero.compte .jx-btns{padding:0;margin-top:4px}
+.jx-hero.compte .btn{background:#fff;color:#0F5A2F;box-shadow:none}
+.jx-hero.compte .btn.ghost{background:rgba(255,255,255,.18);color:#fff}
+.jx-count{display:flex;align-items:center;gap:14px}
+.jx-count>b{font-family:var(--fr);font-size:48px;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
+.jx-hero.auj .jx-count>b{font-size:38px}
+.jx-count div{display:grid;gap:2px;min-width:0}
+.jx-count strong{font-size:16.5px;font-weight:650;letter-spacing:-.015em;line-height:1.2}
+.jx-count span{font-size:13.5px;opacity:.88;line-height:1.3}
+.jx-steps{list-style:none;margin:0;padding:0;display:grid;border-radius:var(--r-card);background:#fff;box-shadow:var(--sh-1);overflow:hidden}
+.jx-steps li+li{border-top:.5px solid var(--sep)}
+.jx-steps button{width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) 18px;align-items:center;gap:12px;padding:14px;text-align:left;transition:background .15s}
+.jx-steps button:active{background:rgba(16,24,40,.04)}
+.jx-n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;color:var(--label2);background:rgba(16,24,40,.06)}
+.jx-n svg{width:16px;height:16px}
+.jx-steps .now .jx-n{background:var(--accent);color:#fff;box-shadow:0 6px 14px -6px rgba(10,102,255,.7)}
+.jx-steps .done .jx-n{background:#1A9E54;color:#fff}
+.jx-st{display:grid;gap:1px;min-width:0}
+.jx-st b{font-size:16.5px;font-weight:650;letter-spacing:-.015em;color:var(--craie)}
+.jx-st small{font-size:13.5px;color:var(--label2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jx-steps .now .jx-st small{color:var(--accent);font-weight:600}
+.jx-steps .done .jx-st small{color:#15904B}
+.jx-chev{display:grid;color:var(--label3)}
+.jx-chev svg{width:18px;height:18px;transform:rotate(-90deg)}
+.jx-pied{margin:0 6px;text-align:center}
+.jx-sheet{display:grid;gap:12px}
+.jx-sheet .bs-head{margin-bottom:-2px}
+.pg-back{display:inline-flex;align-items:center;gap:1px;justify-self:start;margin:0 0 2px -8px;padding:4px 10px 4px 2px;font-size:16px;font-weight:500;letter-spacing:-.01em;color:var(--accent)}
+.pg-back svg{width:22px;height:22px}
+.h-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.h-row .h-sec{margin-right:0}
+.ready{width:100%;text-align:left;color:var(--craie)}
+.ready-go{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--accent)}
+.ready-go::after{content:" ›"}
+@media (prefers-reduced-motion:reduce){.jx-img,.jx-plot{animation:none}}

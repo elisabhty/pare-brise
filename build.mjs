@@ -9,7 +9,18 @@ const { errors, stats, data } = validate('.');
 if (errors.length) { console.error(`\n✗ ${errors.length} problème(s) dans le contenu :\n  - ` + errors.join('\n  - ') + '\n'); process.exit(1); }
 console.log(`✓ Contenu valide : ${stats.themes} thèmes, ${stats.cours} cours, ${stats.scenes} scènes, ${stats.questions} questions, ${stats.series} séries, ${stats.exercices} exercices`);
 
-/* ---------- 3. Assemblage ---------- */
+/* ---------- 3. Images (illustrations des cours hors route, étapes de l'examen, expressions de Plot) ----------
+   Sources dans src/assets/img/<nom>.webp, copiées telles quelles dans docs/img/ (servies à côté de l'app, et embarquées par
+   Capacitor). La liste part dans le contenu : l'app n'affiche une image que si elle existe, sinon elle garde la 3D ou Plot. */
+const IMG_SRC = 'src/assets/img', IMG_OUT = 'docs/img';
+fs.mkdirSync(IMG_OUT, { recursive: true });
+const images = fs.existsSync(IMG_SRC) ? fs.readdirSync(IMG_SRC).filter(f => /^[a-z0-9-]+\.webp$/.test(f)).sort() : [];
+fs.readdirSync(IMG_OUT).filter(f => f.endsWith('.webp') && !images.includes(f)).forEach(f => fs.unlinkSync(path.join(IMG_OUT, f)));
+images.forEach(f => { const a = path.join(IMG_SRC, f), b = path.join(IMG_OUT, f); if (!fs.existsSync(b) || fs.statSync(b).size !== fs.statSync(a).size) fs.copyFileSync(a, b); });
+data.images = images.map(f => f.replace(/\.webp$/, ''));
+if (images.length) console.log(`✓ ${images.length} image(s) dans docs/img`);
+
+/* ---------- 4. Assemblage ---------- */
 const content = JSON.stringify(data).replace(/</g, '\\u003c');
 const r = await build({ entryPoints: ['src/app/main.js'], bundle: true, minify: !process.env.NOMIN, format: 'iife', target: ['es2019', 'safari15'], write: false, logLevel: 'warning' });
 /* L'app démarre APRÈS la première image : la page s'affiche tout de suite (écran de chargement), puis le moteur 3D se construit.

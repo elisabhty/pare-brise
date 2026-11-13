@@ -9,6 +9,7 @@ export const EXOS = raw.exercices || [];
 export const COURSES = raw.cours.slice().sort((a, b) => (a.ordre || 99) - (b.ordre || 99));
 export const QUESTIONS = new Map(raw.questions.map(q => [q.id, q]));
 export const SERIES = new Map(raw.series.map(s => [s.id, s]));
+export const IMAGES = new Set(raw.images || []);
 const byId = new Map(COURSES.map(c => [c.id, c]));
 
 export const course = id => byId.get(id);

@@ -87,16 +87,11 @@ function renderHome() {
   const r = readiness();
   $('#readyPct').textContent = r + ' %'; $('#readyBar').style.width = r + '%';
   const rev = toReview().length;
-  const prDone = COURSES.filter(x => { const p = practiceOf(x.id); return p && exoBest(p.id); }).length;
-  const blancs = exams().length + ((store.get('exoRuns', {}) || {})['x-exam-blanc'] || 0);
-  $('#readyM').innerHTML = `<div><b class="num">${doneCount()}<small>/${COURSES.length}</small></b><span>cours vus</span></div><div><b class="num">${prDone}<small>/${COURSES.length}</small></b><span>pratiques faites</span></div><div><b class="num">${blancs}</b><span>examen${blancs > 1 ? 's' : ''} blanc${blancs > 1 ? 's' : ''}</span></div>`;
-  $('#readyTxt').textContent = `Le jour J : 35 bonnes réponses sur 40.${mastered() ? ` ${mastered()} question${mastered() > 1 ? 's' : ''} maîtrisée${mastered() > 1 ? 's' : ''}.` : ''}${exams().length ? ` Dernier examen rapide : ${exams().slice(-1)[0].score}/${exams().slice(-1)[0].total}.` : ''}`;
   $('#reviewCard').hidden = !rev;
   $('#readyGo').textContent = accueilJJ();
+  $('#weekGo').textContent = plan ? 'Mon planning' : 'Créer mon planning';
   { const pj = piegeDuJour(id => courseState(id).done, c); $('#homePiege').innerHTML = pj ? piegeHTML(pj, { titre: 'Le piège du jour', lien: true }) : ''; bindPieges($('#homePiege')); }
   $('#reviewN').textContent = rev;
-  const i0 = Math.max(0, Math.min(COURSES.indexOf(c) - 1, COURSES.length - 4));
-  roadmap($('#homeRoad'), COURSES.slice(i0, i0 + 4).map(courseRowData), { here: 'À suivre' });
 }
 function courseRowData(c) {
   const [st, tag] = status(c);
@@ -191,8 +186,8 @@ function renderHub() {
 
 /* ---------- Enregistrement des écrans ---------- */
 export function setupScreens() {
-  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); renderHomeExos(); drawPoster(nextCourse()); if (prev && prev !== 'bienvenue') SALLE.reset(1200); } });
-  register('planning', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-planning'), enter() { renderPlanning(); SALLE.reset(900); } });
+  register('salle', { world: 'salle', amb: 'salle', enter(prev) { renderHome(); drawPoster(nextCourse()); if (prev && prev !== 'bienvenue') SALLE.reset(1200); } });
+  register('planning', { world: 'salle', amb: 'salle', still: true, tab: 'salle', region: () => $('#s-planning'), enter() { renderPlanning(); SALLE.reset(900); } });
   document.addEventListener('pb:replanifie', () => renderPlanning());
   setupCoach({ minutes: courseMinutes });
   // une activité du planning s'ouvre là où elle vit, et revient à l'écran d'où on l'a lancée
