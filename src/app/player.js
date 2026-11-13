@@ -13,6 +13,7 @@ import { Illu } from './illu.js';
 import { actorInfo, signInfo } from './infos.js';
 import { show, currentScreen, settled } from './nav.js';
 import { plot, react, line } from './mascot.js';
+import { sceneImg, imgSrc } from './images.js';
 
 let onSerie = () => {}, onHome = () => {};
 export const setPlayerLinks = (serieFn, homeFn) => { onSerie = serieFn; onHome = homeFn; };
@@ -21,7 +22,7 @@ const sEst = s => estimate(s) + 180;
 const est = sc => sc.sents.reduce((a, s) => a + sEst(s), 0) + (isQuestion(sc) ? 0 : 450);
 const VUES = [[null, 'Auto'], ['cockpit', 'Conducteur'], ['poursuite', 'Derrière'], ['drone', 'Dessus']];
 export const notes = () => store.get('notes', []);
-const inSim = () => has3D && SIM && Engine.current === 'sim' && !!Live.sc;
+const inSim = () => has3D && SIM && Engine.current === 'sim' && !!Live.sc && !Player.imgKey;
 
 export const Player = {
   c: null, scenes: [], i: 0, tok: 0, sceneTok: 0, playing: false, t0: 0, started: false, answered: -1,
@@ -32,6 +33,7 @@ export const Player = {
     this.tok++; this.sceneTok++; Voice.stop();
     this.c = c; this.scenes = c.scenes.map(s => Object.assign({}, s, { sents: splitSentences(s.dire || '') }));
     this.i = Math.max(0, Math.min(this.scenes.length - 1, startAt)); this.started = false; this.answered = -1;
+    this.clearImg();
     this.entered = -1; this.frozen = false; this.mode = null; $('#s-cours').classList.remove('explore', 'ralenti', 'immersif');
     $('#cTitle').textContent = c.titre; $('#cTitle').style.fontSize = '';
     $('#endcard').hidden = true;
@@ -63,7 +65,9 @@ export const Player = {
     const sc = this.scenes[i];
     const tok = ++this.sceneTok;
     // d'une scène à l'autre, un fondu enchaîné : jamais de coupure sèche, et la construction du décor suivant ne se voit pas
-    if (has3D && this.entered >= 0 && currentScreen() === 'cours' && Engine.xfade) Engine.xfade();
+    // une scène en image (cours hors route) : l'image elle-même fond sur la suivante, la 3D n'a pas besoin de son fondu
+    const img = sceneImg(this.c, i, sc);
+    if (has3D && this.entered >= 0 && currentScreen() === 'cours' && Engine.xfade && !this.imgKey) Engine.xfade();
     ov.clear(); Labels.clear(); this.closeInfo(false);
     if (this.mode === 'explore') { this.mode = null; $('#s-cours').classList.remove('explore'); if (R && R.explore) R.explore(false); }
     Live.sc = null; Live.actors = [];
@@ -82,11 +86,44 @@ export const Player = {
     if (T) T.enter(sc, ctx);
     Illu.mount(sc);
     Frame.set(sc.decor && has3D);
+    this.setImg(img, i);
     if (isQuestion(sc)) this.showQuiz(sc);
     // en pause, l'écran montre tout (la liste entière, les étiquettes, l'illustration) ; en lecture, il se construit avec la voix
     if (!this.playing) setTimeout(() => { if (tok === this.sceneTok && !this.playing) try { sceneBeat(sc, 999, ctx, 0); } catch (e) {} }, 0);
     saveCourse(this.c.id, { scene: i });
     this.paintRail(); this.paintText();
+  },
+  /* L'image de la scène : fondu enchaîné d'une image à l'autre, zoom lent (Ken Burns) ; pendant qu'elle couvre tout,
+     la 3D ne se dessine plus (batterie). La suivante est préchargée pour que le fondu parte tout de suite. */
+  imgKey: null,
+  setImg(key, i) {
+    const host = $('#scImg'); if (!host) return;
+    const nx = this.scenes[i + 1], nk = nx && sceneImg(this.c, i + 1, nx);
+    if (nk) { const pre = new Image(); pre.src = imgSrc(nk); }
+    $('#s-cours').classList.toggle('aimg', !!key); { const l = $('#labels'); if (l) l.classList.toggle('off', !!key); }
+    if (key === this.imgKey) return;
+    this.imgKey = key; clearTimeout(this.imgT);
+    if (!key) {
+      if (Engine.hidden) Engine.hidden(false);
+      host.classList.remove('on');
+      this.imgT = setTimeout(() => { if (!this.imgKey) host.innerHTML = ''; }, 700);
+      return;
+    }
+    const im = new Image(); im.className = `sc-im${i % 2 ? ' b' : ''}`; im.alt = ''; im.decoding = 'async'; im.draggable = false; im.src = imgSrc(key);
+    const show = () => {
+      if (this.imgKey !== key) return;
+      host.appendChild(im); host.classList.add('on');
+      requestAnimationFrame(() => requestAnimationFrame(() => im.classList.add('on')));
+      const vieilles = [...host.querySelectorAll('.sc-im')].filter(x => x !== im);
+      this.imgT = setTimeout(() => { vieilles.forEach(x => x.remove()); if (this.imgKey === key && Engine.hidden) Engine.hidden(true); }, 700);
+    };
+    if (im.decode) im.decode().then(show, show); else im.onload = show;
+  },
+  clearImg() {
+    clearTimeout(this.imgT); this.imgKey = null;
+    const host = $('#scImg'); if (host) { host.classList.remove('on'); host.innerHTML = ''; }
+    const s = $('#s-cours'); if (s) s.classList.remove('aimg'); { const l = $('#labels'); if (l) l.classList.remove('off'); }
+    if (Engine.hidden) Engine.hidden(false);
   },
   /* sous-titres façon vidéo : une seule phrase à la fois, posée sur l'image */
   /* le sous-titre se remplit au rythme de la voix (durée estimée de la phrase) : on suit des yeux ce qu'on entend */
@@ -187,7 +224,7 @@ export const Player = {
     $('#tapHint').hidden = true;
     $$('.qopt').forEach((b, j) => { b.disabled = true; if (j === sc.bonne) b.classList.add('good'); else if (j === k) b.classList.add('bad'); });
     const msg = ok ? sc.bien : sc.mal;
-    $('#qfb').hidden = false; $('#qfb').innerHTML = `<div class="fbrow">${plot({ size: 62 })}<div><b>${line(ok)}</b> ${esc(msg || '')}</div></div>`;
+    $('#qfb').hidden = false; $('#qfb').innerHTML = `<div class="fbrow">${plot({ size: 62, pose: ok ? 'pouce' : 'decu' })}<div><b>${line(ok)}</b> ${esc(msg || '')}</div></div>`;
     react($('#qfb'), ok);
     $('#verdictBox').innerHTML = `<div class="verdict"><b class="d" style="color:${ok ? 'var(--vert)' : 'var(--rouge-t)'}">${ok ? 'Exact' : 'Raté'}</b><span>${esc(msg || '')}</span></div>`;
     setTimeout(() => { const v = $('#verdictBox .verdict'); if (v) { v.style.transition = 'opacity .5s'; v.style.opacity = '0'; } }, 2600);
@@ -211,7 +248,7 @@ export const Player = {
     const pr = EXOS.find(x => x.id === 'p-' + c.id);
     const memo = (c.memo || []).map(m => `<li>${m.panneau ? sign(m.panneau) : '<i class="memo-dot"></i>'}<b>${esc(m.texte)}</b><span style="color:${m.famille && FAM[m.famille] ? FAM[m.famille].t : 'var(--jaune)'}">${esc(m.tag || (m.famille && FAM[m.famille] ? FAM[m.famille].n : ''))}</span></li>`).join('');
     const e = $('#endcard'); e.hidden = false;
-    e.innerHTML = `<div class="plot-hero">${plot({ size: 96, bubble: 'Cours terminé, bravo !' })}<div><span class="eyebrow">Fiche mémo</span><h3 class="d">Cours terminé</h3></div></div>${memo ? `<ul class="memo">${memo}</ul>` : ''}
+    e.innerHTML = `<div class="plot-hero">${plot({ size: 96, pose: 'joie', bubble: 'Cours terminé, bravo !' })}<div><span class="eyebrow">Fiche mémo</span><h3 class="d">Cours terminé</h3></div></div>${memo ? `<ul class="memo">${memo}</ul>` : ''}
       ${piegeHTML(c)}
       ${pr ? `<div class="end-pr"><span class="eyebrow">Deuxième partie</span><b>Passe à la pratique</b><p>${pr.situations.length} situations sur la route, en 3D, pour appliquer tout ce que tu viens de voir.</p><button class="btn" id="endSerie">Lancer la pratique</button></div>` : ''}
       ${this.notesHTML()}
@@ -247,7 +284,7 @@ export const Player = {
   /* ---------- la barre d'outils à droite ---------- */
   paintRail() {
     const sim = inSim(), v = VUES.find(x => x[0] === View.cam) || VUES[0];
-    $('#rView').classList.toggle('off', !sim); $('#rSlow').classList.toggle('off', !sim);
+    $('#rView').classList.toggle('off', !sim); $('#rSlow').classList.toggle('off', !sim); $('#rExplore').classList.toggle('off', !!this.imgKey);
     $('#rViewT').textContent = v[1];
     $('#rExplore').classList.toggle('on', this.mode === 'explore');
     $('#rSlow').classList.toggle('on', this.mode === 'ralenti');
@@ -283,6 +320,7 @@ export const Player = {
     const s = $('#s-cours');
     if (on) {
       if (this.mode === 'explore') return;
+      if (this.imgKey) return this.toast('Pas de 3D sur cette scène');
       this.wasPlaying = this.playing || this.mode === 'ralenti';
       if (this.playing) this.pause(); else { this.tok++; this.freeze(); }
       this.mode = 'explore'; s.classList.add('explore'); s.classList.remove('ralenti', 'immersif'); this.closeInfo(false); this.setPlaying(false);

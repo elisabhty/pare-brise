@@ -108,12 +108,12 @@ function paint() {
   c.classList.remove('in'); void c.offsetWidth; c.classList.add('in');
   c.dataset.step = k;
   if (k === 'bienvenue') {
-    c.innerHTML = `<div class="ob-hero">${plot({ size: 112, bubble: 'Salut !' })}</div><h1 class="ob-t">Bienvenue dans ta <em>salle de code</em></h1><p class="ob-p">Je suis Plot, ton moniteur. Faisons connaissance : trois questions, et ton planning est prêt.</p>`;
+    c.innerHTML = `<div class="ob-hero">${plot({ size: 112, pose: 'coucou', bubble: 'Salut !' })}</div><h1 class="ob-t">Bienvenue dans ta <em>salle de code</em></h1><p class="ob-p">Je suis Plot, ton moniteur. Faisons connaissance : trois questions, et ton planning est prêt.</p>`;
     footer('C’est parti', () => goto(1));
   } else if (k === 'prenom') {
     c.innerHTML = `${dots()}<h1 class="ob-t">Comment tu t’appelles&nbsp;?</h1><p class="ob-p">Je l’utiliserai pour te saluer.</p>
       <label class="ob-field"><span>Ton prénom</span><input id="obPrenom" type="text" maxlength="24" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" placeholder="Ex. Léa" value="${esc(draft.prenom || '')}"></label>
-      <div class="ob-hi" id="obHi"${draft.prenom ? '' : ' hidden'}>${plot({ size: 56, mood: 'cheer' })}<div><b id="obHiT">Enchanté, ${esc(draft.prenom || '')}&nbsp;!</b><span>J’ai hâte de te voir au volant.</span></div></div>`;
+      <div class="ob-hi" id="obHi"${draft.prenom ? '' : ' hidden'}>${plot({ size: 56, mood: 'cheer', pose: 'pouce' })}<div><b id="obHiT">Enchanté, ${esc(draft.prenom || '')}&nbsp;!</b><span>J’ai hâte de te voir au volant.</span></div></div>`;
     const inp = $('#obPrenom');
     const upd = () => { draft.prenom = inp.value.trim().replace(/\s+/g, ' '); $('#obGo').disabled = !draft.prenom; const hi = $('#obHi'); if (draft.prenom) { if (hi.hidden) { hi.hidden = false; hi.classList.remove('pop'); void hi.offsetWidth; hi.classList.add('pop'); } $('#obHiT').innerHTML = `Enchanté, ${esc(draft.prenom)}&nbsp;!`; } else hi.hidden = true; };
     footer('Continuer', () => { if (!draft.prenom) return; if (!draft.pseudo) draft.pseudo = pseudoIdees(draft.prenom)[0]; goto(2); }, { off: !draft.prenom });

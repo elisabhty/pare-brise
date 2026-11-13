@@ -807,7 +807,7 @@ function intro(ex) {
   const c = $('#xCard'); c.className = 'xcard xintro'; c.hidden = false;
   c.innerHTML = `<div class="xi-top"><span class="xi-ic">${icon(ex.meca)}</span><div><span class="xi-k">${esc(ex.famille || '')}</span><h2>${esc(ex.titre)}</h2></div></div>
     <p class="xi-p">${fr(ex.consigne || ex.sous || '')}</p>
-    ${ex.astuce ? `<div class="xi-tip">${plot({ size: 54 })}<p>${fr(ex.astuce)}</p></div>` : ''}
+    ${ex.astuce ? `<div class="xi-tip">${plot({ size: 54, pose: 'pensif' })}<p>${fr(ex.astuce)}</p></div>` : ''}
     <div class="xi-meta"><span>${esc(ex.duree || '2 min')}</span><span>${'●'.repeat(ex.niveau || 1)}${'○'.repeat(3 - (ex.niveau || 1))} niveau</span>${b ? `<span>Record ${b.score}</span>` : ''}</div>
     <button class="btn" id="xGo">Démarrer</button>`;
   requestAnimationFrame(() => c.classList.add('on'));
@@ -841,7 +841,7 @@ function results(ex, out) {
   const cr = ex.cours && course(ex.cours);
   const nextL = ex.id.startsWith('p-') && cr && out.score >= 70 ? COURSES[COURSES.indexOf(cr) + 1] : null;
   const c = $('#xCard'); c.className = 'xcard xresult'; c.hidden = false;
-  c.innerHTML = `<div class="xr-head">${plot({ size: 64, mood: out.score >= 70 ? 'cheer' : 'oops' })}<div><span class="xi-k">${esc(ex.titre)}</span><div class="xr-score">${out.total ? `<b class="num">${out.total.split(' / ')[0]}</b><span>/ ${out.total.split(' / ')[1]}</span>` : `<b class="num">${out.score}</b><span>/ 100</span>`}</div>${starsHtml(out.score)}</div></div>
+  c.innerHTML = `<div class="xr-head">${plot({ size: 64, mood: out.score >= 70 ? 'cheer' : 'oops', pose: out.score >= 70 ? 'joie' : 'decu' })}<div><span class="xi-k">${esc(ex.titre)}</span><div class="xr-score">${out.total ? `<b class="num">${out.total.split(' / ')[0]}</b><span>/ ${out.total.split(' / ')[1]}</span>` : `<b class="num">${out.score}</b><span>/ 100</span>`}</div>${starsHtml(out.score)}</div></div>
     <ul class="xr-list">${out.lignes.map(l => `<li class="${l.ok === null ? 'n' : l.ok ? 'ok' : 'ko'}"><i></i><div><b>${esc(l.nom)}</b><span>${esc(l.txt)}</span></div></li>`).join('')}</ul>
     <p class="xr-tip">${esc(out.conseil || '')}</p>
     <div class="xr-btns"><button class="btn ghost" id="xAgain">Rejouer</button><button class="btn" id="xDone">Terminer</button></div>

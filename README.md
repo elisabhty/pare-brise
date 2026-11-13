@@ -180,6 +180,14 @@ La leçon reste une leçon (aucune question), mais on peut s'en servir :
   change sans recompiler de shaders (le soleil projette toujours ses ombres, rendues invisibles la nuit et dans le brouillard ;
   un seul brouillard réglé à chaque scène ; la route garde sa texture), pluie et neige sont compilées d'avance, et les reflets
   de chaque météo se calculent pendant que l'élève est dans les menus, jamais en pleine scène (`tests/fluidite.test.mjs`).
+- **Pas de route pour parler d'alcool** : les 15 cours hors conduite (alcool, fatigue, drogues, permis à points, papiers,
+  secours…) montrent une image par scène au lieu de la route : titre, chiffres, listes et fin ; les mises en situation et les
+  questions restent en 3D. Fondu d'une image à l'autre, zoom lent ; pendant qu'une image couvre l'écran la 3D ne se dessine
+  plus (batterie), et l'image suivante est préchargée. Le code d'une image = la lettre du cours + le numéro de la scène
+  (`a1` = cours Alcool, scène 1 ; le titre et la fin reprennent `a0` s'ils n'ont pas la leur), table dans `src/app/images.js`.
+  Les images se déposent en WebP dans `src/assets/img/` ; tant qu'une image manque, la scène 3D d'avant reste.
+- **Plot dessiné** : `plot({ pose })` affiche son expression (`p1` coucou … `p8` trophée) quand l'image existe, sinon le
+  sprite animé ; les conseils, les fêtes, les corrections et les résultats ont chacun leur expression.
 - **Vraie pause** : la scène 3D se fige avec la voix, et la lecture reprend à la même phrase.
 - **360°** : on fige la scène et on tourne autour de la voiture (glisser), on zoome (pincer, molette) ; dans les scènes
   de panneaux, on regarde autour. Glisser sur l'image y entre directement.

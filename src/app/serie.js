@@ -133,7 +133,7 @@ export const Serie = {
     }
     const right = q.type === 'association' ? q.paires.map(p => `${meta(p[0]).code} → ${p[1]}`).join(' · ') : '';
     $('#sFb').hidden = false;
-    $('#sFb').innerHTML = `<div class="fbrow">${plot({ size: 62 })}<div><b style="color:${ok ? 'var(--vert)' : 'var(--rouge-t)'}">${line(ok)}</b> ${esc(q.explication || '')}${!ok && right ? `<br><span class="small">${esc(right)}</span>` : ''}</div></div>`;
+    $('#sFb').innerHTML = `<div class="fbrow">${plot({ size: 62, pose: ok ? 'pouce' : 'decu' })}<div><b style="color:${ok ? 'var(--vert)' : 'var(--rouge-t)'}">${line(ok)}</b> ${esc(q.explication || '')}${!ok && right ? `<br><span class="small">${esc(right)}</span>` : ''}</div></div>`;
     react($('#sFb'), ok);
     Voice.say(ok ? 'Bonne réponse.' : (q.explication || 'Raté.'));
     const btn = $('#sOk'); btn.disabled = false; btn.textContent = this.i < this.cfg.ids.length - 1 ? 'Question suivante' : 'Voir mon score'; btn.onclick = () => this.advance();
@@ -157,7 +157,7 @@ export const Serie = {
     $('#sTitle').textContent = pass ? (exam ? 'Reçu' : 'Maîtrisé') : 'Encore un tour';
     const wrong = this.answers.filter(a => !a.ok).map(a => a.id);
     const r = $('#sRes'); r.hidden = false;
-    r.innerHTML = `<div class="plot-hero"><div class="score"><b class="num">${n}</b><span class="num">/ ${total}</span></div>${plot({ size: 92, bubble: pass ? (exam ? 'Niveau jour J !' : 'Série en poche !') : 'On s’y remet ensemble ?' })}</div>
+    r.innerHTML = `<div class="plot-hero"><div class="score"><b class="num">${n}</b><span class="num">/ ${total}</span></div>${plot({ size: 92, pose: pass ? (exam ? 'trophee' : 'joie') : 'decu', bubble: pass ? (exam ? 'Niveau jour J !' : 'Série en poche !') : 'On s’y remet ensemble ?' })}</div>
       <span class="vpill ${pass ? 'ok' : 'ko'}">${exam ? (pass ? 'Niveau jour J atteint' : 'Pas encore le niveau jour J') : (pass ? 'Série réussie' : `${total - n} erreur${total - n > 1 ? 's' : ''} à revoir`)}</span>
       <p class="small">${exam ? `Le jour J, il faut 87,5 % de bonnes réponses (35/40). Ici : ${Math.round(n / total * 100)} %.` : 'Tes erreurs rejoignent la pile « À revoir » : elles reviendront jusqu’à ce que tu les maîtrises.'}</p>
       <ul class="corr">${this.answers.map((a, k) => { const q = QUESTIONS.get(a.id); const mini = q.type === 'association' ? q.paires.map(p => sign(p[0])).join('') : (q.panneaux || []).map(id => sign(id)).join(''); const ans = q.type === 'association' ? '' : `<div class="ans">Ta réponse : ${a.given.length ? a.given.map(j => 'ABCD'[j]).join(' + ') : 'aucune'} · Bonne réponse : ${q.bonnes.map(j => 'ABCD'[j]).join(' + ')}</div>`; return `<li class="glass ${a.ok ? 'ok' : 'ko'}"><div class="mini ${(q.paires || q.panneaux || []).length > 1 ? 'pair' : ''}">${mini || '<i class="memo-dot"></i>'}</div><div><b>${k + 1}. ${esc(q.q)}</b>${ans}<p>${esc(q.explication || '')}</p></div></li>`; }).join('')}</ul>

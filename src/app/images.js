@@ -12,3 +12,22 @@ export const imgTag = (k, cls = '', alt = '') => (hasImg(k) ? `<img class="${esc
    p7 endormi, p8 trophée), sinon null : l'appelant garde le sprite animé */
 const HUMEURS = { coucou: 'p1', joie: 'p2', pouce: 'p3', decu: 'p4', pensif: 'p5', inquiet: 'p6', dort: 'p7', trophee: 'p8' };
 export const plotImg = h => (hasImg(HUMEURS[h]) ? HUMEURS[h] : null);
+
+/* Les cours qui ne parlent pas de conduire (alcool, fatigue, papiers…) : chaque scène peut être une image plutôt que la route.
+   Le code d'une image = la lettre du cours + le numéro de la scène (a1 = scène 1 du cours Alcool). Le titre et la fin
+   reprennent l'image 0 du cours quand ils n'ont pas la leur. Les mises en situation et les questions restent en 3D. */
+const COURS_IMG = {
+  alcool: 'a', 'fatigue-distractions': 'f', 'drogues-medicaments': 'd', 'permis-points': 'r', infractions: 'i',
+  'securite-passagers': 's', 'poste-conduite': 'c', 'premiers-secours': 'h', 'papiers-assurance': 'k', entretien: 'n',
+  'aides-conduite': 'g', ecoconduite: 'o', 'vehicules-propres': 'v', 'controles-vehicule': 'x', 'demarches-conducteur': 'm'
+};
+/* scènes qui reprennent l'image d'un autre cours (même sujet) */
+const REPRISES = { 'controles-vehicule': { 5: 'n3' }, 'demarches-conducteur': { 1: 'k0', 2: 'k2', 3: 'k3' } };
+const AVEC_IMAGE = new Set(['titre', 'chiffres', 'liste', 'fin']);
+export function sceneImg(c, i, sc) {
+  const p = c && COURS_IMG[c.id];
+  if (!p || !sc || !AVEC_IMAGE.has(sc.type)) return null;
+  const r = (REPRISES[c.id] || {})[i];
+  return [r, p + i, sc.type === 'titre' || sc.type === 'fin' ? p + '0' : null].find(hasImg) || null;
+}
+export const coursAvecImages = () => Object.keys(COURS_IMG);

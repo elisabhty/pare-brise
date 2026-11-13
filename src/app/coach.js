@@ -54,8 +54,15 @@ const actionHTML = a => {
   const attr = a.go ? `data-go="${esc(a.go)}"${a.arg ? ` data-arg="${esc(a.arg)}"` : ''}` : a.exo ? `data-exo="${esc(a.exo)}"` : a.revoir ? 'data-coach="revoir"' : a.adapter ? 'data-coach="adapter"' : '';
   return `<button class="coach-a" ${attr}>${esc(a.label)}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>`;
 };
+/* l'expression de Plot selon ce qu'il dit (son image si elle existe, sinon le sprite) */
+const POSES = {
+  jourj: 'joie', resultat: 'pensif', reussi: 'trophee', rate: 'decu', 'j-moins': 'pouce', retour: 'coucou', serie: 'inquiet',
+  retard: 'pensif', rythme: 'inquiet', fait: 'pouce', revoir: 'pensif', reserver: 'joie', pret: 'joie', neph: 'pensif',
+  'neph-tard': 'inquiet', blanc: 'pouce', pratique: 'pensif', planning: 'pensif', cours: 'coucou', repere: 'pensif', rien: 'coucou'
+};
+export const poseDe = id => POSES[id] || '';
 export const bulleHTML = (c, { petit = false, invite = false } = {}) => `<div class="coach${petit ? ' petit' : ''}" data-id="${esc(c.id)}">
-    <button class="coach-p" aria-label="Plot, ton moniteur : toucher pour un petit rappel de cours">${plot({ size: petit ? 50 : 70, mood: c.humeur, bubble: invite ? 'Touche-moi' : '' })}</button>
+    <button class="coach-p" aria-label="Plot, ton moniteur : toucher pour un petit rappel de cours">${plot({ size: petit ? 50 : 70, mood: c.humeur, pose: poseDe(c.id), bubble: invite ? 'Touche-moi' : '' })}</button>
     <div class="coach-b" aria-live="polite"><span class="coach-k">${petit ? 'Plot' : 'Plot, ton moniteur'}</span><p class="coach-t">${fr(c.texte)}</p>${actionHTML(c.action)}</div>
   </div>`;
 
@@ -113,7 +120,7 @@ export function feter() {
   const conf = Array.from({ length: 18 }, (_, k) => `<i style="--x:${(k * 37) % 100}%;--d:${(k % 6) * 0.12}s;--c:${CONFETTIS[k % CONFETTIS.length]};--r:${(k * 47) % 360}deg"></i>`).join('');
   const a = j.action;
   openSheet(`<div class="fete"><div class="fete-conf" aria-hidden="true">${conf}</div>
-      <div class="fete-p">${plot({ size: 128, mood: 'loop' })}</div>
+      <div class="fete-p">${plot({ size: 128, mood: 'loop', pose: j.id === 'code' || j.id === 'cours-tous' || j.id === 'serie-30' ? 'trophee' : 'joie' })}</div>
       <h2>${fr(j.titre)}</h2><p>${fr(j.texte(s.prenom))}</p>
       <div class="bs-btns">${a ? `<button class="btn" data-close ${a.go ? `data-go="${esc(a.go)}"` : `data-exo="${esc(a.exo)}"`}>${esc(a.label)}</button>` : ''}<button class="btn${a ? ' ghost' : ''}" data-close>${a ? 'Plus tard' : 'Merci Plot !'}</button></div>
     </div>`, sh => {

@@ -799,7 +799,7 @@ E.xfadeStop = () => { if (xf) xf.on = false; };
 E.pause = v => { paused = !!v; if (!v) last = 0; };
 /* la 3D continue de vivre (minuteurs, usagers) mais n'est plus dessinée : batterie */
 E.hidden = v => { hidden = !!v; };
-E.info = () => ({ calls: renderer.info.render.calls, tris: renderer.info.render.triangles, programs: (renderer.info.programs || []).length, dpr: renderer.getPixelRatio(), bloom: bloomOn, paused });
+E.info = () => ({ frames: renderer.info.render.frame, hidden, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, programs: (renderer.info.programs || []).length, dpr: renderer.getPixelRatio(), bloom: bloomOn, paused });
 Object.defineProperty(E, 'current', { get: () => worldName });
 E.region = (top, height) => { region = { top, height }; };
 E.hiRes = on => { if (hiRes === !!on) return; hiRes = !!on; resize(); };

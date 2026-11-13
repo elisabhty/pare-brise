@@ -207,7 +207,7 @@ export function setupScreens() {
   } });
   register('cours', { world: 'route', amb: 'route', noTab: true, reframe: () => Frame.apply(),
     enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0), !!o.play); if (o.play) Player.start(o.at, o.k); } },
-    leave() { if (Engine.xfadeStop) Engine.xfadeStop(); if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
+    leave() { if (Engine.xfadeStop) Engine.xfadeStop(); Player.clearImg(); if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'entrainer', enter() { R.reset(); }, leave() { Serie.stop(); } });
   register('entrainer', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-entrainer'), enter(prev, o) { renderEntrainer(o && o.volet); SALLE.reset(900); } });
   $$('#entSeg [data-volet]').forEach(b => b.addEventListener('click', () => { if (b.dataset.volet === volet) return; haptic(); Sound.ui('tick'); renderEntrainer(b.dataset.volet); $('#s-entrainer').scrollTop = 0; }));

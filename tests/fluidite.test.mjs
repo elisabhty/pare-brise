@@ -30,9 +30,19 @@ test('pluie et neige sont compilées d’avance', () => {
 });
 
 test('d’une scène de cours à l’autre, un fondu enchaîné dans la carte graphique', () => {
-  assert.match(player, /this\.entered >= 0 && currentScreen\(\) === 'cours' && Engine\.xfade\) Engine\.xfade\(\)/);
+  assert.match(player, /this\.entered >= 0 && currentScreen\(\) === 'cours' && Engine\.xfade && !this\.imgKey\) Engine\.xfade\(\)/);
   assert.match(eng, /renderer\.copyFramebufferToTexture\(x\.tex\)/);
   assert.match(eng, /x\.tex\.format = THREE\.RGBFormat; x\.tex\.internalFormat = 'RGB8'/);   // tampon de l'écran sans alpha
   assert.ok(!/getContext\('2d'\)\.drawImage\(canvas/.test(eng), 'pas de copie vers un canvas 2D : relecture lente sur iPhone');
   assert.match(eng, /xfDraw\(now\);/);
+});
+
+test('les cours hors route montrent des images, pas la route ; la 3D ne se dessine pas dessous', () => {
+  const img = fs.readFileSync('src/app/images.js', 'utf8'), scr = fs.readFileSync('src/app/screens.js', 'utf8');
+  for (const id of ['alcool', 'fatigue-distractions', 'drogues-medicaments', 'permis-points', 'premiers-secours', 'papiers-assurance'])
+    assert.ok(img.includes(`'${id}'`) || img.includes(` ${id}:`), `${id} a ses images`);
+  assert.match(img, /AVEC_IMAGE = new Set\(\['titre', 'chiffres', 'liste', 'fin'\]\)/);   // jamais à la place d'une mise en situation
+  assert.match(player, /if \(this\.imgKey === key && Engine\.hidden\) Engine\.hidden\(true\)/);
+  assert.match(player, /const pre = new Image\(\); pre\.src = imgSrc\(nk\)/);      // la suivante est préchargée
+  assert.match(scr, /Player\.clearImg\(\)/);
 });
