@@ -38,8 +38,8 @@ export const icon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentCo
 export const FAMILLES = [
   { id: 'examen', nom: 'Situations d’examen', sous: 'Comme le jour du code', meca: ['examen'] },
   { id: 'decisions', nom: 'Décisions', sous: 'Qui passe, quand doubler', meca: ['priorite', 'depassement'] },
-  { id: 'regles', nom: 'Vitesses et distances', sous: 'Appliquer les chiffres', meca: ['vitesse', 'distance', 'feu', 'freinage'] },
-  { id: 'perception', nom: 'Voir et être vu', sous: 'Dangers et éclairage', meca: ['danger', 'eclairage', 'reflexe'] }
+  { id: 'regles', nom: 'Feux tricolores', sous: 'Freiner ou passer', meca: ['feu'] },
+  { id: 'perception', nom: 'Voir et être vu', sous: 'Dangers et éclairage', meca: ['danger', 'eclairage'] }
 ];
 export const best = id => (store.get('exoBest', {}) || {})[id] || null;
 /* une leçon = une pratique (situations en 3D) ; les défis 3D sont rattachés à leur leçon */
@@ -457,152 +457,6 @@ MECA.examen = async (ex, X) => {
 };
 
 /* ---------- 1. Freinage d'urgence ---------- */
-MECA.freinage = async (ex, X) => {
-  const W = X.W, v0 = ms(ex.kmh), meteo = ex.meteo || 'jour', env = ex.env || 'ville';
-  const gap = Math.max(150, v0 * 11);
-  const evs = ex.evenements.map((t, i) => ({ t, S: 110 + i * gap }));
-  W.load({ env, meteo, kmh: ex.kmh, longueur: evs[evs.length - 1].S + 240, reserve: evs.flatMap(e => e.t === 'bus' ? [e.S, e.S + 10] : [e.S]), graine: ex.id.length });
-  W.lights({ croisement: meteo === 'nuit' || meteo === 'brouillard', position: false, route: false, brouillardAv: false, brouillardAr: false });
-  (ex.panneaux || []).forEach(([id, S, x]) => W.panneau(id, S, x ?? (env === 'ville' ? 6.2 : 4.4)));
-  X.wet(meteo === 'pluie');
-  const list = evs.map(e => Object.assign(HZ[e.t](W, e.S, { nuit: meteo === 'nuit' }), { type: e.t }));
-  X.speedo(true, ex.limite || ex.kmh);
-  let phase = 'drive', pressed = false, onPress = null;
-  X.ctl(`<button class="pedal brake big" id="xBrake" aria-label="Freiner"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="4" fill="currentColor" opacity=".25"/><path d="M8 8h8M8 12h8M8 16h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Freiner</span></button>`);
-  X.hold($('#xBrake'), () => { pressed = true; W.emergency(); Sound.ui('brake'); haptic('heavy'); if (onPress) onPress(); }, () => { pressed = false; if (phase === 'drive') W.auto(ex.kmh); });
-  const res = [];
-  for (let i = 0; i < list.length; i++) {
-    const h = list[i]; X.step(i + 1, list.length);
-    const a = W.player.decel;
-    h.trig = h.type === 'bouchon' ? v0 * 6 : h.follow ? v0 * 1.5 : v0 * h.extra + v0 * v0 / (2 * a) + 2.5;
-    if (h.prepare) { await X.tick(() => W.player.s >= evs[i].S - 40); h.prepare(); }
-    await X.tick(() => W.player.s + FRONT >= h.S - h.trig);
-    const sTrig = W.player.s, vTrig = W.player.v, tTrig = performance.now();
-    let tPress = pressed ? tTrig : 0, sPress = pressed ? sTrig : 0;
-    onPress = () => { if (!tPress) { tPress = performance.now(); sPress = W.player.s; } };
-    phase = 'hazard'; h.start();
-    let out = null;
-    await X.tick(dt => {
-      h.tick && h.tick(dt);
-      const front = W.player.s + FRONT;
-      if (h.real && h.inLane() && front >= h.S - h.half && W.player.v > 0.3) { out = { hit: true, v: W.player.v }; return true; }
-      if (W.player.v < 0.15 && (tPress || pressed)) { out = { stop: true, rest: h.S - h.half - front }; return true; }
-      if (!h.follow && front > h.S + 3) { out = { passed: true }; return true; }
-      return false;
-    });
-    onPress = null;
-    const tr = tPress ? (tPress - tTrig) / 1000 : null;
-    if (out.hit) {
-      const vi = kmh(out.v); W.player.v = 0; W.emergency(); W.shake(1.6); X.flash('ko'); Sound.ui('crash'); haptic('ko');
-      if (tPress) showBands(X, W.bandes(sTrig + FRONT, sPress - sTrig, W.player.s - sPress), sPress - sTrig, W.player.s - sPress);
-      X.msg(`<b>Choc à ${vi} km/h</b><span>${tr !== null ? `Réaction ${n1(tr)} s` : 'Pas de freinage'}</span>`, 'ko', 2800);
-      res.push({ nom: h.nom, ok: false, score: 0, txt: `Choc à ${vi} km/h${tr !== null ? ` · réaction ${n1(tr)} s` : ' · pas de freinage'}` });
-      await X.sleep(2600);
-      W.actors.filter(x => Math.abs(x.S - h.S) < 3 && x.kind !== 'voiture').forEach(x => x.remove());
-      if (['bouchon', 'sortie', 'portiere', 'freine-devant'].includes(h.type)) h.resume();
-    } else if (out.stop) {
-      const dR = sPress - sTrig, dB = W.player.s - sPress;
-      const bandsShown = showBands(X, W.bandes(sTrig + FRONT, dR, dB), dR, dB);
-      if (h.real) {
-        const sc = Math.round(Math.max(55, Math.min(100, 100 - Math.max(0, (tr ?? 0) - 0.75) * 70)));
-        const vp = vTrig + ms(20), avail = (h.follow ? out.rest + (W.player.s - sTrig) : h.S - h.half - (sTrig + FRONT)), dr = vp * (tr ?? 1), rest = avail - dr;
-        const what = rest <= 0 ? `choc à ${kmh(vp)} km/h` : vp * vp / (2 * a) > rest ? `choc à ${kmh(Math.sqrt(vp * vp - 2 * a * rest))} km/h` : `arrêt à ${m0(rest - vp * vp / (2 * a))} seulement`;
-        Sound.ui('ok'); haptic('ok');
-        X.msg(`<b>Arrêt à ${m0(out.rest)}</b><span>Réaction ${n1(tr ?? 0)} s · ${m0(dR)} parcourus · freinage ${m0(dB)}</span><em>À ${kmh(vTrig) + 20} km/h : ${what}</em>`, 'ok', 3600);
-        res.push({ nom: h.nom, ok: true, score: sc, txt: `Arrêt à ${m0(out.rest)} · réaction ${n1(tr ?? 0)} s` });
-      } else {
-        X.msg(`<b>Il attendait sur le trottoir</b><span>Lever le pied suffisait : un arrêt brutal surprend ceux qui te suivent.</span>`, 'neutre', 3200);
-        res.push({ nom: h.nom, ok: null, txt: 'Freinage inutile, mais prudent' });
-      }
-      await X.sleep(2400); await bandsShown;
-      h.resume(); await X.sleep(h.type === 'bouchon' ? 1800 : 1500);
-    } else {
-      if (!h.real) { res.push({ nom: h.nom, ok: null, txt: 'Bien vu : il attendait' }); X.msg('<b>Bien vu</b><span>Il attendait sur le trottoir.</span>', 'neutre', 1800); }
-      else res.push({ nom: h.nom, ok: true, score: 80, txt: 'Danger évité' });
-    }
-    phase = 'drive'; if (!pressed) W.auto(ex.kmh);
-  }
-  await X.sleep(800);
-  const real = res.filter(r => r.ok !== null);
-  const score = Math.round(real.reduce((s, r) => s + r.score, 0) / Math.max(1, real.length));
-  return { score, lignes: res, conseil: score >= 90 ? 'Réflexes au top. Garde cette attention en conduite réelle.' : 'Anticipe : un ballon, une portière, un piéton au bord du trottoir… le pied se prépare avant le danger.' };
-};
-
-/* ---------- 2. Respecter les limitations ---------- */
-MECA.vitesse = async (ex, X) => {
-  const W = X.W, meteo = ex.meteo || 'jour', env = ex.env || 'route';
-  let S = 0; const zones = ex.zones.map(z => { const o = { ...z, S0: S }; S += z.d; return o; });
-  const total = S;
-  W.load({ env, meteo, kmh: zones[0].lim, longueur: total + 260, graine: 11, ligne: ex.ligne });
-  W.lights({ croisement: meteo !== 'jour', brouillardAv: meteo === 'brouillard', route: false, position: false, brouillardAr: meteo === 'brouillard' });
-  X.wet(meteo === 'pluie');
-  zones.forEach((z, i) => { if (z.panneau) W.panneau(z.panneau, z.S0 + (i ? 0 : 25), env === 'autoroute' ? 7.4 : 4.4); (z.extra || []).forEach(([id, d]) => W.panneau(id, z.S0 + d, env === 'autoroute' ? 7.4 : 4.4)); if (z.maisons) W.maisons(z.S0 + 10, z.S0 + z.d - 10, i + 2); });
-  W.manual(); W.player.v = ms(zones[0].lim);
-  X.speedo(true, zones[0].lim);
-  X.ctl(`<button class="pedal brake" id="xBrake" aria-label="Frein"><span>Frein</span></button><button class="pedal gas" id="xGas" aria-label="Accélérateur"><span>Accélérer</span></button>`);
-  let g = 0, b = 0;
-  X.hold($('#xGas'), () => { g = 1; W.pedals(g, b); haptic(); }, () => { g = 0; W.pedals(g, b); });
-  X.hold($('#xBrake'), () => { b = 1; W.pedals(g, b); haptic(); }, () => { b = 0; W.pedals(g, b); });
-  const st = zones.map(() => ({ ok: 0, over: 0, slow: 0, t: 0, max: 0 }));
-  let zi = 0, since = 0, warned = 0, kState = null; const kmhEl = $('#xKmh');
-  X.msg(`<b>${esc(ex.consigne || 'Respecte les limitations')}</b><span>Maintiens les pédales pour accélérer ou freiner.</span>`, '', 3200);
-  await X.tick(dt => {
-    const p = W.player.s;
-    while (zi < zones.length - 1 && p + 4 >= zones[zi + 1].S0) { zi++; since = 0; X.limit(zones[zi].lim); if (zones[zi].meteo) { W.meteo(zones[zi].meteo); X.wet(zones[zi].meteo === 'pluie'); W.lights({ croisement: zones[zi].meteo !== 'jour', brouillardAv: zones[zi].meteo === 'brouillard' }); } if (zones[zi].msg) X.msg(`<b>${esc(zones[zi].msg)}</b>`, '', 2600); Sound.ui('tick'); }
-    since += dt;
-    const z = zones[zi], v = W.player.v * 3.6, s = st[zi], lim = z.lim;
-    const grace = zi && lim < zones[zi - 1].lim ? 1.5 : 4;
-    if (since > grace) {
-      s.t += dt; s.max = Math.max(s.max, v);
-      if (v > lim + 2) { s.over += dt; if (performance.now() - warned > 2500) { warned = performance.now(); X.msg(`<b>Trop vite</b><span>${Math.round(v)} km/h pour ${lim} autorisés</span>`, 'ko', 1600); haptic('ko'); } }
-      else if (v < lim - 14) s.slow += dt; else s.ok += dt;
-    }
-    const st2 = v > lim + 2 ? 'over' : v >= lim - 14 ? 'good' : ''; if (st2 !== kState) { kState = st2; kmhEl.className = 'num ' + st2; }
-    return p >= total;
-  });
-  W.pedals(0, 1);
-  const lignes = zones.map((z, i) => { const s = st[i], k = s.t ? Math.round(s.ok / s.t * 100) : 100; return { nom: z.nom || `Limite ${z.lim}`, ok: k >= 75, score: k, txt: `${k} % dans la bonne plage · pointe à ${Math.round(s.max)} km/h` }; });
-  const tt = st.reduce((a, s) => a + s.t, 0), okT = st.reduce((a, s) => a + s.ok, 0), overT = st.reduce((a, s) => a + s.over, 0);
-  const score = Math.round(Math.max(0, (okT / Math.max(1, tt)) * 100 - (overT / Math.max(1, tt)) * 30));
-  return { score, lignes, conseil: overT > 3 ? 'Ralentis avant le panneau : la limite s’applique dès qu’on le dépasse.' : 'Bonne lecture des limitations. Pense à la météo : elle change les chiffres.' };
-};
-
-/* ---------- 3. Distance de sécurité ---------- */
-MECA.distance = async (ex, X) => {
-  const W = X.W, meteo = ex.meteo || 'jour', env = ex.env || 'route', cible = ex.cible || 2;
-  W.load({ env, meteo, kmh: ex.kmh, longueur: 6000, stopFin: false, graine: 5 });
-  W.lights({ croisement: meteo !== 'jour', position: false, route: false, brouillardAv: false, brouillardAr: false });
-  X.wet(meteo === 'pluie');
-  if (env === 'autoroute') { W.chevrons(60, 5000, 38); W.panneau('B14:' + (ex.limite || 130), 60, 7.4); }
-  const lead = W.voiture({ S: ms(ex.kmh) * (cible + 0.4) + FRONT + 2.1, x: LANE, couleur: 0x2E3440 });
-  let lv = ms(ex.kmh), phase = 0, pt = 0;
-  const prof = ex.profil.map(([v, t, f]) => ({ v: ms(v), t, fort: f === 'fort' }));
-  lead.tick = dt => { const p = prof[Math.min(phase, prof.length - 1)]; const d = p.v - lv; const acc = d > 0 ? 1.8 : p.fort ? 6.5 : 2.4; lv += Math.sign(d) * Math.min(Math.abs(d), acc * dt); lead.vS = lv; lead.brake = d < -0.3; pt += dt; if (pt > p.t) { pt = 0; phase++; } };
-  W.manual(); W.player.v = ms(ex.kmh);
-  X.speedo(true, ex.limite); X.gap(true);
-  X.ctl(`<button class="pedal brake" id="xBrake"><span>Frein</span></button><button class="pedal gas" id="xGas"><span>Accélérer</span></button>`);
-  let g = 0, b = 0;
-  X.hold($('#xGas'), () => { g = 1; W.pedals(g, b); haptic(); }, () => { g = 0; W.pedals(g, b); });
-  X.hold($('#xBrake'), () => { b = 1; W.pedals(g, b); haptic(); }, () => { b = 0; W.pedals(g, b); });
-  X.msg(`<b>Garde au moins ${cible} secondes</b><span>La bande verte montre ta zone de sécurité.</span>`, '', 3400);
-  let okT = 0, tT = 0, minG = 99, crash = 0, cool = 0, lastGT = ''; const gapV = $('#xGapV'), gapBox = $('#xGap');
-  const total = prof.reduce((a, p) => a + p.t, 0);
-  await X.tick(dt => {
-    const v = W.player.v, gap = lead.S - 2.1 - (W.player.s + FRONT), tg = gap / Math.max(v, 0.5);
-    W.guide(Math.min(cible * v, 140), tg >= cible ? 0x34C759 : tg >= 1 ? 0xFF9F0A : 0xFF3B30);
-    const gt = v < 1 ? '—' : n1(Math.min(tg, 9.9)) + ' s', gk = tg >= cible ? 'ok' : tg >= 1 ? 'mid' : 'ko';
-    if (gt !== lastGT) { lastGT = gt; gapV.textContent = gt; } if (gk !== gapBox.dataset.k) gapBox.dataset.k = gk;
-    if (v > 4) { tT += dt; if (tg >= cible) okT += dt; minG = Math.min(minG, tg); }
-    cool -= dt;
-    if (gap <= 0.2 && cool <= 0) { crash++; cool = 3; W.player.v = Math.max(0, lv - 4); W.shake(1.4); X.flash('ko'); Sound.ui('crash'); haptic('ko'); X.msg('<b>Collision</b><span>Trop près : tu n’as pas pu t’arrêter à temps.</span>', 'ko', 2400); lead.S += 14; }
-    return phase >= prof.length;
-  });
-  W.guide(0); X.gap(false);
-  const k = Math.round(okT / Math.max(1, tT) * 100), score = Math.max(0, k - crash * 25);
-  return { score, lignes: [{ nom: `Temps à ${cible} s ou plus`, ok: k >= 75, score: k, txt: `${k} % du trajet` }, { nom: 'Écart le plus court', ok: minG >= 1, txt: `${n1(Math.min(minG, 9.9))} s` }, { nom: 'Collisions', ok: !crash, txt: crash ? `${crash}` : 'aucune' }], conseil: 'Repère un point fixe : quand la voiture de devant le passe, compte « un, deux ». Tu dois l’atteindre après.' };
-};
-
-/* ---------- 4. Feu orange ---------- */
 MECA.feu = async (ex, X) => {
   const W = X.W, meteo = ex.meteo || 'jour', v0 = ms(ex.kmh);
   const pas = 175, Ss = ex.distances.map((d, i) => 120 + i * pas);
@@ -938,7 +792,6 @@ function examBlanc() {
 async function runExo(id, retour) {
   const ex = id === 'x-exam-blanc' ? examBlanc() : EXOS.find(e => e.id === id); if (!ex) return;
   retourX = retour && retour !== 'exo' ? retour : 'exos';
-  if (ex.meca === 'reflexe') { show('parebrise'); return; }
   if (ex.meca === 'decodeur') { show('decodeur'); return; }
   curEx = ex;
   await show('exo', { force: true });

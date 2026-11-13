@@ -62,6 +62,8 @@ export const Player = {
   enterScene(i) {
     const sc = this.scenes[i];
     const tok = ++this.sceneTok;
+    // d'une scène à l'autre, un fondu enchaîné : jamais de coupure sèche, et la construction du décor suivant ne se voit pas
+    if (has3D && this.entered >= 0 && currentScreen() === 'cours' && Engine.xfade) Engine.xfade();
     ov.clear(); Labels.clear(); this.closeInfo(false);
     if (this.mode === 'explore') { this.mode = null; $('#s-cours').classList.remove('explore'); if (R && R.explore) R.explore(false); }
     Live.sc = null; Live.actors = [];

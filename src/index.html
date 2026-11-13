@@ -71,7 +71,6 @@
       <div class="xcarousel" id="homeExos"></div>
       <h2 class="h-sec">Outils</h2>
       <ul class="cells">
-        <li><button class="cell" data-go="parebrise"><span class="cell-ic m-reflexe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5"/></svg></span><span class="cell-t"><b>Pare-brise</b><small>Reconnais chaque panneau avant de le croiser</small></span><span class="cell-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>
         <li><button class="cell" data-go="decodeur"><span class="cell-ic m-decodeur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="5.5"/><path d="M13 13l7.5 7.5"/></svg></span><span class="cell-t"><b>Décodeur</b><small>Forme + couleur = sens, même pour un panneau inconnu</small></span><span class="cell-r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></li>
       </ul>
       <p class="small">Voix : synthèse vocale de ton appareil. Les autres élèves de la salle sont simulés.</p>
@@ -225,7 +224,6 @@
       <div id="xHubList"></div>
       <h2 class="h-sec">Outils</h2>
       <div class="tools">
-        <button class="tile glass" data-go="parebrise"><b class="d">Pare-brise</b><span>Réflexe en conduite 3D</span></button>
         <button class="tile glass" data-go="decodeur"><b class="d">Décodeur</b><span>Forme + couleur = sens</span></button>
       </div>
       <p class="small">Les situations sont simulées. Les distances suivent les règles enseignées au code : réaction d’environ 1 seconde, freinage plus long sur sol mouillé.</p>
@@ -236,22 +234,6 @@
   <section class="screen dimbg" id="s-jourj" aria-label="Réserver l’examen">
     <div class="page-head"><div class="eyebrow">L’épreuve officielle</div><h1 class="d">Réserver</h1><p class="pl-sub">De ton numéro NEPH à ta convocation : tout ce qu’il faut pour passer le code, dans l’ordre.</p></div>
     <div id="jjBody" class="jj"></div>
-  </section>
-
-  <!-- ================= PARE-BRISE ================= -->
-  <section class="screen" id="s-parebrise" aria-label="Pare-brise" style="padding:0;gap:0;overflow:hidden">
-    <div class="view3d" id="v-pb" style="flex:1;min-height:0">
-      <div class="fb-pb" id="fb-pb"></div>
-      <div class="pillars" aria-hidden="true"></div>
-      <div class="pb-hud"><span class="glass num" id="pbScore">0 PT</span><span class="glass num" id="pbCount">0/12</span></div>
-      <div class="speedo"><b class="num" id="pbKmh">0</b><span>KM/H</span></div>
-      <div class="toast glass" id="pbToast"></div>
-      <div class="over" id="pbOver"></div>
-    </div>
-    <div class="pb-panel">
-      <div class="fam-grid" id="pbBtns"></div>
-      <div class="best" id="pbBest"></div>
-    </div>
   </section>
 
   <!-- ================= DÉCODEUR ================= -->

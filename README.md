@@ -171,6 +171,11 @@ appels. Le jour où la clé existe, la liste des sessions prend la place du bout
 ## Le lecteur de cours
 
 La leçon reste une leçon (aucune question), mais on peut s'en servir :
+- **Sans coupure ni saccade** : d'une scène à l'autre, un fondu enchaîné dans la carte graphique (`Engine.xfade` : la dernière
+  image est copiée dans une texture et reste par-dessus le temps que la scène suivante se construise, puis s'efface). La météo
+  change sans recompiler de shaders (le soleil projette toujours ses ombres, rendues invisibles la nuit et dans le brouillard ;
+  un seul brouillard réglé à chaque scène ; la route garde sa texture), pluie et neige sont compilées d'avance, et les reflets
+  de chaque météo se calculent pendant que l'élève est dans les menus, jamais en pleine scène (`tests/fluidite.test.mjs`).
 - **Vraie pause** : la scène 3D se fige avec la voix, et la lecture reprend à la même phrase.
 - **360°** : on fige la scène et on tourne autour de la voiture (glisser), on zoome (pincer, molette) ; dans les scènes
   de panneaux, on regarde autour. Glisser sur l'image y entre directement.
@@ -202,7 +207,7 @@ trois façons selon ce qu'il y a à voir (champ `mode`) :
 - `qcm` : une question de cours posée directement sur un fond uni, sans décor ni vidéo (taux d'alcool, points, démarches…).
   « Lequel de ces panneaux… » : les panneaux sont les réponses (`panneauxChoix`, tuiles A, B, C).
 
-Les réponses aux questions de la banque (`qid`) alimentent les révisions. Les défis 3D (freinage, feux, priorités…) sont
+Les réponses aux questions de la banque (`qid`) alimentent les révisions. Les défis 3D (feu orange, priorités, dépassement, dangers, éclairage) sont
 rattachés à leur leçon : aucun exercice n'est seul. Les pratiques sont générées par `gen/pratique.py` (décor par leçon, mises
 en scène sur mesure par question, `mode` choisi par la règle ci-dessus, avec `QCM_FORCE` / `IMAGE_FORCE` pour les questions
 de connaissance mises en scène « pour l'ambiance »). L'examen blanc tire surtout des situations (vidéo ou image) et au plus
@@ -228,9 +233,6 @@ Chaque exercice est décrit dans `content/exercices.json` et joué par une **mé
 | Mécanique | Ce que fait l'élève | Champs |
 |---|---|---|
 | `examen` | une scène 3D se fige, une question façon examen, une ou plusieurs bonnes réponses parmi A à D, puis l’explication | `situations` : `{ q, choix, bonnes, explication, env, meteo, kmh, camera, compteur, signaux, acteurs, carrefour, giratoire, passage, chevrons, tunnel, rails, marquages, feux }` |
-| `freinage` | maintient « Freiner » quand un danger surgit ; on mesure réaction, distance de freinage, et ce qui se serait passé 20 km/h plus vite | `env`, `meteo`, `kmh`, `evenements` |
-| `vitesse` | conduit avec les pédales et respecte chaque limitation dès son panneau | `zones` : `{ d, lim, panneau, maisons, msg }` |
-| `distance` | garde au moins `cible` secondes derrière une voiture qui ralentit et accélère | `kmh`, `cible`, `profil` |
 | `feu` | feu orange : freine si l'arrêt est possible, sinon continue | `kmh`, `distances` |
 | `priorite` | l'image se fige au carrefour : « Je passe » ou « Je cède » | `scenarios` |
 | `depassement` | derrière un véhicule lent : « Je double » ou « Je reste derrière » | `scenarios` |
@@ -239,9 +241,9 @@ Chaque exercice est décrit dans `content/exercices.json` et joué par une **mé
 
 L’examen blanc en situation (onglet S’entraîner, volet Questions) tire 40 situations au hasard parmi toutes les situations d’examen : 20 secondes chacune, correction à la fin, réussite à 35 sur 40.
 
-Chaque exercice compte 10 situations (10 événements, 10 feux, 10 zones, 10 scénarios…).
+Chaque exercice compte 10 situations (10 feux, 10 scénarios, 10 scènes…). Les exercices de pilotage (freiner à temps,
+conduire aux pédales, garder ses distances, réflexe panneaux) ont été retirés : ils ne préparent pas aux questions du code.
 
-Événements de freinage : `pieton`, `enfant`, `ballon`, `portiere`, `sortie`, `bus`, `freine-devant`, `biche`, `bouchon`, `faux-pieton`. Une zone de vitesse peut changer la météo en route (`"meteo": "pluie"`). Feux : `position`, `croisement`, `route`, `brouillardAv`, `brouillardAr`, `detresse` ; une situation peut accepter des feux en plus avec `permis`, et se passer dans un tunnel (`tunnel`) ou un bouchon (`bouchon`).
 Environnements : `ville`, `route`, `autoroute`. Météo : `jour`, `pluie`, `brouillard`, `nuit`, `neige`.
 
 Exemple de scénario de priorité :

@@ -363,10 +363,10 @@ export function buildSim(K) {
   /* pluie / neige */
   const RAIN_N = 800;
   const rainGeo = new THREE.BufferGeometry(); const rp = new Float32Array(RAIN_N * 6); rainGeo.setAttribute('position', new THREE.BufferAttribute(rp, 3));
-  const rain = new THREE.LineSegments(rainGeo, new THREE.LineBasicMaterial({ color: 0xc9d6e6, transparent: true, opacity: 0.55 })); rain.frustumCulled = false; rain.visible = false; s.add(rain);
+  const rain = new THREE.LineSegments(rainGeo, new THREE.LineBasicMaterial({ color: 0xc9d6e6, transparent: true, opacity: 0.55 })); rain.frustumCulled = false; rain.visible = false; rain.userData.warm = true; s.add(rain);
   const drops = Array.from({ length: RAIN_N }, () => ({ x: (Math.random() - 0.5) * 40, y: Math.random() * 14, z: -Math.random() * 60 + 6 }));
   const snowGeo = new THREE.BufferGeometry(); snowGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(RAIN_N * 3), 3));
-  const snow = new THREE.Points(snowGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.09, transparent: true, opacity: 0.9 })); snow.frustumCulled = false; snow.visible = false; s.add(snow);
+  const snow = new THREE.Points(snowGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.09, transparent: true, opacity: 0.9 })); snow.frustumCulled = false; snow.visible = false; snow.userData.warm = true; s.add(snow);
 
   /* ---------- état ---------- */
   const P = { s: 0, v: 0, mode: 'auto', target: 0, gas: 0, brake: 0, decel: 6, x: LANE, lastA: 0 };
@@ -401,11 +401,11 @@ export function buildSim(K) {
     skyU.cloudK.value = meteo === 'jour' || meteo === 'sec' ? 1 : meteo === 'couchant' ? 0.85 : 0; skyU.cloudC.value.set(meteo === 'couchant' ? 0xFFD8C0 : 0xffffff);
     const fogC = { pluie: 0xB9C2CD, brouillard: 0xD5DAE0, nuit: 0x0B1430, neige: 0xDCE3EC }[meteo] ?? 0xD6E6F8;
     const fogR = { pluie: [18, 170], brouillard: [4, 62], nuit: [25, 160], neige: [12, 120] }[meteo] ?? [60, 330];
-    s.fog = new THREE.Fog(fogC, fogR[0], fogR[1]);
+    if (!s.fog) s.fog = new THREE.Fog(fogC, fogR[0], fogR[1]); else { s.fog.color.set(fogC); s.fog.near = fogR[0]; s.fog.far = fogR[1]; }
     hemi.intensity = night ? 0.4 : meteo === 'pluie' ? 1.25 : meteo === 'brouillard' ? 1.5 : 1.6;
     hemi.color.set(night ? 0x5568a8 : 0xDDEBFF); hemi.groundColor.set(night ? 0x0b0f1c : meteo === 'neige' ? 0xb8c4d4 : 0x6B8455);
     sun.intensity = night ? 0.05 : meteo === 'pluie' ? 0.7 : meteo === 'brouillard' ? 0.35 : meteo === 'neige' ? 1.1 : 2.6;
-    sun.castShadow = !night && meteo !== 'brouillard';
+    sun.shadow.intensity = !night && meteo !== 'brouillard' ? 1 : 0;
     groundMat.color.set(meteo === 'neige' ? 0xF1F4F8 : night ? 0x1d2a1f : env === 'ville' ? 0x9DA79A : 0x86B66A);
     hillMat.color.set(night ? 0x0d1528 : meteo === 'neige' ? 0xE4EAF2 : meteo === 'brouillard' || meteo === 'pluie' ? 0xA7B1BE : 0x7FA9CF);
     shoulderMat.color.set(meteo === 'neige' ? 0xEEF2F6 : env === 'autoroute' ? 0x8E968A : 0xB8BCA6);
@@ -415,7 +415,29 @@ export function buildSim(K) {
     K.setBloom(night ? 0.5 : 0.22);
     P.decel = DECEL[meteo] ?? 6;
     // environnement pour les reflets
-    try { const key = meteo === 'sec' ? 'jour' : meteo; if (!envCache[key]) { const pm = new THREE.PMREMGenerator(K.renderer()); const es = new THREE.Scene(); es.add(sky.clone()); envCache[key] = pm.fromScene(es, 0.04).texture; pm.dispose(); } s.environment = envCache[key]; s.environmentIntensity = night ? 0.15 : 0.7; } catch (e) {}
+    try { const key = meteo === 'sec' ? 'jour' : meteo; envFor(key); s.environment = envCache[key]; s.environmentIntensity = night ? 0.15 : 0.7; } catch (e) {}
+  }
+  /* le ciel d'une météo, en environnement de reflets : calculé une fois par météo */
+  function envFor(key) {
+    if (envCache[key]) return envCache[key];
+    const pm = new THREE.PMREMGenerator(K.renderer()); const es = new THREE.Scene(); es.add(sky.clone()); envCache[key] = pm.fromScene(es, 0.04).texture; pm.dispose();
+    return envCache[key];
+  }
+  /* prépare les reflets de chaque météo pendant que l'élève est dans les menus (la salle), jamais pendant un cours ou un
+     exercice : un calcul de reflets au milieu d'une scène, c'est une image figée. Un par un, espacés. */
+  function prepEnv() {
+    const todo = ['jour', 'nuit', 'pluie', 'brouillard', 'neige', 'couchant'].filter(k => !envCache[k]);
+    const idle = f => setTimeout(f, 700);
+    const step = () => { if (!todo.length) return;
+      if (K.busy && K.busy()) { setTimeout(step, 1500); return; }
+      const k = todo.shift();
+      try { const keep = [skyU.top.value.clone(), skyU.mid.value.clone(), skyU.hor.value.clone(), skyU.sunK.value, skyU.cloudK.value];
+        const c = SKY[k] || SKY.jour; skyU.top.value.set(c[0]); skyU.mid.value.set(c[1]); skyU.hor.value.set(c[2]); skyU.sunK.value = k === 'jour' || k === 'couchant' ? 1 : 0; skyU.cloudK.value = k === 'jour' ? 1 : k === 'couchant' ? 0.85 : 0;
+        envFor(k);
+        skyU.top.value.copy(keep[0]); skyU.mid.value.copy(keep[1]); skyU.hor.value.copy(keep[2]); skyU.sunK.value = keep[3]; skyU.cloudK.value = keep[4];
+      } catch (e) {}
+      idle(step); };
+    idle(step);
   }
 
   const roadWidth = { route: 7, ville: 11.4, autoroute: 10 };
@@ -428,7 +450,7 @@ export function buildSim(K) {
     P.s = spec.depart || 0; P.v = (spec.kmh || 0) / 3.6; P.target = P.v; P.mode = 'auto'; P.gas = P.brake = 0; P.x = spec.voie ?? LANE;
     const env = cfg.env;
     road.scale.x = roadWidth[env]; road.position.set(roadX[env], 0, -200);
-    roadMat.map = roadT(env); roadMat.map.repeat.set(1, 520 / (env === 'ville' ? 26 : 24)); roadMat.needsUpdate = true;
+    const hadMap = !!roadMat.map; roadMat.map = roadT(env); roadMat.map.repeat.set(1, 520 / (env === 'ville' ? 26 : 24)); if (!hadMap) roadMat.needsUpdate = true;
     shoulders.forEach((m, i) => { const sx = i ? 1 : -1; m.visible = env !== 'ville'; m.position.set(roadX[env] + sx * (roadWidth[env] / 2 + 0.7), -0.01, -200); });
     applyWeather(cfg.meteo, env);
     const zones = (spec.zones || []).concat((spec.carrefours || []).map(S => ({ de: S - 14, a: S + 14 })));
@@ -1211,5 +1233,6 @@ export function buildSim(K) {
     }
   };
   load({ env: 'route', meteo: 'jour', kmh: 0 });
+  W.prepEnv = prepEnv;
   return W;
 }

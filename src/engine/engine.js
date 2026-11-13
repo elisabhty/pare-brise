@@ -683,6 +683,7 @@ function loop(now) {
   frameHooks.forEach(f => { try { f(dt); } catch (e) {} });
   if (hidden) return;                       // un écran opaque couvre la 3D (question de cours) : on ne dessine pas
   if (bloomOn) composer.render(); else renderer.render(w.scene, camera);
+  xfDraw(now);
   frameCount++;
   // qualité adaptative : si l'appareil peine, on baisse la résolution (jusqu'à 1×) puis on coupe le bloom
   if (!window.__noAutoPerf && frameCount > 20 && raw < 0.25) {
@@ -715,12 +716,14 @@ E.init = cv => {
   worlds.studio = buildStudio();
   worlds.sim = buildSim({
     renderer: () => renderer, camera: () => camera, tween, ease, sleep, emit, makeSign, signTex, canvasTex, disposeObj, setFov, flashSign,
-    radial: () => RADIAL, setBloom: v => { if (worldName === 'sim') { bloom.strength = v; bloomOn = wantBloom(); } worlds.sim && (worlds.sim.bloom = v); }
+    radial: () => RADIAL, busy: () => worldName !== 'salle', setBloom: v => { if (worldName === 'sim') { bloom.strength = v; bloomOn = wantBloom(); } worlds.sim && (worlds.sim.bloom = v); }
   });
   resize();
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas); else window.addEventListener('resize', resize);
   E.ok = true;
   requestAnimationFrame(loop);
+  // les reflets de chaque météo se préparent au repos, après le démarrage
+  setTimeout(() => { try { if (!window.__noPrepEnv && worlds.sim.prepEnv) worlds.sim.prepEnv(); } catch (e) {} }, 4000);
   return true;
 };
 E.world = n => {
@@ -739,7 +742,8 @@ let bloomWarm = false, emptyScene = null;
 E.warm = n => {
   const w = worlds[n]; if (!w || !renderer) return;
   try {
-    renderer.compile(w.scene, camera);
+    const caches = []; w.scene.traverse(o => { if (o.userData && o.userData.warm && !o.visible) { o.visible = true; caches.push(o); } });
+    try { renderer.compile(w.scene, camera); } finally { caches.forEach(o => { o.visible = false; }); }
     if ((w.bloom ?? 0.35) >= 0.45 && maxDpr > 1.1) {
       // avec la lueur, la scène est dessinée dans une texture du compositeur : d'autres variantes de shaders
       const prev = renderer.getRenderTarget(); renderer.setRenderTarget(composer.readBuffer); renderer.compile(w.scene, camera); renderer.setRenderTarget(prev);
@@ -751,6 +755,46 @@ E.warm = n => {
     }
   } catch (e) {}
 };
+/* Fondu enchaîné entre deux scènes, entièrement dans la carte graphique : la dernière image est copiée dans une texture
+   (sans relecture vers le processeur), puis dessinée par-dessus la 3D le temps que la scène suivante se construise et
+   compile ; elle s'efface ensuite en douceur. Pas de coupure, et l'à-coup de construction ne se voit pas. */
+let xf = null;
+function xfSetup() {
+  if (xf) return xf;
+  // copie brute de l'écran : les pixels sont déjà dans l'espace de l'écran, on les redessine tels quels (aucune conversion)
+  const mat = new THREE.ShaderMaterial({ transparent: true, depthTest: false, depthWrite: false,
+    uniforms: { map: { value: null }, opacity: { value: 1 } },
+    vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
+    fragmentShader: 'uniform sampler2D map; uniform float opacity; varying vec2 vUv; void main() { gl_FragColor = vec4(texture2D(map, vUv).rgb, opacity); }' });
+  const scene = new THREE.Scene(); scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+  xf = { mat, scene, cam: new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), tex: null, size: new THREE.Vector2(), hold: 0, t0: 0, ms: 560, on: false };
+  return xf;
+}
+function xfDraw(now) {
+  if (!xf || !xf.on) return;
+  if (xf.hold > 0) { xf.hold--; xf.t0 = now; xf.mat.uniforms.opacity.value = 1; }
+  else { const e = Math.min(1, (now - xf.t0) / xf.ms); xf.mat.uniforms.opacity.value = 1 - e * e * (3 - 2 * e); if (e >= 1) { xf.on = false; return; } }
+  const ac = renderer.autoClear; renderer.autoClear = false; renderer.setRenderTarget(null);
+  renderer.render(xf.scene, xf.cam); renderer.autoClear = ac;
+}
+E.xfade = (ms = 560) => {
+  if (!renderer || !canvas || paused || hidden || !frameCount) return;
+  const w = worlds[worldName]; if (!w) return;
+  try {
+    const x = xfSetup(); renderer.getDrawingBufferSize(x.size);
+    if (!x.tex || x.tex.image.width !== x.size.x || x.tex.image.height !== x.size.y) {
+      if (x.tex) x.tex.dispose();
+      // le tampon de l'écran n'a pas de couche alpha : la texture doit être RVB elle aussi, sinon la copie est refusée
+      x.tex = new THREE.FramebufferTexture(x.size.x, x.size.y); x.tex.format = THREE.RGBFormat; x.tex.internalFormat = 'RGB8'; x.mat.uniforms.map.value = x.tex;
+    }
+    if (bloomOn) composer.render(); else renderer.render(w.scene, camera);      // l'image actuelle, puis sa copie
+    if (x.on) xfDraw(performance.now());
+    renderer.setRenderTarget(null); renderer.copyFramebufferToTexture(x.tex);
+    x.on = true; x.hold = 3; x.ms = ms; x.mat.uniforms.opacity.value = 1;                       // tenue 3 images : la scène suivante a le temps d'être dessinée
+  } catch (e) { if (xf) xf.on = false; if (window.__xfDebug) console.warn('xfade', e); }
+};
+E.xfInfo = () => xf && { on: xf.on, hold: xf.hold, op: xf.mat.uniforms.opacity.value, w: xf.size.x, h: xf.size.y };
+E.xfadeStop = () => { if (xf) xf.on = false; };
 /* Pause du rendu quand l'écran couvre entièrement la 3D (listes, catalogue…) : batterie et fluidité */
 E.pause = v => { paused = !!v; if (!v) last = 0; };
 /* la 3D continue de vivre (minuteurs, usagers) mais n'est plus dessinée : batterie */

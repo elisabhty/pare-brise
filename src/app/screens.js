@@ -1,6 +1,6 @@
 /* Écrans : salle (accueil), parcours (catalogue), fiche cours, s'entraîner (questions et conduite 3D), réserver (jourj.js). */
 import { $, $$, esc, wait, haptic, store } from './util.js';
-import { has3D, R, SALLE, STUDIO } from './world.js';
+import { has3D, R, SALLE, STUDIO, Engine } from './world.js';
 import { sign } from './signs.js';
 import { THEMES, COURSES, SERIES, course, theme, coursesOf, courseNumber, seriesOfCourse, signsOfCourse, allQuestionIds } from './content.js';
 import { piegeHTML, bindPieges, piegeDuJour } from './piege.js';
@@ -10,7 +10,6 @@ import { Sound } from './sound.js';
 import { register, show, curtain } from './nav.js';
 import { Player, setPlayerLinks, notes } from './player.js';
 import { Serie, setSerieDone, drawExam } from './serie.js';
-import { Reflex } from './reflex.js';
 import { Decoder } from './decoder.js';
 import { Labels } from './labels.js';
 import { Frame, prewarm } from './scenes.js';
@@ -213,19 +212,17 @@ export function setupScreens() {
   } });
   register('cours', { world: 'route', amb: 'route', noTab: true, reframe: () => Frame.apply(),
     enter(prev, o) { if (o.course) { ficheId = o.course; R.reset(); Player.load(o.course, o.at > 0 ? o.at : (o.at === undefined ? courseState(o.course).scene || 0 : 0), !!o.play); if (o.play) Player.start(o.at, o.k); } },
-    leave() { if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
+    leave() { if (Engine.xfadeStop) Engine.xfadeStop(); if (Player.mode === 'explore') Player.explore(false, false); Player.closeInfo(false); Player.pause(); Labels.clear(); if (Player.closeChapters) Player.closeChapters(); if (Player.closeText) Player.closeText(); $('#s-cours').classList.remove('immersif', 'explore', 'ralenti'); } });
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'entrainer', enter() { R.reset(); }, leave() { Serie.stop(); } });
   register('entrainer', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-entrainer'), enter(prev, o) { renderEntrainer(o && o.volet); SALLE.reset(900); } });
   $$('#entSeg [data-volet]').forEach(b => b.addEventListener('click', () => { if (b.dataset.volet === volet) return; haptic(); Sound.ui('tick'); renderEntrainer(b.dataset.volet); $('#s-entrainer').scrollTop = 0; }));
   register('jourj', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-jourj'), enter() { renderJourJ(true); SALLE.reset(900); } });
   setupJourJ();
-  register('parebrise', { world: 'route', amb: 'route', enter() { R.reset(); R.setSpeed(40, 20); R.pose('reflex', 1); }, leave() { Reflex.stop(); } });
   register('decodeur', { world: 'studio', amb: null, enter() { Decoder.paint(true); } });
 
   setPlayerLinks(id => Exos.run(id, 'fiche'), () => show('parcours'));
   setSerieDone(cfg => show(cfg.retour || 'examen', cfg.retourArg ? { arg: cfg.retourArg } : {}));
   Player.bindUI();
-  Reflex.init(() => {});
   Decoder.init(() => store.set('decoderUsed', true));
 
   $('#takeSeat').addEventListener('click', () => seatAndPlay(nextCourse().id));

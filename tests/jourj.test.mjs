@@ -21,7 +21,7 @@ test('l’onglet Exercices a disparu : questions et conduite 3D sont les deux vo
   assert.deepEqual([...ent.matchAll(/data-volet="(\w+)"/g)].map(m => m[1]), ['questions', 'conduite']);
   // rien n'est perdu : examen blanc, examen rapide, à revoir, séries d'un côté ; pratiques, défis et outils de l'autre
   ['data-exo="x-exam-blanc"', 'id="hubExam"', 'id="hubReview"', 'id="hubSeries"'].forEach(k => assert.ok(ent.split('id="entC"')[0].includes(k), k));
-  ['id="xHubStats"', 'id="xFeat"', 'id="xHubList"', 'data-go="parebrise"', 'data-go="decodeur"'].forEach(k => assert.ok(ent.split('id="entC"')[1].includes(k), k));
+  ['id="xHubStats"', 'id="xFeat"', 'id="xHubList"', 'data-go="decodeur"'].forEach(k => assert.ok(ent.split('id="entC"')[1].includes(k), k));
 });
 test('les anciens chemins mènent au bon volet (retour d’une série, d’un exercice, vieux liens)', () => {
   assert.ok(nav.includes("examen: ['entrainer', 'questions']") && nav.includes("exos: ['entrainer', 'conduite']"));
