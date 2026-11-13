@@ -118,11 +118,22 @@ la réservation, la session, les affaires du jour J, puis le résultat.
   l'épreuve (arrêté du 16 avril 2026, en vigueur depuis le 1er juillet 2026) ; 40 questions, 35 bonnes réponses ; résultat par
   e-mail sous 24 à 72 heures.
 
-**Réserver sans quitter l'app.** La Poste propose aux partenaires des API pour chercher des sessions depuis un site ou une
-application ; c'est par un tel partenariat que les auto-écoles en ligne réservent depuis leur propre compte. Il passe par un
-contrat avec La Poste (le partenaire agit comme son mandataire) et par un serveur qui garde la clé : une page statique ne peut
-pas la cacher. Le jour où le partenariat existe, la liste des sessions prend la place du bouton dans l'étape « Réserver ma
-place » (`reserverHTML` dans `jourj.js`), et la session se note toute seule.
+**Réserver sans quitter l'app : l'API « Code de la route » de La Poste.** Elle est publique et gratuite
+(developer.laposte.fr, base `https://api.laposte.fr/codedelaroute/v2`, 100 appels par seconde). Ce que dit sa documentation :
+
+- **Accès** : un compte « La Poste Developer » (inscription libre), la souscription à l'offre, une clé d'application envoyée
+  dans l'en-tête `X-Okapi-Key`. Le bac à sable est en accès libre ; avant la première utilisation et pour la production, il
+  faut écrire au support (support-prod-api@docapost.fr, support-api@docapost.fr).
+- **Chercher des sessions** (ouvert à tout client) : `GET /sessions` par position (`latitude`, `longitude`,
+  `rayonDeRecherche` de 1 à 50 km) ou par site (`idSite`), sur une période (`dateMin`, `dateMax`, un mois au plus) ou par
+  `nombreProchainesSessions`. Chaque session donne ses dates, ses places restantes, sa date limite d'inscription et son prix.
+- **Réserver** : `POST /reservations` demande un compte partenaire (en-tête `Etg-Uuid`), le NEPH, le nom, le prénom et la date
+  de naissance du candidat. En paiement par carte, l'API renvoie une `urlPaiement` sécurisée et rappelle l'app sur deux
+  adresses HTTPS. `GET /candidats/validation` vérifie le candidat auprès du ministère.
+
+La clé ne peut pas vivre dans cette page (dépôt public, fichier statique) : il faut un petit serveur qui la garde et relaie les
+appels. Le jour où la clé existe, la liste des sessions prend la place du bouton dans l'étape « Réserver ma place »
+(`reserverHTML` dans `jourj.js`).
 
 ## Le lecteur de cours
 
