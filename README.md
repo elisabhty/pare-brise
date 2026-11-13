@@ -112,11 +112,25 @@ la réservation, la session, les affaires du jour J, puis le résultat.
   de La Poste sur sa commune (`lienLaPoste`, vérifié sur le site : le champ « Où ? » arrive rempli). Il y choisit son centre,
   paie les 30 € et reçoit sa convocation. Les quatre autres opérateurs agréés sont listés avec leur site officiel.
 - **L'app n'encaisse rien et ne demande pas le NEPH** : elle ne garde que « pas encore / demandé / je l'ai ».
+- **L'étape NEPH dit tout, dans l'ordre.** Une définition en une phrase, puis la liste des documents à préparer, qui s'adapte à
+  la tranche d'âge choisie (`AGES`, `docsNeph`) et se coche. La liste suit la fiche « Permis B » de service-public.gouv.fr,
+  étape « S'inscrire à l'examen du permis de conduire », cas « Par vous-même » : justificatif d'identité, justificatif de
+  domicile de moins de 6 mois, photo d'identité ou photo-signature numérique pour tous ; ASSR2 ou ASR avant 21 ans ;
+  justificatif de JDC pour les Français de 17 à 24 ans ; pièce d'identité du représentant légal pour les mineurs. La tranche
+  d'âge reste sur le téléphone. Une mise en garde rappelle que la demande est gratuite sur ants.gouv.fr.
+- **L'attente du NEPH est datée.** Une fois la demande notée (date modifiable), l'app affiche une fourchette de 2 à 6 semaines
+  (`NEPH_SEMAINES`, `attenteNeph`). C'est un repère, écrit comme tel : aucun délai n'est garanti, les repères publiés vont
+  d'environ deux semaines à « 6 semaines environ » (La Poste). Passé six semaines, l'app invite à vérifier son espace.
+- **Avant d'ouvrir le site du centre**, l'app liste ce qu'il faut avoir sous la main (NEPH, identité écrite comme sur la pièce,
+  e-mail, carte) et les quatre gestes de la réservation.
 - **La session notée** (date, heure, lieu, centre) donne le compte à rebours de l'accueil, renomme l'onglet en « J-12 » puis « Jour J », et
   devient le jour J du planning (`adaptPlan({ examen })`).
 - **Les règles affichées** : 30 € par passage, tarif réglementé identique partout ; inscription au plus tard la veille de
   l'épreuve (arrêté du 16 avril 2026, en vigueur depuis le 1er juillet 2026) ; 40 questions, 35 bonnes réponses ; résultat par
-  e-mail sous 24 à 72 heures.
+  e-mail sous 24 à 72 heures. D'après la page de La Poste (`REGLES`) : réservation jusqu'à 3 mois à l'avance ; changement ou
+  annulation jusqu'à la veille 23 h 59, remboursement sous 48 heures hors week-ends et jours fériés ; convocation imprimée ou
+  sur téléphone, pièce d'identité originale (photocopie refusée) ; plus de 1 600 centres. Inscription possible dès 16 ans,
+  15 ans en conduite accompagnée (service-public.gouv.fr).
 
 **Réserver sans quitter l'app : l'API « Code de la route » de La Poste.** Elle est publique et gratuite
 (developer.laposte.fr, base `https://api.laposte.fr/codedelaroute/v2`, 100 appels par seconde). Ce que dit sa documentation :

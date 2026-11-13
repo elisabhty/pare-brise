@@ -1619,5 +1619,55 @@ a.btn,a.jj-chip{text-decoration:none}
 .jj-ops{display:flex;flex-wrap:wrap;gap:8px}
 .jj-ops .chipb{padding:0 14px}
 .jj-ops .chipb[aria-checked="true"]{box-shadow:inset 0 0 0 2px var(--accent);background:rgba(10,102,255,.1);color:var(--accent)}
+/* --- NEPH et réservation, version claire : définition, documents à cocher, étapes numérotées, attente datée --- */
+.jj-def{margin:0;padding:12px 14px;border-radius:16px;background:rgba(10,102,255,.07);font-size:15px;line-height:1.42;color:var(--craie)}
+.jj-def b{color:var(--accent);font-weight:700}
+.jj-bloc{display:grid;gap:10px;padding:14px;border-radius:20px;background:rgba(16,24,40,.035)}
+.jj-bh{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.jj-bh b{font-size:16.5px;font-weight:650;letter-spacing:-.018em}
+.jj-bh span{font-size:13.5px;font-weight:600;color:var(--label2);white-space:nowrap}
+.jj-ages{display:flex;flex-wrap:wrap;gap:6px}
+.jj-ages .chipb{height:36px;padding:0 12px;background:#fff;font-weight:600}
+.jj-ages .chipb[aria-checked="true"]{box-shadow:inset 0 0 0 2px var(--accent);background:rgba(10,102,255,.1);color:var(--accent)}
+.jj-docs button{background:#fff;box-shadow:var(--sh-1)}
+.jj-docs button[aria-checked="true"]{background:#F1FAF5}
+.jj-how{list-style:none;counter-reset:pas;margin:0;padding:0;display:grid;gap:0}
+.jj-how li{counter-increment:pas;position:relative;display:grid;gap:2px;padding:0 0 14px 40px;min-height:40px}
+.jj-how li::before{content:counter(pas);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--fr);color:var(--accent);background:rgba(10,102,255,.1)}
+.jj-how li::after{content:"";position:absolute;left:13.25px;top:32px;bottom:4px;width:1.5px;border-radius:2px;background:rgba(10,102,255,.18)}
+.jj-how li:last-child{padding-bottom:0}
+.jj-how li:last-child::after{display:none}
+.jj-how b{font-size:15.5px;font-weight:600;letter-spacing:-.015em;line-height:1.3;padding-top:4px}
+.jj-how span{font-size:13.5px;line-height:1.4;color:var(--label2)}
+.jj-how.serre li{padding-bottom:10px;min-height:38px}
+.jj-how.serre li:last-child{padding-bottom:0}
+.jj-need{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.jj-need li{display:grid;gap:1px;padding:9px 0 9px 30px;position:relative}
+.jj-need li+li{border-top:.5px solid var(--sep)}
+.jj-need li::before{content:"";position:absolute;left:2px;top:13px;width:18px;height:18px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-8.5'/%3E%3C/svg%3E") center/12px no-repeat}
+.jj-need b{font-size:15px;font-weight:600;letter-spacing:-.012em;line-height:1.3}
+.jj-need span{font-size:13px;color:var(--label2);line-height:1.35}
+.jj-wait{display:grid;gap:8px;padding:14px;border-radius:20px;background:linear-gradient(160deg,#EEF4FF,#E3EDFF);box-shadow:inset 0 0 0 1px rgba(10,102,255,.14)}
+.jj-wait.tard{background:linear-gradient(160deg,#FFF3E8,#FFE9D6);box-shadow:inset 0 0 0 1px rgba(255,122,26,.25)}
+.jj-wd{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14.5px;color:var(--label2)}
+.jj-wd input{height:38px;padding:0 10px;border:0;border-radius:10px;background:#fff;color:var(--accent);font:600 15px var(--f);box-shadow:var(--sh-1)}
+.jj-wbar{position:relative;height:10px;border-radius:99px;background:rgba(10,102,255,.14);margin-top:4px}
+.jj-wbar i{display:block;height:100%;border-radius:inherit;background:var(--accent);transition:width .8s ease}
+.jj-wait.tard .jj-wbar i{background:#F47A1F}
+.jj-wbar u{position:absolute;top:-3px;bottom:-3px;width:2px;border-radius:2px;background:rgba(11,27,63,.35)}
+.jj-wl{display:grid;grid-template-columns:33.3% 1fr auto;font-size:12px;font-weight:600;color:var(--label2)}
+.jj-wl span:nth-child(2){transform:translateX(-50%);justify-self:start;white-space:nowrap}
+.jj-wm{margin:2px 0 0;display:grid;gap:2px;font-size:14px;line-height:1.4;color:var(--label2)}
+.jj-wm b{font-size:16px;font-weight:650;letter-spacing:-.015em;color:var(--craie)}
+.jj-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.jj-2 .btn{padding:0 10px;font-size:15.5px;gap:6px}
+.jj-l{justify-self:center;font-size:15px;padding:4px 0}
+.jj-faq>div{display:grid;gap:10px;padding:0 0 12px}
+.jj-faq .jj-list li{font-size:14px;color:var(--label2)}
+.jj-faq .jj-list{margin:0;padding:0;gap:8px}
+.jj-faq .jj-list li+li{border-top:0}
+.btn.sm{height:44px;font-size:15px}
+.jj-warn b{font-weight:700}
+.jj-h{font-size:13px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--label2);margin:4px 0 -2px}
 #readyGo{justify-self:start;padding:2px 0 0}
 @media (prefers-reduced-motion:reduce){.jj-in,.jj-sac button[aria-checked="true"] i{animation:none}}

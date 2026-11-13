@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { lire, PRIX, OPERATEURS, ANTS, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge, SEUIL } from '../src/app/jourj-core.js';
+import { lire, PRIX, OPERATEURS, ANTS, AGES, DOCS, ageOk, docsNeph, docsPrets, NEPH_SEMAINES, fenetreNeph, attenteNeph, REGLES, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge, SEUIL } from '../src/app/jourj-core.js';
 import { fromIso, iso } from '../src/app/dates.js';
 
 const html = fs.readFileSync('src/index.html', 'utf8'), nav = fs.readFileSync('src/app/nav.js', 'utf8');
@@ -49,9 +49,51 @@ test('rien d’autre qu’un code postal ne part dans le lien', () => {
 });
 test('le numéro NEPH n’est jamais demandé ni gardé', () => {
   const jj = fs.readFileSync('src/app/jourj.js', 'utf8');
-  assert.deepEqual(Object.keys(lire(null)).sort(), ['cp', 'neph', 'nephLe', 'resa', 'resultat', 'sac']);
+  assert.deepEqual(Object.keys(lire(null)).sort(), ['age', 'cp', 'docs', 'neph', 'nephLe', 'resa', 'resultat', 'sac']);
   assert.ok(['non', 'attente', 'oui'].includes(lire(null).neph));
-  assert.ok(!/<input[^>]*neph/i.test(jj), 'aucun champ pour saisir le NEPH');
+  // aucun champ pour saisir le numéro : le seul champ de l'étape NEPH est la date d'envoi de la demande
+  assert.ok(!/<input[^>]*(id|name|placeholder|aria-label)="[^"]*neph/i.test(jj), 'aucun champ pour saisir le NEPH');
+  assert.deepEqual([...jj.matchAll(/<input[^>]*id="(\w+)"/g)].map(m => m[1]).sort(), ['jjCp', 'jjDemLe', 'jsD', 'jsH', 'jsL']);
+  assert.match(jj, /<input type="date" id="jjDemLe"/);
+});
+
+test('les documents de la demande de NEPH suivent l’âge (fiche Permis B de service-public.gouv.fr)', () => {
+  const base = ['identite', 'domicile', 'photo'];
+  assert.deepEqual(AGES.map(a => a.id), ['15', '17', '18', '21', '25']);
+  assert.deepEqual(docsNeph(null), base);                                   // sans âge : ce que tout le monde fournit
+  assert.deepEqual(docsNeph('15'), [...base, 'assr', 'parent']);            // mineur de moins de 17 ans : ASSR2/ASR + représentant légal
+  assert.deepEqual(docsNeph('17'), [...base, 'assr', 'jdc', 'parent']);     // 17 ans : la JDC s'ajoute (17 ans révolus à 25 ans non révolus)
+  assert.deepEqual(docsNeph('18'), [...base, 'assr', 'jdc']);               // majeur de moins de 21 ans : plus de représentant légal
+  assert.deepEqual(docsNeph('21'), [...base, 'jdc']);                       // 21 ans : plus d'ASSR
+  assert.deepEqual(docsNeph('25'), base);                                   // 25 ans : plus de JDC
+  assert.deepEqual(docsNeph('99'), base); assert.ok(ageOk('18') && !ageOk('99') && !ageOk(null));
+  AGES.forEach(a => docsNeph(a.id).forEach(k => { assert.ok(DOCS[k], k); assert.ok(DOCS[k][0].length < 60 && DOCS[k][1].length < 130, k); }));
+  assert.match(DOCS.domicile[0], /moins de 6 mois/); assert.match(DOCS.jdc[0], /si tu es français/); assert.match(DOCS.assr[1], /déclaration sur l’honneur/);
+  // les coches d'une autre tranche d'âge ne comptent pas
+  assert.equal(docsPrets(lire({ age: '25', docs: { identite: true, assr: true, jdc: true } })), 1);
+  assert.equal(docsPrets(lire({ age: '17', docs: { identite: true, assr: true, jdc: true } })), 3);
+  assert.equal(docsPrets(lire(null)), 0);
+});
+test('l’attente du NEPH : une fourchette de 2 à 6 semaines, donnée comme un repère', () => {
+  assert.deepEqual(NEPH_SEMAINES, [2, 6]);
+  const f = fenetreNeph('2026-11-02');
+  assert.equal(iso(f.tot), '2026-11-16'); assert.equal(iso(f.tard), '2026-12-14');
+  assert.equal(fenetreNeph(null), null); assert.equal(fenetreNeph('02/11/2026'), null); assert.equal(attenteNeph('', VEN), null);
+  assert.equal(attenteNeph('2026-11-02', VEN).etat, 'debut');                       // 11 jours : trop tôt
+  assert.equal(attenteNeph('2026-10-30', VEN).etat, 'fenetre');                     // 14 jours pile : la fourchette commence
+  assert.equal(attenteNeph('2026-10-02', VEN).etat, 'fenetre');                     // 42 jours pile : dernier jour de la fourchette
+  assert.equal(attenteNeph('2026-10-01', VEN).etat, 'tard');                        // 43 jours : à vérifier
+  assert.equal(attenteNeph('2026-11-13', VEN).part, 0); assert.equal(attenteNeph('2026-01-01', VEN).part, 1);
+  assert.ok(Math.abs(attenteNeph('2026-10-23', VEN).part - 0.5) < 1e-9);            // 21 jours sur 42
+  const jj = fs.readFileSync('src/app/jourj.js', 'utf8');
+  assert.ok(/un repère, pas un engagement/.test(jj), 'la fourchette n’est pas présentée comme une promesse');
+});
+test('la réservation dit ce qu’il faut avoir sous la main, et les règles publiées par La Poste', () => {
+  const jj = fs.readFileSync('src/app/jourj.js', 'utf8');
+  assert.deepEqual(REGLES, { moisAvance: 3, annulation: 'la veille, 23 h 59', remboursementH: 48, centresLaPoste: 1600, ageMin: 16, ageMinAac: 15 });
+  ['Ton NEPH', 'Ton nom, ton prénom, ta date de naissance', 'Une adresse e-mail', 'Une carte bancaire'].forEach(k => assert.ok(jj.includes(k), k));
+  assert.ok(jj.includes('ants.gouv.fr') && /gratuite sur le site officiel/.test(jj), 'mise en garde sur les sites payants');
+  assert.ok(/imprimée ou sur ton téléphone/.test(jj) && /photocopie[^.]*refusée/.test(jj), 'convocation et pièce d’identité, comme La Poste les demande');
 });
 
 test('dates et heures de la session', () => {

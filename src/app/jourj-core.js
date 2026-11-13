@@ -1,12 +1,14 @@
 /* Cœur de l'onglet « Réserver » (le vrai examen), sans DOM : testé à part.
-   L'état : { neph: 'non' | 'attente' | 'oui', nephLe: 'AAAA-MM-JJ' | null, cp: '75011',
+   L'état : { neph: 'non' | 'attente' | 'oui', nephLe: 'AAAA-MM-JJ' | null, age: '15' | '17' | '18' | '21' | '25' | null,
+              docs: { identite, domicile, photo, assr, jdc, parent }, cp: '75011',
               resa: { d: 'AAAA-MM-JJ', h: 'HH:MM', lieu: '', op: 'laposte' } | null,
               sac: { convocation, identite, trajet }, resultat: null | 'ok' | 'ko' }.
+   L'âge n'est qu'une tranche, gardée sur le téléphone : elle sert à dire quels documents préparer pour la demande de NEPH.
    Le numéro NEPH lui-même n'est jamais demandé ni enregistré : l'app n'en a pas besoin, seul son site de réservation le demande. */
 import { iso, fromIso, diffD } from './dates.js';
 
-export const VIDE = () => ({ neph: 'non', nephLe: null, cp: '', resa: null, sac: {}, resultat: null });
-export const lire = brut => Object.assign(VIDE(), brut || {}, { sac: Object.assign({}, (brut && brut.sac) || {}) });
+export const VIDE = () => ({ neph: 'non', nephLe: null, age: null, docs: {}, cp: '', resa: null, sac: {}, resultat: null });
+export const lire = brut => Object.assign(VIDE(), brut || {}, { sac: Object.assign({}, (brut && brut.sac) || {}), docs: Object.assign({}, (brut && brut.docs) || {}) });
 
 /* ---------- les centres agréés par l'État (même épreuve, même prix partout) ---------- */
 /* adresses officielles, celles que les préfectures publient dans leurs listes de centres */
@@ -20,6 +22,54 @@ export const OPERATEURS = [
 ];
 export const operateur = id => OPERATEURS.find(o => o.id === id) || OPERATEURS[0];
 export const ANTS = 'https://permisdeconduire.ants.gouv.fr/';
+
+/* ---------- la demande de NEPH : quels documents, selon l'âge ---------- */
+/* Source : service-public.gouv.fr, fiche « Permis B », étape « S'inscrire à l'examen du permis de conduire », cas « Par vous-même ».
+   Tous : justificatif d'identité, justificatif de domicile de moins de 6 mois, photo d'identité ou photo-signature numérique.
+   Moins de 21 ans : ASSR2 ou ASR (à défaut, déclaration sur l'honneur). Mineur : justificatif d'identité du représentant légal.
+   Français de 17 ans révolus à 25 ans non révolus : justificatif de la journée défense et citoyenneté (JDC). */
+export const AGES = [
+  { id: '15', nom: '15-16 ans', docs: ['assr', 'parent'] },
+  { id: '17', nom: '17 ans', docs: ['assr', 'jdc', 'parent'] },
+  { id: '18', nom: '18-20 ans', docs: ['assr', 'jdc'] },
+  { id: '21', nom: '21-24 ans', docs: ['jdc'] },
+  { id: '25', nom: '25 ans et +', docs: [] }
+];
+export const DOCS = {
+  identite: ['Un justificatif d’identité', 'Carte d’identité ou passeport, en photo ou scanné.'],
+  domicile: ['Un justificatif de domicile de moins de 6 mois', 'Le site officiel liste ceux qui sont acceptés.'],
+  photo: ['Une photo d’identité, ou une photo-signature numérique', 'La photo-signature se fait en cabine ou chez un photographe agréé : tu repars avec un code à recopier.'],
+  assr: ['Ton ASSR2, ou ton ASR', 'L’attestation de sécurité routière. Perdue ? Une déclaration sur l’honneur la remplace.'],
+  jdc: ['Ton justificatif de JDC, si tu es français', 'Certificat de participation à la journée défense et citoyenneté, ou attestation d’exemption ou de report.'],
+  parent: ['La pièce d’identité d’un parent', 'Ou de ton représentant légal : elle est demandée tant que tu es mineur.']
+};
+const BASE = ['identite', 'domicile', 'photo'];
+export const ageOk = a => AGES.some(x => x.id === a);
+/* la liste à préparer : les trois documents de tous, puis ceux de la tranche d'âge (aucune tranche : seulement la base) */
+export const docsNeph = age => BASE.concat((AGES.find(x => x.id === age) || { docs: [] }).docs);
+export const docsPrets = e => docsNeph(e.age).filter(k => e.docs && e.docs[k]).length;
+
+/* ---------- l'attente du NEPH ---------- */
+/* Aucun délai n'est garanti. Les repères publiés vont d'environ deux semaines à six (La Poste écrit « 6 semaines environ ») :
+   l'app affiche cette fourchette comme un repère, jamais comme une promesse. */
+export const NEPH_SEMAINES = [2, 6];
+export function fenetreNeph(nephLe) {
+  if (!dateOk(nephLe)) return null;
+  const plus = n => { const x = fromIso(nephLe); x.setDate(x.getDate() + n * 7); return x; };
+  return { tot: plus(NEPH_SEMAINES[0]), tard: plus(NEPH_SEMAINES[1]) };
+}
+/* 'debut' : trop tôt pour s'inquiéter · 'fenetre' : il peut arriver d'un jour à l'autre · 'tard' : la fourchette est dépassée */
+export function attenteNeph(nephLe, t) {
+  const f = fenetreNeph(nephLe); if (!f) return null;
+  const part = Math.max(0, Math.min(1, diffD(fromIso(nephLe), t) / (NEPH_SEMAINES[1] * 7)));
+  return { etat: diffD(t, f.tot) > 0 ? 'debut' : diffD(t, f.tard) >= 0 ? 'fenetre' : 'tard', part, jours: diffD(fromIso(nephLe), t), ...f };
+}
+
+/* ---------- les règles de la réservation, telles que La Poste les publie ---------- */
+/* laposte.fr, « Passez l'examen du code Auto et Moto avec La Poste » : réservation jusqu'à 3 mois à l'avance ;
+   changement ou annulation jusqu'à la veille 23 h 59, remboursement sous 48 h hors week-ends et jours fériés ; plus de 1 600 centres.
+   service-public.gouv.fr : inscription possible dès 16 ans, 15 ans en apprentissage anticipé de la conduite. */
+export const REGLES = { moisAvance: 3, annulation: 'la veille, 23\u00a0h\u00a059', remboursementH: 48, centresLaPoste: 1600, ageMin: 16, ageMinAac: 15 };
 
 /* ---------- la recherche de sessions à La Poste ---------- */
 /* un code postal français : 5 chiffres, département de 01 à 98 (2A et 2B s'écrivent 20) */
