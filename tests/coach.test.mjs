@@ -64,7 +64,9 @@ test('tous les cours vus : examen blanc, puis ce qu’il manque', () => {
   const tous = { coursVus: 35, jj: { neph: 'oui' } };
   assert.equal(conseil(S(tous)).action.exo, 'x-exam-blanc');
   assert.match(conseil(S({ ...tous, blancs: 1, dernierBlanc: 31 })).texte, /31 sur 40\. Il en manquait 4/);
-  assert.match(conseil(S({ ...tous, blancs: 1, dernierBlanc: 36 })).texte, /Encore un examen blanc réussi de suite/);
+  assert.match(conseil(S({ ...tous, blancs: 1, dernierBlanc: 36 })).texte, /36 sur 40\. Ça passerait de justesse : vise 37/);
+  assert.match(conseil(S({ ...tous, blancs: 2, dernierBlanc: 38, reussis: 1 })).texte, /Encore 2 de suite à 37 ou plus/);
+  assert.match(conseil(S({ ...tous, blancs: 3, dernierBlanc: 39, reussis: 2 })).texte, /Encore un à 37 ou plus/);
 });
 
 test('pratique oubliée, planning proposé', () => {
@@ -110,13 +112,13 @@ test('chaque phrase de Plot est courte, et n’annonce rien pour plus tard', () 
 
 test('Plot ne répète que des règles déjà affichées ailleurs dans l’app', () => {
   const src = fs.readFileSync('src/app/coach-core.js', 'utf8');
-  const permis = ['15 minutes avant', '2 à 6 semaines', '24 à 72 heures', '35 sur 40', '40 situations'];
+  const permis = ['15 minutes avant', '2 à 6 semaines', '24 à 72 heures', '35 sur 40', '37 sur 40', '40 situations'];
   const vus = new Set([...src.matchAll(/\d+ (sur 40|minutes avant|à \d+ semaines|à \d+ heures|situations)/g)].map(m => m[0]));
   vus.forEach(x => assert.ok(permis.includes(x), x));
   ['15 minutes avant', '2 à 6 semaines', '24 à 72 heures', '35 sur 40'].forEach(x => assert.ok(vus.has(x), x));
   // les mêmes repères que l'onglet Réserver
   const jj = fs.readFileSync('src/app/jourj.js', 'utf8') + fs.readFileSync('src/app/jourj-core.js', 'utf8');
-  assert.ok(/15 minutes avant/.test(jj) && /24 à 72 heures/.test(jj) && /NEPH_SEMAINES = \[2, 6\]/.test(jj));
+  assert.ok(/15 minutes avant/.test(jj) && /24 à 72 heures/.test(jj) && /NEPH_SEMAINES = \[2, 6\]/.test(jj) && /37 sur 40/.test(jj));
 });
 
 test('les étapes à fêter : atteintes une fois, fêtées une fois, la plus importante d’abord', () => {

@@ -40,9 +40,12 @@ test('l’image montre ce dont parle la voix', () => {
   assert.ok(ex['p-cyclistes-edpm'].situations.some(s => /trottinette/i.test(s.contexte || '') && s.acteurs.some(a => a.type === 'trottinette')));
   assert.ok(ex['p-poids-lourds-2rm'].situations.some(s => s.qid === 'pl213-4' && s.acteurs.some(a => a.type === 'moto')));
 });
-test('la pratique dit quand plusieurs réponses sont justes (sauf à l’examen blanc)', () => {
-  const src = fs.readFileSync('src/app/exos.js', 'utf8');
-  assert.match(src, /!blanc && sc\.bonnes\.length > 1 \? '<span class="xq-multi">Plusieurs réponses possibles/);
+test('chaque question dit s’il y a une seule réponse ou plusieurs (comme la banque officielle depuis 2023), sans dire combien', () => {
+  const src = fs.readFileSync('src/app/exos.js', 'utf8'), se = fs.readFileSync('src/app/serie.js', 'utf8');
+  assert.match(src, /blanc \? `<span class="xq-multi">\$\{sc\.bonnes\.length > 1 \? 'Plusieurs réponses' : 'Une seule réponse'\}<\/span>`/);
+  assert.match(se, /q\.bonnes\.length > 1 \? 'Plusieurs réponses : coche-les toutes' : 'Une seule réponse'/);
+  assert.ok(!/réponses attendues`/.test(se), 'le nombre de bonnes réponses n’est pas donné');
+  assert.match(src, /if \(seule\) \{ const avant = chosen\.has\(k\); chosen\.clear\(\)/);   // une seule réponse : en choisir une autre remplace
 });
 test('les explications de la banque disent la réponse et la raison, sans recopier la question', () => {
   Object.values(banque).filter(q => q.type === 'qcm').forEach(q => assert.ok(q.explication.length >= 40, `${q.id} : explication trop courte`));

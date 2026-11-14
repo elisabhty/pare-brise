@@ -3,8 +3,11 @@
 import { $, $$, esc, shuffle, haptic } from './util.js';
 import { R } from './world.js';
 import { sign, meta } from './signs.js';
-import { QUESTIONS, SERIES, course, questionTheme, THEMES } from './content.js';
-import { answer as leitner, saveSeries, saveExam } from './progress.js';
+import { QUESTIONS, SERIES, course, courseNumber, questionTheme, THEMES } from './content.js';
+import { answer as leitner, saveSeries, saveExam, vues } from './progress.js';
+import { diagHTML } from './diagnostic.js';
+import { lexify } from './lexique.js';
+import { bindPieges } from './piege.js';
 import { Voice } from './voice.js';
 import { Sound } from './sound.js';
 import { show, syncRegion } from './nav.js';
@@ -14,10 +17,10 @@ let onDone = () => {};
 export const setSerieDone = f => { onDone = f; };
 const PAIR_COLORS = ['#1F5BFF', '#FF7A1A', '#D7263D', '#12A150', '#8B5CF6'];
 
-/* Examen blanc : questions tirées dans toute la banque, en alternant les thèmes */
+/* Examen : questions tirées dans toute la banque, en alternant les thèmes ; dans chaque thème, les moins vues d'abord */
 export function drawExam(n = 20) {
-  const byTheme = {};
-  shuffle([...QUESTIONS.values()]).forEach(q => { const t = questionTheme(q) || 'autre'; (byTheme[t] = byTheme[t] || []).push(q.id); });
+  const byTheme = {}, vu = vues();
+  shuffle([...QUESTIONS.values()]).sort((a, b) => vu(a.id) - vu(b.id)).forEach(q => { const t = questionTheme(q) || 'autre'; (byTheme[t] = byTheme[t] || []).push(q.id); });
   const lists = Object.values(byTheme), out = [];
   while (out.length < n && lists.some(l => l.length)) lists.forEach(l => { if (l.length && out.length < n) out.push(l.shift()); });
   return shuffle(out);
@@ -43,11 +46,12 @@ export const Serie = {
   get q() { return QUESTIONS.get(this.cfg.ids[this.i]); },
   showQ() {
     const q = this.q, n = this.cfg.ids.length;
-    this.sel = []; this.locked = false; this.pairs = {}; this.pick = null;
+    this.sel = []; this.locked = false; this.pairs = {}; this.pick = null; this.tShow = performance.now();
     $('#sEyebrow').textContent = `${this.cfg.mode === 'examen' ? 'Examen' : 'Entraînement'} · ${this.cfg.titre}`;
     $('#sTitle').innerHTML = `<span class="ex-q num">Question ${this.i + 1}</span><span class="ex-of num">/ ${n}</span>`;
     $$('#sDots i').forEach((d, k) => { d.className = k < this.i ? 'past' : k === this.i ? 'cur' : ''; });
-    $('#sText').textContent = q.q;
+    // en entraînement, les mots du lexique sont soulignés : un toucher les explique (pas à l'examen, comme le jour J)
+    if (this.cfg.mode === 'examen') $('#sText').textContent = q.q; else $('#sText').innerHTML = lexify(q.q, esc);
     $('#sFb').hidden = true; $('#sFb').innerHTML = '';
     const ok = $('#sOk'); ok.textContent = 'Valider'; ok.disabled = true; ok.onclick = () => this.validate();
     if (q.type === 'association') this.renderAssoc(q); else this.renderQcm(q);
@@ -61,7 +65,7 @@ export const Serie = {
     if (this.cfg.mode === 'examen') { this.deadline = performance.now() + 20000; this.lastTick = 99; this.timer = setInterval(() => this.tick(), 100); this.tick(); }
   },
   renderQcm(q) {
-    $('#sHint').textContent = q.bonnes.length > 1 ? `${q.bonnes.length} réponses attendues` : '1 réponse attendue';
+    $('#sHint').textContent = q.bonnes.length > 1 ? 'Plusieurs réponses : coche-les toutes' : 'Une seule réponse';
     $('#sOpts').className = 'ex-opts';
     $('#sOpts').innerHTML = q.choix.map((o, k) => `<button class="ex-opt" data-k="${k}" aria-pressed="false"><i>${'ABCD'[k]}</i><span>${esc(o)}</span></button>`).join('');
     $$('#sOpts .ex-opt').forEach(b => b.addEventListener('click', () => this.toggle(+b.dataset.k)));
@@ -103,7 +107,7 @@ export const Serie = {
     if (ms <= 0) this.validate();
   },
   toggle(k) {
-    if (this.locked) return;
+    if (this.locked || performance.now() - this.tShow < 380) return;   // un double appui sur « Valider » ne coche rien ici
     haptic(); Sound.ui('tap');
     const multi = this.q.bonnes.length > 1;
     this.sel = multi ? (this.sel.includes(k) ? this.sel.filter(x => x !== k) : [...this.sel, k]) : [k];
@@ -133,7 +137,8 @@ export const Serie = {
     }
     const right = q.type === 'association' ? q.paires.map(p => `${meta(p[0]).code} → ${p[1]}`).join(' · ') : '';
     $('#sFb').hidden = false;
-    $('#sFb').innerHTML = `<div class="fbrow">${plot({ size: 62, pose: ok ? 'pouce' : 'decu' })}<div><b style="color:${ok ? 'var(--vert)' : 'var(--rouge-t)'}">${line(ok)}</b> ${esc(q.explication || '')}${!ok && right ? `<br><span class="small">${esc(right)}</span>` : ''}</div></div>`;
+    const cq = !ok && q.cours && course(q.cours);
+    $('#sFb').innerHTML = `<div class="fbrow">${plot({ size: 62, pose: ok ? 'pouce' : 'decu' })}<div><b style="color:${ok ? 'var(--vert)' : 'var(--rouge-t)'}">${line(ok)}</b> ${esc(q.explication || '')}${!ok && right ? `<br><span class="small">${esc(right)}</span>` : ''}${cq && cq.piege ? `<p class="fb-piege"><b>Le piège :</b> ${esc(cq.piege[0])}</p>` : ''}${cq ? `<button class="fb-cours" data-go="fiche" data-arg="${esc(cq.id)}">Revoir le cours ${courseNumber(cq)} · ${esc(cq.titre)}</button>` : ''}</div></div>`;
     react($('#sFb'), ok);
     Voice.say(ok ? 'Bonne réponse.' : (q.explication || 'Raté.'));
     const btn = $('#sOk'); btn.disabled = false; btn.textContent = this.i < this.cfg.ids.length - 1 ? 'Question suivante' : 'Voir mon score'; btn.onclick = () => this.advance();
@@ -160,6 +165,7 @@ export const Serie = {
     r.innerHTML = `<div class="plot-hero"><div class="score"><b class="num">${n}</b><span class="num">/ ${total}</span></div>${plot({ size: 92, pose: pass ? (exam ? 'trophee' : 'joie') : 'decu', bubble: pass ? (exam ? 'Niveau jour J !' : 'Série en poche !') : 'On s’y remet ensemble ?' })}</div>
       <span class="vpill ${pass ? 'ok' : 'ko'}">${exam ? (pass ? 'Niveau jour J atteint' : 'Pas encore le niveau jour J') : (pass ? 'Série réussie' : `${total - n} erreur${total - n > 1 ? 's' : ''} à revoir`)}</span>
       <p class="small">${exam ? `Le jour J, il faut 87,5 % de bonnes réponses (35/40). Ici : ${Math.round(n / total * 100)} %.` : 'Tes erreurs rejoignent la pile « À revoir » : elles reviendront jusqu’à ce que tu les maîtrises.'}</p>
+      ${diagHTML(this.answers.map(a => ({ ok: a.ok, cours: (QUESTIONS.get(a.id) || {}).cours })))}
       <ul class="corr">${this.answers.map((a, k) => { const q = QUESTIONS.get(a.id); const mini = q.type === 'association' ? q.paires.map(p => sign(p[0])).join('') : (q.panneaux || []).map(id => sign(id)).join(''); const ans = q.type === 'association' ? '' : `<div class="ans">Ta réponse : ${a.given.length ? a.given.map(j => 'ABCD'[j]).join(' + ') : 'aucune'} · Bonne réponse : ${q.bonnes.map(j => 'ABCD'[j]).join(' + ')}</div>`; return `<li class="glass ${a.ok ? 'ok' : 'ko'}"><div class="mini ${(q.paires || q.panneaux || []).length > 1 ? 'pair' : ''}">${mini || '<i class="memo-dot"></i>'}</div><div><b>${k + 1}. ${esc(q.q)}</b>${ans}<p>${esc(q.explication || '')}</p></div></li>`; }).join('')}</ul>
       ${wrong.length ? `<button class="btn" id="sRetry">Refaire mes ${wrong.length} erreur${wrong.length > 1 ? 's' : ''}</button>` : ''}
       <button class="btn ${wrong.length ? 'ghost sm' : ''}" id="sAgain">Recommencer</button>
@@ -168,6 +174,7 @@ export const Serie = {
     $('#sAgain').addEventListener('click', () => this.start(Object.assign({}, this.cfg, { ids: this.cfg.examen ? drawExam(this.cfg.ids.length) : shuffle(this.cfg.ids) })));
     $('#sBack').addEventListener('click', () => onDone(this.cfg));
     $('#s-serie').scrollTop = 0;
+    bindPieges(r);
     react(r, pass);
   },
   stop() { clearInterval(this.timer); Voice.stop(); }

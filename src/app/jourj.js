@@ -4,21 +4,33 @@
 import { $, $$, esc, fr, haptic, store } from './util.js';
 import { Sound } from './sound.js';
 import { iso, fromIso, today, addD, longJour, court } from './dates.js';
-import { COURSES } from './content.js';
-import { doneCount, exams, readiness, toReview } from './progress.js';
+import { COURSES, QUESTIONS, courseNumber } from './content.js';
+import { erreursParCours } from './diagnostic.js';
+import { respirer } from './respire.js';
+import { doneCount, exams, readiness, toReview, parts } from './progress.js';
 import { getPlan, adaptPlan, openSheet } from './planning.js';
 import { plot } from './mascot.js';
 import { hasImg, imgTag, plotImg } from './images.js';
-import { lire, PRIX, OPERATEURS, operateur, ANTS, AGES, DOCS, ageOk, docsNeph, docsPrets, NEPH_SEMAINES, attenteNeph, REGLES, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge } from './jourj-core.js';
+import { lire, PRIX, OPERATEURS, operateur, ANTS, AGES, DOCS, ageOk, docsNeph, docsPrets, NEPH_SEMAINES, attenteNeph, REGLES, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge, FAUTES, fautesOk, depuisEchec } from './jourj-core.js';
 
 export const getJJ = () => lire(store.get('jourj', null));
 const put = patch => { const e = Object.assign(getJJ(), patch); store.set('jourj', e); refreshJJBadge(); try { document.dispatchEvent(new CustomEvent('pb:jj')); } catch (x) {} return e; };
 
 /* tous les examens faits dans l'app, du plus ancien au plus récent : examens blancs (en %) et examens rapides */
-const examens = () => (store.get('blancs', []) || []).map(b => ({ t: b.t, score: b.score, total: 100 }))
+const examens = () => (store.get('blancs', []) || []).map(b => ({ t: b.t, score: b.score, total: 100, blanc: true }))
   .concat(exams().map(x => ({ t: x.t, score: x.score, total: x.total }))).sort((a, b) => a.t - b.t);
-const niv = () => niveau({ examens: examens(), coursVus: doneCount(), coursTotal: COURSES.length });
+/* après un passage raté, seuls les examens blancs faits depuis comptent pour « prêt » */
+const niv = () => { const t0 = depuisEchec(getJJ()); return niveau({ examens: examens().filter(x => x.t >= t0), coursVus: doneCount(), coursTotal: COURSES.length }); };
 export const niveauActuel = niv;
+/* le pourcentage « prêt » ne touche 100 % que quand le repère est atteint (sinon il plafonne à 95 %) */
+export const pctPret = () => {
+  const n = niv(); if (n.pret) return 100;
+  const bl = examens().filter(x => x.blanc && x.t >= depuisEchec(getJJ())).slice(-3);
+  if (!bl.length) return Math.min(readiness(), 95);
+  const moy = bl.reduce((a, x) => a + x.score / x.total * 40, 0) / bl.length, ex = Math.max(0, Math.min(1, (moy - 25) / 12));   // de 25 à 37 sur 40
+  const { cours, questions } = parts();
+  return Math.min(95, Math.round((cours * 0.25 + questions * 0.25 + ex * 0.5) * 100));
+};
 
 const I = {
   ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5.5 12.5 4.2 4.2 8.8-9.4"/></svg>',
@@ -52,7 +64,7 @@ function heroHTML(e, et, n) {
   }
   if (et === 'resultat') return heroCard({ humeur: 'pensif', k: `Session du ${esc(court(fromIso(r.d)))}`, t: 'Alors, ce code ?', s: 'Le résultat arrive par e-mail, en général 24 à 72 heures après.', btns: '<button class="btn" data-jj="ok">Je l’ai !</button><button class="btn ghost" data-jj="ko">Pas cette fois</button>' });
   if (et === 'reussi') return heroCard({ img: 'e4', humeur: 'trophee', mood: 'loop', ton: 'vert', k: 'Résultat favorable', t: 'Code en poche !', s: 'Garde ton NEPH : il te suit jusqu’à la conduite.', btns: '<button class="btn ghost" data-jj="raz">Effacer cette session</button>' });
-  if (et === 'rate') return heroCard({ humeur: 'decu', ton: 'orange', k, t: 'On y retourne', s: 'Revois tes erreurs, puis réserve une nouvelle session.', btns: `${toReview().length ? '<button class="btn ghost" data-go="entrainer">Mes erreurs</button>' : ''}<button class="btn" data-jj="encore">Nouvelle session</button>` });
+  if (et === 'rate') return heroCard({ humeur: 'decu', ton: 'orange', k, t: 'Pas cette fois', s: e.fautes ? `${e.fautes >= 11 ? '11 fautes ou plus' : `${e.fautes} fautes`} : il en faut 5 au plus. On cible tes erreurs.` : 'Près d’un examen du code sur deux est raté. On repart, avec un plan.', btns: '<button class="btn" data-jx="rattrapage">Mon plan pour le repasser</button>' });
   if (et === 'neph') {
     const a = e.neph === 'attente' ? attenteNeph(e.nephLe, today()) : null;
     if (a && a.etat === 'tard') return heroCard({ img: 'e1', humeur: 'inquiet', ton: 'orange', k, t: 'Regarde ta demande', s: `Plus de ${NEPH_SEMAINES[1]} semaines : un document manque peut-être.`, btns: `${lien(ANTS, 'Ma demande')}<button class="btn ghost" data-neph="oui">Je l’ai reçu</button>` });
@@ -60,8 +72,9 @@ function heroHTML(e, et, n) {
     return heroCard({ img: 'e1', humeur: 'coucou', k, t: 'Demande ton NEPH', s: `Ton numéro de candidat. Gratuit, ${NEPH_SEMAINES[0]} à ${NEPH_SEMAINES[1]} semaines d’attente.`, btns: '<button class="btn" data-jx="neph">Faire ma demande</button>' });
   }
   if (et === 'reserver') return heroCard({ img: 'e3', humeur: 'joie', mood: 'cheer', ton: 'vert', k, t: 'Tu es prêt !', s: `Réserve ta place : ${PRIX} €, en ligne.`, btns: '<button class="btn" data-jx="reserver">Réserver ma place</button>' });
-  const pct = readiness(), reste = COURSES.length - doneCount();
-  return heroCard({ img: 'e2', humeur: 'pouce', k, t: `Prêt à ${pct} %`, s: reste > 0 ? `Encore ${reste} cours, puis 2 examens blancs réussis.` : n.reussis ? 'Encore 1 examen blanc réussi.' : '2 examens blancs de suite à 35 sur 40.', extra: barre(pct), btns: reste > 0 ? '<button class="btn" data-go="parcours">Continuer mes cours</button>' : '<button class="btn" data-exo="x-exam-blanc">Faire un examen blanc</button>' });
+  const pct = pctPret(), reste = COURSES.length - doneCount(), manque = 3 - n.reussis;
+  const s = reste > 0 ? `Encore ${reste} cours, puis 3 examens blancs à 37 sur 40.` : n.reussis ? `Encore ${manque} examen${manque > 1 ? 's' : ''} blanc${manque > 1 ? 's' : ''} à 37 ou plus.` : n.presque ? `${n.dernier} sur 40 : vise 37 pour avoir de la marge.` : '3 examens blancs de suite à 37 sur 40.';
+  return heroCard({ img: 'e2', humeur: 'pouce', k, t: `Prêt à ${pct} %`, s, extra: barre(pct), btns: reste > 0 ? '<button class="btn" data-go="parcours">Continuer mes cours</button>' : '<button class="btn" data-exo="x-exam-blanc">Faire un examen blanc</button>' });
 }
 
 /* une ligne par étape : numéro (ou coche), titre, où j'en suis ; le toucher ouvre son détail */
@@ -70,7 +83,7 @@ function lignesHTML(e, et, n) {
   const faite = { neph: e.neph === 'oui', niveau: n.pret, reserver: tient, jourj: et === 'reussi' };
   const sous = {
     neph: e.neph === 'oui' ? 'Je l’ai' : e.neph === 'attente' ? (dateOk(e.nephLe) ? `Demandé le ${esc(court(fromIso(e.nephLe)))}` : 'Demandé') : 'Gratuit, à demander d’abord',
-    niveau: n.pret ? 'Prêt' : `${readiness()} %`,
+    niveau: n.pret ? 'Prêt' : `${pctPret()} %`,
     reserver: tient ? `${esc(operateur(e.resa.op).nom)} · ${esc(court(fromIso(e.resa.d)))}` : `${PRIX} €, en ligne`,
     jourj: et === 'reussi' ? 'Réussi' : tient && j !== null && j >= 0 ? `${j ? `J-${j}` : 'Aujourd’hui'} · affaires ${SAC.filter(([x]) => e.sac[x]).length}/3` : tient ? 'Résultat à noter' : 'Après ta réservation'
   };
@@ -111,12 +124,41 @@ function nephHTML(e) {
     + plis('Je suis en auto-école', '<p class="jj-note">Elle peut faire la demande pour toi, avec les mêmes documents.</p>') + perdu;
 }
 
+/* la jauge : les 5 derniers examens blancs, avec la barre du jour J (35) et celle de l'app pour réserver (37) */
+function jaugeHTML() {
+  const d = examens().filter(x => x.blanc || x.total >= 40).slice(-5);
+  if (!d.length) return '<p class="jj-note">Pas encore d’examen blanc : fais-en un pour te situer.</p>';
+  const h = v => Math.max(6, (Math.max(25, v) - 25) / 15 * 100);   // l'échelle va de 25 à 40 sur 40
+  return `<div class="jg" role="img" aria-label="Tes ${d.length} derniers examens blancs : ${d.map(x => Math.round(x.score / x.total * 40)).join(', ')} sur 40">
+    <i class="jg-l l37" style="bottom:${h(37).toFixed(1)}%"><span>37 pour réserver</span></i><i class="jg-l l35" style="bottom:${h(35).toFixed(1)}%"><span>35 le jour J</span></i>
+    ${d.map(x => { const v = Math.round(x.score / x.total * 40); return `<b class="jg-b ${v >= 37 ? 'ok' : v >= 35 ? 'juste' : 'ko'}" style="height:${h(v).toFixed(1)}%"><span class="num">${v}</span></b>`; }).join('')}
+  </div>`;
+}
 function niveauHTML(n) {
-  const d = examens().slice(-2);
-  return tete('Être prêt', 'Notre repère : deux examens blancs de suite à 35 sur 40.')
-    + `<div class="jj-facts"><div><b class="num">${doneCount()}<small>/${COURSES.length}</small></b><span>cours vus</span></div><div><b class="num">${n.reussis}<small>/2</small></b><span>examens réussis de suite</span></div><div><b class="num">${readiness()}<small>&nbsp;%</small></b><span>prêt</span></div></div>
-    ${d.length ? `<p class="jj-note">${d.length > 1 ? 'Tes deux derniers' : 'Ton dernier'} : ${d.map(x => `${Math.round(x.score / x.total * 40)}/40`).join(', puis ')}.</p>` : ''}
+  return tete('Être prêt', 'Le jour J, il faut 35 sur 40. Pour réserver, vise 37 trois fois de suite.')
+    + `<div class="jj-facts"><div><b class="num">${doneCount()}<small>/${COURSES.length}</small></b><span>cours vus</span></div><div><b class="num">${n.reussis}<small>/3</small></b><span>à 37 de suite</span></div><div><b class="num">${n.moyenne === null ? '–' : String(n.moyenne).replace('.', ',')}<small>/40</small></b><span>moyenne</span></div></div>
+    ${jaugeHTML()}
+    <p class="jj-note">${esc(n.conseil)}</p>
+    <p class="jj-why">Pourquoi 37 ? Avec deux réponses de marge, un moment de stress ne te coûte ni l’examen, ni ${PRIX} € de plus.</p>
     <button class="btn" data-exo="x-exam-blanc" data-close>Faire un examen blanc</button>`;
+}
+
+/* après un passage raté : combien de fautes, d'où viennent les erreurs dans l'app, et un plan de 7 jours */
+function rattrapageHTML(e) {
+  const f = e.fautes, rev = toReview();
+  const faibles = erreursParCours(rev.map(id => ({ ok: false, cours: (QUESTIONS.get(id) || {}).cours }))).slice(0, 3);
+  const mot = !f ? '' : f <= 7 ? 'Tu y étais presque : une ou deux réponses de plus. Cette fois, on vise la marge.' : f <= 10 ? 'Il manquait quelques points : on cible tes erreurs, cours par cours.' : 'On reprend les cours où tu perds des points, puis les examens blancs.';
+  // 4 jours pour combler (erreurs, cours fragiles, pièges), puis 3 examens blancs
+  const jours = [rev.length ? { t: `Tes ${rev.length} question${rev.length > 1 ? 's' : ''} à revoir`, s: 'Tes erreurs, jusqu’à les maîtriser', a: 'data-go="entrainer"' } : { t: 'Un examen rapide', s: 'Pour voir où ça coince', a: 'data-go="entrainer"' }]
+    .concat(faibles.map(({ c, n }) => ({ t: `Cours ${courseNumber(c)} · ${c.titre}`, s: `${n} erreur${n > 1 ? 's' : ''} à revoir dans ce cours`, a: `data-go="fiche" data-arg="${esc(c.id)}"` })));
+  if (jours.length < 4) jours.push({ t: 'Les pièges de l’examen', s: 'Les formulations qui font perdre des points', a: 'data-go="pieges"' });
+  while (jours.length < 4) jours.push({ t: 'Un examen rapide', s: '20 questions de tous les thèmes', a: 'data-go="entrainer"' });
+  jours.push({ t: 'Examen blanc', s: 'Vise 37 sur 40', a: 'data-exo="x-exam-blanc"' }, { t: 'Examen blanc', s: 'Encore 37 ?', a: 'data-exo="x-exam-blanc"' }, { t: 'Examen blanc', s: '3 fois 37 de suite : tu peux réserver', a: 'data-exo="x-exam-blanc"' });
+  return tete('On repart', 'Près d’un examen du code sur deux est raté. Ce qui compte : repartir avec de la marge.')
+    + `<div class="jx-q"><b>Combien de fautes as-tu fait ?</b><div class="chips">${FAUTES.map(x => `<button class="chipb sm" data-fautes="${x}" aria-pressed="${f === x}">${x === 11 ? '11 et +' : x}</button>`).join('')}</div>${mot ? `<p class="jj-note">${esc(mot)}</p>` : ''}</div>
+    <div class="jx-plan"><span class="diag-k">Ton plan en 7 jours</span><ol>${jours.map((j, k) => `<li><button ${j.a} data-close><span class="jx-n num">${k + 1}</span><span class="jx-st"><b>${esc(j.t)}</b><small>${esc(j.s)}</small></span><span class="jx-chev">${I.chev}</span></button></li>`).join('')}</ol></div>
+    <p class="jj-why">Une nouvelle session se paie à nouveau (${PRIX} €). Réserve quand tes 3 derniers examens blancs sont à 37 ou plus.</p>
+    <button class="btn ghost" data-jj="encore">J’ai réservé une nouvelle session</button>`;
 }
 
 function reserverHTML(e) {
@@ -149,6 +191,7 @@ function jourjHTML(e, et) {
   return tete(cap(quand(r)), `${esc(operateur(r.op).nom)}${r.lieu ? ` · ${esc(r.lieu)}` : ''}`)
     + `<ul class="jj-sac">${SAC.map(([k, t, s]) => coche('data-sac', k, e.sac[k], t, s)).join('')}</ul>
     <div class="jj-facts"><div><b class="num">40</b><span>questions</span></div><div><b class="num">35</b><span>pour réussir</span></div><div><b class="num">24<small>&nbsp;h</small></b><span>au plus tôt, le résultat</span></div></div>
+    <button class="jx-respire" data-respire><span class="jx-r-o" aria-hidden="true"></span><span><b>Une minute pour respirer</b><small>Avant d’entrer, pour faire baisser le stress</small></span></button>
     <button class="btn ghost" data-jj="session">Modifier ma session</button>`;
 }
 
@@ -191,7 +234,7 @@ export function renderJourJ() {
   refreshJJBadge();
 }
 
-const CORPS = { neph: e => nephHTML(e), niveau: () => niveauHTML(niv()), reserver: e => reserverHTML(e), jourj: e => jourjHTML(e, etape(e, today(), niv().pret)) };
+const CORPS = { rattrapage: e => rattrapageHTML(e), neph: e => nephHTML(e), niveau: () => niveauHTML(niv()), reserver: e => reserverHTML(e), jourj: e => jourjHTML(e, etape(e, today(), niv().pret)) };
 function ouvrir(id) {
   feuille = id;
   openSheet(`<div class="jx-sheet" data-feuille="${id}">${CORPS[id](getJJ())}</div>`, (sh, close) => {
@@ -211,6 +254,9 @@ function bind(root, close, redoSheet) {
     put({ neph: v, nephLe: v === 'attente' ? (e.neph === 'attente' && e.nephLe) || iso(today()) : null });
     if (v === 'oui' && b.classList.contains('btn')) fini(); else redo();
   }));
+  $$('[data-respire]', root).forEach(b => b.addEventListener('click', () => { haptic(); Sound.ui('tap'); feuille = null; if (close) close(); setTimeout(respirer, close ? 340 : 0); }));
+  $$('[data-fautes]', root).forEach(b => b.addEventListener('click', () => { haptic(); Sound.ui('tick'); const v = +b.dataset.fautes; put({ fautes: fautesOk(v) && getJJ().fautes !== v ? v : null }); redo(); }));
+  $$('[data-close]', root).forEach(b => { if (close && (b.dataset.go || b.dataset.exo)) b.addEventListener('click', () => { feuille = null; close(); }); });
   $$('[data-age]', root).forEach(b => b.addEventListener('click', () => { haptic(); Sound.ui('tick'); const v = b.dataset.age; put({ age: getJJ().age === v || !ageOk(v) ? null : v }); redo(); }));
   $$('[data-doc]', root).forEach(b => b.addEventListener('click', () => { const e = getJJ(), k = b.dataset.doc; e.docs[k] = !e.docs[k]; haptic(e.docs[k] ? 'ok' : undefined); Sound.ui(e.docs[k] ? 'ok' : 'tick'); put({ docs: e.docs }); redo(); }));
   const le = $('#jjDemLe', root);
@@ -221,7 +267,11 @@ function bind(root, close, redoSheet) {
     if (a === 'session') { feuille = null; return ouvrirSession(() => renderJourJ()); }
     if (a === 'ok') put({ resultat: 'ok' });
     else if (a === 'ko') put({ resultat: 'ko' });
-    else if (a === 'encore' || a === 'raz') { put({ resa: null, resultat: null, sac: {} }); if (getPlan()) adaptPlan({ examen: null }); }
+    else if (a === 'encore' || a === 'raz') {
+      const e = getJJ(), echec = a === 'encore' && e.resultat === 'ko' && e.resa ? { dernierEchec: e.resa.d, echecs: (e.echecs || 0) + 1, fautes: null } : {};
+      put(Object.assign({ resa: null, resultat: null, sac: {} }, echec)); if (getPlan()) adaptPlan({ examen: null });
+      if (close) { close(); feuille = null; if (a === 'encore') return ouvrirSession(() => renderJourJ()); }
+    }
     renderJourJ();
   }));
   // le code postal : gardé pour la prochaine fois, et le bouton pointe sur la commune dès qu'il est complet

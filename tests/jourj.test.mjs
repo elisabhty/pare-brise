@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { lire, PRIX, OPERATEURS, ANTS, AGES, DOCS, ageOk, docsNeph, docsPrets, NEPH_SEMAINES, fenetreNeph, attenteNeph, REGLES, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge, SEUIL } from '../src/app/jourj-core.js';
+import { lire, PRIX, OPERATEURS, ANTS, AGES, DOCS, ageOk, docsNeph, docsPrets, NEPH_SEMAINES, fenetreNeph, attenteNeph, REGLES, cpOk, lienLaPoste, heureOk, dateOk, heureFr, joursAvant, dernierJourPourReserver, etape, niveau, badge, SEUIL, SEUIL_PRET, N_PRET } from '../src/app/jourj-core.js';
 import { fromIso, iso } from '../src/app/dates.js';
 
 const html = fs.readFileSync('src/index.html', 'utf8'), nav = fs.readFileSync('src/app/nav.js', 'utf8');
@@ -55,7 +55,7 @@ test('rien d’autre qu’un code postal ne part dans le lien', () => {
 });
 test('le numéro NEPH n’est jamais demandé ni gardé', () => {
   const jj = fs.readFileSync('src/app/jourj.js', 'utf8');
-  assert.deepEqual(Object.keys(lire(null)).sort(), ['age', 'cp', 'docs', 'neph', 'nephLe', 'resa', 'resultat', 'sac']);
+  assert.deepEqual(Object.keys(lire(null)).sort(), ['age', 'cp', 'dernierEchec', 'docs', 'echecs', 'fautes', 'neph', 'nephLe', 'resa', 'resultat', 'sac']);
   assert.ok(['non', 'attente', 'oui'].includes(lire(null).neph));
   // aucun champ pour saisir le numéro : le seul champ de l'étape NEPH est la date d'envoi de la demande
   assert.ok(!/<input[^>]*(id|name|placeholder|aria-label)="[^"]*neph/i.test(jj), 'aucun champ pour saisir le NEPH');
@@ -125,16 +125,22 @@ test('l’étape suit l’élève : NEPH, niveau, réservation, attente, jour J,
   assert.equal(etape(lire({ neph: 'oui', resa: resa('2026-11-10'), resultat: 'ok' }), VEN, false), 'reussi');
   assert.equal(etape(lire({ neph: 'oui', resa: resa('2026-11-10'), resultat: 'ko' }), VEN, false), 'rate');
 });
-test('« prêt » = les deux derniers examens à 35 sur 40 ou plus', () => {
-  assert.equal(SEUIL, 0.875);
+test('« prêt » = trois examens blancs de suite à 37 sur 40 ou plus (de la marge sur les 35 du jour J)', () => {
+  assert.equal(SEUIL, 0.875); assert.equal(SEUIL_PRET, 0.925); assert.equal(N_PRET, 3);
   const n = ex => niveau({ examens: ex, coursVus: 35, coursTotal: 35 });
+  const b = (...xs) => xs.map(x => ({ score: x, total: 40 }));
   assert.equal(n([]).pret, false);
-  assert.equal(n([{ score: 90, total: 100 }]).pret, false);
-  assert.equal(n([{ score: 35, total: 40 }, { score: 87.5, total: 100 }]).pret, true);
-  assert.equal(n([{ score: 39, total: 40 }, { score: 34, total: 40 }]).pret, false);
-  assert.equal(n([{ score: 20, total: 40 }, { score: 36, total: 40 }, { score: 18, total: 20 }]).pret, true);   // seuls les deux derniers comptent
+  assert.equal(n(b(38, 39)).pret, false);                                        // deux ne suffisent plus
+  assert.equal(n(b(37, 38, 40)).pret, true);
+  assert.equal(n(b(36, 38, 40)).pret, false);                                    // 36 : reçu le jour J, mais sans marge
+  assert.equal(n(b(20, 25, 37, 38, 39)).pret, true);                             // seuls les trois derniers comptent
+  assert.equal(n([{ score: 93, total: 100 }, { score: 95, total: 100 }, { score: 100, total: 100 }]).pret, true);   // examens blancs 3D, en %
+  assert.equal(n([...b(38, 38), { score: 20, total: 20 }]).pret, false);         // un examen rapide (20 questions) ne compte pas
+  assert.equal(n(b(30, 38, 39)).reussis, 2);
+  assert.equal(n(b(36)).presque, true); assert.equal(n(b(36)).dernier, 36);
+  assert.equal(n(b(30, 34, 36, 38, 40)).moyenne, 35.6);
   assert.match(niveau({ examens: [], coursVus: 30, coursTotal: 35 }).conseil, /Il te reste 5 cours/);
-  [n([]), n([{ score: 1, total: 40 }]), n([{ score: 36, total: 40 }]), n([{ score: 36, total: 40 }, { score: 36, total: 40 }])].forEach(x => assert.ok(x.conseil.length > 20 && x.conseil.length < 110, x.conseil));
+  [n([]), n(b(1)), n(b(36)), n(b(38)), n(b(38, 38)), n(b(38, 38, 38))].forEach(x => assert.ok(x.conseil.length > 20 && x.conseil.length < 110, x.conseil));
 });
 test('l’onglet compte les jours (« J-12 », « Jour J »), et reprend son nom sans session à venir', () => {
   const r = d => lire({ resa: { d, h: '', op: 'laposte' } });

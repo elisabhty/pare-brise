@@ -7,7 +7,16 @@
    Le numéro NEPH lui-même n'est jamais demandé ni enregistré : l'app n'en a pas besoin, seul son site de réservation le demande. */
 import { iso, fromIso, diffD } from './dates.js';
 
-export const VIDE = () => ({ neph: 'non', nephLe: null, age: null, docs: {}, cp: '', resa: null, sac: {}, resultat: null });
+export const VIDE = () => ({ neph: 'non', nephLe: null, age: null, docs: {}, cp: '', resa: null, sac: {}, resultat: null, fautes: null, dernierEchec: null, echecs: 0 });
+/* après un examen raté : le nombre de fautes annoncé (6 à 11, 11 = « 11 ou plus »), la date du dernier passage raté
+   (les examens blancs d'avant ne comptent plus pour « prêt ») et le nombre de passages ratés */
+export const FAUTES = [6, 7, 8, 9, 10, 11];
+export const fautesOk = f => FAUTES.includes(+f);
+/* les examens blancs qui comptent : ceux faits après le dernier passage raté */
+export function depuisEchec(e) {
+  const d = e.resultat === 'ko' && e.resa ? e.resa.d : e.dernierEchec;
+  return d && dateOk(d) ? fromIso(d).getTime() + 86400000 : 0;
+}
 export const lire = brut => Object.assign(VIDE(), brut || {}, { sac: Object.assign({}, (brut && brut.sac) || {}), docs: Object.assign({}, (brut && brut.docs) || {}) });
 
 /* ---------- les centres agréés par l'État (même épreuve, même prix partout) ---------- */
@@ -103,18 +112,31 @@ export function etape(e, t, pret) {
 }
 
 /* ---------- le niveau : notre repère, pas une règle officielle ---------- */
-/* prêt quand les deux derniers examens (blancs ou rapides) atteignent le seuil du jour J : 35 sur 40, soit 87,5 % */
+/* Le jour J, il faut 35 bonnes réponses sur 40 (87,5 %). Pour réserver, l'app demande de la marge : 37 sur 40 ou plus
+   à trois examens blancs de suite. Se présenter trop tôt est l'erreur la plus courante, et chaque passage raté se repaie.
+   Seuls les examens blancs complets (40 questions) comptent pour « prêt » ; les examens rapides servent à s'entraîner. */
 export const SEUIL = 35 / 40;
+export const SEUIL_PRET = 37 / 40;
+export const N_PRET = 3;
+const estBlanc = x => x.blanc || x.total >= 40;
+const sur40 = x => Math.round(x.score / x.total * 40);
 export function niveau({ examens = [], coursVus = 0, coursTotal = 0 }) {
-  const derniers = examens.slice(-2), reussis = derniers.filter(x => x.total && x.score / x.total >= SEUIL).length;
-  const pret = derniers.length === 2 && reussis === 2;
+  const bl = examens.filter(x => x.total && estBlanc(x));
+  const derniers = bl.slice(-N_PRET);
+  // les réussites « avec marge » de suite, en partant du plus récent
+  let reussis = 0; for (let k = bl.length - 1; k >= 0 && bl[k].score / bl[k].total >= SEUIL_PRET - 1e-9; k--) reussis++;
+  reussis = Math.min(reussis, N_PRET);
+  const pret = derniers.length === N_PRET && reussis === N_PRET;
+  const cinq = bl.slice(-5), moyenne = cinq.length ? Math.round(cinq.reduce((a, x) => a + x.score / x.total * 40, 0) / cinq.length * 10) / 10 : null;
+  const dernier = bl.length ? sur40(bl[bl.length - 1]) : null;
   const reste = coursTotal - coursVus;
   let conseil;
-  if (pret) conseil = 'Tes deux derniers examens passent la barre du jour J. Tu peux réserver.';
-  else if (reste > 0) conseil = `Il te reste ${reste} cours à voir. Réserve quand tu réussis deux examens blancs de suite.`;
-  else if (!derniers.length) conseil = 'Tous les cours sont vus. Fais un examen blanc pour te situer.';
-  else conseil = reussis ? 'Encore un examen blanc réussi et tu peux réserver.' : 'Vise 35 bonnes réponses sur 40 à deux examens blancs de suite avant de réserver.';
-  return { pret, reussis, conseil };
+  if (pret) conseil = `Tes ${N_PRET} derniers examens blancs sont à 37 sur 40 ou plus : tu as de la marge. Tu peux réserver.`;
+  else if (reste > 0) conseil = `Il te reste ${reste} cours à voir. Ensuite, vise 37 sur 40 à ${N_PRET} examens blancs de suite.`;
+  else if (!bl.length) conseil = 'Tous les cours sont vus. Fais un examen blanc pour te situer.';
+  else if (reussis) conseil = `Encore ${N_PRET - reussis} examen${N_PRET - reussis > 1 ? 's' : ''} blanc${N_PRET - reussis > 1 ? 's' : ''} à 37 ou plus, de suite, et tu peux réserver.`;
+  else conseil = dernier >= 35 ? `${dernier} sur 40 : ça passerait de justesse. Vise 37 pour garder de la marge le jour J.` : `Vise 37 sur 40 à ${N_PRET} examens blancs de suite avant de réserver : un passage raté se repaie.`;
+  return { pret, reussis, faits: bl.length, moyenne, dernier, presque: !pret && dernier !== null && dernier >= 35, conseil };
 }
 
 /* le badge de l'onglet : « J-12 », « J-1 », « Jour J » ; rien sans session à venir */

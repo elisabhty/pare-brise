@@ -1790,3 +1790,120 @@ a.btn,a.jj-chip{text-decoration:none}
 #s-cours.enpause .sc-im.on{animation-play-state:paused}
 .labels.off{display:none}
 @media (prefers-reduced-motion:reduce){.sc-im.on{animation:none;transform:scale(1.04)}.plot-img{animation:none}}
+
+/* ---------- la jauge « prêt » : 5 derniers examens blancs, barres du jour J (35) et de réservation (37) ---------- */
+.jg{position:relative;height:132px;margin:22px 0 2px;padding:0 104px 0 2px;display:flex;align-items:flex-end;gap:10px;border-bottom:1.5px solid rgba(16,32,64,.12)}
+.jg-b{position:relative;flex:1;max-width:46px;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,#5B8CFF,#1F5BFF);transform-origin:bottom;animation:jg-up .7s cubic-bezier(.2,.9,.3,1.2) both}
+.jg-b:nth-child(4){animation-delay:.06s}.jg-b:nth-child(5){animation-delay:.12s}.jg-b:nth-child(6){animation-delay:.18s}.jg-b:nth-child(7){animation-delay:.24s}
+.jg-b.ok{background:linear-gradient(180deg,#3DD68C,#12A150)}
+.jg-b.juste{background:linear-gradient(180deg,#FFB061,#FF7A1A)}
+.jg-b.ko{background:linear-gradient(180deg,#FF8A8A,#D7263D)}
+.jg-b span{position:absolute;top:-19px;left:0;right:0;text-align:center;font-size:12.5px;font-weight:800;color:var(--label)}
+.jg-l{position:absolute;left:0;right:0;height:0;border-top:1.5px dashed rgba(16,32,64,.28);pointer-events:none;z-index:1}
+.jg-l.l37{border-top-color:rgba(18,161,80,.65)}
+.jg-l span{position:absolute;right:0;top:-15px;font-size:10.5px;font-weight:700;font-style:normal;color:var(--label2);background:rgba(255,255,255,.85);padding:0 4px;border-radius:6px}
+.jg-l.l37 span{color:#0B7A3B}
+.jj-why{margin:0;font-size:12.5px;line-height:1.4;color:var(--label3,#6B7690)}
+@keyframes jg-up{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.jg-b{animation:none}}
+
+/* ---------- après une erreur : le piège et le cours à revoir ; après un examen : d'où viennent les erreurs ---------- */
+.fb-piege{margin:8px 0 0;font-size:14px;line-height:1.4;color:#9A3D06}
+.fb-cours{margin-top:8px;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:0;background:rgba(31,91,255,.1);color:var(--bleu,#1F5BFF);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;text-align:left}
+.diag{display:grid;gap:10px;padding:14px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(16,32,64,.08)}
+.diag-k{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--label2)}
+.diag-l{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.diag-l button{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:14px;border:0;background:rgba(16,32,64,.04);font:inherit;text-align:left;cursor:pointer;color:var(--label)}
+.diag-n{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#FFE9DA;color:#B4520C;font-weight:800;font-size:14px}
+.diag-t{flex:1;min-width:0;display:grid}
+.diag-t b{font-size:14.5px;line-height:1.25}
+.diag-t small{font-size:12.5px;color:#C2362B;font-weight:700}
+.diag-go{flex:none;font-size:13px;font-weight:700;color:var(--bleu,#1F5BFF)}
+.xresult .diag{margin:2px 0 4px}
+
+/* ---------- S'entraîner : bien lire, thèmes fragiles, lecture facile ---------- */
+.tiles2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tiles2 .tile{min-height:0;padding:16px 14px;gap:6px}
+.tiles2 .tile b{font-size:22px}
+.lf-row{width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:20px;border:0;font:inherit;text-align:left;color:var(--label);cursor:pointer}
+.lf-row>span{flex:1;display:grid}
+.lf-row b{font-size:16px}
+.lf-row small{font-size:13px;color:var(--label2)}
+.lf-row i{flex:none;width:50px;height:30px;border-radius:999px;background:rgba(16,32,64,.16);position:relative;transition:background .2s}
+.lf-row i::after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .2s}
+.lf-row[aria-checked="true"] i{background:#12A150}
+.lf-row[aria-checked="true"] i::after{transform:translateX(20px)}
+.lf-aa{font-family:var(--fd);font-weight:800;font-size:17px;letter-spacing:-.02em}
+.lf-aa[aria-checked="true"]{background:#1F5BFF;color:#fff}
+.th-l{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.th-l button{width:100%;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;column-gap:12px;row-gap:2px;align-items:center;padding:12px 14px;border-radius:18px;border:0;font:inherit;text-align:left;color:var(--label);cursor:pointer}
+.th-t{display:grid;gap:7px}
+.th-t b{font-size:15px;line-height:1.25}
+.th-bar{display:block;height:7px;border-radius:999px;background:rgba(16,32,64,.08);overflow:hidden}
+.th-bar b{display:block;height:100%;border-radius:inherit;background:#1F5BFF}
+.th-bar b.ok{background:#12A150}.th-bar b.moy{background:#FF7A1A}.th-bar b.ko{background:#D7263D}
+.th-p{grid-row:1;grid-column:2;font-size:17px;font-weight:800}
+.th-go{grid-row:2;grid-column:2;font-size:12.5px;font-weight:700;color:var(--bleu,#1F5BFF)}
+
+/* ---------- Les pièges ---------- */
+.lq{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.lq li{display:flex;gap:12px;padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.78);border:1px solid rgba(16,32,64,.07)}
+.lq-n{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#FFE9DA;color:#B4520C;font-weight:800;font-size:14px}
+.lq div>b{display:block;font-size:15.5px;line-height:1.25;margin-bottom:3px}
+.lq p{margin:0;font-size:14px;line-height:1.42;color:var(--label2)}
+.feat-multi{margin:6px 0 0;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,#FF8A3D 0%,#E5600F 60%,#B4470A 100%);box-shadow:0 22px 44px -22px rgba(229,96,15,.7)}
+.feat-multi i{color:#B4470A}
+.pg-cartes{display:grid;gap:10px}
+
+/* ---------- Lexique ---------- */
+.lx-f{display:flex;align-items:center;gap:10px;padding:0 14px;height:48px;border-radius:16px}
+.lx-f svg{width:20px;height:20px;flex:none;color:var(--label2)}
+.lx-f input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:var(--label);outline:none}
+.lx-l{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.lx-l li{padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.78);border:1px solid rgba(16,32,64,.07)}
+.lx-l b{font-size:16px}
+.lx-l p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:var(--label2)}
+.lx-c{margin-top:8px;padding:6px 11px;border-radius:999px;border:0;background:rgba(31,91,255,.09);color:var(--bleu,#1F5BFF);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.lx-vide p{margin:0}
+.lx{display:inline;padding:0;margin:0;border:0;background:none;font:inherit;color:inherit;cursor:help;text-decoration:underline dotted rgba(31,91,255,.75);text-decoration-thickness:2px;text-underline-offset:4px;-webkit-tap-highlight-color:transparent}
+.lx-def{margin:0;font-size:17px;line-height:1.5}
+
+/* ---------- Je l'ai raté : nombre de fautes et plan en 7 jours ---------- */
+.jx-q{display:grid;gap:8px}
+.jx-q>b{font-size:15.5px}
+.jx-q .chipb.sm{min-width:52px;justify-content:center}
+.jx-plan{display:grid;gap:8px}
+.jx-plan ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.jx-plan button{width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:14px;border:0;background:rgba(16,32,64,.04);font:inherit;text-align:left;color:var(--label);cursor:pointer}
+.jx-plan .jx-n{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#E6EEFF;color:#1F5BFF;font-weight:800;font-size:13.5px}
+.jx-plan .jx-st{flex:1;min-width:0;display:grid}
+.jx-plan .jx-st b{font-size:14.5px;line-height:1.25}
+.jx-plan .jx-st small{font-size:12.5px;color:var(--label2)}
+.jx-plan .jx-chev{flex:none;width:18px;height:18px;color:var(--label3,#8A93A6)}
+.jx-plan .jx-chev svg{width:100%;height:100%}
+
+/* ---------- Respirer une minute ---------- */
+.jx-respire{width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;border:0;background:linear-gradient(135deg,#E8F1FF,#EFFAF4);font:inherit;text-align:left;color:var(--label);cursor:pointer}
+.jx-respire>span:last-child{display:grid}
+.jx-respire b{font-size:15px}
+.jx-respire small{font-size:12.5px;color:var(--label2)}
+.jx-r-o{flex:none;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,#7FB2FF 0%,#1F5BFF 70%);animation:rs-mini 5s ease-in-out infinite}
+@keyframes rs-mini{0%,100%{transform:scale(.7)}40%{transform:scale(1)}}
+.rs{display:grid;gap:12px;justify-items:center;text-align:center}
+.rs .bs-head{justify-self:stretch;text-align:left}
+.rs-zone{position:relative;width:220px;height:220px;display:grid;place-items:center}
+.rs-o{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 40%,rgba(127,178,255,.55),rgba(31,91,255,.28) 60%,rgba(31,91,255,.08));box-shadow:0 0 0 2px rgba(31,91,255,.25),0 20px 60px -20px rgba(31,91,255,.6);transform:scale(.62);will-change:transform}
+.rs-p{position:relative}
+.rs-t{font-family:var(--fd);font-size:28px;letter-spacing:-.02em}
+.rs-n{font-size:13px;color:var(--label2);min-height:16px}
+.rs .bs-btns{justify-self:stretch}
+@media (prefers-reduced-motion:reduce){.jx-r-o{animation:none}}
+
+/* ---------- Lecture facile : texte plus grand, plus d'espace entre les lettres, les mots et les lignes ---------- */
+html.lf .ex-text{font-size:22px;line-height:1.45;letter-spacing:.015em;word-spacing:.08em}
+html.lf .ex-opt{font-size:17.5px;line-height:1.45;letter-spacing:.012em;word-spacing:.06em}
+html.lf .xq b{font-size:24px;line-height:1.35;letter-spacing:.005em;word-spacing:.06em}
+html.lf .xan span,html.lf .xq-ctx{font-size:17px;line-height:1.45;letter-spacing:.012em;word-spacing:.06em}
+html.lf .sfb,html.lf .xexp p,html.lf .corr p,html.lf .xr-list span{font-size:16px;line-height:1.55;letter-spacing:.01em;word-spacing:.06em}
+html.lf #caption{font-size:19px;line-height:1.55;letter-spacing:.012em;word-spacing:.08em}
+html.lf .lq p,html.lf .lx-l p,html.lf .jj-note,html.lf .pg-q,html.lf .pg-a{font-size:16px;line-height:1.55;letter-spacing:.01em;word-spacing:.06em}

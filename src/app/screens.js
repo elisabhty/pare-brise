@@ -1,10 +1,10 @@
 /* Écrans : salle (accueil), parcours (catalogue), fiche cours, s'entraîner (questions et conduite 3D), réserver (jourj.js). */
-import { $, $$, esc, wait, haptic, store } from './util.js';
+import { $, $$, esc, wait, haptic, store, shuffle } from './util.js';
 import { has3D, R, SALLE, STUDIO, Engine } from './world.js';
 import { sign } from './signs.js';
-import { THEMES, COURSES, SERIES, course, theme, coursesOf, courseNumber, seriesOfCourse, signsOfCourse, allQuestionIds } from './content.js';
+import { THEMES, COURSES, SERIES, QUESTIONS, questionTheme, course, theme, coursesOf, courseNumber, seriesOfCourse, signsOfCourse, allQuestionIds } from './content.js';
 import { piegeHTML, bindPieges, piegeDuJour } from './piege.js';
-import { courseState, seriesBest, seriesTotal, toReview, mastered, nextCourse, doneCount, readiness, exams } from './progress.js';
+import { courseState, seriesBest, seriesTotal, toReview, mastered, nextCourse, doneCount, readiness, exams, maitrise, vuesSur, aTravailler } from './progress.js';
 import { Voice, splitSentences, estimate } from './voice.js';
 import { Sound } from './sound.js';
 import { register, show, curtain } from './nav.js';
@@ -15,7 +15,8 @@ import { Labels } from './labels.js';
 import { Frame, prewarm } from './scenes.js';
 import { roadmap } from './roadmap.js';
 import { renderHomeExos, renderExos, Exos, practiceOf, defisOf, best as exoBest, starsHtml, icon } from './exos.js';
-import { setupJourJ, renderJourJ, accueilJJ } from './jourj.js';
+import { setupJourJ, renderJourJ, accueilJJ, pctPret } from './jourj.js';
+import { setupLire, renderPieges, renderLexique } from './lire.js';
 import { setupPlanning, renderPlanning, todayCardHTML, bindToday, getPlan, plannedDays, refreshBadge, launch, openSheet } from './planning.js';
 import { getProfil, salut, avatarHTML, openProfil } from './profil.js';
 import { weekHTML, streak, activeToday, FLAME } from './streak.js';
@@ -84,7 +85,7 @@ function renderHome() {
   $('#ncProg').hidden = !enCours; $('#ncBar').style.width = Math.round(st.scene / nSc * 100) + '%';
   $('#ncMeta').textContent = enCours ? `Chapitre ${ch + 1} sur ${nCh} · puis ${qCount(c)} situations en pratique` : `${nCh} chapitre${nCh > 1 ? 's' : ''}, puis ${qCount(c)} situations en pratique`;
   $('#takeSeat').textContent = enCours ? 'Reprendre le cours' : 'Lancer le cours';
-  const r = readiness();
+  const r = pctPret();
   $('#readyPct').textContent = r + ' %'; $('#readyBar').style.width = r + '%';
   const rev = toReview().length;
   $('#reviewCard').hidden = !rev;
@@ -181,7 +182,21 @@ function renderHub() {
   $('#hubSeriesN').textContent = `${all.length} séries`;
   $('#hubSeries').innerHTML = all.map((s, k) => { const c = course(s.cours); const best = seriesBest(s.id), tot = seriesTotal(s.id); return `<li${!open && k >= 6 ? ' hidden' : ''}><button class="srow glass" data-s="${s.id}"><div><b>${esc(s.titre)}</b><small>${c ? `Cours ${courseNumber(c)} · ` : ''}${s.questions.length} questions</small></div>${best !== undefined ? `<span class="tag num">${best}/${tot}</span>` : '<span class="srow-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>'}</button></li>`; }).join('');
   $('#hubSeriesMore').hidden = open || all.length <= 6;
+  renderThemes();
   $$('#hubSeries [data-s]').forEach(b => b.addEventListener('click', () => startSerie(b.dataset.s, { retour: 'examen' })));
+}
+
+/* « Mes thèmes » : les 10 thèmes officiels de l'examen, les 3 plus fragiles d'abord (parmi ceux déjà travaillés) */
+function renderThemes() {
+  const host = $('#hubThemes'); if (!host) return;
+  const qs = [...QUESTIONS.values()];
+  const th = THEMES.map(t => { const ids = qs.filter(q => questionTheme(q) === t.id).map(q => q.id); return { t, ids, m: maitrise(ids), vus: vuesSur(ids) }; }).filter(x => x.ids.length);
+  const travailles = th.filter(x => x.vus >= 3);
+  if (!travailles.length) { host.innerHTML = ''; return; }
+  const faibles = travailles.sort((a, b) => a.m - b.m).slice(0, 3);
+  host.innerHTML = `<h2 class="h-sec">Mes thèmes les plus fragiles<small>${travailles.length} sur ${THEMES.length} travaillés</small></h2>
+    <ul class="th-l">${faibles.map(x => { const p = Math.round(x.m * 100); return `<li><button class="glass" data-th="${esc(x.t.id)}"><span class="th-t"><b>${esc(x.t.nom)}</b><i class="th-bar"><b style="width:${Math.max(4, p)}%" class="${p >= 70 ? 'ok' : p >= 40 ? 'moy' : 'ko'}"></b></i></span><span class="th-p num">${p} %</span><span class="th-go">10 questions</span></button></li>`; }).join('')}</ul>`;
+  $$('[data-th]', host).forEach(b => b.addEventListener('click', () => { const x = th.find(y => y.t.id === b.dataset.th); if (!x) return; haptic(); Sound.ui('tap'); Serie.start({ titre: x.t.nom, ids: shuffle(aTravailler(x.ids, 10)), mode: 'entrainement', retour: 'examen' }); }));
 }
 
 /* ---------- Enregistrement des écrans ---------- */
@@ -211,6 +226,9 @@ export function setupScreens() {
   register('serie', { world: 'route', amb: null, noTab: true, tab: 'entrainer', enter() { R.reset(); }, leave() { Serie.stop(); } });
   register('entrainer', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-entrainer'), enter(prev, o) { renderEntrainer(o && o.volet); SALLE.reset(900); } });
   $$('#entSeg [data-volet]').forEach(b => b.addEventListener('click', () => { if (b.dataset.volet === volet) return; haptic(); Sound.ui('tick'); renderEntrainer(b.dataset.volet); $('#s-entrainer').scrollTop = 0; }));
+  register('pieges', { world: 'salle', amb: 'salle', still: true, tab: 'entrainer', region: () => $('#s-pieges'), enter() { renderPieges(); SALLE.reset(900); } });
+  register('lexique', { world: 'salle', amb: 'salle', still: true, tab: 'entrainer', region: () => $('#s-lexique'), enter() { const f = $('#lxFiltre'); renderLexique(f ? f.value : ''); SALLE.reset(900); } });
+  setupLire({ startSerie: cfg => Serie.start(cfg) });
   register('jourj', { world: 'salle', amb: 'salle', still: true, region: () => $('#s-jourj'), enter() { renderJourJ(true); SALLE.reset(900); } });
   setupJourJ();
   register('decodeur', { world: 'studio', amb: null, enter() { Decoder.paint(true); } });

@@ -8,7 +8,7 @@
      coursVus, coursTotal, prochain: { id, num, titre, min, enCours, chapitre, nCh },
      revoir (questions à revoir), pratique: { id, num } (pratique d'un cours vu, pas encore faite),
      plan: null | { reste, late, seanceFaite, libre, fin: 'AAAA-MM-JJ', examen: 'AAAA-MM-JJ' | null },
-     pret, reussis (0 à 2), dernierBlanc (sur 40) | null, blancs (nombre), blancReussi,
+     pret, reussis (0 à 3, examens blancs de suite à 37 sur 40 ou plus), dernierBlanc (sur 40) | null, blancs (nombre), blancReussi,
      jj: { etape, j, neph: 'non' | 'attente' | 'oui', attente: 'debut' | 'fenetre' | 'tard' | null, resa, resultat } } */
 
 const pl = (n, m, p = m + 's') => `${n} ${n > 1 ? p : m}`;
@@ -16,6 +16,15 @@ const pl = (n, m, p = m + 's') => `${n} ${n > 1 ? p : m}`;
 const un = (liste, jour = 0) => liste[((jour % liste.length) + liste.length) % liste.length];
 /* « 21 décembre », « 1er mars » : en toutes lettres, pour ne pas finir une phrase sur un point d'abréviation */
 const dateLongue = d => { const [, m, j] = String(d).split('-').map(Number); return `${j === 1 ? '1er' : j} ${['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'][m - 1]}`; };
+
+/* où en sont les examens blancs, en une phrase : il en faut 35 le jour J, l'app demande 37 trois fois de suite pour réserver */
+function aVenir(s) {
+  const d = s.dernierBlanc, r = s.reussis || 0;
+  if (d == null) return 'Fais un examen blanc pour te situer : 40 situations, comme le jour J.';
+  if (d < 35) return `Dernier examen blanc : ${d} sur 40. Il en manquait ${35 - d} : revois tes erreurs, puis on en refait un.`;
+  if (d < 37) return `Dernier examen blanc : ${d} sur 40. Ça passerait de justesse : vise 37 pour garder de la marge.`;
+  return `Dernier examen blanc : ${d} sur 40. Encore ${3 - r > 1 ? `${3 - r} de suite` : 'un'} à 37 ou plus, et tu es prêt.`;
+}
 
 /* ---------- le conseil de l'accueil ---------- */
 export function conseil(s = {}) {
@@ -41,12 +50,12 @@ export function conseil(s = {}) {
 
   // 4. ce qui fait gagner le plus de points
   if (rev >= 8) return { id: 'revoir', humeur: '', texte: `${pl(rev, 'question')} à revoir. Ce sont tes erreurs : les remettre en place, c’est gagner des points le jour J.`, action: allerRevoir };
-  if (s.pret && jj.neph === 'oui' && !jj.resa) return { id: 'reserver', humeur: 'cheer', texte: 'Deux examens blancs réussis de suite : tu es prêt. Il est temps de réserver ta place.', action: { label: 'Réserver mon examen', go: 'jourj' } };
+  if (s.pret && jj.neph === 'oui' && !jj.resa) return { id: 'reserver', humeur: 'cheer', texte: 'Trois examens blancs à 37 sur 40 ou plus : tu as de la marge. Il est temps de réserver ta place.', action: { label: 'Réserver mon examen', go: 'jourj' } };
   if (jj.neph === 'non' && s.coursVus >= 3) return { id: 'neph', humeur: '', texte: 'Pense à demander ton NEPH dès maintenant : il met 2 à 6 semaines à arriver. Autant qu’il soit là quand tu seras prêt.', action: { label: 'Voir comment faire', go: 'jourj' } };
   if (jj.neph === 'attente' && jj.attente === 'tard') return { id: 'neph-tard', humeur: 'oops', texte: 'Ta demande de NEPH a plus de 6 semaines. Jette un œil à ton espace France Titres : un document est peut-être à renvoyer.', action: { label: 'Voir ma demande', go: 'jourj' } };
   if (s.coursTotal && s.coursVus >= s.coursTotal) {
     if (!s.blancs) return { id: 'blanc', humeur: 'cheer', texte: 'Tous les cours sont vus ! Place à l’examen blanc : 40 situations, comme le jour J.', action: { label: 'Faire un examen blanc', exo: 'x-exam-blanc' } };
-    if (!s.pret) return { id: 'blanc', humeur: '', texte: s.dernierBlanc != null && s.dernierBlanc < 35 ? `Dernier examen blanc : ${s.dernierBlanc} sur 40. Il en manquait ${35 - s.dernierBlanc} : revois tes erreurs, puis on en refait un.` : 'Encore un examen blanc réussi de suite, et tu es prêt.', action: rev && s.dernierBlanc != null && s.dernierBlanc < 35 ? allerRevoir : { label: 'Faire un examen blanc', exo: 'x-exam-blanc' } };
+    if (!s.pret) return { id: 'blanc', humeur: '', texte: aVenir(s), action: rev && s.dernierBlanc != null && s.dernierBlanc < 35 ? allerRevoir : { label: 'Faire un examen blanc', exo: 'x-exam-blanc' } };
   }
   if (s.pratique) return { id: 'pratique', humeur: '', texte: `Tu as vu le cours ${s.pratique.num}, mais pas encore sa pratique en 3D. C’est là que ça rentre vraiment.`, action: { label: 'Lancer la pratique', exo: s.pratique.id } };
   if (rev >= 3) return { id: 'revoir', humeur: '', texte: `${pl(rev, 'question')} à revoir : 5 minutes pour les remettre en place.`, action: allerRevoir };
@@ -72,10 +81,10 @@ export function conseilEcran(ecran, s = {}) {
   }
   if (ecran === 'questions') {
     if (!s.coursVus) return { id: 'cours', humeur: '', texte: 'Les questions viennent des cours. Commence par le cours 1 : sa série t’attend juste après.', action: s.prochain && s.prochain.id ? { label: 'Voir le cours 1', go: 'fiche', arg: s.prochain.id } : { label: 'Voir les cours', go: 'parcours' } };
-    if (s.pret) return { id: 'pret', humeur: 'cheer', texte: 'Deux examens blancs réussis de suite : tu es prêt. Tu peux réserver ta place.', action: { label: 'Réserver mon examen', go: 'jourj' } };
+    if (s.pret) return { id: 'pret', humeur: 'cheer', texte: 'Trois examens blancs à 37 sur 40 ou plus : tu es prêt. Tu peux réserver ta place.', action: { label: 'Réserver mon examen', go: 'jourj' } };
     if (rev) return { id: 'revoir', humeur: '', texte: `Commence par tes ${pl(rev, 'question')} à revoir : ce sont tes erreurs, et chacune remise en place, c’est un point de plus le jour J.`, action: null };
-    if (s.dernierBlanc != null) return { id: 'blanc', humeur: s.dernierBlanc >= 35 ? 'cheer' : '', texte: s.dernierBlanc >= 35 ? `Dernier examen blanc : ${s.dernierBlanc} sur 40. Encore un de suite à 35 ou plus, et tu es prêt.` : `Dernier examen blanc : ${s.dernierBlanc} sur 40. Le jour J, il en faut 35 : vise deux examens blancs de suite au-dessus.`, action: null };
-    return { id: 'repere', humeur: '', texte: 'Mon repère pour réserver : deux examens blancs de suite à 35 sur 40 ou plus.', action: null };
+    if (s.dernierBlanc != null) return { id: 'blanc', humeur: s.dernierBlanc >= 37 ? 'cheer' : '', texte: aVenir(s), action: null };
+    return { id: 'repere', humeur: '', texte: 'Le jour J, il faut 35 sur 40. Mon repère pour réserver : 37 sur 40 à trois examens blancs de suite.', action: null };
   }
   if (ecran === 'conduite') {
     if (s.pratique) return { id: 'pratique', humeur: '', texte: `La pratique du cours ${s.pratique.num} t’attend : c’est en conduisant qu’on retient le mieux.`, action: { label: 'Lancer la pratique', exo: s.pratique.id } };
@@ -89,10 +98,10 @@ export function conseilEcran(ecran, s = {}) {
 export const JALONS = [
   { id: 'code', titre: 'Code en poche !', texte: p => `Bravo${p ? ` ${p}` : ''}, tu l’as ! Garde ton NEPH : il te suit jusqu’à l’examen de conduite.` },
   { id: 'resa', titre: 'Place réservée !', texte: () => 'Je compte les jours avec toi. On garde le rythme jusqu’au jour J.' },
-  { id: 'pret', titre: 'Tu es prêt !', texte: () => 'Deux examens blancs réussis de suite. Il est temps de réserver ta place.', action: { label: 'Réserver mon examen', go: 'jourj' } },
+  { id: 'pret', titre: 'Tu es prêt !', texte: () => 'Trois examens blancs de suite à 37 sur 40 ou plus. Il est temps de réserver ta place.', action: { label: 'Réserver mon examen', go: 'jourj' } },
   { id: 'neph', titre: 'Ton NEPH est là !', texte: () => 'Une étape de moins. Plus qu’à être prêt, et à réserver.' },
-  { id: 'blanc', titre: 'Examen blanc réussi !', texte: () => '35 sur 40 ou plus, comme le jour J. Encore un de suite et tu es prêt.' },
-  { id: 'cours-tous', titre: 'Tous les cours sont vus !', texte: () => 'Place aux examens blancs : deux de suite à 35 sur 40, et tu es prêt.', action: { label: 'Faire un examen blanc', exo: 'x-exam-blanc' } },
+  { id: 'blanc', titre: 'Examen blanc réussi !', texte: () => '35 sur 40 ou plus, comme le jour J. Vise 37 trois fois de suite pour avoir de la marge.' },
+  { id: 'cours-tous', titre: 'Tous les cours sont vus !', texte: () => 'Place aux examens blancs : trois de suite à 37 sur 40, et tu es prêt.', action: { label: 'Faire un examen blanc', exo: 'x-exam-blanc' } },
   { id: 'cours-20', titre: '20 cours vus !', texte: () => 'Tu as fait le plus dur. Garde le rythme, et pense à tes questions à revoir.' },
   { id: 'cours-10', titre: '10 cours vus !', texte: () => 'Tu as pris le rythme. Tes questions à revoir fixent ce que tu as vu.' },
   { id: 'cours-5', titre: '5 cours vus !', texte: () => 'Ça avance bien. Un peu chaque jour, c’est comme ça qu’on retient.' },

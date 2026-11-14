@@ -171,6 +171,7 @@
     <div class="shead">
       <button class="ibtn glass" id="sQuit" aria-label="Quitter la série"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></button>
       <div style="min-width:0"><div class="eyebrow" id="sEyebrow"></div><h1 class="d" id="sTitle" style="font-size:40px"></h1></div>
+      <button class="ibtn glass lf-aa" data-lf role="switch" aria-checked="false" aria-label="Lecture facile">Aa</button>
       <div class="timer" id="sTimer" hidden><svg viewBox="0 0 58 58"><circle class="bg" cx="29" cy="29" r="24"/><circle class="fg" id="sRing" cx="29" cy="29" r="24"/></svg><span class="num" id="sSec">20</span></div>
     </div>
     <div class="view3d hole" id="v-serie"><div class="fb" id="fb-serie"></div></div>
@@ -185,6 +186,24 @@
     <div id="sRes" hidden style="display:grid;gap:16px"></div>
   </section>
 
+  <!-- ================= LES PIÈGES DE L'EXAMEN ================= -->
+  <section class="screen dimbg" id="s-pieges" aria-label="Les pièges de l’examen">
+    <div class="page-head"><button class="pg-back" data-go="entrainer" aria-label="Retour : S’entraîner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg>S’entraîner</button><h1 class="d">Les pièges</h1><p class="pl-sub">Lire chaque question comme le jour J.</p></div>
+    <h2 class="h-sec">Lire une question</h2>
+    <ol class="lq" id="pgLire"></ol>
+    <button class="feat feat-multi" data-multi><span class="feat-k">Entraînement</span><b>Une ou plusieurs réponses</b><span id="pgMultiN"></span><i>Commencer</i></button>
+    <h2 class="h-sec">Le piège de chaque cours<small id="pgCartesN"></small></h2>
+    <div class="pg-cartes" id="pgCartes"></div>
+  </section>
+
+  <!-- ================= LEXIQUE ================= -->
+  <section class="screen dimbg" id="s-lexique" aria-label="Lexique">
+    <div class="page-head"><button class="pg-back" data-go="entrainer" aria-label="Retour : S’entraîner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 L8 12 L15 19"/></svg>S’entraîner</button><h1 class="d">Lexique</h1><p class="pl-sub" id="lxN"></p></div>
+    <label class="lx-f glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input id="lxFiltre" type="search" placeholder="Chercher un mot" autocomplete="off" aria-label="Chercher un mot"></label>
+    <p class="small">Dans les séries, un mot souligné s’explique d’un toucher.</p>
+    <ul class="lx-l" id="lxListe"></ul>
+  </section>
+
   <!-- ================= S'ENTRAÎNER (questions d'examen et conduite en 3D) ================= -->
   <section class="screen dimbg" id="s-entrainer" aria-label="S’entraîner">
     <div class="page-head"><div class="eyebrow">Questions et conduite en 3D</div><h1 class="d">S’entraîner</h1></div>
@@ -197,10 +216,17 @@
         <div class="eyebrow">Entraînement</div>
         <h2 class="d">Examen rapide</h2>
         <p class="lead">20 questions de tous les thèmes, lues à voix haute.</p>
-        <div class="facts"><div><b class="num" id="hubExamN">20</b><span>questions</span></div><div><b class="num">20 s</b><span>par question</span></div><div><b class="num">87,5 %</b><span>pour réussir</span></div></div>
+        <div class="facts"><div><b class="num" id="hubExamN">20</b><span>questions</span></div><div><b>Limité</b><span>temps par question</span></div><div><b class="num">87,5 %</b><span>pour réussir</span></div></div>
         <p class="small" id="hubLast"></p>
         <button class="btn ghost" id="hubExam">Commencer l’examen rapide</button>
       </div>
+      <div id="hubThemes"></div>
+      <h2 class="h-sec">Bien lire les questions</h2>
+      <div class="tiles2">
+        <button class="tile glass" data-go="pieges"><b class="d">Les pièges</b><span>Les formulations qui font perdre des points</span></button>
+        <button class="tile glass" data-go="lexique"><b class="d">Lexique</b><span>Les mots du code, en mots simples</span></button>
+      </div>
+      <button class="lf-row glass" data-lf role="switch" aria-checked="false"><span><b>Lecture facile</b><small>Texte plus grand et plus aéré</small></span><i aria-hidden="true"></i></button>
       <h2 class="h-sec">Séries par cours<small id="hubSeriesN"></small></h2>
       <ul class="srows" id="hubSeries"></ul>
       <button class="more" id="hubSeriesMore" hidden>Voir toutes les séries</button>

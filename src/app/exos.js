@@ -11,6 +11,8 @@ import { register, show, syncRegion, currentScreen } from './nav.js';
 import { markActive } from './streak.js';
 import { answer, courseState } from './progress.js';
 import { plot, react } from './mascot.js';
+import { diagHTML } from './diagnostic.js';
+import { bindPieges } from './piege.js';
 
 const LANE = 1.75, FRONT = 1.9;
 const ms = k => k / 3.6, kmh = v => Math.round(v * 3.6);
@@ -406,11 +408,18 @@ MECA.examen = async (ex, X) => {
       const answers = pc
         ? `<div class="xans xsigns n${pc.length}">${pc.map((id, k) => `<button class="xan xsg" data-k="${k}" aria-pressed="false" aria-label="Panneau ${L[k]}"><span class="xsg-s">${sign(id)}</span><i>${L[k]}</i></button>`).join('')}</div>`
         : `<div class="xans">${sc.choix.map((t, k) => `<button class="xan" data-k="${k}" aria-pressed="false"><i>${L[k]}</i><span>${fr(t)}</span></button>`).join('')}</div>`;
-      const c = X.card(`<div class="xq">${qcm ? `<span class="xq-k">${blanc ? `Question ${i + 1}` : 'Question de cours'}</span>` : ''}${sc.contexte ? `<p class="xq-ctx">${fr(sc.contexte)}</p>` : ''}<b>${fr(sc.q)}</b>${!blanc && sc.bonnes.length > 1 ? '<span class="xq-multi">Plusieurs réponses possibles</span>' : ''}</div>
+      const c = X.card(`<div class="xq">${qcm ? `<span class="xq-k">${blanc ? `Question ${i + 1}` : 'Question de cours'}</span>` : ''}${sc.contexte ? `<p class="xq-ctx">${fr(sc.contexte)}</p>` : ''}<b>${fr(sc.q)}</b>${blanc ? `<span class="xq-multi">${sc.bonnes.length > 1 ? 'Plusieurs réponses' : 'Une seule réponse'}</span>` : sc.bonnes.length > 1 ? '<span class="xq-multi">Plusieurs réponses possibles</span>' : ''}</div>
         ${answers}
         ${blanc ? '<div class="xtimer"><i id="xQbar"></i></div>' : ''}
         <div class="xbtns">${blanc || mode !== 'video' ? '' : '<button class="btn ghost" id="xReplay" aria-label="Revoir la scène"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Revoir</span></button>'}<button class="btn" id="xOk" disabled>Valider</button></div>`, 'xask' + (qcm ? ' xqcm' : ''));
-      $$('.xan', c).forEach(b => b.addEventListener('click', () => { const k = +b.dataset.k; chosen.has(k) ? chosen.delete(k) : chosen.add(k); b.setAttribute('aria-pressed', chosen.has(k)); $('#xOk', c).disabled = !chosen.size; haptic(); Sound.ui('tick'); }));
+      const tCarte = performance.now(), seule = sc.bonnes.length === 1;
+      $$('.xan', c).forEach(b => b.addEventListener('click', () => {
+        if (performance.now() - tCarte < 380) return;   // le doigt du « Valider » précédent ne coche rien ici
+        const k = +b.dataset.k;
+        if (seule) { const avant = chosen.has(k); chosen.clear(); if (!avant) chosen.add(k); } else if (chosen.has(k)) chosen.delete(k); else chosen.add(k);
+        $$('.xan', c).forEach(x => x.setAttribute('aria-pressed', chosen.has(+x.dataset.k)));
+        $('#xOk', c).disabled = !chosen.size; haptic(); Sound.ui('tick');
+      }));
       const frame = () => { if (qcm || c.hidden || !c.classList.contains('on')) return; v3.style.bottom = Math.round(c.getBoundingClientRect().height + 20) + 'px'; syncRegion(); };
       requestAnimationFrame(() => requestAnimationFrame(frame));
       // « Revoir la scène » : la carte s'efface, la vidéo est rejouée, puis la carte revient telle quelle
@@ -431,7 +440,7 @@ MECA.examen = async (ex, X) => {
       if (sc.qid) answer(sc.qid, ok);
       const attendu = [...good].sort().map(k => L[k]).join(' et ');
       if (blanc) {
-        res.push({ nom: sc.q, ok, score: ok ? 100 : 0, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${attendu} : ${sc.explication}` });
+        res.push({ nom: sc.q, ok, score: ok ? 100 : 0, cours: sc._cours || null, txt: ok ? 'Bonne réponse' : `${chosen.size ? 'Faux' : 'Temps écoulé'} · attendu ${attendu} : ${sc.explication}` });
         X.mark(i, 'vu');
         Sound.ui('tap'); X.hideCard(); X.loupe(null); Labels.clear(); v3.style.bottom = ''; syncRegion();
         continue;
@@ -452,6 +461,7 @@ MECA.examen = async (ex, X) => {
     }
   } finally { offL(); sub(null); if (Engine.hidden) Engine.hidden(false); $('#s-exo').classList.remove('qcm'); { const f = $('#xFade'); if (f) f.classList.remove('on', 'txt'); } }
   const nOk = res.filter(r => r.ok).length, score = Math.round(nOk / res.length * 100);
+  if (blanc) vusBlanc(ex.situations);
   if (blanc) { const pass = nOk >= Math.ceil(res.length * 0.875); return { score, total: `${nOk} / ${res.length}`, lignes: res, conseil: pass ? `Reçu : ${nOk} bonnes réponses sur ${res.length}. Il en faut 35 sur 40 le jour J.` : `Pas encore : ${nOk} sur ${res.length}. Il faut 35 bonnes réponses sur 40. Relis les corrections ci-dessus.` }; }
   return { score, lignes: res, conseil: score >= 90 ? 'Niveau examen : 35 bonnes réponses sur 40 suffisent le jour J.' : 'Relis chaque explication, puis rejoue : à l’examen, il faut 35 bonnes réponses sur 40.' };
 };
@@ -780,14 +790,19 @@ MECA.eclairage = async (ex, X) => {
 
 /* ======================= Écran d'exercice ======================= */
 let X = null, curEx = null;
+/* les situations déjà tombées en examen blanc : on tire d'abord celles qu'on a le moins vues (moins de répétitions) */
+const cleSit = sc => sc.qid || `${sc.q}|${(sc.choix || []).join('|')}`;
+function vusBlanc(sits) { const v = store.get('vusBlanc', {}) || {}; sits.forEach(sc => { const k = cleSit(sc); v[k] = (v[k] || 0) + 1; }); store.set('vusBlanc', v); }
 function examBlanc() {
-  // comme le jour du code : surtout des situations (vidéo ou image), et quelques questions de cours
-  const all = EXOS.filter(e => e.meca === 'examen').flatMap(e => e.situations), mix = a => a.slice().sort(() => Math.random() - 0.5);
+  // comme le jour du code : surtout des situations (vidéo ou image), et quelques questions de cours ; les moins vues d'abord
+  const vus = store.get('vusBlanc', {}) || {};
+  const all = EXOS.filter(e => e.meca === 'examen').flatMap(e => e.situations.map(sc => Object.assign({ _cours: e.cours }, sc)));
+  const mix = a => a.map(x => [x, (vus[cleSit(x)] || 0) + Math.random() * 0.9]).sort((p, q) => p[1] - q[1]).map(p => p[0]);
   const s3 = mix(all.filter(s => modeOf(s) !== 'qcm')), sq = mix(all.filter(s => modeOf(s) === 'qcm'));
   const nq = Math.min(sq.length, 8), pool = mix(s3.slice(0, Math.min(40 - nq, s3.length)).concat(sq.slice(0, nq)));
   return { id: 'x-exam-blanc', meca: 'examen', mode: 'blanc', famille: 'Examen blanc', niveau: 3, duree: '15 min', titre: 'Examen blanc en situation', sous: `${pool.length} situations, correction à la fin`,
-    consigne: `${pool.length} situations comme le jour du code : 20 secondes pour répondre, pas de correction avant la fin. Il faut 35 bonnes réponses sur 40 pour réussir.`,
-    astuce: 'Une ou plusieurs réponses peuvent être justes : coche-les toutes.', env: pool[0].env || 'ville', situations: pool };
+    consigne: `${pool.length} situations comme le jour du code : temps limité, pas de retour en arrière, correction à la fin. Il faut 35 bonnes réponses sur 40 pour réussir.`,
+    astuce: 'Chaque question dit s’il y a une seule réponse ou plusieurs : quand il y en a plusieurs, coche-les toutes.', env: pool[0].env || 'ville', situations: pool };
 }
 async function runExo(id, retour) {
   const ex = id === 'x-exam-blanc' ? examBlanc() : EXOS.find(e => e.id === id); if (!ex) return;
@@ -842,11 +857,13 @@ function results(ex, out) {
   const nextL = ex.id.startsWith('p-') && cr && out.score >= 70 ? COURSES[COURSES.indexOf(cr) + 1] : null;
   const c = $('#xCard'); c.className = 'xcard xresult'; c.hidden = false;
   c.innerHTML = `<div class="xr-head">${plot({ size: 64, mood: out.score >= 70 ? 'cheer' : 'oops', pose: out.score >= 70 ? 'joie' : 'decu' })}<div><span class="xi-k">${esc(ex.titre)}</span><div class="xr-score">${out.total ? `<b class="num">${out.total.split(' / ')[0]}</b><span>/ ${out.total.split(' / ')[1]}</span>` : `<b class="num">${out.score}</b><span>/ 100</span>`}</div>${starsHtml(out.score)}</div></div>
+    ${ex.mode === 'blanc' ? diagHTML(out.lignes) : ''}
     <ul class="xr-list">${out.lignes.map(l => `<li class="${l.ok === null ? 'n' : l.ok ? 'ok' : 'ko'}"><i></i><div><b>${esc(l.nom)}</b><span>${esc(l.txt)}</span></div></li>`).join('')}</ul>
     <p class="xr-tip">${esc(out.conseil || '')}</p>
     <div class="xr-btns"><button class="btn ghost" id="xAgain">Rejouer</button><button class="btn" id="xDone">Terminer</button></div>
     ${cr ? `<button class="more" data-go="fiche" data-arg="${cr.id}">Revoir le cours « ${esc(cr.titre)} » →</button>` : ''}${nextL ? `<button class="more" data-go="fiche" data-arg="${nextL.id}">Leçon suivante : « ${esc(nextL.titre)} » →</button>` : ''}`;
   requestAnimationFrame(() => c.classList.add('on'));
+  bindPieges(c);
   react(c, out.score >= 70);
   $('#xAgain').addEventListener('click', () => intro(ex), { once: true });
   $('#xDone').addEventListener('click', () => show(retourX), { once: true });
